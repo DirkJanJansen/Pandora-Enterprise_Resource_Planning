@@ -373,7 +373,7 @@ def barcodeScan(m_email):
         def __init__(self):
             super(widget,self).__init__()
             
-            self.setWindowTitle("Barcodes scannen")
+            self.setWindowTitle("Balieverkoop")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                                 Qt.WindowMinMaxButtonsHint)
