@@ -987,8 +987,12 @@ def hoofdMenu(m_email):
         while True:
             retourPortalWeb.zoekEmailadres(m_email, klmail) 
     elif mk5 == '9' and mp[5][6] == '1':
+        if mp[5][1] == '1':
+            mret = True
+        else:
+            mret = False
         import barcodeScan
-        barcodeScan.barcodeScan(m_email)
+        barcodeScan.barcodeScan(m_email, mret)
     elif mk6 == '1' and mp[6][3] == '1' :
         import invoerInternorder
         invoerInternorder.invWerkorder(m_email)
