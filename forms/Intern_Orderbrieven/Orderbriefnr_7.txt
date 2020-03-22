@@ -1,0 +1,35 @@
+
+
+
+Datum: 2020-02-21
+
+
+Interne orderbrief volgnummer: 7
+
+
+
+Bestelbrief voor magazijnartikel: 200000690
+
+Artikelomschrijving: Zeskantbout,RVS A4,M5x16,DIN933
+
+Artikelprijs inclusief opslagen:         0.29
+
+Artikelvoorraad :       124.00
+
+Artikel eenheid: stuk
+
+Artikel miminimum voorraad:         12.00
+
+Bestelsaldo:         0.00
+
+Bestelstatus: True
+
+Reserveringssaldo:      6880.00
+
+Categorie: 5
+
+Minimale bestelgrootte reserveringgestuurd:      6756.00
+
+Levertermijn :  3 weken
+
+

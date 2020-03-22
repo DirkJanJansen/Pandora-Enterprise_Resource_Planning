@@ -1,0 +1,35 @@
+
+
+
+Datum: 2020-02-25
+
+
+Interne orderbrief volgnummer: 6
+
+
+
+Bestelbrief voor magazijnartikel: 200000081
+
+Artikelomschrijving: Computervoeding Corsair CS550M
+
+Artikelprijs inclusief opslagen:        67.90
+
+Artikelvoorraad :        12.00
+
+Artikel eenheid: stuk
+
+Artikel miminimum voorraad:        129.00
+
+Bestelsaldo:         0.00
+
+Bestelstatus: True
+
+Reserveringssaldo:         1.00
+
+Categorie: 3
+
+Bestelgrootte voorraadgestuurd:        56.00
+
+Levertermijn :  26 weken
+
+

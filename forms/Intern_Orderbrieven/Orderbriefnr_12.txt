@@ -1,0 +1,35 @@
+
+
+
+Datum: 2019-10-23
+
+
+Interne orderbrief volgnummer: 12
+
+
+
+Bestelbrief voor magazijnartikel: 200000317
+
+Artikelomschrijving: Kontaktdoos wit spuitgietwerk
+
+Artikelprijs inclusief opslagen: 7.56
+
+Artikelvoorraad : 8.0
+
+Artikel eenheid: stuk
+
+Artikel miminimum voorraad:  117.0
+
+Bestelsaldo: 0.0
+
+Bestelstatus: True
+
+Reserveringssaldo: 0.0
+
+Categorie: 2
+
+Bestelgrootte voorraadgestuurd: 227.0
+
+Levertermijn :  8 weken
+
+

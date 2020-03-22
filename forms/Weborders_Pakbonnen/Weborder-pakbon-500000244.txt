@@ -1,0 +1,28 @@
+
+
+
+
+
+
+
+PAKBON
+
+Dhr.  Gerrit van der  Meerderman,
+Tulpstraat 17,
+4001EA TIEL.
+
+
+
+
+Ordernummer: 500000244          Datum: 2018-05-06  Blad : 1
+==============================================================================================
+Artikelnr  Omschrijving                        Eenheid Aantal  Locatie    Geleverd            
+==============================================================================================
+200000019  Bout RVS M10 x 60                      stuk   5.00     3a8f  2018-05-05
+200000020  Moer RVS M10                           stuk   7.00      3a7  2018-05-05
+200000044  Router TP-Link Archer C7               stuk   1.00     14b4  2018-05-05
+200000056  Printer Canon MG 3650                  stuk   1.00     14b2  2018-05-05
+200000081  Computervoeding Corsair CS550M         stuk   1.00     a3b9  2018-05-05
+200000070  USB Memory Stick Toshiba 8GB           stuk   1.00     12c5  2018-05-05
+200000111  Moederbord MSI Z97 U3 Plus             stuk   1.00     a7f5  2018-05-05
+200000160  Cooler Scythe Mugen 4                  stuk   2.00     a3b7  2018-05-05

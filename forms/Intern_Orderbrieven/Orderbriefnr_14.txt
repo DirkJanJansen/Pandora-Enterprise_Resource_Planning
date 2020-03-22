@@ -1,0 +1,35 @@
+
+
+
+Datum: 2019-10-23
+
+
+Interne orderbrief volgnummer: 14
+
+
+
+Bestelbrief voor magazijnartikel: 200000329
+
+Artikelomschrijving: Carterdesksel spuitgietwerk aluminium
+
+Artikelprijs inclusief opslagen: 34.56
+
+Artikelvoorraad : 5.0
+
+Artikel eenheid: stuk
+
+Artikel miminimum voorraad:  144.0
+
+Bestelsaldo: 0.0
+
+Bestelstatus: True
+
+Reserveringssaldo: 0.0
+
+Categorie: 3
+
+Bestelgrootte voorraadgestuurd: 178.0
+
+Levertermijn :  26 weken
+
+

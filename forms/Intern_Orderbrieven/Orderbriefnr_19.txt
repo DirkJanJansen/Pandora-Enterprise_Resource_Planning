@@ -1,0 +1,35 @@
+
+
+
+Datum: 2019-10-23
+
+
+Interne orderbrief volgnummer: 19
+
+
+
+Bestelbrief voor magazijnartikel: 200008304
+
+Artikelomschrijving: Kabelschoen v Cu soepel,16mm²/M6
+
+Artikelprijs inclusief opslagen: 104.95
+
+Artikelvoorraad : 83.0
+
+Artikel eenheid: stuk
+
+Artikel miminimum voorraad:  0.0
+
+Bestelsaldo: 0.0
+
+Bestelstatus: True
+
+Reserveringssaldo: 276.0
+
+Categorie: 7
+
+Minimale bestelgrootte reserveringgestuurd: 193.0
+
+Levertermijn :  12 weken
+
+

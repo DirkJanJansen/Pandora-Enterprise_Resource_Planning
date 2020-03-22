@@ -1,0 +1,40 @@
+Barcode module in python
+
+Converting artikelID to barcode ean 13 numbers.
+
+1. Install barcode module in python with pip install python-barcode and pip install pillow
+2. Open pgadmin4 delete column barcode (integer) from table artikelen.
+3. Insert column barcode again in table artikelen with properties character varying length 13  default ''
+4. Run artikelen-barcode.py 
+
+The barcode images are saved with the format png.
+
+The barcode ean numbers are filled in the barcode fields from table artikelen
+Also 10 barcode pictures are saved. If you want more change the x value 11 in the loop.
+
+decode images barcode:
+pip install pyzbar
+pip install opencv-python
+for LINUX additional sudo apt-get install -y zbar-tools
+
+real time scanning in windows 10:
+I used a laser scanner for testing see documentation in folder Tools/Barcodescanner
+The windows device for this scanner is SHANG CHEN HID SC-32, it's a USB Handheld scanner (approx € 50,--)
+It's automatically installed by Windows 10.
+In Ubuntu 19.10 it starts scanning but stops!
+
+I developed a PyQt5 module for real time scanning:
+The module scans barcodes from a printing barcodes.png
+Print this out on high resolution in grayscale.
+The scanned products are queried automatically with the database bisystem
+A filelist for printing is added with artikelID descriptions amounts prices subtotals and VAT
+barcodeScan.py started from submenu Magazijn line 9
+2020-03-21:
+The module barcodeScan.py is rewritten due to performance issues. The database is extended with a 
+table balieverkoop for barcodescanning, so the data is moved from disk to database bisystem. The performance issues are solved!
+
+Documentation for scanning and reading barcodes see:
+http://python-barcode.rtfd.io/
+https://www.pyimagesearch.com/2018/05/21/an-opencv-barcode-and-qr-code-scanner-with-zbar/
+https://techtutorialsx.com/2020/01/01/python-pyzbar-detecting-and-decoding-barcode/
+

@@ -1,0 +1,35 @@
+
+
+
+Datum: 2019-10-23
+
+
+Interne orderbrief volgnummer: 18
+
+
+
+Bestelbrief voor magazijnartikel: 200000147
+
+Artikelomschrijving: Video Kaart Sapphire Radeon R7 265
+
+Artikelprijs inclusief opslagen: 136.8
+
+Artikelvoorraad : 6.0
+
+Artikel eenheid: stuk
+
+Artikel miminimum voorraad:  135.0
+
+Bestelsaldo: 0.0
+
+Bestelstatus: True
+
+Reserveringssaldo: 1.0
+
+Categorie: 3
+
+Bestelgrootte voorraadgestuurd: 173.0
+
+Levertermijn :  26 weken
+
+

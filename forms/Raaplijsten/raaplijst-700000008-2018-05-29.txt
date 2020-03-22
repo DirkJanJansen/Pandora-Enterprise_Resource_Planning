@@ -1,0 +1,9 @@
+Werknummer  Datum: 2018-05-29  Blad :  1
+Afleveradres Rijsenborch 61 ,4132HK VIANEN UT
+=============================================================================================
+Artikelnr  Omschrijving                       Afroep Geleverd Leverdatum Werkorder  Locatie  
+=============================================================================================
+200000287  Haakse fitting 3/4 met bev. messing    2.00  0.00  2018-06-05 700000008  g8h7      
+200000238  Passtuk aluminium warmperswerk         3.00  0.00  2018-06-05 700000008  g8h7      
+200000378  Kraagstuk kunsstof spuitgietwerk       2.00  0.00  2018-06-05 700000008  g7k6      
+200002636  Lijm,Loctite 243,50ml                  1.00  0.00  2018-06-05 700000008  k6g4      

@@ -1,0 +1,35 @@
+
+
+
+Datum: 2019-10-23
+
+
+Interne orderbrief volgnummer: 10
+
+
+
+Bestelbrief voor magazijnartikel: 200000305
+
+Artikelomschrijving: Spruitstuk voor hydroliek spuitgiet aluminium
+
+Artikelprijs inclusief opslagen: 78.56
+
+Artikelvoorraad : 27.0
+
+Artikel eenheid: stuk
+
+Artikel miminimum voorraad:  159.0
+
+Bestelsaldo: 0.0
+
+Bestelstatus: True
+
+Reserveringssaldo: 0.0
+
+Categorie: 3
+
+Bestelgrootte voorraadgestuurd: 188.0
+
+Levertermijn :  26 weken
+
+

@@ -1,0 +1,7 @@
+Raaplijst Postcode 4132HK  Datum: 2020-01-06  Blad :  1 Afleveradres Rijsenborch 61 , 4132HK, VIANEN UT.
+=============================================================================================
+Artikelnr  Omschrijving                       Afroep Geleverd Leverdatum Werkorder  Locatie  
+=============================================================================================
+200010890  Kabel,YMvK,2x16mm²                     2.00  0.00  2018-05-09 800000067  k6g4      
+200014547  Laddersteun,verbr.,compl.ond.,841mm    1.00  0.00  2018-05-12 800000067  k6g4      
+200000743  Zeskantbout,RVS A4,M6x20,DIN933       40.00  0.00  2020-01-13 700000008  k6g4      

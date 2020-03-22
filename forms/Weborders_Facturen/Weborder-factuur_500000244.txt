@@ -1,0 +1,31 @@
+
+
+
+
+
+
+
+FACTUUR
+
+Dhr.  Gerrit van der Meerderman,
+Tulpstraat 17,
+4001EA TIEL.
+
+
+
+
+Ordernummer: 500000244          Datum: 2019-06-10  Blad : 1
+==============================================================================================
+Artikelnr  Omschrijving                        Eenheid Aantal     Prijs   Subtotaal       BTW 
+==============================================================================================
+200000019  Bout RVS M10 x 60                      stuk   5.00      4.05      20.26       3.52
+200000020  Moer RVS M10                           stuk   7.00      0.38       2.64       0.46
+200000044  Router TP-Link Archer C7               stuk   1.00     71.64      71.64      12.43
+200000056  Printer Canon MG 3650                  stuk   1.00     82.44      82.44      14.31
+200000081  Computervoeding Corsair CS550M         stuk   1.00     98.59      98.59      17.11
+200000070  USB Memory Stick Toshiba 8GB           stuk   1.00      9.51       9.51       1.65
+200000111  Moederbord MSI Z97 U3 Plus             stuk   1.00    158.05     158.05      27.43
+200000160  Cooler Scythe Mugen 4                  stuk   2.00     55.16     110.32      19.15
+----------------------------------------------------------------------------------------------
+Totaal factuurbedrag inclusief 21% BTW                                      553.46 
+==============================================================================================

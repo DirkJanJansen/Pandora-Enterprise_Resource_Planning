@@ -1,0 +1,59 @@
+I created a Relational Database project in Python3 with PyQt5 and SQLAlchemy Core with a postgreSQL database.
+The application is developed for educational purposes and is an example of what can be achieved with Python
+in relation with PyQt5 and PostgreSQL.
+
+If you likes the program, rate it with a star!!!
+
+The Database is partially filled with random values.
+
+With the user instructions I will explain which values should be used for testing with good examples.
+The software is licensed under conditions from GNU GPL v3, license is included.
+
+The development and testing is done in Windows 10.
+App scaling is set at 125% in Windows
+
+For additional instructions for Linux see folder Linux "LINUX Install.txt".
+For adjustments or  additions see "Changelog.txt".
+
+Install python3,  pyqt5, pyqtchart same version as pyqt5, sqlalchemy, psycopg2 and pypiwin32.
+
+For printing listings change this settings in notepad:
+Pagesettings: Left 0 Right 0 Top 14 Bottom 40
+Font: Consolas 10
+Or change registry with Notepad_HKCU.reg 
+Follow these settings exactly for printlists with more pages
+
+Graphs will be printed with PyQt5
+
+Setting in Windows 10:
+copy to c:\users\<username>\appdata\roaming\postgresql\pgpass.conf
+<username> = your own user folder in C:\users\
+appdata is hidden soo you will type it yourself or make hidden folders temperarely visible
+programdata is also hidden see next lines
+
+Environment in Windows advanced system settings
+PGDATABASE bisystem
+PGPORT 5432
+PGUSER postgres
+
+Install postgresql in folder C:\programdata\postgres with password: postgres45 localhost port:5432 user: postgres
+set password in pgadmin4: postgres45
+
+copy the files from folder data in c:\programdata\postgres\backup\
+Import data with pgrestore-custom.bat run as administrator (change pathnames to your own pathname, if you changed path PostgreSQL)
+The database bisystem is imported in postgresql.
+pgdrop-bisystem.bat is included for deleting the database bisystem (change pathnames to your own pathnames)
+pgdump-custom.bat is included for backup database (change pathnames to your own pathnames)
+If you change install folders, the pathnames in pgrestore-custom.bat and pgdump-custom.bat must be changed.
+
+Copy  all files and folders in a folder Pandora keep the folder structure as it is.
+Edit shortcut Pandora to your own Path where you copied Pandora
+The admin user is: dj.jansen@casema.nl password: postgres45
+other users password: wieookweer
+See user lists Accounts -  Opvragen Accounts	
+The Menu's and other names in the programs are in Dutch sorry!
+For translations: Google is your friend!
+
+Dirk Jansen
+dj.jansen@casema.nl
+

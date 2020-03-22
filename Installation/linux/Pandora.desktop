@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Pandora
+Comment=Pandora ERP System
+Path=/home/postgres/Pandora
+Exec=python3 Pandora.py
+Icon=pandora
+Terminal=false
+Type=Application
+Categories=Application;

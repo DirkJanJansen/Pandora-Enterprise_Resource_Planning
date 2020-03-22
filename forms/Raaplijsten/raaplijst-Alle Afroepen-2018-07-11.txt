@@ -1,0 +1,36 @@
+Alle Afroepen  Datum: 2018-07-11  Blad :  1
+=============================================================================================
+Artikelnr  Omschrijving                       Afroep Geleverd Leverdatum Werkorder  Locatie  
+=============================================================================================
+200000743  Zeskantbout,RVS A4,M6x20,DIN933      100.00  5.00  2018-06-08 700000008  k6g4      
+200001292  Sluitring,RVS A4,M4,DIN125A          100.00  0.00  2018-07-18 700000008  k6g4      
+200018360  Railspoel,hoog model,150mm²            2.00  0.00  2018-05-02 800000067  k6g4      
+200014390  Fundering,v brede ladder,beton         1.00  0.00  2018-05-02 800000067  k6g4      
+200011340  Kabel VEMEK 4x2x1,5mm²                10.00  0.00  2018-05-02 800000067  k6g4      
+200018656  Kabelset,aansl.,CC,v railspoel,150m    4.00  0.00  2018-05-02 800000067  k6g4      
+200014407  Fundering,v dwergsein,MF,gietijzer     1.00  0.00  2018-05-02 800000067  k6g4      
+200014468  Ladder,v seinpaal,5720mm               1.00  0.00  2018-05-02 800000067  k6g4      
+200016301  Sein-3-aspect,LED in AY-behuizing      1.00  0.00  2018-05-02 800000067  k6g4      
+200014687  Beschermrooster,MF                     3.00  0.00  2018-05-02 800000067  k6g4      
+200010748  Kabel,onbewapend,Y(E)MvK,(4+10)x1,5    3.00  0.00  2018-05-02 800000067  k6g4      
+200019132  Railaansluitpot,620mm                  2.00  0.00  2018-05-02 800000067  k6g4      
+200027281  Laspatroon,Cadweld 45F80               1.00  0.00  2018-05-02 800000067  k6g4      
+200010890  Kabel,YMvK,2x16mm²                     2.00  0.00  2018-05-03 800000067  k6g4      
+200028418  Opsluitplaat,K-Wfp 14 Links(set)       1.00  0.00  2018-05-03 800000067  k6g4      
+200028418  Opsluitplaat,K-Wfp 14 Links(set)       1.00  0.00  2018-05-03 800000067  k6g4      
+200010890  Kabel,YMvK,2x16mm²                     2.00  0.00  2018-05-09 800000067  k6g4      
+200010890  Kabel,YMvK,2x16mm²                     2.00  1.00  2018-05-09 800000067  k6g4      
+200011169  Kabel,VGYMvKas,4x16mm²                 2.00  0.00  2018-05-09 800000067  k6g4      
+200014687  Beschermrooster,MF                     1.00  0.00  2018-05-10 800000067  k6g4      
+200014377  Fundering,beton                        1.00  0.00  2018-05-10 800000067  k6g4      
+200014377  Fundering,beton                        1.00  0.00  2018-05-10 800000067  k6g4      
+200014547  Laddersteun,verbr.,compl.ond.,841mm    1.00  0.00  2018-05-12 800000067  k6g4      
+200014377  Fundering,beton                        1.00  0.00  2018-05-01 800000079  k6g4      
+200014833  Lamphuis,MF,LED,rechts,rd/gn/gl        2.00  0.00  2018-05-01 800000079  k6g4      
+200014468  Ladder,v seinpaal,5720mm               1.00  0.00  2018-05-03 800000079  k6g4      
+200014833  Lamphuis,MF,LED,rechts,rd/gn/gl        1.00  0.00  2018-05-10 800000079  k6g4      
+200010256  Kabel,YMz1Kmbzh,2x16mm²                1.00  0.00  2018-05-10 800000079  k6g4      
+200014687  Beschermrooster,MF                     1.00  0.00  2018-05-10 800000079  k6g4      
+200014377  Fundering,beton                        1.00  0.00  2018-05-10 800000079  k6g4      
+200014377  Fundering,beton                        1.00  0.00  2018-05-10 800000079  k6g4      
+200010256  Kabel,YMz1Kmbzh,2x16mm²               10.00  0.00  2018-07-17 800000079  k6g4      

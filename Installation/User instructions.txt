@@ -1,0 +1,142 @@
+Pandora user instructions.
+
+pandora starts with pandora.py 
+When Pandora starts a lockfile is locally set in the user directory,
+so only one session can be started per person /workstation.
+Next login screen session is started
+From the login screen all modules can be initiated.
+For ending the program every module or subscreen must be stopped with the close button.
+To close Pandora and logout go back to login screen and end with the shutdown button.
+When the program ends abnormally the lockfile must be removed manually.
+To do so delete the file .pandora_lock from the user directory
+
+GENERAL SETTINGS
+QTableview:
+Clicking on the first cell of a row opens a view or modify screen by most tableviews.
+most ID's are generated with a weighted Modulo-11 check digit
+The numbers are 9 positions and the first number is a group number
+The last nunmber is the eleven check number.
+The group numbers are:
+1 Accounts
+2 Article number
+3 Supplier number
+4 Purchase ordernumber
+5 Sales ordernumber
+6 Sales company number
+7 Internal worknumber
+8 External worknumber
+QCombobox:
+zoekterm - search term (is validated)
+all records - no search term necessary leave it open
+filter - search term or part of term depends on topics  (is validated)
+
+Some translations:
+sluiten - close
+zoeken - search
+afsluiten - exit
+invoeren - enter new
+wijzig - modify
+opvragen - query
+informatie - information
+kiezen - choose
+uitloggen -logout
+verversen - refresh
+berekening gegevens - calculation data
+for further translations: Google is your friend
+
+BRIEF EXPLANATION PROGRAM
+
+The program start with testing if a new year has started.
+If so the program counts the values of stock from last year.
+This for purposes  of values from total stock and used stock.
+The year before last year is deleted and this new year is initiated.
+Also surplus stocks are counted monthly.
+These countings are made for stock graphs and stock numbers
+After this login.py is started.
+A new account can be initiated here by every person.
+The account must be an valid e-mail adres. 
+The password must be minimal 8 digits and will be encrypted sha256 by the system.
+The zip code is Dutch (Postcode) and contains 4 numbers and 2 letters + house number.
+The place of residence and street is searched by the system.
+The account is created with minimum authorisations.
+These authorisations are:
+New account.
+Modify account.
+Making an order.
+Request own orders.
+Printing own invoices.
+
+All further permissions must be made by a authorised person.
+The authorization menu is at Onderhoud - Bevoegdheden muteren
+Initial access: dj.jansen@casema.nl password: postgres45
+The permissions are granted at menu level (enabled-disabled)
+Further permissions are granted with the items: special, ordering, new, change, query, print and reserve
+Special is for management tasks for instant wages, charts financial and sensitive information etc.
+All permissions are set with checkboxes.
+
+How the program functions:
+
+Account is made by person itself
+Account is linked to employee or to account sales company or to account purchase company
+Then for this linked account permissions are set on menu level and on menu line items level.
+This permissions grants the person to execute certain subprograms. (Roles by workdepartment)
+Menu levels are disabled if not accessible
+
+Gegevens opvragen - All data
+Zelf gegevens opvragen - Own data
+Some programs expects certain steps before a checkbox or button is enabled. 
+For instance bestellen webartikelen - paybutton is accesable when calculation is done and terms accepted.
+Werken intern and werken extern - Checkboxes are accessible when the state of the work allows it.
+State of the works A t/m H. work starts at A. 
+When costs are made state becomes B. 
+When costs reach 33% state becomes C. 
+When costs reach 50% state becomes D. 
+When costs reach 75% state becomes E. 
+When costs reach 90% state becomes F. 
+When work is ready and more/less work is granted  state becomes G this must be done manually. 
+When work is ready and paid state becomes H this must be done manually. 
+The checkboxes become active dependable on state.
+With this states weekly countings are made for charts.
+
+Cluster  and icluster
+Cluster external work
+iCluster internal work
+These items holds a calculation of a produkt what consists of material parts, factory operations and services
+Several clusters together concists  a calculation.
+If the calculation is approved by the client, the linking with a worknumber is established.
+From this calculation a material list and a working list is pulled out.
+
+Onderhoud - params.
+
+The table params is a table what holds variables for the program what should be changed
+yearly or monthly depends on the item.
+
+Items
+1-2 VAT dutch tax on products factor change if necessary 
+3-5 Profit hight middle low factor change if necessary
+6 Warehouse surcharge change if necessary
+7 Work surcharge on particles change if nessecary
+8-31 Hourly rate for calculation external works change yearly
+     tarieffactor is overhead from lonen-loonID towards tarief for works
+32-43 tax payment on wages employees change yearly
+45 Pension fund on wages employee change yearly
+46-56 Tax on special rewards on wages employees for instance vacation wages change yearly
+58-69 Payment periodes for wages employees change if period is payed toward next year
+      for instance 2018-05 becomes 2019-05 and so on, tarief fill in hours from werkdagen.png
+70-72 Dutch taxes on wages for employer change yearly
+73-96 Hourly rate for calculation internal works change yearly
+      tarieffactor is overhead from lonen-loonID towards tarief for works
+97 Budgeted Sales change yearly
+98 Budgeted profits change yearly
+99 Annual usual stock even odd year is set by the system.
+100 Ordernumber is set by the system
+101 Ordercosts change yearly costs of making a purchase order
+102 Shipping costs for client orders
+
+If you want to view charts use jrwk 201852 (year-week)
+For payment period wages use period 2017-10 to view items
+For calculation numbers use 1 , 2 or 3
+If you fill the system with your own values you can take your own periods.
+Before you do so set the appropriate periods in params
+
+In the folder Screenshots you find a few examples of the programscreens

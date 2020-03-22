@@ -1,0 +1,11 @@
+Controle uren tbv loonbetalingen van periode 2018-02 Pagina 1
+============================================================
+Account   Werknemer                        Uren     Gewerkt 
+============================================================
+100000010 Dirk Jan Jansen                   160        0.00
+100000022 Henny    Snijders                 160        0.00
+100000113 Sabine   Kafoe-Hetem              160        0.00
+100000071 Gerrit   Meer                     160        0.00
+100000083 André    Jongeling                160        0.00
+100000137 Zacharia Zagen 1                  160        0.00
+100000149 Frans    Pinkster                 160        0.00

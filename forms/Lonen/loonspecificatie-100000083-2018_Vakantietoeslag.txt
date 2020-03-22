@@ -1,0 +1,27 @@
+                             Specificatie Vakantietoeslag 2018                             
+                                                                                             
+                       verwerkingsdatum       accountnr werknemer               jaar periode 
+Geadresseerde          2019-12-30             100000083     5    werkgever      2018vak
+=============================================================================================
+                                                                 Pandora Connect B.V.,       
+     André  Jongeling,                                           Lange Dreef 7,
+     Grotestraat 42 -a,                                          4131 NJ Vianen.
+     6711AM EDE GLD.                                             Telefoon: 0347377304
+                                                                 e-mail: dj.jansen@casema.nl  
+=============================================================================================
+Betalingen/Inhoudingen/dagen/uren/bedragen            belastbaar voor                        
+Omschrijving                   deze periode      tabel        tab.bijz.bel                   
+---------------------------------------------------------------------------------------------
+Vakantietoeslag                    2990.79                         2857.30
+=============================================================================================
+Belasting Bijzonder Tarief         1403.79                         1403.79
+Pensioenpremie   onbelast           133.49                                
+=============================================================================================
+Netto vakantieuitkering            1453.51              
+=============================================================================================
+Werkgeversdeel pensioenpremie       266.98                                
+Werkgeverspremie WIA,IVA,WGA        202.48                                
+Werkgeverspremie AWF                 85.24                                
+Werkgeverspremie ZVW                236.27                                
+=============================================================================================
+Percentage bijzonder tarief          49.13                            

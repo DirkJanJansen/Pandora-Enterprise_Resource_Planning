@@ -1,0 +1,14 @@
+Werknummer  Datum: 2019-05-10  Blad :  1
+Afleveradres   ,       
+=============================================================================================
+Artikelnr  Omschrijving                       Afroep Geleverd Leverdatum Werkorder  Locatie  
+=============================================================================================
+200014833  Lamphuis,MF,LED,rechts,rd/gn/gl        2.00  0.00  2018-05-01 800000079  k6g4      
+200014377  Fundering,beton                        1.00  0.00  2018-05-01 800000079  k6g4      
+200014468  Ladder,v seinpaal,5720mm               1.00  0.00  2018-05-03 800000079  k6g4      
+200010256  Kabel,YMz1Kmbzh,2x16mm²                1.00  0.00  2018-05-10 800000079  k6g4      
+200014833  Lamphuis,MF,LED,rechts,rd/gn/gl        1.00  0.00  2018-05-10 800000079  k6g4      
+200014377  Fundering,beton                        1.00  0.00  2018-05-10 800000079  k6g4      
+200014377  Fundering,beton                        1.00  0.00  2018-05-10 800000079  k6g4      
+200014687  Beschermrooster,MF                     1.00  0.00  2018-05-10 800000079  k6g4      
+200010256  Kabel,YMz1Kmbzh,2x16mm²               10.00  0.00  2018-07-17 800000079  k6g4      

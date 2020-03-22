@@ -1,0 +1,35 @@
+
+
+
+Datum: 2019-05-06
+
+
+Interne orderbrief volgnummer: 1
+
+
+
+Bestelbrief voor magazijnartikel: 200000275
+
+Artikelomschrijving: Haakse Fitting 3/4" messing warmperswerk
+
+Artikelprijs inclusief opslagen: 4.45
+
+Artikelvoorraad : 2.0
+
+Artikel eenheid: stuk
+
+Artikel miminimum voorraad:  56.0
+
+Bestelsaldo: 0.0
+
+Bestelstatus: True
+
+Reserveringssaldo: 0.0
+
+Categorie: 1
+
+Bestelgrootte voorraadgestuurd: 223.0
+
+Levertermijn :  3 weken
+
+

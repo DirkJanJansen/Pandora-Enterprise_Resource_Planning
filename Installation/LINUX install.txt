@@ -1,0 +1,55 @@
+Installation software:
+
+Python 3 is already installed in Ubuntu 19.04 and 19.10
+
+sudo apt install python3-pip
+sudo pip3 install pyqt5
+sudo pip3 install pyqtchart
+or if you want spyder as ide
+(sudo apt install python3-pip
+sudo pip3 install spyder==3.3.6
+sudo pip3 install pyqtchart==5.12)
+
+sqlalchemy and psycopg2 is installed with postgreSQL-contrib
+With the latest update from the login script capslock notification is working now with Linux.
+I found a solution for printing listings with Linux see following lines.
+
+Retrieve printer_name on Linux terminal:
+lpstat -p -d 
+set default printer with:
+lpoptions -d <printer_name>
+set fonts and margins for printing (A4) with:
+lpoptions -o page-left=18 -o page-right=0 -o page-top=25 -o page-bottom=80 -o cpi=13 -o lpi=6
+Follow these settings exactly for printlists with more pages
+
+Installation Pandora as user postgres with password postgres45:
+Copy .pgpass in /home/postgres  
+in terminal chmod 600 .pgpass
+for installation postgresql follow steps in:
+https://tecadmin.net/install-postgresql-server-on-ubuntu/
+additional set password in psql with \password   (postgres45)
+Install pgadmin4 follow steps in:
+https://tecadmin.net/install-pgadmin4-on-ubuntu/
+install pgadmin with:
+sudo apt-get install pgadmin4 (without apache)
+
+in pgadmin4 tree create an server LocalHost an empty database bisystem, right click databases (login with postgres45) 
+set password in pgadmin4: postgres45 with making tree bisystem
+In tree pgadmin4 databases bisystem restore from bisystem.backup, right click bisystem and browse to bisystem.backup
+Copy Pandora with folder structures in /home/postgres so you get /home/postgres/Pandora
+
+The fonts in Linux differ from Windows. (Install Arial, Comic Sans MS , Times and Sans Serif)
+https://www.ostechnix.com/install-microsoft-windows-fonts-ubuntu-16-04/
+Or copy fonts from Windows/Fonts in dir .local/share/fonts
+in terminal sudo fc-cache -r -f
+install Ubuntu tweak tools and increase font  size for optimal views
+   
+startup files in Linux:
+Copy pandora.png from folder LINUX in folder /home/postgres/.icons
+Copy Pandora.desktop from folder LINUX in /home/postgres/.local/share/applications
+
+To compile all Pandora scripts in Python:
+Open Terminal Ctrl+Alt+t
+
+cd Pandora
+python3 -m compileall ./

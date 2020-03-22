@@ -1,0 +1,35 @@
+
+
+
+Datum: 2020-02-24
+
+
+Interne orderbrief volgnummer: 5
+
+
+
+Bestelbrief voor magazijnartikel: 200001292
+
+Artikelomschrijving: Sluitring,RVS A4,M4,DIN125A
+
+Artikelprijs inclusief opslagen:         3.19
+
+Artikelvoorraad :       107.00
+
+Artikel eenheid: 100
+
+Artikel miminimum voorraad:         10.00
+
+Bestelsaldo:         0.00
+
+Bestelstatus: True
+
+Reserveringssaldo:       424.00
+
+Categorie: 5
+
+Minimale bestelgrootte reserveringgestuurd:       317.00
+
+Levertermijn :  3 weken
+
+

@@ -1,0 +1,7 @@
+Python3
+PyQt5
+PyQtChart
+psycopg2
+sqlalchemy
+pypiwin32
+postgreSQL

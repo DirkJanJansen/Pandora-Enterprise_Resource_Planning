@@ -1,0 +1,16 @@
+Bestellijst intern voor Inkooporders bestellingen / reserveringen Diensten en Materiëel,
+Werknummer: 800000067 Hanzelijn Lelystad Zwolle Calculatie: 2  Datum: 2020-02-28  Blad : 1
+=====================================================================================================
+Cluster Clusteromschrijving   Aantal Eenheid Omschrijving-Dienst   Uren-Sub  Bedrag-Sub  Levertermijn
+=====================================================================================================
+AB00012  Lijmlas UIC 54 Beton   2.00 stel    Inhuur                  188.00     5891.92  In overleg 
+AB00012  Lijmlas UIC 54 Beton   2.00 stel    Atlaskraan               53.60     2805.42  In overleg 
+AB00012  Lijmlas UIC 54 Beton   2.00 stel    Mainliner                98.40    21091.06  In overleg 
+AB00012  Lijmlas UIC 54 Beton   2.00 stel    Wagon                   178.40     2950.74  In overleg 
+GA00610  AY sein                3.00         Inhuur                   99.60     3121.46  In overleg 
+GA00610  AY sein                3.00         Atlaskraan               42.00     2198.28  In overleg 
+GB00611  MF sein                1.00         Inhuur                    9.80      307.13  In overleg 
+GB00611  MF sein                1.00         Atlaskraan                4.80      251.23  In overleg 
+-----------------------------------------------------------------------------------------------------
+Totalen                                                              674.60    56612.75
+=====================================================================================================
