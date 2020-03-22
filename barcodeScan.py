@@ -73,9 +73,9 @@ def info():
         Standaard wordt gescand met een hoeveelheid van 1.
         Indien meerdere produkten van het zelfde artikelnummer benodigd zijn, kan d.m.v. de 
         spinbox het juiste aantal worden gekozen voor het scannen. 
-        Dit kan met de pijltjes van de spinbos of met het muiswieltje.
+        Dit kan met de pijltjes van de spinbox of met het muiswieltje.
         Na het scannen wordt het aantal weer automatisch teruggezet op 1.
-        Als een scanfout optreed bij het scannen, dan klinkt een akoestisch alarm.
+        Als een scanfout optreedt bij het scannen, dan klinkt een akoestisch alarm.
         Als het scannen wordt gestart voor een klant wordt de sluitknop geblokkeerd tot de
         knop volgende klant wordt gedrukt. De printknop en de klantknop worden geblokkeerd
         tot de eerste transactie is geboekt.
