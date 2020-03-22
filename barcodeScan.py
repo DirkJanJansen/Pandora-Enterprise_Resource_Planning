@@ -355,15 +355,15 @@ def set_barcodenr(q1Edit, text, qspin, view, tekst, nextBtn, closeBtn, printBtn)
         #alarm if barcode scan failed
         if platform == 'win32':
             import winsound
-            winsound.Beep(1000,400)
+            winsound.Beep(1000,200)
             winsound.Beep(2000,400)
-            winsound.Beep(1500,400)
+            winsound.Beep(800,300)
         else:
             #sudo apt install sox
             from os import system
-            system('play -nq -t alsa synth {} sine {}'.format(0.4, 1000))
+            system('play -nq -t alsa synth {} sine {}'.format(0.2, 1000))
             system('play -nq -t alsa synth {} sine {}'.format(0.4, 2000))
-            system('play -nq -t alsa synth {} sine {}'.format(0.4, 1500))
+            system('play -nq -t alsa synth {} sine {}'.format(0.3, 800))
         
     q1Edit.setSelection(0,13)
     qspin.setValue(1)
