@@ -283,12 +283,10 @@ def nextClient(nextBtn, closeBtn, printBtn):
         closeBtn.setEnabled(True)
         printBtn.setDisabled(True)
         nextBtn.setDisabled(True)
-        updpar = update(params).where(params.c.paramID == 103).values(lock = False)
-        con.execute(updpar)
     else:
         geenGegevens()
-        updpar = update(params).where(params.c.paramID == 103).values(lock = True)
-        con.execute(updpar)
+    updpar = update(params).where(params.c.paramID == 103).values(lock = False)
+    con.execute(updpar)
    
 def plusminChange(qspin, plusminBtn):
     if plusminBtn.isChecked():
