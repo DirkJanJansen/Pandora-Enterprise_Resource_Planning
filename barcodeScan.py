@@ -5,8 +5,8 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon, QFont, QPixmap
 from PyQt5.QtWidgets import QLineEdit, QGridLayout, QDialog, QLabel, QPushButton,\
         QMessageBox, QSpinBox, QTextEdit
-from sqlalchemy import (Table, Column, Integer, String, MetaData,\
-                         create_engine, Float, select, update,insert, func, and_, Boolean)
+from sqlalchemy import (Table, Column, Integer, String, MetaData, create_engine, Float,\
+                        select, update,insert, delete, func, and_, Boolean)
 
 def geenGegevens():
     msg = QMessageBox()
@@ -156,6 +156,9 @@ def printBon():
         selpar = select([params]).where(params.c.paramID == 103)
         rppar = con.execute(selpar).first()
         mbonnr = int(rppar[1])
+        delbal = delete(balieverkoop).where(and_(balieverkoop.c.aantal == 0,\
+                       balieverkoop.c.bonnummer == mbonnr))
+        con.execute(delbal)
         selb = select([balieverkoop]).where(balieverkoop.c.bonnummer == mbonnr).order_by(balieverkoop.c.barcode)
         rpb = con.execute(selb)
         kop=\
@@ -167,10 +170,14 @@ def printBon():
             fbarc = '.\\forms\\Barcodelijsten\\'+str(mbonnr)+'.txt'
         else:
             fbarc = './forms//Barcodelijsten/'+str(mbonnr)+'.txt'
-        open(fbarc, 'w').write(kop)
+       
         mcumtot = 0
         mcumbtw = 0
+        rgl = 0
         for row in rpb:
+            rgl += 1
+            if rgl == 1:
+                open(fbarc, 'w').write(kop)
             martnr = row[2]
             momschr = row[4]
             maantal = row[5]
@@ -178,23 +185,28 @@ def printBon():
             mtotaal = row[7]
             mtotbtw = row[8]
             open(fbarc,'a').write(str(martnr) +'  '+'{:<40s}'.format(momschr)+' '+'{:>6d}'\
-                 .format(int(maantal))+'{:>12.2f}'.format(float(mprijs))+'{:>12.2f}'\
-                 .format(float(mtotaal))+'{:>12.2f}'\
-                 .format(float(mtotbtw))+'\n')
+                     .format(int(maantal))+'{:>12.2f}'.format(float(mprijs))+'{:>12.2f}'\
+                     .format(float(mtotaal))+'{:>12.2f}'\
+                     .format(float(mtotbtw))+'\n')
+                
             mcumtot = mcumtot+mtotaal
             mcumbtw = mcumbtw+mtotbtw
+            
         tail=\
         ('==============================================================================================\n'+
         'Totaal bedrag af te rekenen inclusief BTW  en bedrag BTW 21%          '+'{:>12.2f}'.format(mcumtot)+'{:>12.2f}'.format(mcumbtw)+' \n'+
         '==============================================================================================\n')
-        open(fbarc,'a').write(tail)    
-        if platform == 'win32':
-            from os import startfile
-            startfile(fbarc, "print")
+        if rgl > 0:
+            open(fbarc,'a').write(tail) 
+            if platform == 'win32':
+                from os import startfile
+                startfile(fbarc, "print")
+            else:
+                from os import system
+                system("lpr "+fbarc)
+            printing()
         else:
-            from os import system
-            system("lpr "+fbarc)
-        printing()
+            geenGegevens()
         
 def windowSluit(self, m_email):
     self.close()
@@ -231,10 +243,15 @@ def nextClient(nextBtn, closeBtn, printBtn):
     rppar = con.execute(selpar).first()
     mbonnr = rppar[1]
     selb = select([balieverkoop]).where(balieverkoop.c.bonnummer == mbonnr)\
-       .order_by(balieverkoop.c.barcode)
+                      .order_by(balieverkoop.c.barcode)
     rpb = con.execute(selb)
+    delbal = delete(balieverkoop).where(and_(balieverkoop.c.aantal == 0,\
+               balieverkoop.c.bonnummer == mbonnr))
+    con.execute(delbal)
+    rgl = 0
     mtotbtw = 0  
     for row in rpb:
+        rgl += 1
         mtotbtw = mtotbtw + row[8]
         mmutnr = con.execute(select([func.max(artikelmutaties.c.mutatieID, type_=Integer)])).scalar()
         mmutnr += 1
@@ -242,7 +259,7 @@ def nextClient(nextBtn, closeBtn, printBtn):
                 hoeveelheid = row[5], boekdatum = mboekd, baliebonID = mbonnr,\
                 tot_mag_prijs = row[7], btw_hoog = row[8])
         con.execute(insmut)
-    if mtotbtw != int(0):
+    if mtotbtw != int(0) and rgl > 0:
         metadata = MetaData() 
         afdrachten = Table('afdrachten', metadata,
             Column('afdrachtID', Integer(), primary_key=True),
@@ -266,12 +283,20 @@ def nextClient(nextBtn, closeBtn, printBtn):
         closeBtn.setEnabled(True)
         printBtn.setDisabled(True)
         nextBtn.setDisabled(True)
+        updpar = update(params).where(params.c.paramID == 103).values(lock = False)
+        con.execute(updpar)
     else:
         geenGegevens()
-    updpar = update(params).where(params.c.paramID == 103).values(tarief = mbonnr+1, lock = True)
-    con.execute(updpar)
-        
-def set_barcodenr(q1Edit, text, qspin, view, tekst, nextBtn, closeBtn, printBtn):
+        updpar = update(params).where(params.c.paramID == 103).values(lock = True)
+        con.execute(updpar)
+   
+def plusminChange(qspin, plusminBtn):
+    if plusminBtn.isChecked():
+        qspin.setRange(-99, -1)
+    else:
+        qspin.setRange(1, 99)
+    
+def set_barcodenr(q1Edit, qspin, view, tekst, nextBtn, closeBtn, printBtn, mret):
     barcodenr = q1Edit.text()
     maantal = qspin.value()
     koptekst = tekst
@@ -325,8 +350,8 @@ def set_barcodenr(q1Edit, text, qspin, view, tekst, nextBtn, closeBtn, printBtn)
             if rpbal:
                 updbal = update(balieverkoop).where(and_(balieverkoop.c.barcode == barcodenr,\
                   balieverkoop.c.bonnummer == mbonnr)).values(aantal = balieverkoop.c.aantal+maantal,\
-                  subtotaal = balieverkoop.c.aantal+maantal*mprijs,\
-                  subbtw = balieverkoop.c.aantal+maantal*mprijs*mbtw)
+                  subtotaal = (balieverkoop.c.aantal+maantal)*mprijs,\
+                  subbtw = (balieverkoop.c.aantal+maantal)*mprijs*mbtw)
                 con.execute(updbal)
             else:
                 midnr = (con.execute(select([func.max(balieverkoop.c.ID, type_=Integer)])).scalar()) 
@@ -368,7 +393,7 @@ def set_barcodenr(q1Edit, text, qspin, view, tekst, nextBtn, closeBtn, printBtn)
     q1Edit.setSelection(0,13)
     qspin.setValue(1)
       
-def barcodeScan(m_email):
+def barcodeScan(m_email, mret):
     class widget(QDialog):
         def __init__(self):
             super(widget,self).__init__()
@@ -381,28 +406,27 @@ def barcodeScan(m_email):
             self.setStyleSheet("background-color: #D9E1DF")
             self.setFont(QFont('Arial', 10))
             
-            text = ''
-            q1Edit = QLineEdit(text)
+            q1Edit = QLineEdit('')
             q1Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             q1Edit.setFont(QFont("Arial", 10))
             q1Edit.setFixedWidth(130)
             q1Edit.setFocus(True)
-            q1Edit.returnPressed.connect(lambda: set_barcodenr(q1Edit, text, qspin, view, tekst, nextBtn, closeBtn, printBtn))
+            q1Edit.returnPressed.connect(lambda: set_barcodenr(q1Edit, qspin, view, tekst, nextBtn, closeBtn, printBtn, mret))
                        
             qspin = QSpinBox()
             qspin.setRange(1, 99)
+            qspin.setValue(1)
             qspin.setFocusPolicy(Qt.NoFocus)
             qspin.lineEdit().setReadOnly(True)
             qspin.setFrame(True)
             qspin.setFont(QFont('Arial', 10))
             qspin.setStyleSheet("color: black;  background-color: #F8F7EE")
-            qspin.setValue(1)
-            qspin.setFixedSize(40, 30)
+            qspin.setFixedSize(50, 30)
             
             def valuechange():
                 qspin.setValue(qspin.value())
             qspin.valueChanged.connect(valuechange)
-
+            
             grid = QGridLayout()
             grid.setSpacing(10)
           
@@ -427,6 +451,17 @@ def barcodeScan(m_email):
             lbl2.setFont(QFont("Arial", 10))
             grid.addWidget(lbl2, 5, 2, 1, 1, Qt.AlignCenter)
             grid.addWidget(qspin, 5, 2, 1, 1, Qt.AlignRight)
+            
+            if mret:
+                plusminBtn = QPushButton('+-')
+                plusminBtn.setCheckable(True)
+                plusminBtn.clicked.connect(lambda: plusminChange(qspin, plusminBtn))
+          
+                grid.addWidget(plusminBtn, 5, 2,)
+                plusminBtn.setFont(QFont("Arial",10))
+                plusminBtn.setFocusPolicy(Qt.NoFocus)
+                plusminBtn.setFixedWidth(30)
+                plusminBtn.setStyleSheet("color: black;  background-color: gainsboro")
                                    
             lbl = QLabel()
             pixmap = QPixmap('./images/logos/verbinding.jpg')
