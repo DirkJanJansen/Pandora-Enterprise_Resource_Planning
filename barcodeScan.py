@@ -292,8 +292,10 @@ def nextClient(nextBtn, closeBtn, printBtn):
    
 def plusminChange(qspin, plusminBtn):
     if plusminBtn.isChecked():
+        plusminBtn.setText('-')
         qspin.setRange(-99, -1)
     else:
+        plusminBtn.setText('+')
         qspin.setRange(1, 99)
     
 def set_barcodenr(q1Edit, qspin, view, tekst, nextBtn, closeBtn, printBtn, mret):
@@ -453,14 +455,14 @@ def barcodeScan(m_email, mret):
             grid.addWidget(qspin, 5, 2, 1, 1, Qt.AlignRight)
             
             if mret:
-                plusminBtn = QPushButton('+-')
+                plusminBtn = QPushButton('+')
                 plusminBtn.setCheckable(True)
                 plusminBtn.clicked.connect(lambda: plusminChange(qspin, plusminBtn))
           
                 grid.addWidget(plusminBtn, 5, 2,)
-                plusminBtn.setFont(QFont("Arial",10))
+                plusminBtn.setFont(QFont("Arial",14, 75))
                 plusminBtn.setFocusPolicy(Qt.NoFocus)
-                plusminBtn.setFixedWidth(30)
+                plusminBtn.setFixedSize(30 ,30)
                 plusminBtn.setStyleSheet("color: black;  background-color: gainsboro")
                                    
             lbl = QLabel()
