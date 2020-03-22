@@ -286,5 +286,10 @@ From 2020-01-10 updates and changes are described on this page
 2020-03-19 barcodeScan.py Display added with productdata from scanned item. Fields productID, description, price, subtotal and VAT
 2020-03-21 barcodeScan.py changed the storage from disk to the database, to improve performance with scanning.
            This means that the database has extended. I decided to upload the whole project again with the extended database.
-           
+2020-03-22 barcodeScan.py i added a possibility to book return goods. This can only be done by an authorized person. 
+           So i added a small checkable button +- - is state checked (-99 -1) + is state unchecked (1 99).
+           This button is invisible in normal operations. It becomes visible when anyone (for instance the maincassiere) 
+           gets special (S) access in authorisations menu 5[1] Magazijn (Warehouse) Special (S). The program is also so adjusted 
+           that a orderline line is deleted in the database when the amount becomes 0.
+2020-03-22 login.py adjusted for the authorisation entry for this =- button.           
            
