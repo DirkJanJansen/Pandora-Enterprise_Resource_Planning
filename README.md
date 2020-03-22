@@ -12,7 +12,7 @@
  
  For instructions, installation and several screenshots see Installation directory.
  
- Uploaded again 2020-03-13 barcode module changed database extended!!
+ Uploaded again 2020-03-22 barcode module changed database extended!!
  
 
  
