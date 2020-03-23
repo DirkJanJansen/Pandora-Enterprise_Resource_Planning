@@ -242,7 +242,6 @@ def nextClient(nextBtn, closeBtn, printBtn):
     selpar = select([params]).where(params.c.paramID == 103)
     rppar = con.execute(selpar).first()
     mbonnr = rppar[1]
-    mklant = rppar[2]
     delbal = delete(balieverkoop).where(and_(balieverkoop.c.aantal == 0,\
                balieverkoop.c.bonnummer == mbonnr))
     con.execute(delbal)
@@ -290,7 +289,19 @@ def nextClient(nextBtn, closeBtn, printBtn):
         updpar = update(params).where(params.c.paramID == 103).values(lock = False)
         con.execute(updpar)
         geenGegevens()
-  
+
+def geefAlarm():
+    if platform == 'win32':
+        import winsound
+        winsound.Beep(800,200)
+        winsound.Beep(400,400)
+        winsound.Beep(600,200)
+    else:
+        #sudo apt install sox
+        from os import system
+        system('play -nq -t alsa synth {} sine {}'.format(0.2, 800))
+        system('play -nq -t alsa synth {} sine {}'.format(0.4, 400))
+        system('play -nq -t alsa synth {} sine {}'.format(0.2, 600))
    
 def plusminChange(qspin, plusminBtn):
     if plusminBtn.isChecked():
@@ -329,20 +340,21 @@ def set_barcodenr(q1Edit, qspin, view, koptekst, nextBtn, closeBtn, printBtn, mr
         con = engine.connect()
         selpar = select([params]).where(params.c.paramID == 103)
         rppar = con.execute(selpar).first()
+        selpar1 = select([params]).where(params.c.paramID == 1)
+        rppar1 = con.execute(selpar1).first()
+        mbtw = rppar1[1]
         mbonnr = rppar[1]
         mklant = rppar[2]
         if mklant == False:
             updpar = update(params).where(params.c.paramID == 103).values(lock = True)
             con.execute(updpar)
-        selpar1 = select([params]).where(params.c.paramID == 1)
-        rppar1 = con.execute(selpar1).first()
-        mbtw = rppar1[1]
         selart = select([artikelen]).where(artikelen.c.barcode == barcodenr)
         selbal = select([balieverkoop]).where(and_(balieverkoop.c.barcode == barcodenr,\
                 balieverkoop.c.bonnummer == mbonnr))
         rpart = con.execute(selart).first()
         rpbal = con.execute(selbal).first()
         if rpart and rpart[4] < maantal:
+             geefAlarm()
              onvVoorraad(rpart[4])
         elif rpart:
             martnr = rpart[0]
@@ -372,24 +384,15 @@ def set_barcodenr(q1Edit, qspin, view, koptekst, nextBtn, closeBtn, printBtn, mr
              .format(float(mprijs)*float(maantal)*mbtw)+'\n')
             view.setText(newtekst)
         else:
-             foutArtikel()
+            geefAlarm()
+            foutArtikel()
       
         closeBtn.setDisabled(True)
         printBtn.setEnabled(True)
         nextBtn.setEnabled(True)
     else:
         #alarm if barcode scan failed
-        if platform == 'win32':
-            import winsound
-            winsound.Beep(1000,200)
-            winsound.Beep(2000,400)
-            winsound.Beep(800,300)
-        else:
-            #sudo apt install sox
-            from os import system
-            system('play -nq -t alsa synth {} sine {}'.format(0.2, 1000))
-            system('play -nq -t alsa synth {} sine {}'.format(0.4, 2000))
-            system('play -nq -t alsa synth {} sine {}'.format(0.3, 800))
+        geefAlarm()
         
     q1Edit.setSelection(0,13)
     qspin.setValue(1)
