@@ -242,16 +242,16 @@ def nextClient(nextBtn, closeBtn, printBtn):
     selpar = select([params]).where(params.c.paramID == 103)
     rppar = con.execute(selpar).first()
     mbonnr = rppar[1]
-    selb = select([balieverkoop]).where(balieverkoop.c.bonnummer == mbonnr)\
-                      .order_by(balieverkoop.c.barcode)
-    rpb = con.execute(selb)
+    mklant = rppar[2]
     delbal = delete(balieverkoop).where(and_(balieverkoop.c.aantal == 0,\
                balieverkoop.c.bonnummer == mbonnr))
     con.execute(delbal)
-    rgl = 0
+
+    selb = select([balieverkoop]).where(balieverkoop.c.bonnummer == mbonnr)\
+                      .order_by(balieverkoop.c.barcode)
+    rpb = con.execute(selb)
     mtotbtw = 0  
     for row in rpb:
-        rgl += 1
         mtotbtw = mtotbtw + row[8]
         mmutnr = con.execute(select([func.max(artikelmutaties.c.mutatieID, type_=Integer)])).scalar()
         mmutnr += 1
@@ -259,7 +259,7 @@ def nextClient(nextBtn, closeBtn, printBtn):
                 hoeveelheid = row[5], boekdatum = mboekd, baliebonID = mbonnr,\
                 tot_mag_prijs = row[7], btw_hoog = row[8])
         con.execute(insmut)
-    if mtotbtw != int(0) and rgl > 0:
+    if mtotbtw != int(0):
         metadata = MetaData() 
         afdrachten = Table('afdrachten', metadata,
             Column('afdrachtID', Integer(), primary_key=True),
@@ -283,10 +283,14 @@ def nextClient(nextBtn, closeBtn, printBtn):
         closeBtn.setEnabled(True)
         printBtn.setDisabled(True)
         nextBtn.setDisabled(True)
+        mbonnr += 1
+        updpar = update(params).where(params.c.paramID == 103).values(tarief = mbonnr, lock = False)
+        con.execute(updpar)
     else:
+        updpar = update(params).where(params.c.paramID == 103).values(lock = False)
+        con.execute(updpar)
         geenGegevens()
-    updpar = update(params).where(params.c.paramID == 103).values(lock = False)
-    con.execute(updpar)
+  
    
 def plusminChange(qspin, plusminBtn):
     if plusminBtn.isChecked():
@@ -296,10 +300,9 @@ def plusminChange(qspin, plusminBtn):
         plusminBtn.setText('+')
         qspin.setRange(1, 99)
     
-def set_barcodenr(q1Edit, qspin, view, tekst, nextBtn, closeBtn, printBtn, mret):
+def set_barcodenr(q1Edit, qspin, view, koptekst, nextBtn, closeBtn, printBtn, mret):
     barcodenr = q1Edit.text()
     maantal = qspin.value()
-    koptekst = tekst
     if len(barcodenr) == 13 :
         metadata = MetaData()
         artikelen = Table('artikelen', metadata,
@@ -329,9 +332,7 @@ def set_barcodenr(q1Edit, qspin, view, tekst, nextBtn, closeBtn, printBtn, mret)
         mbonnr = rppar[1]
         mklant = rppar[2]
         if mklant == False:
-            mbonnr += 1
-            mklant = True
-            updpar = update(params).where(params.c.paramID == 103).values(tarief = mbonnr, lock = True)
+            updpar = update(params).where(params.c.paramID == 103).values(lock = True)
             con.execute(updpar)
         selpar1 = select([params]).where(params.c.paramID == 1)
         rppar1 = con.execute(selpar1).first()
