@@ -26,7 +26,7 @@ for LINUX additional sudo apt-get install -y zbar-tools
 real time scanning in windows 10:
 I used a laser scanner for testing see documentation in folder Tools/Barcodescanner
 The windows device for this scanner is SHANG CHEN HID SC-32, it's a USB Handheld scanner (approx € 50,--)
-It's automatically installed by Windows 10.
+It's automatically installed by Windows 10 and is working well.
 In Ubuntu 19.10 and pyqt5  the laser stops with the first scan. (It keeps working in a texteditor though)
 
 I developed a PyQt5 module for real time scanning:
