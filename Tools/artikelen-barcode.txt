@@ -8,15 +8,15 @@ Converting artikelID to barcode ean 13 numbers.
 3. Insert column barcode again in table artikelen with properties character varying length 13  default ''
 4. Run artikelen-barcode.py 
 
-In the changed database from 2020-03-22 is this already done. Also the database has been extended with a new table 
-balieverkoop (countersales) This module use barcode scanning see following lines and barcodeScan.py
-This module scans displays the data from database, prints the orderform and books the financial data and stock data
-in the tables afdrachten (payments) and artikelmutaties (stock transactions).
-
 The barcode images are saved with the format png.
 
 The barcode ean numbers are filled in the barcode fields from table artikelen
 Also 10 barcode pictures are saved. If you want more change the x value 11 in the loop.
+
+In the changed database from 2020-03-22 is this already done. Also the database has been extended with a new table 
+balieverkoop (countersales) This module use barcode scanning see following lines and barcodeScan.py
+This module scans displays the data from database, prints the orderform and books the financial data and stock data
+in the tables afdrachten (payments) and artikelmutaties (stock transactions).
 
 decode images barcode:
 pip install pyzbar
@@ -27,7 +27,7 @@ real time scanning in windows 10:
 I used a laser scanner for testing see documentation in folder Tools/Barcodescanner
 The windows device for this scanner is SHANG CHEN HID SC-32, it's a USB Handheld scanner (approx € 50,--)
 It's automatically installed by Windows 10.
-In Ubuntu 19.10 it starts scanning but stops!
+In Ubuntu 19.10 and pyqt5  the laser stops with the first scan. (It keeps working in a texteditor though)
 
 I developed a PyQt5 module for real time scanning:
 The module scans barcodes from a printing barcodes.png
