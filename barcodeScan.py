@@ -290,7 +290,6 @@ def nextClient(nextBtn, closeBtn, printBtn):
         con.execute(updpar)
         geenGegevens()
         closeBtn.setEnabled(True)
-        
 
 def geefAlarm():
     if platform == 'win32':
@@ -313,7 +312,7 @@ def plusminChange(qspin, plusminBtn):
         plusminBtn.setText('+')
         qspin.setRange(1, 99)
     
-def set_barcodenr(q1Edit, qspin, view, koptekst, nextBtn, closeBtn, printBtn, mret):
+def set_barcodenr(q1Edit, qspin, view, koptekst, nextBtn, closeBtn, printBtn):
     barcodenr = q1Edit.text()
     maantal = qspin.value()
     if len(barcodenr) == 13 :
@@ -416,7 +415,7 @@ def barcodeScan(m_email, mret):
             q1Edit.setFont(QFont("Arial", 10))
             q1Edit.setFixedWidth(130)
             q1Edit.setFocus(True)
-            q1Edit.returnPressed.connect(lambda: set_barcodenr(q1Edit, qspin, view, tekst, nextBtn, closeBtn, printBtn, mret))
+            q1Edit.returnPressed.connect(lambda: set_barcodenr(q1Edit, qspin, view, tekst, nextBtn, closeBtn, printBtn))
                        
             qspin = QSpinBox()
             qspin.setRange(1, 99)
