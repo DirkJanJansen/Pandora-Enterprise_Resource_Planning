@@ -291,5 +291,10 @@ From 2020-01-10 updates and changes are described on this page
            This button is invisible in normal operations. It becomes visible when anyone (for instance the maincassiere) 
            gets special (S) access in authorisations menu 5[1] Magazijn (Warehouse) Special (S). The program is also so adjusted 
            that a orderline line is deleted in the database when the amount becomes 0.
-2020-03-22 login.py adjusted for the authorisation entry for this =- button.           
+           Repaired a silly error according addition/subtraction.
+2020-03-22 login.py adjusted for the authorisation entry for this +- button.  
+2020-03-23 added screenshot Barcode.png normal / special operation.
+2020-03-23 opvrArtikelmutaties.py added search filter showing artikelmutaties for balieverkoop (countersales) orders. 
+           Menu Boekhouding keuze 7 (accounting choice 7)
+       
            
