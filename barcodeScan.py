@@ -34,7 +34,7 @@ def onvVoorraad(magvrd):
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setFont(QFont("Arial", 10))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Er is onvoldoende voorraad voor deze bestelhoeveelheid\nNog '+str(int(magvrd))+' voorradig!')
+    msg.setText('Er is onvoldoende voorraad\nNog '+str(int(magvrd))+' voorradig!')
     msg.setWindowTitle('Melding voorraad')
     msg.exec_()    
     
@@ -289,6 +289,8 @@ def nextClient(nextBtn, closeBtn, printBtn):
         updpar = update(params).where(params.c.paramID == 103).values(lock = False)
         con.execute(updpar)
         geenGegevens()
+        closeBtn.setEnabled(True)
+        
 
 def geefAlarm():
     if platform == 'win32':
@@ -354,7 +356,6 @@ def set_barcodenr(q1Edit, qspin, view, koptekst, nextBtn, closeBtn, printBtn, mr
         rpart = con.execute(selart).first()
         rpbal = con.execute(selbal).first()
         if rpart and rpart[4] < maantal:
-             geefAlarm()
              onvVoorraad(rpart[4])
         elif rpart:
             martnr = rpart[0]
@@ -480,6 +481,10 @@ def barcodeScan(m_email, mret):
             lbl3.setFont(QFont("Arial", 10))
             grid.addWidget(lbl3, 8, 0, 1, 3, Qt.AlignCenter)
   
+            self.warning = ''
+            lblwarn = QLabel(self.warning)
+            grid.addWidget(lblwarn, 2, 1)
+            
             printBtn = QPushButton('Printen')
             printBtn.clicked.connect(lambda: printBon())
       
