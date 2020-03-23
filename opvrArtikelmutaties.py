@@ -50,6 +50,7 @@ def mutatieKeuze(m_email):
             k0Edit.addItem('4. Verkooporders')
             k0Edit.addItem('5. Interne werkorders')
             k0Edit.addItem('6. Op yyyy(-mm(-dd))')
+            k0Edit.addItem('7. Balieverkoop orders')
             
             k0Edit.activated[str].connect(self.k0Changed)
                             
@@ -144,7 +145,8 @@ def toonMutaties(keuze, zoekterm, m_email):
         Column('ovbestelID', None, ForeignKey('klanten.klantID')),
         Column('werkorderID', None, ForeignKey('orders_intern.werkorderID')),
         Column('tot_mag_prijs', Float),
-        Column('btw_hoog', Float))
+        Column('btw_hoog', Float),
+        Column('baliebonID', Integer))
     artikelen = Table('artikelen', metadata,
         Column('artikelID', Integer, primary_key=True),
         Column('artikelomschrijving', String),
@@ -199,6 +201,10 @@ def toonMutaties(keuze, zoekterm, m_email):
         sel = select([artikelmutaties, artikelen.c.artikelomschrijving,artikelen.c\
          .artikelprijs]).where(and_(artikelen.c.artikelID==artikelmutaties.c.artikelID,\
          artikelmutaties.c.boekdatum.like(zoekterm+'%'))).order_by(artikelmutaties.c.boekdatum)
+    elif keuze == 7:
+        sel = select([artikelmutaties, artikelen.c.artikelomschrijving,artikelen.c\
+         .artikelprijs]).where(and_(artikelen.c.artikelID==artikelmutaties.c.artikelID,\
+         artikelmutaties.c.baliebonID > 0)).order_by(artikelmutaties.c.baliebonID)
     else:
         ongInvoer()
         mutatieKeuze(m_email)
@@ -256,14 +262,15 @@ def toonMutaties(keuze, zoekterm, m_email):
             return None
   
     header = ['Mutatienummer','Artikelnummer', 'Hoeveelheid','Boekdatum', 'Werknummer', 'Orderinkoopnummer',\
-              'Bestelordernummer','Internordernummer', 'Totaal magazijnprijs', 'BTW-hoog', 'Artikelomschrijving', 'Artikelprijs']  
+              'Bestelordernummer','Internordernummer', 'Totaal magazijnprijs', 'BTW-hoog',\
+              'Baliebonnummer', 'Artikelomschrijving', 'Artikelprijs']  
     if keuze == 2:
         header1 = ['Werknummer',' Werkomschrijving']
         header.extend(header1)
     elif keuze == 3:
         header2 = ['Leveranciernummer', 'Bedrijfsnaam'] 
         header.extend(header2)
-   
+  
     data_list=[]
     for row in rp:
         data_list += [(row)] 
