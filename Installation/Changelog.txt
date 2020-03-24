@@ -297,7 +297,7 @@ From 2020-01-10 updates and changes are described on this page
 2020-03-23 opvrArtikelmutaties.py added search filter showing artikelmutaties for balieverkoop (countersales) orders. 
            Menu Boekhouding keuze 7 (accounting choice 7)
 2020-03-24 barcodeScan.py i decided to get rid of the annoying popups during scanning, so i changed the popups with an
-           red alert in the Widget below the diplay screen and with all visual alerts the program gives an acoustic alarm.
+           red alert in the Widget below the display screen and with all visual alerts the program gives an acoustic alarm.
             
        
            
