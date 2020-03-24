@@ -479,11 +479,7 @@ def barcodeScan(m_email, mret):
             lbl3 = QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl')
             lbl3.setFont(QFont("Arial", 10))
             grid.addWidget(lbl3, 8, 0, 1, 3, Qt.AlignCenter)
-  
-            self.warning = ''
-            lblwarn = QLabel(self.warning)
-            grid.addWidget(lblwarn, 2, 1)
-            
+              
             printBtn = QPushButton('Printen')
             printBtn.clicked.connect(lambda: printBon())
       
