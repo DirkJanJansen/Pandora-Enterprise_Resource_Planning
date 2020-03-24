@@ -17,27 +17,7 @@ def geenGegevens():
     msg.setText('Er zijn nog geen transacties!')
     msg.setWindowTitle('Transacties')
     msg.exec_() 
-       
-def foutArtikel():
-    msg = QMessageBox()
-    msg.setStyleSheet("color: black;  background-color: gainsboro")
-    msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
-    msg.setFont(QFont("Arial", 10))
-    msg.setIcon(QMessageBox.Critical)
-    msg.setText('Dit artikel wordt niet in ons assortiment gevoerd!')
-    msg.setWindowTitle('Melding voorraad')
-    msg.exec_() 
-    
-def onvVoorraad(magvrd):
-    msg = QMessageBox()
-    msg.setStyleSheet("color: black;  background-color: gainsboro")
-    msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
-    msg.setFont(QFont("Arial", 10))
-    msg.setIcon(QMessageBox.Critical)
-    msg.setText('Er is onvoldoende voorraad\nNog '+str(int(magvrd))+' voorradig!')
-    msg.setWindowTitle('Melding voorraad')
-    msg.exec_()    
-    
+           
 def info():
     class Widget(QDialog):
         def __init__(self, parent=None):
@@ -312,7 +292,7 @@ def plusminChange(qspin, plusminBtn):
         plusminBtn.setText('+')
         qspin.setRange(1, 99)
     
-def set_barcodenr(q1Edit, qspin, view, koptekst, nextBtn, closeBtn, printBtn):
+def set_barcodenr(q1Edit, qspin, view, koptekst, nextBtn, closeBtn, printBtn, albl):
     barcodenr = q1Edit.text()
     maantal = qspin.value()
     if len(barcodenr) == 13 :
@@ -355,7 +335,8 @@ def set_barcodenr(q1Edit, qspin, view, koptekst, nextBtn, closeBtn, printBtn):
         rpart = con.execute(selart).first()
         rpbal = con.execute(selbal).first()
         if rpart and rpart[4] < maantal:
-             onvVoorraad(rpart[4])
+            albl.setText('Foutmelding: '+str(int(rpart[4]))+' voorradig!')
+            geefAlarm()
         elif rpart:
             martnr = rpart[0]
             momschr = rpart[2]
@@ -384,14 +365,15 @@ def set_barcodenr(q1Edit, qspin, view, koptekst, nextBtn, closeBtn, printBtn):
              .format(float(mprijs)*float(maantal)*mbtw)+'\n')
             view.setText(newtekst)
         else:
+            albl.setText('Foutmelding: Niet in assortiment!')
             geefAlarm()
-            foutArtikel()
       
         closeBtn.setDisabled(True)
         printBtn.setEnabled(True)
         nextBtn.setEnabled(True)
     else:
         #alarm if barcode scan failed
+        albl.setText('Foutmelding: Scanfout met lezen code')
         geefAlarm()
         
     q1Edit.setSelection(0,13)
@@ -415,7 +397,7 @@ def barcodeScan(m_email, mret):
             q1Edit.setFont(QFont("Arial", 10))
             q1Edit.setFixedWidth(130)
             q1Edit.setFocus(True)
-            q1Edit.returnPressed.connect(lambda: set_barcodenr(q1Edit, qspin, view, tekst, nextBtn, closeBtn, printBtn))
+            q1Edit.returnPressed.connect(lambda: set_barcodenr(q1Edit, qspin, view, tekst, nextBtn, closeBtn, printBtn, albl))
                        
             qspin = QSpinBox()
             qspin.setRange(1, 99)
@@ -445,23 +427,27 @@ def barcodeScan(m_email, mret):
             view.setFixedSize(350, 100)
                         
             grid.addWidget(view, 0 ,0, 1, 4, Qt.AlignCenter)
-      
+            
+            albl = QLabel('')
+            albl.setStyleSheet("font: bold 20px; color: red")
+            grid.addWidget(albl, 1, 0, 1, 4, Qt.AlignCenter)
+
             lbl1 = QLabel('Barcodescan')
             lbl1.setFont(QFont("Arial", 10))
-            grid.addWidget(lbl1, 4, 1)
-            grid.addWidget(q1Edit , 4, 2, 1, 1, Qt.AlignRight)
+            grid.addWidget(lbl1, 5, 1)
+            grid.addWidget(q1Edit , 5, 2, 1, 1, Qt.AlignRight)
             
             lbl2 = QLabel('Aantal    ')
             lbl2.setFont(QFont("Arial", 10))
-            grid.addWidget(lbl2, 5, 2, 1, 1, Qt.AlignCenter)
-            grid.addWidget(qspin, 5, 2, 1, 1, Qt.AlignRight)
+            grid.addWidget(lbl2, 6, 2, 1, 1, Qt.AlignCenter)
+            grid.addWidget(qspin, 6, 2, 1, 1, Qt.AlignRight)
             
             if mret:
                 plusminBtn = QPushButton('+')
                 plusminBtn.setCheckable(True)
                 plusminBtn.clicked.connect(lambda: plusminChange(qspin, plusminBtn))
           
-                grid.addWidget(plusminBtn, 5, 2,)
+                grid.addWidget(plusminBtn, 6, 2,)
                 plusminBtn.setFont(QFont("Arial",14, 75))
                 plusminBtn.setFocusPolicy(Qt.NoFocus)
                 plusminBtn.setFixedSize(30 ,30)
@@ -470,20 +456,20 @@ def barcodeScan(m_email, mret):
             lbl = QLabel()
             pixmap = QPixmap('./images/logos/verbinding.jpg')
             lbl.setPixmap(pixmap)
-            grid.addWidget(lbl , 2, 0, 1, 2)
+            grid.addWidget(lbl , 3, 0, 1, 2)
              
             logo = QLabel()
             pixmap = QPixmap('./images/logos/logo.jpg')
             logo.setPixmap(pixmap)
-            grid.addWidget(logo , 2, 2, 1 ,1, Qt.AlignRight)
+            grid.addWidget(logo , 3, 2, 1 ,1, Qt.AlignRight)
             lbl3 = QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl')
             lbl3.setFont(QFont("Arial", 10))
-            grid.addWidget(lbl3, 8, 0, 1, 3, Qt.AlignCenter)
-              
+            grid.addWidget(lbl3, 9, 0, 1, 3, Qt.AlignCenter)
+            
             printBtn = QPushButton('Printen')
             printBtn.clicked.connect(lambda: printBon())
       
-            grid.addWidget(printBtn, 7, 2, 1, 1, Qt.AlignRight)
+            grid.addWidget(printBtn, 8, 2, 1, 1, Qt.AlignRight)
             printBtn.setFont(QFont("Arial",10))
             printBtn.setFocusPolicy(Qt.NoFocus)
             printBtn.setFixedWidth(100)
@@ -492,16 +478,17 @@ def barcodeScan(m_email, mret):
             closeBtn = QPushButton('Sluiten')
             closeBtn.clicked.connect(lambda: windowSluit(self, m_email))
 
-            grid.addWidget(closeBtn, 7, 1, 1, 1, Qt.AlignRight)
+            grid.addWidget(closeBtn, 8, 1, 1, 1, Qt.AlignRight)
             closeBtn.setFont(QFont("Arial",10))
             closeBtn.setFocusPolicy(Qt.NoFocus)
             closeBtn.setFixedWidth(100)
-            closeBtn.setStyleSheet("color: black;  background-color: gainsboro")
-                        
+            
+            closeBtn.setStyleSheet("color: black; background-color: gainsboro")
+                                    
             infoBtn = QPushButton('Informatie')
             infoBtn.clicked.connect(lambda: info())
     
-            grid.addWidget(infoBtn, 7, 0, 1, 1, Qt.AlignRight)
+            grid.addWidget(infoBtn, 8, 0, 1, 1, Qt.AlignRight)
             infoBtn.setFont(QFont("Arial",10))
             infoBtn.setFocusPolicy(Qt.NoFocus)
             infoBtn.setFixedWidth(100)
@@ -510,7 +497,7 @@ def barcodeScan(m_email, mret):
             nextBtn = QPushButton('Volgende Klant')
             nextBtn.clicked.connect(lambda: nextClient(nextBtn, closeBtn, printBtn))
     
-            grid.addWidget(nextBtn, 5, 0, 1, 2)   
+            grid.addWidget(nextBtn, 6, 0, 1, 2)   
             nextBtn.setFont(QFont("Arial",10))
             nextBtn.setFocusPolicy(Qt.NoFocus)
             nextBtn.setFixedWidth(210)            
