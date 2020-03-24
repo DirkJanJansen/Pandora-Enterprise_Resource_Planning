@@ -300,6 +300,7 @@ From 2020-01-10 updates and changes are described on this page
            red alert in the Widget below the display screen and with all visual alerts the program gives an acoustic alarm.
 2020-03-24 In folder Tools updated artikelen-barcode.txt and Barcode-Scansheet.png added with 20 example barcodes for scanning.
            deleted barcodes.png and several unnecessary barcodes.
+2020-03-24 barcodeScan.py momschr changed to max 40 positions for omschrijving in tabel balieverkoop
             
        
            
