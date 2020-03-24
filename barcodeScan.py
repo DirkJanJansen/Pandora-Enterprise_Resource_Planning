@@ -373,7 +373,7 @@ def set_barcodenr(q1Edit, qspin, view, koptekst, nextBtn, closeBtn, printBtn, al
         nextBtn.setEnabled(True)
     else:
         #alarm if barcode scan failed
-        albl.setText('Foutmelding: Scanfout met lezen code')
+        albl.setText('Foutmelding: Scanfout met lezen code!')
         geefAlarm()
         
     q1Edit.setSelection(0,13)
@@ -429,7 +429,7 @@ def barcodeScan(m_email, mret):
             grid.addWidget(view, 0 ,0, 1, 4, Qt.AlignCenter)
             
             albl = QLabel('')
-            albl.setStyleSheet("font: bold 20px; color: red")
+            albl.setStyleSheet("font: bold 16px; color: red")
             grid.addWidget(albl, 1, 0, 1, 4, Qt.AlignCenter)
 
             lbl1 = QLabel('Barcodescan')
