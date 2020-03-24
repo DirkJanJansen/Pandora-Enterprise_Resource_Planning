@@ -16,7 +16,7 @@ Also 20 barcode pictures are saved. If you want more, or another range from the 
 In the changed database from 2020-03-22  this is already done. Also the database has been extended with a new table 
 balieverkoop (countersales) This table is used for barcode scanning see following lines and barcodeScan.py
 This module scans and displays the data from database, prints the orderform and books the financial data and stock data
-in the tables afdrachten (payments) and artikelmutaties (stock transactions).
+in the tables artikelen (updates stock), afdrachten (payments) and artikelmutaties (stock transactions).
 
 decode images barcode:
 pip install pyzbar
