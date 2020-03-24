@@ -6,16 +6,16 @@ Converting artikelID to barcode ean 13 numbers.
 1. Install barcode module in python with pip install python-barcode and pip install pillow
 2. Open pgadmin4 delete column barcode (integer) from table artikelen.
 3. Insert column barcode again in table artikelen with properties character varying length 13  default ''
-4. Run artikelen-barcode.py 
-
-The barcode images are saved with the format png.
+4. remove the # from the lines upd.... and con... (if not removed only barcode images are saved with format png)
+5. Run artikelen-barcode.py 
 
 The barcode ean numbers are filled in the barcode fields from table artikelen
-Also 10 barcode pictures are saved. If you want more change the x value 11 in the loop.
+Also 20 barcode pictures are saved. If you want more, or another range from the database change the x start value (10)
+ and stop value (31) in the loop.
 
-In the changed database from 2020-03-22 is this already done. Also the database has been extended with a new table 
-balieverkoop (countersales) This module use barcode scanning see following lines and barcodeScan.py
-This module scans displays the data from database, prints the orderform and books the financial data and stock data
+In the changed database from 2020-03-22  this is already done. Also the database has been extended with a new table 
+balieverkoop (countersales) This table is used for barcode scanning see following lines and barcodeScan.py
+This module scans and displays the data from database, prints the orderform and books the financial data and stock data
 in the tables afdrachten (payments) and artikelmutaties (stock transactions).
 
 decode images barcode:
@@ -27,7 +27,8 @@ real time scanning in windows 10:
 I used a laser scanner for testing see documentation in folder Tools/Barcodescanner
 The windows device for this scanner is SHANG CHEN HID SC-32, it's a USB Handheld scanner (approx € 50,--)
 It's automatically installed by Windows 10 and is working well.
-In Ubuntu 19.10  the laser stops with the first scan.
+In Ubuntu 19.10 the laser stops with the first scan, maybe it's working with other settings,
+ i did not test it!
 
 I developed a PyQt5 module for real time scanning:
 The module scans barcodes from a printing barcodes.png
@@ -37,10 +38,12 @@ A filelist for printing is added with artikelID descriptions amounts prices subt
 barcodeScan.py started from submenu Magazijn line 9
 2020-03-21:
 The module barcodeScan.py is rewritten due to performance issues. The database is extended with a 
-table balieverkoop for barcodescanning, so the data is moved from disk to database bisystem. The performance issues are solved!
+table balieverkoop for barcodescanning, so the data is moved from disk to database bisystem. 
+The performance issues are solved!
+With the latest update it's possible to book return goods for authorised personel.
+ The button is only accessible if a personwith special rights (S) on Magazijn Menu (5[1]) logs in.
 
 Documentation for scanning and reading barcodes see:
 http://python-barcode.rtfd.io/
 https://www.pyimagesearch.com/2018/05/21/an-opencv-barcode-and-qr-code-scanner-with-zbar/
 https://techtutorialsx.com/2020/01/01/python-pyzbar-detecting-and-decoding-barcode/
-
