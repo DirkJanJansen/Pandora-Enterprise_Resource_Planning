@@ -448,10 +448,9 @@ def barcodeScan(m_email, mret):
                 plusminBtn.setCheckable(True)
                 plusminBtn.clicked.connect(lambda: plusminChange(qspin, plusminBtn))
           
-                grid.addWidget(plusminBtn, 6, 2,)
-                plusminBtn.setFont(QFont("Arial",14, 75))
+                grid.addWidget(plusminBtn, 6, 2)
                 plusminBtn.setFocusPolicy(Qt.NoFocus)
-                plusminBtn.setFixedSize(30 ,30)
+                plusminBtn.setFixedSize(20, 30)
                 plusminBtn.setStyleSheet("color: black;  background-color: gainsboro")
                                    
             lbl = QLabel()
