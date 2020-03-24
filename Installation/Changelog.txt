@@ -298,6 +298,8 @@ From 2020-01-10 updates and changes are described on this page
            Menu Boekhouding keuze 7 (accounting choice 7)
 2020-03-24 barcodeScan.py i decided to get rid of the annoying popups during scanning, so i changed the popups with an
            red alert in the Widget below the display screen and with all visual alerts the program gives an acoustic alarm.
+2020-03-24 In folder Tools updated artikelen-barcode.txt and Barcode-Scansheet.png added with 20 example barcodes for scanning.
+           deleted barcodes.png and several unnecessary barcodes.
             
        
            
