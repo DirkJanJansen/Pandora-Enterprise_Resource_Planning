@@ -336,8 +336,8 @@ def set_barcodenr(q1Edit, qspin, view, koptekst, nextBtn, closeBtn, printBtn, al
         rpart = con.execute(selart).first()
         rpbal = con.execute(selbal).first()
         if rpart and rpart[4] < maantal:
-            albl.setText('Foutmelding: '+str(int(rpart[4]))+' voorradig!')
             geefAlarm()
+            albl.setText('Foutmelding: '+str(int(rpart[4]))+' voorradig!')
         elif rpart:
             martnr = rpart[0]
             momschr = rpart[2]
@@ -366,16 +366,16 @@ def set_barcodenr(q1Edit, qspin, view, koptekst, nextBtn, closeBtn, printBtn, al
              .format(float(mprijs)*float(maantal)*mbtw)+'\n')
             view.setText(newtekst)
         else:
-            albl.setText('Foutmelding: Niet in assortiment!')
             geefAlarm()
-      
+            albl.setText('Foutmelding: Niet in assortiment!')
+                  
         closeBtn.setDisabled(True)
         printBtn.setEnabled(True)
         nextBtn.setEnabled(True)
     else:
         #alarm if barcode scan failed
-        albl.setText('Foutmelding: Scanfout met lezen code!')
         geefAlarm()
+        albl.setText('Foutmelding: Scanfout met lezen code!')
         
     q1Edit.setSelection(0,13)
     qspin.setValue(1)
