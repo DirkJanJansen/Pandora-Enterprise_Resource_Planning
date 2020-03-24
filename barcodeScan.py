@@ -341,7 +341,7 @@ def set_barcodenr(q1Edit, qspin, view, koptekst, nextBtn, closeBtn, printBtn, al
         elif rpart:
             martnr = rpart[0]
             momschr = rpart[2]
-            momschr = momschr[:40] + '  ' if len(momschr) > 40 else momschr
+            momschr = momschr[:40] if len(momschr) > 40 else momschr
             mprijs = rpart[3]
             if rpbal:
                 updbal = update(balieverkoop).where(and_(balieverkoop.c.barcode == barcodenr,\
