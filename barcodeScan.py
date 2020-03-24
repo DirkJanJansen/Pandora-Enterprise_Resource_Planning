@@ -295,6 +295,7 @@ def plusminChange(qspin, plusminBtn):
 def set_barcodenr(q1Edit, qspin, view, koptekst, nextBtn, closeBtn, printBtn, albl):
     barcodenr = q1Edit.text()
     maantal = qspin.value()
+    albl.setText('')
     if len(barcodenr) == 13 :
         metadata = MetaData()
         artikelen = Table('artikelen', metadata,
