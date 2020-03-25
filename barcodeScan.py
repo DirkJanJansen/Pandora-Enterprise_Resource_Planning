@@ -368,7 +368,7 @@ def set_barcodenr(q1Edit, qspin, view, koptekst, nextBtn, closeBtn, printBtn, al
             view.setText(newtekst)
         else:
             geefAlarm()
-            albl.setText('Foutmelding: Niet in assortiment!')
+            albl.setText('Foutmelding: Artikel niet in assortiment!')
                   
         closeBtn.setDisabled(True)
         printBtn.setEnabled(True)
@@ -376,7 +376,7 @@ def set_barcodenr(q1Edit, qspin, view, koptekst, nextBtn, closeBtn, printBtn, al
     else:
         #alarm if barcode scan failed
         geefAlarm()
-        albl.setText('Foutmelding: Scanfout met lezen code!')
+        albl.setText('Foutmelding: Scanfout barcode!')
         
     q1Edit.setSelection(0,13)
     qspin.setValue(1)
@@ -443,7 +443,7 @@ def barcodeScan(m_email, mret):
             grid.addWidget(lbl1, 6, 1)
             grid.addWidget(q1Edit , 6, 2, 1, 1, Qt.AlignRight)
             
-            lbl2 = QLabel('Aantal    ')
+            lbl2 = QLabel('Aantal      ')
             lbl2.setFont(QFont("Arial", 10))
             grid.addWidget(lbl2, 7, 2, 1, 1, Qt.AlignCenter)
             grid.addWidget(qspin, 7, 2, 1, 1, Qt.AlignRight)
