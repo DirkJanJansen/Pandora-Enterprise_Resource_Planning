@@ -44,8 +44,7 @@ def info():
             
             infolbl = QLabel('''
         \t\t\t\t\t\t\t\t\t\t
-       \t\t Enterprise Resource Planning (ERP) systeem Pandora
-        
+       \t\t         
         Instruktie barcode scannen.
         
         Als testscanner is een hand laserscanner gebruikt van het type Nedis BCRLR100BK
@@ -54,21 +53,19 @@ def info():
         Indien meerdere produkten van het zelfde artikelnummer benodigd zijn, kan d.m.v. de 
         spinbox het juiste aantal worden gekozen voor het scannen. 
         Dit kan met de pijltjes van de spinbox of met het muiswieltje.
-        Na het scannen wordt het aantal weer automatisch teruggezet op 1.
-        Als een scanfout optreedt bij het scannen, dan klinkt een akoestisch alarm.
-        Als het scannen wordt gestart voor een klant wordt de sluitknop geblokkeerd tot de
-        knop volgende klant wordt gedrukt. De printknop en de klantknop worden geblokkeerd
-        tot de eerste transactie is geboekt.
-        Als een fout bij het scannen optreedt door een leesfout van de barcode klinkt een alarm.
-        Indien er te weinig voorraad is om de bestelling uit te voeren wordt een popupvenster
-        getoond met de huidige voorraad.
-        Eveneens een popupvenster wordt getoond als  produkt niet leverbaar is, omdat dit niet
-        in het assortiment is opgenomen.
+        Na de barcodescan wordt het aantal weer teruggezet op 1.
+        Indien het scannen wordt gestart wordt de sluitknop geblokkeerd tot de knop volgende
+        klant wordt gedrukt.
+        De printknop en de klantknop worden geblokkeerd tot de eerste transactie is geboekt.
+        In de volgende gevallen wordt onder het displayscherm in het rood een foutmelding
+        getoond.
         
-        Als de popupvensters niet met muisklikken of return, maar met scannen worden verwijderd,
-        dient het scannen van de laatste handeling opnieuw te worden uitgevoerd, omdat het 
-        produkt niet is ingevoerd, maar alleen het popupvenster met scannen is verdwenen.
-        
+        1. Als een leesfout met scannen van de barcode plaatsvindt.
+        2. Bij onvoldoende voorraad om de bestelling te leveren, tevens wordt de magazijn 
+           voorraad getoond.
+        3. Indien het produkt (nog) niet in het assortiment is opgenomen.
+        Tevens klinkt in deze 3 gevallen een akoestisch alarm.
+                           
         Nadat het scannen gereed is kan de printbon worden uitgeprint.
                 
         Voor het programma wordt afgesloten, dient eerst de klantknop te worden ingedrukt,
