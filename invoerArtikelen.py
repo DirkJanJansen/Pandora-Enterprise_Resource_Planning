@@ -1,5 +1,6 @@
 ﻿from login import hoofdMenu
 from datetime import date
+from sys import platform
 import barcode
 from barcode.writer import ImageWriter #for barcode as png
 from PyQt5.QtWidgets import QLabel, QLineEdit, QGridLayout, QPushButton,\
@@ -438,6 +439,11 @@ def invArtikel(m_email):
         conn = engine.connect()
         conn.execute(insart)
         conn.close
+        ean = barcode.get('ean13', '800'+str(martikelnr), writer=ImageWriter()) # for barcode as png
+        if platform == 'win32':
+            ean.save('.\\forms\\Barcodelabels\\'+str(martikelnr))
+        else:
+            ean.save('./forms/Barcodelabels/'+str(martikelnr))
         Invoer()
         invArtikel(m_email)
     else:
