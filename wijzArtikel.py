@@ -266,7 +266,7 @@ def wijzArt(m_email, martikelnr):
             
             self.Barcode = QLabel()
             q10Edit = QLineEdit(str(rpartikel[9]))
-            q10Edit.setFixedWidth(100)
+            q10Edit.setFixedWidth(130)
             q10Edit.setFont(QFont("Arial",10))
             q10Edit.textChanged.connect(self.q10Changed)
             reg_ex = QRegExp('^[1-9]{1,13}$')

@@ -1,5 +1,7 @@
 ﻿from login import hoofdMenu
 from datetime import date
+import barcode
+from barcode.writer import ImageWriter #for barcode as png
 from PyQt5.QtWidgets import QLabel, QLineEdit, QGridLayout, QPushButton,\
                             QDialog, QComboBox, QMessageBox
 from PyQt5.QtGui import QRegExpValidator, QFont, QPixmap, QIcon
@@ -57,6 +59,9 @@ def bepaalArtikelnr():
  
 def invArtikel(m_email): 
     martikelnr = bepaalArtikelnr()
+    ean = barcode.get('ean13', '800'+str(martikelnr), writer=ImageWriter()) # for barcode as png
+    mbarcode = ean.get_fullcode()  
+    
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
@@ -146,8 +151,8 @@ def invArtikel(m_email):
             q9Edit.textChanged.connect(self.q9Changed)
             
             self.Barcode = QLabel()
-            q10Edit = QLineEdit('0')
-            q10Edit.setFixedWidth(100)
+            q10Edit = QLineEdit(mbarcode)
+            q10Edit.setFixedWidth(130)
             q10Edit.setFont(QFont("Arial",10))
             q10Edit.textChanged.connect(self.q10Changed)
             reg_ex = QRegExp('^[1-9]{1,13}$')
@@ -391,7 +396,7 @@ def invArtikel(m_email):
         mcat = int(mcat[0])
     if martomschr and martprijs and marteenh and martminvrd and martbestgr and \
                mlocmag and martgr and mcat:
-        
+ 
         metadata = MetaData()
 
         artikelen = Table('artikelen', metadata,
@@ -416,6 +421,7 @@ def invArtikel(m_email):
         metadata.create_all(engine)
         insart = artikelen.insert().values(
         artikelID = martikelnr,
+        barcode = mbarcode,
         artikelomschrijving = martomschr,
         artikelprijs = martprijs,
         art_voorraad = martvrd,
@@ -424,7 +430,6 @@ def invArtikel(m_email):
         art_bestelgrootte = martbestgr,
         locatie_magazijn = mlocmag,
         artikelgroep = martgr,
-        barcode = mbarc,
         thumb_artikel = mthumb,
         foto_artikel = mfotoart,
         categorie = mcat,

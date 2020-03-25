@@ -138,7 +138,9 @@ def toonArtikelen(keuze,zoekterm, m_email):
     metadata = MetaData()
     artikelen = Table('artikelen', metadata,
         Column('artikelID', Integer(), primary_key=True),
+        Column('barcode', String),
         Column('artikelomschrijving', String),
+        Column('thumb_artikel', String(70)),
         Column('artikelprijs', Float),
         Column('art_voorraad', Float),
         Column('art_eenheid', String(20)),
@@ -146,7 +148,6 @@ def toonArtikelen(keuze,zoekterm, m_email):
         Column('art_bestelgrootte', Float),
         Column('locatie_magazijn', String(10)),
         Column('artikelgroep', String),
-        Column('thumb_artikel', String(70)),
         Column('categorie', Integer),
         Column('afmeting', String),
         Column('mutatiedatum', String),
@@ -206,8 +207,8 @@ def toonArtikelen(keuze,zoekterm, m_email):
             table_view.setFont(font)
             table_view.resizeColumnsToContents()
             table_view.setSelectionBehavior(QTableView.SelectRows)
-            table_view.setItemDelegateForColumn(9, showImage(self))
-            table_view.setColumnWidth(9, 100)
+            table_view.setItemDelegateForColumn(3, showImage(self))
+            table_view.setColumnWidth(3, 100)
             table_view.verticalHeader().setDefaultSectionSize(75)
             table_view.clicked.connect(showArtikel)
             layout = QVBoxLayout(self)
@@ -253,8 +254,8 @@ def toonArtikelen(keuze,zoekterm, m_email):
                 pixmap.scaled(256,256) 
                 return(painter.drawPixmap(option.rect, pixmap))
                                        
-    header = ['Artikelnr', 'Omschrijving', 'Prijs', 'Voorraad', 'Eenheid',\
-          'MinVrd', 'BestGr', 'Locatie', 'Groep', 'Afbeelding', 'Categorie',\
+    header = ['Artikelnr', 'Barcodenummer','Omschrijving', 'Afbeelding', 'Prijs', 'Voorraad', 'Eenheid',\
+          'MinVrd', 'BestGr', 'Locatie', 'Groep', 'Categorie',\
           'Afmeting', 'Mutatie\ndatum', 'Bestelsaldo' ,'Reservering\nsaldo', \
           'Jaarverbruik\neven jaren','Jaarverbruik\noneven jaren']    
         
@@ -285,15 +286,22 @@ def toonArtikelen(keuze,zoekterm, m_email):
                     q1Edit.setAlignment(Qt.AlignRight)
                     q1Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q1Edit.setDisabled(True)
-                   
+                    
+                    self.Barcode = QLabel()
+                    q1aEdit = QLineEdit(str(rpartikel[1]))
+                    q1aEdit.setFixedWidth(130)
+                    q1aEdit.setAlignment(Qt.AlignRight)
+                    q1aEdit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    q1aEdit.setDisabled(True)
+    
                     self.Artikelomschrijving = QLabel()
-                    q2Edit = QLineEdit(str(rpartikel[1]))
+                    q2Edit = QLineEdit(str(rpartikel[2]))
                     q2Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q2Edit.setFixedWidth(400)
                     q2Edit.setDisabled(True)
                     
                     self.Artikelprijs = QLabel()
-                    q3Edit = QLineEdit('{:12.2f}'.format(rpartikel[2]))
+                    q3Edit = QLineEdit('{:12.2f}'.format(rpartikel[4]))
                     q3Edit.setAlignment(Qt.AlignRight)
                     q3Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q3Edit.setAlignment(Qt.AlignRight)
@@ -301,79 +309,79 @@ def toonArtikelen(keuze,zoekterm, m_email):
                     q3Edit.setDisabled(True)
                                     
                     self.Artikelvoorraad = QLabel()
-                    q4Edit = QLineEdit('{:12.2f}'.format(rpartikel[3]))
+                    q4Edit = QLineEdit('{:12.2f}'.format(rpartikel[5]))
                     q4Edit.setAlignment(Qt.AlignRight)
                     q4Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q4Edit.setFixedWidth(100)
                     q4Edit.setDisabled(True)
                      
                     self.Bestelsaldo = QLabel()
-                    q16Edit = QLineEdit('{:12.2f}'.format(rpartikel[13]))
+                    q16Edit = QLineEdit('{:12.2f}'.format(rpartikel[14]))
                     q16Edit.setAlignment(Qt.AlignRight)
                     q16Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q16Edit.setFixedWidth(100)
                     q16Edit.setDisabled(True)
                     
                     self.Artikeleenheid = QLabel()
-                    q5Edit = QLineEdit(rpartikel[4])
+                    q5Edit = QLineEdit(rpartikel[6])
                     q5Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q5Edit.setFixedWidth(100)
                     q5Edit.setDisabled(True)
           
                     self.Minimumvoorraad = QLabel()
-                    q6Edit = QLineEdit('{:12.2f}'.format(rpartikel[5]))
+                    q6Edit = QLineEdit('{:12.2f}'.format(rpartikel[7]))
                     q6Edit.setAlignment(Qt.AlignRight)
                     q6Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q6Edit.setFixedWidth(100)
                     q6Edit.setDisabled(True)
          
                     self.Bestelgrootte = QLabel()
-                    q7Edit = QLineEdit('{:12.2f}'.format(rpartikel[6]))
+                    q7Edit = QLineEdit('{:12.2f}'.format(rpartikel[8]))
                     q7Edit.setAlignment(Qt.AlignRight)
                     q7Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q7Edit.setFixedWidth(100)
                     q7Edit.setDisabled(True)
                     
                     self.Reserveringsaldo = QLabel()
-                    q12Edit = QLineEdit('{:12.2f}'.format(rpartikel[14]))
+                    q12Edit = QLineEdit('{:12.2f}'.format(rpartikel[15]))
                     q12Edit.setAlignment(Qt.AlignRight)
                     q12Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q12Edit.setFixedWidth(100)
                     q12Edit.setDisabled(True)
                                    
                     self.Magazijnlocatie = QLabel()
-                    q8Edit = QLineEdit(str(rpartikel[7]))
+                    q8Edit = QLineEdit(str(rpartikel[9]))
                     q8Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q8Edit.setFixedWidth(100)
                     q8Edit.setDisabled(True)
                     
                     self.Artikelgroep = QLabel()
-                    q9Edit = QLineEdit(str(rpartikel[8]))
+                    q9Edit = QLineEdit(str(rpartikel[10]))
                     q9Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q9Edit.setFixedWidth(200)
                     q9Edit.setDisabled(True)
              
                     self.Artikelthumbnail = QLabel()
-                    q11Edit = QLineEdit(str(rpartikel[9]))
+                    q11Edit = QLineEdit(str(rpartikel[3]))
                     q11Edit.setFixedWidth(400)
                     q11Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q11Edit.setDisabled(True)
                            
                     self.Categorie = QLabel()
-                    q13Edit = QLineEdit(str(rpartikel[10]))
+                    q13Edit = QLineEdit(str(rpartikel[11]))
                     q13Edit.setFixedWidth(100)
                     q13Edit.setAlignment(Qt.AlignRight)
                     q13Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q13Edit.setDisabled(True)
                     
                     self.Afmeting = QLabel()
-                    q14Edit = QLineEdit(str(rpartikel[11]))
+                    q14Edit = QLineEdit(str(rpartikel[12]))
                     q14Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q14Edit.setFixedWidth(100)
                     q14Edit.setDisabled(True)
                     
                     self.Mutatiedatum = QLabel()
-                    q15Edit = QLineEdit(str(rpartikel[12]))
+                    q15Edit = QLineEdit(str(rpartikel[13]))
                     q15Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q15Edit.setFixedWidth(100)
                     q15Edit.setDisabled(True)
@@ -393,6 +401,9 @@ def toonArtikelen(keuze,zoekterm, m_email):
                   
                     grid.addWidget(QLabel('Artikelnummer'), 1, 0, 2, 1)
                     grid.addWidget(q1Edit, 1, 1, 2, 1)
+                    
+                    grid.addWidget(QLabel('Barcodenummer'), 1, 2, 2, 1)
+                    grid.addWidget(q1aEdit, 1, 3, 2, 1)
                 
                     grid.addWidget(QLabel('Artikelomschrijving'), 3, 0)
                     grid.addWidget(q2Edit, 3, 1, 1 ,3)
