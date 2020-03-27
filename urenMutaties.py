@@ -8,6 +8,7 @@ from sqlalchemy import (Table, Column, Integer, String, MetaData, create_engine,
 
 def foutAccount():
     msg = QMessageBox()
+    msg.setFont(QFont("Arial", 10))
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Critical)
     msg.setText('Foutief accountnummer opgegeven!')
@@ -16,19 +17,20 @@ def foutAccount():
 
 def foutWerk():
     msg = QMessageBox()
+    msg.setFont(QFont("Arial", 10))
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Critical)
     msg.setText('Foutief werknummer opgegeven!')
     msg.setWindowTitle('Mutaties diensten werken')
     msg.exec_()
     
-def urenIngevoerd(msoort, mboekuren):
-    mboekuren = str(mboekuren)
+def urenIngevoerd(msoort, mboekuren, msaldo):
     msg = QMessageBox()
+    msg.setFont(QFont("Arial", 10))
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
     if msoort == 5:
-        msg.setText(mboekuren+' Verlofuren ingevoerd!')
+        msg.setText(mboekuren+' Verlofuren ingevoerd, Saldo = '+msaldo+' uren.')
     elif msoort == 6:
         msg.setText(mboekuren+' Extra verlofuren ingevoerd!')
     elif msoort == 7:
@@ -262,7 +264,7 @@ def urenBoeking(self, merror, m_email):
         mextraverlof = mboekuren
         upd = update(werknemers).where(werknemers.c.accountID ==\
             maccountnr).values(extraverlof = werknemers.c.extraverlof - mextraverlof)
-        con.execute(upd)       
+        con.execute(upd) 
     elif mboekuren and msoort == 7:
         mziek = mboekuren
     elif mboekuren and msoort == 8:
@@ -277,7 +279,7 @@ def urenBoeking(self, merror, m_email):
         merror = 2
         self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
         return(maccountnr, mwerknr, mboekd, merror, m_email)
-        
+            
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
     mw = select([werknemers]).where(werknemers.c.accountID == maccountnr)
@@ -433,7 +435,13 @@ def urenBoeking(self, merror, m_email):
           rpsel = con.execute(sel).first()
           self.urentotEdit.setText('{:<12.2f}'.format(rpsel[14]))
     else:
-         urenIngevoerd(msoort, mboekuren)
+        if msoort == 5:
+            selsal = select([werknemers]).where(werknemers.c.accountID == maccountnr)
+            rpsal = con.execute(selsal).first()
+            msaldo = str(rpsal[3])
+        else:
+            msaldo == ''
+        urenIngevoerd(msoort, str(mboekuren), msaldo)
     con.close 
     self.urenEdit.setText('0')
     self.k0Edit.setCurrentIndex(0)
@@ -577,7 +585,7 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
             lbl4.setFont(QFont("Arial", 10))
             grid.addWidget(lbl4, 10, 1, 1, 1, Qt.AlignCenter)
             grid.addWidget(self.urenEdit, 10, 2, 1, 1, Qt.AlignRight)
-                         
+                                       
             lbl5 = QLabel('Boekdatum')
             lbl5.setFont(QFont("Arial", 10))
             grid.addWidget(lbl5, 11, 1, 1, 1, Qt.AlignCenter)
