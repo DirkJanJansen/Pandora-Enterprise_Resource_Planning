@@ -1,10 +1,8 @@
 from login import hoofdMenu
-from datetime import datetime
-import sys
 from PyQt5.QtCore import Qt, QRegExp
 from PyQt5.QtGui import QIcon, QFont, QPixmap, QRegExpValidator
 from PyQt5.QtWidgets import QLineEdit, QGridLayout, QDialog, QLabel, QPushButton,\
-        QMessageBox, QComboBox, QCheckBox, QApplication
+        QMessageBox, QComboBox, QCheckBox
 from sqlalchemy import (Table, Column, Integer, String, MetaData, create_engine, ForeignKey,\
                         Float, select, update, func, Boolean)
 
