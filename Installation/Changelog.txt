@@ -305,10 +305,10 @@ From 2020-01-10 updates and changes are described on this page
 2020-03-25 wijzArtikel.py added barcode field
 2020-03-25 opvrArtikelen added barcode field and in tableview artikelthumb moved into view window.
 2020-03-25 in documentation Statement.pdf adjusted
-2020-03-25 for barcode application requirements.txt extended with pillow and python-barcode
 2020-03-25 invoerArtikelen added routine for saving barcode image in folder .\forms\barcodelabels 
            for sticking on storage rack or on product-packaging for scanning.
 2020-03-25 added EAN-13_numbers.txt in folder Tools with explanation barcode numbers
+2020-03-27 urenMutaties.py rewritten with feedback total worked hours booked on worknumber by profession.
             
        
            
