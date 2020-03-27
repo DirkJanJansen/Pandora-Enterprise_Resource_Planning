@@ -23,29 +23,7 @@ def foutWerk():
     msg.setText('Foutief werknummer opgegeven!')
     msg.setWindowTitle('Mutaties diensten werken')
     msg.exec_()
-    
-def urenIngevoerd(msoort, mboekuren, msaldo):
-    msg = QMessageBox()
-    msg.setFont(QFont("Arial", 10))
-    msg.setStyleSheet("color: black;  background-color: gainsboro")
-    msg.setIcon(QMessageBox.Information)
-    if msoort == 5:
-        msg.setText(mboekuren+' Verlofuren ingevoerd, Saldo = '+msaldo+' uren.')
-    elif msoort == 6:
-        msg.setText(mboekuren+' Extra verlofuren ingevoerd!')
-    elif msoort == 7:
-        msg.setText(mboekuren+' Uren ziekte ingevoerd!')
-    elif msoort == 8:
-        msg.setText(mboekuren+' Uren feestdagen!')
-    elif msoort == 9:
-        msg.setText(mboekuren+' Uren dokterbezoek ingevoerd')
-    elif msoort == 10:
-        msg.setText(mboekuren+' Uren geoorloofd verzuim ingevoerd!')
-    elif msoort == 11:
-        msg.setText(mboekuren+' Uren ongeoorloofd verzuim ingevoerd!')
-    msg.setWindowTitle('Mutaties afwezigheidsuren!')
-    msg.exec_()
-   
+
 def _11check(mcontr):
     number = str(mcontr)
     total = 0       
@@ -435,14 +413,27 @@ def urenBoeking(self, merror, m_email):
           rpsel = con.execute(sel).first()
           self.urentotEdit.setText('{:<12.2f}'.format(rpsel[14]))
     else:
+        msaldo = ''
+        mboekuren = str(mboekuren)
         if msoort == 5:
             selsal = select([werknemers]).where(werknemers.c.accountID == maccountnr)
             rpsal = con.execute(selsal).first()
             msaldo = str(rpsal[3])
-        else:
-            msaldo == ''
-        urenIngevoerd(msoort, str(mboekuren), msaldo)
-    con.close 
+            self.lbltext = mboekuren+' Verlofuren ingevoerd, Saldo = '+msaldo+' uren.'
+        elif msoort == 6:
+            self.lbltext = mboekuren+' Extra verlofuren ingevoerd!'
+        elif msoort == 7:
+            self.lbltext = mboekuren+' Uren ziekte ingevoerd!'
+        elif msoort == 8:
+            self.lbltext = mboekuren+' Uren feestdagen!'
+        elif msoort == 9:
+            self.lbltext = mboekuren+' Uren dokterbezoek ingevoerd'
+        elif msoort == 10:
+            self.lbltext = mboekuren+' Uren geoorloofd verzuim ingevoerd!'
+        elif msoort == 11:
+            self.lbltext = mboekuren+' Uren ongeoorloofd verzuim ingevoerd!'
+        self.lblt.setText(self.lbltext)    
+        con.close 
     self.urenEdit.setText('0')
     self.k0Edit.setCurrentIndex(0)
     return(maccountnr, mwerknr, mboekd, merror, m_email) 
@@ -452,7 +443,7 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
         def __init__(self):
             super(Widget,self).__init__()
             
-            self.setWindowTitle("Uren invoeren")
+            self.setWindowTitle("Uren invoeren externe werken -lonen")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                                 Qt.WindowMinMaxButtonsHint)
@@ -556,8 +547,10 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 3, 1, 1, Qt.AlignRight)       
 
-            lblt = QLabel(' Muteren uren (werken - lonen) niet cumulatief')
-            grid.addWidget(lblt , 12, 1, 1, 3, Qt.AlignCenter)
+            self.lbltext = ''
+            self.lblt = QLabel(self.lbltext)
+            self.lblt.setFont(QFont("Arial", 10))
+            grid.addWidget(self.lblt , 12, 1, 1, 3, Qt.AlignCenter)
             
             lbl1 = QLabel('Accountnummer')
             lbl1.setFont(QFont("Arial", 10))
