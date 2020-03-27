@@ -436,6 +436,7 @@ def urenBoeking(self, merror, m_email):
          urenIngevoerd(msoort, mboekuren)
     con.close 
     self.urenEdit.setText('0')
+    self.k0Edit.setCurrentIndex(0)
     return(maccountnr, mwerknr, mboekd, merror, m_email) 
     
 def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
