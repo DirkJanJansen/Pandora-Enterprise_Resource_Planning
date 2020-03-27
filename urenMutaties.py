@@ -419,20 +419,20 @@ def urenBoeking(self, merror, m_email):
             selsal = select([werknemers]).where(werknemers.c.accountID == maccountnr)
             rpsal = con.execute(selsal).first()
             msaldo = str(rpsal[3])
-            self.lbltext = mboekuren+' Verlofuren ingevoerd, Saldo = '+msaldo+' uren.'
+            lbltext = mboekuren+' Verlofuren ingevoerd, Saldo = '+msaldo+' uren.'
         elif msoort == 6:
-            self.lbltext = mboekuren+' Extra verlofuren ingevoerd!'
+            lbltext = mboekuren+' Extra verlofuren ingevoerd'
         elif msoort == 7:
-            self.lbltext = mboekuren+' Uren ziekte ingevoerd!'
+            lbltext = mboekuren+' Uren ziekte ingevoerd'
         elif msoort == 8:
-            self.lbltext = mboekuren+' Uren feestdagen!'
+            lbltext = mboekuren+' Uren feestdagen ingevoerd'
         elif msoort == 9:
-            self.lbltext = mboekuren+' Uren dokterbezoek ingevoerd'
+            lbltext = mboekuren+' Uren dokterbezoek ingevoerd
         elif msoort == 10:
-            self.lbltext = mboekuren+' Uren geoorloofd verzuim ingevoerd!'
+            lbltext = mboekuren+' Uren geoorloofd verzuim ingevoerd'
         elif msoort == 11:
-            self.lbltext = mboekuren+' Uren ongeoorloofd verzuim ingevoerd!'
-        self.lblt.setText(self.lbltext)    
+            lbltext = mboekuren+' Uren ongeoorloofd verzuim ingevoerd'
+        self.lblt.setText(lbltext)    
         con.close 
     self.urenEdit.setText('0')
     self.k0Edit.setCurrentIndex(0)
@@ -547,8 +547,7 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 3, 1, 1, Qt.AlignRight)       
 
-            self.lbltext = ''
-            self.lblt = QLabel(self.lbltext)
+            self.lblt = QLabel("")
             self.lblt.setFont(QFont("Arial", 10))
             grid.addWidget(self.lblt , 12, 1, 1, 3, Qt.AlignCenter)
             
