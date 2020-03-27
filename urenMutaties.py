@@ -1,12 +1,51 @@
 from login import hoofdMenu
+from datetime import datetime
+import sys
 from PyQt5.QtCore import Qt, QRegExp
-from PyQt5.QtGui import QFont, QPixmap, QRegExpValidator, QIcon
-from PyQt5.QtWidgets import QLabel, QPushButton,\
-     QMessageBox, QLineEdit, QGridLayout, QDialog, QCheckBox, QComboBox
-from sqlalchemy import (Table, Column, Integer, String, Float, MetaData, \
-                            ForeignKey, create_engine, Boolean)
-from sqlalchemy.sql import select, update, func
-         
+from PyQt5.QtGui import QIcon, QFont, QPixmap, QRegExpValidator
+from PyQt5.QtWidgets import QLineEdit, QGridLayout, QDialog, QLabel, QPushButton,\
+        QMessageBox, QComboBox, QCheckBox, QApplication
+from sqlalchemy import (Table, Column, Integer, String, MetaData, create_engine, ForeignKey,\
+                        Float, select, update, func, Boolean)
+
+def foutAccount():
+    msg = QMessageBox()
+    msg.setStyleSheet("color: black;  background-color: gainsboro")
+    msg.setIcon(QMessageBox.Critical)
+    msg.setText('Foutief accountnummer opgegeven!')
+    msg.setWindowTitle('Mutaties diensten werken')
+    msg.exec_()
+
+def foutWerk():
+    msg = QMessageBox()
+    msg.setStyleSheet("color: black;  background-color: gainsboro")
+    msg.setIcon(QMessageBox.Critical)
+    msg.setText('Foutief werknummer opgegeven!')
+    msg.setWindowTitle('Mutaties diensten werken')
+    msg.exec_()
+    
+def urenIngevoerd(msoort, mboekuren):
+    mboekuren = str(mboekuren)
+    msg = QMessageBox()
+    msg.setStyleSheet("color: black;  background-color: gainsboro")
+    msg.setIcon(QMessageBox.Information)
+    if msoort == 5:
+        msg.setText(mboekuren+' Verlofuren ingevoerd!')
+    elif msoort == 6:
+        msg.setText(mboekuren+' Extra verlofuren ingevoerd!')
+    elif msoort == 7:
+        msg.setText(mboekuren+' Uren ziekte ingevoerd!')
+    elif msoort == 8:
+        msg.setText(mboekuren+' Uren feestdagen!')
+    elif msoort == 9:
+        msg.setText(mboekuren+' Uren dokterbezoek ingevoerd')
+    elif msoort == 10:
+        msg.setText(mboekuren+' Uren geoorloofd verzuim ingevoerd!')
+    elif msoort == 11:
+        msg.setText(mboekuren+' Uren ongeoorloofd verzuim ingevoerd!')
+    msg.setWindowTitle('Mutaties afwezigheidsuren!')
+    msg.exec_()
+   
 def _11check(mcontr):
     number = str(mcontr)
     total = 0       
@@ -20,59 +59,19 @@ def _11check(mcontr):
         return True
     else:
         return False
-
-def foutAccount():
-        msg = QMessageBox()
-        msg.setStyleSheet("color: black;  background-color: gainsboro")
-        msg.setIcon(QMessageBox.Critical)
-        msg.setText('Foutief accountnummer opgegeven,\n en/of account niet geldig voor deze bewerking!')
-        msg.setWindowTitle('Mutaties diensten werken')
-        msg.exec_()
-              
-def foutWerk():
-        msg = QMessageBox()
-        msg.setStyleSheet("color: black;  background-color: gainsboro")
-        msg.setIcon(QMessageBox.Critical)
-        msg.setText('Foutief werknummer opgegeven!')
-        msg.setWindowTitle('Mutaties diensten werken')
-        msg.exec_()
-        
+    
 def werkGereed():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
     msg.setText('Werknummer is afgemeld,\nboekingen niet meer mogelijk!')
-    msg.setWindowTitle('Mutaties uren werken')
-    msg.exec_()
-    
-def geenKeuze():
-    msg = QMessageBox()
-    msg.setStyleSheet("color: black;  background-color: gainsboro")
-    msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen kostensoort keuze gemaakt')
-    msg.setWindowTitle('Mutaties uren werken')               
-    msg.exec_()
-    
-def ongDatum():
-    msg = QMessageBox()
-    msg.setStyleSheet("color: black;  background-color: gainsboro")
-    msg.setIcon(QMessageBox.Warning)
-    msg.setText('Ongeldige datum ingevoerd')
-    msg.setWindowTitle('Mutaties uren werken')               
-    msg.exec_()
-    
-def geenUren():
-    msg = QMessageBox()
-    msg.setStyleSheet("color: black;  background-color: gainsboro")
-    msg.setIcon(QMessageBox.Information)
-    msg.setText('Geen uren ingevoerd!')
-    msg.setWindowTitle('Mutaties uren werken')
+    msg.setWindowTitle('Mutaties uren  werken')
     msg.exec_()
 
 def windowSluit(self, m_email):
     self.close()
-    hoofdMenu(m_email)  
-
+    hoofdMenu(m_email)
+    
 def info():
     class Widget(QDialog):
         def __init__(self, parent=None):
@@ -141,322 +140,16 @@ def info():
     window = Widget()
     window.exec_()
 
-def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
-    class Widget(QDialog):
-        def __init__(self, parent=None):
-            super(Widget, self).__init__(parent)
-            self.setWindowTitle("Muteren uren")
-            self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
-    
-            self.setFont(QFont('Arial', 10))
-    
-            self.Account = QLabel()
-            zkaccEdit = QLineEdit(str(maccountnr))
-            zkaccEdit.setFixedWidth(150)
-            zkaccEdit.setFont(QFont("Arial",10))
-            zkaccEdit.textChanged.connect(self.zkaccChanged)
-            reg_ex = QRegExp("^[1]{1}[0-9]{8}$")
-            input_validator = QRegExpValidator(reg_ex, zkaccEdit)
-            zkaccEdit.setValidator(input_validator)
-            
-            self.Werknummer = QLabel()
-            zkwerknEdit = QLineEdit(str(mwerknr))
-            zkwerknEdit.setFixedWidth(150)
-            zkwerknEdit.setFont(QFont("Arial",10))
-            zkwerknEdit.textChanged.connect(self.zkwerknChanged) 
-            reg_ex = QRegExp("^[8]{1}[0-9]{8}$")
-            input_validator = QRegExpValidator(reg_ex, zkwerknEdit)
-            zkwerknEdit.setValidator(input_validator)
-     
-            self.Soort = QLabel()
-            k0Edit = QComboBox()
-            k0Edit.setFixedWidth(150)
-            k0Edit.setFont(QFont("Arial",10))
-            k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('100%')
-            k0Edit.addItem('125%')
-            k0Edit.addItem('150%')
-            k0Edit.addItem('200%')
-            k0Edit.addItem('Reis')
-            k0Edit.addItem('Verlof')
-            k0Edit.addItem('Extra verlof')
-            k0Edit.addItem('Ziekte')
-            k0Edit.addItem('Feestdag')
-            k0Edit.addItem('Dokter')
-            k0Edit.addItem('Geoorl. verzuim')
-            k0Edit.addItem('Ong. verzuim')
-            k0Edit.activated[str].connect(self.k0Changed) 
-                        
-            self.Werkuren = QLabel()
-            urenEdit = QLineEdit()
-            urenEdit.setFixedWidth(150)
-            urenEdit.setFont(QFont("Arial",10))
-            urenEdit.textChanged.connect(self.urenChanged) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
-            input_validator = QRegExpValidator(reg_ex, urenEdit)
-            urenEdit.setValidator(input_validator)
-            
-            self.Boekdatum = QLabel()
-            boekdatumEdit = QLineEdit(mboekd)
-            boekdatumEdit.setFixedWidth(150)
-            boekdatumEdit.setFont(QFont("Arial",10))
-            boekdatumEdit.textChanged.connect(self.boekdatumChanged) 
-            reg_ex = QRegExp("^[2]{1}[0-1]{1}[0-9]{2}[-]{1}[0-1]{1}[0-9]{1}[-]{1}[0-3]{1}[0-9]{1}$")
-            input_validator = QRegExpValidator(reg_ex, boekdatumEdit)
-            boekdatumEdit.setValidator(input_validator)
-           
-            grid = QGridLayout()
-            grid.setSpacing(20)
-                                
-            lbl = QLabel()
-            pixmap = QPixmap('./images/logos/verbinding.jpg')
-            lbl.setPixmap(pixmap)
-            grid.addWidget(lbl ,0 , 0)
-            
-            logo = QLabel()
-            pixmap = QPixmap('./images/logos/logo.jpg')
-            logo.setPixmap(pixmap)
-            grid.addWidget(logo , 0, 2, 1, 1, Qt.AlignRight)       
-
-            lblt = QLabel(' Muteren uren (werken - lonen) niet cumulatief')
-            grid.addWidget(lblt , 6, 0, 1, 3, Qt.AlignCenter)
-                  
-            grid.addWidget(QLabel('  \u00A9 2017 all rights reserved - dj.jansen@casema.nl'), 8, 0, 1, 3, Qt.AlignCenter)
-                                              
-            lbl1 = QLabel('Accountnummer')  
-            lbl1.setAlignment(Qt.AlignRight)
-            grid.addWidget(lbl1, 1, 0)
-            grid.addWidget(zkaccEdit, 1, 1)
-           
-            lbl2 = QLabel('Werknummer')  
-            lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl2, 2, 0)
-            grid.addWidget(zkwerknEdit,2, 1)
-            
-            lbl4 = QLabel('Aanwezig/Afwezig')  
-            lbl4.setAlignment(Qt.AlignRight)
-            grid.addWidget(lbl4, 3, 0)
-            grid.addWidget(k0Edit, 3, 1)
-     
-            lbl3 = QLabel('Aantal uren')  
-            lbl3.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl3, 4, 0)
-            grid.addWidget(urenEdit, 4, 1)
-        
-            lbl5 = QLabel('Datum Werkzaamheden')  
-            lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl5, 5, 0)
-            grid.addWidget(boekdatumEdit,5, 1)
-                      
-            cBox = QCheckBox('Meerwerk')
-            cBox.stateChanged.connect(self.cBoxChanged)
-            grid.addWidget(cBox, 3, 2)
-                                     
-            applyBtn = QPushButton('Muteren')
-            applyBtn.clicked.connect(self.accept)
-    
-            applyBtn.setFont(QFont("Arial",10))
-            applyBtn.setFixedWidth(100)
-            if merror == 1:
-                applyBtn.setStyleSheet("color: black; background-color: #00CC66")
-            elif  merror == 2:
-                applyBtn.setStyleSheet("color: black; background-color: #FF3333")
-            else:
-                applyBtn.setStyleSheet("color: black;  background-color: gainsboro") 
-                
-            grid.addWidget(applyBtn,7, 2 , 1 , 1, Qt.AlignRight)
-                
-            cancelBtn = QPushButton('Sluiten')
-            cancelBtn.clicked.connect(lambda: windowSluit(self, m_email)) 
-    
-            grid.addWidget(cancelBtn, 7, 1, 1 , 1, Qt.AlignRight)
-            cancelBtn.setFont(QFont("Arial",10))
-            cancelBtn.setFixedWidth(100)
-            cancelBtn.setStyleSheet("color: black; background-color: gainsboro") 
-            
-            cancelBtn = QPushButton('Sluiten')
-            cancelBtn.clicked.connect(lambda: windowSluit(self, m_email)) 
-                 
-            infoBtn = QPushButton('Informatie')
-            infoBtn.clicked.connect(lambda: info()) 
-    
-            grid.addWidget(infoBtn, 7, 0, 1, 1, Qt.AlignRight)
-            infoBtn.setFont(QFont("Arial",10))
-            infoBtn.setFixedWidth(100)
-            infoBtn.setStyleSheet("color: black; background-color: gainsboro") 
-                                  
-            self.setLayout(grid)
-            self.setGeometry(500, 300, 150, 150)
-           
-        def zkaccChanged(self, text):
-            self.Account.setText(text)
-            
-        def zkwerknChanged(self, text):
-            self.Werknummer.setText(text)
-            
-        def k0Changed(self,text):
-            self.Soort.setText(text)
-            
-        def urenChanged(self,text):
-            self.Werkuren.setText(text)
-            
-        def boekdatumChanged(self, text):
-            self.Boekdatum.setText(text)
-                    
-        state = False  
-        def cBoxChanged(self, state):
-             if state == Qt.Checked:
-                 self.state = True
-      
-        def returnzkacc(self):
-            return self.Account.text()
-        
-        def returnzkwerkn(self):
-            return self.Werknummer.text()
-        
-        def returnk0(self):
-            return self.Soort.text()
-        
-        def returnuren(self):
-            return self.Werkuren.text()
-             
-        def returnboekdatum(self):
-            return self.Boekdatum.text()
-    
-        def returncBox(self):
-            return self.state
-           
-        @staticmethod
-        def getData(parent=None):
-            dialog = Widget(parent)
-            dialog.exec_()
-            return [dialog.returnzkacc(), dialog.returnzkwerkn(),dialog.returnk0(),\
-                    dialog.returnuren(), dialog.returncBox(), dialog.returnboekdatum()]  
-      
-    window = Widget()
-    data = window.getData()
-    muren = 0
-    mu125 = 0
-    mu150 = 0
-    mu200 = 0
-    mreis = 0
-    mmeerw100 = 0
-    mmeerw125 = 0
-    mmeerw150 = 0
-    mmeerw200 = 0
-    mverlof = 0
-    mextraverlof = 0
-    mziek = 0
-    mfeest = 0
-    mdokter = 0
-    mgverzuim = 0
-    moverzuim = 0
-     
-    if data[0] and len(data[0]) == 9 and _11check(data[0]):
-        maccountnr = int(data[0])
-    elif not data[0] and len(str(maccountnr)) == 9 and _11check(maccountnr):
-        maccountnr = int(maccountnr)
-    else:
-       foutAccount()
-       return('', mwerknr, mboekd, merror, m_email)
-    if data[1] and len(data[1])== 9  and _11check(data[1]):
-        mwerknr = int(data[1])
-    elif not data[1] and len(str(mwerknr)) == 9 and _11check(mwerknr):
-        mwerknr = int(mwerknr) 
-    else:
-        foutWerk()
-        return(maccountnr, '', mboekd, merror, m_email)
-                
+def urenBoeking(self, merror, m_email):
+    maccountnr = self.zkaccEdit.text()
+    mwerknr = self.zkwerknEdit.text()
+    mboekd = self.boekdatumEdit.text()
     metadata = MetaData()
-    werken = Table('werken', metadata,
-        Column('werknummerID', Integer, primary_key=True),
-        Column('voortgangstatus', String))
-    werknemers = Table('werknemers', metadata,
-        Column('werknemerID', Integer(), primary_key=True),
-        Column('accountID', None, ForeignKey('accounts.accountID')),
-        Column('verlofsaldo', Float),
-        Column('extraverlof', Float))
-    engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
-    con = engine.connect()
-    selwerk = select([werken]).where(werken.c.werknummerID == mwerknr)
-    rpwerk = con.execute(selwerk).first()
-     
-    if data[2]:
-        keuze = data[2]
-    elif data[2] == '':
-        keuze = '100%'
+    mstatus = self.cBox.checkState()
+    if mstatus == 0:
+        mstatus = False
     else:
-        geenKeuze()
-        return(maccountnr, mwerknr, mboekd, merror, m_email)
-    if data[4]:
         mstatus = True
-    else:
-        mstatus = False
-    if data[5]:
-        mboekd = data[5]
-        if len(mboekd) != 10 or int(mboekd[0:4]) < 2020 or int(mboekd\
-             [0:4]) > 2099 or int(mboekd[5:7]) >12 or int(mboekd[8:10]) > 31:
-            ongDatum()
-            return(maccountnr, mwerknr, mboekd, merror, m_email)
-    else:
-        mboekd =  mboekd
-     
-    if rpwerk[1] == 'H':
-        mwerknr = 1
-        werkGereed()
-        return(maccountnr, mwerknr, mboekd, merror, m_email)
-    elif not data[3] or data[3] == '0' or data[3] == '.':
-        merror = 2
-        return(maccountnr, mwerknr, mboekd, merror,m_email)
-    elif data[3] and keuze == '100%' and mstatus:
-        mmeerw100 = float(data[3])
-    elif data[3] and keuze == '100%':
-        muren = float(data[3])
-    elif data[3] and keuze == '125%' and mstatus:
-        mmeerw125 = float(data[3])
-    elif data[3] and keuze == '125%':
-        mu125 = float(data[3])
-    elif data[3] and keuze == '150%' and mstatus:
-        mmeerw150 = float(data[3])
-    elif data[3] and keuze == '150%':
-        mu150 = float(data[3])
-    elif data[3] and keuze == '200%' and mstatus:
-        mmeerw200 = float(data[3])
-    elif data[3] and keuze == '200%':
-        mu200 = float(data[3])
-    elif data[3] and keuze == 'Reis':
-        mreis = float(data[3])
-    elif data[3] and keuze == 'Verlof':
-        mverlof = float(data[3])
-        mstatus = False
-        upd = update(werknemers).where(werknemers.c.accountID ==\
-            maccountnr).values(verlofsaldo = werknemers.c.verlofsaldo - mverlof)
-        con.execute(upd) 
-    elif data[3] and keuze == 'Extra verlof':
-        mextraverlof = float(data[3])
-        mstatus = False
-        upd = update(werknemers).where(werknemers.c.accountID ==\
-            maccountnr).values(extraverlof = werknemers.c.extraverlof - mextraverlof)
-        con.execute(upd)       
-    elif data[3] and keuze == 'Ziekte':
-        mziek = float(data[3])
-    elif data[3] and keuze == 'Feestdag':
-        mfeest = float(data[3])
-        mstatus = False
-    elif data[3] and keuze == 'Dokter':
-        mdokter = float(data[3])
-        mstatus = False
-    elif data[3] and keuze == 'Geoorl. verzuim':
-        mgverzuim = float(data[3]) 
-        mstatus = False
-    elif data[3] and keuze == 'Ong. verzuim':
-        moverzuim = float(data[3])  
-        mstatus = False
-    else:
-        merror = 2
-        return(maccountnr, mwerknr, mboekd, merror, m_email)
-                         
-    metadata = MetaData()
     wrkwnrln = Table('wrkwnrln', metadata,
         Column('wrkwnrurenID', Integer, primary_key=True),
         Column('werknemerID', None, ForeignKey('werknemers.werknemerID')),
@@ -473,6 +166,8 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
         Column('werknemerID', Integer(), primary_key=True),
         Column('accountID', None, ForeignKey('accounts.accountID')),
         Column('loonID', None, ForeignKey('lonen.loonID')),
+        Column('verlofsaldo', Float),
+        Column('extraverlof', Float),
         Column('wnrloonID', Integer))
     werken = Table('werken', metadata,
         Column('werknummerID', Integer, primary_key=True),
@@ -498,6 +193,95 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
      
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
+    if maccountnr and len(maccountnr) == 9 and _11check(maccountnr):
+        maccountnr = int(maccountnr)
+    else:
+       foutAccount()
+       return('', mwerknr, mboekd, merror, m_email)
+    if mwerknr and len(mwerknr)== 9  and _11check(mwerknr):
+        mwerknr = int(mwerknr)
+    else:
+        foutWerk()
+        return(maccountnr, '', mboekd, merror, m_email)
+                
+    engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
+    con = engine.connect()
+    selwerk = select([werken]).where(werken.c.werknummerID == mwerknr)
+    rpwerk = con.execute(selwerk).first()
+    
+    muren = 0
+    mu125 = 0
+    mu150 = 0
+    mu200 = 0
+    mreis = 0
+    mmeerw100 = 0
+    mmeerw125 = 0
+    mmeerw150 = 0
+    mmeerw200 = 0
+    mverlof = 0
+    mextraverlof = 0
+    mziek = 0
+    mfeest = 0
+    mdokter = 0
+    mgverzuim = 0
+    moverzuim = 0
+            
+    msoort = self.k0Edit.currentIndex()
+    
+    mboekuren = float(self.urenEdit.text())
+    
+    mlist = ['100%','125%','150%','200%','Reis','Verlof','Extra verlof','Ziekte',\
+            'Feestdag','Dokter','Geoorl. verzuim', 'Ong. verzuim']
+    
+    if rpwerk[2] == 'H':
+        merror = 1
+        werkGereed()
+        return(maccountnr, mwerknr, mboekd, merror, m_email)
+    elif mboekuren and msoort == 0 and mstatus:
+        mmeerw100 = mboekuren
+    elif mboekuren and msoort == 0:
+        muren = mboekuren
+    elif mboekuren and msoort == 1 and mstatus:
+        mmeerw125 = mboekuren
+    elif mboekuren and msoort  == 1:
+        mu125 = mboekuren 
+    elif mboekuren and msoort == 2 and mstatus:
+        mmeerw150 = mboekuren
+    elif mboekuren and msoort == 2:
+        mu150 = mboekuren
+    elif mboekuren and msoort == 3 and mstatus:
+        mmeerw200 = mboekuren
+    elif mboekuren and msoort == 3:
+        mu200 = mboekuren
+    elif mboekuren and msoort == 4:
+        mreis = mboekuren
+    elif mboekuren and msoort == 5:
+        mverlof = mboekuren
+        upd = update(werknemers).where(werknemers.c.accountID ==\
+            maccountnr).values(verlofsaldo = werknemers.c.verlofsaldo - mboekuren)
+        con.execute(upd) 
+    elif mboekuren and msoort == 6:
+        mextraverlof = mboekuren
+        upd = update(werknemers).where(werknemers.c.accountID ==\
+            maccountnr).values(extraverlof = werknemers.c.extraverlof - mextraverlof)
+        con.execute(upd)       
+    elif mboekuren and msoort == 7:
+        mziek = mboekuren
+    elif mboekuren and msoort == 8:
+        mfeest = mboekuren
+    elif mboekuren and msoort == 9:
+        mdokter = mboekuren
+    elif mboekuren and msoort == 10:
+        mgverzuim = mboekuren 
+    elif mboekuren and msoort == 11:
+        moverzuim = mboekuren  
+    else:
+        merror = 2
+        self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
+        return(maccountnr, mwerknr, mboekd, merror, m_email)
+        
+    engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
+    con = engine.connect()
     mw = select([werknemers]).where(werknemers.c.accountID == maccountnr)
     result = con.execute(mw).first()
     if not result:
@@ -506,8 +290,8 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
     mwrkwnruren=(con.execute(select([func.max(wrkwnrln.c.wrkwnrurenID, type_=Integer)\
                                    .label('mwrkwnruren')])).scalar())
     wrkgr = result[2]
-    wrkgr2 = result[3]
-    loonsel = select([lonen]).where(lonen.c.loonID == wrkgr)
+    wrkgr2 = result[5]
+    loonsel = select([lonen]).where(lonen.c.loonID == wrkgr)    #loonID
     loonsel2 = select([lonen]).where(lonen.c.loonID == wrkgr2)
     loonres = con.execute(loonsel).first()
     loonres2 = con.execute(loonsel2).first()
@@ -517,6 +301,7 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
     mwrku125 = mwerkuur*1.25
     mwrku150 = mwerkuur*1.5
     mwrku200 = mwerkuur*2
+ 
     loonk = (muren*mwerkuur)+(mreis*mreisuur)+(mu125*mwrku125)+(mu150*mwrku150)+\
              (mu200*mwrku200)+(mmeerw100*mwerkuur)+(mmeerw125*mwerkuur)+(mmeerw150*\
              mwerkuur)+(mmeerw200*mwerkuur)
@@ -535,21 +320,22 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
     boekdatum = mboekd,
     aantaluren = muren+mu125+mu150+mu200+mreis+mmeerw100+mmeerw125+mmeerw150+\
       mmeerw200+mverlof+mextraverlof+mziek+mfeest+mdokter+mgverzuim+moverzuim,
-    soort = keuze,
+    soort = mlist[msoort],
     werknummerID = mwerknr,
     tabelloon = muurloon,
     reisloon = mreisuur,
     bruto_loonbedrag = lonen,
     meerwerkstatus = mstatus,
     loonID = wrkgr2)
-
     if con.execute(inswrkwnrln):
         merror = 1
+        self.applyBtn.setStyleSheet("color: black; background-color: #00CC66")
     else:
         merror = 2
+        self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
         return(maccountnr, mwerknr, mboekd, merror, m_email) 
                  
-    if wrkgr < 5:
+    if wrkgr < 5 and msoort < 5:
         stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
         values(kosten_lonen = werken.c.kosten_lonen+loonk,
                werk_constr_uren = werken.c.werk_constr_uren+muren+mu125+mu150+mu200\
@@ -557,15 +343,21 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
                werk_reis_uren = werken.c.werk_reis_uren+mreis,\
                meerminderwerk = werken.c.meerminderwerk + meerk)
         con.execute(stmt)
-    elif wrkgr < 9:   
-          stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
+        sel = select([werken]).where(werken.c.werknummerID == mwerknr)
+        rpsel = con.execute(sel).first()
+        self.urentotEdit.setText('{:<12.2f}'.format(rpsel[4]))
+    elif wrkgr < 9 and msoort < 5: 
+        stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
                werk_mont_uren = werken.c.werk_mont_uren+muren+mu125+mu150+mu200\
                +mmeerw100+mmeerw125+mmeerw150+mmeerw200,\
                werk_reis_uren = werken.c.werk_reis_uren+mreis,\
                meerminderwerk = werken.c.meerminderwerk + meerk)
-          con.execute(stmt)
-    elif wrkgr < 13:
+        con.execute(stmt)
+        sel = select([werken]).where(werken.c.werknummerID == mwerknr)
+        rpsel = con.execute(sel).first()
+        self.urentotEdit.setText('{:<12.2f}'.format(rpsel[5]))
+    elif wrkgr < 13 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
                werk_retourlas_uren = werken.c.werk_retourlas_uren+muren+mu125+mu150+mu200\
@@ -573,7 +365,10 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
                werk_reis_uren = werken.c.werk_reis_uren+mreis,\
                meerminderwerk = werken.c.meerminderwerk + meerk)
           con.execute(stmt)
-    elif wrkgr < 17:
+          sel = select([werken]).where(werken.c.werknummerID == mwerknr)
+          rpsel = con.execute(sel).first()
+          self.urentotEdit.setText('{:<12.2f}'.format(rpsel[6]))
+    elif wrkgr < 17 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
                werk_telecom_uren = werken.c.werk_telecom_uren+muren+mu125+mu150+mu200\
@@ -581,7 +376,10 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
                werk_reis_uren = werken.c.werk_reis_uren+mreis,\
                 meerminderwerk = werken.c.meerminderwerk + meerk)
           con.execute(stmt)
-    elif wrkgr < 21:
+          sel = select([werken]).where(werken.c.werknummerID == mwerknr)
+          rpsel = con.execute(sel).first()
+          self.urentotEdit.setText('{:<12.2f}'.format(rpsel[7]))
+    elif wrkgr < 21 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
                werk_bfi_uren = werken.c.werk_bfi_uren+muren+mu125+mu150+mu200\
@@ -589,7 +387,10 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
                werk_reis_uren = werken.c.werk_reis_uren+mreis,\
                meerminderwerk = werken.c.meerminderwerk + meerk)
           con.execute(stmt)
-    elif wrkgr < 25:
+          sel = select([werken]).where(werken.c.werknummerID == mwerknr)
+          rpsel = con.execute(sel).first()
+          self.urentotEdit.setText('{:<12.2f}'.format(rpsel[8]))
+    elif wrkgr < 25 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
                werk_bvl_uren = werken.c.werk_bvl_uren+muren+mu125+mu150+mu200\
@@ -597,7 +398,10 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
                werk_reis_uren = werken.c.werk_reis_uren+mreis,\
                 meerminderwerk = werken.c.meerminderwerk + meerk)
           con.xecute(stmt)
-    elif wrkgr < 29:
+          sel = select([werken]).where(werken.c.werknummerID == mwerknr)
+          rpsel = con.execute(sel).first()
+          self.urentotEdit.setText('{:<12.2f}'.format(rpsel[9]))
+    elif wrkgr < 29 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
                werk_spoorleg_uren = werken.c.werk_spoorleg_uren+muren+mu125+mu150+mu200\
@@ -605,7 +409,10 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
                werk_reis_uren = werken.c.werk_reis_uren+mreis,\
                meerminderwerk = werken.c.meerminderwerk + meerk)
           con.execute(stmt)
-    elif wrkgr < 33:
+          sel = select([werken]).where(werken.c.werknummerID == mwerknr)
+          rpsel = con.execute(sel).first()
+          self.urentotEdit.setText('{:>12.2f}'.format(rpsel[10]))
+    elif wrkgr < 33 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
                werk_mont_uren = werken.c.werk_spoorlas_uren+muren+mu125+mu150+mu200\
@@ -613,7 +420,10 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
                werk_reis_uren = werken.c.werk_reis_uren+mreis,\
                meerminderwerk = werken.c.meerminderwerk + meerk)
           con.execute(stmt)
-    elif wrkgr < 37:
+          sel = select([werken]).where(werken.c.werknummerID == mwerknr)
+          rpsel = con.execute(sel).first()
+          self.urentotEdit.setText('{:<12.2f}'.format(rpsel[11]))
+    elif wrkgr < 37 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
                 values(kosten_lonen = werken.c.kosten_lonen+loonk,
                werk_voeding_uren = werken.c.werk_voeding_uren+muren+mu125+mu150+mu200\
@@ -621,5 +431,187 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
                werk_reis_uren = werken.c.werk_reis_uren+mreis,\
                meerminderwerk = werken.c.meerminderwerk + meerk)
           con.execute(stmt)
-    con.close   
+          sel = select([werken]).where(werken.c.werknummerID == mwerknr)
+          rpsel = con.execute(sel).first()
+          self.urentotEdit.setText('{:<12.2f}'.format(rpsel[14]))
+    else:
+         urenIngevoerd(msoort, mboekuren)
+    con.close 
     return(maccountnr, mwerknr, mboekd, merror, m_email) 
+    
+def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
+    class Widget(QDialog):
+        def __init__(self):
+            super(Widget,self).__init__()
+            
+            self.setWindowTitle("Uren invoeren")
+            self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
+            self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
+                                Qt.WindowMinMaxButtonsHint)
+            
+            #self.setStyleSheet("background-color: #D9E1DF")
+            self.setFont(QFont('Arial', 10))
+               
+            self.zkaccEdit = QLineEdit(str(maccountnr))
+            self.zkaccEdit.setFixedWidth(150)
+            self.zkaccEdit.setFont(QFont("Arial",10))
+            reg_ex = QRegExp("^[1]{1}[0-9]{8}$")
+            input_validator = QRegExpValidator(reg_ex, self.zkaccEdit)
+            self.zkaccEdit.setValidator(input_validator)
+            
+            self.zkwerknEdit = QLineEdit(str(mwerknr))
+            self.zkwerknEdit.setFixedWidth(150)
+            self.zkwerknEdit.setFont(QFont("Arial",10))
+            reg_ex = QRegExp("^[8]{1}[0-9]{8}$")
+            input_validator = QRegExpValidator(reg_ex, self.zkwerknEdit)
+            self.zkwerknEdit.setValidator(input_validator)
+     
+            self.k0Edit = QComboBox()
+            self.k0Edit.setFixedWidth(150)
+            self.k0Edit.setFont(QFont("Arial",10))
+            self.k0Edit.addItem('100%')
+            self.k0Edit.addItem('125%')
+            self.k0Edit.addItem('150%')
+            self.k0Edit.addItem('200%')
+            self.k0Edit.addItem('Reis')
+            self.k0Edit.addItem('Verlof')
+            self.k0Edit.addItem('Extra verlof')
+            self.k0Edit.addItem('Ziekte')
+            self.k0Edit.addItem('Feestdag')
+            self.k0Edit.addItem('Dokter')
+            self.k0Edit.addItem('Geoorl. verzuim')
+            self.k0Edit.addItem('Ong. verzuim')
+  
+            self.cBox = QCheckBox('Meerwerk')
+            self.cBox.setFont(QFont("Arial",10))
+                                                                     
+            self.urenEdit = QLineEdit('0')
+            self.urenEdit.setFixedWidth(150)
+            self.urenEdit.setFont(QFont("Arial",10))
+            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            input_validator = QRegExpValidator(reg_ex, self.urenEdit)
+            self.urenEdit.setValidator(input_validator)
+            
+            self.urentotEdit = QLineEdit('0')
+            self.urentotEdit.setFixedWidth(150)
+            self.urentotEdit.setDisabled(True)
+            self.urentotEdit.setFont(QFont("Arial",10))
+            self.urentotEdit.setStyleSheet("color: black")
+                                                          
+            self.boekdatumEdit = QLineEdit(mboekd)
+            self.boekdatumEdit.setFixedWidth(150)
+            self.boekdatumEdit.setFont(QFont("Arial",10))
+            reg_ex = QRegExp("^[2]{1}[0-1]{1}[0-9]{2}[-]{1}[0-1]{1}[0-9]{1}[-]{1}[0-3]{1}[0-9]{1}$")
+            input_validator = QRegExpValidator(reg_ex, self.boekdatumEdit)
+            self.boekdatumEdit.setValidator(input_validator)
+                                            
+            def accChanged():
+                self.zkaccEdit.setText(self.zkaccEdit.text())
+            self.zkaccEdit.textChanged.connect(accChanged)
+             
+            def werknChanged():
+                self.zkwerknEdit.setText(self.zkwerknEdit.text())
+            self.zkwerknEdit.textChanged.connect(werknChanged)
+             
+            '''
+            def k0Changed():
+                self.k0Edit.setCurrentText(self.k0Edit.currentText())
+            self.k0Edit.currentTextChanged.connect(k0Changed)
+            '''
+            
+            def k0Changed():
+                self.k0Edit.setCurrentIndex(self.k0Edit.currentIndex())
+            self.k0Edit.currentIndexChanged.connect(k0Changed)
+                        
+            def  cboxChanged():
+                 self.cBox.setCheckState(self.cBox.checkState())
+            self.cBox.stateChanged.connect(cboxChanged)
+            
+            def urenChanged():
+                self.urenEdit.setText(self.urenEdit.text())
+            self.urenEdit.textChanged.connect(urenChanged)
+            
+            def boekdatumChanged():
+                self.boekdatumEdit.setText(self.boekdatumEdit.text())
+            self.boekdatumEdit.textChanged.connect(boekdatumChanged)
+            
+            grid = QGridLayout()
+            grid.setSpacing(10)
+            
+            lbl = QLabel()
+            pixmap = QPixmap('./images/logos/verbinding.jpg')
+            lbl.setPixmap(pixmap)
+            grid.addWidget(lbl ,0 , 1)
+            
+            logo = QLabel()
+            pixmap = QPixmap('./images/logos/logo.jpg')
+            logo.setPixmap(pixmap)
+            grid.addWidget(logo , 0, 3, 1, 1, Qt.AlignRight)       
+
+            lblt = QLabel(' Muteren uren (werken - lonen) niet cumulatief')
+            grid.addWidget(lblt , 12, 1, 1, 3, Qt.AlignCenter)
+            
+            lbl1 = QLabel('Accountnummer')
+            lbl1.setFont(QFont("Arial", 10))
+            grid.addWidget(lbl1, 6, 1)
+            grid.addWidget(self.zkaccEdit , 6, 2, 1, 1, Qt.AlignRight)
+            
+            lbl2 = QLabel('Werknummer')
+            lbl2.setFont(QFont("Arial", 10))
+            grid.addWidget(lbl2, 7, 1, 1, 1, Qt.AlignCenter)
+            grid.addWidget(self.zkwerknEdit, 7, 2, 1, 1, Qt.AlignRight)
+                
+            lbl3 = QLabel('Soort Uren')
+            lbl3.setFont(QFont("Arial", 10))
+            grid.addWidget(lbl3, 8, 1, 1, 1, Qt.AlignCenter)
+            grid.addWidget(self.k0Edit, 8, 2, 1, 1, Qt.AlignRight)
+                        
+            grid.addWidget(self.cBox, 8, 3)
+            
+            lbl6= QLabel('Totaaluren')
+            lbl6.setFont(QFont("Arial", 10))
+            grid.addWidget(lbl6, 9, 1 ,1 ,1, Qt.AlignRight)
+            grid.addWidget(self.urentotEdit, 9, 2, 1, 1, Qt.AlignRight)
+            
+            lbl4 = QLabel('Urenmutatie')
+            lbl4.setFont(QFont("Arial", 10))
+            grid.addWidget(lbl4, 10, 1, 1, 1, Qt.AlignCenter)
+            grid.addWidget(self.urenEdit, 10, 2, 1, 1, Qt.AlignRight)
+                         
+            lbl5 = QLabel('Boekdatum')
+            lbl5.setFont(QFont("Arial", 10))
+            grid.addWidget(lbl5, 11, 1, 1, 1, Qt.AlignCenter)
+            grid.addWidget(self.boekdatumEdit, 11, 2, 1, 1, Qt.AlignRight)
+            
+            self.applyBtn = QPushButton('Muteren')
+            self.applyBtn.clicked.connect(lambda: urenBoeking(self, merror, m_email))
+               
+            self.applyBtn.setFont(QFont("Arial",10))
+            self.applyBtn.setFixedWidth(100)
+            self.applyBtn.setStyleSheet("color: black;  background-color: gainsboro") 
+                
+            grid.addWidget(self.applyBtn,13, 3 , 1 , 1, Qt.AlignRight)
+                
+            cancelBtn = QPushButton('Sluiten')
+            cancelBtn.clicked.connect(lambda: windowSluit(self, m_email)) 
+    
+            grid.addWidget(cancelBtn, 13, 2, 1 , 1, Qt.AlignRight)
+            cancelBtn.setFont(QFont("Arial",10))
+            cancelBtn.setFixedWidth(100)
+            cancelBtn.setStyleSheet("color: black; background-color: gainsboro") 
+                   
+            infoBtn = QPushButton('Informatie')
+            infoBtn.clicked.connect(lambda: info()) 
+    
+            grid.addWidget(infoBtn, 13, 1, 1, 1, Qt.AlignRight)
+            infoBtn.setFont(QFont("Arial",10))
+            infoBtn.setFixedWidth(100)
+            infoBtn.setStyleSheet("color: black; background-color: gainsboro") 
+            
+            grid.addWidget(QLabel('\u00A9 2017 all rights reserved - dj.jansen@casema.nl'), 14, 1, 1, 4, Qt.AlignCenter)
+            
+            self.setLayout(grid)
+            self.setGeometry(600, 200, 150, 100)
+                
+    window = Widget()
+    window.exec_()     
