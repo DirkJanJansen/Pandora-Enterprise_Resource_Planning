@@ -309,7 +309,8 @@ From 2020-01-10 updates and changes are described on this page
            for sticking on storage rack or on product-packaging for scanning.
 2020-03-25 added EAN-13_numbers.txt in folder Tools with explanation barcode numbers
 2020-03-27 urenMutaties.py rewritten with feedback total worked hours booked on worknumber by profession.
-2020-03-27 urenMutaties.py transaction amount set to 0 after transaction and combobox start default with 100% after transaction.
-            
+2020-03-27 urenMutaties.py value changed back to 0 after transaction ended, also combobox set to 100% default.
+2020-03-27 urenMutaties.py hours of abcense notifications popups removed and changed by messages in window dialog.         
+
        
            
