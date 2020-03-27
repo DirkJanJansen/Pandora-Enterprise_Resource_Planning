@@ -427,7 +427,7 @@ def urenBoeking(self, merror, m_email):
         elif msoort == 8:
             lbltext = mboekuren+' Uren feestdagen ingevoerd'
         elif msoort == 9:
-            lbltext = mboekuren+' Uren dokterbezoek ingevoerd
+            lbltext = mboekuren+' Uren dokterbezoek ingevoerd'
         elif msoort == 10:
             lbltext = mboekuren+' Uren geoorloofd verzuim ingevoerd'
         elif msoort == 11:
