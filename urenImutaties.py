@@ -30,7 +30,7 @@ def geenRange():
     msg.setFont(QFont("Arial", 10))
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Deze persoon werkt niet in deze groep!')
+    msg.setText('Deze persoon werkt niet in de binnendienst!')
     msg.setWindowTitle('Mutaties uren werken')
     msg.exec_()    
 
