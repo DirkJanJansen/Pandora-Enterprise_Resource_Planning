@@ -2,9 +2,9 @@ from login import hoofdMenu
 from PyQt5.QtCore import Qt, QRegExp
 from PyQt5.QtGui import QIcon, QFont, QPixmap, QRegExpValidator
 from PyQt5.QtWidgets import QLineEdit, QGridLayout, QDialog, QLabel, QPushButton,\
-        QMessageBox, QComboBox, QCheckBox
-from sqlalchemy import (Table, Column, Integer, String, MetaData, create_engine, ForeignKey,\
-                        Float, select, update, func, Boolean)
+                  QMessageBox, QComboBox, QCheckBox
+from sqlalchemy import (Table, Column, Integer, String, MetaData, create_engine,\
+                        ForeignKey, Float, select, update, func, Boolean)
 
 def foutAccount():
     msg = QMessageBox()
@@ -86,6 +86,8 @@ def info():
         bv. 100% reguliere uren, 125% overwerk, 150% overwerk, 200% overwerk, 
         of een van de diverse genoemde afwezigheidsuren voor verlof ziekte enz.
         Aantal uren: Uren die zijn gewerkt op de dag van de werkzaamheden.
+        Bij het label voor de werkelijke totaaluren wordt de vakdiscipline aangegeven,
+        waarvoor de uren zijn geboekt.
         Datum werkzaamheden:  datum van de huidige dag in het formaat jjjj-mm-dd
         Button 'Muteren' Standaard button met tekst 'Muteren'
         Bij het aanpassen of invullen van de velden 'Accountnummer', 'Werknummer' en
@@ -97,6 +99,8 @@ def info():
         'Muteren' groen kleuren. Bij een foutieve of niet gelukte invoer zal de 
         knop 'Muteren' rood kleuren, in dit geval dient een korrektie te worden 
         gemaakt, omdat de invoer niet is geboekt!
+        In het statusveld onder de invulvelden, wordt de status en informatie
+        van de afwezigheidsuren getoond, b.v. bij verlofuren het verlofsaldo.
    
      ''')
             grid.addWidget(infolbl, 1, 0)
