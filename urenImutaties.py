@@ -25,6 +25,15 @@ def foutWerk():
     msg.setWindowTitle('Mutaties uren werken')
     msg.exec_()
 
+def geenRange():
+    msg = QMessageBox()
+    msg.setFont(QFont("Arial", 10))
+    msg.setStyleSheet("color: black;  background-color: gainsboro")
+    msg.setIcon(QMessageBox.Critical)
+    msg.setText('Deze persoon werkt niet in deze groep!')
+    msg.setWindowTitle('Mutaties uren werken')
+    msg.exec_()    
+
 def _11check(mcontr):
     number = str(mcontr)
     total = 0       
@@ -129,7 +138,6 @@ def urenBoeking(self, merror, m_email):
     maccountnr = self.zkaccEdit.text()
     mwerknr = self.zkwerknEdit.text()
     mboekd = self.boekdatumEdit.text()
-    metadata = MetaData()
     mstatus = self.cBox.checkState()
     if mstatus == 0:
         mstatus = False
@@ -744,9 +752,9 @@ def urenBoeking(self, merror, m_email):
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         else:
-            lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
-            self.lblt.setText(lbltext)
-        
+            geenRange()
+            return(maccountnr, mwerknr, mboekd, merror, m_email) 
+            
     self.urenEdit.setText('0')
     self.k0Edit.setCurrentIndex(0)
     return(maccountnr, mwerknr, mboekd, merror, m_email) 
