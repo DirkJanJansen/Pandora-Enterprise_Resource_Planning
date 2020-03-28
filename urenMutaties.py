@@ -24,15 +24,6 @@ def foutWerk():
     msg.setWindowTitle('Mutaties uren werken')
     msg.exec_()
     
-def geenRange():
-    msg = QMessageBox()
-    msg.setFont(QFont("Arial", 10))
-    msg.setStyleSheet("color: black;  background-color: gainsboro")
-    msg.setIcon(QMessageBox.Critical)
-    msg.setText('Deze persoon werkt niet in de buitendienst!')
-    msg.setWindowTitle('Mutaties uren werken')
-    msg.exec_()
-
 def _11check(mcontr):
     number = str(mcontr)
     total = 0       
@@ -465,7 +456,7 @@ def urenBoeking(self, merror, m_email):
     else:
         msaldo = ''
         mboekuren = str(mboekuren)
-        if msoort == 5:
+        if msoort == 5 and wrkgr < 37:
             selsal = select([werknemers]).where(werknemers.c.accountID == maccountnr)
             rpsal = con.execute(selsal).first()
             msaldo = str(rpsal[3])
@@ -473,38 +464,40 @@ def urenBoeking(self, merror, m_email):
             lblptext = 'Totaaluren\n'
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
-        elif msoort == 6:
+        elif msoort == 6 and wrkgr < 37:
             lbltext = mboekuren+' Extra verlofuren ingevoerd'
             lblptext = 'Totaaluren\n'
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
-        elif msoort == 7:
+        elif msoort == 7 and wrkgr < 37:
             lbltext = mboekuren+' Uren ziekte ingevoerd'
             lblptext = 'Totaaluren\n'
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
-        elif msoort == 8:
+        elif msoort == 8 and wrkgr < 37:
             lbltext = mboekuren+' Uren feestdagen ingevoerd'
             lblptext = 'Totaaluren\n'
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
-        elif msoort == 9:
+        elif msoort == 9  and wrkgr < 37:
             lbltext = mboekuren+' Uren dokterbezoek ingevoerd'
             lblptext = 'Totaaluren\n'
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
-        elif msoort == 10:
+        elif msoort == 10 and wrkgr < 37:
             lbltext = mboekuren+' Uren geoorloofd verzuim ingevoerd'
             lblptext = 'Totaaluren\n'
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
-        elif msoort == 11:
+        elif msoort == 11 and wrkgr < 37:
             lbltext = mboekuren+' Uren ongeoorloofd verzuim ingevoerd'
             lblptext = 'Totaaluren\n'
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         else:
-            geenRange()
+            self.urenEdit.setText('0')
+            self.lblt.setText('Persoon niet in deze arbeidspool')
+            self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
             return(maccountnr, mwerknr, mboekd, merror, m_email) 
         
     self.urenEdit.setText('0')
