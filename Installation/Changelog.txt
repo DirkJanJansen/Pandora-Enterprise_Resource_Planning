@@ -312,5 +312,6 @@ From 2020-01-10 updates and changes are described on this page
 2020-03-27 urenMutaties.py value changed back to 0 after transaction ended, also combobox set to 100% default.
 2020-03-27 urenMutaties.py hours of abcense notifications popups removed and changed by messages in window dialog.         
 2020-03-28 urenMutaties.py profession labels added at transaction hours.
+2020-03-28 urenMutaties.py labels switching from absent hours towards production hours adjusted.
        
            
