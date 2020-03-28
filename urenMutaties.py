@@ -324,6 +324,7 @@ def urenBoeking(self, merror, m_email):
         sel = select([werken]).where(werken.c.werknummerID == mwerknr)
         rpsel = con.execute(sel).first()
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[4]))
+        self.lblprof.setText('Constructie totaaluren')
     elif wrkgr < 9 and msoort < 5: 
         stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
@@ -335,6 +336,7 @@ def urenBoeking(self, merror, m_email):
         sel = select([werken]).where(werken.c.werknummerID == mwerknr)
         rpsel = con.execute(sel).first()
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[5]))
+        self.lblprof.setText('Montage totaaluren')
     elif wrkgr < 13 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
@@ -346,6 +348,7 @@ def urenBoeking(self, merror, m_email):
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
           self.urentotEdit.setText('{:<12.2f}'.format(rpsel[6]))
+          self.lblprof.setText('Retourlas totaaluren')
     elif wrkgr < 17 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
@@ -357,6 +360,7 @@ def urenBoeking(self, merror, m_email):
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
           self.urentotEdit.setText('{:<12.2f}'.format(rpsel[7]))
+          self.lblprof.setText('Telecom totalluren')
     elif wrkgr < 21 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
@@ -368,6 +372,7 @@ def urenBoeking(self, merror, m_email):
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
           self.urentotEdit.setText('{:<12.2f}'.format(rpsel[8]))
+          self.lblprof.setText('Bovenleiding totaaluren')
     elif wrkgr < 25 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
@@ -379,6 +384,7 @@ def urenBoeking(self, merror, m_email):
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
           self.urentotEdit.setText('{:<12.2f}'.format(rpsel[9]))
+          self.lblprof.setText('BFI totaaluren')
     elif wrkgr < 29 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
@@ -390,6 +396,7 @@ def urenBoeking(self, merror, m_email):
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
           self.urentotEdit.setText('{:>12.2f}'.format(rpsel[10]))
+          self.lblprof.setText('Spoorleg totaaluren')
     elif wrkgr < 33 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
@@ -401,6 +408,7 @@ def urenBoeking(self, merror, m_email):
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
           self.urentotEdit.setText('{:<12.2f}'.format(rpsel[11]))
+          self.lblprof.setText('Spoorlas totaaluren')
     elif wrkgr < 37 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
                 values(kosten_lonen = werken.c.kosten_lonen+loonk,
@@ -412,6 +420,7 @@ def urenBoeking(self, merror, m_email):
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
           self.urentotEdit.setText('{:<12.2f}'.format(rpsel[14]))
+          self.lblprof.setText('Voeding totaaluren')
     else:
         msaldo = ''
         mboekuren = str(mboekuren)
@@ -420,19 +429,28 @@ def urenBoeking(self, merror, m_email):
             rpsal = con.execute(selsal).first()
             msaldo = str(rpsal[3])
             lbltext = mboekuren+' Verlofuren ingevoerd, Saldo = '+msaldo+' uren.'
+            self.lblprof = QLabel('Totaaluren')
         elif msoort == 6:
             lbltext = mboekuren+' Extra verlofuren ingevoerd'
+            self.lblprof = QLabel('Totaaluren')
         elif msoort == 7:
             lbltext = mboekuren+' Uren ziekte ingevoerd'
+            self.lblprof = QLabel('Totaaluren')
         elif msoort == 8:
             lbltext = mboekuren+' Uren feestdagen ingevoerd'
+            self.lblprof = QLabel('Totaaluren')
         elif msoort == 9:
             lbltext = mboekuren+' Uren dokterbezoek ingevoerd'
+            self.lblprof = QLabel('Totaaluren')
         elif msoort == 10:
             lbltext = mboekuren+' Uren geoorloofd verzuim ingevoerd'
+            self.lblprof = QLabel('Totaaluren')
         elif msoort == 11:
             lbltext = mboekuren+' Uren ongeoorloofd verzuim ingevoerd'
-        self.lblt.setText(lbltext)    
+            self.lblprof = QLabel('Totaaluren')
+        else:
+            lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        self.lblt.setText(lbltext)
         con.close 
     self.urenEdit.setText('0')
     self.k0Edit.setCurrentIndex(0)
@@ -547,40 +565,39 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 3, 1, 1, Qt.AlignRight)       
 
-            self.lblt = QLabel("")
+            self.lblt = QLabel('Muteren uren (werken - lonen) niet cumulatief')
             self.lblt.setFont(QFont("Arial", 10))
-            grid.addWidget(self.lblt , 12, 1, 1, 3, Qt.AlignCenter)
+            grid.addWidget(self.lblt , 12, 1, 1, 4, Qt.AlignCenter)
             
             lbl1 = QLabel('Accountnummer')
             lbl1.setFont(QFont("Arial", 10))
-            grid.addWidget(lbl1, 6, 1)
+            grid.addWidget(lbl1, 6, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.zkaccEdit , 6, 2, 1, 1, Qt.AlignRight)
             
             lbl2 = QLabel('Werknummer')
             lbl2.setFont(QFont("Arial", 10))
-            grid.addWidget(lbl2, 7, 1, 1, 1, Qt.AlignCenter)
+            grid.addWidget(lbl2, 7, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.zkwerknEdit, 7, 2, 1, 1, Qt.AlignRight)
                 
             lbl3 = QLabel('Soort Uren')
             lbl3.setFont(QFont("Arial", 10))
-            grid.addWidget(lbl3, 8, 1, 1, 1, Qt.AlignCenter)
+            grid.addWidget(lbl3, 8, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.k0Edit, 8, 2, 1, 1, Qt.AlignRight)
                         
             grid.addWidget(self.cBox, 8, 3)
             
-            lbl6= QLabel('Totaaluren')
-            lbl6.setFont(QFont("Arial", 10))
-            grid.addWidget(lbl6, 9, 1 ,1 ,1, Qt.AlignRight)
+            self.lblprof = QLabel('Totaaluren')
+            grid.addWidget(self.lblprof, 9, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.urentotEdit, 9, 2, 1, 1, Qt.AlignRight)
             
             lbl4 = QLabel('Urenmutatie')
             lbl4.setFont(QFont("Arial", 10))
-            grid.addWidget(lbl4, 10, 1, 1, 1, Qt.AlignCenter)
+            grid.addWidget(lbl4, 10, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.urenEdit, 10, 2, 1, 1, Qt.AlignRight)
                                        
             lbl5 = QLabel('Boekdatum')
             lbl5.setFont(QFont("Arial", 10))
-            grid.addWidget(lbl5, 11, 1, 1, 1, Qt.AlignCenter)
+            grid.addWidget(lbl5, 11, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.boekdatumEdit, 11, 2, 1, 1, Qt.AlignRight)
             
             self.applyBtn = QPushButton('Muteren')
