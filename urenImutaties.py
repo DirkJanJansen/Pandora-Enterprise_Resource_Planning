@@ -13,7 +13,7 @@ def foutAccount():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Critical)
     msg.setText('Foutief accountnummer opgegeven!')
-    msg.setWindowTitle('Mutaties diensten werken')
+    msg.setWindowTitle('Mutaties uren werken')
     msg.exec_()
 
 def foutWerk():
@@ -22,7 +22,7 @@ def foutWerk():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Critical)
     msg.setText('Foutief werkordernummer opgegeven!')
-    msg.setWindowTitle('Mutaties diensten werken')
+    msg.setWindowTitle('Mutaties uren werken')
     msg.exec_()
 
 def _11check(mcontr):
@@ -45,7 +45,7 @@ def werkGereed():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
     msg.setText('Werkordernummer is afgemeld,\nboekingen niet meer mogelijk!')
-    msg.setWindowTitle('Mutaties uren  werken')
+    msg.setWindowTitle('Mutaties uren werken')
     msg.exec_()
 
 def windowSluit(self, m_email):
@@ -901,7 +901,7 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
             self.applyBtn.setFont(QFont("Arial",10))
             self.applyBtn.setFixedWidth(100)
             self.applyBtn.setStyleSheet("color: black;  background-color: gainsboro") 
-                
+               
             grid.addWidget(self.applyBtn,13, 3 , 1 , 1, Qt.AlignRight)
                 
             cancelBtn = QPushButton('Sluiten')

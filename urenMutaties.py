@@ -12,7 +12,7 @@ def foutAccount():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Critical)
     msg.setText('Foutief accountnummer opgegeven!')
-    msg.setWindowTitle('Mutaties diensten werken')
+    msg.setWindowTitle('Mutaties uren werken')
     msg.exec_()
 
 def foutWerk():
@@ -21,7 +21,7 @@ def foutWerk():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Critical)
     msg.setText('Foutief werknummer opgegeven!')
-    msg.setWindowTitle('Mutaties diensten werken')
+    msg.setWindowTitle('Mutaties uren werken')
     msg.exec_()
 
 def _11check(mcontr):
@@ -40,10 +40,11 @@ def _11check(mcontr):
     
 def werkGereed():
     msg = QMessageBox()
+    msg.setFont(QFont("Arial", 10))
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
     msg.setText('Werknummer is afgemeld,\nboekingen niet meer mogelijk!')
-    msg.setWindowTitle('Mutaties uren  werken')
+    msg.setWindowTitle('Mutaties uren werken')
     msg.exec_()
 
 def windowSluit(self, m_email):
@@ -213,7 +214,7 @@ def urenBoeking(self, merror, m_email):
     mboekuren = float(self.urenEdit.text())
     
     mlist = ['100%','125%','150%','200%','Reis','Verlof','Extra verlof','Ziekte',\
-            'Feestdag','Dokter','Geoorl. verzuim', 'Ong. verzuim']
+            'Feestdag','Dokter','Geoorl. verzuim','Ong. verzuim']
     
     if rpwerk[2] == 'H':
         merror = 1
