@@ -21,7 +21,7 @@ def foutWerk():
     msg.setFont(QFont("Arial", 10))
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Foutief werknummer opgegeven!')
+    msg.setText('Foutief werkordernummer opgegeven!')
     msg.setWindowTitle('Mutaties diensten werken')
     msg.exec_()
 
@@ -44,7 +44,7 @@ def werkGereed():
     msg.setFont(QFont("Arial", 10))
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Werknummer is afgemeld,\nboekingen niet meer mogelijk!')
+    msg.setText('Werkordernummer is afgemeld,\nboekingen niet meer mogelijk!')
     msg.setWindowTitle('Mutaties uren  werken')
     msg.exec_()
 
@@ -83,7 +83,8 @@ def info():
                                          
         De module start met de volgende variabele gegevens:
         Accountnummer: leeg veld in te vullen met accountnummer van de werknemer.
-        Werknummer: leeg veld in te vullen met het werknummer, waarvoor wordt gewerkt.
+        Werkodernummer: leeg veld in te vullen met het werkordernummer, waarvoor 
+        wordt gewerkt.
         Aanwezig/Afwezig: kies hier de soort uren, waarvoor de boeking moet worden gedaan,
         bv. 100% reguliere uren, 125% overwerk, 150% overwerk, 200% overwerk, 
         of een van de diverse genoemde afwezigheidsuren voor verlof ziekte enz.
@@ -92,8 +93,8 @@ def info():
         waarvoor de uren zijn geboekt.
         Datum werkzaamheden:  datum van de huidige dag in het formaat jjjj-mm-dd
         Button 'Muteren' Standaard button met tekst 'Muteren'
-        Bij het aanpassen of invullen van de velden 'Accountnummer', 'Werknummer' en
-        'Datum werkzaamheden', zal het systeem bij opkomen van de velden de laatst
+        Bij het aanpassen of invullen van de velden 'Accountnummer', 'Werkordernummer'
+        en 'Datum werkzaamheden', zal het systeem bij opkomen van de velden de laatst
         ingetoetste gegevens onthouden, zodat een snelle invoer mogelijk is.
         De keuze Aanwezig/Afwezig zal standaard ingevuld worden met 100% uren,
         omdat dit de meest voorkomende keuze zal zijn.
@@ -868,7 +869,7 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
             grid.addWidget(lbl1, 6, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.zkaccEdit , 6, 2, 1, 1, Qt.AlignRight)
             
-            lbl2 = QLabel('Werknummer')
+            lbl2 = QLabel('Werkordernummer')
             lbl2.setFont(QFont("Arial", 10))
             grid.addWidget(lbl2, 7, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.zkwerknEdit, 7, 2, 1, 1, Qt.AlignRight)
