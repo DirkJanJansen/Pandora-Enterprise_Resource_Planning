@@ -324,7 +324,10 @@ def urenBoeking(self, merror, m_email):
         sel = select([werken]).where(werken.c.werknummerID == mwerknr)
         rpsel = con.execute(sel).first()
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[4]))
-        self.lblprof.setText('Constructie totaaluren')
+        lblptext = 'Totaaluren\nConstructie'
+        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        self.lblprof.setText(lblptext)
+        self.lblt.setText(lbltext)
     elif wrkgr < 9 and msoort < 5: 
         stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
@@ -336,7 +339,10 @@ def urenBoeking(self, merror, m_email):
         sel = select([werken]).where(werken.c.werknummerID == mwerknr)
         rpsel = con.execute(sel).first()
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[5]))
-        self.lblprof.setText('Montage totaaluren')
+        lblptext = 'Totaaluren\nMontage'
+        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        self.lblprof.setText(lblptext)
+        self.lblt.setText(lbltext)
     elif wrkgr < 13 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
@@ -348,7 +354,10 @@ def urenBoeking(self, merror, m_email):
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
           self.urentotEdit.setText('{:<12.2f}'.format(rpsel[6]))
-          self.lblprof.setText('Retourlas totaaluren')
+          lblptext = 'Totaaluren\nRetourlas'
+          lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+          self.lblprof.setText(lblptext)
+          self.lblt.setText(lbltext)
     elif wrkgr < 17 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
@@ -360,7 +369,10 @@ def urenBoeking(self, merror, m_email):
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
           self.urentotEdit.setText('{:<12.2f}'.format(rpsel[7]))
-          self.lblprof.setText('Telecom totalluren')
+          lblptext = 'Totaaluren\nTelecom'
+          lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+          self.lblprof.setText(lblptext)
+          self.lblt.setText(lbltext)
     elif wrkgr < 21 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
@@ -372,7 +384,10 @@ def urenBoeking(self, merror, m_email):
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
           self.urentotEdit.setText('{:<12.2f}'.format(rpsel[8]))
-          self.lblprof.setText('Bovenleiding totaaluren')
+          lblptext = 'Totaaluren\nBFI'
+          lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+          self.lblprof.setText(lblptext)
+          self.lblt.setText(lbltext)
     elif wrkgr < 25 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
@@ -384,7 +399,10 @@ def urenBoeking(self, merror, m_email):
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
           self.urentotEdit.setText('{:<12.2f}'.format(rpsel[9]))
-          self.lblprof.setText('BFI totaaluren')
+          lblptext = 'Totaaluren\nBovenleiding'
+          lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+          self.lblprof.setText(lblptext)
+          self.lblt.setText(lbltext)
     elif wrkgr < 29 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
@@ -396,7 +414,10 @@ def urenBoeking(self, merror, m_email):
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
           self.urentotEdit.setText('{:>12.2f}'.format(rpsel[10]))
-          self.lblprof.setText('Spoorleg totaaluren')
+          lblptext = 'Totaaluren\nSpoorleg'
+          lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+          self.lblprof.setText(lblptext)
+          self.lblt.setText(lbltext)
     elif wrkgr < 33 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
               values(kosten_lonen = werken.c.kosten_lonen+loonk,
@@ -408,7 +429,10 @@ def urenBoeking(self, merror, m_email):
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
           self.urentotEdit.setText('{:<12.2f}'.format(rpsel[11]))
-          self.lblprof.setText('Spoorlas totaaluren')
+          lblptext = 'Totaaluren\nSpoorlas'
+          lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+          self.lblprof.setText(lblptext)
+          self.lblt.setText(lbltext)
     elif wrkgr < 37 and msoort < 5:
           stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
                 values(kosten_lonen = werken.c.kosten_lonen+loonk,
@@ -420,7 +444,10 @@ def urenBoeking(self, merror, m_email):
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
           self.urentotEdit.setText('{:<12.2f}'.format(rpsel[14]))
-          self.lblprof.setText('Voeding totaaluren')
+          lblptext = 'Totaaluren\nVoeding'
+          lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+          self.lblprof.setText(lblptext)
+          self.lblt.setText(lbltext)
     else:
         msaldo = ''
         mboekuren = str(mboekuren)
@@ -429,29 +456,43 @@ def urenBoeking(self, merror, m_email):
             rpsal = con.execute(selsal).first()
             msaldo = str(rpsal[3])
             lbltext = mboekuren+' Verlofuren ingevoerd, Saldo = '+msaldo+' uren.'
-            self.lblprof = QLabel('Totaaluren')
+            lblptext = 'Totaaluren\n'
+            self.lblt.setText(lbltext)
+            self.lblprof.setText(lblptext)
         elif msoort == 6:
             lbltext = mboekuren+' Extra verlofuren ingevoerd'
-            self.lblprof = QLabel('Totaaluren')
+            lblptext = 'Totaaluren\n'
+            self.lblt.setText(lbltext)
+            self.lblprof.setText(lblptext)
         elif msoort == 7:
             lbltext = mboekuren+' Uren ziekte ingevoerd'
-            self.lblprof = QLabel('Totaaluren')
+            lblptext = 'Totaaluren\n'
+            self.lblt.setText(lbltext)
+            self.lblprof.setText(lblptext)
         elif msoort == 8:
             lbltext = mboekuren+' Uren feestdagen ingevoerd'
-            self.lblprof = QLabel('Totaaluren')
+            lblptext = 'Totaaluren\n'
+            self.lblt.setText(lbltext)
+            self.lblprof.setText(lblptext)
         elif msoort == 9:
             lbltext = mboekuren+' Uren dokterbezoek ingevoerd'
-            self.lblprof = QLabel('Totaaluren')
+            lblptext = 'Totaaluren\n'
+            self.lblt.setText(lbltext)
+            self.lblprof.setText(lblptext)
         elif msoort == 10:
             lbltext = mboekuren+' Uren geoorloofd verzuim ingevoerd'
-            self.lblprof = QLabel('Totaaluren')
+            lblptext = 'Totaaluren\n'
+            self.lblt.setText(lbltext)
+            self.lblprof.setText(lblptext)
         elif msoort == 11:
             lbltext = mboekuren+' Uren ongeoorloofd verzuim ingevoerd'
-            self.lblprof = QLabel('Totaaluren')
+            lblptext = 'Totaaluren\n'
+            self.lblt.setText(lbltext)
+            self.lblprof.setText(lblptext)
         else:
             lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
-        self.lblt.setText(lbltext)
-        con.close 
+            self.lblt.setText(lbltext)
+        
     self.urenEdit.setText('0')
     self.k0Edit.setCurrentIndex(0)
     return(maccountnr, mwerknr, mboekd, merror, m_email) 
@@ -586,8 +627,8 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
                         
             grid.addWidget(self.cBox, 8, 3)
             
-            self.lblprof = QLabel('Totaaluren')
-            grid.addWidget(self.lblprof, 9, 1, 1, 1, Qt.AlignRight)
+            self.lblprof = QLabel('Totaaluren\n')
+            grid.addWidget(self.lblprof, 9, 1, 1, 1, Qt.AlignRight | Qt.AlignTop)
             grid.addWidget(self.urentotEdit, 9, 2, 1, 1, Qt.AlignRight)
             
             lbl4 = QLabel('Urenmutatie')
