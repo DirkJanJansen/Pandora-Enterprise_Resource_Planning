@@ -317,6 +317,9 @@ From 2020-01-10 updates and changes are described on this page
            hours op absence notifications popups removed and changed by messages in window dialog (feedback)
 2020-03-29 urenMutaties.py all notifications removed and  button 'Muteren" changed to color red, with messages in window dialog.
 2020-03-29 urenImutaties.py all notifications removed and button 'Muteren" changed to color red, with messages in window dialog.
+2020-03-29 urenMutaties.py colorscheme changed
+2020-03-29 urenImutaties.py colorscheme changed
+2020-03-29 login.py entry for above lines logon changed thirst position default for accountnr (1) and werknr (7 or 8)
            
        
            
