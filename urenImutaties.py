@@ -77,6 +77,8 @@ def info():
         gemaakt, omdat de invoer niet is geboekt!
         In het statusveld onder de invulvelden, wordt de status en informatie
         van de afwezigheidsuren getoond, b.v. bij verlofuren het verlofsaldo.
+        Tevens worden in dit statusveld de foutmeldingen weergegeven, bij een
+        ongeldige invoer.
    
      ''')
             grid.addWidget(infolbl, 1, 0)
