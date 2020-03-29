@@ -5,26 +5,8 @@ from PyQt5.QtWidgets import QLabel, QPushButton,\
      QMessageBox, QLineEdit, QGridLayout, QDialog, QCheckBox, QComboBox
 from sqlalchemy import (Table, Column, Integer, String, Float, MetaData, \
                             ForeignKey, create_engine, Boolean)
-from sqlalchemy.sql import select, update, func
+from sqlalchemy.sql import select, update, func, and_
          
-def foutAccount():
-    msg = QMessageBox()
-    msg.setFont(QFont("Arial", 10))
-    msg.setStyleSheet("color: black;  background-color: gainsboro")
-    msg.setIcon(QMessageBox.Critical)
-    msg.setText('Foutief accountnummer opgegeven!')
-    msg.setWindowTitle('Mutaties uren werken')
-    msg.exec_()
-
-def foutWerk():
-    msg = QMessageBox()
-    msg.setFont(QFont("Arial", 10))
-    msg.setStyleSheet("color: black;  background-color: gainsboro")
-    msg.setIcon(QMessageBox.Critical)
-    msg.setText('Foutief werkordernummer opgegeven!')
-    msg.setWindowTitle('Mutaties uren werken')
-    msg.exec_()
-
 def _11check(mcontr):
     number = str(mcontr)
     total = 0       
@@ -199,16 +181,25 @@ def urenBoeking(self, merror, m_email):
         Column('reisuur', Float))
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    if maccountnr and len(maccountnr) == 9 and _11check(maccountnr):
+    selwnr = select([werknemers]).where(and_(werknemers.c.accountID==int(maccountnr),\
+                    werknemers.c.loonID > 52))
+    rpwnr = con.execute(selwnr).first()
+    if rpwnr:
         maccountnr = int(maccountnr)
     else:
-       foutAccount()
+       merror = 2
+       self.urenEdit.setText('0')
+       self.lblt.setText('Persoon niet in deze arbeidspool!')
+       self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
        return('', mwerknr, mboekd, merror, m_email)
     if mwerknr and len(mwerknr)== 9  and _11check(mwerknr):
         mwerknr = int(mwerknr)
     else:
-        foutWerk()
-        return(maccountnr, '', mboekd, merror, m_email)
+       merror = 2
+       self.urenEdit.setText('0')
+       self.lblt.setText('Dit is geen geldig werkordernummer!')
+       self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
+       return(maccountnr, '', mboekd, merror, m_email)
                 
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
@@ -283,6 +274,7 @@ def urenBoeking(self, merror, m_email):
         moverzuim = mboekuren  
     else:
         merror = 2
+        self.urenEdit.setText('0')
         self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
         return(maccountnr, mwerknr, mboekd, merror, m_email)
             
@@ -338,6 +330,7 @@ def urenBoeking(self, merror, m_email):
         self.applyBtn.setStyleSheet("color: black; background-color: #00CC66")
     else:
         merror = 2
+        self.urenEdit.setText('0')
         self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
         return(maccountnr, mwerknr, mboekd, merror, m_email)    
                 
@@ -744,7 +737,8 @@ def urenBoeking(self, merror, m_email):
             self.lblprof.setText(lblptext)
         else:
             self.urenEdit.setText('0')
-            self.lblt.setText('Persoon niet in deze arbeidspool')
+            merror = 2
+            self.lblt.setText('Persoon niet in deze arbeidspool!')
             self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
             return(maccountnr, mwerknr, mboekd, merror, m_email) 
             
