@@ -268,6 +268,7 @@ def urenBoeking(self, merror, m_email):
     else:
         merror = 2
         self.urenEdit.setText('0')
+        self.lblt.setText('Geen uren ingevoerd!')
         self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
         return(maccountnr, mwerknr, mboekd, merror, m_email)
             

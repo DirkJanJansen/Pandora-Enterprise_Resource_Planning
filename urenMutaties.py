@@ -245,6 +245,7 @@ def urenBoeking(self, merror, m_email):
     else:
         merror = 2
         self.urenEdit.setText('0')
+        self.lblt.setText('Geen uren ingevoerd!')
         self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
         return(maccountnr, mwerknr, mboekd, merror, m_email)
             
@@ -477,6 +478,7 @@ def urenBoeking(self, merror, m_email):
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         else:
+            merror = 2
             self.urenEdit.setText('0')
             self.lblt.setText('Persoon niet in deze arbeidspool')
             self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
