@@ -1,8 +1,8 @@
 from login import hoofdMenu
 from PyQt5.QtCore import Qt, QRegExp
 from PyQt5.QtGui import QIcon, QFont, QPixmap, QRegExpValidator
-from PyQt5.QtWidgets import QLineEdit, QGridLayout, QDialog, QLabel, QPushButton,\
-                  QMessageBox, QComboBox, QCheckBox
+from PyQt5.QtWidgets import QLineEdit, QGridLayout, QDialog, QLabel,\
+            QPushButton, QComboBox, QCheckBox
 from sqlalchemy import (Table, Column, Integer, String, MetaData, create_engine,\
                         ForeignKey, Float, select, update, func, and_, Boolean)
     
@@ -20,15 +20,6 @@ def _11check(mcontr):
     else:
         return False
     
-def werkGereed():
-    msg = QMessageBox()
-    msg.setFont(QFont("Arial", 10))
-    msg.setStyleSheet("color: black;  background-color: gainsboro")
-    msg.setIcon(QMessageBox.Warning)
-    msg.setText('Werknummer is afgemeld,\nboekingen niet meer mogelijk!')
-    msg.setWindowTitle('Mutaties uren werken')
-    msg.exec_()
-
 def windowSluit(self, m_email):
     self.close()
     hoofdMenu(m_email)
@@ -208,8 +199,10 @@ def urenBoeking(self, merror, m_email):
             'Feestdag','Dokter','Geoorl. verzuim','Ong. verzuim']
     
     if rpwerk[2] == 'H':
-        merror = 1
-        werkGereed()
+        merror = 2
+        self.urenEdit.setText('0')
+        self.lblt.setText('Werk is gereed en afgemeld!')
+        self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
         return(maccountnr, mwerknr, mboekd, merror, m_email)
     elif mboekuren and msoort == 0 and mstatus:
         mmeerw100 = mboekuren
