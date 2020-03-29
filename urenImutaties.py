@@ -280,15 +280,10 @@ def urenBoeking(self, merror, m_email):
             
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    mw = select([werknemers]).where(werknemers.c.accountID == maccountnr)
-    result = con.execute(mw).first()
-    if not result:
-        foutAccount()
-        return(maccountnr, mwerknr, mboekd, merror, m_email)
     mwrkwnruren=(con.execute(select([func.max(wrkwnrln.c.wrkwnrurenID, type_=Integer)\
                                    .label('mwrkwnruren')])).scalar())
-    wrkgr = result[2]
-    wrkgr2 = result[5]
+    wrkgr = rpwnr[2]
+    wrkgr2 = rpwnr[5]
     loonsel = select([lonen]).where(lonen.c.loonID == wrkgr)    #loonID
     loonsel2 = select([lonen]).where(lonen.c.loonID == wrkgr2)
     loonres = con.execute(loonsel).first()
@@ -314,7 +309,7 @@ def urenBoeking(self, merror, m_email):
      
     inswrkwnrln = wrkwnrln.insert().values(
     wrkwnrurenID = mwrkwnruren+1,
-    werknemerID = result[0],
+    werknemerID = rpwnr[0],
     boekdatum = mboekd,
     aantaluren = muren+mu125+mu150+mu200+mreis+mmeerw100+mmeerw125+mmeerw150+\
       mmeerw200+mverlof+mextraverlof+mziek+mfeest+mdokter+mgverzuim+moverzuim,
