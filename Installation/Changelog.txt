@@ -315,6 +315,8 @@ From 2020-01-10 updates and changes are described on this page
 2020-03-28 urenImutaties.py rewritten with feedback total worked hours booked on worknumber by profession
            profession on working hours showed before total hours field (feedback)
            hours op absence notifications popups removed and changed by messages in window dialog (feedback)
+2020-03-29 urenMutaties.py all notifications removed and  button 'Muteren" changed to color red, with messages in window dialog.
+2020-03-29 urenImutaties.py all notifications removed and button 'Muteren" changed to color red, with messages in window dialog.
            
        
            
