@@ -500,12 +500,13 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                                 Qt.WindowMinMaxButtonsHint)
             
-            #self.setStyleSheet("background-color: #D9E1DF")
+            self.setStyleSheet("background-color: #D9E1DF")
             self.setFont(QFont('Arial', 10))
                
             self.zkaccEdit = QLineEdit(str(maccountnr))
             self.zkaccEdit.setFixedWidth(150)
             self.zkaccEdit.setFont(QFont("Arial",10))
+            self.zkaccEdit.setStyleSheet('color: black; background-color: #F8F7EE')
             reg_ex = QRegExp("^[1]{1}[0-9]{8}$")
             input_validator = QRegExpValidator(reg_ex, self.zkaccEdit)
             self.zkaccEdit.setValidator(input_validator)
@@ -513,6 +514,7 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
             self.zkwerknEdit = QLineEdit(str(mwerknr))
             self.zkwerknEdit.setFixedWidth(150)
             self.zkwerknEdit.setFont(QFont("Arial",10))
+            self.zkwerknEdit.setStyleSheet('color: black; background-color: #F8F7EE')
             reg_ex = QRegExp("^[8]{1}[0-9]{8}$")
             input_validator = QRegExpValidator(reg_ex, self.zkwerknEdit)
             self.zkwerknEdit.setValidator(input_validator)
@@ -520,6 +522,7 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
             self.k0Edit = QComboBox()
             self.k0Edit.setFixedWidth(150)
             self.k0Edit.setFont(QFont("Arial",10))
+            self.k0Edit.setStyleSheet('color: black; background-color: #F8F7EE')
             self.k0Edit.addItem('100%')
             self.k0Edit.addItem('125%')
             self.k0Edit.addItem('150%')
@@ -535,10 +538,12 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
   
             self.cBox = QCheckBox('Meerwerk')
             self.cBox.setFont(QFont("Arial",10))
+            self.cBox.setStyleSheet('color: black; background-color: #F8F7EE')
                                                                      
             self.urenEdit = QLineEdit('0')
             self.urenEdit.setFixedWidth(150)
             self.urenEdit.setFont(QFont("Arial",10))
+            self.urenEdit.setStyleSheet('color: black; background-color: #F8F7EE')
             reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, self.urenEdit)
             self.urenEdit.setValidator(input_validator)
@@ -552,6 +557,7 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
             self.boekdatumEdit = QLineEdit(mboekd)
             self.boekdatumEdit.setFixedWidth(150)
             self.boekdatumEdit.setFont(QFont("Arial",10))
+            self.boekdatumEdit.setStyleSheet('color: black; background-color: #F8F7EE')
             reg_ex = QRegExp("^[2]{1}[0-1]{1}[0-9]{2}[-]{1}[0-1]{1}[0-9]{1}[-]{1}[0-3]{1}[0-9]{1}$")
             input_validator = QRegExpValidator(reg_ex, self.boekdatumEdit)
             self.boekdatumEdit.setValidator(input_validator)
@@ -621,6 +627,7 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
             grid.addWidget(self.cBox, 8, 3)
             
             self.lblprof = QLabel('Totaaluren\n')
+            self.lblprof.setFont(QFont("Arial", 10))
             grid.addWidget(self.lblprof, 9, 1, 1, 1, Qt.AlignRight | Qt.AlignTop)
             grid.addWidget(self.urentotEdit, 9, 2, 1, 1, Qt.AlignRight)
             
