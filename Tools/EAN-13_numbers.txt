@@ -1,6 +1,6 @@
 EAN 13 Barcode
 
-8787 10400 31114 0
+87 10400 31114 0
 
 87 = Country (Netherlands)
 10400 = Company number  (Countrynumber and Company number together is called extension number)
