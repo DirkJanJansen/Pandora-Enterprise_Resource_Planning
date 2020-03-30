@@ -1010,18 +1010,16 @@ def hoofdMenu(m_email):
         magUitgifte.kiesSelektie(2, m_email)
     elif mk6 == '6' and mp[6][3] == '1' :
         import urenImutaties
-        maccountnr = ''
-        mwerknr = ''
+        maccountnr = '1'
+        mwerknr = '7'
         mboekd = str(datetime.datetime.now())[0:10]
-        merror = 0
         while True:
-            accwerk = urenImutaties.urenMut(maccountnr, mwerknr, mboekd, merror, m_email)
+            accwerk = urenImutaties.urenMut(maccountnr, mwerknr, mboekd, m_email)
 	        # for convenience start with last used work , employee , mboekd and
             # merror - buttoncolor green for succeeded  or red for failed entry
             maccountnr = accwerk[0]
             mwerknr = accwerk[1]
             mboekd = accwerk[2]
-            merror = accwerk[3]
     elif mk7 == '1' and mp[7][3] == '1':
         import invoerWerken
         invoerWerken.invWerk(m_email)
@@ -1042,18 +1040,16 @@ def hoofdMenu(m_email):
         dienstenMutaties.mutatieKeuze(m_email)
     elif mk7 == '7' and mp[7][3] == '1':
         import urenMutaties
-        maccountnr = ''
-        mwerknr = ''
+        maccountnr = '1'
+        mwerknr = '8'
         mboekd = str(datetime.datetime.now())[0:10]
-        merror = 0
         while True:
-            accwerk = urenMutaties.urenMut(maccountnr, mwerknr, mboekd, merror, m_email)
-	        # for convenience start with last used work , employee , mboekd and
+            accwerk = urenMutaties.urenMut(maccountnr, mwerknr, mboekd, m_email)
+            # for convenience start with last used work , employee , mboekd and
             # merror - buttoncolor green for succeeded  or red for failed entry
             maccountnr = accwerk[0]
             mwerknr = accwerk[1]
             mboekd = accwerk[2]
-            merror = accwerk[3]
     elif mk8 == '1' and mp[8][3] == '1':
         import maakIcluster
         while True:
