@@ -321,6 +321,8 @@ From 2020-01-10 updates and changes are described on this page
 2020-03-29 urenImutaties.py colorscheme changed
 2020-03-29 login.py entry for above lines logon changed thirst position default for accountnr (1) and werknr (7 or 8)
 2020-03-30 barcodeScan.py printbon extended with pagenumbering for more pages
+2020-03-30 urenMutaties.py unnecessary variable merror removed. No more needed after rewriting module
+2020-03-30 urenImutaties.py unnecessary variable merror removed. No more needed after rewriting module
            
        
            
