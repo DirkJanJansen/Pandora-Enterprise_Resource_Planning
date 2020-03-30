@@ -19,16 +19,16 @@ for row in rpart:
     barc = ean.get_fullcode()  
     print(barc) # follow the writing
     
-    if x < 11:
-       filename = ean.save(str(row[0])) # save 10 barcodes for the time being
+    if x > 10 and x < 31:
+       filename = ean.save(str(row[0])) # save 20 barcodes for the time being
     x += 1
     
     # filename = ean.save(str(row[0])) 
     # save the barcodes with the <name of artikelID>.svg
     # if started outside the if clause these are 3775 pictures!!! 
      
-    upd = update(artikelen).where(artikelen.c.artikelID == row[0]).values(barcode = ean.get_fullcode())
-    con.execute(upd)
+    #upd = update(artikelen).where(artikelen.c.artikelID == row[0]).values(barcode = ean.get_fullcode())
+    #con.execute(upd)
     
     # here the 3775 numbers are written as barcode eancode 13 to the fields barcode in artikelen
 
