@@ -320,7 +320,7 @@ From 2020-01-10 updates and changes are described on this page
 2020-03-29 urenMutaties.py colorscheme changed
 2020-03-29 urenImutaties.py colorscheme changed
 2020-03-29 login.py entry for above lines logon changed thirst position default for accountnr (1) and werknr (7 or 8)
-2020-03-29 screenshot tranaction entry working and absent hours added in folder screenshots
+2020-03-30 barcodeScan.py printbon extended with pagenumbering for more pages
            
        
            
