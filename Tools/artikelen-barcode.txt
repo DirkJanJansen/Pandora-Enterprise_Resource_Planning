@@ -10,6 +10,7 @@ Converting artikelID to barcode ean 13 numbers.
 5. Run artikelen-barcode.py 
 
 The barcode ean numbers are filled in the barcode fields from table artikelen
+This is commented out in the present version, only saving barcodes is enabled!
 Also 20 barcode pictures are saved. If you want more, or another range from the database change the x start value (10)
  and stop value (31) in the loop.
 
