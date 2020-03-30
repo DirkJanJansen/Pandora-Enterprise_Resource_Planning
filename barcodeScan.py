@@ -44,7 +44,6 @@ def info():
             
             infolbl = QLabel('''
         \t\t\t\t\t\t\t\t\t\t
-       \t\t         
         Instruktie barcode scannen.
         
         Als testscanner is een hand laserscanner gebruikt van het type Nedis BCRLR100BK
