@@ -100,6 +100,14 @@ def printing():
     msg.setText('Ogenblik afdrukken wordt gestart!')
     msg.setWindowTitle('Webverkooporders printen')
     msg.exec_()
+    
+def heading(mblad, mbonnr):
+    kop=\
+    ('Balieverkoop - Ordernummer: '+ str(mbonnr)+' Datum: '+str(datetime.now())[0:10]+' bladzijde '+str(mblad)+' \n'+
+    '==============================================================================================\n'+
+    'Artikelnr  Omschrijving                             Aantal       Prijs   Subtotaal     BTW 21%\n'+
+    '==============================================================================================\n')
+    return(kop)
 
 def printBon():
     msgBox=QMessageBox()
@@ -138,23 +146,25 @@ def printBon():
         con.execute(delbal)
         selb = select([balieverkoop]).where(balieverkoop.c.bonnummer == mbonnr).order_by(balieverkoop.c.barcode)
         rpb = con.execute(selb)
-        kop=\
-        ('Balieverkoop - Ordernummer: '+ str(mbonnr)+' Datum: '+str(datetime.now())[0:10]+'\n'+
-        '==============================================================================================\n'+
-        'Artikelnr  Omschrijving                             Aantal       Prijs   Subtotaal     BTW 21%\n'+
-        '==============================================================================================\n')
-        if platform == 'win32':
-            fbarc = '.\\forms\\Barcodelijsten\\'+str(mbonnr)+'.txt'
-        else:
-            fbarc = './forms//Barcodelijsten/'+str(mbonnr)+'.txt'
+        mblad = 0
        
         mcumtot = 0
         mcumbtw = 0
         rgl = 0
+        if platform == 'win32':
+            fbarc = '.\\forms\\Barcodelijsten\\'+str(mbonnr)+'.txt'
+        else:
+            fbarc = './forms//Barcodelijsten/'+str(mbonnr)+'.txt'
+        
         for row in rpb:
             rgl += 1
-            if rgl == 1:
-                open(fbarc, 'w').write(kop)
+            if rgl == 1 :
+                mblad += 1
+                open(fbarc, 'w').write(heading(mblad, mbonnr))
+            elif rgl%57 == 1:
+                mblad += 1
+                open(fbarc, 'a').write(heading(mblad, mbonnr))
+                
             martnr = row[2]
             momschr = row[4]
             maantal = row[5]
