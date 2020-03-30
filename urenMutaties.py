@@ -98,7 +98,7 @@ def info():
     window = Widget()
     window.exec_()
 
-def urenBoeking(self, merror, m_email):
+def urenBoeking(self, m_email):
     maccountnr = self.zkaccEdit.text()
     mwerknr = self.zkwerknEdit.text()
     mboekd = self.boekdatumEdit.text()
@@ -157,19 +157,17 @@ def urenBoeking(self, merror, m_email):
     if rpwnr:
         maccountnr = int(maccountnr)
     else:
-       merror = 2
        self.urenEdit.setText('0')
        self.lblt.setText('Persoon niet in deze arbeidspool!')
        self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
-       return('', mwerknr, mboekd, merror, m_email)
+       return('', mwerknr, mboekd, m_email)
     if mwerknr and len(mwerknr)== 9  and _11check(mwerknr):
         mwerknr = int(mwerknr)
     else:
-       merror = 2
        self.urenEdit.setText('0')
        self.lblt.setText('Dit is geen geldig werknummer!')
        self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
-       return(maccountnr, '', mboekd, merror, m_email)
+       return(maccountnr, '', mboekd, m_email)
                 
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
@@ -201,11 +199,10 @@ def urenBoeking(self, merror, m_email):
             'Feestdag','Dokter','Geoorl. verzuim','Ong. verzuim']
     
     if rpwerk[2] == 'H':
-        merror = 2
         self.urenEdit.setText('0')
         self.lblt.setText('Werk is gereed en afgemeld!')
         self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
-        return(maccountnr, mwerknr, mboekd, merror, m_email)
+        return(maccountnr, mwerknr, mboekd, m_email)
     elif mboekuren and msoort == 0 and mstatus:
         mmeerw100 = mboekuren
     elif mboekuren and msoort == 0:
@@ -245,11 +242,10 @@ def urenBoeking(self, merror, m_email):
     elif mboekuren and msoort == 11:
         moverzuim = mboekuren  
     else:
-        merror = 2
         self.urenEdit.setText('0')
         self.lblt.setText('Geen uren ingevoerd!')
         self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
-        return(maccountnr, mwerknr, mboekd, merror, m_email)
+        return(maccountnr, mwerknr, mboekd, m_email)
             
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
@@ -295,13 +291,11 @@ def urenBoeking(self, merror, m_email):
     meerwerkstatus = mstatus,
     loonID = wrkgr2)
     if con.execute(inswrkwnrln):
-        merror = 1
         self.applyBtn.setStyleSheet("color: black; background-color: #00CC66")
     else:
-        merror = 2
         self.urenEdit.setText('0')
         self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
-        return(maccountnr, mwerknr, mboekd, merror, m_email) 
+        return(maccountnr, mwerknr, mboekd, m_email) 
                  
     if wrkgr < 5 and msoort < 5:
         stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
@@ -480,17 +474,16 @@ def urenBoeking(self, merror, m_email):
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         else:
-            merror = 2
             self.urenEdit.setText('0')
-            self.lblt.setText('Persoon niet in deze arbeidspool')
+            self.lblt.setText('Persoon niet in deze arbeidspool!')
             self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
-            return(maccountnr, mwerknr, mboekd, merror, m_email) 
+            return(maccountnr, mwerknr, mboekd, m_email) 
         
     self.urenEdit.setText('0')
     self.k0Edit.setCurrentIndex(0)
-    return(maccountnr, mwerknr, mboekd, merror, m_email) 
+    return(maccountnr, mwerknr, mboekd, m_email) 
     
-def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
+def urenMut(maccountnr, mwerknr, mboekd, m_email):
     class Widget(QDialog):
         def __init__(self):
             super(Widget,self).__init__()
@@ -642,7 +635,7 @@ def urenMut(maccountnr, mwerknr, mboekd, merror, m_email):
             grid.addWidget(self.boekdatumEdit, 11, 2, 1, 1, Qt.AlignRight)
             
             self.applyBtn = QPushButton('Muteren')
-            self.applyBtn.clicked.connect(lambda: urenBoeking(self, merror, m_email))
+            self.applyBtn.clicked.connect(lambda: urenBoeking(self, m_email))
                
             self.applyBtn.setFont(QFont("Arial",10))
             self.applyBtn.setFixedWidth(100)
