@@ -41,7 +41,7 @@ The module barcodeScan.py is rewritten due to performance issues. The database i
 table balieverkoop for barcodescanning, so the data is moved from disk to database bisystem. 
 The performance issues are solved!
 With the latest update it's possible to book return goods for authorised personel.
- The button is only accessible if a personwith special rights (S) on Magazijn Menu (5[1]) logs in.
+ The button is only accessible if a person with special rights (S) on Magazijn Menu (5[1]) logs in.
 
 Documentation for scanning and reading barcodes see:
 http://python-barcode.rtfd.io/
