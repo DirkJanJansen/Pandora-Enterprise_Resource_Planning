@@ -71,7 +71,7 @@ def info():
         uitgevoerd en de order voor de volgende klant voorbereid.
         
         Voor het retourboeken van een artikel wordt de ± button gebruikt. Deze knop is
-        beschikbaar als de rol (S) van Magazijn in het menu authorisaties is geactiveerd..
+        beschikbaar als de rol (S) van Magazijn in het menu authorisaties is geactiveerd.
         ''')
             grid.addWidget(infolbl, 1, 0)
                            
