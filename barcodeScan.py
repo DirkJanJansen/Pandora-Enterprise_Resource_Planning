@@ -66,11 +66,12 @@ def info():
         Tevens klinkt in deze 3 gevallen een akoestisch alarm.
                            
         Nadat het scannen gereed is kan de printbon worden uitgeprint.
-                
         Voor het programma wordt afgesloten, dient eerst de klantknop te worden ingedrukt,
         voor de sluitknop wordt vrijgegeven. Hiermee worden de noodzakelijke boekingen
         uitgevoerd en de order voor de volgende klant voorbereid.
-       
+        
+        Voor het retourboeken van een artikel wordt de ± button gebruikt. Deze knop is
+        beschikbaar als de rol (S) van Magazijn in het menu authorisaties is geactiveerd..
         ''')
             grid.addWidget(infolbl, 1, 0)
                            
