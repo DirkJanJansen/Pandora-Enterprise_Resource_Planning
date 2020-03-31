@@ -324,6 +324,7 @@ From 2020-01-10 updates and changes are described on this page
 2020-03-30 urenMutaties.py unnecessary variable merror removed. No more needed after rewriting module
 2020-03-30 urenImutaties.py unnecessary variable merror removed. No more needed after rewriting module
 2020-03-30 login.py entry for calling urenMutaties and urenImutaties changed.
+2020-03-31 barcodeScan.py info added procedure for return goods.
            
        
            
