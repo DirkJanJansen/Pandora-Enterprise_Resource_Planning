@@ -71,7 +71,7 @@ def info():
         uitgevoerd en de order voor de volgende klant voorbereid.
         
         Voor het retourboeken van een artikel wordt de ± button gebruikt. Deze knop is
-        beschikbaar als de rol (S) van Magazijn in het menu authorisaties is geactiveerd.
+        beschikbaar als de rol (S) van Magazijn in het menu authorisaties is geactiveerd..
         ''')
             grid.addWidget(infolbl, 1, 0)
                            
@@ -298,12 +298,21 @@ def plusminChange(qspin, plusminBtn):
     else:
         plusminBtn.setText('+')
         qspin.setRange(1, 99)
+        
+def checkBarcode(c):
+    checksum = int(c[0])+int(c[2])+int(c[4])+int(c[6])+int(c[8])+int(c[10])+(int(c[1])+
+                int(c[3])+int(c[5])+int(c[7])+int(c[9])+int(c[11]))*3
+    check = (10-(checksum%10))%10
+    if check == int(c[12]):
+        return True
+    else:
+        return False
     
 def set_barcodenr(q1Edit, qspin, view, koptekst, nextBtn, closeBtn, printBtn, albl):
     barcodenr = q1Edit.text()
     maantal = qspin.value()
     albl.setText('')
-    if len(barcodenr) == 13 :
+    if len(barcodenr) == 13 and checkBarcode(barcodenr):
         metadata = MetaData()
         artikelen = Table('artikelen', metadata,
             Column('artikelID', Integer(), primary_key=True),
