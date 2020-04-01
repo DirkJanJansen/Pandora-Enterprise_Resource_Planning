@@ -436,7 +436,7 @@ def barcodeScan(m_email, mret):
           
             koplbl = QLabel('Pandora kassasysteem')
             koplbl.setStyleSheet("color:rgba(45, 83, 115, 255); font: 20pt Comic Sans MS")
-            grid.addWidget(koplbl, 0, 0, 1, 4, Qt.AlignCenter)
+            grid.addWidget(koplbl, 1, 0, 1, 4, Qt.AlignCenter)
             
             self.view = QTextEdit()
             self.view.setDisabled(True)
@@ -448,11 +448,11 @@ def barcodeScan(m_email, mret):
             self.view.setFocusPolicy(Qt.NoFocus)
             self.view.setFixedSize(350, 120)
                         
-            grid.addWidget(self.view, 1 ,0, 1, 4, Qt.AlignCenter)
+            grid.addWidget(self.view, 2 ,0, 1, 4, Qt.AlignCenter)
             
             self.albl = QLabel('')
             self.albl.setStyleSheet("font: bold 16px; color: red")
-            grid.addWidget(self.albl, 2, 0, 1, 4, Qt.AlignCenter)
+            grid.addWidget(self.albl, 3, 0, 1, 4, Qt.AlignCenter)
 
             lbl1 = QLabel('Barcodescan')
             lbl1.setFont(QFont("Arial", 10))
@@ -477,12 +477,12 @@ def barcodeScan(m_email, mret):
             lbl = QLabel()
             pixmap = QPixmap('./images/logos/verbinding.jpg')
             lbl.setPixmap(pixmap)
-            grid.addWidget(lbl , 4, 0, 1, 2)
+            grid.addWidget(lbl , 0, 0, 1, 2)
              
             logo = QLabel()
             pixmap = QPixmap('./images/logos/logo.jpg')
             logo.setPixmap(pixmap)
-            grid.addWidget(logo , 4, 2, 1 ,1, Qt.AlignRight)
+            grid.addWidget(logo , 0, 2, 1 ,1, Qt.AlignRight)
             lbl3 = QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl')
             lbl3.setFont(QFont("Arial", 10))
             grid.addWidget(lbl3, 10, 0, 1, 3, Qt.AlignCenter)
