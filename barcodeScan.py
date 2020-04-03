@@ -146,10 +146,9 @@ def printBon(self):
         con.execute(delbal)
         selb = select([balieverkoop]).where(balieverkoop.c.bonnummer == mbonnr).order_by(balieverkoop.c.barcode)
         rpb = con.execute(selb)
-        mblad = 0
-       
         mcumtot = 0
         mcumbtw = 0
+        mblad = 0
         rgl = 0
         if platform == 'win32':
             fbarc = '.\\forms\\Barcodelijsten\\'+str(mbonnr)+'.txt'
@@ -268,7 +267,10 @@ def nextClient(self):
         con.execute(insdr)
         self.closeBtn.setEnabled(True)
         self.printBtn.setDisabled(True)
+        self.printBtn.setStyleSheet("color: grey; background-color: gainsboro")
         self.nextBtn.setDisabled(True)
+        self.nextBtn.setStyleSheet("font: 16pt Comic Sans MS; color: grey;\
+                                   background-color: gainsboro")
         mbonnr += 1
         updpar = update(params).where(params.c.paramID == 103).values(tarief = mbonnr, lock = False)
         con.execute(updpar)
@@ -387,8 +389,13 @@ def set_barcodenr(self):
             self.albl.setText('Foutmelding: Artikel niet in assortiment!')
                   
         self.closeBtn.setDisabled(True)
+        self.closeBtn.setStyleSheet("color: grey; background-color: gainsboro")
         self.printBtn.setEnabled(True)
+        self.printBtn.setStyleSheet("color: black; background-color: gainsboro")
         self.nextBtn.setEnabled(True)
+        self.nextBtn.setStyleSheet("font: 16pt Comic Sans MS; color: rgba(45, 83, 115, 255);\
+              background-color: gainsboro")
+        
     else:
         #alarm if barcode scan failed
         geefAlarm()
@@ -435,8 +442,8 @@ def barcodeScan(m_email, mret):
             grid.setSpacing(10)
           
             koplbl = QLabel('Pandora kassasysteem')
-            koplbl.setStyleSheet("color:rgba(45, 83, 115, 255); font: 20pt Comic Sans MS")
-            grid.addWidget(koplbl, 1, 0, 1, 4, Qt.AlignCenter)
+            koplbl.setStyleSheet("color:rgba(45, 83, 115, 255); font: 30pt Comic Sans MS")
+            grid.addWidget(koplbl, 1, 0, 1, 3, Qt.AlignCenter)
             
             self.view = QTextEdit()
             self.view.setDisabled(True)
@@ -444,19 +451,19 @@ def barcodeScan(m_email, mret):
             self.koptekst = 'Artikelnr       Omschrijving\nAantal    Prijs  Subtotaal       BTW\n\n'
             self.view.setText(self.koptekst)
             self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-            self.view.setFont(QFont("Arial", 9))
+            self.view.setFont(QFont("Arial", 12))
             self.view.setFocusPolicy(Qt.NoFocus)
-            self.view.setFixedSize(350, 120)
+            self.view.setFixedSize(600, 200)  #350,120
                         
-            grid.addWidget(self.view, 2 ,0, 1, 4, Qt.AlignCenter)
+            grid.addWidget(self.view, 2 ,0, 1, 3, Qt.AlignCenter)
             
             self.albl = QLabel('')
             self.albl.setStyleSheet("font: bold 16px; color: red")
-            grid.addWidget(self.albl, 3, 0, 1, 4, Qt.AlignCenter)
+            grid.addWidget(self.albl, 3, 0, 1, 3, Qt.AlignCenter)
 
             lbl1 = QLabel('Barcodescan')
             lbl1.setFont(QFont("Arial", 10))
-            grid.addWidget(lbl1, 6, 1)
+            grid.addWidget(lbl1, 6, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.q1Edit , 6, 2, 1, 1, Qt.AlignRight)
             
             lbl2 = QLabel('Aantal      ')
@@ -508,23 +515,24 @@ def barcodeScan(m_email, mret):
             infoBtn = QPushButton('Informatie')
             infoBtn.clicked.connect(lambda: info())
     
-            grid.addWidget(infoBtn, 9, 0, 1, 1, Qt.AlignRight)
+            grid.addWidget(infoBtn, 9, 0, 1, 2, Qt.AlignCenter)
             infoBtn.setFont(QFont("Arial",10))
             infoBtn.setFocusPolicy(Qt.NoFocus)
             infoBtn.setFixedWidth(100)
             infoBtn.setStyleSheet("color: black;  background-color: gainsboro")
-       
+            
             self.nextBtn = QPushButton('Volgende Klant')
             self.nextBtn.clicked.connect(lambda: nextClient(self))
     
-            grid.addWidget(self.nextBtn, 7, 0, 1, 2)   
+            grid.addWidget(self.nextBtn, 6, 0, 2, 2, Qt.AlignCenter)   
             self.nextBtn.setFont(QFont("Arial",10))
             self.nextBtn.setFocusPolicy(Qt.NoFocus)
-            self.nextBtn.setFixedWidth(210)            
-            self.nextBtn.setStyleSheet("color: black;  background-color: gainsboro")
-                                     
+            self.nextBtn.setFixedSize(240, 60)            
+            self.nextBtn.setStyleSheet("font: 16pt Comic Sans MS; color: rgba(45, 83, 115, 255);\
+              background-color: gainsboro")
+                                      
             self.setLayout(grid)
-            self.setGeometry(600, 200, 150, 100)
+            self.setGeometry(600, 200, 600, 300)
 
     window = widget()
     window.exec_()
