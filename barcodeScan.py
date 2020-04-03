@@ -64,6 +64,9 @@ def info():
            voorraad getoond.
         3. Indien het produkt (nog) niet in het assortiment is opgenomen.
         Tevens klinkt in deze 3 gevallen een akoestisch alarm.
+        
+        Indien het artikel niet gescand kan worden, is het mogelijk om de barcode handmatig 
+        in te geven, toets hierna <Enter> op het toetsenbord.
                            
         Nadat het scannen gereed is kan de printbon worden uitgeprint.
         Voor het programma wordt afgesloten, dient eerst de klantknop te worden ingedrukt,
