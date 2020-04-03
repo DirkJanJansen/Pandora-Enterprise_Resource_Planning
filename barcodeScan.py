@@ -266,6 +266,7 @@ def nextClient(self):
              ovbestelID = int(mbonnr), rekeningnummer= 'NL10 ABNA 9999999977')
         con.execute(insdr)
         self.closeBtn.setEnabled(True)
+        self.closeBtn.setStyleSheet("color: black; background-color: gainsboro")
         self.printBtn.setDisabled(True)
         self.printBtn.setStyleSheet("color: grey; background-color: gainsboro")
         self.nextBtn.setDisabled(True)
@@ -279,6 +280,7 @@ def nextClient(self):
         con.execute(updpar)
         geenGegevens()
         self.closeBtn.setEnabled(True)
+        self.closeBtn.setStyleSheet("color: black; background-color: gainsboro")
 
 def geefAlarm():
     if platform == 'win32':
