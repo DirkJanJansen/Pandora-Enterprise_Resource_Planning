@@ -273,7 +273,7 @@ def nextClient(self):
         self.printBtn.setDisabled(True)
         self.printBtn.setStyleSheet("color: grey; background-color: gainsboro")
         self.nextBtn.setDisabled(True)
-        self.nextBtn.setStyleSheet("font: 16pt Comic Sans MS; color: grey;\
+        self.nextBtn.setStyleSheet("font: 12pt Arial; color: grey;\
                                    background-color: gainsboro")
         mbonnr += 1
         updpar = update(params).where(params.c.paramID == 103).values(tarief = mbonnr, lock = False)
@@ -398,8 +398,7 @@ def set_barcodenr(self):
         self.printBtn.setEnabled(True)
         self.printBtn.setStyleSheet("color: black; background-color: gainsboro")
         self.nextBtn.setEnabled(True)
-        self.nextBtn.setStyleSheet("font: 16pt Comic Sans MS; color: rgba(45, 83, 115, 255);\
-              background-color: gainsboro")
+        self.nextBtn.setStyleSheet("font: 12pt Arial; color: black; background-color: gainsboro")
         
     else:
         #alarm if barcode scan failed
@@ -520,7 +519,7 @@ def barcodeScan(m_email, mret):
             infoBtn = QPushButton('Informatie')
             infoBtn.clicked.connect(lambda: info())
     
-            grid.addWidget(infoBtn, 9, 0, 1, 2, Qt.AlignCenter)
+            grid.addWidget(infoBtn, 9, 0, 1, 3, Qt.AlignCenter)
             infoBtn.setFont(QFont("Arial",10))
             infoBtn.setFocusPolicy(Qt.NoFocus)
             infoBtn.setFixedWidth(100)
@@ -529,12 +528,17 @@ def barcodeScan(m_email, mret):
             self.nextBtn = QPushButton('Volgende Klant')
             self.nextBtn.clicked.connect(lambda: nextClient(self))
     
-            grid.addWidget(self.nextBtn, 6, 0, 2, 2, Qt.AlignCenter)   
+            grid.addWidget(self.nextBtn, 7, 1, 2, 1, Qt.AlignCenter)   
             self.nextBtn.setFont(QFont("Arial",10))
             self.nextBtn.setFocusPolicy(Qt.NoFocus)
-            self.nextBtn.setFixedSize(240, 60)            
-            self.nextBtn.setStyleSheet("font: 16pt Comic Sans MS; color: rgba(45, 83, 115, 255);\
+            self.nextBtn.setFixedSize(180, 40)            
+            self.nextBtn.setStyleSheet("font: 12pt Arial;  color:black;\
               background-color: gainsboro")
+            
+            kassa = QLabel()
+            pixmap = QPixmap('./images/logos/kassa.png')
+            kassa.setPixmap(pixmap.scaled(100, 100))
+            grid.addWidget(kassa, 7, 0, 3, 1, Qt.AlignCenter)
                                       
             self.setLayout(grid)
             self.setGeometry(600, 200, 600, 300)
