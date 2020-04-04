@@ -1,5 +1,5 @@
 ﻿import os, sys
-import datetime
+from datetime import datetime
 from validZt import zt
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont, QPixmap, QIcon, QMovie
@@ -991,8 +991,9 @@ def hoofdMenu(m_email):
             mret = True
         else:
             mret = False
+        mlist =[]
         import barcodeScan
-        barcodeScan.barcodeScan(m_email, mret)
+        barcodeScan.barcodeScan(m_email, mret, mlist)
     elif mk6 == '1' and mp[6][3] == '1' :
         import invoerInternorder
         invoerInternorder.invWerkorder(m_email)
@@ -1012,11 +1013,10 @@ def hoofdMenu(m_email):
         import urenImutaties
         maccountnr = '1'
         mwerknr = '7'
-        mboekd = str(datetime.datetime.now())[0:10]
+        mboekd = str(datetime.now())[0:10]
         while True:
             accwerk = urenImutaties.urenMut(maccountnr, mwerknr, mboekd, m_email)
-	        # for convenience start with last used work , employee , mboekd and
-            # merror - buttoncolor green for succeeded  or red for failed entry
+	        # for convenience start with last used work , employee and mboekd 
             maccountnr = accwerk[0]
             mwerknr = accwerk[1]
             mboekd = accwerk[2]
@@ -1042,11 +1042,10 @@ def hoofdMenu(m_email):
         import urenMutaties
         maccountnr = '1'
         mwerknr = '8'
-        mboekd = str(datetime.datetime.now())[0:10]
+        mboekd = str(datetime.now())[0:10]
         while True:
             accwerk = urenMutaties.urenMut(maccountnr, mwerknr, mboekd, m_email)
-            # for convenience start with last used work , employee , mboekd and
-            # merror - buttoncolor green for succeeded  or red for failed entry
+            # for convenience start with last used work , employee and mboekd 
             maccountnr = accwerk[0]
             mwerknr = accwerk[1]
             mboekd = accwerk[2]
