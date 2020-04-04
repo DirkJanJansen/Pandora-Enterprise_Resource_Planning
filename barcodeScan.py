@@ -314,7 +314,7 @@ def checkBarcode(c):
     else:
         return False
     
-def set_barcodenr(self):
+def set_barcodenr(self, mlist):
     barcodenr = self.q1Edit.text()
     maantal = self.qspin.value()
     self.albl.setText('')
@@ -383,10 +383,15 @@ def set_barcodenr(self):
                 .values(art_voorraad = artikelen.c.art_voorraad - float(maantal))
             con.execute(updart)
                 
-            newtext = self.koptekst+(str(martnr) +'  '+'{:<40s}'.format(momschr)+'\n'+'{:>6d}'\
+            mlist.append(str(martnr) +'  '+'{:<40s}'.format(momschr)+'\n'+'{:>6d}'\
              .format(int(maantal))+'{:>12.2f}'.format(mprijs)+'{:>12.2f}'\
              .format(float(mprijs)*float(maantal))+'{:>12.2f}'\
              .format(float(mprijs)*float(maantal)*mbtw)+'\n')
+            if len(mlist) == 9:
+                del(mlist[1])
+            newtext = ''
+            for x in range(0,len(mlist)):
+                newtext += (mlist[x])
             self.view.setText(newtext)
         else:
             geefAlarm()
@@ -407,7 +412,7 @@ def set_barcodenr(self):
     self.q1Edit.setSelection(0,13)
     self.qspin.setValue(1)
       
-def barcodeScan(m_email, mret):
+def barcodeScan(m_email, mret, mlist):
     class widget(QDialog):
         def __init__(self):
             super(widget,self).__init__()
@@ -425,7 +430,7 @@ def barcodeScan(m_email, mret):
             self.q1Edit.setFont(QFont("Arial", 12))
             self.q1Edit.setFixedSize(155, 30)
             self.q1Edit.setFocus(True)
-            self.q1Edit.returnPressed.connect(lambda: set_barcodenr(self))
+            self.q1Edit.returnPressed.connect(lambda: set_barcodenr(self, mlist))
                        
             self.qspin = QSpinBox()
             self.qspin.setRange(1, 99)
@@ -451,12 +456,12 @@ def barcodeScan(m_email, mret):
             self.view = QTextEdit()
             self.view.setDisabled(True)
             self.view.setStyleSheet('color: black; background-color: #F8F7EE')
-            self.koptekst = 'Artikelnr       Omschrijving\nAantal    Prijs  Subtotaal       BTW\n\n'
-            self.view.setText(self.koptekst)
+            mlist.append('Artikelnr       Omschrijving\nAantal    Prijs  Subtotaal       BTW\n\n')
+            self.view.setText(mlist[0])
             self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
             self.view.setFont(QFont("Arial", 12))
             self.view.setFocusPolicy(Qt.NoFocus)
-            self.view.setFixedSize(600, 200)  #350,120
+            self.view.setFixedSize(600, 420)  
                         
             grid.addWidget(self.view, 2 ,0, 1, 3, Qt.AlignCenter)
             
@@ -540,7 +545,7 @@ def barcodeScan(m_email, mret):
             grid.addWidget(kassa, 7, 0, 3, 1, Qt.AlignCenter)
                                       
             self.setLayout(grid)
-            self.setGeometry(600, 200, 600, 300)
+            self.setGeometry(600, 100, 600, 300)
 
     window = widget()
     window.exec_()
