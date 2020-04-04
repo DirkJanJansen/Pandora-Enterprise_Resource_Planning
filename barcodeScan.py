@@ -455,13 +455,13 @@ def barcodeScan(m_email, mret, mlist):
             
             self.view = QTextEdit()
             self.view.setDisabled(True)
-            self.view.setStyleSheet('color: black; background-color: #F8F7EE')
+            self.view.setStyleSheet('color: black; background-color: #F8F7EE')  
             mlist.append('Artikelnr       Omschrijving\nAantal    Prijs  Subtotaal       BTW\n\n')
             self.view.setText(mlist[0])
             self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
             self.view.setFont(QFont("Arial", 12))
             self.view.setFocusPolicy(Qt.NoFocus)
-            self.view.setFixedSize(600, 420)  
+            self.view.setFixedSize(550, 420)  
                         
             grid.addWidget(self.view, 2 ,0, 1, 3, Qt.AlignCenter)
             
