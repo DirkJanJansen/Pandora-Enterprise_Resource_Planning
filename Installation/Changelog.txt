@@ -329,6 +329,7 @@ From 2020-01-10 updates and changes are described on this page
 2020-03-31 barcodeScan.py visual window changed self...... added.
 2020-04-03 barcodeScan.py increased sizes and text colors for inactive buttons changed so it's more clearly.
            placed  in .\images\logos\kassa.png 
+2020-04-04 barcodeScan.py fontsizes adjusted and kassa.png rescaled
            
        
            
