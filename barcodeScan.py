@@ -42,8 +42,7 @@ def info():
             lbl.setPixmap(pixmap)
             grid.addWidget(lbl, 0, 0)
             
-            infolbl = QLabel('''
-        \t\t\t\t\t\t\t\t\t\t
+            infolbl = QLabel('''\t\t\t\t\t\t\t\t\t\t
         Instruktie barcode scannen.
         
         Als testscanner is een hand laserscanner gebruikt van het type Nedis BCRLR100BK
@@ -423,8 +422,8 @@ def barcodeScan(m_email, mret):
             
             self.q1Edit = QLineEdit('')
             self.q1Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            self.q1Edit.setFont(QFont("Arial", 10))
-            self.q1Edit.setFixedWidth(130)
+            self.q1Edit.setFont(QFont("Arial", 12))
+            self.q1Edit.setFixedSize(155, 30)
             self.q1Edit.setFocus(True)
             self.q1Edit.returnPressed.connect(lambda: set_barcodenr(self))
                        
@@ -462,11 +461,11 @@ def barcodeScan(m_email, mret):
             grid.addWidget(self.view, 2 ,0, 1, 3, Qt.AlignCenter)
             
             self.albl = QLabel('')
-            self.albl.setStyleSheet("font: bold 16px; color: red")
+            self.albl.setStyleSheet("font: bold 18px; color: red")
             grid.addWidget(self.albl, 3, 0, 1, 3, Qt.AlignCenter)
 
             lbl1 = QLabel('Barcodescan')
-            lbl1.setFont(QFont("Arial", 10))
+            lbl1.setFont(QFont("Arial", 12))
             grid.addWidget(lbl1, 6, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.q1Edit , 6, 2, 1, 1, Qt.AlignRight)
             
@@ -510,7 +509,7 @@ def barcodeScan(m_email, mret):
             self.closeBtn = QPushButton('Sluiten')
             self.closeBtn.clicked.connect(lambda: windowSluit(self, m_email))
 
-            grid.addWidget(self.closeBtn, 9, 1, 1, 1, Qt.AlignRight)
+            grid.addWidget(self.closeBtn, 9, 1, 1, 2, Qt.AlignCenter)
             self.closeBtn.setFont(QFont("Arial",10))
             self.closeBtn.setFocusPolicy(Qt.NoFocus)
             self.closeBtn.setFixedWidth(100)
@@ -531,7 +530,7 @@ def barcodeScan(m_email, mret):
             grid.addWidget(self.nextBtn, 7, 1, 2, 1, Qt.AlignCenter)   
             self.nextBtn.setFont(QFont("Arial",10))
             self.nextBtn.setFocusPolicy(Qt.NoFocus)
-            self.nextBtn.setFixedSize(180, 40)            
+            self.nextBtn.setFixedSize(160, 60)            
             self.nextBtn.setStyleSheet("font: 12pt Arial;  color:black;\
               background-color: gainsboro")
             
