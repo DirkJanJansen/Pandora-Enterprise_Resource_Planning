@@ -1,8 +1,8 @@
 from login import hoofdMenu
 from datetime import datetime
 from sys import platform
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIcon, QFont, QPixmap
+from PyQt5.QtCore import Qt, QRegExp
+from PyQt5.QtGui import QIcon, QFont, QPixmap, QRegExpValidator
 from PyQt5.QtWidgets import QLineEdit, QGridLayout, QDialog, QLabel, QPushButton,\
         QMessageBox, QSpinBox, QTextEdit
 from sqlalchemy import (Table, Column, Integer, String, MetaData, create_engine, Float,\
@@ -430,6 +430,9 @@ def barcodeScan(m_email, mret, mlist):
             self.q1Edit.setFont(QFont("Arial", 12))
             self.q1Edit.setFixedSize(155, 30)
             self.q1Edit.setFocus(True)
+            reg_ex = QRegExp("^[8]{1}[0-9]{12}$")
+            input_validator = QRegExpValidator(reg_ex, self.q1Edit)
+            self.q1Edit.setValidator(input_validator)
             self.q1Edit.returnPressed.connect(lambda: set_barcodenr(self, mlist))
                        
             self.qspin = QSpinBox()
