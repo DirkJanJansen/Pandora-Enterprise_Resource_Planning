@@ -440,9 +440,9 @@ def barcodeScan(m_email, mret, mlist):
             self.qspin.setFocusPolicy(Qt.NoFocus)
             self.qspin.lineEdit().setReadOnly(True)
             self.qspin.setFrame(True)
-            self.qspin.setFont(QFont('Arial', 10))
+            self.qspin.setFont(QFont('Arial', 12))
             self.qspin.setStyleSheet("color: black;  background-color: #F8F7EE")
-            self.qspin.setFixedSize(50, 30)
+            self.qspin.setFixedSize(60, 30)
             
             def valuechange():
                 self.qspin.setValue(self.qspin.value())
@@ -477,7 +477,7 @@ def barcodeScan(m_email, mret, mlist):
             grid.addWidget(self.q1Edit , 6, 2, 1, 1, Qt.AlignRight)
             
             lbl2 = QLabel('Aantal      ')
-            lbl2.setFont(QFont("Arial", 10))
+            lbl2.setFont(QFont("Arial", 12))
             grid.addWidget(lbl2, 7, 2, 1, 1, Qt.AlignCenter)
             grid.addWidget(self.qspin, 7, 2, 1, 1, Qt.AlignRight)
             
