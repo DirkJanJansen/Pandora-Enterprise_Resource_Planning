@@ -991,9 +991,8 @@ def hoofdMenu(m_email):
             mret = True
         else:
             mret = False
-        mlist =[]
         import barcodeScan
-        barcodeScan.barcodeScan(m_email, mret, mlist)
+        barcodeScan.barcodeScan(m_email, mret)
     elif mk6 == '1' and mp[6][3] == '1' :
         import invoerInternorder
         invoerInternorder.invWerkorder(m_email)
