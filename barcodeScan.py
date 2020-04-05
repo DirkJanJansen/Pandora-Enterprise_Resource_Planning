@@ -277,6 +277,9 @@ def nextClient(self):
         mbonnr += 1
         updpar = update(params).where(params.c.paramID == 103).values(tarief = mbonnr, lock = False)
         con.execute(updpar)
+        self.mlist = []
+        self.mlist.append('Artikelnr       Omschrijving\nAantal    Prijs  Subtotaal       BTW\n\n')
+        self.view.setText(self.mlist[0])
     else:
         updpar = update(params).where(params.c.paramID == 103).values(lock = False)
         con.execute(updpar)
@@ -314,7 +317,7 @@ def checkBarcode(c):
     else:
         return False
     
-def set_barcodenr(self, mlist):
+def set_barcodenr(self):
     barcodenr = self.q1Edit.text()
     maantal = self.qspin.value()
     self.albl.setText('')
@@ -383,15 +386,15 @@ def set_barcodenr(self, mlist):
                 .values(art_voorraad = artikelen.c.art_voorraad - float(maantal))
             con.execute(updart)
                 
-            mlist.append(str(martnr) +'  '+'{:<40s}'.format(momschr)+'\n'+'{:>6d}'\
+            self.mlist.append(str(martnr) +'  '+'{:<40s}'.format(momschr)+'\n'+'{:>6d}'\
              .format(int(maantal))+'{:>12.2f}'.format(mprijs)+'{:>12.2f}'\
              .format(float(mprijs)*float(maantal))+'{:>12.2f}'\
              .format(float(mprijs)*float(maantal)*mbtw)+'\n')
-            if len(mlist) == 9:
-                del(mlist[1])
+            if len(self.mlist) == 9:
+                del(self.mlist[1])
             newtext = ''
-            for x in range(0,len(mlist)):
-                newtext += (mlist[x])
+            for x in range(0,len(self.mlist)):
+                newtext += (self.mlist[x])
             self.view.setText(newtext)
         else:
             self.albl.setText('Foutmelding: Artikel niet in assortiment!')
@@ -424,6 +427,7 @@ def barcodeScan(m_email, mret, mlist):
             self.setStyleSheet("background-color: #D9E1DF")
             self.setFont(QFont('Arial', 10))
             
+            self.mlist = mlist
             self.q1Edit = QLineEdit('')
             self.q1Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             self.q1Edit.setFont(QFont("Arial", 12))
@@ -432,7 +436,7 @@ def barcodeScan(m_email, mret, mlist):
             reg_ex = QRegExp("^[0-9]{13}$")
             input_validator = QRegExpValidator(reg_ex, self.q1Edit)
             self.q1Edit.setValidator(input_validator)
-            self.q1Edit.returnPressed.connect(lambda: set_barcodenr(self, mlist))
+            self.q1Edit.returnPressed.connect(lambda: set_barcodenr(self))
                        
             self.qspin = QSpinBox()
             self.qspin.setRange(1, 99)
@@ -458,8 +462,8 @@ def barcodeScan(m_email, mret, mlist):
             self.view = QTextEdit()
             self.view.setDisabled(True)
             self.view.setStyleSheet('color: black; background-color: #F8F7EE')  
-            mlist.append('Artikelnr       Omschrijving\nAantal    Prijs  Subtotaal       BTW\n\n')
-            self.view.setText(mlist[0])
+            self.mlist.append('Artikelnr       Omschrijving\nAantal    Prijs  Subtotaal       BTW\n\n')
+            self.view.setText(self.mlist[0])
             self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
             self.view.setFont(QFont("Arial", 12))
             self.view.setFocusPolicy(Qt.NoFocus)
