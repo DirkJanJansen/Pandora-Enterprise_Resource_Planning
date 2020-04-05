@@ -508,7 +508,7 @@ def barcodeScan(m_email, mret, mlist):
             self.printBtn.clicked.connect(lambda: printBon(self))
       
             grid.addWidget(self.printBtn, 9, 2, 1, 1, Qt.AlignRight)
-            self.printBtn.setFont(QFont("Arial",10))
+            self.printBtn.setFont(QFont("Arial",12))
             self.printBtn.setFocusPolicy(Qt.NoFocus)
             self.printBtn.setFixedWidth(100)
             self.printBtn.setStyleSheet("color: black;  background-color: gainsboro")
@@ -517,7 +517,7 @@ def barcodeScan(m_email, mret, mlist):
             self.closeBtn.clicked.connect(lambda: windowSluit(self, m_email))
 
             grid.addWidget(self.closeBtn, 9, 1, 1, 2, Qt.AlignCenter)
-            self.closeBtn.setFont(QFont("Arial",10))
+            self.closeBtn.setFont(QFont("Arial",12))
             self.closeBtn.setFocusPolicy(Qt.NoFocus)
             self.closeBtn.setFixedWidth(100)
             self.closeBtn.setStyleSheet("color: black; background-color: gainsboro")
@@ -526,7 +526,7 @@ def barcodeScan(m_email, mret, mlist):
             infoBtn.clicked.connect(lambda: info())
     
             grid.addWidget(infoBtn, 9, 1)
-            infoBtn.setFont(QFont("Arial",10))
+            infoBtn.setFont(QFont("Arial",12))
             infoBtn.setFocusPolicy(Qt.NoFocus)
             infoBtn.setFixedWidth(100)
             infoBtn.setStyleSheet("color: black;  background-color: gainsboro")
