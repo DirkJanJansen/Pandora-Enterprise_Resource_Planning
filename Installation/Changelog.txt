@@ -331,6 +331,7 @@ From 2020-01-10 updates and changes are described on this page
 2020-04-04 barcodeScan.py font sizes adjusted and kassa.png rescaled.
 2020-04-04 barcodeScan.py display more lines visible, scrolling enabled when the display is full and leave the header intact.
 2020-04-04 login.py entry for barcodeScan list initiate adjusted.
+2020-04-05 barcodeScan.py regexp check on barcode added for manual insert barcode.
             
        
            
