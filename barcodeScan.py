@@ -544,8 +544,8 @@ def barcodeScan(m_email, mret, mlist):
             
             kassa = QLabel()
             pixmap = QPixmap('./images/logos/kassa.png')
-            kassa.setPixmap(pixmap.scaled(100, 100))
-            grid.addWidget(kassa, 7, 0, 3, 1, Qt.AlignCenter)
+            kassa.setPixmap(pixmap.scaled(150, 150))
+            grid.addWidget(kassa, 6, 0, 4, 1, Qt.AlignCenter)
                                       
             self.setLayout(grid)
             self.setGeometry(600, 100, 600, 300)
