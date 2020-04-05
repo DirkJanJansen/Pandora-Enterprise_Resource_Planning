@@ -526,7 +526,7 @@ def barcodeScan(m_email, mret, mlist):
             infoBtn = QPushButton('Informatie')
             infoBtn.clicked.connect(lambda: info())
     
-            grid.addWidget(infoBtn, 9, 0, 1, 3, Qt.AlignCenter)
+            grid.addWidget(infoBtn, 9, 1)
             infoBtn.setFont(QFont("Arial",10))
             infoBtn.setFocusPolicy(Qt.NoFocus)
             infoBtn.setFixedWidth(100)
