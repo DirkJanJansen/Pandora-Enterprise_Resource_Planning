@@ -277,8 +277,7 @@ def nextClient(self):
         mbonnr += 1
         updpar = update(params).where(params.c.paramID == 103).values(tarief = mbonnr, lock = False)
         con.execute(updpar)
-        self.mlist = []
-        self.mlist.append('Artikelnr       Omschrijving\nAantal    Prijs  Subtotaal       BTW\n\n')
+        self.mlist = ['Artikelnr       Omschrijving\nAantal    Prijs  Subtotaal       BTW\n\n']
         self.view.setText(self.mlist[0])
     else:
         updpar = update(params).where(params.c.paramID == 103).values(lock = False)
@@ -414,7 +413,7 @@ def set_barcodenr(self):
     self.q1Edit.setSelection(0,13)
     self.qspin.setValue(1)
       
-def barcodeScan(m_email, mret, mlist):
+def barcodeScan(m_email, mret):
     class widget(QDialog):
         def __init__(self):
             super(widget,self).__init__()
@@ -427,7 +426,6 @@ def barcodeScan(m_email, mret, mlist):
             self.setStyleSheet("background-color: #D9E1DF")
             self.setFont(QFont('Arial', 10))
             
-            self.mlist = mlist
             self.q1Edit = QLineEdit('')
             self.q1Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             self.q1Edit.setFont(QFont("Arial", 12))
@@ -462,7 +460,7 @@ def barcodeScan(m_email, mret, mlist):
             self.view = QTextEdit()
             self.view.setDisabled(True)
             self.view.setStyleSheet('color: black; background-color: #F8F7EE')  
-            self.mlist.append('Artikelnr       Omschrijving\nAantal    Prijs  Subtotaal       BTW\n\n')
+            self.mlist = ['Artikelnr       Omschrijving\nAantal    Prijs  Subtotaal       BTW\n\n']
             self.view.setText(self.mlist[0])
             self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
             self.view.setFont(QFont("Arial", 12))
