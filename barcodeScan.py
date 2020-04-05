@@ -358,8 +358,8 @@ def set_barcodenr(self, mlist):
         rpart = con.execute(selart).first()
         rpbal = con.execute(selbal).first()
         if rpart and rpart[4] < maantal:
-            geefAlarm()
             self.albl.setText('Foutmelding: '+str(int(rpart[4]))+' voorradig!')
+            geefAlarm()
         elif rpart:
             martnr = rpart[0]
             momschr = rpart[2]
@@ -394,8 +394,8 @@ def set_barcodenr(self, mlist):
                 newtext += (mlist[x])
             self.view.setText(newtext)
         else:
-            geefAlarm()
             self.albl.setText('Foutmelding: Artikel niet in assortiment!')
+            geefAlarm()
                   
         self.closeBtn.setDisabled(True)
         self.closeBtn.setStyleSheet("color: grey; background-color: gainsboro")
@@ -403,12 +403,11 @@ def set_barcodenr(self, mlist):
         self.printBtn.setStyleSheet("color: black; background-color: gainsboro")
         self.nextBtn.setEnabled(True)
         self.nextBtn.setStyleSheet("font: 12pt Arial; color: black; background-color: gainsboro")
-        
     else:
         #alarm if barcode scan failed
-        geefAlarm()
         self.albl.setText('Foutmelding: Scanfout barcode!')
-        
+        geefAlarm()
+       
     self.q1Edit.setSelection(0,13)
     self.qspin.setValue(1)
       
