@@ -385,7 +385,7 @@ def set_barcodenr(self):
                 .values(art_voorraad = artikelen.c.art_voorraad - float(maantal))
             con.execute(updart)
                 
-            self.mlist.append(str(martnr) +'  '+'{:<40s}'.format(momschr)+'\n'+'{:>6d}'\
+            self.mlist.append('{:<11d}'.format(martnr)+'{:<40s}'.format(momschr)+'\n'+'{:>6d}'\
              .format(int(maantal))+'{:>12.2f}'.format(mprijs)+'{:>12.2f}'\
              .format(float(mprijs)*float(maantal))+'{:>12.2f}'\
              .format(float(mprijs)*float(maantal)*mbtw)+'\n')
@@ -460,7 +460,7 @@ def barcodeScan(m_email, mret):
             self.view = QTextEdit()
             self.view.setDisabled(True)
             self.view.setStyleSheet('color: black; background-color: #F8F7EE')  
-            self.mlist = ['Artikelnr       Omschrijving\nAantal    Prijs  Subtotaal       BTW\n\n']
+            self.mlist = ['Artikelnr       Omschrijving\nAantal       Prijs  Subtotaal       BTW\n\n']
             self.view.setText(self.mlist[0])
             self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
             self.view.setFont(QFont("Arial", 12))
@@ -537,7 +537,7 @@ def barcodeScan(m_email, mret):
             self.nextBtn.clicked.connect(lambda: nextClient(self))
     
             grid.addWidget(self.nextBtn, 7, 1, 2, 1, Qt.AlignCenter)   
-            self.nextBtn.setFont(QFont("Arial",10))
+            self.nextBtn.setFont(QFont("Arial",12))
             self.nextBtn.setFocusPolicy(Qt.NoFocus)
             self.nextBtn.setFixedSize(160, 60)            
             self.nextBtn.setStyleSheet("font: 12pt Arial;  color:black;\
