@@ -277,7 +277,7 @@ def nextClient(self):
         mbonnr += 1
         updpar = update(params).where(params.c.paramID == 103).values(tarief = mbonnr, lock = False)
         con.execute(updpar)
-        self.mlist = ['Artikelnr       Omschrijving\nAantal    Prijs  Subtotaal       BTW\n\n']
+        self.mlist = ['Artikelnr       Omschrijving\nAantal       Prijs  Subtotaal       BTW\n\n']
         self.view.setText(self.mlist[0])
     else:
         updpar = update(params).where(params.c.paramID == 103).values(lock = False)
