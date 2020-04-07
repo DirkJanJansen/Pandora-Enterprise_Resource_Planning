@@ -334,6 +334,6 @@ From 2020-01-10 updates and changes are described on this page
 2020-04-05 barcodeScan.py regexp check on barcode added for manual insert barcode.
 2020-04-05 barcodeScan.py display did not clear by next client. Repaired!
 2020-04-05 login.py entry changed for barcodeScan
-2020-04-07 Documetation added Barcodescanning.pdf
+2020-04-07 Documentation added Barcodescanning.pdf
        
            
