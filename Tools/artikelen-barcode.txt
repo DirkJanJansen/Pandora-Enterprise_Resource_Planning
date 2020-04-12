@@ -1,28 +1,10 @@
 Barcode module in python
 
 
-Converting artikelID to barcode ean 13 numbers.
-
-1. Install barcode module in python with pip install python-barcode and pip install pillow
-2. Open pgadmin4 delete column barcode (integer) from table artikelen.
-3. Insert column barcode again in table artikelen with properties character varying length 13  default ''
-4. remove the # from the lines upd.... and con... (if not removed only barcode images are saved with format png)
-5. Run artikelen-barcode.py 
-
-The barcode ean numbers are filled in the barcode fields from table artikelen
-This is commented out in the present version, only saving barcodes is enabled!
-Also 20 barcode pictures are saved. If you want more, or another range from the database change the x start value (10)
- and stop value (31) in the loop.
-
-In the changed database from 2020-03-22  this is already done. Also the database has been extended with a new table 
-balieverkoop (countersales) This table is used for barcode scanning see following lines and barcodeScan.py
+The database has been extended with a new table balieverkoop (countersales).
+This table is used for barcode scanning see following lines and barcodeScan.py
 This module scans and displays the data from database, prints the orderform and books the financial data and stock data
 in the tables artikelen (updates stock), afdrachten (payments) and artikelmutaties (stock transactions).
-
-decode images barcode:
-pip install pyzbar
-pip install opencv-python
-for LINUX additional sudo apt-get install -y zbar-tools
 
 real time scanning in windows 10:
 I used a laser scanner for testing see documentation in folder Tools/Barcodescanner
