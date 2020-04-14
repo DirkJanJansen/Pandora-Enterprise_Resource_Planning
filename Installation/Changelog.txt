@@ -336,5 +336,6 @@ From 2020-01-10 updates and changes are described on this page
 2020-04-05 login.py entry changed for barcodeScan
 2020-04-07 Documentation added Barcodescanning.pdf
 2020-04-09 sheet for scanning barcodes uploaded with 30 barcodes in folder Tools barcodes.png
+2020-04-14 makeAuthorisation.py overlap window changed for displaying Linux
        
            
