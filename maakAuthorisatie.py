@@ -64,6 +64,7 @@ def info():
             pixmap = QPixmap('./images/logos/verbinding.jpg')
             lbl.setPixmap(pixmap)
             grid.addWidget(lbl, 0, 0)
+            
             lblinfo = QLabel(
         '''
             
@@ -252,7 +253,7 @@ def geefAuth(rpacc, m_email):
             lbl = QLabel()
             pixmap = QPixmap('./images/logos/verbinding.jpg')
             lbl.setPixmap(pixmap)
-            grid.addWidget(lbl , 0, 0, 1 ,2)
+            grid.addWidget(lbl , 0, 0, 1 ,6)
                        
             logo = QLabel()
             pixmap = QPixmap('./images/logos/logo.jpg')
@@ -265,9 +266,9 @@ def geefAuth(rpacc, m_email):
             accEdit.setFont(QFont("Arial",10))
             accEdit.setDisabled(True)  
     
-            grid.addWidget(QLabel(mvoorn+' '+mtussen+' '+machtern), 0, 2, 1, 9, Qt.AlignTop)     
-            grid.addWidget(QLabel('Accountnummer'), 0, 2, 1, 4, Qt.AlignBottom)
-            grid.addWidget(accEdit, 0, 6, 1, 4, Qt.AlignBottom) 
+            grid.addWidget(QLabel(mvoorn+' '+mtussen+' '+machtern), 0, 5, 1, 9, Qt.AlignTop)     
+            grid.addWidget(QLabel('Accountnummer'), 0, 5, 1, 4, Qt.AlignBottom)
+            grid.addWidget(accEdit, 0, 7, 1, 4, Qt.AlignCenter | Qt.AlignBottom) 
           
             grid.addWidget(QLabel('                   Menu'), 2, 0, 1, 3)     
             grid.addWidget(QLabel('S    B     I     W    P    O    R'), 2, 1, 1, 8)
