@@ -25,6 +25,10 @@ table balieverkoop for barcodescanning, so the data is moved from disk to databa
 The performance issues are solved!
 With the latest update it's possible to book return goods for authorised personel.
  The button is only accessible if a person with special rights (S) on Magazijn Menu (5[1]) logs in.
+ 
+ With the module invoerArtikelen.py (insert new products) a barcodenumber is generated based on the artikelID 
+ in the table artikelen.
+ Also a barcodeimage is saved in folder ./forms/Barcodelabels for printing.
 
 Documentation for scanning and reading barcodes see:
 http://python-barcode.rtfd.io/
