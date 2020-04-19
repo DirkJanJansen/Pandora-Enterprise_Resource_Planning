@@ -132,16 +132,26 @@ def urenBoeking(self, m_email):
         Column('kosten_lonen', Float),
         Column('voortgangstatus', String),
         Column('statusweek', String(6)),
+        Column('begr_constr_uren', Float),
         Column('werk_constr_uren', Float),
+        Column('begr_mont_uren', Float),
         Column('werk_mont_uren', Float),
+        Column('begr_retourlas_uren', Float),
         Column('werk_retourlas_uren', Float),
+        Column('begr_telecom_uren', Float),
         Column('werk_telecom_uren', Float),
+        Column('begr_bfi_uren', Float),
         Column('werk_bfi_uren', Float),
+        Column('begr_bvl_uren', Float),
         Column('werk_bvl_uren', Float),
+        Column('begr_spoorleg_uren', Float),
         Column('werk_spoorleg_uren', Float),
+        Column('begr_spoorlas_uren', Float),
         Column('werk_spoorlas_uren', Float),
+        Column('begr_reis_uren', Float),
         Column('werk_reis_uren', Float),
         Column('meerminderwerk', Float),
+        Column('begr_voeding_uren', Float),
         Column('werk_voeding_uren', Float))
     lonen = Table('lonen', metadata,
         Column('loonID', Integer, primary_key=True),
@@ -173,7 +183,7 @@ def urenBoeking(self, m_email):
     con = engine.connect()
     selwerk = select([werken]).where(werken.c.werknummerID == mwerknr)
     rpwerk = con.execute(selwerk).first()
-    
+   
     muren = 0
     mu125 = 0
     mu150 = 0
@@ -307,8 +317,9 @@ def urenBoeking(self, m_email):
         con.execute(stmt)
         sel = select([werken]).where(werken.c.werknummerID == mwerknr)
         rpsel = con.execute(sel).first()
-        self.urentotEdit.setText('{:<12.2f}'.format(rpsel[4]))
-        lblptext = 'Totaaluren\nConstructie'
+        self.urentotEdit.setText('{:<12.2f}'.format(rpsel[5]))
+        self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[4]))
+        lblptext = 'Totalen: Werkelijk / Begroot\nUren Constructie'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
         self.lblt.setText(lbltext)
@@ -322,8 +333,9 @@ def urenBoeking(self, m_email):
         con.execute(stmt)
         sel = select([werken]).where(werken.c.werknummerID == mwerknr)
         rpsel = con.execute(sel).first()
-        self.urentotEdit.setText('{:<12.2f}'.format(rpsel[5]))
-        lblptext = 'Totaaluren\nMontage'
+        self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[6]))
+        self.urentotEdit.setText('{:<12.2f}'.format(rpsel[7]))
+        lblptext = 'Totalen: Werkelijk / Begroot\nUren Montage'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
         self.lblt.setText(lbltext)
@@ -337,8 +349,9 @@ def urenBoeking(self, m_email):
           con.execute(stmt)
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
-          self.urentotEdit.setText('{:<12.2f}'.format(rpsel[6]))
-          lblptext = 'Totaaluren\nRetourlas'
+          self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[8]))
+          self.urentotEdit.setText('{:<12.2f}'.format(rpsel[9]))
+          lblptext = 'Totalen: Werkelijk / Begroot\nUren Retourlas'
           lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
           self.lblprof.setText(lblptext)
           self.lblt.setText(lbltext)
@@ -352,8 +365,9 @@ def urenBoeking(self, m_email):
           con.execute(stmt)
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
-          self.urentotEdit.setText('{:<12.2f}'.format(rpsel[7]))
-          lblptext = 'Totaaluren\nTelecom'
+          self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[10]))
+          self.urentotEdit.setText('{:<12.2f}'.format(rpsel[11]))
+          lblptext = 'Totalen: Werkelijk / Begroot\nUren Telecom'
           lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
           self.lblprof.setText(lblptext)
           self.lblt.setText(lbltext)
@@ -367,8 +381,9 @@ def urenBoeking(self, m_email):
           con.execute(stmt)
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
-          self.urentotEdit.setText('{:<12.2f}'.format(rpsel[8]))
-          lblptext = 'Totaaluren\nBFI'
+          self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[12]))
+          self.urentotEdit.setText('{:<12.2f}'.format(rpsel[13]))
+          lblptext = 'Totalen: Werkelijk / Begroot\nUren BFI'
           lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
           self.lblprof.setText(lblptext)
           self.lblt.setText(lbltext)
@@ -382,8 +397,9 @@ def urenBoeking(self, m_email):
           con.xecute(stmt)
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
-          self.urentotEdit.setText('{:<12.2f}'.format(rpsel[9]))
-          lblptext = 'Totaaluren\nBovenleiding'
+          self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[14]))
+          self.urentotEdit.setText('{:<12.2f}'.format(rpsel[15]))
+          lblptext = 'Totalen: Werkelijk / Begroot\nUren Bovenleiding'
           lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
           self.lblprof.setText(lblptext)
           self.lblt.setText(lbltext)
@@ -397,8 +413,9 @@ def urenBoeking(self, m_email):
           con.execute(stmt)
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
-          self.urentotEdit.setText('{:>12.2f}'.format(rpsel[10]))
-          lblptext = 'Totaaluren\nSpoorleg'
+          self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[16]))
+          self.urentotEdit.setText('{:>12.2f}'.format(rpsel[17]))
+          lblptext = 'Totalen: Werkelijk / Begroot\nUren Spoorleg'
           lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
           self.lblprof.setText(lblptext)
           self.lblt.setText(lbltext)
@@ -412,8 +429,9 @@ def urenBoeking(self, m_email):
           con.execute(stmt)
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
-          self.urentotEdit.setText('{:<12.2f}'.format(rpsel[11]))
-          lblptext = 'Totaaluren\nSpoorlas'
+          self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[18]))
+          self.urentotEdit.setText('{:<12.2f}'.format(rpsel[19]))
+          lblptext = 'Totalen: Werkelijk / Begroot\nUren Spoorlas'
           lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
           self.lblprof.setText(lblptext)
           self.lblt.setText(lbltext)
@@ -427,8 +445,9 @@ def urenBoeking(self, m_email):
           con.execute(stmt)
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
-          self.urentotEdit.setText('{:<12.2f}'.format(rpsel[14]))
-          lblptext = 'Totaaluren\nVoeding'
+          self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[23]))
+          self.urentotEdit.setText('{:<12.2f}'.format(rpsel[24]))
+          lblptext = 'Totalen: Werkelijk / Begroot\nUren Voeding'
           lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
           self.lblprof.setText(lblptext)
           self.lblt.setText(lbltext)
@@ -546,7 +565,13 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
             self.urentotEdit.setDisabled(True)
             self.urentotEdit.setFont(QFont("Arial",10))
             self.urentotEdit.setStyleSheet("color: black")
-                                                          
+    
+            self.urenbegrEdit = QLineEdit('0')
+            self.urenbegrEdit.setFixedWidth(150)
+            self.urenbegrEdit.setDisabled(True)
+            self.urenbegrEdit.setFont(QFont("Arial",10))
+            self.urenbegrEdit.setStyleSheet("color: black")        
+                                                         
             self.boekdatumEdit = QLineEdit(mboekd)
             self.boekdatumEdit.setFixedWidth(150)
             self.boekdatumEdit.setFont(QFont("Arial",10))
@@ -573,8 +598,8 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
                 self.k0Edit.setCurrentIndex(self.k0Edit.currentIndex())
             self.k0Edit.currentIndexChanged.connect(k0Changed)
                         
-            def  cboxChanged():
-                 self.cBox.setCheckState(self.cBox.checkState())
+            def cboxChanged():
+                self.cBox.setCheckState(self.cBox.checkState())
             self.cBox.stateChanged.connect(cboxChanged)
             
             def urenChanged():
@@ -600,7 +625,7 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
 
             self.lblt = QLabel('Muteren uren (werken - lonen) niet cumulatief')
             self.lblt.setFont(QFont("Arial", 10))
-            grid.addWidget(self.lblt , 12, 1, 1, 4, Qt.AlignCenter)
+            grid.addWidget(self.lblt , 12, 0, 1, 4, Qt.AlignCenter)
             
             lbl1 = QLabel('Accountnummer')
             lbl1.setFont(QFont("Arial", 10))
@@ -619,10 +644,13 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
                         
             grid.addWidget(self.cBox, 8, 3)
             
-            self.lblprof = QLabel('Totaaluren\n')
+            self.lblprof = QLabel('Totalen: Werkelijk / Begroot\nUren')
             self.lblprof.setFont(QFont("Arial", 10))
+            self.lblprof.setFixedWidth(200)
+            self.lblprof.setAlignment(Qt.AlignRight)
             grid.addWidget(self.lblprof, 9, 1, 1, 1, Qt.AlignRight | Qt.AlignTop)
             grid.addWidget(self.urentotEdit, 9, 2, 1, 1, Qt.AlignRight)
+            grid.addWidget(self.urenbegrEdit, 9, 3, 1, 1)
             
             lbl4 = QLabel('Urenmutatie')
             lbl4.setFont(QFont("Arial", 10))
@@ -659,7 +687,9 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
             infoBtn.setFixedWidth(100)
             infoBtn.setStyleSheet("color: black; background-color: gainsboro") 
             
-            grid.addWidget(QLabel('\u00A9 2017 all rights reserved - dj.jansen@casema.nl'), 14, 1, 1, 4, Qt.AlignCenter)
+            rightslbl = QLabel('\u00A9 2017 all rights reserved - dj.jansen@casema.nl')
+            rightslbl.setFont(QFont("Arial", 10))
+            grid.addWidget(rightslbl, 14, 1, 1, 4, Qt.AlignCenter)
             
             self.setLayout(grid)
             self.setGeometry(600, 200, 150, 100)
