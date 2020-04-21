@@ -507,7 +507,7 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
         def __init__(self):
             super(Widget,self).__init__()
             
-            self.setWindowTitle("Uren invoeren externe werken -lonen")
+            self.setWindowTitle("Uren invoeren externe werken - lonen")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                                 Qt.WindowMinMaxButtonsHint)
@@ -611,7 +611,7 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
             self.boekdatumEdit.textChanged.connect(boekdatumChanged)
             
             grid = QGridLayout()
-            grid.setSpacing(10)
+            grid.setSpacing(20)
             
             lbl = QLabel()
             pixmap = QPixmap('./images/logos/verbinding.jpg')
@@ -695,4 +695,4 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
             self.setGeometry(600, 200, 150, 100)
                 
     window = Widget()
-    window.exec_()     
+    window.exec_()  
