@@ -205,6 +205,7 @@ def urenBoeking(self, m_email):
         maccountnr = int(maccountnr)
     else:
        self.urenEdit.setText('0')
+       self.lblt.setStyleSheet("font: bold; color: red")
        self.lblt.setText('Persoon niet in deze arbeidspool!')
        self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
        return('', mwerknr, mboekd, m_email)
@@ -212,6 +213,7 @@ def urenBoeking(self, m_email):
         mwerknr = int(mwerknr)
     else:
        self.urenEdit.setText('0')
+       self.lblt.setStyleSheet("font: bold; color: red")
        self.lblt.setText('Dit is geen geldig werkordernummer!')
        self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
        return(maccountnr, '', mboekd, m_email)
@@ -247,6 +249,7 @@ def urenBoeking(self, m_email):
     
     if rpwerk[2] == 'H':
         self.urenEdit.setText('0')
+        self.lblt.setStyleSheet("font: bold; color: red")
         self.lblt.setText('Werk is gereed en afgemeld!')
         self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
         return(maccountnr, mwerknr, mboekd, m_email)
@@ -290,6 +293,7 @@ def urenBoeking(self, m_email):
         moverzuim = mboekuren  
     else:
         self.urenEdit.setText('0')
+        self.lblt.setStyleSheet("font: bold;color: red")
         self.lblt.setText('Geen uren ingevoerd!')
         self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
         return(maccountnr, mwerknr, mboekd, m_email)
@@ -358,6 +362,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Zagen'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 55 and wrkgr < 59 and msoort < 5:   
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -374,6 +379,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Schaven'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 58 and wrkgr < 62 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -390,6 +396,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Steken'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 61 and wrkgr < 65 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -406,6 +413,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Boren'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 64 and wrkgr < 68 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -422,6 +430,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Frezen'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 67 and wrkgr < 71 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -438,6 +447,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Draaien klein'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 70 and wrkgr < 74 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -454,6 +464,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Draaien groot'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 73 and wrkgr < 77 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -470,6 +481,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Tappen'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 76 and wrkgr < 80 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -486,6 +498,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Nubé draaien'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 79 and wrkgr < 83 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -502,6 +515,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Nubé bewerken'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 72 and wrkgr < 86 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -518,6 +532,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Knippen'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 75 and wrkgr < 89 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -534,6 +549,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Kanten'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 88 and wrkgr < 92 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -550,6 +566,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Stanzen'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 91 and wrkgr < 95 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -566,6 +583,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Lassen co2'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 94 and wrkgr < 98 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -582,6 +600,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Lassen hand'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 97 and wrkgr < 101 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -598,6 +617,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Verpakken'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 100 and wrkgr < 104 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -614,6 +634,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Verzinken'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 103 and wrkgr < 107 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -630,6 +651,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Moffelen'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 106 and wrkgr < 110 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -646,6 +668,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Schilderen'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 109 and wrkgr < 113 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -662,6 +685,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Spuiten'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 112 and wrkgr < 116 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -678,6 +702,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Ponsen'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 115 and wrkgr < 119 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -694,6 +719,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Persen'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 118 and wrkgr < 122 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -710,6 +736,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Gritstralen'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     elif wrkgr > 121 and wrkgr < 125 and msoort < 5:
         stmt = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr).\
@@ -726,6 +753,7 @@ def urenBoeking(self, m_email):
         lblptext = 'Totalen: Werkelijk / Begroot\nUren Montage'
         lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
         self.lblprof.setText(lblptext)
+        self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
     else:
         msaldo = ''
@@ -735,41 +763,49 @@ def urenBoeking(self, m_email):
             rpsal = con.execute(selsal).first()
             msaldo = str(rpsal[3])
             lbltext = mboekuren+' Verlofuren ingevoerd, Saldo = '+msaldo+' uren.'
-            lblptext = 'Totalen\n'
+            lblptext = '\n'
+            self.lblt.setStyleSheet("color: navy")
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         elif msoort == 6 and wrkgr > 52:
             lbltext = mboekuren+' Extra verlofuren ingevoerd'
-            lblptext = 'Totalen\n'
+            lblptext = '\n'
+            self.lblt.setStyleSheet("color: navy")
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         elif msoort == 7 and wrkgr > 52:
             lbltext = mboekuren+' Uren ziekte ingevoerd'
-            lblptext = 'Totalen\n'
+            lblptext = '\n'
+            self.lblt.setStyleSheet("color: navy")
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         elif msoort == 8 and wrkgr > 52:
             lbltext = mboekuren+' Uren feestdagen ingevoerd'
-            lblptext = 'Totalen\n'
+            lblptext = '\n'
+            self.lblt.setStyleSheet("color: navy")
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         elif msoort == 9 and wrkgr > 52:
             lbltext = mboekuren+' Uren dokterbezoek ingevoerd'
-            lblptext = 'Totalen\n'
+            lblptext = '\n'
+            self.lblt.setStyleSheet("color: navy")
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         elif msoort == 10 and wrkgr > 52:
             lbltext = mboekuren+' Uren geoorloofd verzuim ingevoerd'
-            lblptext = 'Totalen\n'
+            lblptext = '\n'
+            self.lblt.setStyleSheet("color: navy")
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         elif msoort == 11 and wrkgr > 52:
             lbltext = mboekuren+' Uren ongeoorloofd verzuim ingevoerd'
-            lblptext = 'Totalen\n'
+            lblptext = '\n'
+            self.lblt.setStyleSheet("color: navy")
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         else:
             self.urenEdit.setText('0')
+            self.lblt.setStyleSheet("font: bold;color: red")
             self.lblt.setText('Persoon niet in deze arbeidspool!')
             self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
             return(maccountnr, mwerknr, mboekd, m_email) 
@@ -900,6 +936,7 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
             grid.addWidget(logo , 0, 3, 1, 1, Qt.AlignRight)       
 
             self.lblt = QLabel('Muteren uren (werken - lonen) niet cumulatief')
+            self.lblt.setStyleSheet("color: black")
             self.lblt.setFont(QFont("Arial", 10))
             grid.addWidget(self.lblt , 12, 0, 1, 4, Qt.AlignCenter)
             
