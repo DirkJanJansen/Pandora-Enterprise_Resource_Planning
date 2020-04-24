@@ -2,8 +2,6 @@ I created a Relational Database project in Python3 with PyQt5 and SQLAlchemy Cor
 The application is developed for educational purposes and is an example of what can be achieved with Python
 in relation with PyQt5 and PostgreSQL.
 
-If you likes the program, rate it with a star!!!
-
 The Database is partially filled with random values.
 
 With the user instructions I will explain which values should be used for testing with good examples.
