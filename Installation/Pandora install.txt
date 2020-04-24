@@ -4,7 +4,7 @@ in relation with PyQt5 and PostgreSQL.
 
 The Database is partially filled with random values.
 
-With the user instructions I will explain which values should be used for testing with good examples.
+With the user instructions I will explain which values should be used for testing with examples.
 The software is licensed under conditions from GNU GPL v3, license is included.
 
 The development and testing is done in Windows 10.
