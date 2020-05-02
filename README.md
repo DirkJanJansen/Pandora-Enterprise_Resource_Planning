@@ -1,6 +1,4 @@
 # Pandora
-
- ![Pandora Basket Screenshot] (https://github.com/DirkJanJansen/Pandora/tree/master/Installation/Screenshots/Change-Basket.png "Pandora Basket Screenshot")
  
  ERP Application in PyQt5 and PostgreSQL relational database system.
   
@@ -20,6 +18,3 @@
  Link to Linux installation: https://github.com/DirkJanJansen/Pandora/blob/master/Installation/LINUX%20install.txt
  
  For instructions, installation and several screenshots see Installation directory.
- 
- 
- 
