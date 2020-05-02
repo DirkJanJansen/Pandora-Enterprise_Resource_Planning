@@ -1,5 +1,5 @@
 I created a Relational Database project in Python3 with PyQt5 and SQLAlchemy Core with a postgreSQL database.
-The application is developed for for the community and is an example of database integration with Python
+The application is open source and is witten as an example of database integration with Python.
 
 The Database is partially filled with random values.
 
