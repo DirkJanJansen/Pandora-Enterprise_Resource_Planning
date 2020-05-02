@@ -1,4 +1,7 @@
 # Pandora
+
+![Pandora Basket Screenshot](https://github.com/DirkJanJansen/Pandora/Installation/Screenshots/Change-Basket.png "Pandora Basket Screenshot")
+
  ERP Application in PyQt5 and PostgreSQL relational database system.
   
  Python3 powered.
