@@ -1,6 +1,6 @@
 # Pandora
 
- ![Pandora Basket Screenshot] https://raw.githubusercontent.com/DirkJanJansen/Pandora/master/Installation/Screenshots/Change-Basket.png "Pandora Basket Screenshot")
+![Pandora Basket Screenshot] ./master/Installation/Screenshots/Change-Basket.png "Pandora Basket Screenshot")
 
  ERP Application in PyQt5 and PostgreSQL relational database system.
   
