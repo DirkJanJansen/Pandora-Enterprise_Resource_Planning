@@ -1,4 +1,4 @@
 set path = "C:\ProgramData\Python\"
-D:
+C:
 cd "\Pandora\"
 "C:\ProgramData\Python\pythonw.exe" "C:\Programdata\Pandora\pandora.py"
