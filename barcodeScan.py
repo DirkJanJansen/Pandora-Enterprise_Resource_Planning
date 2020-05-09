@@ -469,7 +469,8 @@ def barcodeScan(m_email, mret):
             self.view.setStyleSheet('color: black; background-color: #F8F7EE')  
             self.mlist = [   'Artikelnr       Omschrijving\nAantal       Prijs  Subtotaal       BTW\n\n']
             self.qtailtext = 'Totalen              '
-            self.qtailEdit = QLineEdit(self.qtailtext)
+            self.qtailEdit = QLineEdit()
+            self.qtailEdit.setText(self.qtailtext)
             self.qtailEdit.setFont(QFont("Arial", 12))
             self.qtailEdit.setStyleSheet('color: black; background-color: #F8F7EE') 
             self.qtailEdit.setDisabled(True)
