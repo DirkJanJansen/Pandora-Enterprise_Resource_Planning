@@ -282,7 +282,7 @@ def nextClient(self):
         self.mbtw = 0
         self.mlist = ['Artikelnr       Omschrijving\nAantal       Prijs  Subtotaal       BTW\n\n']
         self.view.setText(self.mlist[0])
-        self.qtailtext = 'Totaal inclusief BTW '
+        self.qtailtext = 'Totaal inclusief BTW '+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mbtw)+' BTW'
         self.qtailEdit.setText(self.qtailtext)
     else:
         updpar = update(params).where(params.c.paramID == 103).values(lock = False)
@@ -470,15 +470,15 @@ def barcodeScan(m_email, mret):
             self.view.setDisabled(True)
             self.view.setStyleSheet('color: black; background-color: #F8F7EE')  
             self.mlist = ['Artikelnr       Omschrijving\nAantal       Prijs  Subtotaal       BTW\n\n']
-            self.qtailtext = 'Totaal inclusief BTW '
+            self.mtotaal = 0
+            self.mbtw = 0
             self.qtailEdit = QLineEdit()
-            self.qtailEdit.setText(self.qtailtext)
             self.qtailEdit.setFont(QFont("Arial", 12))
             self.qtailEdit.setStyleSheet('color: black; background-color: #F8F7EE') 
             self.qtailEdit.setDisabled(True)
             self.qtailEdit.setFixedWidth(550)
-            self.mtotaal = 0
-            self.mbtw = 0
+            self.qtailtext = 'Totaal inclusief BTW '+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mbtw)+' BTW'
+            self.qtailEdit.setText(self.qtailtext)
             self.view.setText(self.mlist[0])
             self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
             self.view.setFont(QFont("Arial", 12))
