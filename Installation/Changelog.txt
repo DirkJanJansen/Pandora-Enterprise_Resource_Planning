@@ -346,4 +346,5 @@ From 2020-01-10 updates and changes are described on this page
 2020-04-21 urenMutaties.py fonts and colors error-conditions and absent-conditions notifications changed.
 2020-04-21 urenImutaties.py fonts and colors error-conditions and absent-conditions notifications changed.
 2020-05-09 barcodeScan.py - in Display added line totals and totals-VAT to pay.
-           
+2020-05-09 Documentation Barcodescanning.pdf changed due to former change barcodeScan.py          
+
