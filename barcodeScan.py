@@ -280,7 +280,7 @@ def nextClient(self):
         con.execute(updpar)
         self.mlist = ['Artikelnr       Omschrijving\nAantal       Prijs  Subtotaal       BTW\n\n']
         self.view.setText(self.mlist[0])
-        self.qtailtext = 'Totalen              '
+        self.qtailtext = 'Totaal inclusief BTW '
         self.qtailEdit.setText(self.qtailtext)
     else:
         updpar = update(params).where(params.c.paramID == 103).values(lock = False)
@@ -394,7 +394,7 @@ def set_barcodenr(self):
              .format(float(mprijs)*float(maantal)*mbtw)+'\n')
             self.mtotaal = self.mtotaal+float(mprijs)*float(maantal)
             self.mbtw = self.mbtw+float(mprijs)*float(maantal)*mbtw
-            self.qtailtext = 'Totalen              '+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mbtw)
+            self.qtailtext = 'Totaal inclusief BTW '+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mbtw)+' BTW'
             self.qtailEdit.setText(self.qtailtext)
             if len(self.mlist) == 9:
                 del(self.mlist[1])
@@ -468,7 +468,7 @@ def barcodeScan(m_email, mret):
             self.view.setDisabled(True)
             self.view.setStyleSheet('color: black; background-color: #F8F7EE')  
             self.mlist = [   'Artikelnr       Omschrijving\nAantal       Prijs  Subtotaal       BTW\n\n']
-            self.qtailtext = 'Totalen              '
+            self.qtailtext = 'Totaal inclusief BTW '
             self.qtailEdit = QLineEdit()
             self.qtailEdit.setText(self.qtailtext)
             self.qtailEdit.setFont(QFont("Arial", 12))
