@@ -278,6 +278,8 @@ def nextClient(self):
         mbonnr += 1
         updpar = update(params).where(params.c.paramID == 103).values(tarief = mbonnr, lock = False)
         con.execute(updpar)
+        self.mtotaal = 0
+        self.mbtw = 0
         self.mlist = ['Artikelnr       Omschrijving\nAantal       Prijs  Subtotaal       BTW\n\n']
         self.view.setText(self.mlist[0])
         self.qtailtext = 'Totaal inclusief BTW '
