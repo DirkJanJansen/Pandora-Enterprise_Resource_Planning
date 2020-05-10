@@ -394,8 +394,8 @@ def set_barcodenr(self):
              .format(int(maantal))+'{:>12.2f}'.format(mprijs)+'{:>12.2f}'\
              .format(float(mprijs)*float(maantal))+'{:>12.2f}'\
              .format(float(mprijs)*float(maantal)*mbtw)+'\n')
-            self.mtotaal = self.mtotaal+float(mprijs)*float(maantal)
-            self.mbtw = self.mbtw+float(mprijs)*float(maantal)*mbtw
+            self.mtotaal += float(mprijs)*float(maantal)
+            self.mbtw += float(mprijs)*float(maantal)*mbtw
             self.qtailtext = 'Totaal inclusief BTW '+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mbtw)+' BTW'
             self.qtailEdit.setText(self.qtailtext)
             if len(self.mlist) == 9:
@@ -470,6 +470,12 @@ def barcodeScan(m_email, mret):
             self.view.setDisabled(True)
             self.view.setStyleSheet('color: black; background-color: #F8F7EE')  
             self.mlist = ['Artikelnr       Omschrijving\nAantal       Prijs  Subtotaal       BTW\n\n']
+            self.view.setText(self.mlist[0])
+            self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+            self.view.setFont(QFont("Arial", 12))
+            self.view.setFocusPolicy(Qt.NoFocus)
+            self.view.setFixedSize(550, 420)  
+            
             self.mtotaal = 0
             self.mbtw = 0
             self.qtailEdit = QLineEdit()
@@ -479,11 +485,6 @@ def barcodeScan(m_email, mret):
             self.qtailEdit.setFixedWidth(550)
             self.qtailtext = 'Totaal inclusief BTW '+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mbtw)+' BTW'
             self.qtailEdit.setText(self.qtailtext)
-            self.view.setText(self.mlist[0])
-            self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-            self.view.setFont(QFont("Arial", 12))
-            self.view.setFocusPolicy(Qt.NoFocus)
-            self.view.setFixedSize(550, 420)  
                         
             grid.addWidget(self.view, 2 ,0, 1, 3, Qt.AlignCenter)
             grid.addWidget(self.qtailEdit, 3, 0, 1, 3, Qt.AlignCenter)
