@@ -25,6 +25,10 @@ def browseWindow(self, m_email):
         for x in range(1, len(self.mlist)):
             newtext += (self.mlist[x])
         self.view.setText(newtext)
+        #set list on top
+        self.view.verticalScrollBar().setValue(0) 
+        #set list on bottom
+        #self.view.verticalScrollBar().setValue(self.view.verticalScrollBar().maximum()) 
     elif len(self.mlist) > 8:
         self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff) 
         newtext = self.mlist[0]
@@ -286,6 +290,7 @@ def nextClient(self):
         self.nextBtn.setStyleSheet("font: 12pt Arial; color: grey;\
                                    background-color: gainsboro")
         self.browseBtn.setChecked(False)
+        self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff) 
         mbonnr += 1
         updpar = update(params).where(params.c.paramID == 103).values(tarief = mbonnr, lock = False)
         con.execute(updpar)
