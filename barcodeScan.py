@@ -99,6 +99,7 @@ def printing():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Information)
+    msg.setFont(QFont("Arial", 10))
     msg.setText('Ogenblik afdrukken wordt gestart!')
     msg.setWindowTitle('Webverkooporders printen')
     msg.exec_()
@@ -118,7 +119,7 @@ def printBon(self):
     msgBox.setWindowTitle("Printen orderbon")
     msgBox.setIcon(QMessageBox.Information)
     msgBox.setFont(QFont("Arial", 10))
-    msgBox.setText("Wilt de orderbon printen?");
+    msgBox.setText("Wilt U de orderbon printen?");
     msgBox.setStandardButtons(QMessageBox.Yes)
     msgBox.addButton(QMessageBox.No)
     msgBox.setStyleSheet("color: black;  background-color: gainsboro")
@@ -149,8 +150,6 @@ def printBon(self):
         con.execute(delbal)
         selb = select([balieverkoop]).where(balieverkoop.c.bonnummer == mbonnr).order_by(balieverkoop.c.barcode)
         rpb = con.execute(selb)
-        mcumtot = 0
-        mcumbtw = 0
         mblad = 0
         rgl = 0
         if platform == 'win32':
@@ -177,13 +176,10 @@ def printBon(self):
                      .format(int(maantal))+'{:>12.2f}'.format(float(mprijs))+'{:>12.2f}'\
                      .format(float(mtotaal))+'{:>12.2f}'\
                      .format(float(mtotbtw))+'\n')
-                
-            mcumtot = mcumtot+mtotaal
-            mcumbtw = mcumbtw+mtotbtw
-            
+             
         tail=\
         ('==============================================================================================\n'+
-        'Totaal bedrag af te rekenen inclusief BTW  en bedrag BTW 21%          '+'{:>12.2f}'.format(mcumtot)+'{:>12.2f}'.format(mcumbtw)+' \n'+
+        'Totaal bedrag af te rekenen inclusief BTW  en bedrag BTW 21%          '+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mbtw)+' \n'+
         '==============================================================================================\n')
         if rgl > 0:
             open(fbarc,'a').write(tail) 
@@ -238,16 +234,14 @@ def nextClient(self):
     selb = select([balieverkoop]).where(balieverkoop.c.bonnummer == mbonnr)\
                       .order_by(balieverkoop.c.barcode)
     rpb = con.execute(selb)
-    mtotbtw = 0  
     for row in rpb:
-        mtotbtw = mtotbtw + row[8]
         mmutnr = con.execute(select([func.max(artikelmutaties.c.mutatieID, type_=Integer)])).scalar()
         mmutnr += 1
         insmut = insert(artikelmutaties).values(mutatieID = mmutnr, artikelID = row[2],\
                 hoeveelheid = row[5], boekdatum = mboekd, baliebonID = mbonnr,\
                 tot_mag_prijs = row[7], btw_hoog = row[8])
         con.execute(insmut)
-    if mtotbtw != int(0):
+    if self.mbtw != int(0):
         metadata = MetaData() 
         afdrachten = Table('afdrachten', metadata,
             Column('afdrachtID', Integer(), primary_key=True),
@@ -265,7 +259,7 @@ def nextClient(self):
                       type_=Integer).label('mafdrnr')])).scalar())
         mafdrnr += 1
         insdr = insert(afdrachten).values(afdrachtID = mafdrnr, boekdatum = mboekd,\
-             soort = 'BTW afdracht 21%', bedrag = mtotbtw, instantie = 'Belastingdienst',\
+             soort = 'BTW afdracht 21%', bedrag = self.mbtw, instantie = 'Belastingdienst',\
              ovbestelID = int(mbonnr), rekeningnummer= 'NL10 ABNA 9999999977')
         con.execute(insdr)
         self.closeBtn.setEnabled(True)
@@ -398,11 +392,15 @@ def set_barcodenr(self):
             self.mbtw += float(mprijs)*float(maantal)*mbtw
             self.qtailtext = 'Totaal inclusief BTW '+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mbtw)+' BTW'
             self.qtailEdit.setText(self.qtailtext)
-            if len(self.mlist) == 9:
-                del(self.mlist[1])
-            newtext = ''
-            for x in range(0,len(self.mlist)):
-                newtext += (self.mlist[x])
+ 
+            if len(self.mlist) < 9:
+                newtext = ''
+                for x in range(0,len(self.mlist)):
+                    newtext += (self.mlist[x])
+            else:
+                newtext = self.mlist[0]
+                for x in range(-7, 0):
+                    newtext += (self.mlist[x])  
             self.view.setText(newtext)
         else:
             self.albl.setText('Foutmelding: Artikel niet in assortiment!')
@@ -469,7 +467,7 @@ def barcodeScan(m_email, mret):
             self.view = QTextEdit()
             self.view.setDisabled(True)
             self.view.setStyleSheet('color: black; background-color: #F8F7EE')  
-            self.mlist = ['Artikelnr       Omschrijving\nAantal       Prijs  Subtotaal       BTW\n\n']
+            self.mlist = ['Artikelnr       Omschrijving\nAantal       Prijs    Subtotaal        BTW\n\n']
             self.view.setText(self.mlist[0])
             self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
             self.view.setFont(QFont("Arial", 12))
