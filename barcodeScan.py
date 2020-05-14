@@ -416,8 +416,8 @@ def set_barcodenr(self):
             self.qtailtext = 'Totaal inclusief BTW '+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mbtw)+' BTW'
             self.qtailEdit.setText(self.qtailtext)
             
-            self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff) 
             if len(self.mlist) < 9:
+                self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff) 
                 newtext = ''
                 for x in range(0,len(self.mlist)):
                     newtext += (self.mlist[x])
