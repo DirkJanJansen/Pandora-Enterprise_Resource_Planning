@@ -285,6 +285,7 @@ def nextClient(self):
         self.nextBtn.setDisabled(True)
         self.nextBtn.setStyleSheet("font: 12pt Arial; color: grey;\
                                    background-color: gainsboro")
+        self.browseBtn.setChecked(False)
         mbonnr += 1
         updpar = update(params).where(params.c.paramID == 103).values(tarief = mbonnr, lock = False)
         con.execute(updpar)
