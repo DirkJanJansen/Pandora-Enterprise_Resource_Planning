@@ -17,7 +17,23 @@ def geenGegevens():
     msg.setText('Er zijn nog geen transacties!')
     msg.setWindowTitle('Transacties')
     msg.exec_() 
-           
+    
+def browseWindow(self, m_email):
+    if self.browseBtn.isChecked() and len(self.mlist) > 8:
+        self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn) 
+        newtext = self.mlist[0]
+        for x in range(1, len(self.mlist)):
+            newtext += (self.mlist[x])
+        self.view.setText(newtext)
+    elif len(self.mlist) > 8:
+        self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff) 
+        newtext = self.mlist[0]
+        for x in range(-7, 0):
+            newtext += (self.mlist[x])
+        self.view.setText(newtext)
+    else:
+        self.browseBtn.setChecked(False)
+
 def info():
     class Widget(QDialog):
         def __init__(self, parent=None):
@@ -317,6 +333,7 @@ def checkBarcode(c):
     
 def set_barcodenr(self):
     barcodenr = self.q1Edit.text()
+    self.browseBtn.setChecked(False)
     maantal = self.qspin.value()
     self.albl.setText('')
     if len(barcodenr) == 13 and checkBarcode(barcodenr):
@@ -383,7 +400,7 @@ def set_barcodenr(self):
             updart = update(artikelen).where(artikelen.c.artikelID == rpart[0])\
                 .values(art_voorraad = artikelen.c.art_voorraad - float(maantal))
             con.execute(updart)
-                
+            
             self.mlist.append('{:<11d}'.format(martnr)+'{:<40s}'.format(momschr)+'\n'+'{:>6d}'\
              .format(int(maantal))+'{:>12.2f}'.format(mprijs)+'{:>12.2f}'\
              .format(float(mprijs)*float(maantal))+'{:>12.2f}'\
@@ -392,15 +409,17 @@ def set_barcodenr(self):
             self.mbtw += float(mprijs)*float(maantal)*mbtw
             self.qtailtext = 'Totaal inclusief BTW '+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mbtw)+' BTW'
             self.qtailEdit.setText(self.qtailtext)
- 
+            
+            self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff) 
             if len(self.mlist) < 9:
                 newtext = ''
                 for x in range(0,len(self.mlist)):
                     newtext += (self.mlist[x])
             else:
+                self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff) 
                 newtext = self.mlist[0]
                 for x in range(-7, 0):
-                    newtext += (self.mlist[x])  
+                    newtext += (self.mlist[x])
             self.view.setText(newtext)
         else:
             self.albl.setText('Foutmelding: Artikel niet in assortiment!')
@@ -465,7 +484,7 @@ def barcodeScan(m_email, mret):
             grid.addWidget(koplbl, 1, 0, 1, 3, Qt.AlignCenter)
             
             self.view = QTextEdit()
-            self.view.setDisabled(True)
+            #self.view.setDisabled(True)
             self.view.setStyleSheet('color: black; background-color: #F8F7EE')  
             self.mlist = ['Artikelnr       Omschrijving\nAantal       Prijs    Subtotaal        BTW\n\n']
             self.view.setText(self.mlist[0])
@@ -541,7 +560,17 @@ def barcodeScan(m_email, mret):
             self.closeBtn.setFocusPolicy(Qt.NoFocus)
             self.closeBtn.setFixedWidth(100)
             self.closeBtn.setStyleSheet("color: black; background-color: gainsboro")
-                                    
+                        
+            self.browseBtn = QPushButton('Bladeren')
+            self.browseBtn.setFont(QFont("Arial",12))
+            self.browseBtn.setCheckable(True)
+            self.browseBtn.clicked.connect(lambda: browseWindow(self, m_email))
+            self.browseBtn.setFocusPolicy(Qt.NoFocus)
+            self.browseBtn.setFixedWidth(100)
+            self.browseBtn.setStyleSheet("color: black; background-color: gainsboro")
+            
+            grid.addWidget(self.browseBtn, 9, 2, 1, 1, Qt.AlignRight)
+                                   
             infoBtn = QPushButton('Informatie')
             infoBtn.clicked.connect(lambda: info())
     
