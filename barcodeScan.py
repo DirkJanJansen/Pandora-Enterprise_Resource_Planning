@@ -444,7 +444,7 @@ def barcodeScan(m_email, mret):
             self.qspin.setFont(QFont('Arial', 12))
             self.qspin.setStyleSheet("color: black;  background-color: #F8F7EE")
             self.qspin.setFixedSize(60, 30)
-            
+             
             def valuechange():
                 self.qspin.setValue(self.qspin.value())
             self.qspin.valueChanged.connect(valuechange)
@@ -480,7 +480,7 @@ def barcodeScan(m_email, mret):
             self.qtailEdit.setStyleSheet('color: black; background-color: #F8F7EE') 
             self.qtailEdit.setDisabled(True)
             self.qtailEdit.setFixedWidth(560)
-            self.qtailtext = 'Totaal inclusief BTW '+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mbtw)+' BTW'
+            self.qtailtext = 'Totaal incl. BTW'+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mbtw)+' BTW'
             self.qtailEdit.setText(self.qtailtext)
             
             grid .addWidget(mkop, 2, 0, 1, 3, Qt.AlignCenter)           
