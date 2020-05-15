@@ -352,4 +352,5 @@ From 2020-01-10 updates and changes are described on this page
            or less then 8 items scrollable.
 2020-05-15 barcodeScan.py default full browse display integrated, browse list tail always visible while scanning.
            backbrowsing permanent possible by scrollbar.
+2020-05-15 screenshot BarcopdeScan.png changed due to new heading and scrolling.
 
