@@ -350,3 +350,6 @@ From 2020-01-10 updates and changes are described on this page
 2020-05-14 barcodeScan.py displaylist iterating changed, now complete list keeps intact while scrolling.  
 2020-05-14 barcodeScan.py Checkable button added for browsing total displaylist, unchecked if scanning continued,
            or less then 8 items scrollable.
+2020-05-15 barcodeScan.py displaylist default full browse display integrated, browse list tail always visible.
+           backbrowsing permanent possible by scrollbar.
+
