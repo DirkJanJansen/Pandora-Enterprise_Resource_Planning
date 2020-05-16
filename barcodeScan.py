@@ -460,7 +460,7 @@ def barcodeScan(m_email, mret):
             mkoptext = 'Artikelnr       Omschrijving\nAantal       Prijs    Subtotaal        BTW\n\n'
             mkop.setText(mkoptext)
             mkop.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-            mkop.setDisabled(True)
+            mkop.setReadOnly(True)
             mkop.setStyleSheet("font: 12pt 'Arial'; color: black; background-color: #F8F7EE")  
             mkop.setFocusPolicy(Qt.NoFocus)
             mkop.setFixedSize(560, 55)  
@@ -478,8 +478,9 @@ def barcodeScan(m_email, mret):
             self.qtailEdit = QLineEdit()
             self.qtailEdit.setFont(QFont("Arial", 12))
             self.qtailEdit.setStyleSheet('color: black; background-color: #F8F7EE') 
-            self.qtailEdit.setDisabled(True)
+            self.qtailEdit.setReadOnly(True)
             self.qtailEdit.setFixedWidth(560)
+            self.qtailEdit.setFocusPolicy(Qt.NoFocus)
             self.qtailtext = 'Totaal incl. BTW'+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mbtw)+' BTW'
             self.qtailEdit.setText(self.qtailtext)
             
