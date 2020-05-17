@@ -267,8 +267,7 @@ def nextClient(self):
         self.printBtn.setDisabled(True)
         self.printBtn.setStyleSheet("color: grey; background-color: gainsboro")
         self.nextBtn.setDisabled(True)
-        self.nextBtn.setStyleSheet("font: 12pt Arial; color: grey;\
-                                   background-color: gainsboro")
+        self.nextBtn.setStyleSheet("color: grey; background-color: gainsboro")
         mbonnr += 1
         updpar = update(params).where(params.c.paramID == 103).values(tarief = mbonnr, lock = False)
         con.execute(updpar)
@@ -559,8 +558,7 @@ def barcodeScan(m_email, mret):
             self.nextBtn.setFont(QFont("Arial",12))
             self.nextBtn.setFocusPolicy(Qt.NoFocus)
             self.nextBtn.setFixedSize(160, 60)            
-            self.nextBtn.setStyleSheet("font: 12pt Arial;  color:black;\
-              background-color: gainsboro")
+            self.nextBtn.setStyleSheet("color:black; background-color: gainsboro")
             
             kassa = QLabel()
             pixmap = QPixmap('./images/logos/kassa.png')
