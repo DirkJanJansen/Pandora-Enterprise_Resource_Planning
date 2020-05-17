@@ -353,4 +353,5 @@ From 2020-01-10 updates and changes are described on this page
 2020-05-15 barcodeScan.py default full browse display integrated, browse list tail always visible while scanning.
            backbrowsing permanent possible by scrollbar.
 2020-05-15 screenshot BarcodeScan.png changed due to new heading and scrolling.
+2020-05-17 barcodeScan.py setDisabled changed by setDisabled and mkoptext removed 2 newlines.
 
