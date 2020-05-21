@@ -1,20 +1,20 @@
 @echo off
-echo Restore database bisystem via bisystem.backup
+echo Restore database bisystem by bisystem.backup
 
 set PGPASSWORD=postgres45
 echo.
 echo.
 echo.
-echo Verwijder eerst het bestaande bisystem met pgdrop-bisystem.bat
-echo Ctrl+C om te annuleren!
+echo First remove database with pgdrop-bisystem.bat
+echo Ctrl+C to cancel
 echo.
 echo.
-echo U gaat nu de database bisystem.backup terugplaatsen
-echo Druk een toets voor terugplaatsen database bisystem ........
+echo You are going to restore the database now!
+echo Press any key to restore database bisystem ........
 pause > nul
 echo.
 echo.
-echo Restore database bisystem via bisystem.backup
+echo Restore database bisystem by bisystem.backup
 echo.
 echo.
 echo.
