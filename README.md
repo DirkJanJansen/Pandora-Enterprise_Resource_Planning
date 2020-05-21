@@ -15,7 +15,7 @@
  
  Link to screenshots: https://github.com/DirkJanJansen/Pandora/tree/master/Installation/Screenshots
  
- Link to documentation: https://github.com/DirkJanJansen/Pandora/documentation
+ Link to documentation: https://github.com/DirkJanJansen/Pandora/tree/master/documentation
  
  Link to installation: https://github.com/DirkJanJansen/Pandora/blob/master/Installation/Pandora%20install.txt
  
