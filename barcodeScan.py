@@ -420,6 +420,7 @@ def barcodeScan(m_email, mret):
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                                 Qt.WindowMinMaxButtonsHint)
+            self.setWindowFlag(Qt.WindowCloseButtonHint, False)
             
             self.setStyleSheet("background-color: #D9E1DF")
             self.setFont(QFont('Arial', 10))
