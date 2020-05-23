@@ -184,7 +184,7 @@ def inlog():
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
      
             self.setFont(QFont('Arial', 10))
-            self.setStyleSheet("background-color: #D9E1DF")  
+            self.setStyleSheet("background-color: #D9E1DF") 
             grid = QGridLayout()
             grid.setSpacing(20)
             
@@ -676,7 +676,7 @@ def hoofdMenu(m_email):
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 13, 1, 1 , 1, Qt.AlignRight)
-            applyBtn.setFont(QFont("Times",10))
+            applyBtn.setFont(QFont("Arial",10))
             applyBtn.setFixedWidth(130)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
@@ -684,7 +684,7 @@ def hoofdMenu(m_email):
             cancelBtn.clicked.connect(lambda: closeIt(self))
     
             grid.addWidget(cancelBtn, 13, 1)
-            cancelBtn.setFont(QFont("Times",10))
+            cancelBtn.setFont(QFont("Arial",10))
             cancelBtn.setFixedWidth(130)
             cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
                    

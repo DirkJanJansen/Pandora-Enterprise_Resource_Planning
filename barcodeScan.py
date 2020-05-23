@@ -419,7 +419,7 @@ def barcodeScan(m_email, mret):
             self.setWindowTitle("Balieverkoop")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
-                                Qt.WindowMinMaxButtonsHint)
+                                Qt.WindowMinimizeButtonHint) #Qt.WindowMinMaxButtonsHint
             self.setWindowFlag(Qt.WindowCloseButtonHint, False)
             
             self.setStyleSheet("background-color: #D9E1DF")
