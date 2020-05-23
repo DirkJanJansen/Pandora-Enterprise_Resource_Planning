@@ -356,4 +356,6 @@ From 2020-01-10 updates and changes are described on this page
 2020-05-17 barcodeScan.py setDisabled changed by setReadOnly and mkoptext removed 2 newlines.
 2020-05-21 Documentation Statement.pdf added origin database bisystem.
 2020-05-23 barcodeScan.py disabled windows close to force closing by nexBtn or closeBtn, to force necessary datastores.
+2020-05-23 barcodeScan.py windowFlag only set for minimize, to avoid unpredictable results by maximizing.
+2020-05-23 login.py uitloggen (Logout) and kiezen (Choose) button fonts changed to Arial in hoofdMenu window.
 
