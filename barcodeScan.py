@@ -275,7 +275,7 @@ def nextClient(self):
         self.mbtw = 0
         self.mlist = []
         self.view.setText('')
-        self.qtailtext = 'Totaal incl. BTW'+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mbtw)+' BTW'
+        self.qtailtext = 'Totaal inclusief. BTW'+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mbtw)+' BTW'
         self.qtailEdit.setText(self.qtailtext)
     else:
         updpar = update(params).where(params.c.paramID == 103).values(lock = False)
