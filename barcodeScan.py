@@ -383,13 +383,13 @@ def set_barcodenr(self):
                 .values(art_voorraad = artikelen.c.art_voorraad - float(maantal))
             con.execute(updart)
             
-            self.mlist.append('{:<11d}'.format(martnr)+'{:<40s}'.format(momschr)+'\n'+'{:>6d}'\
-             .format(int(maantal))+'{:>12.2f}'.format(mprijs)+'{:>12.2f}'\
-             .format(float(mprijs)*float(maantal))+'{:>12.2f}'\
+            self.mlist.append('{:<11d}'.format(martnr)+'{:<40s}'.format(momschr)+'\n'+'{:\u2000>6d}'\
+             .format(int(maantal))+'{:\u2000>12.2f}'.format(mprijs)+'{:\u2000>12.2f}'\
+             .format(float(mprijs)*float(maantal))+'{:\u2000>12.2f}'\
              .format(float(mprijs)*float(maantal)*mbtw))
             self.mtotaal += float(mprijs)*float(maantal)
             self.mbtw += float(mprijs)*float(maantal)*mbtw
-            self.qtailtext = 'Totaal incl. BTW'+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mbtw)+' BTW'
+            self.qtailtext = 'Totaal inclusief. BTW'+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mbtw)+' BTW'
             self.qtailEdit.setText(self.qtailtext)
             
             self.view.append(self.mlist[-1])
@@ -457,7 +457,7 @@ def barcodeScan(m_email, mret):
             grid.addWidget(koplbl, 1, 0, 1, 3, Qt.AlignCenter)
             
             mkop = QTextEdit()
-            mkoptext = 'Artikelnr       Omschrijving\nAantal       Prijs    Subtotaal        BTW'
+            mkoptext = 'Artikelnr      Omschrijving\nAantal              Prijs       Subtotaal            BTW'
             mkop.setText(mkoptext)
             mkop.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
             mkop.setReadOnly(True)
@@ -481,7 +481,7 @@ def barcodeScan(m_email, mret):
             self.qtailEdit.setReadOnly(True)
             self.qtailEdit.setFixedWidth(560)
             self.qtailEdit.setFocusPolicy(Qt.NoFocus)
-            self.qtailtext = 'Totaal incl. BTW'+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mbtw)+' BTW'
+            self.qtailtext = 'Totaal inclusief. BTW'+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mbtw)+' BTW'
             self.qtailEdit.setText(self.qtailtext)
             
             grid .addWidget(mkop, 2, 0, 1, 3, Qt.AlignCenter)           
