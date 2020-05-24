@@ -359,5 +359,5 @@ From 2020-01-10 updates and changes are described on this page
 2020-05-23 barcodeScan.py windowFlag only set for minimize, to avoid unpredictable results by maximizing.
 2020-05-23 login.py uitloggen (Logout) and kiezen (Choose) button fonts changed to Arial in hoofdMenu window.
 2020-05-24 barcodeScan.py after struggling long time with aligning integers and floats with QTextEdit i found a solution
-           that solves the problem with unicode \U2000 in contrast to normal spaces, which gives unpredictable results.         
+           that solves the problem with unicode \u2000 in contrast to normal spaces, which gives unpredictable results.         
 
