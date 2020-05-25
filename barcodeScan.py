@@ -179,7 +179,7 @@ def printBon(self):
              
         tail=\
         ('==============================================================================================\n'+
-        'Totaal bedrag af te rekenen inclusief BTW  en bedrag BTW 21%          '+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mbtw)+' \n'+
+        'Totaal bedrag af te rekenen inclusief BTW  en bedrag BTW 21%          '+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mtotbtw)+' \n'+
         '==============================================================================================\n')
         if rgl > 0:
             open(fbarc,'a').write(tail) 
@@ -241,7 +241,7 @@ def nextClient(self):
                 hoeveelheid = row[5], boekdatum = mboekd, baliebonID = mbonnr,\
                 tot_mag_prijs = row[7], btw_hoog = row[8])
         con.execute(insmut)
-    if self.mbtw != int(0):
+    if self.mtotbtw != int(0):
         metadata = MetaData() 
         afdrachten = Table('afdrachten', metadata,
             Column('afdrachtID', Integer(), primary_key=True),
@@ -259,7 +259,7 @@ def nextClient(self):
                       type_=Integer).label('mafdrnr')])).scalar())
         mafdrnr += 1
         insdr = insert(afdrachten).values(afdrachtID = mafdrnr, boekdatum = mboekd,\
-             soort = 'BTW afdracht 21%', bedrag = self.mbtw, instantie = 'Belastingdienst',\
+             soort = 'BTW afdracht 21%', bedrag = self.mtotbtw, instantie = 'Belastingdienst',\
              ovbestelID = int(mbonnr), rekeningnummer= 'NL10 ABNA 9999999977')
         con.execute(insdr)
         self.closeBtn.setEnabled(True)
@@ -272,10 +272,10 @@ def nextClient(self):
         updpar = update(params).where(params.c.paramID == 103).values(tarief = mbonnr, lock = False)
         con.execute(updpar)
         self.mtotaal = 0
-        self.mbtw = 0
+        self.mtotbtw = 0
         self.mlist = []
         self.view.setText('')
-        self.qtailtext = 'Totaal inclusief BTW '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mbtw)+' BTW'
+        self.qtailtext = 'Totaal inclusief BTW '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' BTW'
         self.qtailEdit.setText(self.qtailtext)
     else:
         updpar = update(params).where(params.c.paramID == 103).values(lock = False)
@@ -388,8 +388,8 @@ def set_barcodenr(self):
              .format(float(mprijs)*float(maantal))+'{:\u2000>12.2f}'\
              .format(float(mprijs)*float(maantal)*mbtw))
             self.mtotaal += float(mprijs)*float(maantal)
-            self.mbtw += float(mprijs)*float(maantal)*mbtw
-            self.qtailtext = 'Totaal inclusief BTW '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mbtw)+' BTW'
+            self.mtotbtw += float(mprijs)*float(maantal)*mbtw
+            self.qtailtext = 'Totaal inclusief BTW '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' BTW'
             self.qtailEdit.setText(self.qtailtext)
             
             self.view.append(self.mlist[-1])
@@ -474,14 +474,14 @@ def barcodeScan(m_email, mret):
             self.view.setFixedSize(560, 345)  
             
             self.mtotaal = 0
-            self.mbtw = 0
+            self.mtotbtw = 0
             self.qtailEdit = QLineEdit()
             self.qtailEdit.setFont(QFont("Arial", 12))
             self.qtailEdit.setStyleSheet('color: black; background-color: #F8F7EE') 
             self.qtailEdit.setReadOnly(True)
             self.qtailEdit.setFixedWidth(560)
             self.qtailEdit.setFocusPolicy(Qt.NoFocus)
-            self.qtailtext = 'Totaal inclusief BTW '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mbtw)+' BTW'
+            self.qtailtext = 'Totaal inclusief BTW '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' BTW'
             self.qtailEdit.setText(self.qtailtext)
             
             grid .addWidget(mkop, 2, 0, 1, 3, Qt.AlignCenter)           
