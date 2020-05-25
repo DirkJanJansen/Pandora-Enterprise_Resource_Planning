@@ -275,7 +275,7 @@ def nextClient(self):
         self.mbtw = 0
         self.mlist = []
         self.view.setText('')
-        self.qtailtext = 'Totaal inclusief. BTW'+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mbtw)+' BTW'
+        self.qtailtext = 'Totaal inclusief BTW '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mbtw)+' BTW'
         self.qtailEdit.setText(self.qtailtext)
     else:
         updpar = update(params).where(params.c.paramID == 103).values(lock = False)
@@ -389,7 +389,7 @@ def set_barcodenr(self):
              .format(float(mprijs)*float(maantal)*mbtw))
             self.mtotaal += float(mprijs)*float(maantal)
             self.mbtw += float(mprijs)*float(maantal)*mbtw
-            self.qtailtext = 'Totaal inclusief. BTW'+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mbtw)+' BTW'
+            self.qtailtext = 'Totaal inclusief BTW '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mbtw)+' BTW'
             self.qtailEdit.setText(self.qtailtext)
             
             self.view.append(self.mlist[-1])
@@ -481,7 +481,7 @@ def barcodeScan(m_email, mret):
             self.qtailEdit.setReadOnly(True)
             self.qtailEdit.setFixedWidth(560)
             self.qtailEdit.setFocusPolicy(Qt.NoFocus)
-            self.qtailtext = 'Totaal inclusief. BTW'+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mbtw)+' BTW'
+            self.qtailtext = 'Totaal inclusief BTW '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mbtw)+' BTW'
             self.qtailEdit.setText(self.qtailtext)
             
             grid .addWidget(mkop, 2, 0, 1, 3, Qt.AlignCenter)           
