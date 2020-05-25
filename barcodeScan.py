@@ -271,11 +271,11 @@ def nextClient(self):
         mbonnr += 1
         updpar = update(params).where(params.c.paramID == 103).values(tarief = mbonnr, lock = False)
         con.execute(updpar)
-        self.mtotaal = 0
-        self.mtotbtw = 0
+        self.mtotaal = 0.00
+        self.mtotbtw = 0.00
         self.mlist = []
         self.view.setText('')
-        self.qtailtext = 'Totaal inclusief BTW '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' BTW'
+        self.qtailtext = 'Totaal incl. BTW  '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' BTW'
         self.qtailEdit.setText(self.qtailtext)
     else:
         updpar = update(params).where(params.c.paramID == 103).values(lock = False)
@@ -389,7 +389,7 @@ def set_barcodenr(self):
              .format(float(mprijs)*float(maantal)*mbtw))
             self.mtotaal += float(mprijs)*float(maantal)
             self.mtotbtw += float(mprijs)*float(maantal)*mbtw
-            self.qtailtext = 'Totaal inclusief BTW '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' BTW'
+            self.qtailtext = 'Totaal incl. BTW  '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' BTW'
             self.qtailEdit.setText(self.qtailtext)
             
             self.view.append(self.mlist[-1])
@@ -457,31 +457,32 @@ def barcodeScan(m_email, mret):
             grid.addWidget(koplbl, 1, 0, 1, 3, Qt.AlignCenter)
             
             mkop = QTextEdit()
-            mkoptext = 'Artikelnr      Omschrijving\nAantal              Prijs       Subtotaal            BTW'
+            mkoptext = 'Artikelnr Omschrijving\nAantal       Prijs   Subtotaal         BTW'
             mkop.setText(mkoptext)
             mkop.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
             mkop.setReadOnly(True)
-            mkop.setStyleSheet("font: 12pt 'Arial'; color: black; background-color: #F8F7EE")  
+            mkop.setFont(QFont("Consolas", 12, 75))
+            mkop.setStyleSheet("color: black; background-color: #F8F7EE")  
             mkop.setFocusPolicy(Qt.NoFocus)
-            mkop.setFixedSize(560, 55)  
+            mkop.setFixedSize(600, 55)  
             
             self.view = QTextEdit()
             self.view.setStyleSheet('color: black; background-color: #F8F7EE')  
             self.mlist = []
             self.view.setText('')
-            self.view.setFont(QFont("Arial", 12))
+            self.view.setFont(QFont("Consolas", 12, 75))
             self.view.setFocusPolicy(Qt.NoFocus)
-            self.view.setFixedSize(560, 345)  
+            self.view.setFixedSize(600, 335)  
             
-            self.mtotaal = 0
-            self.mtotbtw = 0
+            self.mtotaal = 0.00
+            self.mtotbtw = 0.00
             self.qtailEdit = QLineEdit()
-            self.qtailEdit.setFont(QFont("Arial", 12))
+            self.qtailEdit.setFont(QFont("Consolas", 12, 75))
             self.qtailEdit.setStyleSheet('color: black; background-color: #F8F7EE') 
             self.qtailEdit.setReadOnly(True)
-            self.qtailEdit.setFixedWidth(560)
+            self.qtailEdit.setFixedWidth(600)
             self.qtailEdit.setFocusPolicy(Qt.NoFocus)
-            self.qtailtext = 'Totaal inclusief BTW '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' BTW'
+            self.qtailtext = 'Totaal incl. BTW  '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' BTW'
             self.qtailEdit.setText(self.qtailtext)
             
             grid .addWidget(mkop, 2, 0, 1, 3, Qt.AlignCenter)           
