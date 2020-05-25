@@ -12,3 +12,7 @@ echo press  Ctrl+C to cancel
 pause > nul
 
 "C:\programData\postgres\bin\dropdb.exe"  -h localhost -p 5432 -U postgres  -w bisystem 
+echo.
+echo The database is removed
+echo Press any key to close
+pause > nul
