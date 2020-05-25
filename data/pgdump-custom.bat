@@ -6,7 +6,7 @@ echo.
 echo.
 echo.
 echo The present backup is going to be overwritten
-echo To preserve the present backup, save it in another folder !!
+echo To preserve the present backup, save it in another folder or rename it!!
 echo Press any key to backup database bisystem.
 pause > nul
 echo.
