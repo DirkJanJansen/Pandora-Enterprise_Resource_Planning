@@ -363,5 +363,7 @@ From 2020-01-10 updates and changes are described on this page
 2020-05-24 barcodeScan.png screenshot changed according alignment.   
 2020-05-25 minor changes in barcodeScan.py for clarity reasons.
 2020-05-25 added text in backup and restore scripts for safety and preserving in folder data  
-2020-05-25 barcodeScan.py QTextEdit text changed from Arial in Consolas bold, for monospace textcolums.   
+2020-05-25 barcodeScan.py QTextEdit text changed from Arial in Consolas bold, for monospace textcolums.  
+2020-05-26 LINUX install.txt found a solution for jam with barcodescanning by applying in terminal:
+           sudo modprobe usbkbd
 
