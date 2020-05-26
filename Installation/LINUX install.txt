@@ -37,6 +37,10 @@ set fonts and margins for printing (A4) with:
 lpoptions -o page-left=18 -o page-right=0 -o page-top=25 -o page-bottom=80 -o cpi=13 -o lpi=6
 Follow these settings exactly for printlists with more pages
 
+The barcode problem with stopping by the thirst scan in ubuntu is solved:
+Open terminal Ctrl+Alt+t and  apply command:
+sudo modprobe usbkbd
+
 Installing database:
 In pgadmin4 tree create a server LocalHost and a empty database:  bisystem, right click databases (login with postgres45) 
 set password in pgadmin4: postgres45 with making tree bisystem
