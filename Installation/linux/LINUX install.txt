@@ -55,7 +55,8 @@ Copy Pandora.desktop from folder LINUX in /home/postgres/.local/share/applicatio
 In Ubuntu 19.10 the laser stops with the first scan, maybe it's working with other settings,
  i did not test it!
 
-The barcode problem with stopping by the thirst scan in ubuntu is solved in terminal by:
+The barcode problem with stopping by the thirst scan in ubuntu is solved:
+Open terminal Ctrl+Alt+t and  apply command:
 sudo modprobe usbkbd
 
 
