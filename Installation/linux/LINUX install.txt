@@ -52,6 +52,13 @@ startup files in Linux:
 Copy pandora.png from folder LINUX in folder /home/postgres/.icons
 Copy Pandora.desktop from folder LINUX in /home/postgres/.local/share/applications
 
+In Ubuntu 19.10 the laser stops with the first scan, maybe it's working with other settings,
+ i did not test it!
+
+The barcode problem with stopping by the thirst scan in ubuntu is solved in terminal by:
+sudo modprobe usbkbd
+
+
 To compile all Pandora scripts in Python:
 Open Terminal Ctrl+Alt+t
 
