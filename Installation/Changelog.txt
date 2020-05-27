@@ -364,6 +364,5 @@ From 2020-01-10 updates and changes are described on this page
 2020-05-25 minor changes in barcodeScan.py for clarity reasons.
 2020-05-25 added text in backup and restore scripts for safety and preserving in folder data  
 2020-05-25 barcodeScan.py QTextEdit text changed from Arial in Consolas bold, for monospace textcolums.  
-2020-05-26 LINUX install.txt solution for stucking  barcodescanner in Ubuntu by applying command in terminal:
+2020-05-26 LINUX install.txt stuck with barcodescanner in Ubuntu is solved by applying in terminal (Ctrl+Alt+t):
            sudo modprobe usbkbd
-
