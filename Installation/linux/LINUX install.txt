@@ -3,10 +3,10 @@ Installation software:
 Python 3 is already installed in Ubuntu 19.04 and 19.10
 
 sudo apt install python3-pip
-sudo pip3 install pillow
-sudo pip3 install python-barcode
 sudo pip3 install pyqt5
 sudo pip3 install pyqtchart
+sudo pip3 install python-barcode
+sudo pip3 install pillow
 or if you want spyder as ide
 (sudo apt install python3-pip
 sudo pip3 install pillow
@@ -14,7 +14,18 @@ sudo pip3 install python-barcode
 sudo pip3 install spyder==3.3.6
 sudo pip3 install pyqtchart==5.12)
 
-sqlalchemy and psycopg2 is installed with postgreSQL-contrib
+sqlalchemy and psycopg2 is installed with postgreSQL-contrib see next lines
+
+Installation Pandora as user postgres with password postgres45:
+Copy .pgpass in /home/postgres  
+in terminal chmod 600 .pgpass
+for installation postgresql follow steps in:
+https://tecadmin.net/install-postgresql-server-on-ubuntu/
+additional set password in psql with \password   (postgres45)
+Install pgadmin4 follow steps in:
+https://tecadmin.net/install-pgadmin4-on-ubuntu/
+install pgadmin with:
+sudo apt-get install pgadmin4 (without apache)
 With the latest update from the login script capslock notification is working now with Linux.
 I found a solution for printing listings with Linux see following lines.
 
@@ -29,19 +40,17 @@ Follow these settings exactly for printlists with more pages
 The barcode problem with stopping by the thirst scan in ubuntu is solved:
 Open terminal Ctrl+Alt+t and  apply command:
 sudo modprobe usbkbd
+To make it permanent:
+in terminal Ctrl+Alt+t:
+sudo nano /etc/rc.local
+add line:
+modprobe usbkbd
+save /etc/rc.local
+in terminal:
+sudo chmod +r /etc/rc.local
 
-Installation Pandora as user postgres with password postgres45:
-Copy .pgpass in /home/postgres  
-in terminal chmod 600 .pgpass
-for installation postgresql follow steps in:
-https://tecadmin.net/install-postgresql-server-on-ubuntu/
-additional set password in psql with \password   (postgres45)
-Install pgadmin4 follow steps in:
-https://tecadmin.net/install-pgadmin4-on-ubuntu/
-install pgadmin with:
-sudo apt-get install pgadmin4 (without apache)
-
-in pgadmin4 tree create an server LocalHost an empty database bisystem, right click databases (login with postgres45) 
+Installing database:
+In pgadmin4 tree create a server LocalHost and a empty database:  bisystem, right click databases (login with postgres45) 
 set password in pgadmin4: postgres45 with making tree bisystem
 In tree pgadmin4 databases bisystem restore from bisystem.backup, right click bisystem and browse to bisystem.backup
 Copy Pandora with folder structures in /home/postgres so you get /home/postgres/Pandora
