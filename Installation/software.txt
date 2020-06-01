@@ -1,9 +1,0 @@
-Python3
-pillow
-python-barcode
-PyQt5
-PyQtChart
-psycopg2
-sqlalchemy
-pypiwin32
-postgreSQL
