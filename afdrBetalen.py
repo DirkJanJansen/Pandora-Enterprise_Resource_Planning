@@ -5,8 +5,7 @@ from PyQt5.QtWidgets import QLabel, QLineEdit, QGridLayout, QPushButton,\
 from PyQt5.QtGui import QFont, QPixmap, QIcon
 from PyQt5.QtCore import Qt, QAbstractTableModel
 from sqlalchemy import (Table, Column, Integer, String, Float, Boolean,\
-                        MetaData, create_engine)
-from sqlalchemy.sql import select, update, false
+                        MetaData, create_engine, select, update, false, and_)
 
 def refresh(keuze, zoekterm, m_email, self):
     self.close()
@@ -52,6 +51,8 @@ def zoeken(m_email):
             k0Edit.addItem('3. Gefilterd niet betaald')
             k0Edit.addItem('4. Gefilterd op instantie')
             k0Edit.addItem('5. Gefilterd op boekdatum')
+            k0Edit.addItem('6. Gefilterd op Balieverkopen')
+            k0Edit.addItem('7. Gefilterd op Online-orders')
             
             k0Edit.activated[str].connect(self.k0Changed)
     
@@ -256,6 +257,14 @@ def toonAfdrachten(keuze, zoekterm, m_email):
     elif keuze == 5:
         selafdr = select([afdrachten]).where(afdrachten.c.boekdatum.like(zoekterm+'%')).\
           order_by(afdrachten.c.boekdatum)
+        rpafdr = con.execute(selafdr)
+    elif keuze == 6:
+        selafdr = select([afdrachten]).where(and_(afdrachten.c.ovbestelID<500000000,\
+          afdrachten.c.ovbestelID>0)).order_by(afdrachten.c.ovbestelID)
+        rpafdr = con.execute(selafdr)
+    elif keuze == 7:
+        selafdr = select([afdrachten]).where(afdrachten.c.ovbestelID>499999999).\
+          order_by(afdrachten.c.ovbestelID)
         rpafdr = con.execute(selafdr)
     else:
         ongInvoer()
