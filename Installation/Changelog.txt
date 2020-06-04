@@ -369,3 +369,5 @@ From 2020-01-10 updates and changes are described on this page
 2020-05-27 login.py .center(48,' ') used for headmenuitems.
 2020-05-29 LINUX install.txt procedure added for barcodescanner enabling by startup Ubuntu.
 2020-05-30 LINUX install.txt Consolas font as requirement for barcodeScan.py added.
+2020-06-04 afdBetalen.py filterchoices extendet by countersales and online sales.
+
