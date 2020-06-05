@@ -47,7 +47,7 @@ add line:
 modprobe usbkbd
 save /etc/rc.local
 in terminal:
-sudo chmod +r /etc/rc.local
+sudo chmod +x /etc/rc.local
 
 Installing database:
 In pgadmin4 tree create a server LocalHost and a empty database:  bisystem, right click databases (login with postgres45) 
