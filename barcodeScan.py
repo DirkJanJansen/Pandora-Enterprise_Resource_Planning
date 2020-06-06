@@ -287,16 +287,14 @@ def nextClient(self):
 def geefAlarm():
     if platform == 'win32':
         import winsound
-        winsound.Beep(800,200)
-        winsound.Beep(400,400)
-        winsound.Beep(600,200)
+        winsound.Beep(2300,250)
+        winsound.Beep(2300,250)
     else:
         #sudo apt install sox
         from os import system
-        system('play -nq -t alsa synth {} sine {}'.format(0.2, 800))
-        system('play -nq -t alsa synth {} sine {}'.format(0.4, 400))
-        system('play -nq -t alsa synth {} sine {}'.format(0.2, 600))
-   
+        system('play -nq -t alsa synth {} sine {}'.format(0.25, 2300))
+        system('play -nq -t alsa synth {} sine {}'.format(0.25, 2300))
+
 def plusminChange(self):
     if self.plusminBtn.isChecked():
         self.plusminBtn.setText('-')
