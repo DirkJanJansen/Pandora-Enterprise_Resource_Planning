@@ -373,5 +373,6 @@ From 2020-01-10 updates and changes are described on this page
 2020-06-06 barcodeScan.py error sound changed by failure scanning
 2020-06-06 LINUX install.txt for sound barcodeScanning sudo apt install sox added.
 2020-05-07 Documentation Stock_and_inventory_control.pdf rewritten more logical structure for clarity reasons.
-2020-05-07 bisystem_tables changed unnecessary table definitions removed.
+2020-05-07 bissystem_tables changed unnecessary table definitions removed.
+2020-05-08 Documentation Stock_and_inventory_control added picklist (table raaplijst) procedure.
 
