@@ -1,0 +1,378 @@
+From 2020-01-10 updates and changes are described on this page
+
+2020-01-11 filePick.py is replaced by filePicklist.py due to security issues with folder traversal
+           login.py is changed for filePicklist entrances. The issues are solved with the new version.
+           Forms: from several filenames spaces removed, for Linux can't handle spaces in filenames.
+2020-01-12 filePicklist.py more listitems in combobox then 10 in Linux, adjustment with setStyleSheet.
+           filePicklist.py font, color  and sort items adjustments for QComboBox applied.
+           filepicklist.py number of copies supplied
+2020-01-13 filePicklist.py warning added if no filename is selected.
+           toonGrafieken.py colors differentiated graph lines
+           LINUX Installation.txt changed for install python3 and pip3 installation
+           for python3 is installed on newest version Unbuntu
+           bestelOrder.py added close button for changing quantity
+2020-01-14 For Linux added font Sans Serif in LINUX Install.txt
+2020-01-15 proefrun.py path adjusted for application in Linux.
+           filePicklist.py adjusted for showing only text files
+           LINUX Install.txt installation procedure tested and changed.
+2020-01-18 bestelOrder.py 325 removed mhoev.text() (mhoev is already float)
+2020-01-19 bestelOrder.py 328 333 error handling return articles changed
+2020-01-20 bestelOrder.py cosmetic changes
+2020-01-20 magvrdGrafiek.py cosmetic change
+2020-01-22 webRetouren.py for clarity reasons setReadonly changed in setDisabled
+           invoerDienstenorder.py notification of successful data entry added
+           wijzDienstenorder.py procedure change order lines/next order lines improved
+2020-01-23 invoerDienstenorder.py costs added to works adjusted for costs already partially booked with cluster Calculation
+           wijzDienstenorder.py costs added to works adjusted for costs already partially booked with cluster Calculation
+           wijzInkooporder.py procedure change order lines/next order lines improved
+           wijzArtikel.py QCombobox items eenheid and categorie changed to startup with current item +
+           items changed as items in database
+           invoerArtikelen.py QCombobox categorie items changed as items in database
+           urenMutatie.py restriction removed for exhanging employees from internal works
+           urenimutatie.py restricton removed for exchanging employees from external works
+2020-01-24 invoerArtikelen.py and wijzInkooporders.py cosmetic changes
+2020-01-24 All pictures in folder Pandora/images/logos/Betaal repaired with imagestack mogrify to avoid warning
+2020-01-25 login.py adjusted due too menu lines behaviour in Linux over 2 lines
+2020-01-25 wijzArtikel.py vertical positioning window changed
+2020-01-25 Pandora.py in main section added style Windows for Windows or style Fusion for Linux.
+2020-01-27 bestelOrder.py payform headerbuttons iDEAL and Creditcards replaced by images.
+2020-01-27 opvrLoonbetalingen.py all floats round up with maximum  2 digits floating point+font black for clarity.
+2020-01-27 opvrWerknemers.py all floats round up with maximum  2 digits floating point+font black for clarity.
+2020-01-27 opvrDienstenorders.py QTableview period , changed in period .
+2020-01-27 opvrWerken.py all floats round up with maximum  2 digits floating point+font black for clarity.
+2020-01-27 opvrInternorders.py all floats round up with maximum  2 digits floating point+font black for clarity.
+2020-01-27 opvrClusters.py all floats round up with maximum  2 digits floating point+font black for clarity.
+2020-01-27 opvrIclusters.py all floats round up with maximum  2 digits floating point+font black for clarity.
+2020-01-27 opvrCluster_artikelen.py all floats round up with maximum  2 digits floating point+font black for clarity.
+2020-01-27 opvrIcluster_artikelen.py all floats round up with maximum  2 digits floating point+font black for clarity.
+2020-01-27 opvrClustercalculatie.py all floats round up with maximum  2 digits floating point+font black for clarity.
+2020-01-27 opvrIclustercalculatie.py all floats round up with maximum  2 digits floating point+font black for clarity.
+2020-01-27 opvrArtikelmutaties.py all floats round up with maximum  2 digits floating point+font black for clarity.
+2020-01-27 opvrDienstenmutaties.py all floats round up with maximum  2 digits floating point+font black for clarity.
+2020-01-27 opvrMateriaallijsten.py all floats round up with maximum  2 digits floating point+font black for clarity.
+2020-01-27 afdrBetalen.py all floats round up with maximum  2 digits floating point+font black for clarity.
+2020-01-27 opvrArtikelen.py all floats round up with maximum  2 digits floating point+font black for clarity.
+2020-01-27 opvrInkooporders.py all floats round up with maximum  2 digits floating point+font black for clarity.
+2020-01-27 opvrReserveringen all floats round up with maximum  2 digits floating point+font black for clarity.
+2020-01-27 opvrWerknperiode.py font black for clarity
+2020-01-28 Several programs font, color adjustments for QComboBox applied.
+2020-01-28 opvrLoonbetalingen.py changed window position search window
+2020-01-28 opvrWerknemers.py floats on selection window right Aligned.
+2020-01-28 opvrWerknperiode.py floats on selection window right Aligned.
+2020-01-28 opvrWerken.py floats on selection window right Aligned.
+2020-01-28 opvrWebverkorders.py floats on selection window right Aligned.
+2020-01-28 login.py added entrance 5 for opvrReserveringen in Menu Voorraadbeheersing.
+2020-01-28 opvrReserveringen.py floats on selection window right Aligned.
+2020-01-28 opvrParams.py floats on selection window right Aligned.
+2020-01-28 opvrKlantenorders.py floats on selection window right Aligned.
+2020-01-28 opvrInternorders.py floats on selection window right Aligned.
+2020-01-28 opvrInkooporders.py floats on selection window right Aligned.
+2020-01-28 opvrIclusters.py floats on selection window right Aligned.
+2020-01-28 opvrIclustercalculatie.py floats on selection window right Aligned.
+2020-01-28 opvrIcluster_artikelen.py floats on selection window right Aligned.
+2020-01-28 opvrDienstenorders.py floats on selection window right Aligned.
+2020-01-28 opvrClusters.py floats on selection window right Aligned.
+2020-01-28 opvrClustercalculatie.py floats on selection window right Aligned.
+2020-01-28 opvrCluster_artikelen.py floats on selection window right Aligned.
+2020-01-28 opvrCluster_artikelen.py floats on selection window right Aligned.
+2020-01-28 opvrLoonbetalingen.py floats on selection window right Aligned.
+2020-01-28 wijzArtikel.py search item adjusted on item reservations
+2020-01-28 bestelOrder.py floats round up with maximum 2 digits+floats on selection window right Aligned.
+2020-01-28 opvrDienstenorders.py fonts adjusted text to black for clarity.
+2020-01-29 afdrBetalen.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 artikelAfroep.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 artikelbestellingen.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 bestelOrder.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 dienstenMutaties.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned 
+2020-01-29 invoerClustercalculatie.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned 
+2020-01-29 invoerCluster_artikelen.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 invoerIclustercalculatie.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned 
+2020-01-29 invoerIcluster_artikelen.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned 
+2020-01-29 magUitgifte.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrArtikelen.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned 
+2020-01-29 opvrArtikelmutaties.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrClustercalculatie.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrClusters.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrCluster_artikelen.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrDienstenmutaties.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrDienstenorders.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrIclustercalculatie.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrIclusters.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrIcluster_artikelen.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrInkooporders.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrInternorders.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrKlantenorders.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrLoonbetalingen.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrMateriaallijsten.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrParams.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrReserveringen.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrUrenmutaties.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrWebverkorders.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrWerken.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrWerknemers.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 printFacturen.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 proefrun.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 toonResultaten.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 uitbetalenLonen.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 webRetouren.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 wijzArtikel.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 wijzClusters.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 wijzDienstenorder.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 wijzIclusters.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 wijzigParams.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 wijzInkooporder.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 wijzInternorder.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 wijzLeverancier.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 wijzLoontabel.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 wijzVerkoopbedrijf.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 wijzWerken.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 wijzWerknemer.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 wijzWerktarief.py in QTableView floats and integers right aligned + in showselection fonts changed and floats aligned
+2020-01-29 opvrAccounts.py loonID + werknemer in QTableView added.
+2020-01-30 login.py Combobox Menu items width adjusted from 280 to 290 due too scaling in Linux
+2020-01-30 opvrReserveringen.py tableview set columns movevable with mouse so you can move colums bestelsaldo 
+           and reserveringsaldo in the view area.
+2020-01-30 dienstenMutaties.py button Muteren changed in Muteren / Sluiten (close).
+2020-01-30 opvrUrenmutaties.py added menu choice searching on (part) last name.
+2020-01-31 login.py possibility added to logon with emailadres or clientnumber (accountID)
+
+2020-02-01 several script QTableView align floats
+2020-02-01 at last found a good solution for alignment floats and integers 45 scripts adjusted with textroles.
+2020-02-01 Login.png screenshot changed due to dual logon possibilities.
+2020-02-01 opvrCluster_artikelen added notification if no item lines are present.
+2020-02-01 opvrIcluster_artikelen added notification if no item lines are present.
+2020-02-01 retourPortalWeb.py added dual indentification with email or Klantnummer (accountID).
+2020-02-02 opvrLeverancier.py and opvrVerkoopbedrijven.py aligned integers from QTableView
+2020-02-02 bestelOrder.py text changed notification stock shortage.
+2020-02-03 urenMutaties.py for reasons of fast data entry notification screens removed and replaced
+           by Muteren button gets colored green if entry succeeded and red if entry failed.
+2020-02-03 urenMutaties.py for reasons of fast data entry notification screens removed and replaced
+           by Muteren button gets colored green if entry succeeded and red if entry failed.
+2020-02-03 login.py changed for preceding entries.
+2020-02-04 urenMutaties.py applied info button and entry Datum Werkzaamheden made 'sticky' as Accountnummer and Werknummer.
+           Info button and infoscreen added.
+2020-02-04 urenImutaties.py applied info button and entry Datum Werkzaamheden made 'sticky' as Accountnummer and Werkorder.
+           Info button and infoscreen added
+2020-02-04 login.py entries changed according to returnvalue Datum Werkzaamheden.
+2020-02-04 several scripts applied alignment for integers.
+2020-02-05 11 scripts  adjusted alignments
+2020-02-05 uitbetalenLonen.py indentification error fixed.
+2020-02-05 12 scripts  adjusted alignments (alignment finished!)
+2020-02-06 Added Documentation. First concept added for Stock. The Documnentation is made with Libre-Office
+2020-02-06 wijz.Clusters.py calling notification noRecord forgotten (). Added now.
+2020-02-06 wijzArtikelen.py changed categorie
+2020-02-06 invoerArtikelen.py changed categorie
+2020-02-07 documentation is converted to pdf (readability with github)
+2020-02-07 documentation statement added
+2020-02-07 documentation added table of contents
+2020-02-07 documentation added accounts and access control.
+2020-02-08 login.py accounting access to 7. requesting adding working hours employees.
+2020-02-09 documentation Accounts_and_access_control expanded.
+2020-02-10 documentation Calculation_material_workrates_and_services added.
+2020-02-10 documentation Statement supplemented with some reflections
+2020-02-11 opvrClustercalculatie.py fixed searching on worknumber.
+2020-02-11 dienstenMutaties.py changed text in thirst seacrch item from 'Alle mutaties' to 'Alle diensten'
+2020-02-11 documentation Works_and_financial_accountability added.
+2020-02-11 voortgangGrafiek.py color background search submenu changed.
+2020-02-11 toonGrafieken.py color background search submenu changed.
+2020-02-11 opvrArtikelen.py ordering categories changed  by reservations and minimum stock for ordering.
+2020-02-11 wijzWerken.py QLineEdit blocked input float with ('{:12.2f}'.format  replaced by (str(round(float.
+2020-02-12 wijzLoontabel.py QLineEdit blocked input float with ('{:12.2f}'.format  replaced by (str(round(float
+2020-02-12 wijzigParams.py QLineEdit blocked input float with ('{:12.2f}'.format  replaced by (str(round(float
+2020-02-12 wijzIclusters.py QLineEdit blocked input float with ('{:12.2f}'.format  replaced by (str(round(float
+2020-02-12 wijzDienstenorder.py QLineEdit blocked input float with ('{:12.2f}'.format  replaced by (str(round(float
+2020-02-12 wijzClusters.py QLineEdit blocked input float with ('{:12.2f}'.format  replaced by (str(round(float
+2020-02-12 webRetouren.py QLineEdit blocked input float with ('{:12.2f}'.format  replaced by (str(round(float
+2020-02-12 voorraadbeheersing.py QLineEdit blocked input float with ('{:12.2f}'.format  replaced by (str(round(float
+2020-02-12 artikelbestellingen.py QLineEdit blocked input float with ('{:12.2f}'.format  replaced by (str(round(float
+2020-02-12 artikelAfroep.py QLineEdit blocked input float with ('{:12.2f}'.format  replaced by (str(round(float
+2020-02-12 afdrBetalen.py QLineEdit blocked input float with ('{:12.2f}'.format  replaced by (str(round(float
+2020-02-12 wijzInkooporder.py QLineEdit blocked input float with ('{:12.2f}'.format  replaced by (str(round(float
+2020-02-12 opvrArtikelen.py QLineEdit blocked input float with ('{:12.2f}'.format  replaced by (str(round(float
+2020-02-12 documentation Purchasing_suppliers added
+2020-02-13 documentation Employees_payrol_administration added.
+2020-02-14 documentation Sales and sale companies added.
+2020-02-14 documentation Maintenance and parameters added.
+2020-02-17 documentation Maintenance_and_parameters monthly working hours added.
+2020-02-17 documentation Accounting_and_payadministration added.
+2020-02-19 documentation bisystem database structure pkeys and fkeys added.
+2020-02-19 voorraadbeheersing.py minimum stock adjusted to annual consumption / number of delivery times per year.
+2020-02-19 documentation Stock_and_inventory_control adjusted to determine miminum stock.
+2020-02-20 change order size and mininum stock removed from voorraadbeheersing.py, added and automated annually in 
+           Pandora.py.  
+           Purchase and printing orders (towards purchasing department) deleted from artikelbestellingen.py en included in
+           voorraadbeheersing.py, hereby expires artikelbestellingen.py
+           As a result, the login.py menu has also been adjusted for inventory management (Voorraad Mangagement - Dutch) 
+           line 2. Bestellijst - Orderbrieven printen'  expires and the other items scroll up one item.
+2020-02-20 documentation Stock iventory control adjusted according previous mentioned changes.
+2020-02-21 voorraadbeheersing.py changed bestelBtn disabled by in order status + menu choice added artikelen in order.
+2020-02-21 Pandora.py changed  even/odd year for counting order size and minimum stock.
+2020-02-21 documentation Management support added.
+2020-02-22 added tools for maintenance and testing.
+2020-02-24 invoerArtikelen.py changed regex for floats
+2020-02-24 wijzArtikel.py changed regex for floats
+2020-02-24 invoerLoontabel.py changed regex for floats
+2020-02-24 wijzLoontabel.py changed regex for floats
+2020-02-24 Pandora.py added comments for year / month controls.
+2020-02-24 voorraadbeheersing.py order by reservation removed min_voorraad and bestelgrootte
+2020-02-25 dienstenMutaties.py searchstring for worknumbers changed in ValidZt,zt(zoekterm, 8)
+2020-02-25 documentation Works_and_financial_accountability added procedure for services purchase orderlines.
+2020-02-28 Major Update!! Cynchronising services and equipment with werken, so bisystem.backup changed, columns leiding,       	           
+           huisvesting, kabelwerk, grondverzet, betonwerk, vervoer and overig added in table calculaties.
+2020-02-28 opvrClustercalculatie.py changed added buttons opvragen and printing-orders services and equipment.
+2020-02-28 login.py added menuc Herprinten van formulieren with 'C. Inkooporders diensten/materieel'.
+2020-02-28 opvrClusters.py several changes due to fields for services.  
+2020-02-28 wijzClusters.py several changes due to fields for services.  
+2020-02-28 koppelBegroting.py several changes due to fields for services.                
+2020-02-28 wijzWerken.py several changes due to fields for services.         
+2020-02-28 opvrWerken.py several changes due to fields for services. 
+2020-02-28 invoerWerken.py several changes due to fields for services. 
+2020-02-28 documentation Calculation_material_workrates_and_services changed subject services.
+2020-02-28 documentation Works_and_financial_accountability changed subject services.
+2020-02-28 Pandora name repos changed to Pandora-old
+2020-02-28 Pandora-new name changed to Pandora. Changes will be created in Pandora branch. Pandora-old is frozen as is.
+2020-02-29 invoerDienstenorder.py changed input services and material due to new design. Amounts reading from calculation.
+2020-02-29 wijzDienstenorder.py changes booked on more/less work / preliminary budget.
+2020-02-29 opvrDienstenorders.py changes in layout.
+2020-02-29 documentation Purchasing_suppliers changed according to services and material.
+2020-02-29 opvrClustercalculaties.py totals calculation for diensten (services), materieel (material) and lonen (wages) changed.
+2020-02-29 koppelBegroting.py lock changed due to new lock in field verwerkt 3 for changes in invoerDienstenorder.py
+2020-02-29 koppelIbegroting.py lock changed for equalization with koppelBegroting.py.
+2020-02-29 validZt.py regex changed for internal clusters
+2020-02-29 invoerDienstenorder.py corrected type error (. ,)
+2020-03-02 invoerDienstenorder.py improved looping, check searching services and materialchoices repaired and notifications
+           added for services and material choices
+2020-03-02 login.py adjusted for above entry.
+2020-03-03 invoerInkooporder.py improved looping, check searching for article choice and notifications added.
+2020-03-03 login.py adjusted for above entry.
+2020-03-03 wijzDienstenorder looping improved.
+2020-03-03 login.py adjusted for above entry.
+2020-03-04 wijzInkooporder.py improved looping, check searching for article choice and notifications added.
+2020-03-04 login.py adjusted for above entry
+2020-03-04 wijzDienstenorder.py handling and notification improved by input article order number.
+2020-03-04 dienstenMutaties.py added services materialgroups A to M for synchronising with invoerDienstenorder.py
+2020-03-05 documentation Calculation_material_workrates_and_services calculations added external hiring policy conversion 
+2020-03-05 opvrDienstenmutaties.py input for empty or spaces captured.
+2020-03-08 toonGrafieken.py changed function jaarweek
+2020-03-08 dienstenMutaties.py changed function jaarweek
+2020-03-08 magvrdGrafiek.py changed function mjrwkvj due tue year changing
+2020-03-09 webRetouren.py floats rounded on 2 decimals 
+2020-03-09 bestelOrder.py floats rounded on 2 decimals
+2020-03-10 opvrInternorders.py string error in printing solved and actual welding hours error in indexnumber 2 to 62 changed
+2020-03-11 login.py style for Linux views changed to windows like views
+2020-03-11 Pandora.py style for Linux views changed to windows like views
+2020-03-11 invoerDienstenorder.py style for Linux views changed to windows like views
+2020-03-11 filePicklist.py style for Linux views changed to windows like views
+2020-03-12 opvrClustercalculatie.py material + hiring hours (materieel en inhuur uren) items calculation overhead rate factor applied
+2020-03-12 folder Tools added routine for converting artikelID's to barcodes
+2020-03-13 in folder Tools added procedure for reading barcodes and additional install for Linux 
+2020-03-16 barcodeScan.py added new module for realtimescanning barcodes and reading and printing data from database bisystem.
+2020-03-16 in folder Tools added new description for Realtime barcode scanning and documentation about scanner being used
+2020-03-16 login.py added entry for Menu Magazijn (warehouse) entry 9. Balieverkoop-barcodescan (Countersales)
+2020-03-17 barcodeScan.py aantal changing disabled until a good solution is found to change amount, until then scanning
+           is only possible by one piece
+2020-03-17 barcodeScan.py aantal changing solved by qpinbox and disabling the lineedit within qspinbox, so only the arrows work to set
+           the amount and the focus remains on the scan edit field.
+2020-03-17 barcodeScan.py printlisting added tail with totals and stock reduction by order products established
+           alarm sound for Linux added. necessary for this sox (sudo apt install sox)
+2020-03-18 barcodeScan.py Button next customer added so the program does not have to be closed between clients
+           and making new order delayed until thirst transaction to avoid making empty orders.
+           Must find a method to block the close button if the next customer button is not yet pressed
+           and block the next customer button if no thirst transaction is made to avoid double bookings.
+           Work in progress!
+2020-03-18 barcodeScan.py The problems with the buttons are solved. The closebutton is disabled until customer next button is pressed.
+	   The customer next button is blocked after pressing until new barcodetransaction is started.
+           The printBtn is blocked after next customer button is pressed until 1st tranction is made.
+2020-03-19 barcodeScan.py Display added with productdata from scanned item. Fields productID, description, price, subtotal and VAT
+2020-03-21 barcodeScan.py changed the storage from disk to the database, to improve performance with scanning.
+           This means that the database has extended. I decided to upload the whole project again with the extended database.
+2020-03-22 barcodeScan.py i added a possibility to book return goods. This can only be done by an authorized person. 
+           So i added a small checkable button +- - is state checked (-99 -1) + is state unchecked (1 99).
+           This button is invisible in normal operations. It becomes visible when anyone (for instance the maincassiere) 
+           gets special (S) access in authorisations menu 5[1] Magazijn (Warehouse) Special (S). The program is also so adjusted 
+           that a orderline line is deleted in the database when the amount becomes 0.
+           Repaired a silly error according addition/subtraction.
+2020-03-22 login.py adjusted for the authorisation entry for this +- button.  
+2020-03-23 added screenshot Barcode.png normal / special operation.
+2020-03-23 opvrArtikelmutaties.py added search filter showing artikelmutaties for balieverkoop (countersales) orders. 
+           Menu Boekhouding keuze 7 (accounting choice 7)
+2020-03-24 barcodeScan.py i decided to get rid of the annoying popups during scanning, so i changed the popups with an
+           red alert in the Widget below the display screen and with all visual alerts the program gives an acoustic alarm.
+2020-03-24 In folder Tools updated artikelen-barcode.txt and Barcode-Scansheet.png added with 20 example barcodes for scanning.
+           deleted barcodes.png and several unnecessary barcodes.
+2020-03-24 barcodeScan.py momschr changed to max 40 positions for field omschrijving in table balieverkoop.
+2020-03-25 invoerArtikelen.py added barcode (automatic generated).
+2020-03-25 wijzArtikel.py added barcode field
+2020-03-25 opvrArtikelen added barcode field and in tableview artikelthumb moved into view window.
+2020-03-25 in documentation Statement.pdf adjusted
+2020-03-25 invoerArtikelen added routine for saving barcode image in folder .\forms\barcodelabels 
+           for sticking on storage rack or on product-packaging for scanning.
+2020-03-25 added EAN-13_numbers.txt in folder Tools with explanation barcode numbers
+2020-03-27 urenMutaties.py rewritten with feedback total worked hours booked on worknumber by profession.
+2020-03-27 urenMutaties.py value changed back to 0 after transaction ended, also combobox set to 100% default.
+2020-03-27 urenMutaties.py hours of abcense notifications popups removed and changed by messages in window dialog.         
+2020-03-28 urenMutaties.py profession labels added at transaction hours.
+2020-03-28 urenImutaties.py rewritten with feedback total worked hours booked on worknumber by profession
+           profession on working hours showed before total hours field (feedback)
+           hours op absence notifications popups removed and changed by messages in window dialog (feedback)
+2020-03-29 urenMutaties.py all notifications removed and  button 'Muteren" changed to color red, with messages in window dialog.
+2020-03-29 urenImutaties.py all notifications removed and button 'Muteren" changed to color red, with messages in window dialog.
+2020-03-29 urenMutaties.py colorscheme changed
+2020-03-29 urenImutaties.py colorscheme changed
+2020-03-29 login.py entry for above lines logon changed thirst position default for accountnr (1) and werknr (7 or 8)
+2020-03-30 barcodeScan.py printbon extended with pagenumbering for more pages
+2020-03-30 urenMutaties.py unnecessary variable merror removed. No more needed after rewriting module
+2020-03-30 urenImutaties.py unnecessary variable merror removed. No more needed after rewriting module
+2020-03-30 login.py entry for calling urenMutaties and urenImutaties changed.
+2020-03-31 barcodeScan.py info added procedure for return goods.
+2020-03-31 barcodeScan.py added checksum control for barcodenr.
+2020-03-31 barcodeScan.py visual window changed self...... added.
+2020-04-04 barcodeScan.py increased sizes and text colors for inactive buttons changed so it's more clearly.
+2020-04-04 barcodeScan.py font sizes adjusted and kassa.png rescaled.
+2020-04-04 barcodeScan.py display more lines visible, scrolling enabled when the display is full and leave the header intact.
+2020-04-04 login.py entry for barcodeScan list initiate adjusted.
+2020-04-05 barcodeScan.py regexp check on barcode added for manual insert barcode.
+2020-04-05 barcodeScan.py display did not clear by next client. Repaired!
+2020-04-05 login.py entry changed for barcodeScan
+2020-04-07 Documentation added Barcodescanning.pdf
+2020-04-09 sheet for scanning barcodes uploaded with 30 barcodes in folder Tools barcodes.png
+2020-04-14 makeAuthorisation.py overlap window changed for displaying Linux
+2020-04-19 urenMutaties.py budgeted total hours per discipline added, for consumption hours usage information.
+2020-04-19 urenImutaties.py budgeted total hours per discipline added, for consumption hours usage information.
+2020-04-19 Documentation Accounts_and_access_control.pdf changed for urenMutaties.py and urenImutaties.py
+2020-04-20 Screenshot Entry_hours changed for views worked and budgeted hours.
+2020-04-21 urenMutaties.py resized height.
+2020-04-21 urenImutaties.py resized height.
+2020-04-21 urenMutaties.py fonts and colors error-conditions and absent-conditions notifications changed.
+2020-04-21 urenImutaties.py fonts and colors error-conditions and absent-conditions notifications changed.
+2020-05-09 barcodeScan.py - in Display added line totals and totals-VAT to pay.
+2020-05-09 Documentation Barcodescanning.pdf changed due to former change barcodeScan.py   
+2020-05-14 barcodeScan.py displaylist iterating changed, now complete list keeps intact while scrolling.  
+2020-05-14 barcodeScan.py Checkable button added for browsing total displaylist, unchecked if scanning continued,
+           or less then 8 items scrollable.
+2020-05-15 barcodeScan.py default full browse display integrated, browse list tail always visible while scanning.
+           backbrowsing permanent possible by scrollbar.
+2020-05-15 screenshot BarcodeScan.png changed due to new heading and scrolling.
+2020-05-17 barcodeScan.py setDisabled changed by setReadOnly and mkoptext removed 2 newlines.
+2020-05-21 Documentation Statement.pdf added origin database bisystem.
+2020-05-23 barcodeScan.py disabled windows close to force closing by nexBtn or closeBtn, to force necessary datastores.
+2020-05-23 barcodeScan.py windowFlag only set for minimize, to avoid unpredictable results by maximizing.
+2020-05-23 login.py uitloggen (Logout) and kiezen (Choose) button fonts changed to Arial in hoofdMenu window.
+2020-05-24 barcodeScan.py after struggling long time with aligning integers and floats with QTextEdit i found a solution
+           that solves the problem with unicode \u2000 in contrast to normal spaces, which gives unpredictable results. 
+2020-05-24 barcodeScan.png screenshot changed according alignment.   
+2020-05-25 minor changes in barcodeScan.py for clarity reasons.
+2020-05-25 added text in backup and restore scripts for safety and preserving in folder data  
+2020-05-25 barcodeScan.py QTextEdit text changed from Arial in Consolas bold, for monospace textcolums.  
+2020-05-26 LINUX install.txt stuck with barcodescanner in Ubuntu is solved by applying in terminal (Ctrl+Alt+t):
+           sudo modprobe usbkbd
+2020-05-27 login.py .center(48,' ') used for headmenuitems.
+2020-05-29 LINUX install.txt procedure added for barcodescanner enabling by startup Ubuntu.
+2020-05-30 LINUX install.txt Consolas font as requirement for barcodeScan.py added.
+2020-06-04 afdBetalen.py filterchoices extendet by countersales and online sales.
+2020-06-06 barcodeScan.py error sound changed by failure scanning
+2020-06-06 LINUX install.txt for sound barcodeScanning sudo apt install sox added.
+2020-05-07 Documentation Stock_and_inventory_control.pdf rewritten more logical structure for clarity reasons.
+2020-05-07 bissystem_tables changed unnecessary table definitions removed.
+2020-05-08 Documentation Stock_and_inventory_control added picklist (table raaplijst) procedure.
+
