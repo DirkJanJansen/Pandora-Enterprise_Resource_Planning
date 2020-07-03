@@ -14,14 +14,6 @@ def foutAccountnr():
     msg.setWindowTitle('ACCOUNT')
     msg.exec_()
     
-def geenWijz():
-    msg = QMessageBox()
-    msg.setStyleSheet("color: black;  background-color: gainsboro")
-    msg.setIcon(QMessageBox.Critical)
-    msg.setText('Geen bevoegdheden gewijzigd!')
-    msg.setWindowTitle('Bevoegdheden')
-    msg.exec_()
-    
 def windowSluit(self, m_email):
     self.close()
     hoofdMenu(m_email) 
@@ -281,6 +273,7 @@ def geefAuth(rpacc, m_email):
             accEdit = QLineEdit(str(maccountnr))
             accEdit.setFixedWidth(100)
             accEdit.setFont(QFont("Arial",10))
+            accEdit.setStyleSheet('color: black')
             accEdit.setDisabled(True)  
     
             grid.addWidget(QLabel(mvoorn+' '+mtussen+' '+machtern), 0, 8, 1, 9, Qt.AlignTop)     
