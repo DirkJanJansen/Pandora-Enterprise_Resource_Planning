@@ -375,5 +375,6 @@ From 2020-01-10 updates and changes are described on this page
 2020-05-07 Documentation Stock_and_inventory_control.pdf rewritten more logical structure for clarity reasons.
 2020-05-07 bissystem_tables changed unnecessary table definitions removed.
 2020-05-08 Documentation Stock_and_inventory_control added picklist (table raaplijst) procedure.
-2020-07-03 maakAuthorisatie.py totally rewritten and simplyfied by looping over checkboxes lines reduced from 2056 to 437
+2020-07-03 maakAuthorisatie.py totally rewritten and simplyfied by looping over checkboxes lines reduced from 2056 to 430!!
+          sorry new insights
 
