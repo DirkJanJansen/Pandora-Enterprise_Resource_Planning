@@ -420,10 +420,7 @@ def geefAuth(rpacc, m_email):
                  
             self.setLayout(grid)
             self.setGeometry(500, 200, 150, 100)
-                                
-            self.setLayout(grid)
-            self.setGeometry(500, 400, 150, 150)
-      
+       
     win = Widget()
     win.exec_()
   
