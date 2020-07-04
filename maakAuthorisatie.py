@@ -362,9 +362,9 @@ def geefAuth(rpacc, m_email):
                                               
             def getindex(mindex):
                 xlist.append(mindex)
-                xlist.sort()
-              
+                              
             def writeValues(self):
+                xlist.sort()
                 for x in xlist:
                     if self.astr[x] == '0':
                         self.astr=self.astr[0:x]+'1'+self.astr[x+1:]
