@@ -30,20 +30,6 @@ def updateOK(self):
     msg.setWindowTitle('AUTHORISATIE')
     msg.exec_()
 
-def _11check(maccountnr):
-    number = str(maccountnr)
-    total = 0       
-    fullnumber = number                       
-    for i in range(8):
-        total += int(fullnumber[i])*(9-i)
-        checkdigit = total % 11
-    if checkdigit == 10:
-        checkdigit = 0
-    if checkdigit == int(fullnumber[8]):
-        return True
-    else:
-        return False
-
 def info():
     class Widget(QDialog):
         def __init__(self, parent=None):
@@ -130,7 +116,7 @@ def zoekAccount(m_email):
             self.setFont(QFont('Arial', 10))
     
             self.Accountnummer = QLabel()
-            accEdit = QLineEdit()
+            accEdit = QLineEdit('1')
             accEdit.setFixedWidth(100)
             accEdit.setFont(QFont("Arial",10))
             accEdit.textChanged.connect(self.accChanged)
@@ -205,7 +191,7 @@ def zoekAccount(m_email):
     conn = engine.connect()
     s = select([accounts]).where(accounts.c.accountID == maccountnr)
     rpacc = conn.execute(s).first()
-    if len(str(maccountnr)) == 9 and _11check(maccountnr) and rpacc:
+    if rpacc:
         geefAuth(rpacc, m_email)
     else:
         foutAccountnr()
@@ -255,8 +241,8 @@ def geefAuth(rpacc, m_email):
             self.mtussen = mtussen
             self.machtern = machtern
             self.astr = str(rpa[0])+str(rpa[1])+str(rpa[2])+str(rpa[3])+str(rpa[4])+\
-                str(rpa[5])+str(rpa[6])+str(rpa[7])+str(rpa[8])+str(rpa[9])+str(rpa[10])+\
-                str(rpa[11])+str(rpa[12])+str(rpa[13])+str(rpa[14])+str(rpa[15])
+              str(rpa[5])+str(rpa[6])+str(rpa[7])+str(rpa[8])+str(rpa[9])+str(rpa[10])+\
+              str(rpa[11])+str(rpa[12])+str(rpa[13])+str(rpa[14])+str(rpa[15])
              
             pyqt = QLabel()
             movie = QMovie('./images/logos/pyqt.gif')
