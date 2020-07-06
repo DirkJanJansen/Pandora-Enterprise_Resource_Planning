@@ -65,6 +65,7 @@ in terminal Ctrl+Alt+t:
 sudo nano /etc/usb.sh
 in nano add lines:
 
+#!/bin/bash
 modprobe usbmouse
 modprobe usbkbd
 
