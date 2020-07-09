@@ -37,42 +37,12 @@ set fonts and margins for printing (A4) with:
 lpoptions -o page-left=18 -o page-right=0 -o page-top=25 -o page-bottom=80 -o cpi=13 -o lpi=6
 Follow these settings exactly for printlists with more pages
 
-The barcode problem with stopping by the thirst scan in ubuntu is solved:
-rc.local seems not working anymore
-so replace
-sudo rm /etc/rc.local
+Barcode enabling in linux:
 
-Open terminal Ctrl+Alt+t and  apply command:
-
-in terminal Ctrl+Alt+t:
-sudo nano /etc/systemd/system/usb.service
-add or copy lines in nano:
-
-[Unit]
-Description=usb script
-
-[Service]
-ExecStart=/etc/usb.sh
-
-[Install]
-WantedBy=multi-user.target
-
-Save in nano and leave nano
-
-chmod +x /etc/systemd/system/usb.service
-
-in terminal Ctrl+Alt+t:
-sudo nano /etc/usb.sh
-in nano add lines:
-
-#!/bin/bash
-modprobe usbmouse
-modprobe usbkbd
-
-save in nano and leave nano
-
-chmod +x /etc/usb.sh
-
+The solution for barcodescanner in Linux is not reliable for all barcodescanners and
+distro's from Ubuntu and don't work anymore with Ubuntu 20.04.
+I found a good working solution for Ubuntu 20.04 and my scanner.
+If interested send me e-mail dj.jansen@casema.nl
 
 Barcode to enable error sounds:
 sudo apt install sox
