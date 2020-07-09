@@ -378,4 +378,7 @@ From 2020-01-10 updates and changes are described on this page
 2020-07-03 maakAuthorisatie.py totally rewritten and simplyfied by looping over checkboxes lines reduced from 2056 to 430!!
           sorry new insights
 2020-07-06 LINUX install.txt procedure for barcode enabling changed for rc.local stopped working changed by procedure systemd.
+2020-07-09 LINUX install.txt procedure for barcode scan removed for it's no more reliable with ubuntu 20.04
+           found a good workaround for ubuntu 20.04 and my scanner if interested send me an e-mail dj.jansen@casema.nl
+           
 
