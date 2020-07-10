@@ -123,6 +123,8 @@ if mhjrmnd != mdbjrmnd:
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     app.setStyle("Windows")
+    if sys.platform == "linux":
+        os.system("../.usbkbd.sh")
     from login import inlog
     inlog()
     app.exec_()
