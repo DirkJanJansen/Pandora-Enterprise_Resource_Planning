@@ -43,7 +43,7 @@ The solution for enabling the barcodereader is changed for it's not working anym
 I changed as following.
 Copy file .usbkbd.sh from folder installation in folder /home/postgres ($HOME)
 chmod 755 .usbkbd.sh
-If the pasword changed from postgres45 change it too in .usbkbd.sh
+If the password changed for Ubuntu from postgres45 change it too in .usbkbd.sh
 Thats all. The script is called with starting Pandora.py and the barcodescanner works again.
 
 Barcode to enable error sounds:
