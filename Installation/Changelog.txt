@@ -378,5 +378,5 @@ From 2020-01-10 updates and changes are described on this page
 2020-07-03 maakAuthorisatie.py totally rewritten and simplyfied by looping over checkboxes lines reduced from 2056 to 437
 2020-07-10 LINUX install.txt procedure enabling barcodescanner changed.
 2020-07-10 added script .usbkbd.sh
-2020-07-10 sales.py added call by starting scipt for enabling barcodescanner
+2020-07-10 sales.py added call by starting script for enabling barcodescanner
 
