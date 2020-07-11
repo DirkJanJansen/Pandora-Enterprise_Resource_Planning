@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#Script is startup by sales.py or Pandora.py for enabling Barcodescanner
+#Script is started by sales.py or Pandora.py for enabling Barcodescanner
 
 echo postgres45 | sudo -S modprobe usbkbd
 
