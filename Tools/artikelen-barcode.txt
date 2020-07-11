@@ -15,6 +15,7 @@ The barcode problem with stopping by the thirst scan in Ubuntu is solved now:
 Open terminal Ctrl+Alt+t and  apply command:
 sudo modprobe usbkbd
 This works for me!
+The issue is permantly solved see LINUX install.txt
 
 I developed a PyQt5 module for real time scanning:
 The module scans barcodes from a printing barcodes.png
