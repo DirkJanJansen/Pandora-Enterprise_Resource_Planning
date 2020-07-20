@@ -36,6 +36,7 @@ PGUSER postgres
 
 Install postgresql in folder C:\programdata\postgres with password: postgres45 localhost port:5432 user: postgres
 set password in pgadmin4: postgres45
+in psql set password with  \password    (postgres45)
 
 copy the files from folder data in c:\programdata\postgres\backup\
 Import data with pgrestore-custom.bat run as administrator (change pathnames to your own pathname, if you changed path PostgreSQL)
