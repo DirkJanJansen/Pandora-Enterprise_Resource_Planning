@@ -1,3 +1,4 @@
+from collections import Counter
 from login import hoofdMenu
 from PyQt5.QtWidgets import QLabel, QGridLayout, QDialog, QLineEdit,\
                         QMessageBox, QPushButton, QCheckBox
@@ -26,6 +27,7 @@ def updateOK(self):
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
+    msg.setFont(QFont("Arial",10))
     msg.setText('De bevoegdheden van: \n'+self.mvoorn+' '+self.mtussen+' '+self.machtern+'\nzijn aangepast!')
     msg.setWindowTitle('AUTHORISATIE')
     msg.exec_()
@@ -240,10 +242,11 @@ def geefAuth(rpacc, m_email):
             self.mvoorn = mvoorn
             self.mtussen = mtussen
             self.machtern = machtern
+            
             self.astr = str(rpa[0])+str(rpa[1])+str(rpa[2])+str(rpa[3])+str(rpa[4])+\
               str(rpa[5])+str(rpa[6])+str(rpa[7])+str(rpa[8])+str(rpa[9])+str(rpa[10])+\
               str(rpa[11])+str(rpa[12])+str(rpa[13])+str(rpa[14])+str(rpa[15])
-             
+            
             pyqt = QLabel()
             movie = QMovie('./images/logos/pyqt.gif')
             pyqt.setMovie(movie)
@@ -332,10 +335,11 @@ def geefAuth(rpacc, m_email):
             lbl15 = QLabel('Herprinten formulieren')
             lbl15.setFixedWidth(200) 
             grid.addWidget(lbl15, 10 , 11)
-            xlist=[]
+            
+            self.xlist=[]
             for x in range(0,121):
                cBox = QCheckBox()
-               val = self.astr[x]
+               val = self.astr[x]   
                if val == '1':
                    cBox.setChecked(True)
                else:
@@ -347,11 +351,12 @@ def geefAuth(rpacc, m_email):
                cBox.clicked.connect(lambda checked , mindex = x : getindex(mindex))
                                               
             def getindex(mindex):
-                xlist.append(mindex)
-                              
+                self.xlist.append(mindex)
+                                         
             def writeValues(self):
-                xlist.sort()
-                for x in xlist:
+                self.xlist = [value for value, count in Counter(self.xlist).items() if count%2 == 1]
+                self.xlist.sort()
+                for x in self.xlist:
                     if self.astr[x] == '0':
                         self.astr=self.astr[0:x]+'1'+self.astr[x+1:]
                     else:
