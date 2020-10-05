@@ -128,12 +128,14 @@ def zoekAccount(m_email):
                             
             grid = QGridLayout()
             grid.setSpacing(20)
-    
-            lbl = QLabel()
-            pixmap = QPixmap('./images/logos/verbinding.jpg')
-            lbl.setPixmap(pixmap)
-            grid.addWidget(lbl , 0, 0, 1, 2)
             
+            pyqt = QLabel()
+            movie = QMovie('./images/logos/pyqt.gif')
+            pyqt.setMovie(movie)
+            movie.setScaledSize(QSize(240,80))
+            movie.start()
+            grid.addWidget(pyqt, 0 ,0, 1, 2)
+               
             logo = QLabel()
             pixmap = QPixmap('./images/logos/logo.jpg')
             logo.setPixmap(pixmap)
@@ -243,9 +245,8 @@ def geefAuth(rpacc, m_email):
             self.mtussen = mtussen
             self.machtern = machtern
             
-            self.astr = str(rpa[0])+str(rpa[1])+str(rpa[2])+str(rpa[3])+str(rpa[4])+\
-              str(rpa[5])+str(rpa[6])+str(rpa[7])+str(rpa[8])+str(rpa[9])+str(rpa[10])+\
-              str(rpa[11])+str(rpa[12])+str(rpa[13])+str(rpa[14])+str(rpa[15])
+            self.astr = rpa[0]+rpa[1]+rpa[2]+rpa[3]+rpa[4]+rpa[5]+rpa[6]+rpa[7]\
+                 +rpa[8]+rpa[9]+rpa[10]+rpa[11]+rpa[12]+rpa[13]+rpa[14]+rpa[15]
             
             pyqt = QLabel()
             movie = QMovie('./images/logos/pyqt.gif')
