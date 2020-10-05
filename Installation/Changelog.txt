@@ -381,4 +381,5 @@ From 2020-01-10 updates and changes are described on this page
 2020-07-10 Pandora.py added call by starting script for enabling barcodescanner
 2020-07-13 maakAuthorisatie.py layout first column changed.
 2020-09-27 maakAuthorisatie.py removed unessary clicks with collections.Counter
+2020-10-05 maakAuthorisatie.py removed unnessary str by astr compile 
 
