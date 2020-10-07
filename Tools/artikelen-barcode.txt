@@ -16,6 +16,7 @@ Copy file .usbkbd.sh from folder installation in folder /home/postgres ($HOME)
 chmod 755 .usbkbd.sh
 If the password for Ubuntu changed from postgres45 change it too in .usbkbd.sh
 Thats all. The script is called with starting Pandora.py.
+
 I developed a PyQt5 module for real time scanning:
 The module scans barcodes from a printing barcodes.png
 Print this out on high resolution in grayscale.
