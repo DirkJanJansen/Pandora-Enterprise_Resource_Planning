@@ -11,12 +11,11 @@ I used a laser scanner for testing see documentation in folder Tools/Barcodescan
 The windows device for this scanner is SHANG CHEN HID SC-32, it's a USB Handheld scanner (approx € 50,--)
 It's automatically installed by Windows 10 and is working well.
  
-The barcode problem with stopping by the thirst scan in Ubuntu is solved now:
-Open terminal Ctrl+Alt+t and  apply command:
-sudo modprobe usbkbd
-This works for me!
-The issue is permantly solved see LINUX install.txt
-
+The solution for enabling the barcodereader for Ubuntu:
+Copy file .usbkbd.sh from folder installation in folder /home/postgres ($HOME)
+chmod 755 .usbkbd.sh
+If the password for Ubuntu changed from postgres45 change it too in .usbkbd.sh
+Thats all. The script is called with starting Pandora.py.
 I developed a PyQt5 module for real time scanning:
 The module scans barcodes from a printing barcodes.png
 Print this out on high resolution in grayscale.
