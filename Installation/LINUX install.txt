@@ -16,6 +16,8 @@ sudo pip3 install pyqtchart==5.12)
 
 sqlalchemy and psycopg2 is installed with postgreSQL-contrib see next lines
 
+
+Rename Pandora-Enterprise_Resource_Planning to Pandora
 Installation Pandora as user postgres with password postgres45:
 Copy .pgpass in /home/postgres  
 in terminal chmod 600 .pgpass

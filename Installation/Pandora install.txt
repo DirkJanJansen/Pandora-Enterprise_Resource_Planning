@@ -13,7 +13,6 @@ For additional instructions for Linux see folder Linux "LINUX Install.txt".
 For adjustments or  additions see "Changelog.txt".
 
 Install python3,  pyqt5, pyqtchart same version as pyqt5, sqlalchemy, psycopg2 and pypiwin32.
-and for the module barcode pillow and python-barcode
 
 For printing listings change this settings in notepad:
 Pagesettings: Left 0 Right 0 Top 14 Bottom 40
@@ -36,7 +35,6 @@ PGUSER postgres
 
 Install postgresql in folder C:\programdata\postgres with password: postgres45 localhost port:5432 user: postgres
 set password in pgadmin4: postgres45
-in psql set password with  \password    (postgres45)
 
 copy the files from folder data in c:\programdata\postgres\backup\
 Import data with pgrestore-custom.bat run as administrator (change pathnames to your own pathname, if you changed path PostgreSQL)
@@ -45,6 +43,7 @@ pgdrop-bisystem.bat is included for deleting the database bisystem (change pathn
 pgdump-custom.bat is included for backup database (change pathnames to your own pathnames)
 If you change install folders, the pathnames in pgrestore-custom.bat and pgdump-custom.bat must be changed.
 
+Rename Pandora-Enterprise_Resource_Planning to Pandora
 Copy  all files and folders in a folder Pandora keep the folder structure as it is.
 Edit shortcut Pandora to your own Path where you copied Pandora
 The admin user is: dj.jansen@casema.nl password: postgres45
