@@ -70,3 +70,20 @@ Open Terminal Ctrl+Alt+t
 
 cd Pandora
 python3 -m compileall ./
+
+Database backup and restore from terminal
+
+commands in terminal Ctrl+Alt+t
+
+backup database:
+pg_dump -v --verbose -d bisystem -Fc -f  "/home/postgres/Pandora/data/bisystem.backup"
+
+delete database:
+dropdb bisystem
+
+create empty database:
+createdb bisystem
+
+restore database:
+pg_restore --dbname=bisystem  --verbose "/home/postgres/Pandora/data/bisystem.backup"
+
