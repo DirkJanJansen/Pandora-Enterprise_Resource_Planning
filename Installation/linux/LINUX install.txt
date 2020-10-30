@@ -55,6 +55,7 @@ Installing database:
 In pgadmin4 tree create a server LocalHost and a empty database:  bisystem, right click databases (login with postgres45) 
 set password in pgadmin4: postgres45 with making tree bisystem
 In tree pgadmin4 databases bisystem restore from bisystem.backup, right click bisystem and browse to bisystem.backup
+Or install database from terminal see last section in this document!
 Copy Pandora with folder structures in /home/postgres so you get /home/postgres/Pandora
 
 The fonts in Linux differ from Windows. (Install Arial, Comic Sans MS, Times, Sans Serif and Consolas)
