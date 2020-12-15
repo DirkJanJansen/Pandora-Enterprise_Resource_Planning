@@ -4,13 +4,24 @@ from PyQt5.QtPrintSupport import QPrinter, QPrintPreviewDialog, QPrintDialog
 from PyQt5.QtChart import QChart, QChartView, QBarSet, QBarSeries, QBarCategoryAxis
 from PyQt5.QtCore import Qt, QAbstractTableModel
 from PyQt5.QtGui import QFont, QIcon, QPainter, QPageLayout
-from PyQt5.QtWidgets import QDialog, QGridLayout, QPushButton,QVBoxLayout, QTableView, QWidget
+from PyQt5.QtWidgets import QDialog, QGridLayout, QPushButton,QVBoxLayout,\
+    QTableView, QWidget, QMessageBox
 from sqlalchemy import (Table, Column, String, MetaData,\
                        create_engine, Float, select)
 
 def sluiten(self, m_email):
     self.close()
     hoofdMenu(m_email)
+    
+def alertText():
+    msg = QMessageBox()
+    msg.setStyleSheet("color: black;  background-color: gainsboro")
+    msg.setWindowIcon(QIcon('./logos/logo.jpg'))
+    msg.setFont(QFont("Arial", 10))
+    msg.setIcon(QMessageBox.Warning)
+    msg.setText('Te weinig gegevens voor grafiek!')
+    msg.setWindowTitle('Warning message')
+    msg.exec_() 
    
 def toonGrafiek(m_email):
     mjrmnd = str(date.today())[0:7]
@@ -61,10 +72,13 @@ def toonGrafiek(m_email):
             set0 = QBarSet('Totaal')
             set1 = QBarSet('Courant')
             set2 = QBarSet('Incourant')
-    
-            set0 << rpvrd[0][1] << rpvrd[1][1] << rpvrd[2][1] << rpvrd[3][1] << rpvrd[4][1] << rpvrd[5][1] << rpvrd[6][1] << rpvrd[7][1] << rpvrd[8][1] << rpvrd[9][1] << rpvrd[10][1] << rpvrd[11][1] 
-            set1 << rpvrd[0][2] << rpvrd[1][2] << rpvrd[2][2] << rpvrd[3][2] << rpvrd[4][2] << rpvrd[5][2] << rpvrd[6][2] << rpvrd[7][2] << rpvrd[8][2] << rpvrd[9][2] << rpvrd[10][2] << rpvrd[11][2] 
-            set2 << rpvrd[0][3] << rpvrd[1][3] << rpvrd[2][3] << rpvrd[3][3] << rpvrd[4][3] << rpvrd[5][3] << rpvrd[6][3] << rpvrd[7][3] << rpvrd[8][3] << rpvrd[9][3] << rpvrd[10][3] << rpvrd[11][3] 
+            
+            try:
+                set0 << rpvrd[0][1] << rpvrd[1][1] << rpvrd[2][1] << rpvrd[3][1] << rpvrd[4][1] << rpvrd[5][1] << rpvrd[6][1] << rpvrd[7][1] << rpvrd[8][1] << rpvrd[9][1] << rpvrd[10][1] << rpvrd[11][1] 
+                set1 << rpvrd[0][2] << rpvrd[1][2] << rpvrd[2][2] << rpvrd[3][2] << rpvrd[4][2] << rpvrd[5][2] << rpvrd[6][2] << rpvrd[7][2] << rpvrd[8][2] << rpvrd[9][2] << rpvrd[10][2] << rpvrd[11][2] 
+                set2 << rpvrd[0][3] << rpvrd[1][3] << rpvrd[2][3] << rpvrd[3][3] << rpvrd[4][3] << rpvrd[5][3] << rpvrd[6][3] << rpvrd[7][3] << rpvrd[8][3] << rpvrd[9][3] << rpvrd[10][3] << rpvrd[11][3] 
+            except:
+                return(alertText())
 
             barseries = QBarSeries()
             barseries.append(set0)
