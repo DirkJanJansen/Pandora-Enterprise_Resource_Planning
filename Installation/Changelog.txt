@@ -384,3 +384,4 @@ From 2020-01-10 updates and changes are described on this page
 2020-10-05 maakAuthorisatie.py removed unnessary str by astr compile 
 2020-10-27 LINUX_install.txt terminal commands applied for backup delete and restore database bisystem (commands for bisystem.backup)
 2020-11-28 Documentatation Stock_and_inventory_control.pdf type error adjusted. Bisystem_Database_structure_pkeys_fkeys.pdf added function reference showTransactions (toonMutaties)
+2020-12-15 magvrdGrafiek.py warning notification added if not sufficient collected data present for showing bargraph.
