@@ -39,7 +39,6 @@ def toonGrafiek(m_email):
     rpvrd = con.execute(selvrd).fetchall()
     if len(rpvrd) < 12:
         alertText(m_email)
-        return
     
     class Window(QDialog):
         def __init__(self):          
