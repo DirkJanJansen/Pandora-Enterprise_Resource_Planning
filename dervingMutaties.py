@@ -263,9 +263,13 @@ def dervingMut(m_email):
          art_voorraad = artikelen.c.art_voorraad - mhoev, bestelstatus = martbestst)
         con.execute(stmt)
         con = engine.connect()
-        dervingnr=(con.execute(select([func.max(derving.c.dervingID,\
-            type_=Integer).label('dervingnr')])).scalar())
-        dervingnr += 1
+        try:
+            dervingnr=(con.execute(select([func.max(derving.c.dervingID,\
+                type_=Integer)])).scalar())
+            dervingnr += 1
+        except:
+            dervingnr = 1
+            
         ins = insert(derving).values(dervingID = dervingnr, artikelID =\
             martikelnr, categorienummer = mderving, hoeveelheid = -mhoev, boekdatum = mboekd,\
             waarde = mhoev*martprijs, omschrijving = momschr)

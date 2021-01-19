@@ -309,9 +309,12 @@ def koppelLeverancier(m_email, maccountnr, flag):
         for record in rp:
             regels += 1
         if regels == 0:
-            mlevaccnr = (conn.execute(select([func.max(lev_accounts.c.levaccID, type_=Integer)\
-                                       .label('mlevaccnr')])).scalar())
-            mlevaccnr += 1
+            try:
+                mlevaccnr = (conn.execute(select([func.max(lev_accounts.c.levaccID,\
+                        type_=Integer)])).scalar())
+                mlevaccnr += 1
+            except:
+                mlevaccnr = 1
             ins = lev_accounts.insert().values(levaccID = mlevaccnr, accountID = maccountnr,\
                         leverancierID = mlevnr)
             conn.execute(ins)
@@ -422,9 +425,12 @@ def koppelKoper(m_email, maccountnr, flag):
         for record in rp:
             regels += 1
         if regels == 0:
-            mclientaccnr = (conn.execute(select([func.max(koper_accounts.c.koperaccID, type_=Integer)\
-                                               .label('mclientnr')])).scalar())
-            mclientaccnr += 1
+            try:
+                mclientaccnr = (conn.execute(select([func.max(koper_accounts.c.koperaccID,\
+                    type_=Integer)])).scalar())
+                mclientaccnr += 1
+            except:
+                mclientaccnr = 1
             ins = koper_accounts.insert().values(koperaccID = mclientaccnr, accountID = maccountnr,\
                                 koperID = mclientnr)
             conn.execute(ins)
@@ -443,9 +449,12 @@ def koppelWerknemer(m_email, maccountnr, mgebdat, flag):
       
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     conn = engine.connect()
-    mwerknemernr =(conn.execute(select([func.max(werknemers.c.werknemerID,\
-            type_=Integer).label('mwerknemernr')])).scalar())
-    mwerknemernr += 1
+    try:
+        mwerknemernr =(conn.execute(select([func.max(werknemers.c.werknemerID,\
+            type_=Integer)])).scalar())
+        mwerknemernr += 1
+    except:
+        mwerknemernr = 1
     sel = select([werknemers]).where(werknemers.c.accountID == maccountnr)
     if conn.execute(sel).fetchone():
         koppelBestaat()

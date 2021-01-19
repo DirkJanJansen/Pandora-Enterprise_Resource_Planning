@@ -394,9 +394,12 @@ def toonArtikelen(keuze,zoekterm, m_email, momschr, clusternr):
                         con.execute(updclart)
                         calcBestaat()
                     else:
-                        mclartnr = (con.execute(select([func.max(icluster_artikelen.c.\
-                            icluster_artID, type_=Integer).label('mclartnr')])).scalar())
-                        mclartnr += 1
+                        try:
+                            mclartnr = (con.execute(select([func.max(icluster_artikelen.c.\
+                             icluster_artID, type_=Integer)])).scalar())
+                            mclartnr += 1
+                        except:
+                            mclartnr = 1
                         insclart = insert(icluster_artikelen).values(icluster_artID = mclartnr,\
                         iclusterID = clusternr, artikelID = artikelnr, hoeveelheid = mhoev)
                         con.execute(insclart)

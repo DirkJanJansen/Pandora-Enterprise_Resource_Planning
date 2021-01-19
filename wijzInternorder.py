@@ -661,9 +661,12 @@ def toonOrders(keuze, zoekterm, m_email):
               artikelen.c.art_voorraad + mgoedgversch, bestelsaldo = artikelen.c.bestelsaldo -\
               mgoedgversch)
             con.execute(updart)
-            mutnr=(con.execute(select([func.max(artikelmutaties.c.mutatieID,\
-                        type_=Integer).label('mutnr')])).scalar())
-            mutnr += 1
+            try:
+                mutnr=(con.execute(select([func.max(artikelmutaties.c.mutatieID,\
+                        type_=Integer)])).scalar())
+                mutnr += 1
+            except:
+                mutnr = 1
             params = Table('params', metadata,
                 Column('paramID', Integer, primary_key=True),
                 Column('tarief', Float),

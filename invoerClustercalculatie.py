@@ -210,8 +210,12 @@ def zoeken(m_email):
        Column('verwerkt', Integer))
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    mcalnr = con.execute(select([func.max(calculaties.c.calculatie,\
-            type_=Integer).label('mcalnr')])).scalar()
+    try:
+        mcalnr = con.execute(select([func.max(calculaties.c.calculatie,\
+            type_=Integer)])).scalar()
+    except:
+        mcalnr = 0
+
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
@@ -531,9 +535,13 @@ def toonClusters(m_email, keuze, mcalnr):
                              calculatiedatum = mcaldat)
                         con.execute(upd)
                     else:
-                        mcalnrnr = (con.execute(select([func.max(calculaties.c.calcID,\
-                            type_=Integer).label('mcalnrnr')])).scalar())
-                        mcalnrnr += 1
+                        try:
+                            mcalnrnr = (con.execute(select([func.max(calculaties.c.calcID,\
+                              type_=Integer)])).scalar())
+                            mcalnrnr += 1
+                        except:
+                            mcalnr = 1
+                            
                         ins = insert(calculaties).values(calcID = mcalnrnr,\
                                 clusterID = clusternr, hoeveelheid = mhoev,\
                                 omschrijving = momschr, eenheid = meenh, prijs = mprijs,\

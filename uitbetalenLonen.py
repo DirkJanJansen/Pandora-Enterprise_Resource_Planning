@@ -764,9 +764,12 @@ def maandBetalingen(m_email):
             con.close
                     
             mboekd = str(datetime.datetime.now())[0:10]
-            mbetalingnr =(conn.execute(select([func.max(loonbetalingen.c.betalingID,\
-                   type_=Integer).label('mbetalingnr')])).scalar())
-            mbetalingnr += 1
+            try:
+                mbetalingnr =(conn.execute(select([func.max(loonbetalingen.c.betalingID,\
+                   type_=Integer)])).scalar())
+                mbetalingnr += 1
+            except:
+                mbetalingnr = 1
             
             insloon = insert(loonbetalingen).values(betalingID = mbetalingnr, periode = mjrmnd,\
                accountID = maccountnr, werknemerID = mwerknmr, voornaam = mvoornaam,\
@@ -814,11 +817,12 @@ def maandBetalingen(m_email):
             
             engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
             con = engine.connect()
-            
-            mafdrachtnr =(conn.execute(select([func.max(afdrachten.c.afdrachtID,\
-                    type_=Integer).label('mafdrachtnr')])).scalar())
-            
-            mafdrachtnr += 1
+            try:
+                mafdrachtnr =(conn.execute(select([func.max(afdrachten.c.afdrachtID,\
+                    type_=Integer)])).scalar())
+                mafdrachtnr += 1
+            except:
+                mafdrachtnr = 1
             insafdr = insert(afdrachten).values(afdrachtID=mafdrachtnr, soort = 'werkn_pensioenpr',\
                   bedrag = mpenspr , boekdatum = mboekd, instantie = 'Spoorwegpensioenfonds',\
                   werknemerID = mwerknmr, rekeningnummer = 'NL09 ABNA 9999999955', periode =mjrmnd)

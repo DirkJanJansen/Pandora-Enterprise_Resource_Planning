@@ -269,9 +269,12 @@ def invoerOK(mbedrag, mrek, martnr, mhoev, movbestnr, m_email, klmail):
             Column('boeking', String))
         engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
         con = engine.connect()
-        retournr=(con.execute(select([func.max(webretouren.c.retourID,\
-                            type_=Integer).label('retournr')])).scalar())
-        retournr += 1
+        try:
+            retournr=(con.execute(select([func.max(webretouren.c.retourID,\
+                            type_=Integer)])).scalar())
+            retournr += 1
+        except:
+            retournr = 1
         insret = insert(webretouren).values(retourID = retournr, e_mail = klmail,\
               bedrag = mbedrag, rekening = mrek, artikelID = martnr, aantal = mhoev,\
               ordernummer = movbestnr, boeking = mdag)
@@ -438,9 +441,12 @@ def verwerkArtikel(martnr,retstat, m_email, mhoev, self, klmail):
             rpreg = con.execute(selreg).first()
             if retstat == 0:
                 mregel = rpreg[6]+1
-                movanr=(con.execute(select([func.max(orders_verkoop_artikelen\
-                    .c.ovaID, type_=Integer).label('movanr')])).scalar())
-                movanr += 1
+                try:
+                    movanr=(con.execute(select([func.max(orders_verkoop_artikelen\
+                     .c.ovaID, type_=Integer)])).scalar())
+                    movanr += 1
+                except:
+                    movanr = 1
                 insova = insert(orders_verkoop_artikelen).values(ovaID = movanr,\
                  ovbestelID = movbestnr, artikelID = rppers[0], ovaantal =\
                  mhoev, verkoopprijs = round(rppers[2]*(1+rppar[0][1])*(1+rppar[3][1]),2),\
@@ -448,9 +454,12 @@ def verwerkArtikel(martnr,retstat, m_email, mhoev, self, klmail):
                 con.execute(insova)
             elif retstat == 1:
                 mregel = rpreg[6]+1
-                movanr=(con.execute(select([func.max(orders_verkoop_artikelen\
-                    .c.ovaID, type_=Integer).label('movanr')])).scalar())
-                movanr += 1
+                try:
+                    movanr=(con.execute(select([func.max(orders_verkoop_artikelen\
+                      .c.ovaID, type_=Integer)])).scalar())
+                    movanr += 1
+                except:
+                    movanr = 1
                 insova = insert(orders_verkoop_artikelen).values(ovaID = movanr,\
                  ovbestelID = movbestnr, artikelID = rppers[0], retour = mhoev,\
                  verkoopprijs = round(rppers[2]*(1+rppar[0][1])*(1+rppar[3][1]),2),\
@@ -511,8 +520,11 @@ def verwerkArtikel(martnr,retstat, m_email, mhoev, self, klmail):
                    mutatiedatum = mboekd, jaarverbruik_2 = artikelen.c.jaarverbruik_2 + mhoev)
                 con.execute(ua)
         else:
-            movbestnr=(con.execute(select([func.max(orders_verkoop.c.ovbestelID, type_=Integer)\
-                       .label('movbestnr')])).scalar())
+            try:
+                movbestnr=(con.execute(select([func.max(orders_verkoop.c.ovbestelID,\
+                    type_=Integer)])).scalar())
+            except:
+                movbestnr = 1
             movbestnr = int(maak11proef(movbestnr))
             insov = insert(orders_verkoop).values(ovbestelID=movbestnr,\
               klantID=rppers[10], ovbesteldatum=str(datetime.datetime.now())[0:10],\
@@ -520,9 +532,12 @@ def verwerkArtikel(martnr,retstat, m_email, mhoev, self, klmail):
             con.execute(insov)
             if retstat == 0:
                 mregel = 1
-                movanr=(con.execute(select([func.max(orders_verkoop_artikelen\
-                    .c.ovaID, type_=Integer).label('movanr')])).scalar())
-                movanr += 1
+                try:
+                    movanr=(con.execute(select([func.max(orders_verkoop_artikelen\
+                     .c.ovaID, type_=Integer)])).scalar())
+                    movanr += 1
+                except:
+                    movanr = 1
                 insova = insert(orders_verkoop_artikelen).values(ovaID = movanr,\
                  ovbestelID = movbestnr, artikelID = rppers[0], ovaantal =\
                  mhoev, verkoopprijs = round(rppers[2]*(1+rppar[0][1])*(1+rppar[3][1]),2),\
@@ -530,9 +545,12 @@ def verwerkArtikel(martnr,retstat, m_email, mhoev, self, klmail):
                 con.execute(insova)
             elif retstat == 1:
                 mregel = 1
-                movanr=(con.execute(select([func.max(orders_verkoop_artikelen\
-                    .c.ovaID, type_=Integer).label('movanr')])).scalar())
-                movanr += 1
+                try:
+                    movanr=(con.execute(select([func.max(orders_verkoop_artikelen\
+                      .c.ovaID, type_=Integer)])).scalar())
+                    movanr += 1
+                except:
+                    movanr = 1
                 insova = insert(orders_verkoop_artikelen).values(ovaID = movanr,\
                  ovbestelID = movbestnr, artikelID = rppers[0], retour =\
                  mhoev, verkoopprijs = round(rppers[2]*(1+rppar[0][1])*(1+rppar[3][1]),2),\
@@ -557,18 +575,24 @@ def verwerkArtikel(martnr,retstat, m_email, mhoev, self, klmail):
          orders_verkoop_artikelen.c.verkoopprijs*mhoev+orders_verkoop_artikelen.c.verkoopprijs\
          *orders_verkoop_artikelen.c.retour)
         con.execute(uov)
-        mafdrachtnr =(con.execute(select([func.max(afdrachten.c.afdrachtID,\
-            type_=Integer).label('mafdrachtnr')])).scalar())
-        mafdrachtnr += 1
+        try:
+            mafdrachtnr =(con.execute(select([func.max(afdrachten.c.afdrachtID,\
+             type_=Integer)])).scalar())
+            mafdrachtnr += 1
+        except:
+            mafdrachrnr = 1
         iafdr = insert(afdrachten).values(afdrachtID=mafdrachtnr,\
          soort = 'BTW afdracht 21%', instantie = 'Belastingdienst',\
          rekeningnummer = 'NL10 ABNA 9999999977', boekdatum = mboekd,\
          bedrag = mhoev*rppers[2]*(1+rppar[3][1])*(rppar[0][1]),\
          periode = mboekd[0:7], ovbestelID = movbestnr)
         con.execute(iafdr)
-        mutatienr=(con.execute(select([func.max(artikelmutaties.c.mutatieID,\
-            type_=Integer).label('mutatienr')])).scalar())
-        mutatienr += 1
+        try:
+            mutatienr=(con.execute(select([func.max(artikelmutaties.c.mutatieID,\
+              type_=Integer)])).scalar())
+            mutatienr += 1
+        except:
+            mutatienr = 1
         insmut = insert(artikelmutaties).values(mutatieID=mutatienr,\
          artikelID=martnr,ovbestelID=movbestnr, hoeveelheid = -mhoev,\
          boekdatum=mboekd, tot_mag_prijs=rppers[2]*-mhoev,\
@@ -618,9 +642,12 @@ def vulBasket(martnr, m_email, mhoev, verkprijs, self):
                   values(aantal = webbestellingen.c.aantal + mhoev)
                 con.execute(updweb)                
             else:
-                webnr=con.execute(select([func.max(webbestellingen.c.webID,\
-                                        type_=Integer).label('webnr')])).scalar()
-                webnr += 1 
+                try:
+                    webnr=con.execute(select([func.max(webbestellingen.c.webID,\
+                                        type_=Integer)])).scalar()
+                    webnr += 1
+                except:
+                    webnr = 1
                 insw = insert(webbestellingen).values(webID = webnr, artikelID = martnr, email = m_email,\
                                aantal = mhoev, stukprijs = verkprijs)
                 con.execute(insw)

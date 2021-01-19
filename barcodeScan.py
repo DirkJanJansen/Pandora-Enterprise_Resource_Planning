@@ -235,8 +235,12 @@ def nextClient(self):
                       .order_by(balieverkoop.c.barcode)
     rpb = con.execute(selb)
     for row in rpb:
-        mmutnr = con.execute(select([func.max(artikelmutaties.c.mutatieID, type_=Integer)])).scalar()
-        mmutnr += 1
+        try:
+            mmutnr = con.execute(select([func.max(artikelmutaties.c.mutatieID, type_=Integer)])).scalar()
+            mmutnr += 1
+        except:
+            mmutnr = 1
+            
         insmut = insert(artikelmutaties).values(mutatieID = mmutnr, artikelID = row[2],\
                 hoeveelheid = row[5], boekdatum = mboekd, baliebonID = mbonnr,\
                 tot_mag_prijs = row[7], btw_hoog = row[8])
@@ -255,9 +259,13 @@ def nextClient(self):
      
         engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
         con = engine.connect()
-        mafdrnr = (con.execute(select([func.max(afdrachten.c.afdrachtID,\
-                      type_=Integer).label('mafdrnr')])).scalar())
-        mafdrnr += 1
+        try:
+            mafdrnr = (con.execute(select([func.max(afdrachten.c.afdrachtID,\
+                      type_=Integer)])).scalar())
+            mafdrnr += 1
+        except:
+            mafdrnr = 1
+            
         insdr = insert(afdrachten).values(afdrachtID = mafdrnr, boekdatum = mboekd,\
              soort = 'BTW afdracht 21%', bedrag = self.mtotbtw, instantie = 'Belastingdienst',\
              ovbestelID = int(mbonnr), rekeningnummer= 'NL10 ABNA 9999999977')
@@ -370,8 +378,12 @@ def set_barcodenr(self):
                   subbtw = (balieverkoop.c.aantal+maantal)*mprijs*mbtw)
                 con.execute(updbal)
             else:
-                midnr = (con.execute(select([func.max(balieverkoop.c.ID, type_=Integer)])).scalar()) 
-                midnr += 1
+                try:
+                    midnr = (con.execute(select([func.max(balieverkoop.c.ID, type_=Integer)])).scalar()) 
+                    midnr += 1
+                except:
+                    midnr = 1
+                    
                 insbal = insert(balieverkoop).values(ID = midnr, bonnummer = mbonnr, artikelID = martnr,\
                   barcode = barcodenr, omschrijving = momschr, aantal = maantal, prijs = mprijs,\
                   subtotaal = maantal*mprijs, subbtw = maantal*mprijs*mbtw)

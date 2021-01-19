@@ -923,9 +923,12 @@ def raapLijst(keuze, zoekterm, m_email, route):
                      kosten_materialen = werken.c.kosten_materialen + mwaarde,\
                      meerminderwerk = werken.c.meerminderwerk + mmeerminder)
                     con.execute(stmt)
-                    mutatienr=(con.execute(select([func.max(artikelmutaties.c.mutatieID,\
-                    type_=Integer).label('mutatienr')])).scalar())
-                    mutatienr += 1
+                    try:
+                        mutatienr=(con.execute(select([func.max(artikelmutaties.c.mutatieID,\
+                            type_=Integer)])).scalar())
+                        mutatienr += 1
+                    except:
+                        mutatienr = 1
                     ins = insert(artikelmutaties).values(mutatieID = mutatienr, artikelID =\
                         martnr, werknummerID = mwerknr, hoeveelheid = -mhoev, boekdatum = mboekd,\
                         tot_mag_prijs = mhoev*martprijs, btw_hoog = .21*mhoev*martprijs,\
@@ -936,9 +939,12 @@ def raapLijst(keuze, zoekterm, m_email, route):
                      werk_materialen = orders_intern.c.werk_materialen + mwaarde,\
                      meerminderwerk = orders_intern.c.meerminderwerk + mmeerminder)
                     con.execute(stmt)
-                    mutatienr=(con.execute(select([func.max(artikelmutaties.c.mutatieID,\
-                        type_=Integer).label('mutatienr')])).scalar())
-                    mutatienr += 1
+                    try:
+                        mutatienr=(con.execute(select([func.max(artikelmutaties.c.mutatieID,\
+                          type_=Integer)])).scalar())
+                        mutatienr += 1
+                    except:
+                        mutatienr = 1
                     ins = insert(artikelmutaties).values(mutatieID = mutatienr, artikelID =\
                         martnr, werkorderID = mwerknr, hoeveelheid = -mhoev, boekdatum = mboekd,\
                         tot_mag_prijs = mhoev*martprijs, btw_hoog = .21*mhoev*martprijs,\

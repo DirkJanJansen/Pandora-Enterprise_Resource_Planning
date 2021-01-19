@@ -99,8 +99,8 @@ elif mjaar%2 == 0 and int(rppar[1]) == 1:
     
 mhjrmnd = str(datetime.date.today())[0:7]                                                  #(this year year-month) yyyy-mm
 mvjrmnd = int(str(int(str(datetime.date.today())[0:4])-1)+str(datetime.date.today())[5:7]) #(last year yearmonth) yyyymm
-mdbjrmnd = (con.execute(select([func.max(magazijnvoorraad.c.jaarmaand, type_=Integer)\
-                                   .label('mdbjrmnd')])).scalar())                         #(last stored year-month) yyyy-mm
+mdbjrmnd = (con.execute(select([func.max(magazijnvoorraad.c.jaarmaand,\
+                    type_=Integer)])).scalar())     #(last stored year-month) yyyy-mm
 if mhjrmnd != mdbjrmnd:
     insdb = insert(magazijnvoorraad).values(jaarmaand = mhjrmnd)
     con.execute(insdb)

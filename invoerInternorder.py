@@ -43,10 +43,13 @@ def bepaalWerknr():
     
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     conn = engine.connect()
-    
-    mwerknr=(conn.execute(select([func.max(orders_intern.c.werkorderID, type_=Integer)\
-                                   .label('mwerknr')])).scalar())
-    mwerknr=int(maak11proef(mwerknr))
+    try:
+        mwerknr=(conn.execute(select([func.max(orders_intern.c.werkorderID,\
+            type_=Integer)])).scalar())
+        mwerknr=int(maak11proef(mwerknr))
+    except:
+        mwerknr = 700000008
+            
     conn.close
     return(mwerknr)
 

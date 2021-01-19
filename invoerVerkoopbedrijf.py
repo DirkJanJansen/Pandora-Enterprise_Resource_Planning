@@ -93,11 +93,14 @@ def bepaalKoper():
     
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     conn = engine.connect()
-    
-    mkopernr=(conn.execute(select([func.max(kopers.c.koperID, type_=Integer)\
-                                   .label('mkopernr')])).scalar())
-    mkopernr=int(maak11proef(mkopernr))
-    conn.close
+    try:
+        mkopernr=(conn.execute(select([func.max(kopers.c.koperID,\
+                type_=Integer)])).scalar())
+        mkopernr=int(maak11proef(mkopernr))
+        conn.close
+    except:
+        mkopernr = 600000000
+        conn.close
     return(mkopernr)
    
 def Invoer():

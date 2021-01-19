@@ -42,9 +42,12 @@ def invParams(m_email):
   
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    mparnr = (con.execute(select([func.max(params.c.paramID, type_=Integer)\
-        .label('mparnr')])).scalar())
-    mparnr += 1
+    try:
+        mparnr = (con.execute(select([func.max(params.c.paramID,\
+                type_=Integer)])).scalar())
+        mparnr += 1
+    except:
+        mparnr = 1
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)

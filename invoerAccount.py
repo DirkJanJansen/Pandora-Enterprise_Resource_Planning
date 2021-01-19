@@ -183,9 +183,12 @@ def bepaalAccountnr():
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     conn = engine.connect()
     
-    maccountnr=(conn.execute(select([func.max(accounts.c.accountID, type_=Integer)\
-                                   .label('maccountnr')])).scalar())
-    maccountnr=int(maak11proef(maccountnr))
+    try:
+        maccountnr=(conn.execute(select([func.max(accounts.c.accountID,\
+            type_=Integer)])).scalar())
+        maccountnr=int(maak11proef(maccountnr))
+    except:
+        maccountnr = 100000010
     conn.close
     return(maccountnr)
    
@@ -555,9 +558,13 @@ def nieuwAccount(self):
             metadata.create_all(engine)
             conn = engine.connect()
             maccountnr=bepaalAccountnr()
-            mklantnr=(conn.execute(select([func.max(klanten.c.klantID, type_=Integer)\
-                                           .label('mklantnr')])).scalar())
-            mklantnr += 1
+            try:
+                mklantnr=(conn.execute(select([func.max(klanten.c.klantID,\
+                    type_=Integer)])).scalar())
+                mklantnr += 1
+            except:
+                mklantnr = 1
+                
             maccdatum = (datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))[0:10]
             metadata.create_all(engine)
             insacc = accounts.insert().values(

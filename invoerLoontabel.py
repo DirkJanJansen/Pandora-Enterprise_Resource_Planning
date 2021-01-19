@@ -51,10 +51,12 @@ def invoerSchaal(m_email):
                    
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    
-    mloonnr = (con.execute(select([func.max(lonen.c.loonID, type_=Integer)\
-          .label('mloonnr')])).scalar())
-    mloonnr += 1
+    try:
+        mloonnr = (con.execute(select([func.max(lonen.c.loonID,\
+                        type_=Integer)])).scalar())
+        mloonnr += 1
+    except:
+        mloonnr = 1
     mboekd = str(datetime.datetime.now())[0:10] 
     
     class Widget(QDialog):

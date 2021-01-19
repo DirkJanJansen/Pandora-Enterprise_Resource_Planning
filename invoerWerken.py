@@ -26,11 +26,14 @@ def bepaalWerknr():
     
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     conn = engine.connect()
-    
-    mwerknr=(conn.execute(select([func.max(werken.c.werknummerID, type_=Integer)\
-                                   .label('mwerknr')])).scalar())
-    mwerknr=int(maak11proef(mwerknr))
-    conn.close
+    try:
+        mwerknr=(conn.execute(select([func.max(werken.c.werknummerID,\
+                type_=Integer)])).scalar())
+        mwerknr=int(maak11proef(mwerknr))
+        conn.close
+    except:
+        mwerknr = 800000006
+        conn.close
     return(mwerknr)
 
 def jaarweek():

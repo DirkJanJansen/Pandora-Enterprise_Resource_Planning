@@ -1004,9 +1004,13 @@ def artikelAfroep(koppelnr, m_email):
                                         resterend=materiaallijsten.c.resterend - round(mhoev,4))
                                     con.execute(updmatl)
                                     
-                                    mlijstnr=(con.execute(select([func.max(raaplijst.c.lijstID, type_=Integer)\
-                                           .label('mlijstnr')])).scalar())
-                                    mlijstnr += 1
+                                    try:
+                                        mlijstnr=(con.execute(select([func.max(raaplijst.c.lijstID,\
+                                         type_=Integer)])).scalar())
+                                        mlijstnr += 1
+                                    except:
+                                        mlijstnr = 1
+                                            
                                     insrl = insert(raaplijst).values(lijstID = mlijstnr, artikelID = martikelnr,\
                                         werkorder = koppelnr, afroep = mhoev, leverdatum = mlevdat,\
                                         meerwerk = mmmstatus, postcode = mpostcode, huisnummer = mhuisnr,\
@@ -1021,10 +1025,13 @@ def artikelAfroep(koppelnr, m_email):
                             materiaallijsten.c.artikelID == martikelnr)).values(afroep = mhoev,\
                             resterend=materiaallijsten.c.resterend -  round(mhoev,4))
                         con.execute(updmatl)
-                        
-                        mlijstnr=(con.execute(select([func.max(raaplijst.c.lijstID, type_=Integer)\
-                                           .label('mlijstnr')])).scalar())
-                        mlijstnr += 1
+                        try:
+                            mlijstnr=(con.execute(select([func.max(raaplijst.c.lijstID,\
+                                   type_=Integer)])).scalar())
+                            mlijstnr += 1
+                        except:
+                            mlijstnr = 1
+                            
                         insrl = insert(raaplijst).values(lijstID = mlijstnr, artikelID = martikelnr,\
                             werkorder = koppelnr, afroep = mhoev, leverdatum = mlevdat,\
                             meerwerk = mmmstatus, postcode = mpostcode, huisnummer = mhuisnr,\
@@ -1060,9 +1067,12 @@ def artikelAfroep(koppelnr, m_email):
                                         resterend=materiaallijsten.c.resterend - round(mhoev,4))
                                     con.execute(updmatl)
                                     
-                                    mlijstnr=(con.execute(select([func.max(raaplijst.c.lijstID, type_=Integer)\
-                                               .label('mlijstnr')])).scalar())
-                                    mlijstnr += 1
+                                    try:
+                                        mlijstnr=(con.execute(select([func.max(raaplijst.c.lijstID,\
+                                           type_=Integer)])).scalar())
+                                        mlijstnr += 1
+                                    except:
+                                        mlijstnr = 1
                                     insrl = insert(raaplijst).values(lijstID = mlijstnr, artikelID = martikelnr,\
                                         werkorder = koppelnr, afroep = mhoev, leverdatum = mlevdat,\
                                         meerwerk = mmmstatus, postcode = mpostcode, huisnummer = mhuisnr,\
@@ -1078,9 +1088,12 @@ def artikelAfroep(koppelnr, m_email):
                             resterend=materiaallijsten.c.resterend - round(mhoev,4))
                         con.execute(updmatl)
                         
-                        mlijstnr=(con.execute(select([func.max(raaplijst.c.lijstID, type_=Integer)\
-                                           .label('mlijstnr')])).scalar())
-                        mlijstnr += 1
+                        try:
+                            mlijstnr=(con.execute(select([func.max(raaplijst.c.lijstID,\
+                                type_=Integer)])).scalar())
+                            mlijstnr += 1
+                        except:
+                            mlijstnr = 1
                         insrl = insert(raaplijst).values(lijstID = mlijstnr, artikelID = martikelnr,\
                             werkorder = koppelnr, afroep = mhoev, leverdatum = mlevdat,\
                             meerwerk = mmmstatus, postcode = mpostcode, huisnummer = mhuisnr,\

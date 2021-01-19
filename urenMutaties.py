@@ -263,8 +263,11 @@ def urenBoeking(self, m_email):
             
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    mwrkwnruren=(con.execute(select([func.max(wrkwnrln.c.wrkwnrurenID, type_=Integer)\
-                           .label('mwrkwnruren')])).scalar())
+    try:
+        mwrkwnruren=(con.execute(select([func.max(wrkwnrln.c.wrkwnrurenID,\
+            type_=Integer)])).scalar())
+    except:
+        mwrkwnruren = 1
 
     wrkgr = rpwnr[2]
     wrkgr2 = rpwnr[5]
@@ -613,12 +616,16 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
             def k0Changed():
                 self.k0Edit.setCurrentText(self.k0Edit.currentText())
             self.k0Edit.currentTextChanged.connect(k0Changed)
+                        
+            def k0Changed():
+                self.k0Edit.setCurrentIndex(self.k0Edit.currentIndex())
+            self.k0Edit.activated[str].connect(k0Changed)
             '''
             
             def k0Changed():
                 self.k0Edit.setCurrentIndex(self.k0Edit.currentIndex())
             self.k0Edit.currentIndexChanged.connect(k0Changed)
-                        
+                       
             def cboxChanged():
                 self.cBox.setCheckState(self.cBox.checkState())
             self.cBox.stateChanged.connect(cboxChanged)

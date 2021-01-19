@@ -456,9 +456,12 @@ def opbouwRp(mcalnr, mwerkomschr, mverw, mwerknr, m_email):
                 c.subtotaal+record[5]*row[3]*row[6]*(1+rppar[6][1]))
                 con.execute(updmatlijst)
             elif not rpart:
-                mmatlijstnr = (con.execute(select([func.max(materiaallijsten.c.matlijstID,\
-                        type_=Integer).label('mmatlijstnr')])).scalar())
-                mmatlijstnr += 1
+                try:
+                    mmatlijstnr = (con.execute(select([func.max(materiaallijsten.c.matlijstID,\
+                        type_=Integer)])).scalar())
+                    mmatlijstnr += 1
+                except:
+                    mmatlijstnr = 1
                 insmatlijst = insert(materiaallijsten).values(matlijstID = mmatlijstnr,\
                     calculatie = record[3], artikelID = row[1],\
                     hoeveelheid = record[5]*row[3], resterend = record[5]*row[3],\

@@ -227,11 +227,17 @@ def bepaalInkoopOrdernr(mregel):
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     conn = engine.connect()
     
-    morderinkoopnr=(conn.execute(select([func.max(orders_inkoop.c.orderinkoopID, type_=Integer)\
-                                   .label('morderinkoopnr')])).scalar())
-    if mregel == 1:
-       morderinkoopnr=int(maak11proef(morderinkoopnr))
-    conn.close
+    try:
+        morderinkoopnr=(conn.execute(select([func.max(orders_inkoop.c.orderinkoopID,\
+            type_=Integer)])).scalar())
+        if mregel == 1:
+            morderinkoopnr=int(maak11proef(morderinkoopnr))
+        conn.close
+    except:
+        if mregel == 1:
+            morderinkoopnr = 400000003
+        conn.close
+        
     return(morderinkoopnr)
    
 def Inkooporder(m_email, rplev, mregel):
@@ -515,9 +521,12 @@ def inkoopRegels(m_email, rplev, mregel):
  
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     conn = engine.connect()
-    mordlevnr=(conn.execute(select([func.max(orders_inkoop_artikelen.c.ordartlevID,\
-            type_=Integer).label('mordlevnr')])).scalar())
-    mordlevnr += 1
+    try:
+        mordlevnr=(conn.execute(select([func.max(orders_inkoop_artikelen.c.ordartlevID,\
+            type_=Integer)])).scalar())
+        mordlevnr += 1
+    except:
+        mordlevnr = 1
     mlevnr = minkgeg[1]
           
     insrgl = insert(orders_inkoop_artikelen).values(ordartlevID = mordlevnr,\

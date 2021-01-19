@@ -124,9 +124,12 @@ def divBereken(row):
         mwinst = 0
 
     if not rpres:
-        mresnr = (con.execute(select([func.max(resultaten.c.resID, type_=Integer)\
-          .label('mresnr')])).scalar())
-        mresnr += 1
+        try:
+            mresnr = (con.execute(select([func.max(resultaten.c.resID,\
+                type_=Integer)])).scalar())
+            mresnr += 1
+        except:
+            mresnr = 1
         insres = insert(resultaten).values(resID = mresnr, statusweek = mstatuswk,\
           blonen=round(row[28],2), wlonen=round(row[4],2),bmaterialen=round(row[27],2),\
           wmaterialen=round(row[3],2),bmaterieel=round(row[26],2), wmaterieel=round(row[5],2),\
@@ -292,58 +295,82 @@ def bereken(m_email):
     selr = select([resultaten_status]).where(resultaten_status.c.boekweek == jrwk)
     rpr = con.execute(selr).first()
     
-    if not rpr:    
-        mrnr = (con.execute(select([func.max(resultaten_status.c.rID,\
-            type_=Integer).label('mrnr')])).scalar())
-        mrnr += 1
+    if not rpr: 
+        try:
+            mrnr = (con.execute(select([func.max(resultaten_status.c.rID,\
+             type_=Integer)])).scalar())
+            mrnr += 1
+        except:
+            mrnr = 1
         insres = insert(resultaten_status).values(rID = mrnr, status = 'A',\
             aanneemsom = round(msomA,2), aantal = maantA, boekweek = jrwk)
         con.execute(insres)
-        mrnr = (con.execute(select([func.max(resultaten_status.c.rID,\
-            type_=Integer).label('mrnr')])).scalar())
-        mrnr += 1
+        try:
+            mrnr = (con.execute(select([func.max(resultaten_status.c.rID,\
+              type_=Integer)])).scalar())
+            mrnr += 1
+        except:
+            mrnr = 1
         insres = insert(resultaten_status).values(rID = mrnr, status = 'B',\
             aanneemsom = round(msomB,2), kosten = round(mkostB,2), aantal = maantB,\
             betaald = mbetaaldB, boekweek = jrwk, meerminderwerk = mmeerwB)
         con.execute(insres)
-        mrnr = (con.execute(select([func.max(resultaten_status.c.rID,\
-            type_=Integer).label('mrnr')])).scalar())
-        mrnr += 1
+        try:
+            mrnr = (con.execute(select([func.max(resultaten_status.c.rID,\
+               type_=Integer)])).scalar())
+            mrnr += 1
+        except:
+            mrnr = 1
         insres = insert(resultaten_status).values(rID = mrnr, status = 'C',\
             aanneemsom = round(msomC,2), kosten = round(mkostC,2), aantal = maantC,\
             betaald = mbetaaldC, boekweek = jrwk, meerminderwerk = mmeerwC)
         con.execute(insres)
-        mrnr = (con.execute(select([func.max(resultaten_status.c.rID,\
-            type_=Integer).label('mrnr')])).scalar())
-        mrnr += 1
+        try:
+            mrnr = (con.execute(select([func.max(resultaten_status.c.rID,\
+              type_=Integer)])).scalar())
+            mrnr += 1
+        except:
+            mrnr = 1
         insres = insert(resultaten_status).values(rID = mrnr, status = 'D',\
             aanneemsom = round(msomD,2), kosten = round(mkostD,2), aantal = maantD,\
             betaald = mbetaaldD, boekweek = jrwk, meerminderwerk = mmeerwD)
         con.execute(insres)
-        mrnr = (con.execute(select([func.max(resultaten_status.c.rID,\
-            type_=Integer).label('mrnr')])).scalar())
-        mrnr += 1
+        try:
+            mrnr = (con.execute(select([func.max(resultaten_status.c.rID,\
+               type_=Integer)])).scalar())
+            mrnr += 1
+        except:
+            mrnr = 1
         insres = insert(resultaten_status).values(rID = mrnr, status = 'E',\
             aanneemsom = round(msomE,2), kosten = round(mkostE,2), aantal = maantE,\
             betaald = mbetaaldE, boekweek = jrwk, meerminderwerk = mmeerwE)
         con.execute(insres)
-        mrnr = (con.execute(select([func.max(resultaten_status.c.rID,\
-            type_=Integer).label('mrnr')])).scalar())
-        mrnr += 1
+        try:
+            mrnr = (con.execute(select([func.max(resultaten_status.c.rID,\
+              type_=Integer)])).scalar())
+            mrnr += 1
+        except:
+            mrnr = 1
         insres = insert(resultaten_status).values(rID = mrnr, status = 'F',\
             aanneemsom = round(msomF,2), kosten = round(mkostF,2), aantal = maantF,\
             betaald = mbetaaldF, boekweek = jrwk, meerminderwerk = mmeerwF)
         con.execute(insres)
-        mrnr = (con.execute(select([func.max(resultaten_status.c.rID,\
-            type_=Integer).label('mrnr')])).scalar())
-        mrnr += 1
+        try:
+            mrnr = (con.execute(select([func.max(resultaten_status.c.rID,\
+               type_=Integer)])).scalar())
+            mrnr += 1
+        except:
+            mrnr = 1
         insres = insert(resultaten_status).values(rID = mrnr, status = 'G',\
             aanneemsom = round(msomG,2), kosten = round(mkostG,2), aantal = maantG,\
             betaald = mbetaaldG, boekweek = jrwk, meerminderwerk = mmeerwG)
         con.execute(insres)
-        mrnr = (con.execute(select([func.max(resultaten_status.c.rID,\
-            type_=Integer).label('mrnr')])).scalar())
-        mrnr += 1
+        try:
+            mrnr = (con.execute(select([func.max(resultaten_status.c.rID,\
+               type_=Integer)])).scalar())
+            mrnr += 1
+        except:
+            mrnr = 1
         insres = insert(resultaten_status).values(rID = mrnr, status = 'H',\
             aanneemsom = round(msomH,2), kosten = round(mkostH,2), aantal = maantH,\
             betaald = mbetaaldH, boekweek = jrwk, meerminderwerk = mmeerwH)

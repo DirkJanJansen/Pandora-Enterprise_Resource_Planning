@@ -52,9 +52,13 @@ def bepaalArtikelnr():
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     conn = engine.connect()
     
-    martikelnr=(conn.execute(select([func.max(artikelen.c.artikelID, type_=Integer)\
-                                   .label('martikelnr')])).scalar())
-    martikelnr=int(maak11proef(martikelnr))
+    try:
+        martikelnr=(conn.execute(select([func.max(artikelen.c.artikelID,\
+                type_=Integer)])).scalar())
+        martikelnr=int(maak11proef(martikelnr))
+    except:
+        martikelnr = 200000019
+        
     conn.close
     return(martikelnr)
  

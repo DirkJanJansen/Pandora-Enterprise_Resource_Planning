@@ -91,11 +91,13 @@ def bepaalLeverancier(m_email):
     
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     conn = engine.connect()
-    
-    mlevnr=(conn.execute(select([func.max(leveranciers.c.leverancierID, type_=Integer)\
-                                   .label('mlevnr')])).scalar())
-    mlevnr=int(maak11proef(mlevnr))
-    conn.close
+    try:
+        mlevnr=(conn.execute(select([func.max(leveranciers.c.leverancierID,\
+            type_=Integer)])).scalar())
+        mlevnr=int(maak11proef(mlevnr))
+        conn.close
+    except:
+        mlevnr = 300000005
     invLeverancier(mlevnr, m_email)
    
 def Invoer():

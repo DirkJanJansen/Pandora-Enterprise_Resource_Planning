@@ -300,8 +300,11 @@ def urenBoeking(self, m_email):
             
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    mwrkwnruren=(con.execute(select([func.max(wrkwnrln.c.wrkwnrurenID, type_=Integer)\
-                                   .label('mwrkwnruren')])).scalar())
+    try:
+        mwrkwnruren=(con.execute(select([func.max(wrkwnrln.c.wrkwnrurenID,\
+                type_=Integer)])).scalar())
+    except:
+        mwrkwnruren = 1
     wrkgr = rpwnr[2]
     wrkgr2 = rpwnr[5]
     loonsel = select([lonen]).where(lonen.c.loonID == wrkgr)    #loonID

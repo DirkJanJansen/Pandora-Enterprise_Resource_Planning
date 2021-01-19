@@ -826,10 +826,13 @@ def inkoopRegels(m_email, rp1, rp2, rp3, mstraat, mplaats, mregel):
             
             selpar = select([params]).order_by(params.c.paramID)
             rppar = con.execute(selpar).fetchall()
-             
-            mutnr=(conn.execute(select([func.max(artikelmutaties.c.mutatieID,\
-                                type_=Integer).label('mutnr')])).scalar())
-            mutnr += 1
+            try: 
+                mutnr=(conn.execute(select([func.max(artikelmutaties.c.mutatieID,\
+                                type_=Integer)])).scalar())
+                mutnr += 1
+            except:
+                mutnr = 1
+            
             mboekd = (datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))[0:10] 
              
             ins = insert(artikelmutaties).values(mutatieID = mutnr, artikelID =\
