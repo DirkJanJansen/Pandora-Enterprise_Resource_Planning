@@ -735,9 +735,12 @@ def toonMutaties(keuze,zoekterm, m_email):
                   .where(orders_inkoop.c.orderinkoopID == minkordernr)
                 rp = con.execute(sel).first()
                 mlevnr = rp[1]
-                mutatienr=(con.execute(select([func.max(dienstenmutaties.c.mutatieID,\
-                    type_=Integer).label('mutatienr')])).scalar())
-                mutatienr += 1
+                try:
+                    mutatienr=(con.execute(select([func.max(dienstenmutaties.c.mutatieID,\
+                      type_=Integer)])).scalar())
+                    mutatienr += 1
+                except:
+                    mutatienr = 1
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
@@ -1389,7 +1392,7 @@ def toonMutaties(keuze,zoekterm, m_email):
                     mutatienr=(con.execute(select([func.max(dienstenmutaties.c.mutatieID,\
                       type_=Integer)])).scalar())
                     mutatienr += 1
-                else:
+                except:
                     mutatienr = 1
                     
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
@@ -1445,7 +1448,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                     mutatienr=(con.execute(select([func.max(dienstenmutaties.c.mutatieID,\
                         type_=Integer)])).scalar())
                     mutatienr += 1
-                mutatienr = 1
+                except:
+                    mutatienr = 1
                 
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
