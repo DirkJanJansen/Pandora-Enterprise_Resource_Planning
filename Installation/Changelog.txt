@@ -385,3 +385,10 @@ From 2020-01-10 updates and changes are described on this page
 2020-10-27 LINUX_install.txt terminal commands applied for backup delete and restore database bisystem (commands for bisystem.backup)
 2020-11-28 Documentatation Stock_and_inventory_control.pdf type error adjusted. Bisystem_Database_structure_pkeys_fkeys.pdf added function reference showTransactions (toonMutaties)
 2020-12-15 magvrdGrafiek.py warning notification added if not sufficient collected data present for showing bargraph.
+2021-01-19 Next scripts changed for starting with empty database bisystem generating first number by empty table.
+           artikelAfroep.py, barcodeScan.py, bestelOrder.py, dervingMutaties.py, dienstenMutaties.py, invoerAccount.py,
+           invoerArtikelen.py, invoerCluster_artikelen.py, invoerClustercalculatie.py, invoerIcluster_artikelen.py,
+           invoerInkooporder.py, invoerInternorder.py, invoerLeverancier.py, invoerLoontabel.py, invoerParams.py,
+           invoerVerkoopbedrijf.py, invoerWerken.py, koppelAccount.py, magUitgifte.py, opvrClustercalculatie.py,
+           Pandora.py, rapportage.py, uitbetalenLonen.py, urenImutaties.py, urenMutaties.py, wijzInkooporder.py,
+           wijzInternorder.py
