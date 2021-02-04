@@ -352,9 +352,11 @@ def geefAuth(rpacc, m_email):
                cBox.clicked.connect(lambda checked , mindex = x : getindex(mindex))
                                               
             def getindex(mindex):
+                #compile list with changes
                 self.xlist.append(mindex)
                                          
             def writeValues(self):
+                #remove unnessary paired changes (enable, disable) or (disable, enable) and sort
                 self.xlist = [value for value, count in Counter(self.xlist).items() if count%2 == 1]
                 self.xlist.sort()
                 for x in self.xlist:
