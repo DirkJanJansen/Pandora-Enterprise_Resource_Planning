@@ -392,3 +392,5 @@ From 2020-01-10 updates and changes are described on this page
            invoerVerkoopbedrijf.py, invoerWerken.py, koppelAccount.py, magUitgifte.py, opvrClustercalculatie.py,
            Pandora.py, rapportage.py, uitbetalenLonen.py, urenImutaties.py, urenMutaties.py, wijzInkooporder.py,
            wijzInternorder.py
+2021-02-04 Pandora.py with determination annual consumption by zero division solved
+
