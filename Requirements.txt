@@ -5,5 +5,5 @@ PyQt5
 PyQtChart
 psycopg2
 sqlalchemy
-pypiwin32
+pypiwin32 #(only windows)
 postgreSQL
