@@ -27,7 +27,9 @@ additional set password in psql with \password   (postgres45)
 Install pgadmin4 follow steps in:
 https://tecadmin.net/install-pgadmin4-on-ubuntu/
 install pgadmin with:
-sudo apt-get install pgadmin4 (without apache)
+sudo apt-get install pgadmin4 
+or install  with apache:
+sudo apt-get install pgadmin4-apache
 With the latest update from the login script capslock notification is working now with Linux.
 I found a solution for printing listings with Linux see following lines.
 
