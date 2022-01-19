@@ -1,6 +1,6 @@
 Installation software:
 
-Python 3 is already installed in Ubuntu 19.04 and 19.10
+Python 3 is already installed in Ubuntu 19.04 and 19.10 and 20.04.3 LTS
 
 sudo apt install python3-pip
 sudo pip3 install pyqt5
