@@ -340,6 +340,7 @@ def toonClusters(keuze, m_email):
                     q4Edit = QLineEdit('{:12.2f}'.format(rpsel[4]))
                     q4Edit.setFixedWidth(150)
                     q4Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    q4Edit.setAlignment(Qt.AlignRight)
                     q4Edit.setDisabled(True)
                     
                     self.Lonen = QLabel()
