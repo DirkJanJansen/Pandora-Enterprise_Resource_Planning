@@ -34,6 +34,8 @@ From 2020-01-10 updates and changes are described on this page
 2020-01-24 All pictures in folder Pandora/images/logos/Betaal repaired with imagestack mogrify to avoid warning
 2020-01-25 login.py adjusted due too menu lines behaviour in Linux over 2 lines
 2020-01-25 wijzArtikel.py vertical positioning window changed
+2022-01-28 wijzigenClusters.py Alignment added by field Materialen
+2020-01-28 wijzigen-clusters.png Screenshot changed according Alignment previous line
 2020-01-25 Pandora.py in main section added style Windows for Windows or style Fusion for Linux.
 2020-01-27 bestelOrder.py payform headerbuttons iDEAL and Creditcards replaced by images.
 2020-01-27 opvrLoonbetalingen.py all floats round up with maximum  2 digits floating point+font black for clarity.
