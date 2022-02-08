@@ -32,7 +32,7 @@ def geenGegevens():
     msgBox.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msgBox.setWindowTitle("Bereken Gegevens van Externe Werken")
     msgBox.setIcon(QMessageBox.Warning)
-    msgBox.setText("Dit jaar zijn geen gegevens aanwezig!")
+    msgBox.setText("Nog geen gegevens aanwezig dit jaar!")
     msgBox.exec_()
     
 def berBestaat(jrwk, m_email):
