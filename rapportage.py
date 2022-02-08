@@ -26,6 +26,14 @@ def JN(m_email):
         bereken(m_email)
     else:
         hoofdMenu(m_email) 
+        
+def geenGegevens():
+    msgBox=QMessageBox()
+    msgBox.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
+    msgBox.setWindowTitle("Bereken Gegevens van Externe Werken")
+    msgBox.setIcon(QMessageBox.Warning)
+    msgBox.setText("Dit jaar zijn geen gegevens aanwezig!")
+    msgBox.exec_()
     
 def berBestaat(jrwk, m_email):
     class Widget(QDialog):
@@ -144,6 +152,7 @@ def divBereken(row):
 
 def bereken(m_email):
     jrwk = jaarweek()
+    jr = jrwk[0:4]
     metadata = MetaData()
     resultaten = Table('resultaten', metadata,
         Column('resID', Integer(), primary_key=True),
@@ -189,11 +198,14 @@ def bereken(m_email):
           
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    jr = jrwk[0:4]
-    sel = select([werken]).where(werken.c.statusweek.like(jr+'%')).order_by(werken.c.statusweek)
-        
-    rpwerken = con.execute(sel)
+ 
     
+    sel = select([werken]).where(werken.c.statusweek.like(jr+'%')).order_by(werken.c.statusweek)
+    if con.execute(sel).first() == None:
+        geenGegevens()
+        hoofdMenu(m_email)
+    rpwerken = con.execute(sel)
+        
     msomA,msomB,msomC,msomD,msomE,msomF,msomG,msomH,mkosttot,mbetaald,mmeerwerk = (0,)*11
     mkostB,mkostC,mkostD,mkostE,mkostF,mkostG,mkostH = (0,)*7
     mwinstC, mwinstD, mwinstE, mwinstF, mwinstG, mwinstH = (0,)*6
