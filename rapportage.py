@@ -198,14 +198,14 @@ def bereken(m_email):
           
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
- 
-    
+     
     sel = select([werken]).where(werken.c.statusweek.like(jr+'%')).order_by(werken.c.statusweek)
-    if con.execute(sel).first() == None:
+    if con.execute(sel).first():
+        rpwerken = con.execute(sel)
+    else:
         geenGegevens()
         hoofdMenu(m_email)
-    rpwerken = con.execute(sel)
-        
+         
     msomA,msomB,msomC,msomD,msomE,msomF,msomG,msomH,mkosttot,mbetaald,mmeerwerk = (0,)*11
     mkostB,mkostC,mkostD,mkostE,mkostF,mkostG,mkostH = (0,)*7
     mwinstC, mwinstD, mwinstE, mwinstF, mwinstG, mwinstH = (0,)*6
