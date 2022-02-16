@@ -14,7 +14,7 @@ def eindModule(self,m_email):
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
     msg.setText('Invoer afgebroken.')
-    msg.setWindowTitle('BESTELLINGEN')               
+    msg.setWindowTitle('LONEN')               
     msg.exec_()
     self.close()
     hoofdMenu(m_email)
@@ -24,7 +24,7 @@ def invoerOK(m_email):
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
     msg.setText('Invoer gelukt!')
-    msg.setWindowTitle('RAAPLIJST')
+    msg.setWindowTitle('LONEN')
     msg.exec_()
     hoofdMenu(m_email)
     
