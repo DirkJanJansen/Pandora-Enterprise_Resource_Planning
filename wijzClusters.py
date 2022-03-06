@@ -361,6 +361,7 @@ def toonClusters(keuze, m_email):
                     q7Edit = QLineEdit('{:12.2f}'.format(rpsel[7]))
                     q7Edit.setFixedWidth(150)
                     q7Edit.setAlignment(Qt.AlignRight)
+                    q7Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q7Edit.setValidator(input_validator)
                     q7Edit.setDisabled(True)
                     
