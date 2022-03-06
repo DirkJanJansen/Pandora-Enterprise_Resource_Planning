@@ -395,4 +395,5 @@ From 2020-01-10 updates and changes are described on this page
 2021-02-04 Pandora.py with determination annual consumption by zero division solved
 2022-02-08 rapportage.py capture message added by no data present in current year.
 2022-02-16 percentageLonen.py messages heading changed in LONEN
+2022-03-06 wijzClusters.py Field Materieel character color changed
 
