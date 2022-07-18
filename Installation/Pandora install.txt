@@ -14,7 +14,7 @@ For adjustments or  additions see "Changelog.txt".
 
 Install python3, 
 Next items with: pip install
-pyqt5, pyqtchart same version as pyqt5, sqlalchemy, psycopg2 and pypiwin32.
+pyqt5, pyqtchart same version as pyqt5, sqlalchemy, psycopg2 and pypiwin32, pillow and python-barcode
 
 For printing listings change this settings in notepad:
 Pagesettings: Left 0 Right 0 Top 14 Bottom 40
