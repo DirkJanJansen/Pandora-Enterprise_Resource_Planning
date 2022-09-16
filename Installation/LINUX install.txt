@@ -7,12 +7,10 @@ sudo pip3 install pyqt5
 sudo pip3 install pyqtchart
 sudo pip3 install python-barcode
 sudo pip3 install pillow
-or if you want spyder as ide
-(sudo apt install python3-pip
-sudo pip3 install pillow
-sudo pip3 install python-barcode
-sudo pip3 install spyder==3.3.6
-sudo pip3 install pyqtchart==5.12)
+
+if you want a editor install Visual code from Microsoft:
+follow instructions on:
+https://linuxhint.com/install-visual-studio-code-ubuntu22-04/
 
 sqlalchemy and psycopg2 is installed with postgreSQL-contrib see next lines
 
