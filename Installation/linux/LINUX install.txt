@@ -9,9 +9,8 @@ sudo pip3 install python-barcode
 sudo pip3 install pillow
 
 if you want a editor install Visual code from Microsoft:
-Open terminal Ctrl+Alt+t
-sudo apt update
-sudo apt install code
+follow instructions on:
+https://linuxhint.com/install-visual-studio-code-ubuntu22-04/
  
 sqlalchemy and psycopg2 is installed with postgreSQL-contrib see next lines
 
