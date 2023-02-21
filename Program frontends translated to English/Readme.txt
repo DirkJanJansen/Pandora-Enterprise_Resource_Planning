@@ -14,7 +14,7 @@ opvrKlantenorders.py
 This means that frontends from  Mainmenu and 
 submenus from Accounts are translated to English.
 
-I the coming period other submenu's will follow.
+In the coming period other submenu's will follow.
 
 To implement overwrite the existing programs with
 the translated ones.
