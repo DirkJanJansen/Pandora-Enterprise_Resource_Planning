@@ -70,7 +70,7 @@ def info():
         For this privileges, see the info for maintenance menu authorizations.
         The following submenus can be accessed from the main menu:
         Accounts, Suppliers, Employees, Purchasing, Sales, Warehouse, Working Internally, Working Externally,\t
-        Calculation Internal, External Calculation, Wage Administration, Accounting, Stock Management,
+        Calculation Internal, External Calculation, Wages Administration, Accounting, Stock Management,
         Management Information, Maintenance, Reprinting forms. 
         Authorizing these submenus and operations can be assigned with
         the maintenance menu, mutate permissions.                                 
@@ -392,7 +392,7 @@ def hoofdMenu(m_email):
             k2Edit.addItem('Employees'.center(48,' '))
             k2Edit.addItem('1. Connect account-employee')
             k2Edit.addItem('2. Modify employee data')
-            k2Edit.addItem('3. Request employee data')
+            k2Edit.addItem('3. Request employees data')
             k2Edit.addItem('4. Request employee-period')
             k2Edit.activated[str].connect(self.k2Changed)
             
@@ -509,10 +509,10 @@ def hoofdMenu(m_email):
             k10Edit.addItem('Payroll administration'.center(48,' '))
             k10Edit.addItem('1. Request mutation of hours')
             k10Edit.addItem('2. Control hours for monthly wages')
-            k10Edit.addItem('3. Monthly wage scales')
-            k10Edit.addItem('4. Request wage payments')
-            k10Edit.addItem('5. Insert wage scales')
-            k10Edit.addItem('6. Modify wage scales / requesting')
+            k10Edit.addItem('3. Monthly wages scales')
+            k10Edit.addItem('4. Request wages payments')
+            k10Edit.addItem('5. Insert wages scales')
+            k10Edit.addItem('6. Modify wages scales / requesting')
             k10Edit.addItem('7. Increase wages in percentage terms')
             k10Edit.activated[str].connect(self.k10Changed)
             
@@ -584,7 +584,7 @@ def hoofdMenu(m_email):
             k15Edit.addItem('6. Picklists warehouse')
             k15Edit.addItem('7. Web orders packing slip')
             k15Edit.addItem('8. Control hours for paying wages')
-            k15Edit.addItem('9. Wage specification employees')
+            k15Edit.addItem('9. Wages specification employees')
             k15Edit.addItem('A. Invoices external works')
             k15Edit.addItem('B. Web orders payments') 
             k15Edit.addItem('C. Purchase orders services/material')  

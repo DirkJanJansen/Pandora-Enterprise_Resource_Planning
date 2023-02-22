@@ -613,7 +613,7 @@ def opvrWerknperiode(mwerknmrnr,mbetaalper, m_email):
             grid.addWidget(QLabel('{:12.2f}'.format(mreisbedr)), 15, 1, 1, 1, Qt.AlignRight) 
             grid.addWidget(QLabel('Hours to be paid'), 16, 0) 
             grid.addWidget(QLabel('173.3'), 16, 0, 1, 1, Qt.AlignRight) 
-            grid.addWidget(QLabel('Working hours 100%'), 17 ,0)
+            grid.addWidget(QLabel('Work. hours 100%'), 17 ,0)
             grid.addWidget(QLabel('{:12.2f}'.format(muren)), 17, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(QLabel('{:12.2f}'.format(muurlbedr)), 17, 1, 1, 1, Qt.AlignRight) 
             grid.addWidget(QLabel('Leave'), 18, 0)

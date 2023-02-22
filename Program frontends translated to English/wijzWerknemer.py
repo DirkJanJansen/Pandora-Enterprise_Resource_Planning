@@ -49,13 +49,13 @@ def info():
             lblinfo = QLabel(
         '''
         If an employee needs to perform substitute work in another discipline,
-        the new wage table number of this discipline must be filled in
+        the new wages table number of this discipline must be filled in
         in the Pay table field. 
         The Orig field will then retain the old pay table number, with which his or her\t
         wages are determined. 
         The work wages data for transfer to the works is calculated with the changed
-        wage table number. 
-        When resuming the original work, the wage table number to be changed back to
+        wages table number. 
+        When resuming the original work, the wages table number to be changed back to
         the contents of the Orig field so that both fields be equal again and the
         original situation has been restored.
        
@@ -434,13 +434,13 @@ def updateWerknemer(m_email, mwerknmr):
             grid.addWidget(QLabel('Accountnumber'), 3, 0)
             grid.addWidget(q2Edit, 3, 1)
             
-            grid.addWidget(QLabel('Wage table'), 6, 0)
+            grid.addWidget(QLabel('Wages table'), 6, 0)
             grid.addWidget(q4Edit, 6 , 1) 
             
             grid.addWidget(QLabel('Orig'), 6, 1, 1, 1, Qt.AlignCenter)
             grid.addWidget(o4Edit, 6, 1, 1, 1, Qt.AlignRight)
              
-            grid.addWidget(QLabel('Wage step'), 7, 0)
+            grid.addWidget(QLabel('Wages step'), 7, 0)
             grid.addWidget(q5Edit, 7, 1)
                                                       
             grid.addWidget(QLabel('Travel compensation'), 4, 2)
@@ -467,9 +467,9 @@ def updateWerknemer(m_email, mwerknmr):
             grid.addWidget(QLabel('Extra leave in hours'), 8, 2)
             grid.addWidget(q17Edit, 8, 3)
             
-            grid.addWidget(QLabel('Hourly wage'), 9, 0)
+            grid.addWidget(QLabel('Hourly wages'), 9, 0)
             grid.addWidget(QLabel(str(round(muurl, 2))), 9, 1, 1, 1, Qt.AlignRight) 
-            grid.addWidget(QLabel('Travel hourly wage'), 9, 2)
+            grid.addWidget(QLabel('Travel hourly wages'), 9, 2)
             grid.addWidget(QLabel(str(round(mreisuurl, 2))), 9, 3)
             
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 10, 1, 1, 2)

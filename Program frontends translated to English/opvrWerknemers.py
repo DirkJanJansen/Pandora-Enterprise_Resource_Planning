@@ -48,8 +48,8 @@ def accKeuze(m_email):
             k0Edit.addItem('2. Surname')
             k0Edit.addItem('3. Per pay table number.')
             k0Edit.addItem('4. Accountnumber.')
-            k0Edit.addItem('5. Table wage/hour <.')
-            k0Edit.addItem('6. Table wage/hour >.')
+            k0Edit.addItem('5. Table wages/hour <.')
+            k0Edit.addItem('6. Table wages/hour >.')
             k0Edit.addItem('7. Monthly wages indirect staff >.')           
             k0Edit.addItem('8. Employment (yyyy(-mm-dd))')
             k0Edit.activated[str].connect(self.k0Changed)
@@ -255,12 +255,12 @@ def toonWerknemers(keuze,zoekterm, m_email):
                 return self.header[col]
             return None
        
-    header = ['Accountnumber', 'Employeenumber', 'Payscale', 'Wagestep', 'Payroll tax',\
+    header = ['Accountnumber', 'Employeenumber', 'Payscale', 'Wagesstep', 'Payroll tax',\
           'Pension contribution', 'Res. Holiday surcharge', 'Employer pension contribution', 'Periodic payment.',\
           'Other deductions', 'Other fees','Company car addition',\
           'Travel compensation', 'Entry into service date', 'Leave balance', 'Extra leave',\
           'Accountnumber', 'Prefix', 'First name', 'Infix', 'Surname',\
-          'Date of birth', 'Pay scale', 'Table wages', 'Travel hourly wage', 'Monthly salary']    
+          'Date of birth', 'Pay scale', 'Table wages', 'Travel hourly wages', 'Monthly salary']    
         
     data_list=[]
     for row in rpwerkn:
@@ -391,10 +391,10 @@ def toonWerknemers(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Accountnumber'), 3, 0)
                     grid.addWidget(q2Edit, 3, 1)
                     
-                    grid.addWidget(QLabel('Wage table'), 6, 0)
+                    grid.addWidget(QLabel('Wages table'), 6, 0)
                     grid.addWidget(q4Edit, 6 , 1) 
                      
-                    grid.addWidget(QLabel('Wage step'), 7, 0)
+                    grid.addWidget(QLabel('Wages step'), 7, 0)
                     grid.addWidget(q5Edit, 7, 1)
                                                               
                     grid.addWidget(QLabel('Travel compensation'), 4, 2)
@@ -421,7 +421,7 @@ def toonWerknemers(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Extra leave in hours'), 8, 2)
                     grid.addWidget(q17Edit, 8, 3)
                     
-                    grid.addWidget(QLabel('Hourly wage'), 9, 0)
+                    grid.addWidget(QLabel('Hourly wages'), 9, 0)
                     grid.addWidget(QLabel('{:12.2f}'.format(rpwrknmr[23])), 9, 1, 1, 1, Qt.AlignRight) 
                     grid.addWidget(QLabel('Travel hourly wages'), 9, 2)
                     grid.addWidget(QLabel('{:12.2f}'.format(rpwrknmr[24])), 9, 3, 1, 1, Qt.AlignRight)
