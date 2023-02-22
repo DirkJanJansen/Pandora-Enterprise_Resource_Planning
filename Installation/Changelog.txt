@@ -397,4 +397,5 @@ From 2020-01-10 updates and changes are described on this page
 2022-02-16 percentageLonen.py messages heading changed in LONEN
 2022-03-06 wijzClusters.py Field Materieel character color changed
 2023-02-21 Added translated program frontends in English for logon, mainmenu, accounts and suppliers other submenus will follow
+2023-02-22 Added translated program frontends in English for Employees other submenus will follow
 
