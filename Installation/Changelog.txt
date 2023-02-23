@@ -400,6 +400,7 @@ From 2020-01-10 updates and changes are described on this page
 2023-02-22 Added translated program frontends in English for Employees other submenus will follow
 2023-02-23 login.py changed request employee request in request employees.
            opvrWerknamers.py, opvrWerknperiode.py and wijzWerknemer.py wage changed in wages on several positions 
-2023-02-23 Changed Prefix Mr. Ms. Mss. for Insert and change accounts invoerAccount.py and wijzAccount.py	   
+2023-02-23 Changed Prefix Mr. Ms. Mss. for Insert and change accounts invoerAccount.py and wijzAccount.py
+2023-02-23 Changed login.py for untranslated added purchase subprograms
 	   
 
