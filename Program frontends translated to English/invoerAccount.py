@@ -217,8 +217,9 @@ def nieuwAccount(self):
             q2Edit.setFont(QFont("Arial",10))
             q2Edit.setStyleSheet("color: black;  background-color: gainsboro")
             q2Edit.addItem(' ')
-            q2Edit.addItem('Dhr. ')
-            q2Edit.addItem('Mevr. ')
+            q2Edit.addItem('Mr. ')
+            q2Edit.addItem('Ms. ')
+            q2Edit.addItem('Mss. ')
             q2Edit.activated[str].connect(self.q2Changed)
             
             self.Voornaam = QLabel()
