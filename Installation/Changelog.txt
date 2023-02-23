@@ -402,5 +402,6 @@ From 2020-01-10 updates and changes are described on this page
            opvrWerknamers.py, opvrWerknperiode.py and wijzWerknemer.py wage changed in wages on several positions 
 2023-02-23 Changed Prefix Mr. Ms. Mss. for Insert and change accounts invoerAccount.py and wijzAccount.py
 2023-02-23 Changed login.py for untranslated subprogram and added all translated purchase programs
+2023-02-23 Submenu Sales program frontends are translated to English
 	   
 
