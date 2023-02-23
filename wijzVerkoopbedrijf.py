@@ -20,8 +20,8 @@ def foutTelnr():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('geen 10 cijfers!')
-    msg.setWindowTitle('Verkoopbedrijf')
+    msg.setText('no 10 digits!')
+    msg.setWindowTitle('Sales company')
     msg.exec_()
     
 def foutKopernr():
@@ -29,8 +29,8 @@ def foutKopernr():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Bedrijf niet gevonden')
-    msg.setWindowTitle('Verkoopbedrijf')
+    msg.setText('Company not found')
+    msg.setWindowTitle('Sales company')
     msg.exec_()
          
 def updateOK():
@@ -38,15 +38,15 @@ def updateOK():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Je gegevens zijn aangepast!')
-    msg.setWindowTitle('Verkoopbedrijf')
+    msg.setText('Your data has been adjusted!')
+    msg.setWindowTitle('Sales company')
     msg.exec_()
            
 def zoekKoper(m_email):     
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Bedrijf-Verkoop wijzigen.")
+            self.setWindowTitle("Modify sales company.")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -73,13 +73,13 @@ def zoekKoper(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 2, Qt.AlignRight)
          
-            grid.addWidget(QLabel('Bedrijf-Verkoop'), 1, 1)
+            grid.addWidget(QLabel('Sales company'), 1, 1)
             grid.addWidget(levEdit, 1, 2)
        
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
          
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
                   
             grid.addWidget(applyBtn, 2, 2, 1, 1, Qt.AlignRight)
@@ -170,7 +170,7 @@ def updateKoper(m_email, mkopernr):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Wijzigen Bedrijf-Verkoop")
+            self.setWindowTitle("Modify sales company")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                                   
             self.setFont(QFont('Arial', 10))
@@ -310,52 +310,52 @@ def updateKoper(m_email, mkopernr):
             grid.addWidget(logo , 0, 1, 1, 2, Qt.AlignRight)
    
             self.setFont(QFont('Arial', 10))
-            grid.addWidget(QLabel('Bedrijf-Verkoop wijzigingen'), 0, 1)
+            grid.addWidget(QLabel('Modifications sales company'), 0, 1)
                         
-            grid.addWidget(QLabel('                              *'), 1, 0) 
-            grid.addWidget(QLabel('Verplichte velden'), 1, 1)   
+            grid.addWidget(QLabel('                                  *'), 1, 0) 
+            grid.addWidget(QLabel('Required fields'), 1, 1)   
                          
-            grid.addWidget(QLabel('Bedrijfsnaam           *'), 2, 0)
+            grid.addWidget(QLabel('Company name           *'), 2, 0)
             grid.addWidget(q3Edit, 2, 1, 1, 3) 
             
-            grid.addWidget(QLabel('Afdelingsnaam/Kamer/\nKontaktpersoon'), 3, 0)
+            grid.addWidget(QLabel('Department name/Room/\nContact person'), 3, 0)
             grid.addWidget(q16Edit, 3, 1, 1, 3)  
                  
-            grid.addWidget(QLabel('Rechtsvorm             *'), 4, 0)
+            grid.addWidget(QLabel('Legal status                *'), 4, 0)
             grid.addWidget(q5Edit, 4, 1) 
             
-            grid.addWidget(QLabel('BTWnummer   *'), 4, 1, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('VATnumber   *'), 4, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(q2Edit, 4, 2) 
             
-            grid.addWidget(QLabel('KvKnummer            *'), 5, 0)
+            grid.addWidget(QLabel('KvKnumber                 *'), 5, 0)
             grid.addWidget(q4Edit, 5, 1) 
             
-            grid.addWidget(QLabel('Straat'),6, 0)
+            grid.addWidget(QLabel('Street'),6, 0)
             grid.addWidget(q1Edit, 6, 1, 1, 3)
      
-            grid.addWidget(QLabel('Huisnummer           *'), 7, 0)
+            grid.addWidget(QLabel('Housenumber             *'), 7, 0)
             grid.addWidget(q7Edit, 7, 1)
     
-            grid.addWidget(QLabel('Toevoeging'), 7, 1, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Suffix'), 7, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(q8Edit, 7, 2)
             
-            grid.addWidget(QLabel('Postcode Woonplaats *'), 8, 0)
+            grid.addWidget(QLabel('Zipcode Residence     *'), 8, 0)
             grid.addWidget(q6Edit, 8, 1)
             
             grid.addWidget(q15Edit, 8, 1, 1, 2, Qt.AlignRight) 
      
-            grid.addWidget(QLabel('Telefoonnummer     *'), 9, 0)
+            grid.addWidget(QLabel('Telephonenumber       *'), 9, 0)
             grid.addWidget(q13Edit, 9, 1) 
             
-            grid.addWidget(QLabel('Bedrijf-Verkoopnummer'), 10, 0)
+            grid.addWidget(QLabel('SalesCompanynumber'), 10, 0)
             grid.addWidget(q14Edit, 10, 1) 
                                 
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 11, 1)
               
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: wijzWindow(self,m_email))
             
-            applyBtn = QPushButton('Wijzigen')
+            applyBtn = QPushButton('Modify')
             applyBtn.clicked.connect(self.accept)
                        
             grid.addWidget(applyBtn, 10, 2, 1, 1, Qt.AlignRight)
