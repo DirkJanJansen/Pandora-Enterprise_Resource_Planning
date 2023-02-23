@@ -404,7 +404,7 @@ def hoofdMenu(m_email):
             k3Edit.addItem('Purchase'.center(48,' '))
             k3Edit.addItem('1. Insert orders materials')
             k3Edit.addItem('2. Modify orders materials')
-            k3Edit.addItem('3. Invoeren orders diensten')
+            k3Edit.addItem('3. Insert orders services')
             k3Edit.addItem('4. Modify orders services')
             k3Edit.addItem('5. Request orders materials')
             k3Edit.addItem('6. Request orders services')
