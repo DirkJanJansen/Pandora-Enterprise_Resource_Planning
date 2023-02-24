@@ -553,7 +553,7 @@ def barcodeScan(m_email, mret):
             self.closeBtn.setFixedWidth(100)
             self.closeBtn.setStyleSheet("color: black; background-color: gainsboro")
                                    
-            infoBtn = QPushButton('Information')
+            infoBtn = QPushButton('Info')
             infoBtn.clicked.connect(lambda: info())
     
             grid.addWidget(infoBtn, 10, 1)
