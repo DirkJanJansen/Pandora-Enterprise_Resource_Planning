@@ -29,7 +29,7 @@ def info():
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Information ERP Systeem Pandora")
+            self.setWindowTitle("Information ERP System Pandora")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setFont(QFont('Arial', 10))
             grid = QGridLayout()
