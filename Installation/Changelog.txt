@@ -404,5 +404,6 @@ From 2020-01-10 updates and changes are described on this page
 2023-02-23 Changed login.py for untranslated subprogram and added all translated purchase programs
 2023-02-23 Submenu Sales program frontends are translated to English
 2023-02-24 Submenu Warehouse program frontends are translated to English
+2023-02-24 Submenu Works Internally frontends are translated to English
 	   
 
