@@ -410,5 +410,6 @@ From 2020-01-10 updates and changes are described on this page
 2023-02-25 opvrArtkelen.py translation imperfections solved.
 2023-02-25 bestelOrder.py formatting field  articlenumber fixed
 2023-02-25 artikelAfroep.py typo fixed
+2023-02-25 urenImutataties.py Information text modified
 	   
 
