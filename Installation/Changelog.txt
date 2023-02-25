@@ -405,5 +405,6 @@ From 2020-01-10 updates and changes are described on this page
 2023-02-23 Submenu Sales program frontends are translated to English
 2023-02-24 Submenu Warehouse program frontends are translated to English
 2023-02-24 Submenu Works Internally frontends are translated to English
+2023-02-25 wijzWerknemer.py information changed to "the wages table number has to be changed back"
 	   
 
