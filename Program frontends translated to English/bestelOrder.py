@@ -1030,7 +1030,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                         closeBtn.setFixedWidth(100) 
                         closeBtn.setStyleSheet("color: black;  background-color: gainsboro") 
                                                                                    
-                        aanpBtn = QPushButton('Aanpassen')
+                        aanpBtn = QPushButton('Modify')
                         aanpBtn.clicked.connect(lambda: writeVal(self.qspin.value(), rpweb, self))
                        
                         grid.addWidget(aanpBtn, 4, 1, 1, 1, Qt.AlignRight)
@@ -1462,7 +1462,7 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
         if idx.column() == 0:
             header = ['Articlenumber','Description','Articleprice', 'Stock',\
               'Unit','Minimum Stock','Ordersize', 'Location',\
-              'Articlegroup', 'Categorye', 'Size', 'Image']
+              'Articlegroup', 'Category', 'Size', 'Image']
         
             metadata = MetaData()              
             artikelen = Table('artikelen', metadata,
@@ -1488,7 +1488,7 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
       
             sel = select([artikelen]).where(artikelen.c.artikelID == martnr)
             rpartikelen = con.execute(sel).first()
-     
+                
             selpar = select([params]).order_by(params.c.paramID)
             rppar = con.execute(selpar).fetchall()
             verkprijs = rpartikelen[2]*(1+rppar[3][1])*(1+rppar[0][1])
@@ -1533,27 +1533,22 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
                             lbl21.setPixmap(pixmap)
                             grid.addWidget(lbl21 , index, 1, 3, 1)
                         else:
-                            if type(rpartikelen[index-1]) == str:
-                                q1Edit = QLineEdit(str(rpartikelen[index-1]))
-                                q1Edit.setFixedWidth(100)
-                            else:
-                                q1Edit = QLineEdit('{:12.2f}'.format(rpartikelen[index-1]))
-                                q1Edit.setFixedWidth(100)
-                                q1Edit.setAlignment(Qt.AlignRight)
-                                                   
+                            q1Edit = QLineEdit(str(rpartikelen[index-1]))
+                            q1Edit.setFixedWidth(100)
+                                                     
                         q1Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                         q1Edit.setDisabled(True)
                         grid.addWidget(self.lbl, index, 0)
                         if index != 12 and index != 13:
                             grid.addWidget(q1Edit, index, 1, 1, 2)
           
-                        index +=1
+                        index += 1
                     
                     self.Bestelaantal = QLabel(self)
                     if retstat == 0:
                         self.Bestelaantal.setText('                     Ordersize ')
                     else:
-                        self.Bestelaantal.setText('                          Return Quantity')
+                        self.Bestelaantal.setText('                          Return\n                          Quantity')
                     self.best = QLineEdit(self)
                     self.best.setFixedWidth(50)
                     
@@ -1594,11 +1589,11 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
                     if retstat == 1:
                         basket.setDisabled(True)
                         bestelBtn = QPushButton('Return')
-                        bestelBtn.clicked.connect(lambda: verwerkArtikel(martnr,retstat, m_email, mhoev, self, klmail))
+                        bestelBtn.clicked.connect(lambda: verwerkArtikel(str(martnr),retstat, m_email, mhoev, self, klmail))
                     else:
                         basket.setDisabled(False)
                         bestelBtn = QPushButton('Ordering')
-                        bestelBtn.clicked.connect(lambda: vulBasket(martnr, m_email, mhoev, verkprijs, self))
+                        bestelBtn.clicked.connect(lambda: vulBasket(str(martnr), m_email, mhoev, verkprijs, self))
                      
                     grid.addWidget(bestelBtn, index-1, 2)
                     bestelBtn.setFont(QFont("Arial",10))
