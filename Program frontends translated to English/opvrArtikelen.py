@@ -417,7 +417,7 @@ def toonArtikelen(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Unit'), 5, 2)
                     grid.addWidget(q5Edit, 5, 3)
                     
-                    grid.addWidget(QLabel('warehouse location'), 6, 0)
+                    grid.addWidget(QLabel('Warehouse location'), 6, 0)
                     grid.addWidget(q8Edit, 6, 1)
          
                     grid.addWidget(QLabel('Article price'), 6, 2)
