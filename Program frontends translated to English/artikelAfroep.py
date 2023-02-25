@@ -86,6 +86,15 @@ def werkGereed():
     msg.setText('Work number is unsubscribed,\nbookings no longer possible!')
     msg.setWindowTitle('Request articles')
     msg.exec_()
+
+def geenArtikel():
+    msg = QMessageBox()
+    msg.setStyleSheet("color: black;  background-color: gainsboro")
+    msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
+    msg.setIcon(QMessageBox.Warning)
+    msg.setText('No call-off articles found for this worknumber!')
+    msg.setWindowTitle('Request articles')
+    msg.exec_()
     
 def geenRaaplijst(koppelnr):
     msg = QMessageBox()
@@ -203,6 +212,7 @@ def zoekWerk(m_email, soort):
         zoekWerk(m_email, soort)
     else:
         koppelnr = int(koppelnr)
+
         artikelAfroep(koppelnr, m_email)
 
 def raapLijst(koppelnr):
@@ -591,7 +601,15 @@ def artikelAfroep(koppelnr, m_email):
         engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
         con = engine.connect()
         selcl = select([icalculaties]).where(icalculaties.c.koppelnummer == koppelnr)
-        rpcl = con.execute(selcl).first()
+        if con.execute(selcl).first():
+            rpcl = con.execute(selcl).first()
+            selam = select([artikelen, materiaallijsten, orders_intern]).where(and_(artikelen.c. \
+                      artikelID == materiaallijsten.c.artikelID,
+                      materiaallijsten.c.icalculatie == rpcl[1], \
+                      orders_intern.c.werkorderID == koppelnr)).order_by(materiaallijsten.c.artikelID)
+        else:
+            geenArtikel()
+            zoekWerk(m_email, soort)
         selam = select([artikelen, materiaallijsten, orders_intern]).where(and_(artikelen.c.\
             artikelID==materiaallijsten.c.artikelID, materiaallijsten.c.icalculatie == rpcl[1],\
             orders_intern.c.werkorderID == koppelnr))
@@ -619,11 +637,15 @@ def artikelAfroep(koppelnr, m_email):
         con = engine.connect()
     
         selcl = select([calculaties]).where(calculaties.c.koppelnummer == koppelnr)
-        rpcl = con.execute(selcl).first()
-        selam = select([artikelen, materiaallijsten, werken]).where(and_(artikelen.c.\
-            artikelID==materiaallijsten.c.artikelID, materiaallijsten.c.calculatie == rpcl[1],\
-            werken.c.werknummerID == koppelnr)).order_by(materiaallijsten.c.artikelID)
-   
+
+        if con.execute(selcl).first():
+            rpcl = con.execute(selcl).first()
+            selam = select([artikelen, materiaallijsten, werken]).where(and_(artikelen.c.\
+               artikelID==materiaallijsten.c.artikelID, materiaallijsten.c.calculatie == rpcl[1],\
+               werken.c.werknummerID == koppelnr)).order_by(materiaallijsten.c.artikelID)
+        else:
+            geenArtikel()
+            zoekWerk(m_email, soort)
         rpam = con.execute(selam)
 
     header = ['Articlenumber','Articledescription','-','-','Amount','-',\
