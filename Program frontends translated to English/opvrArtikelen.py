@@ -408,7 +408,7 @@ def toonArtikelen(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Article description'), 3, 0)
                     grid.addWidget(q2Edit, 3, 1, 1 ,3)
                     
-                    grid.addWidget(QLabel('Artikelgroup'), 4, 0)
+                    grid.addWidget(QLabel('Articlegroup'), 4, 0)
                     grid.addWidget(q9Edit, 4, 1, 1, 3) 
                     
                     grid.addWidget(QLabel('Size'),5, 0)
@@ -417,13 +417,13 @@ def toonArtikelen(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Unit'), 5, 2)
                     grid.addWidget(q5Edit, 5, 3)
                     
-                    grid.addWidget(QLabel('Magazijnlocatie'), 6, 0)
+                    grid.addWidget(QLabel('warehouse location'), 6, 0)
                     grid.addWidget(q8Edit, 6, 1)
          
                     grid.addWidget(QLabel('Article price'), 6, 2)
                     grid.addWidget(q3Edit, 6 , 3) 
                 
-                    grid.addWidget(QLabel('Artikelvoorraad'), 7, 0)
+                    grid.addWidget(QLabel('Article stock'), 7, 0)
                     grid.addWidget(q4Edit, 7, 1)
                     
                     grid.addWidget(QLabel('Minimum stock'), 7, 2)
@@ -438,7 +438,7 @@ def toonArtikelen(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Order size'), 9, 0)
                     grid.addWidget(q7Edit, 9, 1)
                     
-                    grid.addWidget(QLabel('Categorye'),9 ,2)
+                    grid.addWidget(QLabel('Category'),9 ,2)
                     grid.addWidget(q13Edit, 9, 3)
         
                     grid.addWidget(QLabel('Mutation date'),10, 0)
