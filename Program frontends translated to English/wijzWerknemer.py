@@ -55,8 +55,8 @@ def info():
         wages are determined. 
         The work wages data for transfer to the works is calculated with the changed
         wages table number. 
-        When resuming the original work, the wages table number to be changed back to
-        the contents of the Orig field so that both fields be equal again and the
+        When resuming the original work, the wages table number has to be changed back
+        to the contents of the Orig field so that both fields be equal again and the
         original situation has been restored.
        
         ''')
