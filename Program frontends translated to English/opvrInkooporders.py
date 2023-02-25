@@ -485,7 +485,7 @@ def opvrOrder(keuze,zoekterm, m_email):
                     lbl1 = QLabel('Order details')
                     lbl1.setStyleSheet("font: 12pt Comic Sans MS")
                     grid.addWidget(lbl1, 1, 0)
-                    grid.addWidget(QLabel('Orderpuchasenumber'), 2, 0)
+                    grid.addWidget(QLabel('Orderpurchasenumber'), 2, 0)
                     grid.addWidget(q2Edit, 2, 1) 
                                                         
                     grid.addWidget(QLabel('Suppliernumber'), 2, 2)

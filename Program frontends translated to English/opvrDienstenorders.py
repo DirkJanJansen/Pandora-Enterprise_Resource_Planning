@@ -272,7 +272,7 @@ def opvrDienstorders(keuze,zoekterm, m_email):
                 return self.header[col]
             return None
        
-    header = ['Order purchasing service number','Order purchase number', 'Worknumber','Type of service', 'Serve description', 'Contract price',\
+    header = ['Order purchasing\nservice number','Order purchase number', 'Worknumber','Type of service', 'Serve description', 'Contract price',\
           'Planned start', 'Real start','Planned ready', 'Real ready', 'Acceptance ready', 'Acceptance date', 'More-less work',\
           'Line number', 'Order purchase number','Supplier', 'Order date', 'Approved', 'Payed',\
           'Unsubscribed','Suppliernumber', 'Suppliername' ,'Legal status','Worknumber','Workdescription']    
