@@ -443,7 +443,7 @@ def raapLijst(koppelnr):
                     if mmmstatus:
                         grid.addWidget(QLabel('More/less work'), 4, 2)
                     
-                    lbl5 = QLabel('Dilevered')  
+                    lbl5 = QLabel('Delivered')  
                     lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl5, 5, 0)
                     grid.addWidget(geleverdEdit, 5 , 1)
