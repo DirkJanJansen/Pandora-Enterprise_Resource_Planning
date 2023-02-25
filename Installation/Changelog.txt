@@ -408,5 +408,6 @@ From 2020-01-10 updates and changes are described on this page
 2023-02-25 wijzWerknemer.py information changed to "the wages table number has to be changed back"
 2023-02-25 opvrInkooporders.py and opvrVerkoopbedrijven.py typo fixed, opvrDienstenorders.py Heading changed ID due to space.
 2023-02-25 opvrArtkelen.py translation imperfections solved.
+2023-02-25 bestelOrder.py formatting field  articlenumber fixed
 	   
 
