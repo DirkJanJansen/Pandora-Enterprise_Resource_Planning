@@ -65,17 +65,17 @@ def info():
         The label for the actual total hours indicates the professional discipline,
         for which the hours are booked. 
         Date of work: date of the current day in the format yyyy-mm-dd
-        Button 'Mute' Standard button with text 'Mute' 
+        
         When modifying or filling in the fields 'Account number', 'Work order number' 
-        and 'Date of work', the system will be the last to appear when the fields arise
-        remember keyed data so that a quick entry is possible.
+        and 'Date of work', the system will remember the last used key data 
+        when the fields arise so that a quick entry is possible.
         The option Present/Absent will be filled in by default with 100% hours, 
         Because this will be the most common choice. 
         When entering the data, if entered correctly, the button Mutate' turn green. 
         In the event of an incorrect or unsuccessful entry, the button 'Mutate' turn red,
         in this case a correction should be created, because the entry was not booked!
         In the status field below the input fields, the status and information of 
-        the absence hours shown, e.g. in the case of leave hours the leave balance. 
+        the absence hours is showed, e.g. in the case of leave hours the leave balance is showed. 
         This status field also displays the error messages, in the case of a invalid entry.
           
      ''')
@@ -958,7 +958,7 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
                         
             grid.addWidget(self.cBox, 8, 3)
             
-            self.lblprof = QLabel('Totals: Real / Budgeted Hours')
+            self.lblprof = QLabel('Totals:Real/Budgeted Hours')
             self.lblprof.setFont(QFont("Arial", 10))
             self.lblprof.setFixedWidth(200)
             self.lblprof.setAlignment(Qt.AlignRight)
@@ -966,7 +966,7 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
             grid.addWidget(self.urentotEdit, 9, 2, 1, 1, Qt.AlignRight)
             grid.addWidget(self.urenbegrEdit, 9, 3, 1, 1)
             
-            lbl4 = QLabel('Hours murtation')
+            lbl4 = QLabel('Hours mutation')
             lbl4.setFont(QFont("Arial", 10))
             grid.addWidget(lbl4, 10, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.urenEdit, 10, 2, 1, 1, Qt.AlignRight)
