@@ -43,6 +43,13 @@ opvrInternorders.py     (added 24-02-2023)
 artikelafroep.py        (added 24-02-2023)
 maguitgifte.py          (added 24-02-2023)
 urenImutaties.py        (added 24-02-2023)
+invoerWerken.py         (added 26-02-2023)
+wijzWerken.py           (added 26-02-2023)
+opvrWerken.py           (added 26-02-2023)
+artikelAfroep.py        (added 26-02-2023)
+magUitgifte.py          (added 26-02-2023)
+dienstenMutaties.py     (added 26-02-2023)
+urenMutaties,py        (added 26-02-2023)
 
 This means that frontends from  Mainmenu and 
 submenus from Accounts are translated to English. 
