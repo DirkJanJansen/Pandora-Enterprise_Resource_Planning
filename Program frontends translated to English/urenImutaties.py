@@ -769,7 +769,7 @@ def urenBoeking(self, m_email):
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         elif msoort == 6 and wrkgr > 52:
-            lbltext = mboekuren+' Extra leaf hours entered'
+            lbltext = mboekuren+' Extra leave hours entered'
             lblptext = '\n'
             self.lblt.setStyleSheet("color: navy")
             self.lblt.setText(lbltext)
@@ -793,13 +793,13 @@ def urenBoeking(self, m_email):
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         elif msoort == 10 and wrkgr > 52:
-            lbltext = mboekuren+' Hours permitted default entered'
+            lbltext = mboekuren+' Hours allowed absence entered'
             lblptext = '\n'
             self.lblt.setStyleSheet("color: navy")
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         elif msoort == 11 and wrkgr > 52:
-            lbltext = mboekuren+' Hours not permitted default entered'
+            lbltext = mboekuren+' Hours illegal absence entered'
             lblptext = '\n'
             self.lblt.setStyleSheet("color: navy")
             self.lblt.setText(lbltext)
@@ -858,8 +858,8 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
             self.k0Edit.addItem('Illness')
             self.k0Edit.addItem('Holiday')
             self.k0Edit.addItem('Doctor')
-            self.k0Edit.addItem('Permitted default')
-            self.k0Edit.addItem('Unauthorized default')
+            self.k0Edit.addItem('Allowed absence')
+            self.k0Edit.addItem('Illegal absence')
   
             self.cBox = QCheckBox('More/less work')
             self.cBox.setFont(QFont("Arial",10))
@@ -958,7 +958,7 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
                         
             grid.addWidget(self.cBox, 8, 3)
             
-            self.lblprof = QLabel('Totals:Real/Budgeted Hours')
+            self.lblprof = QLabel('Totals:Realised/Budgeted Hours')
             self.lblprof.setFont(QFont("Arial", 10))
             self.lblprof.setFixedWidth(200)
             self.lblprof.setAlignment(Qt.AlignRight)
