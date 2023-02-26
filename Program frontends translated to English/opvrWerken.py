@@ -739,7 +739,7 @@ def toonWerken(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Budgeted'), 5, 4)
                     grid.addWidget(QLabel('Realised'), 5, 5)
                     grid.addWidget(QLabel('Budgeted'), 5, 7)
-                    grid.addWidget(QLabel('Budgeted'), 5, 8)
+                    grid.addWidget(QLabel('Realised'), 5, 8)
            
                     grid.addWidget(QLabel('Materials'), 6, 0)
                     grid.addWidget(q12Edit, 6, 1) 
