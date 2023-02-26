@@ -49,7 +49,7 @@ opvrWerken.py           (added 26-02-2023)
 artikelAfroep.py        (added 26-02-2023)
 magUitgifte.py          (added 26-02-2023)
 dienstenMutaties.py     (added 26-02-2023)
-urenMutaties,py        (added 26-02-2023)
+urenMutaties.py         (added 26-02-2023)
 
 This means that frontends from  Mainmenu and 
 submenus from Accounts are translated to English. 
