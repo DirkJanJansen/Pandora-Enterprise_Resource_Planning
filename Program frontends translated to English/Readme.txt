@@ -10,7 +10,7 @@ opvrAccounts.py
 bestelOrder.py
 webRetouren.py
 opvrKlantenorders.py
-  invoerLeveranciers.py     (added 21-02-2023)
+invoerLeveranciers.py       (added 21-02-2023)
 wijzLeverancier.py          (added 21-02-2023)
 opvrLeveranciers.py         (added 21-02-2023)
 opvrEigenLeverancier.py     (added 21-02-2023)
