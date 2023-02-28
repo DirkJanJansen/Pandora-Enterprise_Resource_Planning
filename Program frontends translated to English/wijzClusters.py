@@ -76,7 +76,7 @@ def zoeken(m_email):
             k0Edit.addItem('AA-AL. Rails + welding assets')
             k0Edit.addItem('BA-BK. Beams + mounting')
             k0Edit.addItem('CA-CK. Level crossing + level crossing protection')
-            k0Edit.addItem('DA-DK. Crushed stone + earthmoving')
+            k0Edit.addItem('DA-DK. Crushed stone + earth moving')
             k0Edit.addItem('EA-EK. Switch + track constructions')
             k0Edit.addItem('FA-FK. Underground infrastructure')
             k0Edit.addItem('GA-GK. Train control + signals')
@@ -229,10 +229,10 @@ def toonClusters(keuze, m_email):
             return None
              
     header = ['Cluster number', 'Description', 'Price', 'Unit', 'Materials', 'Wages',\
-              'Services', 'Equipment', 'Hiring', 'hours\n-construction', 'hours_mounting','hours\nreturn welding',\
+              'Services', 'Equipment', 'Hiring', 'hours\nconstruction', 'hours mounting','hours\nreturn welding',\
               'hours\nchief mechanic', 'hours\npower-supply', 'hours\nOCL', 'hours\ntrack laying', 'hours\ntrack welding',\
               'hours\nhiring', 'Trencher', 'Press machine', 'Atlas crane',\
-              'Crane big', 'Mainliner', 'Ballast clearing\nmachine', 'Wagon', 'Locomotor',\
+              'Crane big', 'Mainliner', 'Ballast scrape\nmachine', 'Wagon', 'Locomotor',\
               'Locomotive', 'Assembly\ntrolley', 'Stormobiel', 'hours\ntelecom', 'Robel train',\
               'Direction', 'Housing', 'Cable work', 'Earth moving', 'Concrete work', 'Transport', 'Remaining']
     
