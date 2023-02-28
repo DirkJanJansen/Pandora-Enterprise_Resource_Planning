@@ -58,6 +58,14 @@ opvrIcluster_artikelen.py   (added 27-02-2023)
 invoerIclustercalculatie.py (added 27-02-2023)
 opvrIclustercalculatie.py   (added 27-02-2023)
 koppelIbegroting.py         (added 27-02-2023)
+maakCluster.py              (added 28-02-2023)
+wijzClusters.py             (added 28-02-2023)
+
+invoerClustercalculatie.py  (added 28-02-2023)
+opvrClustercalculatie.py    (added 28-02-2023)
+invoerCluster_artikelen.py  (added 28-02-2023)
+opvrCluster_artikelen.py    (added 28-02-2023)
+koppelBegroting.py          (added 28-02-2023)
 
 This means that frontends from  Mainmenu and 
 submenus from Accounts are translated to English. 
@@ -67,7 +75,8 @@ submenus from Purchase  are translated to English (added 23-02-2023)
 submenu from Sales are translated to English (added 23-02-2023)
 submenu from Warehouse are translated to English (added 24-02-2023)
 submenu from Works internally are translated to English (added 24-02-2023)
-sumenu from Calculation works internally are translated to English (added 27-02-2023)
+submenu from Calculation works internally are translated to English (added 27-02-2023)
+submenu from Claculation works externally are translated to English (added 28-02-2023)
 
 In the coming period other submenu's will follow.
 
