@@ -8,9 +8,9 @@ sudo pip3 install pyqtchart
 sudo pip3 install python-barcode
 sudo pip3 install pillow
 
-if you want a editor install Visual code from Microsoft:
-follow instructions on:
-https://linuxhint.com/install-visual-studio-code-ubuntu22-04/
+if you want a editor install PyCharm community:
+Install:
+sudo snap install pycharm-community --classic
 
 sqlalchemy and psycopg2 is installed with postgreSQL-contrib see next lines
 
