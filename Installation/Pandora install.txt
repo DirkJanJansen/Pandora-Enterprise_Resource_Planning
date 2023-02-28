@@ -12,6 +12,9 @@ App scaling is set at 125% in Windows
 For additional instructions for Linux see folder Linux "LINUX Install.txt".
 For adjustments or  additions see "Changelog.txt".
 
+If you want a editor with debugger install:
+PyCharm community
+
 Install python3, 
 Next items with: pip install
 pyqt5, pyqtchart same version as pyqt5, sqlalchemy, psycopg2 and pypiwin32, pillow and python-barcode
