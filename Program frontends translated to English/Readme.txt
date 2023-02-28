@@ -76,7 +76,7 @@ submenu from Sales are translated to English (added 23-02-2023)
 submenu from Warehouse are translated to English (added 24-02-2023)
 submenu from Works internally are translated to English (added 24-02-2023)
 submenu from Calculation works internally are translated to English (added 27-02-2023)
-submenu from Claculation works externally are translated to English (added 28-02-2023)
+submenu from Calculation works externally are translated to English (added 28-02-2023)
 
 In the coming period other submenu's will follow.
 
