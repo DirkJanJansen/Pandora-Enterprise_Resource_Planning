@@ -392,7 +392,7 @@ def invWerk(m_email):
             grid.addWidget(lbl19, 7, 2)
             grid.addWidget(q17Edit, 7, 3)
             
-            lbl20 = QLabel('Hours catenary')
+            lbl20 = QLabel('Hours OCL')
             lbl20.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl20, 8, 2)
             grid.addWidget(q18Edit, 8, 3)

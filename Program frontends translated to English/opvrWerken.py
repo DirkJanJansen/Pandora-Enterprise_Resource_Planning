@@ -278,7 +278,7 @@ def toonWerken(keuze,zoekterm, m_email):
               'Realised\nearth-moving', 'More/less work','Budgeted\nconstruction hours','Realised\nconstruction hours',\
               'Budgeted\nmounting hours', 'Realised\nmounting hours', 'Budgeted return\nwelding hours', 'Realised return\nwelding hours',\
               'Budgeted\ntelecom hours','Realised\ntelecom hours', 'Budgeted\nchief mechanic','Realised\nchief mechanic',\
-              'Budgeted\ncatenary hours', 'Realised\ncatenary hours','Budgeted\npower-supply hours','Realised\npower-supply hours',\
+              'Budgeted\nOCL hours', 'Realised\nOCL hours','Budgeted\npower-supply hours','Realised\npower-supply hours',\
               'Budgeted track\nlaying hours','Realised track\nlaying hours', 'Budgeted track\nwelding hours',\
               'Realised track\nwelding hours', 'Budgeted\ntravel hours', 'Realised\ntravel hours']
    
@@ -792,7 +792,7 @@ def toonWerken(keuze,zoekterm, m_email):
                     grid.addWidget(u9Edit, 11,4)
                     grid.addWidget(u10Edit, 11,5)
                     
-                    grid.addWidget(QLabel('Catenary'), 11, 6)
+                    grid.addWidget(QLabel('OCL'), 11, 6)
                     grid.addWidget(u11Edit, 11,7)
                     grid.addWidget(u12Edit, 11,8)
                     
