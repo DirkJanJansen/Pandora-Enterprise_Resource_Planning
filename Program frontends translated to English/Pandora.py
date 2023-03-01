@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QApplication
 from sqlalchemy import Table, Column, Integer, Float, String, MetaData, create_engine,\
     insert, select, update, func, Boolean
 
-# set lock voor maximaal 1 sessie per PC
+# set lock for up to 1 session per PC
     
 home = os.path.expanduser("~")
 if os.path.isfile(str(home)+'/.pandora_lock'):
@@ -13,8 +13,8 @@ if os.path.isfile(str(home)+'/.pandora_lock'):
 else:
     open(str(home)+'/.pandora_lock', 'w')
     
-# volgende regels tbv jaarverbruik artikelen even/oneven jaar per jaar
-# en berekenen van voorraadwaarde magazijnen t.b.v. grafieken per maand
+# following rules for annual consumption of items even/odd year per year
+# and calculate warehouse inventory value for charts per month
 
 metadata = MetaData()
 artikelen = Table('artikelen', metadata,
@@ -63,13 +63,13 @@ if mjaar%2 == 1 and int(rppar[1]) == 0:
         except:
             mjrverbr = 0
         if row[10] == 1 or row[10] == 5:
-            minvrd = round(mjrverbr*1/17, 0) # < 3 weken levertijd
+            minvrd = round(mjrverbr*1/17, 0) # < 3 weeks delivery time
         elif row[10] == 2 or row[10] == 6 or row[10] == 7 :
-            minvrd = round(mjrverbr*4/17, 0) # < 12 weken levertijd
-        elif row[10] == 3 or row[10] == 8: 
-            minvrd = round(mjrverbr*8/17, 0) # < 26 weken levertijd
+            minvrd = round(mjrverbr*4/17, 0) # < 12 weeks delivery time
+        elif row[10] == 3 or row[10] == 8:
+            minvrd = round(mjrverbr*8/17, 0) # < 26 weeks delivery time
         elif row[10] == 4 or row[10] == 9: 
-            minvrd = round(mjrverbr*16/17,0) # < 52 weken levertijd
+            minvrd = round(mjrverbr*16/17,0) # < 52 weeks delivery time
         updart = update(artikelen).where(artikelen.c.artikelID == row[0]).\
             values(jaarverbruik_2 = 0, art_min_voorraad = minvrd, art_bestelgrootte = mbestgr)
         con.execute(updart)
@@ -91,13 +91,13 @@ elif mjaar%2 == 0 and int(rppar[1]) == 1:
         except:
             mjrverbr = 0
         if row[10] == 1 or row[10] == 5:
-            minvrd = round(mjrverbr*1/17, 0) # < 3 weken levertijd
+            minvrd = round(mjrverbr*1/17, 0) # < 3 weeks delivery time
         elif row[10] == 2 or row[10] == 6 or row[10] == 7 :
-            minvrd = round(mjrverbr*4/17, 0) # < 12 weken levertijd
+            minvrd = round(mjrverbr*4/17, 0) # < 12 weeks delivery time
         elif row[10] == 3 or row[10] == 8: 
-            minvrd = round(mjrverbr*8/17, 0) # < 26 weken levertijd
+            minvrd = round(mjrverbr*8/17, 0) # < 26 weeks delivery time
         elif row[10] == 4 or row[10] == 9: 
-            minvrd = round(mjrverbr*16/17,0) # < 52 weken levertijd
+            minvrd = round(mjrverbr*16/17,0) # < 52 weeks delivery time
        
         updart = update(artikelen).where(artikelen.c.artikelID == row[0]).\
             values(jaarverbruik_1 = 0, art_min_voorraad = minvrd, art_bestelgrootte = mbestgr)
