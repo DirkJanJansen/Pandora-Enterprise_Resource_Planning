@@ -418,5 +418,6 @@ From 2020-01-10 updates and changes are described on this page
 2023-02-27 Submenu Calculation works internally are translated to English
 2023-02-28 Submenu Calculation works externally are translated to English
 2023-02-28 invoerClustercalculaties.py error adjusted for insert new clustercalculations
+2023-02-28 Pandora.py typo error tariff - tarief corrected
 	   
 
