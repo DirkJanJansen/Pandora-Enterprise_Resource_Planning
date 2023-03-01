@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QApplication
 from sqlalchemy import Table, Column, Integer, Float, String, MetaData, create_engine,\
     insert, select, update, func, Boolean
 
-# set lock for up to 1 session restrict 
+# set lock voor maximaal 1 sessie per PC
     
 home = os.path.expanduser("~")
 if os.path.isfile(str(home)+'/.pandora_lock'):
@@ -13,8 +13,8 @@ if os.path.isfile(str(home)+'/.pandora_lock'):
 else:
     open(str(home)+'/.pandora_lock', 'w')
     
-# following rules for annual consumption of items even/odd year per year
-# and calculate warehouse inventory value for charts per month
+# volgende regels tbv jaarverbruik artikelen even/oneven jaar per jaar
+# en berekenen van voorraadwaarde magazijnen t.b.v. grafieken per maand
 
 metadata = MetaData()
 artikelen = Table('artikelen', metadata,
@@ -44,63 +44,63 @@ con = engine.connect()
 selpar = select([params]).where(params.c.paramID == 99)
 rppar = con.execute(selpar).first()
 
-myear = int(str(datetime.date.today())[0:4])
-if myear%2 == 1 and int(rppar[1]) == 0:
-    updpar = update(params).where(params.c.paramID == 99).values(tariff = 1)
+mjaar = int(str(datetime.date.today())[0:4])
+if mjaar%2 == 1 and int(rppar[1]) == 0:
+    updpar = update(params).where(params.c.paramID == 99).values(tarief = 1)
     con.execute(updpar)
     selpar2 = select([params]).where(params.c.paramID == 101)
     rppar2 = con.execute(selpar2).first()
     selart = select([artikelen]).order_by(artikelen.c.artikelID)
-    rparticle = con.execute(selart)
+    rpartikel = con.execute(selart)
     selpar1 = select([params]).where(params.c.paramID == 6)
     rppar1 = con.execute(selpar1).first()
             
-    for row in rparticle:
-        myear = int(str(datetime.datetime.now())[0:4])
+    for row in rpartikel:
+        mjaar = int(str(datetime.datetime.now())[0:4])
         try:
             mbestgr = round(sqrt(2*row[5]*rppar2[1])/(row[1]*rppar[1]),0)
             mjrverbr = row[4]
         except:
             mjrverbr = 0
         if row[10] == 1 or row[10] == 5:
-            minvrd = round(mjrverbr*1/17, 0) # < 3 weeks delivery time
+            minvrd = round(mjrverbr*1/17, 0) # < 3 weken levertijd
         elif row[10] == 2 or row[10] == 6 or row[10] == 7 :
-            minvrd = round(mjrverbr*4/17, 0) # < 12 weeks delivery time
+            minvrd = round(mjrverbr*4/17, 0) # < 12 weken levertijd
         elif row[10] == 3 or row[10] == 8: 
-            minvrd = round(mjrverbr*8/17, 0) # < 26 weeks delivery time
+            minvrd = round(mjrverbr*8/17, 0) # < 26 weken levertijd
         elif row[10] == 4 or row[10] == 9: 
-            minvrd = round(mjrverbr*16/17,0) # < 52 weeks delivery time
+            minvrd = round(mjrverbr*16/17,0) # < 52 weken levertijd
         updart = update(artikelen).where(artikelen.c.artikelID == row[0]).\
-            values(annual_consumption_2 = 0, art_min_stock = minvrd, art_order_size = mbestgr)
+            values(jaarverbruik_2 = 0, art_min_voorraad = minvrd, art_bestelgrootte = mbestgr)
         con.execute(updart)
-elif myear%2 == 0 and int(rppar[1]) == 1:
+elif mjaar%2 == 0 and int(rppar[1]) == 1:
     updpar = update(params).where(params.c.paramID == 99).values(tarief = 0)
     con.execute(updpar)
     selpar2 = select([params]).where(params.c.paramID == 101)
     rppar2 = con.execute(selpar2).first()
     selart = select([artikelen]).order_by(artikelen.c.artikelID)
-    rparticle = con.execute(selart)
+    rpartikel = con.execute(selart)
     selpar1 = select([params]).where(params.c.paramID == 6)
     rppar1 = con.execute(selpar1).first()
         
-    for row in rparticle:
-        myear = int(str(datetime.datetime.now())[0:4])
+    for row in rpartikel:
+        mjaar = int(str(datetime.datetime.now())[0:4])
         try:
             mbestgr = round(sqrt(2*row[4]*rppar2[1])/(row[1]*rppar1[1]),0)
             mjrverbr = row[5]
         except:
             mjrverbr = 0
         if row[10] == 1 or row[10] == 5:
-            minvrd = round(mjrverbr*1/17, 0) # < 3 weeks delivery time
+            minvrd = round(mjrverbr*1/17, 0) # < 3 weken levertijd
         elif row[10] == 2 or row[10] == 6 or row[10] == 7 :
-            minvrd = round(mjrverbr*4/17, 0) # < 12 weeks delivery time
+            minvrd = round(mjrverbr*4/17, 0) # < 12 weken levertijd
         elif row[10] == 3 or row[10] == 8: 
-            minvrd = round(mjrverbr*8/17, 0) # < 26 weeks delivery time
+            minvrd = round(mjrverbr*8/17, 0) # < 26 weken levertijd
         elif row[10] == 4 or row[10] == 9: 
-            minvrd = round(mjrverbr*16/17,0) # < 52 weeks delivery time
+            minvrd = round(mjrverbr*16/17,0) # < 52 weken levertijd
        
         updart = update(artikelen).where(artikelen.c.artikelID == row[0]).\
-            values(annual_consumption_1 = 0, art_min_stock = minvrd, art_order_size = mbestgr)
+            values(jaarverbruik_1 = 0, art_min_voorraad = minvrd, art_bestelgrootte = mbestgr)
         con.execute(updart)
     
 mhjrmnd = str(datetime.date.today())[0:7]                                                  #(this year year-month) yyyy-mm
@@ -112,17 +112,17 @@ if mhjrmnd != mdbjrmnd:
     con.execute(insdb)
     selart = select([artikelen])
     rpart = con.execute(selart)
-    mtotal = 0
-    mcurrent = 0
-    mobsolete = 0
+    mtotaal = 0
+    mcourant = 0
+    mincourant = 0
     for row in rpart:      
-        mtotal = mtotal + row[1]*row[2]                       # total value of stock
+        mtotaal = mtotaal + row[1]*row[2]                       # total value of stock
         if mvjrmnd < int(str(row[3][0:4])+str(row[3])[5:7]):    # see if last transaction less than a year agoo
-            mcurrent = mcurrent + row[1]*row[2]
+            mcourant = mcourant + row[1]*row[2]
         else:
-            mobsolete = mobsolete + row[1]*row[2]             # last transaction more than a year agoo
+            mincourant = mincourant + row[1]*row[2]             # last transaction more than a year agoo
     updmvrd = update(magazijnvoorraad).where(magazijnvoorraad.c.jaarmaand == mhjrmnd)\
-          .values(total = int(mtotal), current = int(mcurrent), obsolete = int(mobsolete)) 
+          .values(totaal = int(mtotaal), courant = int(mcourant), incourant = int(mincourant)) 
     # write totals in present year-month
     con.execute(updmvrd)
 
