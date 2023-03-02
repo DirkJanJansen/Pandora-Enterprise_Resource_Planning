@@ -12,8 +12,8 @@ def foutBtwnr():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Incorrect VAT number')
-    msg.setWindowTitle('Data!')
+    msg.setText('Foutief BTW nummer!')
+    msg.setWindowTitle('Gegevens!')
     msg.exec_()
     
 def foutKvknr(): 
@@ -21,8 +21,8 @@ def foutKvknr():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Incorrect KVK number!')  #Chamber of commerce
-    msg.setWindowTitle('Data!')
+    msg.setText('Foutief KVK nummer!')
+    msg.setWindowTitle('Gegevens!')
     msg.exec_()
    
 def geenGegevens():
@@ -30,8 +30,8 @@ def geenGegevens():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Not (all) required information filled in!')
-    msg.setWindowTitle('Data!')
+    msg.setText('Niet (alle) vereiste gegevens ingevuld!')
+    msg.setWindowTitle('Gegevens!')
     msg.exec_()
     
 def windowSluit(self, m_email):
@@ -43,8 +43,8 @@ def fout_email():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('invalid email address!')
-    msg.setWindowTitle('e-mailaddress!')
+    msg.setText('ongeldig email adres!')
+    msg.setWindowTitle('e-mailadres!')
     msg.exec_()
 
 def foutTelnr():
@@ -52,8 +52,8 @@ def foutTelnr():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('no 10 digits!')
-    msg.setWindowTitle('Telephonenumber!')
+    msg.setText('geen 10 cijfers!')
+    msg.setWindowTitle('Telefoonnummer!')
     msg.exec_()
 
 def dontMatch():
@@ -61,8 +61,8 @@ def dontMatch():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Password not identical/or less than 8 characters!')
-    msg.setWindowTitle('Password!')
+    msg.setText('Wachtwoord niet identiek\nen/of minder dan 8 tekens!')
+    msg.setWindowTitle('Wachtwoord!')
     msg.exec_()
  
 def koperBestaat():
@@ -70,8 +70,8 @@ def koperBestaat():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Sales-Company is already present!')
-    msg.setWindowTitle('Sales Company')
+    msg.setText('Bedrijf-Verkoop is al aanweizg!')
+    msg.setWindowTitle('Bedrijf-Verkoop')
     msg.exec_()
 
 def maak11proef(basisnr):
@@ -108,15 +108,15 @@ def Invoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Insert successful!')
-    msg.setWindowTitle('Sale companies')
+    msg.setText('Invoer gelukt!')
+    msg.setWindowTitle('Bedrijven Verkoop')
     msg.exec_()
 
 def invBedrijf(m_email):                                 
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Insert Sales company")
+            self.setWindowTitle("Invoer Bedrijf Verkoop")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                                   
             self.setFont(QFont('Arial', 10))
@@ -229,47 +229,47 @@ def invBedrijf(m_email):
             grid.addWidget(logo , 0, 2, 1, 2, Qt.AlignRight)
     
             self.setFont(QFont('Arial', 10))
-            grid.addWidget(QLabel('Insert new sales-company'), 0, 1, 1, 2,Qt.AlignCenter)
+            grid.addWidget(QLabel('Nieuwe Bedrijf-Verkoop invoeren'), 0, 1, 1, 2,Qt.AlignCenter)
                         
-            grid.addWidget(QLabel('                                   *'), 1, 0) 
-            grid.addWidget(QLabel('Required fields'), 1, 1)   
+            grid.addWidget(QLabel('                              *'), 1, 0) 
+            grid.addWidget(QLabel('Verplichte velden'), 1, 1)   
                          
-            grid.addWidget(QLabel('Company name             *'), 2, 0)
+            grid.addWidget(QLabel('Bedrijfsnaam           *'), 2, 0)
             grid.addWidget(q3Edit, 2, 1, 1, 3) 
             
-            grid.addWidget(QLabel('Department name/Room/\nContact person'), 3, 0)
+            grid.addWidget(QLabel('Afdelingsnaam/Kamer/\nKontaktpersoon'), 3, 0)
             grid.addWidget(q14Edit, 3, 1, 1, 3)  
                  
-            grid.addWidget(QLabel('Legal status                  *'), 4, 0)
+            grid.addWidget(QLabel('Rechtsvorm             *'), 4, 0)
             grid.addWidget(q5Edit, 4, 1) 
             
-            grid.addWidget(QLabel('VATnumber      *'), 4, 1, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('BTWnummer   *'), 4, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(q2Edit, 4, 2) 
             
-            grid.addWidget(QLabel('KvKnumber                  *'), 5, 0)
+            grid.addWidget(QLabel('KvKnummer            *'), 5, 0)
             grid.addWidget(q4Edit, 5, 1) 
                  
-            grid.addWidget(QLabel('Zip code       *'), 5, 1, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Postcode    *'), 5, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(q6Edit, 5, 2)
      
-            grid.addWidget(QLabel('Housenumber              *'), 6, 0)
+            grid.addWidget(QLabel('Huisnummer           *'), 6, 0)
             grid.addWidget(q7Edit, 6, 1)
     
-            grid.addWidget(QLabel('Suffix'), 6, 1, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Toevoeging'), 6, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(q8Edit, 6, 2)
      
-            grid.addWidget(QLabel('Telephonenumber        *'), 7, 0)
+            grid.addWidget(QLabel('Telefoonnummer     *'), 7, 0)
             grid.addWidget(q12Edit, 7, 1) 
             
-            grid.addWidget(QLabel('Company-Sales number'), 8, 0)
+            grid.addWidget(QLabel('Bedrijf-Verkoopnummer'), 8, 0)
             grid.addWidget(q13Edit, 8, 1) 
                                 
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 9, 1)
               
-            cancelBtn = QPushButton('Close')
+            cancelBtn = QPushButton('Sluiten')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
             
-            applyBtn = QPushButton('Insert')
+            applyBtn = QPushButton('Invoeren')
             applyBtn.clicked.connect(self.accept)
                        
             grid.addWidget(applyBtn, 8, 2, 1, 1, Qt.AlignRight)
