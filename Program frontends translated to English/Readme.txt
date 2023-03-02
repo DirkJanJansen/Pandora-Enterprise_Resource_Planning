@@ -81,6 +81,9 @@ opvrWebverkorders.py        (added 02-03-2023)
 webRetouren.py              (added 02-03-2023) 
 printFacturatie.py          (added 02-03-2023)
 opvrUrenmutaties.py         (added 02-03-2023)
+voorraadbeheersing.py       (added 02-03-2023)
+magvrdGrafiek.py            (added 02-03-2023)
+opvrReserveringen.py        (added 02-03-2023)
 
 This means that frontends from  Mainmenu and 
 submenus from Accounts are translated to English. 
@@ -95,6 +98,7 @@ submenu from Calculation works internally are translated to English (added 27-02
 submenu from Calculation works externally are translated to English (added 28-02-2023)
 submenu from Payroll Administration are translated to English (added 02-03-2023)
 submenu from Bookkeeping are translated to English (added 02-03-2023)
+submenu from Stock management are translated to English (added 02-03-2023)
 
 In the coming period other submenu's will follow.
 
