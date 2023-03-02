@@ -11,7 +11,7 @@ def eigenBedrijf(m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(50, 50, 1500, 900)
-            self.setWindowTitle('Request own sales company')
+            self.setWindowTitle('Verkoopbedrijf opvragen')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -53,8 +53,8 @@ def eigenBedrijf(m_email):
                 return self.header[col]
             return None
  
-    header = ['SalescompanyID','Company name', 'Legal status','Department', 'VATnumber', 'KVKnumber',\
-              'Telephonenumber','Street', 'Housenumber', 'Suffix', 'Zipcode', 'Residence']  
+    header = ['VerkoopbedrijfID','Bedrijfsnaam', 'Rechtsvorm','Afdeling', 'BTWNummer', 'KVKNummer',\
+              'Telefoonnummer','Straat', 'Huisnummer', 'Toevoeging', 'Postcode', 'Woonplaats']  
       
     metadata = MetaData() 
     kopers = Table('kopers', metadata,
@@ -110,7 +110,7 @@ def eigenBedrijf(m_email):
             class Widget(QDialog):
                 def __init__(self, parent=None):
                     super(Widget, self).__init__(parent)
-                    self.setWindowTitle("Request sales companies")
+                    self.setWindowTitle("Opvragen verkoopbedrijven")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                                           
                     self.setFont(QFont('Arial', 10))
@@ -213,46 +213,46 @@ def eigenBedrijf(m_email):
                     grid.addWidget(logo , 0, 1, 1, 2, Qt.AlignRight)
            
                     self.setFont(QFont('Arial', 10))
-                    grid.addWidget(QLabel('Request sales companies'), 0, 1)
+                    grid.addWidget(QLabel('Verkoopbedrijven opvragen'), 0, 1)
                                                             
-                    grid.addWidget(QLabel('Company name'), 1, 0)
+                    grid.addWidget(QLabel('Bedrijfsnaam'), 1, 0)
                     grid.addWidget(q3Edit, 1, 1, 1, 3) 
                     
-                    grid.addWidget(QLabel('Department name/Room/\nContact person'), 2, 0)
+                    grid.addWidget(QLabel('Afdelingsnaam/Kamer/\nKontaktpersoon'), 2, 0)
                     grid.addWidget(q16Edit, 2, 1, 1, 3)  
                          
-                    grid.addWidget(QLabel('Legal status'), 3, 0)
+                    grid.addWidget(QLabel('Rechtsvorm'), 3, 0)
                     grid.addWidget(q5Edit, 3, 1) 
                     
-                    grid.addWidget(QLabel('VATnumber'), 3, 1, 1, 1, Qt.AlignRight)
+                    grid.addWidget(QLabel('BTWnummer'), 3, 1, 1, 1, Qt.AlignRight)
                     grid.addWidget(q2Edit, 3, 2) 
                     
-                    grid.addWidget(QLabel('KvKnumber'), 4, 0)
+                    grid.addWidget(QLabel('KvKnummer'), 4, 0)
                     grid.addWidget(q4Edit, 4, 1) 
                     
-                    grid.addWidget(QLabel('Street'), 5, 0)
+                    grid.addWidget(QLabel('Straat'), 5, 0)
                     grid.addWidget(q1Edit, 5, 1, 1, 3)
              
-                    grid.addWidget(QLabel('Housenumber'), 6, 0)
+                    grid.addWidget(QLabel('Huisnummer'), 6, 0)
                     grid.addWidget(q7Edit, 6, 1)
             
-                    grid.addWidget(QLabel('Suffix'), 6, 1, 1, 1, Qt.AlignRight)
+                    grid.addWidget(QLabel('Toevoeging'), 6, 1, 1, 1, Qt.AlignRight)
                     grid.addWidget(q8Edit, 6, 2)
                     
-                    grid.addWidget(QLabel('Zipcode Residence'), 7, 0)
+                    grid.addWidget(QLabel('Postcode Woonplaats'), 7, 0)
                     grid.addWidget(q6Edit, 7, 1)
                     
                     grid.addWidget(q15Edit, 7, 1, 1, 2, Qt.AlignRight) 
              
-                    grid.addWidget(QLabel('Telephonenumber'), 8, 0)
+                    grid.addWidget(QLabel('Telefoonnummer'), 8, 0)
                     grid.addWidget(q13Edit, 8, 1) 
                     
-                    grid.addWidget(QLabel('Sales company number'), 9, 0)
+                    grid.addWidget(QLabel('Verkoopbedrijfnummer'), 9, 0)
                     grid.addWidget(q14Edit, 9, 1) 
                                         
                     grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 10, 1)
                       
-                    terugBtn = QPushButton('Close')
+                    terugBtn = QPushButton('Sluiten')
                     terugBtn.clicked.connect(self.accept)           
                 
                     grid.addWidget(terugBtn, 9, 2, 1, 1, Qt.AlignRight)
