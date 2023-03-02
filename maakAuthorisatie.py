@@ -11,7 +11,7 @@ def foutAccountnr():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Accountnummer niet aanwezig!')
+    msg.setText('Account number not present!')
     msg.setWindowTitle('ACCOUNT')
     msg.exec_()
     
@@ -28,7 +28,7 @@ def updateOK(self):
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
     msg.setFont(QFont("Arial",10))
-    msg.setText('De bevoegdheden van: \n'+self.mvoorn+' '+self.mtussen+' '+self.machtern+'\nzijn aangepast!')
+    msg.setText('The authorisations of: \n'+self.mvoorn+' '+self.mtussen+' '+self.machtern+'\nhave been adjusted!')
     msg.setWindowTitle('AUTHORISATIE')
     msg.exec_()
 
@@ -36,7 +36,7 @@ def info():
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Informatie authorisatie")
+            self.setWindowTitle("Information authorisation")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -55,43 +55,39 @@ def info():
             
             lblinfo = QLabel(
         '''
+        The menu order is as follows: from top left to bottom
+        and then from top right to bottom. 
+        
+       Main menu entries:       
             
-        Maak hoofdmenuitems toegankelijk door de checkboxen onder
-        Menu aan te vinken voor het desbetreffende account.
+        Accounts                    Calculation internal
+        Suppliers                    Calculation external
+        Employee's                 Payroll administration
+        Purchase                     Accounting 
+        Sales                           Inventory management
+        Warehouse                  Management Information
+        Works internal            Maintenance system
+        Works external           Reprinting forms       (Main menu only   -
+                                                         other authorities in departments)\t\t 
         
-        De menuvolgorde is als volgt: van linksboven naar beneden
-        en vervolgens van rechtsboven naar beneden.
+        The submenu's are accessible by checking the checkboxes   
+        besides the main menu items.
         
-        Hoofdmenuingangen:       
+        The authorisations are from left to right and subsequently
+        from top to bottom displayed.
+        
+        Menu = Main menu items activate/inactivate.
+        
+        Authorisations:
             
-        Accounts                     Calculatie Intern
-        Leveranciers                Calculatie Extern
-        Werknemers                Loonadministratie
-        Inkoop                         Boekhouding
-        Verkoop                       Voorraadmanagement
-        Magazijn                      Management Info
-        Werken intern             Onderhoud Systeem
-        Werken extern            Herprinten Formulieren (alleen hoofdmenu -
-                                                         overige bevoegdheden bij afdelingen)\t\t 
-        
-        De submenu's zijn toegankelijk te maken door de checkboxen
-        naast de hoofdmenuitems te activeren.
-        
-        De authorisaties zijn  van links naar rechts en vervolgens
-        van boven naar beneden weergegeven.
-        
-        Menu = Hoofdmenuitems actief/inactief maken.
-        
-        Authorisaties:
-            
-        S = Speciaal  B = Bestellen  I = Invoeren   W = Wijzigen 
-        P = Printen    O = Opvragen  R = Gereserveerd
+        S = Special   O = Ordering   I = Insert     M = Modify   
+        P = Printing   Q = Query       R = Reserved    
         ''')
                 
             grid.addWidget(lblinfo, 1, 0, 1, 4, Qt.AlignCenter)
             lblinfo.setStyleSheet("font: 10pt Comic Sans MS; color: black ; background-color: #D9E1DF")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(self.close)  
             
             grid.addWidget(cancelBtn, 2, 0, 1, 4,  Qt.AlignRight)
@@ -112,7 +108,7 @@ def zoekAccount(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Authorisatie programma.")
+            self.setWindowTitle("Authorisation program.")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -141,13 +137,13 @@ def zoekAccount(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 2, 1, 1, Qt.AlignRight) 
     
-            grid.addWidget(QLabel('Accountnummer'), 1, 1)
+            grid.addWidget(QLabel('Account number'), 1, 1)
             grid.addWidget(accEdit, 1, 2)
        
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
          
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
                   
             grid.addWidget(applyBtn, 2, 2)
@@ -234,7 +230,7 @@ def geefAuth(rpacc, m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Aanpassen Bevoegdheden")
+            self.setWindowTitle("Customise authorisations")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                                   
             self.setFont(QFont('Arial', 10))
@@ -267,73 +263,73 @@ def geefAuth(rpacc, m_email):
             accEdit.setDisabled(True)  
     
             grid.addWidget(QLabel(mvoorn+' '+mtussen+' '+machtern), 0, 8, 1, 9, Qt.AlignTop)     
-            grid.addWidget(QLabel('Accountnummer'), 0, 8, 1, 10, Qt.AlignBottom)
+            grid.addWidget(QLabel('Account number'), 0, 8, 1, 10, Qt.AlignBottom)
             grid.addWidget(accEdit, 0, 7, 1, 10, Qt.AlignCenter | Qt.AlignBottom) 
             
             grid.addWidget(QLabel('Menu'), 2, 1, 1, 2, Qt.AlignRight)
             grid.addWidget(QLabel('S'), 2, 3)
-            grid.addWidget(QLabel('B'), 2, 4)
+            grid.addWidget(QLabel('O'), 2, 4)
             grid.addWidget(QLabel('I'), 2, 5)
-            grid.addWidget(QLabel('W'), 2, 6)
+            grid.addWidget(QLabel('M'), 2, 6)
             grid.addWidget(QLabel('P'), 2, 7)
-            grid.addWidget(QLabel('O'), 2, 8)
+            grid.addWidget(QLabel('Q'), 2, 8)
             grid.addWidget(QLabel('R'), 2, 9)
             
             grid.addWidget(QLabel('Menu'), 2, 11, 1, 2, Qt.AlignRight)  
             grid.addWidget(QLabel('S'), 2, 13)
-            grid.addWidget(QLabel('B'), 2, 14)
+            grid.addWidget(QLabel('O'), 2, 14)
             grid.addWidget(QLabel('I'), 2, 15)
-            grid.addWidget(QLabel('W'), 2, 16)
+            grid.addWidget(QLabel('M'), 2, 16)
             grid.addWidget(QLabel('P'), 2, 17)
-            grid.addWidget(QLabel('O'), 2, 18)
+            grid.addWidget(QLabel('Q'), 2, 18)
             grid.addWidget(QLabel('R'), 2, 19)
             
             lbl0 = QLabel('Accounts')
             lbl0.setFixedWidth(115) 
             grid.addWidget(lbl0, 3 , 0)
-            lbl1 = QLabel('Leveranciers')
+            lbl1 = QLabel('Suppliers')
             lbl1.setFixedWidth(115) 
             grid.addWidget(lbl1, 4 , 0)
-            lbl2 = QLabel('Werknemers')
+            lbl2 = QLabel('Employees')
             lbl2.setFixedWidth(115) 
             grid.addWidget(lbl2, 5 , 0)
-            lbl3 = QLabel('Inkoop')
+            lbl3 = QLabel('Purchase')
             lbl3.setFixedWidth(115) 
             grid.addWidget(lbl3, 6 , 0)
-            lbl4 = QLabel('Verkoop')
+            lbl4 = QLabel('Sales')
             lbl4.setFixedWidth(115) 
             grid.addWidget(lbl4, 7 , 0)
-            lbl5 = QLabel('Magazijn')
+            lbl5 = QLabel('Warehouse')
             lbl5.setFixedWidth(115) 
             grid.addWidget(lbl5, 8 , 0)
-            lbl6 = QLabel('Werken Intern')
+            lbl6 = QLabel('Works internal')
             lbl6.setFixedWidth(115) 
             grid.addWidget(lbl6, 9 , 0)
-            lbl7 = QLabel('Werken Extern')
+            lbl7 = QLabel('Works external')
             lbl7.setFixedWidth(115) 
             grid.addWidget(lbl7, 10 , 0)
-            lbl8 = QLabel('Calculatie Interne Werken')
+            lbl8 = QLabel('Calculation internal works')
             lbl8.setFixedWidth(200) 
             grid.addWidget(lbl8, 3 , 11)
-            lbl9 = QLabel('Calculatie Externe Werken')
+            lbl9 = QLabel('Calculation external works')
             lbl9.setFixedWidth(200) 
             grid.addWidget(lbl9, 4 , 11)
-            lbl10 = QLabel('Loonadminstratie')
+            lbl10 = QLabel('Payroll administration')
             lbl10.setFixedWidth(200) 
             grid.addWidget(lbl10, 5 , 11)
-            lbl11 = QLabel('Boekhouding')
+            lbl11 = QLabel('Accounting')
             lbl11.setFixedWidth(200) 
             grid.addWidget(lbl11, 6 , 11)
-            lbl12 = QLabel('Voorraadmanagement')
+            lbl12 = QLabel('Inventory management')
             lbl12.setFixedWidth(200) 
             grid.addWidget(lbl12, 7 , 11)
-            lbl13 = QLabel('Managementinformatie')
+            lbl13 = QLabel('Management information')
             lbl13.setFixedWidth(200) 
             grid.addWidget(lbl13, 8 , 11)
-            lbl14 = QLabel('Onderhoud')
+            lbl14 = QLabel('Maintenance')
             lbl14.setFixedWidth(200) 
             grid.addWidget(lbl14, 9 , 11)
-            lbl15 = QLabel('Herprinten formulieren')
+            lbl15 = QLabel('Reprint forms')
             lbl15.setFixedWidth(200) 
             grid.addWidget(lbl15, 10 , 11)
             
@@ -386,7 +382,7 @@ def geefAuth(rpacc, m_email):
                 updateOK(self)
                 self.close()
                                                                           
-            applyBtn = QPushButton('Opslaan')
+            applyBtn = QPushButton('Update')
             applyBtn.clicked.connect(lambda: writeValues(self))
                        
             grid.addWidget(applyBtn, 12, 16, 1, 4, Qt.AlignRight)
@@ -394,7 +390,7 @@ def geefAuth(rpacc, m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: winSluit(self, m_email))
             
             grid.addWidget(cancelBtn, 12, 12, 1, 4)
@@ -402,7 +398,7 @@ def geefAuth(rpacc, m_email):
             cancelBtn.setFixedWidth(100)
             cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            infoBtn = QPushButton('Informatie')
+            infoBtn = QPushButton('Information')
             infoBtn.clicked.connect(lambda: info())
             
             grid.addWidget(infoBtn, 12, 10, 1, 4, Qt.AlignCenter)

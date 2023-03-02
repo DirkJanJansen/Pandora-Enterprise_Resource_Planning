@@ -15,16 +15,16 @@ def invoerOK():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Invoer gelukt')
-    msg.setWindowTitle('INVOEREN')
+    msg.setText('Insert successful')
+    msg.setWindowTitle('Insert')
     msg.exec_()
     
 def invVerplicht():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Verplichte invoer')
-    msg.setWindowTitle('INVOEREN')
+    msg.setText('Required insert')
+    msg.setWindowTitle('Insert')
     msg.exec_()
     
 def invParams(m_email):
@@ -53,7 +53,7 @@ def invParams(m_email):
             super(Widget, self).__init__(parent)
             grid = QGridLayout()
             grid.setSpacing(20)
-            self.setWindowTitle("Invoeren Parameters")
+            self.setWindowTitle("Insert parameters")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             
             self.setFont(QFont('Arial', 10))   
@@ -116,7 +116,7 @@ def invParams(m_email):
             grid = QGridLayout()
             grid.setSpacing(20)
             
-            lbl1 = QLabel('Parameternummer')  
+            lbl1 = QLabel('Parameter number')
             grid.addWidget(lbl1, 1, 0)
             
             lbl2 = QLabel(str(mparnr))
@@ -126,23 +126,23 @@ def invParams(m_email):
             grid.addWidget(lbl3, 2, 0)
             grid.addWidget(q1Edit, 2, 1, 1, 2) 
                                                  
-            lbl4 = QLabel('Tarief')  
+            lbl4 = QLabel('Tariff')
             grid.addWidget(lbl4, 3, 0)
             grid.addWidget(q2Edit, 3, 1)
             
-            lbl5 = QLabel('Verrekening')  
+            lbl5 = QLabel('Conversion')
             grid.addWidget(lbl5, 4, 0)
             grid.addWidget(q3Edit, 4, 1, 1, 2)
                                        
-            lbl6 = QLabel('Ondergrens')  
+            lbl6 = QLabel('Lower limit')
             grid.addWidget(lbl6, 5, 0)
             grid.addWidget(q4Edit, 5, 1)
                            
-            lbl7 = QLabel('Bovengrens')  
+            lbl7 = QLabel('Upper limit')
             grid.addWidget(lbl7, 6, 0)
             grid.addWidget(q5Edit, 6, 1)
             
-            lbl8 = QLabel('Tarieffactor')  
+            lbl8 = QLabel('Rate factor')
             grid.addWidget(lbl8, 7, 0)
             grid.addWidget(q6Edit, 7, 1)     
             
@@ -161,7 +161,7 @@ def invParams(m_email):
             self.setLayout(grid)
             self.setGeometry(400, 250, 450, 150)
     
-            applyBtn = QPushButton('Invoer')
+            applyBtn = QPushButton('Insert')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 8, 2)
@@ -169,7 +169,7 @@ def invParams(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email)) 
     
             grid.addWidget(cancelBtn, 8, 1)

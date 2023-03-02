@@ -13,8 +13,8 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Koppelen Account')               
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Link account')               
     msg.exec_() 
     
 def geenGeboortedatum():
@@ -22,8 +22,8 @@ def geenGeboortedatum():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen geboortedatum ingevuld\nvul eerst een geboortedatum in\nvóór het koppelen van een werknemer!')
-    msg.setWindowTitle('Koppelen Account')               
+    msg.setText('No date of birth filled in\nfill in a date of birth first\nbefore linking an employee!')
+    msg.setWindowTitle('Link account')               
     msg.exec_() 
     
 def foutAdmin():
@@ -31,8 +31,8 @@ def foutAdmin():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Administrator bevoegdheden\nkunnen niet worden aangepast!')
-    msg.setWindowTitle('Koppelen account')
+    msg.setText('Administrator privileges\ncannot be modified!')
+    msg.setWindowTitle('Link account')
     msg.exec_()
         
 def windowSluit(self, m_email):
@@ -44,8 +44,8 @@ def koppelOK():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Koppelen gelukt!')
-    msg.setWindowTitle('Koppelen account')
+    msg.setText('Linking successful!')
+    msg.setWindowTitle('Link account')
     msg.exec_()
    
 def koppelBestaat():
@@ -53,32 +53,32 @@ def koppelBestaat():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Koppeling bestaat al!')
-    msg.setWindowTitle('Koppelen account')
+    msg.setText('Link already exist!')
+    msg.setWindowTitle('Link account')
     msg.exec_()  
        
 def foutAccountnr():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Account niet gevonden.')
-    msg.setWindowTitle('Koppelen account')
+    msg.setText('Account not found.')
+    msg.setWindowTitle('Link account')
     msg.exec_()
     
 def foutLeveranciernr():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Leverancier niet gevonden.')
-    msg.setWindowTitle('Koppelen account')
+    msg.setText('Supplier not found!')
+    msg.setWindowTitle('Link account')
     msg.exec_()
     
 def foutClient():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Client niet gevonden.')
-    msg.setWindowTitle('Koppelen account')
+    msg.setText('Client not found.')
+    msg.setWindowTitle('Link account')
     msg.exec_()
                  
 def _11check(minnr):
@@ -99,7 +99,7 @@ def zoekAccount(m_email, flag):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Account Koppelen.")
+            self.setWindowTitle("Link account")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -128,15 +128,15 @@ def zoekAccount(m_email, flag):
                 
             self.setFont(QFont('Arial', 10))
  
-            grid.addWidget(QLabel('Accountnummer'), 1, 0)
+            grid.addWidget(QLabel('Account number'), 1, 0)
             grid.addWidget(accEdit, 1, 1)
             
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 3, 0, 1, 2, Qt.AlignCenter)
         
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
          
-            applyBtn = QPushButton('Koppel')
+            applyBtn = QPushButton('Link')
             applyBtn.clicked.connect(self.accept)
                   
             grid.addWidget(applyBtn, 2, 1, 1, 1, Qt.AlignRight)
@@ -202,7 +202,7 @@ def koppelLeverancier(m_email, maccountnr, flag):
     class Widget(QDialog):
        def __init__(self, parent=None):
            super(Widget, self).__init__(parent)
-           self.setWindowTitle("Koppel account aan leverancier.")
+           self.setWindowTitle("Link account to supplier.")
            self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
            self.setFont(QFont('Arial', 10))
@@ -231,15 +231,15 @@ def koppelLeverancier(m_email, maccountnr, flag):
     
            self.setFont(QFont('Arial', 10))
      
-           grid.addWidget(QLabel('Leveranciernummer'), 1, 0)
+           grid.addWidget(QLabel('Supplier number'), 1, 0)
            grid.addWidget(levEdit, 1, 1)
     
            grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 3, 0, 1, 2, Qt.AlignCenter)
     
-           cancelBtn = QPushButton('Sluiten')
+           cancelBtn = QPushButton('Close')
            cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
          
-           applyBtn = QPushButton('Koppel')
+           applyBtn = QPushButton('Link')
            applyBtn.clicked.connect(self.accept)
                   
            grid.addWidget(applyBtn, 2, 1, 1, 1, Qt.AlignRight)
@@ -329,7 +329,7 @@ def koppelKoper(m_email, maccountnr, flag):
     class Widget(QDialog):
        def __init__(self, parent=None):
            super(Widget, self).__init__(parent)
-           self.setWindowTitle("Koppel account / koper.")
+           self.setWindowTitle("Link account / buyer.")
            self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
            self.setFont(QFont('Arial', 10))
@@ -358,14 +358,14 @@ def koppelKoper(m_email, maccountnr, flag):
                 
            self.setFont(QFont('Arial', 10))
     
-           grid.addWidget(QLabel('Clientnummer'), 1, 0)
+           grid.addWidget(QLabel('Client number'), 1, 0)
            grid.addWidget(kbedrEdit, 1, 1)
            grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 3, 0, 1, 2, Qt.AlignCenter)
     
-           cancelBtn = QPushButton('Sluiten')
+           cancelBtn = QPushButton('Close')
            cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
          
-           applyBtn = QPushButton('Koppel')
+           applyBtn = QPushButton('Link')
            applyBtn.clicked.connect(self.accept)
                   
            grid.addWidget(applyBtn, 2, 1, 1, 1, Qt.AlignRight)
