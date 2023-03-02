@@ -14,8 +14,8 @@ def invoerOK():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Change sales hourly rates succeeded!')
-    msg.setWindowTitle('Hourly rates')
+    msg.setText('Wijzigen van verkoop_uurtarieven gelukt!')
+    msg.setWindowTitle('UURTARIEVEN')
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.exec_()
       
@@ -23,8 +23,8 @@ def winKeuze(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            msg = QMessageBox.question(self, 'Change sales hourly rates',\
-             "Modify sales hourly rates?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            msg = QMessageBox.question(self, 'Verkoop-uurtarieven aanpassen',\
+             "Verkoop-uurtarieven aanpassen?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
             if msg == QMessageBox.No:
                 windowSluit(self, m_email)
                 winKeuze(m_email)
