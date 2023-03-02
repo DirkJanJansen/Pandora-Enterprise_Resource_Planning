@@ -95,7 +95,7 @@ def printFactuur(rpord,mstraat,mplaats,movbestnr):
     kop=\
     ('Ordernumber: '+ str(rpord[0])+'          Date : '+str(datetime.datetime.now())[0:10]+'  Page : '+str(mblad)+'\n'+
     '==============================================================================================\n'+
-    'Articlenr  Description                         Unit    Quantity   Price   Subtotal        BTW \n'+
+    'Articlenr  Description                            Unit  Quantity  Price   Subtotal        BTW \n'+
     '==============================================================================================\n')
     mtotaal = 0
     
@@ -167,7 +167,7 @@ def printPakbon(rpord,mstraat,mplaats,movbestnr):
      rpord[14]+' '+mplaats+'.\n\n\n\n\n')
     open(filename,'w').write(adreskop)
     kop=\
-    ('Ordernummer: '+ str(rpord[0])+'          Datum: '+str(datetime.datetime.now())[0:10]+'  Blad : '+str(mblad)+'\n'+
+    ('Order number '+ str(rpord[0])+'          Date : '+str(datetime.datetime.now())[0:10]+'  Page : '+str(mblad)+'\n'+
     '==============================================================================================\n'+
     'Articlenr  Description                         Unit    Amount  Location   Delivered           \n'+
     '==============================================================================================\n')
@@ -208,8 +208,8 @@ def zoekWeborder(m_email, afd):
             k0Edit.addItem('1. All Orders')
             k0Edit.addItem('2. Filtered by Zipcode')
             k0Edit.addItem('3. Filtered by surname')
-            k0Edit.addItem('4. Filtered buy ordernumber')
-            k0Edit.addItem('5. FilteredG by order date')
+            k0Edit.addItem('4. Filtered buy order number')
+            k0Edit.addItem('5. Filtered by order date')
             k0Edit.activated[str].connect(self.k0Changed)
                
             self.Zoekterm = QLabel()
@@ -234,7 +234,7 @@ def zoekWeborder(m_email, afd):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 1, 1, 1, 2, Qt.AlignRight)
                                   
-            lbl1 = QLabel('Searchterm')  
+            lbl1 = QLabel('Search term')
             grid.addWidget(lbl1, 3, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(zktrmEdit, 3, 1, 1, 2)
             grid.addWidget(k0Edit, 2, 1, 1 , 2, Qt.AlignRight)
@@ -613,9 +613,9 @@ def bestelOrder(m_email, keuze, zoekterm, afd):
                 return self.header[col]
             return None
   
-    header = ['Ordernr','-','Order date', 'Payed','Delivered','Total amount','-', 'Accountnr',\
+    header = ['Order number','-','Order date', 'Payed','Delivered','Total amount','-', 'Account number',\
               'Billing number','-','Prefix', 'First name','Infix', 'Surname',\
-              'Zipcode', 'Housenumber', 'Suffix','e-mailaddress','Telephone']
+              'Zipcode', 'House number', 'Suffix','e-mail address','Telephone']
     
     metadata = MetaData()
     orders_verkoop = Table('orders_verkoop', metadata,
@@ -770,7 +770,7 @@ def bestelOrder(m_email, keuze, zoekterm, afd):
                     self.logo.setPixmap(self.pixmap)
                     grid.addWidget(self.logo , 0, 4, 1, 1, Qt.AlignRight) 
                     
-                    lbl1 = QLabel('Ordernumber')
+                    lbl1 = QLabel('Order number')
                     q1Edit = QLineEdit(str(rpord[0]))
                     q1Edit.setAlignment(Qt.AlignRight)
                     q1Edit.setFixedWidth(90)
@@ -813,7 +813,7 @@ def bestelOrder(m_email, keuze, zoekterm, afd):
                     grid.addWidget(lbl4, 2, 2)
                     grid.addWidget(q4Edit, 2, 3, 1, 2)
                     
-                    lbl5 = QLabel('Accountnumber')
+                    lbl5 = QLabel('Account number')
                     q5Edit = QLineEdit(str(rpord[7]))
                     q5Edit.setFixedWidth(100)
                     q5Edit.setAlignment(Qt.AlignRight)
@@ -868,7 +868,7 @@ def bestelOrder(m_email, keuze, zoekterm, afd):
                     grid.addWidget(lbl10, 5, 2)
                     grid.addWidget(q10Edit, 5, 3, 1, 2)
                                   
-                    lbl11= QLabel('Streetname')
+                    lbl11= QLabel('Street name')
                     q11Edit = QLineEdit(mstraat)
                     q11Edit.setFixedWidth(260)
                     q11Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
@@ -877,7 +877,7 @@ def bestelOrder(m_email, keuze, zoekterm, afd):
                     grid.addWidget(lbl11, 6, 0)
                     grid.addWidget(q11Edit, 6, 1, 1, 3)
                     
-                    lbl12= QLabel('Housenumber')
+                    lbl12= QLabel('House number')
                     q12Edit = QLineEdit(str(rpord[15])+rpord[16])
                     q12Edit.setFixedWidth(100)
                     q12Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
@@ -904,7 +904,7 @@ def bestelOrder(m_email, keuze, zoekterm, afd):
                     grid.addWidget(lbl14, 7, 2)
                     grid.addWidget(q14Edit, 7, 3, 1 , 2)
                     
-                    lbl15= QLabel('E-Mailaddress')
+                    lbl15= QLabel('E-Mail address')
                     q15Edit = QLineEdit(rpord[17])
                     q15Edit.setFixedWidth(260)
                     q15Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")

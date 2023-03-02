@@ -40,7 +40,7 @@ def retKeuze(m_email):
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             k0Edit.addItem(' Search sort key')
-            k0Edit.addItem('1. Sorted on e-mailadres')
+            k0Edit.addItem('1. Sorted on e-mail address')
             k0Edit.addItem('2. Filtered not payed')
             k0Edit.addItem('3. Filtered payed')
             k0Edit.activated[str].connect(self.k0Changed)
@@ -107,7 +107,7 @@ def toonRetouren(m_email, keuze):
     class MyWindow(QDialog):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
-            self.setWindowTitle('Webreturns paying/ requesting')
+            self.setWindowTitle('Web returns paying/ requesting')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                     Qt.WindowMinMaxButtonsHint)
@@ -184,7 +184,7 @@ def toonRetouren(m_email, keuze):
                 return self.header[col]
             return None
   
-    header = ['Return number','E-mailaddress', 'Amount','Accountnumber', 'Articlenumber',\
+    header = ['Return number','E-mail address', 'Amount','Account number', 'Article number',\
               'Number','Order','Payed', 'Booking']
     
     metadata = MetaData()              
@@ -223,7 +223,7 @@ def toonRetouren(m_email, keuze):
         mretnr = idx.data()
         if idx.column() == 0:
             
-            header = ['Return number','E-mailaddress', 'Amount','Account number', 'Articlenumber',\
+            header = ['Return number','E-mail address', 'Amount','Account number', 'Article number',\
                   'Number','Order','Payed', 'Booking']
             
             metadata = MetaData()              
@@ -252,7 +252,7 @@ def toonRetouren(m_email, keuze):
                     grid = QGridLayout()
                     grid.setSpacing(20)
                      
-                    self.setWindowTitle("Returns Webarticles")
+                    self.setWindowTitle("Returns Web articles")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                     
                     self.setFont(QFont('Arial', 10))   
@@ -262,7 +262,7 @@ def toonRetouren(m_email, keuze):
                     self.lbl.setPixmap(self.pixmap)
                     grid.addWidget(self.lbl , 0, 0)
                     
-                    grid.addWidget(QLabel('Returns Webarticles'),0, 1, 1, 2)
+                    grid.addWidget(QLabel('Returns Web articles'),0, 1, 1, 2)
             
                     self.logo = QLabel()
                     self.pixmap = QPixmap('./images/logos/logo.jpg')
