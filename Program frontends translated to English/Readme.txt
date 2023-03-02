@@ -101,11 +101,13 @@ submenus from Works externally are translated to English (added  26-02-2023)
 submenus from Calculation works internally are translated to English (added 27-02-2023)
 submenus from Calculation works externally are translated to English (added 28-02-2023)
 submenus from Payroll Administration are translated to English (added 02-03-2023)
-submenus from Bookkeeping are translated to English (added 02-03-2023)
+submenus from Accounting are translated to English (added 02-03-2023)
 submenus from Stock management are translated to English (added 02-03-2023)
 submenus from Management Information are translated to English (added 02-03-2023)
+submenus from Maintenance are translated to English (added 02-03-2023)
+submenus from Reprinting of Forms are translated to English (added 02-03-2023)
 
-In the coming period other submenu's will follow.
+With this last items the translation is finished!
 
 To implement overwrite the existing programs with
 the translated ones.
