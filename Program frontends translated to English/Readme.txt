@@ -67,6 +67,13 @@ opvrClustercalculatie.py    (added 28-02-2023)
 invoerCluster_artikelen.py  (added 28-02-2023)
 opvrCluster_artikelen.py    (added 28-02-2023)
 koppelBegroting.py          (added 28-02-2023)
+urenMutaties.py             (added 02-03-2023)
+proefrun.py                 (added 02-03-2023)
+uitbetalenLonen.py          (added 02-03-2023)
+opvrLoonbetalingen.py       (added 02-03-2023)
+invoerLoontabel.py          (added 02-03-2023)
+wijzLoontabel.py            (added 02-03-2023)
+percentageLonen.py          (added 02-03-2023)
 
 This means that frontends from  Mainmenu and 
 submenus from Accounts are translated to English. 
@@ -79,6 +86,7 @@ submenu from Works internally are translated to English (added 24-02-2023)
 submenu from Works externally are translated to English (added  26-02-2023)
 submenu from Calculation works internally are translated to English (added 27-02-2023)
 submenu from Calculation works externally are translated to English (added 28-02-2023)
+submenu from Payroll Administration are translated to English (added 02-03-2023)
 
 In the coming period other submenu's will follow.
 
