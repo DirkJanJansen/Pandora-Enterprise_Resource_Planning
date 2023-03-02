@@ -550,7 +550,7 @@ def hoofdMenu(m_email):
             k13Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             k13Edit.addItem('Management Information'.center(48,' '))
             k13Edit.addItem('1. Calculate financial data\n    execute at the end of every week.')
-            k13Edit.addItem('2. Print graphs financial statements\n    external works.')
+            k13Edit.addItem('2. Print graphs financial calculations\n    external works.')
             k13Edit.addItem('3. Print graphs number of works\n    external progress status.')
             k13Edit.addItem('4. Request results works.')
             k13Edit.activated[str].connect(self.k13Changed) 
