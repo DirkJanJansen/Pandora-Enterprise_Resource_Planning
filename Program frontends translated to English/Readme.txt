@@ -88,6 +88,13 @@ rapportage.py               (added 02-03-2023)
 toonGrafieken.py            (added 02-03-2023)
 voortgangGrafiek.py         (added 02-03-2023)
 toonResultaten.py           (added 02-03-2023)
+maakAuthorisatie.py         (added 02-03-2023)
+koppelAccount.py            (added 02-03-2023)
+invoerParams.py             (added 02-03-2023)
+wijzParams.py               (added 02-03-2023)
+opvrParams.py               (added 02-03-2023)
+wijzWerktarief.py           (added 02-03-2023)
+filePicklist.py             (added 02-03-2023)
 
 This means that frontends from  Mainmenu and 
 submenus from Accounts are translated to English. 
@@ -107,7 +114,7 @@ submenus from Management Information are translated to English (added 02-03-2023
 submenus from Maintenance are translated to English (added 02-03-2023)
 submenus from Reprinting of Forms are translated to English (added 02-03-2023)
 
-With this last items the translation is finished!
+With this last items the translation is finished! (02-03-2023)
 
 To implement overwrite the existing programs with
 the translated ones.
