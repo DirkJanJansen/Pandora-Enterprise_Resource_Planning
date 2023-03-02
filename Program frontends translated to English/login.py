@@ -509,7 +509,7 @@ def hoofdMenu(m_email):
             k10Edit.addItem('Payroll administration'.center(48,' '))
             k10Edit.addItem('1. Request mutation of hours')
             k10Edit.addItem('2. Control hours for monthly wages')
-            k10Edit.addItem('3. Monthly wages scales')
+            k10Edit.addItem('3. Payment of monthly wages')
             k10Edit.addItem('4. Request wages payments')
             k10Edit.addItem('5. Insert wages scales')
             k10Edit.addItem('6. Modify wages scales / requesting')
