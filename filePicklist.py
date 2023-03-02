@@ -15,8 +15,8 @@ def geenMenu():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('No file name chosen!')
-    msg.setWindowTitle('No choice')
+    msg.setText('Geen bestandsnaam gekozen!')
+    msg.setWindowTitle('Geen keuze')
     msg.exec_()
         
 def printFile(filename, m_email, path):
@@ -30,8 +30,8 @@ def printing():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Just a moment printing is started!')
-    msg.setWindowTitle('Printing several forms')
+    msg.setText('Ogenblik afdrukken wordt gestart!')
+    msg.setWindowTitle('Printen diverse formulieren')
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.exec_()
     
@@ -43,7 +43,7 @@ def fileList(m_email, path):
     class combo(QDialog):
         def __init__(self, parent=None):
               super(combo, self).__init__(parent)
-              self.setWindowTitle("Printing lists")
+              self.setWindowTitle("Printen van lijsten")
               self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
               self.setFont(QFont("Arial", 10))
               grid = QGridLayout()
@@ -55,7 +55,7 @@ def fileList(m_email, path):
               grid.addWidget(logo , 0, 2, 1, 1, Qt.AlignRight)
               
               plbl = QLabel()
-              plbl = QLabel('Printing\nLists')
+              plbl = QLabel('Printen\nLijsten')
               plbl.setStyleSheet("color:rgba(45, 83, 115, 255); font: 20pt Comic Sans MS")
               grid.addWidget(plbl, 0, 1)
                     
@@ -69,7 +69,7 @@ def fileList(m_email, path):
               self.cb.setFixedWidth(420)
               self.cb.setFont(QFont("Arial",10))
               self.cb.setStyleSheet("color: black;  background-color: #F8F7EE")
-              self.cb.addItem('                                 Choose file')
+              self.cb.addItem('                                 Kies bestand')
               grid.addWidget(self.cb, 1, 0, 1, 3, Qt.AlignRight)
               
               for item in range(len(filelist)):
@@ -89,7 +89,7 @@ def fileList(m_email, path):
               input_validator = QRegExpValidator(reg_ex, aantalEdit)
               aantalEdit.setValidator(input_validator)
               
-              grid.addWidget(QLabel('Number of copies to print'), 3, 1, 1, 2)
+              grid.addWidget(QLabel('Aantal kopieën te printen'), 3, 1, 1, 2)
               grid.addWidget(aantalEdit, 3, 2, 1, 1, Qt.AlignRight)
               
               plbl = QLabel()
@@ -97,7 +97,7 @@ def fileList(m_email, path):
               plbl.setPixmap(pmap)
               grid.addWidget(plbl , 3, 0, 2, 1, Qt.AlignCenter)
                     
-              cancelBtn = QPushButton('Close')
+              cancelBtn = QPushButton('Sluiten')
               cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))  
                 
               grid.addWidget(cancelBtn, 4, 1, 1, 1, Qt.AlignRight)
@@ -105,7 +105,7 @@ def fileList(m_email, path):
               cancelBtn.setFixedWidth(90)
               cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")    
               
-              printBtn = QPushButton('Print')
+              printBtn = QPushButton('Printen')
               printBtn.clicked.connect(self.accept)  
                 
               grid.addWidget(printBtn,  4, 2)
