@@ -1,3 +1,5 @@
+Translation accomplished 02-03-2023!!!!
+
 On many requests I decided to translate the frontends of
 the programfiles from Dutch to English
 First translations of program files realised:
