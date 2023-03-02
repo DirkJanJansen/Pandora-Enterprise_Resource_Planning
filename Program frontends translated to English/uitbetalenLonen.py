@@ -168,7 +168,7 @@ def maandBetalingen(m_email):
             'Description                    this period       table        special tax table              \n'+
             '---------------------------------------------------------------------------------------------\n'+
             'Gross wages                   '+'{:>12.2f}'.format(row[14])+'{:>12.2f}'.format(row[14])+'    \n'+
-            '125% overtime         '+'{:>12.2f}'.format(row[28]*row[32]*1.25)+'               '+'{:>12.2f}'.format(row[28]*row[32]*1.25)+'\n'+
+            '125% overtime                 '+'{:>12.2f}'.format(row[28]*row[32]*1.25)+'               '+'{:>12.2f}'.format(row[28]*row[32]*1.25)+'\n'+
             '150% overtime                 '+'{:>12.2f}'.format(row[29]*row[32]*1.50)+'               '+'{:>12.2f}'.format(row[29]*row[32]*1.50) +'\n'+
             '200% overtime                 '+'{:>12.2f}'.format(row[30]*row[32]*2)+'               '+'{:>12.2f}'.format(row[30]*row[32]*2)+'\n'+
             'Travel hours                  '+'{:>12.2f}'.format(row[27]*row[33])+'               '+'{:>12.2f}'.format(row[27]*row[33])+'\n'+
