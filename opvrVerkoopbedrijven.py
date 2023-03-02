@@ -12,8 +12,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
-    msg.setWindowTitle('Request sales companies')               
+    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
+    msg.setWindowTitle('Verkoopbedrijven opvragen')               
     msg.exec_() 
     
 def geenRecord():
@@ -21,8 +21,8 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('No record found\ncreate another selection please!')
-    msg.setWindowTitle('Request sales companies')               
+    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
+    msg.setWindowTitle('Verkoopbedrijven opvragen')               
     msg.exec_() 
      
 def windowSluit(self, m_email):
@@ -33,7 +33,7 @@ def koperKeuze(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Sales companies overview")
+            self.setWindowTitle("Verkoopbedrijven Overzicht")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -43,11 +43,11 @@ def koperKeuze(m_email):
             k4Edit.setFixedWidth(230)
             k4Edit.setFont(QFont("Arial", 10))
             k4Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k4Edit.addItem(' Search sort key')
-            k4Edit.addItem('1. All Sales comanies')
-            k4Edit.addItem('2. Comapny name')
-            k4Edit.addItem('3. Sales company number')
-            k4Edit.addItem('4. Zip code number')
+            k4Edit.addItem(' Sorteersleutel voor zoeken')
+            k4Edit.addItem('1. Alle Verkoopbedrijven')
+            k4Edit.addItem('2. Bedrijfsnaam')
+            k4Edit.addItem('3. Verkoopbedrijfsnummer')
+            k4Edit.addItem('4. Postcodenummer')
             k4Edit.activated[str].connect(self.k4Changed)
             
             self.Zoekterm = QLabel()
@@ -65,7 +65,7 @@ def koperKeuze(m_email):
             grid.addWidget(lbl , 1, 0, 1, 2)
                                   
             grid.addWidget(k4Edit, 2, 1)
-            lbl1 = QLabel('Searchterm')  
+            lbl1 = QLabel('Zoekterm')  
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 3, 0)
             grid.addWidget(zktermEdit, 3, 1)
@@ -80,7 +80,7 @@ def koperKeuze(m_email):
             self.setLayout(grid)
             self.setGeometry(500, 300, 150, 150)
     
-            applyBtn = QPushButton('Search')
+            applyBtn = QPushButton('Zoeken')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 4, 1, 1 , 1, Qt.AlignRight)
@@ -88,7 +88,7 @@ def koperKeuze(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Close')
+            cancelBtn = QPushButton('Sluiten')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 4, 1)
@@ -134,7 +134,7 @@ def toonBedrijfverkoop(keuze,zoekterm, m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(50, 50, 1500, 900)
-            self.setWindowTitle('Sales companies requesting')
+            self.setWindowTitle('Verkoopbedrijven opvragen')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -176,8 +176,8 @@ def toonBedrijfverkoop(keuze,zoekterm, m_email):
                 return self.header[col]
             return None
  
-    header = ['SalescompanyID','Company name', 'Legal status','Department', 'VATnumber', 'KVKNumber',\
-              'Telephonenumber','Street', 'Housenumber', 'Suffix', 'Zipcode', 'Residence']  
+    header = ['BedrijfverkoopID','Bedrijfsnaam', 'Rechtsvorm','Afdeling', 'BTWNummer', 'KVKNummer',\
+              'Telefoonnummer','Straat', 'Huisnummer', 'Toevoeging', 'Postcode', 'Woonplaats']  
    
     metadata = MetaData()   
     kopers= Table('kopers', metadata,
@@ -241,7 +241,7 @@ def toonBedrijfverkoop(keuze,zoekterm, m_email):
             class Widget(QDialog):
                 def __init__(self, parent=None):
                     super(Widget, self).__init__(parent)
-                    self.setWindowTitle("Request sales comanies")
+                    self.setWindowTitle("Opvragen verkoopbedrijven")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                                           
                     self.setFont(QFont('Arial', 10))
@@ -338,46 +338,46 @@ def toonBedrijfverkoop(keuze,zoekterm, m_email):
                     grid.addWidget(logo , 0, 1, 1, 2, Qt.AlignRight)
            
                     self.setFont(QFont('Arial', 10))
-                    grid.addWidget(QLabel('Request sales companies'), 0, 1)
+                    grid.addWidget(QLabel('Verkoopbedrijven opvragen'), 0, 1)
                                                             
-                    grid.addWidget(QLabel('Company name'), 1, 0)
+                    grid.addWidget(QLabel('Bedrijfsnaam'), 1, 0)
                     grid.addWidget(q3Edit, 1, 1, 1, 3) 
                     
-                    grid.addWidget(QLabel('Department name/Room/\nContact person'), 2, 0)
+                    grid.addWidget(QLabel('Afdelingsnaam/Kamer/\nKontaktpersoon'), 2, 0)
                     grid.addWidget(q16Edit, 2, 1, 1, 3)  
                          
-                    grid.addWidget(QLabel('Legal status'), 3, 0)
+                    grid.addWidget(QLabel('Rechtsvorm'), 3, 0)
                     grid.addWidget(q5Edit, 3, 1) 
                     
-                    grid.addWidget(QLabel('VATnumber'), 3, 1, 1, 1, Qt.AlignRight)
+                    grid.addWidget(QLabel('BTWnummer'), 3, 1, 1, 1, Qt.AlignRight)
                     grid.addWidget(q2Edit, 3, 2) 
                     
-                    grid.addWidget(QLabel('KvKnumber'), 4, 0)
+                    grid.addWidget(QLabel('KvKnummer'), 4, 0)
                     grid.addWidget(q4Edit, 4, 1) 
                     
-                    grid.addWidget(QLabel('Street'), 5, 0)
+                    grid.addWidget(QLabel('Straat'), 5, 0)
                     grid.addWidget(q1Edit, 5, 1, 1, 3)
              
-                    grid.addWidget(QLabel('Housenumber'), 6, 0)
+                    grid.addWidget(QLabel('Huisnummer'), 6, 0)
                     grid.addWidget(q7Edit, 6, 1)
             
-                    grid.addWidget(QLabel('Suffix'), 6, 1, 1, 1, Qt.AlignRight)
+                    grid.addWidget(QLabel('Toevoeging'), 6, 1, 1, 1, Qt.AlignRight)
                     grid.addWidget(q8Edit, 6, 2)
                     
-                    grid.addWidget(QLabel('Zipcode Residence'), 7, 0)
+                    grid.addWidget(QLabel('Postcode Woonplaats'), 7, 0)
                     grid.addWidget(q6Edit, 7, 1)
                     
                     grid.addWidget(q15Edit, 7, 1, 1, 2, Qt.AlignRight) 
              
-                    grid.addWidget(QLabel('Telephonenumber'), 8, 0)
+                    grid.addWidget(QLabel('Telefoonnummer'), 8, 0)
                     grid.addWidget(q13Edit, 8, 1) 
                     
-                    grid.addWidget(QLabel('Sales company number'), 9, 0)
+                    grid.addWidget(QLabel('Verkoop bedrijfnummer'), 9, 0)
                     grid.addWidget(q14Edit, 9, 1) 
                                         
                     grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 10, 1)
                       
-                    terugBtn = QPushButton('Close')
+                    terugBtn = QPushButton('Sluiten')
                     terugBtn.clicked.connect(self.close)           
                 
                     grid.addWidget(terugBtn, 9, 2, 1, 1, Qt.AlignRight)
