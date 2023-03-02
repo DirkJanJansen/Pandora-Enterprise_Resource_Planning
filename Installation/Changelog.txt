@@ -402,9 +402,9 @@ From 2020-01-10 updates and changes are described on this page
            opvrWerknamers.py, opvrWerknperiode.py and wijzWerknemer.py wage changed in wages on several positions 
 2023-02-23 Changed Prefix Mr. Ms. Mss. for Insert and change accounts invoerAccount.py and wijzAccount.py
 2023-02-23 Changed login.py for untranslated subprogram and added all translated purchase programs
-2023-02-23 Submenu Sales program frontends are translated to English
-2023-02-24 Submenu Warehouse program frontends are translated to English
-2023-02-24 Submenu Works Internally frontends are translated to English
+2023-02-23 Submenus Sales program frontends are translated to English
+2023-02-24 Submenus Warehouse program frontends are translated to English
+2023-02-24 Submenus Works Internally frontends are translated to English
 2023-02-25 wijzWerknemer.py information changed to "the wages table number has to be changed back"
 2023-02-25 opvrInkooporders.py and opvrVerkoopbedrijven.py typo fixed, opvrDienstenorders.py Heading changed ID due to space.
 2023-02-25 opvrArtkelen.py translation imperfections solved.
@@ -413,17 +413,17 @@ From 2020-01-10 updates and changes are described on this page
 2023-02-25 urenImutataties.py Information text modified
 2023-02-25 artikelAfroep.py added return function by no existing articles from materiaallijsten for internal or external workorder.
 2023-02-26 urenImutaties.py several text changes.
-2023-02-26 Submenu Works externally frontends are translated to English
+2023-02-26 Submenus Works externally frontends are translated to English
 2023-02-27 Menu login.py text items changed in articles
-2023-02-27 Submenu Calculation works internally are translated to English
-2023-02-28 Submenu Calculation works externally are translated to English
+2023-02-27 Submenus Calculation works internally are translated to English
+2023-02-28 Submenus Calculation works externally are translated to English
 2023-02-28 invoerClustercalculaties.py error adjusted for insert new clustercalculations
 2023-02-28 Pandora.py typo error tariff - tarief corrected
 2023-03-02 login.py unclear menu choice payroll adminstration choice 3 clarified.
-2023-03-02 Submenu Payroll Administration are translated to English (Remind importing registry for layout printing) 
+2023-03-02 Submenus Payroll Administration are translated to English (Remind importing registry for layout printing) 
 2023-03-02 uitbetalenLonen.py Layout corrected special taz tabel  125% overtime
-2023-03-02 Submenu Bookkeeping are translated to English
-2023-03-02 Submenu Stock Management are translated to English
+2023-03-02 Submenus Bookkeeping are translated to English
+2023-03-02 Submenus Stock Management are translated to English
            
 	   
 
