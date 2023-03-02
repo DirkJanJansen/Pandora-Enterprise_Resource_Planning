@@ -420,6 +420,7 @@ From 2020-01-10 updates and changes are described on this page
 2023-02-28 invoerClustercalculaties.py error adjusted for insert new clustercalculations
 2023-02-28 Pandora.py typo error tariff - tarief corrected
 2023-03-02 login.py unclear menu choice payroll adminstration choice 3 clarified.
-2023-03-02 Submenu Payroll Administration are translated to English
+2023-03-02 Submenu Payroll Administration are translated to English (Remind importing registry for layout printing) 
+           
 	   
 
