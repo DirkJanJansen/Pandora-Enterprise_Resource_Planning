@@ -121,20 +121,21 @@ def info():
             grid.addWidget(lbl, 0, 0)
             lblinfo = QLabel(
         '''
-        On the item screen, choose the row with the desired item.
+        On the article screen, choose the row with the desired item.
         Then click the first field with the mouse. 
         This action opens an order screen.
         On this order screen you can see the details of the chosen product,
         such as price and description and also a reduced image.
-        3 buttons are also visible. Photo, Order and Cart. 
-        Photo shows an enlarged image of the product.
+        4 buttons are also visible. Photo, Order and Close and a image of the shopping cart. 
+        Button Photo shows an enlarged image of the product.
         Before ordering, enter the order quantity and with the "Order" button 
         the product is added to the shopping cart. The contents of the shopping cart
         can always be requested with the shopping cart button. 
-        You can also change the numbers here, with 0 it becomes product in question removed.
+        You can also change the numbers here, with input 0 the product in question is removed.
         Click on first field of the subject product, change quantity and click the "Customize" button.
         If the selection is agreed, you can optionally specify a alternate shipping address.
         Enter name, postal code and house number. The street and city name is filled in by the system.
+        The zip code system is based on the Dutch Zip code system.
         If shipping address is not entered, the goods will be sent to the billing address.
                 
         Then press the "Calculate data" button.
@@ -142,11 +143,12 @@ def info():
         After placing the check mark for accepting the general Conditions,
         the payment button becomes active and you can proceed to checkout.
         The order of Data Calculation and General Terms and Conditions Agreement is important.\t
-        As long as payment has not actually taken place, adjustments can still be made are executed.
+        As long as payment has not actually taken place, adjustments can still be done.
         To do this, close and reopen the order screen. The following payment methods are possible:
         iDeal via all banks in the Netherlands. Credit card via Visa, American Express or Maestro/Mastercard.
         You can also opt for PayPal or for Afterpay. For Afterpay, however, an additional fee of Euro 2.50
         is charged for insurance and costs. 
+        The paying is only a testing environment, paying is not really executed in this test setup.
         After successful payment, the order will be processed.
        
         ''')
