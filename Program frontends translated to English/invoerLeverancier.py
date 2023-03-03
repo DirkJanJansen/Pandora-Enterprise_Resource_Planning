@@ -51,7 +51,7 @@ def foutTelnr():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
     msg.setText('No 10 digits!')
-    msg.setWindowTitle('Telephonenumber!')
+    msg.setWindowTitle('Telephone number!')
     msg.exec_()
 
 def dontMatch():
@@ -226,25 +226,25 @@ def invLeverancier(mlevnr, m_email):
             grid.addWidget(QLabel('Legal status              *'), 3, 0)
             grid.addWidget(q5Edit, 3, 1) 
             
-            grid.addWidget(QLabel('VATnumber   *'), 3, 1, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('VAT number   *'), 3, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(q2Edit, 3, 2) 
             
-            grid.addWidget(QLabel('KvKnumber              *'), 4, 0)
+            grid.addWidget(QLabel('KvK number              *'), 4, 0)
             grid.addWidget(q4Edit, 4, 1) 
                  
             grid.addWidget(QLabel('Zipcode   *'), 4, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(q6Edit, 4, 2)
      
-            grid.addWidget(QLabel('Housenumber           *'), 5, 0)
+            grid.addWidget(QLabel('House number           *'), 5, 0)
             grid.addWidget(q7Edit, 5, 1)
     
             grid.addWidget(QLabel('Suffix'), 5, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(q8Edit, 5, 2)
       
-            grid.addWidget(QLabel('Telephonenumber     *'), 6, 0)
+            grid.addWidget(QLabel('Telephone number     *'), 6, 0)
             grid.addWidget(q12Edit, 6, 1) 
             
-            grid.addWidget(QLabel('Suppliernumber'), 7, 0)
+            grid.addWidget(QLabel('Supplier number'), 7, 0)
             grid.addWidget(q13Edit, 7, 1) 
                                 
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 8, 1)
