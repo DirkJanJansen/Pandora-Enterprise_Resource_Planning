@@ -431,5 +431,6 @@ From 2020-01-10 updates and changes are described on this page
 2023-03-03 bestelOrder.py corrected text in Information screen
 2023-03-03 invoerAccount.py typo jjjj yyyy corrected
 2023-03-03 wijzWerknmer.py corrected information wages table
+2023-03-03 invoerInkooporder.py dutch text translated  Order articles
 	   
 
