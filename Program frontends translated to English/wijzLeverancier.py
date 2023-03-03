@@ -12,7 +12,7 @@ def invoerCancel():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))   
     msg.setIcon(QMessageBox.Information)
-    msg.setText('NOT Inserted!')
+    msg.setText('Not inserted!')
     msg.setWindowTitle('Data')
     msg.exec_()
   
@@ -30,7 +30,7 @@ def foutTelnr():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
     msg.setText('no 10 digits!')
-    msg.setWindowTitle('Telephonenumber!')
+    msg.setWindowTitle('Telephone number!')
     msg.exec_()
     
 def foutLevnr():
@@ -334,16 +334,16 @@ def updateLeverancier(mlevnr, m_email):
             grid.addWidget(QLabel('Legal status             *'), 3, 0)
             grid.addWidget(q5Edit, 3, 1) 
             
-            grid.addWidget(QLabel('VATnumber'), 3, 1, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('VAT number'), 3, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(q2Edit, 3, 2) 
             
-            grid.addWidget(QLabel('KvKnumber'), 5, 0)
+            grid.addWidget(QLabel('KvK number'), 5, 0)
             grid.addWidget(q4Edit, 5, 1) 
             
             grid.addWidget(QLabel('Street'),6, 0)
             grid.addWidget(q1Edit, 6, 1, 1, 2)
             
-            grid.addWidget(QLabel('Housenumber          *'), 7, 0)
+            grid.addWidget(QLabel('House number          *'), 7, 0)
             grid.addWidget(q7Edit, 7, 1)
             
             grid.addWidget(QLabel('Suffix'), 7, 1, 1, 1, Qt.AlignRight)
@@ -354,10 +354,10 @@ def updateLeverancier(mlevnr, m_email):
             
             grid.addWidget(q15Edit, 8, 1, 1, 2, Qt.AlignRight) 
          
-            grid.addWidget(QLabel('Telephonenumber     *'), 9, 0)
+            grid.addWidget(QLabel('Telephone number     *'), 9, 0)
             grid.addWidget(q13Edit, 9, 1) 
             
-            grid.addWidget(QLabel('Suppliernumber'), 10, 0)
+            grid.addWidget(QLabel('Supplier number'), 10, 0)
             grid.addWidget(q14Edit, 10, 1) 
                                 
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 11, 1, 1, 1)
