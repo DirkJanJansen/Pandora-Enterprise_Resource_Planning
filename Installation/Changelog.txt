@@ -427,6 +427,7 @@ From 2020-01-10 updates and changes are described on this page
 2023-03-02 Submenus Management Information are translated to English
 2023-03-02 Submenus Maintenance are translated to English
 2023-03-02 Submenus Reprinting of forms are translated to English (Ready, this is the last one translated!)
-2023-03-03 opvrWerken.py corrected typo in Menu           
+2023-03-03 opvrWerken.py corrected typo in Menu     
+2023-03-03 bestelOrder.py corrected text in Information screen
 	   
 
