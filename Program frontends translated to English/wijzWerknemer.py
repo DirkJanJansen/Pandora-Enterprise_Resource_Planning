@@ -27,7 +27,7 @@ def info():
     class Widget(QDialog):
         def __init__(self):
             QDialog.__init__(self)
-            self.setWindowTitle("Informatie vervangend werk")
+            self.setWindowTitle("Information replacement work")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setFont(QFont("Arial", 10))
             grid = QGridLayout()
@@ -50,7 +50,7 @@ def info():
         '''
         If an employee needs to perform substitute work in another discipline,
         the new wages table number of this discipline must be filled in
-        in the Pay table field. 
+        in the wages table field. 
         The Orig field will then retain the old pay table number, with which his or her\t
         wages are determined. 
         The work wages data for transfer to the works is calculated with the changed
@@ -431,7 +431,7 @@ def updateWerknemer(m_email, mwerknmr):
             grid.addWidget(QLabel('Gross monthly salary'), 3, 2)
             grid.addWidget(q15Edit, 3, 3) 
                                                 
-            grid.addWidget(QLabel('Accountnumber'), 3, 0)
+            grid.addWidget(QLabel('Account number'), 3, 0)
             grid.addWidget(q2Edit, 3, 1)
             
             grid.addWidget(QLabel('Wages table'), 6, 0)
