@@ -34,7 +34,7 @@ def geenArtnr():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Warning)
     msg.setText('No existing article found\nNew article number is created!')
-    msg.setWindowTitle('Insert Articlenumber')               
+    msg.setWindowTitle('Insert Article number')
     msg.exec_() 
 
 def invoerOk(mregel):
@@ -335,7 +335,7 @@ def inkoopRegels(m_email, rplev, mregel):
             pixmap = QPixmap('./images/logos/verbinding.jpg')
             lbl.setPixmap(pixmap)
             grid.addWidget(lbl ,0, 0)
-            grid.addWidget(QLabel("Artikelen bestellen"), 0, 1)
+            grid.addWidget(QLabel("Order articles"), 0, 1)
             
             logo = QLabel()
             pixmap = QPixmap('./images/logos/logo.jpg')
