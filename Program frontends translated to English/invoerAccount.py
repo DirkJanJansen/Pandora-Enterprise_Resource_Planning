@@ -142,7 +142,7 @@ def fout_email():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
     msg.setText('incorrect email address!')
-    msg.setWindowTitle('e-mailaddress!')
+    msg.setWindowTitle('e-mail address!')
     msg.exec_()
 
 def foutTelnr():
@@ -198,7 +198,7 @@ def Invoer():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
     msg.setText('Insert successful!')
-    msg.setWindowTitle('Accountinformation')
+    msg.setWindowTitle('Account information')
     msg.exec_()
     
 def nieuwAccount(self):
@@ -359,7 +359,7 @@ def nieuwAccount(self):
             grid.addWidget(q5Edit, 6, 1, 1 , 2) 
             
             grid.addWidget(QLabel('DateOfBirth                 *'), 7, 0)
-            grid.addWidget(QLabel('                             formaat: jjjj-mm-dd'), 7, 1, 1, 2 )
+            grid.addWidget(QLabel('                             formaat: yyyy-mm-dd'), 7, 1, 1, 2 )
             grid.addWidget(q14Edit, 7, 1)
                  
             grid.addWidget(QLabel('Zipcode                      *'), 8, 0)
