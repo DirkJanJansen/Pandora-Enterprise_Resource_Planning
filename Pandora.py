@@ -61,6 +61,7 @@ if mjaar%2 == 1 and int(rppar[1]) == 0:
             mbestgr = round(sqrt(2*row[5]*rppar2[1])/(row[1]*rppar[1]),0)
             mjrverbr = row[4]
         except:
+            mbestgr = row[11]
             mjrverbr = 0
         if row[10] == 1 or row[10] == 5:
             minvrd = round(mjrverbr*1/17, 0) # < 3 weken levertijd
@@ -89,6 +90,7 @@ elif mjaar%2 == 0 and int(rppar[1]) == 1:
             mbestgr = round(sqrt(2*row[4]*rppar2[1])/(row[1]*rppar1[1]),0)
             mjrverbr = row[5]
         except:
+            mbestgr = row[11]
             mjrverbr = 0
         if row[10] == 1 or row[10] == 5:
             minvrd = round(mjrverbr*1/17, 0) # < 3 weken levertijd
