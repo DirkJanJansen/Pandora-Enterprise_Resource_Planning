@@ -85,13 +85,13 @@ elif mjaar%2 == 0 and int(rppar[1]) == 1:
     selpar1 = select([params]).where(params.c.paramID == 6)
     rppar1 = con.execute(selpar1).first()
 
-        
     for row in rpartikel:
         mjaar = int(str(datetime.datetime.now())[0:4])
         try:
             mbestgr = round(sqrt(2*row[4]*rppar2[1])/(row[1]*rppar1[1]),0)
             mjrverbr = row[5]
         except:
+            mbestgr = row[11]
             mjrverbr = 0
         if row[10] == 1 or row[10] == 5:
             minvrd = round(mjrverbr*1/17, 0) # < 3 weeks delivery time
