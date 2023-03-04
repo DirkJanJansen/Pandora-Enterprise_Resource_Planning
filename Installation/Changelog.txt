@@ -432,5 +432,7 @@ From 2020-01-10 updates and changes are described on this page
 2023-03-03 invoerAccount.py typo jjjj yyyy corrected
 2023-03-03 wijzWerknmer.py corrected information wages table
 2023-03-03 invoerInkooporder.py dutch text translated  Order articles
+2023-03-04 Pandora.py corrected parameter status mbestgr for preventing no starting program by wrong parameter vs even/odd year
+           This in case program has longer then 1 year not used!
 	   
 
