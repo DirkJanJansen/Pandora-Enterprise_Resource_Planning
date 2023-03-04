@@ -51,7 +51,7 @@ other users password: wieookweer
 See user lists Accounts -  Opvragen Accounts	
 The Menu's and other names in the programs are in Dutch sorry!
 On 2023-03-03 A English translation of all the frontends from program files are present in a seperate folder.
-To implement English version overwrite your existing programfiles!
+To implement English version overwrite your existing program files!
 
 Dirk Jansen
 dj.jansen@casema.nl
