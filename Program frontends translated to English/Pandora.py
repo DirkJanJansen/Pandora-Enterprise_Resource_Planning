@@ -6,7 +6,7 @@ from sqlalchemy import Table, Column, Integer, Float, String, MetaData, create_e
     insert, select, update, func, Boolean
 
 # set lock for up to 1 session per PC
-    
+
 home = os.path.expanduser("~")
 if os.path.isfile(str(home)+'/.pandora_lock'):
     sys.exit()
@@ -45,6 +45,7 @@ selpar = select([params]).where(params.c.paramID == 99)
 rppar = con.execute(selpar).first()
 
 mjaar = int(str(datetime.date.today())[0:4])
+
 if mjaar%2 == 1 and int(rppar[1]) == 0:
     updpar = update(params).where(params.c.paramID == 99).values(tarief = 1)
     con.execute(updpar)
@@ -61,6 +62,7 @@ if mjaar%2 == 1 and int(rppar[1]) == 0:
             mbestgr = round(sqrt(2*row[5]*rppar2[1])/(row[1]*rppar[1]),0)
             mjrverbr = row[4]
         except:
+            mbestgr = row[11]
             mjrverbr = 0
         if row[10] == 1 or row[10] == 5:
             minvrd = round(mjrverbr*1/17, 0) # < 3 weeks delivery time
@@ -82,6 +84,7 @@ elif mjaar%2 == 0 and int(rppar[1]) == 1:
     rpartikel = con.execute(selart)
     selpar1 = select([params]).where(params.c.paramID == 6)
     rppar1 = con.execute(selpar1).first()
+
         
     for row in rpartikel:
         mjaar = int(str(datetime.datetime.now())[0:4])
