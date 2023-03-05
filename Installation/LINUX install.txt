@@ -21,6 +21,7 @@ Copy .pgpass in /home/postgres
 in terminal chmod 600 .pgpass
 for installation postgresql follow steps in:
 https://tecadmin.net/install-postgresql-server-on-ubuntu/
+sqlalchemy  version   1.4.46 or before
 additional set password in psql with \password   (postgres45)
 Install pgadmin4 follow steps in:
 https://tecadmin.net/install-pgadmin4-on-ubuntu/
