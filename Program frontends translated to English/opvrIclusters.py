@@ -170,7 +170,7 @@ def toonIclusters(keuze, m_email):
               'Set costs\ncutting','Cutting','Set costs\nfolding','Folding','Set costs\ndie-cutting','Die-cutting',\
               'Set costs\nwelding co2','Welding co2','Set costs\nwelding hand','Welding hand','Set costs\npacking',\
               'Packing','Set costs\ngalvanise','Galvanise','Set costs\nmuffling','Muffling','Set costs\npainting',\
-              'Painting','Set costs\nspraying','Spraying','Set costs\npunching','Punching','Set costs\npressing',\
+              'Painting','Set costs\nspraying','Spraying','Set costs\nstam[ping','Stamping','Set costs\npressing',\
               'Pressing','Set costs\ngrit blasting','Grit blasting','Set costs\nmounting','Mounting']
      
     metadata = MetaData()
@@ -829,12 +829,12 @@ def toonIclusters(keuze, m_email):
                     grid.addWidget(lbl34, 9, 6)
                     grid.addWidget(q32Edit, 9, 7)
                     
-                    lbl35 = QLabel('Set costs\ndie-cutting')
+                    lbl35 = QLabel('Set costs\nstamping')
                     lbl35.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl35, 10, 0)
                     grid.addWidget(q33Edit, 10, 1)
                     
-                    lbl36 = QLabel('Die-cutting')
+                    lbl36 = QLabel('Stamping')
                     lbl36.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl36, 10, 2)
                     grid.addWidget(q34Edit, 10, 3)
