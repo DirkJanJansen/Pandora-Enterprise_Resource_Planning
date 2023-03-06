@@ -46,7 +46,7 @@ def foutWachtw():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
     msg.setText(('Password data\nnot filled in correctly\nor less than 8 characters'))
-    msg.setWindowTitle('ENTRY')               
+    msg.setWindowTitle('Entry')
     msg.exec_()
 
 def foutPostcode():
@@ -55,7 +55,7 @@ def foutPostcode():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
     msg.setText(('Zipcode / housenumber combination incorrect!'))
-    msg.setWindowTitle('ENTRY')               
+    msg.setWindowTitle('Entry')
     msg.exec_()
         
 def geenToegang():
@@ -64,7 +64,7 @@ def geenToegang():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
     msg.setText('No access\ncontact administrator!')
-    msg.setWindowTitle('PERMISSION')               
+    msg.setWindowTitle('Permission')
     msg.exec_()
 
 def updateOK():
@@ -82,7 +82,7 @@ def foutTelnr():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
     msg.setText('no 10 digits!')
-    msg.setWindowTitle('Telephonnumber!')
+    msg.setWindowTitle('Telephone number!')
     msg.exec_()
 
 def dontMatch():
@@ -100,7 +100,7 @@ def logoutGeg():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
     msg.setText('You will now be logged out\n log on with your new email address!')
-    msg.setWindowTitle('EMAIL')
+    msg.setWindowTitle('Email')
     msg.exec_()
     return(1)
    
@@ -341,7 +341,7 @@ def updateAccount(m_email):
             grid.addWidget(QLabel('Street'), 8, 0)
             grid.addWidget(q6Edit, 8, 1, 1, 2) 
        
-            grid.addWidget(QLabel('Housenumber                       *'), 9, 0)
+            grid.addWidget(QLabel('House number                      *'), 9, 0)
             grid.addWidget(q7Edit, 9, 1)
             
             grid.addWidget(QLabel('Suffix'), 9, 1, 1, 1, Qt.AlignRight)
@@ -365,10 +365,10 @@ def updateAccount(m_email):
             grid.addWidget(QLabel('New password check              *'), 15, 0)
             grid.addWidget(q14Edit, 15, 1, 1 ,2) 
     
-            grid.addWidget(QLabel('Telephonnumber'), 16, 0)
+            grid.addWidget(QLabel('Telephone number'), 16, 0)
             grid.addWidget(q15Edit, 16, 1) 
             
-            grid.addWidget(QLabel('Accountnumber'),17, 0)
+            grid.addWidget(QLabel('Account number'),17, 0)
             grid.addWidget(q16Edit, 17, 1, 1, 2) 
                         
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 18, 0, 1, 3, Qt.AlignCenter)
