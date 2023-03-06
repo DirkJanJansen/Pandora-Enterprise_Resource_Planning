@@ -12,7 +12,7 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
+    msg.setText('Please re-enter incorrect input\nsearch term!')
     msg.setWindowTitle('Request employees')               
     msg.exec_() 
     
@@ -47,7 +47,7 @@ def accKeuze(m_email):
             k0Edit.addItem('1. All employees')
             k0Edit.addItem('2. Surname')
             k0Edit.addItem('3. Per pay table number.')
-            k0Edit.addItem('4. Accountnumber.')
+            k0Edit.addItem('4. Account number.')
             k0Edit.addItem('5. Table wages/hour <.')
             k0Edit.addItem('6. Table wages/hour >.')
             k0Edit.addItem('7. Monthly wages indirect staff >.')           
@@ -255,7 +255,7 @@ def toonWerknemers(keuze,zoekterm, m_email):
                 return self.header[col]
             return None
        
-    header = ['Accountnumber', 'Employeenumber', 'Payscale', 'Wagesstep', 'Payroll tax',\
+    header = ['Account number', 'Employee number', 'Payscale', 'Wages step', 'Payroll tax',\
           'Pension contribution', 'Res. Holiday surcharge', 'Employer pension contribution', 'Periodic payment.',\
           'Other deductions', 'Other fees','Company car addition',\
           'Travel compensation', 'Entry into service date', 'Leave balance', 'Extra leave',\
@@ -388,7 +388,7 @@ def toonWerknemers(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Gross monthly salary'), 3, 2)
                     grid.addWidget(q15Edit, 3, 3) 
                                                         
-                    grid.addWidget(QLabel('Accountnumber'), 3, 0)
+                    grid.addWidget(QLabel('Account number'), 3, 0)
                     grid.addWidget(q2Edit, 3, 1)
                     
                     grid.addWidget(QLabel('Wages table'), 6, 0)
