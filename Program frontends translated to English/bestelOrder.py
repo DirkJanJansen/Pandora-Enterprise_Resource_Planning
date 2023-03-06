@@ -93,7 +93,7 @@ def foutAlert(e):
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
     msg.setText('\n\nAn error occurred.\nPass error message to system administration.\nPress OK to exit program!\n\nError message: '+str(e))
-    msg.setWindowTitle('Sytem error')
+    msg.setWindowTitle('System error')
     msg.exec_()
     
 def info():
@@ -849,7 +849,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                 mfactsp = checkpostcode(rpw[18], int(rpw[19]))
                 grid.addWidget(QLabel('Billing address: '+rpw[15]+' '+rpw[16]+' '+rpw[17]+',  '+mfactsp[0]+' '+rpw[19]+', '+rpw[18]+' '+mfactsp[1]+'.'), 4, 0, 1 ,4)
  
-                freshBtn = QPushButton('Caculate\ndata')
+                freshBtn = QPushButton('Calculate\ndata')
                 freshBtn.clicked.connect(lambda: refresh(m_email, self,\
                    btnStatus, e1.text(), e2.text(), e3.text(), e4.text(), e5.text(), e6.text(), klmail))
 
@@ -964,8 +964,8 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                 pixmap.scaled(256,256) 
                 return(painter.drawPixmap(option.rect, pixmap))
  
-        header = ['Articlenumber','Description', 'Thumb','Photo','Articleprice', 'Unity',\
-                  'WebID','Articlenumber', 'email','Amount','Unit price', 'Subtotal', 'VAT',\
+        header = ['Article number','Description', 'Thumb','Photo','Article price', 'Unity',\
+                  'WebID','Article number', 'email','Amount','Unit price', 'Subtotal', 'VAT',\
                   '','','','','','']
                           
         data_list=[]
@@ -1024,7 +1024,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                         lblpic.setPixmap(pixmap)
                         grid.addWidget(lblpic , 3, 0, 2, 1)
                         
-                        closeBtn = QPushButton('Sluiten')
+                        closeBtn = QPushButton('Close')
                         closeBtn.clicked.connect(self.close)
                        
                         grid.addWidget(closeBtn, 4, 0, 1, 1, Qt.AlignRight)
@@ -1265,11 +1265,11 @@ def artKeuze(m_email, retstat, klmail):
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             k0Edit.addItem(' Search sort key')
-            k0Edit.addItem('1. Sorted on articlenumber')
+            k0Edit.addItem('1. Sorted on article number')
             k0Edit.addItem('2. Sorted on stock')
             k0Edit.addItem('3. Filtered description')
-            k0Edit.addItem('4. Filtered articlegroup.')
-            k0Edit.addItem('5. Filtered storagelocation.')
+            k0Edit.addItem('4. Filtered article group.')
+            k0Edit.addItem('5. Filtered storage location.')
             k0Edit.activated[str].connect(self.k0Changed)
             
             self.Zoekterm = QLabel()
@@ -1355,7 +1355,7 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(50, 50, 1500, 900)
-            self.setWindowTitle('Articlelist')
+            self.setWindowTitle('Article list')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -1411,9 +1411,9 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
             pixmap.scaled(256,256) 
             return(painter.drawPixmap(option.rect, pixmap))
        
-    header = ['Articlenumber','Description', 'Thumb','Articleprice', 'Stock',\
+    header = ['Article number','Description', 'Thumb','Article price', 'Stock',\
               'Unit','Minimum Stock','Order size', 'Location',\
-              'Articlegroup', 'Category', 'Size']
+              'Article group', 'Category', 'Size']
     
     metadata = MetaData()              
     artikelen = Table('artikelen', metadata,
@@ -1462,8 +1462,8 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
     def showSelart(idx):
         martnr = idx.data()
         if idx.column() == 0:
-            header = ['Articlenumber','Description','Articleprice', 'Stock',\
-              'Unit','Minimum Stock','Ordersize', 'Location',\
+            header = ['Article number','Description','Article price', 'Stock',\
+              'Unit','Minimum Stock','Order size', 'Location',\
               'Articlegroup', 'Category', 'Size', 'Image']
         
             metadata = MetaData()              
@@ -1502,7 +1502,7 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
                     grid = QGridLayout()
                     grid.setSpacing(20)
                                 
-                    self.setWindowTitle("Orders Webarticles")
+                    self.setWindowTitle("Orders Web articles")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                     
                     self.setFont(QFont('Arial', 10))   
@@ -1512,7 +1512,7 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
                     self.lbl.setPixmap(self.pixmap)
                     grid.addWidget(self.lbl , 0, 0)
                     
-                    grid.addWidget(QLabel('Orders Webarticles'),0, 1, 1, 2)
+                    grid.addWidget(QLabel('Orders Web articles'),0, 1, 1, 2)
             
                     self.logo = QLabel()
                     self.pixmap = QPixmap('./images/logos/logo.jpg')
@@ -1548,7 +1548,7 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
                     
                     self.Bestelaantal = QLabel(self)
                     if retstat == 0:
-                        self.Bestelaantal.setText('                     Ordersize ')
+                        self.Bestelaantal.setText('                     Order size ')
                     else:
                         self.Bestelaantal.setText('                          Return\n                          Quantity')
                     self.best = QLineEdit(self)
