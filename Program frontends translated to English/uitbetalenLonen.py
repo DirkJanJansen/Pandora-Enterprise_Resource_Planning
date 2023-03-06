@@ -95,9 +95,9 @@ def maandBetalingen(m_email):
             jaar = str(row[1])[0:4]
             mnd = 'Vakantietoeslag'
             if platform == 'win32' :
-                filename1 = '.\\forms\\Lonen\\loonspecificatie-'+str(row[2])+'-'+jaar+'_'+mnd+'.txt'
+                filename1 = '.\\forms\\Lonen\\wage_specification_'+str(row[2])+'-'+jaar+'_'+mnd+'.txt'
             else:
-                filename1 = './forms/Lonen/loonspecificatie-'+str(row[2])+'-'+jaar+'_'+mnd+'.txt'
+                filename1 = './forms/Lonen/wage_specification_'+str(row[2])+'-'+jaar+'_'+mnd+'.txt'
             gegevens =\
             ('                             Specification'+mnd+' '+str(jaar)+'                             \n'+
             '                                                                                             \n'+
@@ -149,9 +149,9 @@ def maandBetalingen(m_email):
             mndidx = int(row[1][5:7])-1
             mnd = mbetmnd[mndidx]
             if platform == 'win32':
-                filename = '.\\forms\\Lonen\\loonspecificatie-'+row[1]+'-'+str(row[2])+'.txt'
+                filename = '.\\forms\\Lonen\\wage_specification_'+row[1]+'-'+str(row[2])+'.txt'
             else:
-                filename = './forms/Lonen/loonspecificatie-'+row[1]+'-'+str(row[2])+'.txt'
+                filename = './forms/Lonen/wage_specification_'+row[1]+'-'+str(row[2])+'.txt'
             gegevens =\
             ('                           Wage specification '+str(mnd)+' '+str(jaar)+'           \n'+
             '                                                                                             \n'+
@@ -291,10 +291,10 @@ def maandBetalingen(m_email):
                  PRINT all wage specifications printing.
                  '''),1,0,1,3)
                 
-                toonBtn = QPushButton('REQUEST')
+                toonBtn = QPushButton('Request')
                 toonBtn.clicked.connect(self.accept)
                 
-                printBtn = QPushButton('PRINT')
+                printBtn = QPushButton('Print')
                 printBtn.clicked.connect(lambda: printGeg(rpwerknmr))
                 
                 cancelBtn = QPushButton('Close')
