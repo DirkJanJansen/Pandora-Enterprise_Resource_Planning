@@ -435,4 +435,5 @@ From 2020-01-10 updates and changes are described on this page
 2023-03-04 Pandora.py corrected parameter status mbestgr for preventing no starting program by wrong parameter vs even/odd year
            This in case program has longer then 1 year not used!
 2023-03-05 dienstenMutaties.py cost type 1-8 corrected in 1-9	   
+2023-03-06 Several program files translations corrected
 
