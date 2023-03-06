@@ -695,7 +695,7 @@ def toonCalculatie(mcalnr, mwerknr):
       'Set costs\ncutting','Cutting','Set costs\nfolding','Folding','Set costs\ndie-cutting','Die-cutting',\
       'Set costs\nwelding co2','Welding co2','Set costs\nwelding hand','Welding hand','Set costs\npacking',\
       'Packing','Set costs\ngalvanise','Galvanise','Set costs\nmuffling','Muffling','Set costs\npainting',\
-      'Painting','Set costs\nspraying','Spraying','Set costs\npunching','Punching','Set costs\npressing',\
+      'Painting','Set costs\nspraying','Spraying','Set costs\nstamping','Stamping','Set costs\npressing',\
       'Pressing','Set costs\ngrit blasting','Grit blasting','Set costs\nmounting','Mounting']
 
     metadata = MetaData()               
@@ -793,7 +793,7 @@ def toonCalculatie(mcalnr, mwerknr):
                       'Set costs\ncutting', 'Cutting', 'Set costs\nfolding', 'Folding', 'Set costs\ndie-cutting','Die-cutting', \
                       'Set costs\nwelding co2', 'Welding co2', 'Set costs\nwelding hand', 'Welding hand','Set costs\npacking', \
                       'Packing', 'Set costs\ngalvanise', 'Galvanise', 'Set costs\nmuffling', 'Muffling','Set costs\npainting', \
-                      'Painting', 'Set costs\nspraying', 'Spraying', 'Set costs\npunching', 'Punching','Set costs\npressing', \
+                      'Painting', 'Set costs\nspraying', 'Spraying', 'Set costs\nstamping', 'Stamping','Set costs\npressing', \
                       'Pressing', 'Set costs\ngrit blasting', 'Grit blasting', 'Set costs\nmounting', 'Mounting']
 
             class MainWindow(QDialog):
