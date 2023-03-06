@@ -207,8 +207,8 @@ def toonLeveranciers(keuze,zoekterm, m_email):
                 return self.header[col]
             return None
   
-    header = ['Suppliernumber','Company name', 'Legal Status','VATnumber',\
-              'KvKnumber','Telephonenumber','Street', 'Housenumber','Suffix',\
+    header = ['Supplier number','Company name', 'Legal Status','VAT umber',\
+              'KvK number','Telephone number','Street', 'House number','Suffix',\
               'Zipcode','Residence']  
   
     data_list=[]
