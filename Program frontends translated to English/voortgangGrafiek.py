@@ -48,7 +48,7 @@ def info(self):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Informatie status van externe werken")
+            self.setWindowTitle("Information status external works")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -101,7 +101,7 @@ def zoekwk(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Printen status grafieken")
+            self.setWindowTitle("Printing stages charts")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -112,9 +112,9 @@ def zoekwk(m_email):
             kEdit.setFont(QFont("Arial", 10))
             kEdit.setStyleSheet("color: black;  background-color: #F8F7EE")
             kEdit.addItem('                  Choice graphs')
-            kEdit.addItem('1. Graph status external works')
-            kEdit.addItem('2. Graph works status-number\n    Pie chart')
-            kEdit.addItem('3. Graph works status-number\n    Bar graph')
+            kEdit.addItem('1. Graph stages external works')
+            kEdit.addItem('2. Graph works stages-number\n    Pie chart')
+            kEdit.addItem('3. Graph works stages-number\n    Bar graph')
             kEdit.activated[str].connect(self.kChanged)
                
             self.Zoekterm = QLabel()
@@ -231,14 +231,14 @@ def barGrafiek(keuze, jrwk, m_email):
     class Window(QDialog):
         def __init__(self):          
             QDialog.__init__(self)
-            self.setWindowTitle("Printen grafiek status van externe werken over jaar "+jrwk[0:4]) 
+            self.setWindowTitle("Printing chart stages of external works from year "+jrwk[0:4])
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                                                   Qt.WindowMinMaxButtonsHint)
             self.chart = QChart()
             self.chart_view = QChartView(self.chart)
             self.chart_view.setRenderHint(QPainter.Antialiasing)
-            self.buttonPreview = QPushButton('Print review', self)
+            self.buttonPreview = QPushButton('Print preview', self)
             self.buttonPreview.clicked.connect(self.handle_preview)
             self.buttonPreview.setStyleSheet("color: black;  background-color: gainsboro")
             self.buttonPrint = QPushButton('Printing', self)
@@ -448,7 +448,7 @@ def statusPie(keuze, jrwk, m_email):
             self.chart.legend().setAlignment(Qt.AlignRight)
             self.view = QChartView(self.chart)
             self.view.setRenderHint(QPainter.Antialiasing)
-            self.buttonPreview = QPushButton('Print review', self)
+            self.buttonPreview = QPushButton('Print preview', self)
             self.buttonPreview.clicked.connect(self.handle_preview)
             self.buttonPreview.setStyleSheet("color: black;  background-color: gainsboro")
             self.buttonPrint = QPushButton('Printing', self)
