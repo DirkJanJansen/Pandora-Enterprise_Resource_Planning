@@ -106,7 +106,7 @@ def zoekBegroting(m_email):
             grid.addWidget(lbl1, 3, 0)
             grid.addWidget(zkcalcEdit, 3, 1)
             
-            lbl2 = QLabel('Worknumber')
+            lbl2 = QLabel('Work umber')
             lbl2.setAlignment(Qt.AlignRight)
             grid.addWidget(lbl2, 4, 0)
             grid.addWidget(zkwerknrEdit, 4, 1)
