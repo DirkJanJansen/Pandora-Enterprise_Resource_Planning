@@ -61,7 +61,7 @@ def info():
         The login is realized with encrypted SHA256 control with authorized
         and account-adjustable permissions. This at menu level and on other operations
         e.g. ordering, requesting, entering, changing, printing, etc. The permissions can be assigned
-        by authorized persons. The creation of an account can be done by any person.
+        by authorized persons. The creation of a account can be done by any person.
         By default, the account is created with the permissions to query and change own account,
         placing web orders, requesting and printing order data.
         All other authorizations must be carried out by an authorized person.
@@ -367,9 +367,9 @@ def hoofdMenu(m_email):
             k0Edit.addItem('Accounts'.center(48,' '))    
             k0Edit.addItem('1. Modify account') 
             k0Edit.addItem('2. Requesting accounts')
-            k0Edit.addItem('3. Ordering webarticles')
-            k0Edit.addItem('4. Requesting orderoverview')
-            k0Edit.addItem('5. Printing orderinvoices')
+            k0Edit.addItem('3. Ordering web articles')
+            k0Edit.addItem('4. Requesting order overview')
+            k0Edit.addItem('5. Printing order invoices')
             k0Edit.activated[str].connect(self.k0Changed)
              
             self.Keuze1 = QLabel()
@@ -378,9 +378,9 @@ def hoofdMenu(m_email):
             k1Edit.setFont(QFont("Arial",10))
             k1Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             k1Edit.addItem('Suppliers'.center(48,' '))
-            k1Edit.addItem('1. Insert supplierdata')
-            k1Edit.addItem('2. Modify supplierdata')
-            k1Edit.addItem('3. Request supplierdata')
+            k1Edit.addItem('1. Insert supplier data')
+            k1Edit.addItem('2. Modify supplier data')
+            k1Edit.addItem('3. Request supplier data')
             k1Edit.addItem('4. Self requesting own data.')
             k1Edit.activated[str].connect(self.k1Changed)
             
@@ -420,7 +420,7 @@ def hoofdMenu(m_email):
             k4Edit.addItem('2. Sales-company modify')
             k4Edit.addItem('3. Sales-companies request')
             k4Edit.addItem('4. Own data request')
-            k4Edit.addItem('5. Websalesorders requesting')
+            k4Edit.addItem('5. Web sales orders requesting')
             k4Edit.activated[str].connect(self.k4Changed)
  
             self.Keuze5 = QLabel()
@@ -446,9 +446,9 @@ def hoofdMenu(m_email):
             k6Edit.setFont(QFont("Arial",10))
             k6Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             k6Edit.addItem('Works internally'.center(48,' '))
-            k6Edit.addItem('1. Insert workorders')
-            k6Edit.addItem('2. Modify workorders')
-            k6Edit.addItem('3. Request workorders\n    Printing workinstructions')
+            k6Edit.addItem('1. Insert work orders')
+            k6Edit.addItem('2. Modify work orders')
+            k6Edit.addItem('3. Request work orders\n    Printing workinstructions')
             k6Edit.addItem('4. Calling materials')
             k6Edit.addItem('5. Printing picklists')
             k6Edit.addItem('6. Mutate hourly consumption')
@@ -460,9 +460,9 @@ def hoofdMenu(m_email):
             k7Edit.setFont(QFont("Arial",10))
             k7Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             k7Edit.addItem('Works externally'.center(48,' '))
-            k7Edit.addItem('1. Insert workorders')
-            k7Edit.addItem('2. Modify workorders')
-            k7Edit.addItem('3. Request workorders')
+            k7Edit.addItem('1. Insert work orders')
+            k7Edit.addItem('2. Modify work orders')
+            k7Edit.addItem('3. Request work orders')
             k7Edit.addItem('4. Calling materials')
             k7Edit.addItem('5. Printing picklists')
             k7Edit.addItem('6. Mutate cost services')
@@ -476,8 +476,8 @@ def hoofdMenu(m_email):
             k8Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             k8Edit.addItem('Calculation works internally'.center(48,' '))
             k8Edit.addItem('1. Create new clusters')
-            k8Edit.addItem('2. Insert clusterdata')
-            k8Edit.addItem('3. Request clusterdata')
+            k8Edit.addItem('2. Insert cluster data')
+            k8Edit.addItem('3. Request cluster data')
             k8Edit.addItem('4. Insert article lines per cluster')
             k8Edit.addItem('5. Request article lines per cluster') 
             k8Edit.addItem('6. Create / change calculation')
@@ -492,8 +492,8 @@ def hoofdMenu(m_email):
             k9Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             k9Edit.addItem('Calculation works externally'.center(48,' '))
             k9Edit.addItem('1. Create new clusters')
-            k9Edit.addItem('2. Insert clusterdata')
-            k9Edit.addItem('3. Request clusterdata')
+            k9Edit.addItem('2. Insert cluster data')
+            k9Edit.addItem('3. Request cluster data')
             k9Edit.addItem('4. Insert article lines per cluster')
             k9Edit.addItem('5. Request article lines per cluster')
             k9Edit.addItem('6. Create / change calculation')
