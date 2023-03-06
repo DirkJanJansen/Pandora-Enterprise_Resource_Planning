@@ -115,6 +115,7 @@ submenus from Stock management are translated to English (added 02-03-2023)
 submenus from Management Information are translated to English (added 02-03-2023)
 submenus from Maintenance are translated to English (added 02-03-2023)
 submenus from Reprinting of Forms are translated to English (added 02-03-2023)
+corrected several translations typo (06-03-2023)
 
 With this last items the translation is finished! (02-03-2023)
 
