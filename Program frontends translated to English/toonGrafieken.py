@@ -30,7 +30,7 @@ def ongInvoer():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
+    msg.setText('Please re-enter incorrect input\nsearch term!')
     msg.setWindowTitle('Progress charts')
     msg.exec_()
  
@@ -58,7 +58,7 @@ def zoekwk(m_email):
             kEdit.addItem('7. Project costs budgeted / realised')
             kEdit.addItem('8. Gross profit - prognosis / actual')
             kEdit.addItem('9. Work in progress - Payed amount')
-            kEdit.addItem('A. Revenue - prognosis / aktual')
+            kEdit.addItem('A. Revenue - prognosis / actual')
             kEdit.addItem('B. Gross profit realised\n     More/less work')
     
             kEdit.activated[str].connect(self.kChanged)
@@ -191,10 +191,10 @@ def printGrafiek(keuze, jrwk, m_email):
             
             selpar1 = select([params]).where(params.c.paramID == 97)
             rppar1 = con.execute(selpar1).first()
-            bo_incr = rppar1[1]/52  #begrote omzet per week
+            bo_incr = rppar1[1]/52  #budgeted turnover per week
             selpar2 = select([params]).where(params.c.paramID == 98)
             rppar2 = con.execute(selpar2).first()
-            bw_incr = rppar2[1]/52  #begrote winst per week
+            bw_incr = rppar2[1]/52  #budgeted profit per week
                                           
             jaar = jrwk[0:4]
             engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
