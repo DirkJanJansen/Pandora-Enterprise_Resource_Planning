@@ -442,7 +442,7 @@ def toonOrders(keuze, zoekterm, m_email):
                     grid = QGridLayout()
                     grid.setSpacing(12)
                     
-                    self.setWindowTitle("Modify workorder internal")
+                    self.setWindowTitle("Modify work order internal")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                       
                     self.setFont(QFont('Arial', 10))   
