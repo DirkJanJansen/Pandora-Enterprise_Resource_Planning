@@ -17,7 +17,7 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
+    msg.setText('Please re-enter incorrect input\nsearch term!')
     msg.setWindowTitle('Request reservations')               
     msg.exec_()
     
@@ -75,11 +75,11 @@ def resKeuze(m_email):
             k0Edit.addItem('1. All reservations')
             k0Edit.addItem('2. Sorted by date of reservation')
             k0Edit.addItem('3. Sorted by start delivery')
-            k0Edit.addItem('4. Filtered by articlenumber')
-            k0Edit.addItem('5. Filtered by worknumber / workorder')
+            k0Edit.addItem('4. Filtered by article number')
+            k0Edit.addItem('5. Filtered by work number / work order')
             k0Edit.addItem('6. Filtered by ordered items')
             k0Edit.addItem('7. Filtered by items to order')
-            k0Edit.addItem('8. Filtered by categorynumber')
+            k0Edit.addItem('8. Filtered by category number')
             k0Edit.activated[str].connect(self.k0Changed)
             
             self.Zoekterm = QLabel()
@@ -97,7 +97,7 @@ def resKeuze(m_email):
             grid.addWidget(lbl , 0, 0, 1, 2)
                                   
             grid.addWidget(k0Edit, 1, 0 ,1, 2, Qt.AlignRight)
-            lbl1 = QLabel('Searchterm')  
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 2, 0)
             grid.addWidget(zktermEdit, 2, 1)
@@ -269,9 +269,9 @@ def toonReserveringen(keuze, zoekterm, m_email):
                 return self.header[col]
             return None
        
-    header = ['MatlistID','Articlenumber','Worknumber','Calculation','Icalculation',\
-              'Purchaseordernumber','Quantity','Reservation date','Delivery time start',\
-              'Delivery time end','Category', 'Articlenumber','Article description',\
+    header = ['MatlistID','Article number','Work number','Calculation','Icalculation',\
+              'Purchase order number','Quantity','Reservation date','Delivery time start',\
+              'Delivery time end','Category', 'Article number','Article description',\
               'Article price','Article stock','Category','Order balance','Reservation balance']  
         
     data_list=[]
@@ -419,10 +419,10 @@ def toonReserveringen(keuze, zoekterm, m_email):
                     grid.addWidget(QLabel('MatlistID'), 1, 0)
                     grid.addWidget(q1Edit, 1, 1)
                 
-                    grid.addWidget(QLabel('Articlenumber'), 2, 0)
+                    grid.addWidget(QLabel('Article number'), 2, 0)
                     grid.addWidget(q2Edit, 2, 1)
                     
-                    grid.addWidget(QLabel('Worknumber'), 2, 2)
+                    grid.addWidget(QLabel('Work number'), 2, 2)
                     grid.addWidget(q4Edit, 2, 3)
                     
                     grid.addWidget(QLabel('Calculation'), 3, 0)
