@@ -22,7 +22,7 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
+    msg.setText('Please re-enter incorrect\ninput search term!')
     msg.setWindowTitle('Picking/printing materials')               
     msg.exec_() 
     
@@ -171,19 +171,19 @@ def printRaaplijst(keuze, zoekterm, m_email, route):
               raaplijst.c.geleverd < raaplijst.c.afroep, raaplijst.c.artikelID ==\
               artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum)
             kop1 = ''
-            tekst1 = 'Picklist worknumbers '
+            tekst1 = 'Picklist work numbers '
         elif keuze == 4 and validZt.zt(zoekterm, 15):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder == int(zoekterm),\
               raaplijst.c.geleverd < raaplijst.c.afroep, raaplijst.c.artikelID ==\
               artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum)
             kop1 = ''
-            tekst1 = 'Picklist ordernumber '
+            tekst1 = 'Picklist order number '
         elif keuze == 5 and validZt.zt(zoekterm, 2):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.artikelID == int(zoekterm),\
               raaplijst.c.geleverd < raaplijst.c.afroep, raaplijst.c.artikelID ==\
               artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum)
             kop1 = ''
-            tekst1 = 'Picklist articlenumber '       
+            tekst1 = 'Picklist article number '
         elif keuze == 6 and validZt.zt(zoekterm, 10):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.leverdatum.like(zoekterm+'%'),
                 raaplijst.c.geleverd < raaplijst.c.afroep, raaplijst.c.artikelID ==\
@@ -211,19 +211,19 @@ def printRaaplijst(keuze, zoekterm, m_email, route):
               raaplijst.c.geleverd < raaplijst.c.afroep, raaplijst.c.artikelID ==\
               artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum)
             kop1 = ''
-            tekst1 = 'Picklist workorders '
+            tekst1 = 'Picklist work orders '
         elif keuze == 4 and validZt.zt(zoekterm, 15):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder < 800000000,\
               raaplijst.c.werkorder == int(zoekterm), raaplijst.c.geleverd < raaplijst.c.afroep,\
               raaplijst.c.artikelID == artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum)
             kop1 = ''
-            tekst1 = 'Picklist workorder '
+            tekst1 = 'Picklist work order '
         elif keuze == 5 and validZt.zt(zoekterm, 2):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder < 800000000,\
               raaplijst.c.artikelID == int(zoekterm), raaplijst.c.geleverd < raaplijst.c.afroep,\
               raaplijst.c.artikelID == artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum)
             kop1 = ''
-            tekst1 = 'Picklist artliclenumber '       
+            tekst1 = 'Picklist artlicle number '
         elif keuze == 6 and validZt.zt(zoekterm, 10):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder < 800000000,\
                 raaplijst.c.leverdatum.like(zoekterm+'%'), raaplijst.c.geleverd < raaplijst.c.afroep,\
@@ -254,19 +254,19 @@ def printRaaplijst(keuze, zoekterm, m_email, route):
               raaplijst.c.geleverd < raaplijst.c.afroep, raaplijst.c.artikelID ==\
               artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum)
             kop1 = ''
-            tekst1 = 'Picklist worknumbers '
+            tekst1 = 'Picklist work numbers '
         elif keuze == 4 and validZt.zt(zoekterm, 15):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder > 800000000,\
               raaplijst.c.werkorder == int(zoekterm), raaplijst.c.geleverd < raaplijst.c.afroep,\
               raaplijst.c.artikelID == artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum)
             kop1 = ''
-            tekst1 = 'Picklist worknumber '
+            tekst1 = 'Picklist work number '
         elif keuze == 5 and validZt.zt(zoekterm, 2):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder > 800000000,\
               raaplijst.c.artikelID == int(zoekterm), raaplijst.c.geleverd < raaplijst.c.afroep,\
               raaplijst.c.artikelID == artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum)
             kop1 = ''
-            tekst1 = 'Picklist articlenumber '       
+            tekst1 = 'Picklist article number '
         elif keuze == 6 and validZt.zt(zoekterm, 10):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder > 800000000,\
                 raaplijst.c.leverdatum.like(zoekterm+'%'), raaplijst.c.geleverd < raaplijst.c.afroep,\
@@ -337,9 +337,9 @@ def printRaaplijst(keuze, zoekterm, m_email, route):
             else:
                 kop = kop5
             if platform == 'win32':
-                filename = '.\\forms\\Raaplijsten\\raaplijst-'+str(kop1)+'-'+str(datetime.datetime.now())[0:10]+'.txt'
+                filename = '.\\forms\\Raaplijsten\\picklist-'+str(kop1)+'-'+str(datetime.datetime.now())[0:10]+'.txt'
             else:
-                filename = './forms/Raaplijsten/raaplijst-'+str(kop1)+'-'+str(datetime.datetime.now())[0:10]+'.txt'
+                filename = './forms/Raaplijsten/picklist-'+str(kop1)+'-'+str(datetime.datetime.now())[0:10]+'.txt'
 
             if rgl == 0:
                 open(filename, 'w').write(kop)
@@ -374,10 +374,10 @@ def kiesSelektie(route, m_email):
                 k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
                 k0Edit.addItem('  Search sort key')
                 k0Edit.addItem('1. All call-up')
-                k0Edit.addItem('2. Internal workorder')
-                k0Edit.addItem('3. External workorder')
-                k0Edit.addItem('4. By ordernumber')
-                k0Edit.addItem('5. By articlenumber')           
+                k0Edit.addItem('2. Internal work order')
+                k0Edit.addItem('3. External work order')
+                k0Edit.addItem('4. By order number')
+                k0Edit.addItem('5. By article number')
                 k0Edit.addItem('6. By delivery date')
                 k0Edit.addItem('7. By zipcode due\n     to transportation')
                 k0Edit.addItem('8. Delivered call-off')
@@ -389,9 +389,9 @@ def kiesSelektie(route, m_email):
                 k0Edit.setFont(QFont("Arial",10))
                 k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
                 k0Edit.addItem('  Search sort key')
-                k0Edit.addItem('2. Internal workorder')
-                k0Edit.addItem('4. By ordernumber')
-                k0Edit.addItem('5. By articlenumber')           
+                k0Edit.addItem('2. Internal work order')
+                k0Edit.addItem('4. By order number')
+                k0Edit.addItem('5. By article number')
                 k0Edit.addItem('6. By delivery date')
                 k0Edit.addItem('7. By zipcode due\n     to transportation')
                 k0Edit.addItem('8. Delivered call-off')
@@ -403,9 +403,9 @@ def kiesSelektie(route, m_email):
                 k0Edit.setFont(QFont("Arial",10))
                 k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
                 k0Edit.addItem('   Search sort key')
-                k0Edit.addItem('3. External worknumbers')
-                k0Edit.addItem('4. By ordernumber')
-                k0Edit.addItem('5. By articlenumber')           
+                k0Edit.addItem('3. External work numbers')
+                k0Edit.addItem('4. By order number')
+                k0Edit.addItem('5. By article number')
                 k0Edit.addItem('6. By delivery date')
                 k0Edit.addItem('7. By zipcode due\n     to transportation')
                 k0Edit.addItem('8. Delivered call-off')
@@ -436,7 +436,7 @@ def kiesSelektie(route, m_email):
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
                                   
             grid.addWidget(k0Edit, 2, 1)
-            lbl1 = QLabel('Searchterm')  
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 3, 0)
             grid.addWidget(zktermEdit, 3, 1)
@@ -598,8 +598,8 @@ def raapLijst(keuze, zoekterm, m_email, route):
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
  
-    header = ['ListID','Articlenumber','Workorder','Call-up','Delivery date','Delivered',\
-          'Additional work','Zipcode', 'Housenumber','Suffix', 'Alternative Address',\
+    header = ['ListID','Article number','Work order','Call-up','Delivery date','Delivered',\
+          'Additional work','Zipcode', 'House number','Suffix', 'Alternative Address',\
           'Booking date','Street','Residence']
     
     import validZt 
@@ -730,12 +730,12 @@ def raapLijst(keuze, zoekterm, m_email, route):
                     logo.setPixmap(pixmap)
                     grid.addWidget(logo , 0, 2, 1, 1, Qt.AlignRight) 
                                  
-                    lbl1 = QLabel('Worknumber')  
+                    lbl1 = QLabel('Work number')
                     lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl1, 1, 0)
                     grid.addWidget(zkwerknEdit, 1, 1)
                                                   
-                    lbl2 = QLabel('Articlenumber')  
+                    lbl2 = QLabel('Article number')
                     lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl2, 2, 0)
                     grid.addWidget(artEdit, 2, 1)
