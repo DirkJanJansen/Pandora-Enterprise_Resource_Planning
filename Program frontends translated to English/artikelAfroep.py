@@ -284,8 +284,8 @@ def raapLijst(koppelnr):
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
  
-    header = ['ListID','Articlenumber','Workorder','Call-off','Delivery date','Delivered',\
-          'More/less work','Zip code', 'Housenumber','Suffix', 'Alternative address',\
+    header = ['ListID','Article number','Work order','Call-off','Delivery date','Delivered',\
+          'More/less work','Zip code', 'House number','Suffix', 'Alternative address',\
           'Street', 'Residence']
     
     selafr = select([raaplijst]).where(and_(raaplijst.c.werkorder == koppelnr,\
@@ -431,12 +431,12 @@ def raapLijst(koppelnr):
                     logo.setPixmap(pixmap)
                     grid.addWidget(logo , 0, 2, 1, 1, Qt.AlignRight) 
                                  
-                    lbl1 = QLabel('Worknumber')  
+                    lbl1 = QLabel('Work number')
                     lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl1, 1, 0)
                     grid.addWidget(zkwerknEdit, 1, 1)
                                                   
-                    lbl2 = QLabel('Articlenumber')  
+                    lbl2 = QLabel('Article number')
                     lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl2, 2, 0)
                     grid.addWidget(artEdit, 2, 1)
@@ -648,8 +648,8 @@ def artikelAfroep(koppelnr, m_email):
             zoekWerk(m_email, soort)
         rpam = con.execute(selam)
 
-    header = ['Articlenumber','Articledescription','-','-','Amount','-',\
-          'Remaining','Call-off', 'Worknumber']
+    header = ['Article number','Article description','-','-','Amount','-',\
+          'Remaining','Call-off', 'Work number']
 
     data_list=[]
     for row in rpam:
@@ -745,12 +745,12 @@ def artikelAfroep(koppelnr, m_email):
                
                     grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 9, 0, 1, 3, Qt.AlignCenter)
                                      
-                    lbl1 = QLabel('Worknumber')  
+                    lbl1 = QLabel('Work number')
                     lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl1, 1, 0)
                     grid.addWidget(zkwerknEdit, 1, 1)
                                                   
-                    lbl2 = QLabel('Articlenumber')  
+                    lbl2 = QLabel('Article number')
                     lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl2, 2, 0)
                     grid.addWidget(artEdit, 2, 1)
@@ -773,7 +773,7 @@ def artikelAfroep(koppelnr, m_email):
                     grid.addWidget(lbl4, 5, 0)
                     grid.addWidget(pcEdit, 5 , 1)
                     
-                    lbl5 = QLabel('Housenumber')  
+                    lbl5 = QLabel('House number')
                     lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl5, 6, 0)
                     grid.addWidget(hnoEdit, 6 , 1)
