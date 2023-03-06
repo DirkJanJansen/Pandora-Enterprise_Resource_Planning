@@ -16,7 +16,7 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
+    msg.setText('Invalid input\nsearch term re-enter please!')
     msg.setWindowTitle('Request wage payments')
     msg.exec_() 
 
@@ -25,8 +25,8 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Loonbetalingen opvragen')               
+    msg.setText('No record found\nmake another selection please!')
+    msg.setWindowTitle('Request wage payments')
     msg.exec_() 
 
 def zoeken(m_email):
@@ -64,7 +64,7 @@ def zoeken(m_email):
             grid.addWidget(lbl , 1, 0, 1, 2)
                                   
             grid.addWidget(k0Edit, 2, 0, 1, 2, Qt.AlignRight)
-            lbl1 = QLabel('Searchterm')
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight)
             grid.addWidget(lbl1, 3, 0)
             grid.addWidget(zktermEdit, 3, 0, 1, 2, Qt.AlignRight)
