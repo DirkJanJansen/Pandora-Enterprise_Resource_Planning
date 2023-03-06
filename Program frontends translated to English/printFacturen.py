@@ -23,7 +23,7 @@ def printing():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Information)
     msg.setText('Wait printing starts')
-    msg.setWindowTitle('Print websale orders')
+    msg.setWindowTitle('Print web sale orders')
     msg.exec_()
     
 def printGeg(filename, movbestnr):
@@ -147,7 +147,7 @@ def kiesOrder(m_email):
                 return self.header[col]
             return None
       
-    header = ['Order number','','Order date','Pay date', 'Delivery date','Total amount','', 'Accountnumber',\
+    header = ['Order number','','Order date','Pay date', 'Delivery date','Total amount','', 'Account number',\
               'Invoice number','','','','','','','','','','']
     
     data_list=[]
@@ -196,11 +196,11 @@ def kiesOrder(m_email):
             mblad = 1
             rgl = 0
             if platform == 'win32':
-                filename = '.\\forms\\Weborders_Facturen\\Weborder-factuur_'+str(rpc[0])+'.txt'
+                filename = '.\\forms\\Weborders_Facturen\\Web_order_bill_'+str(rpc[0])+'.txt'
             else:
-                filename = './forms/Weborders_Facturen/Weborder-factuur_'+str(rpc[0])+'.txt' 
+                filename = './forms/Weborders_Facturen/Web_order_bill_'+str(rpc[0])+'.txt'
             adreskop=\
-            ('\n\n\n\n\n\n\nFACTUUR\n\n'+rpc[10]+' '+rpc[11]+' '+rpc[12]+' '+rpc[13]+',\n'+\
+            ('\n\n\n\n\n\n\nBill\n\n'+rpc[10]+' '+rpc[11]+' '+rpc[12]+' '+rpc[13]+',\n'+\
              mstraat+' '+rpc[15]+rpc[16]+',\n'+\
              rpc[14]+' '+mplaats+'.\n\n\n\n\n')
             open(filename,'w').write(adreskop)
