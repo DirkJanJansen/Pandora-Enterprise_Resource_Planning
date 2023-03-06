@@ -61,7 +61,7 @@ def zoeken(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Cluster selektie")
+            self.setWindowTitle("Cluster selektion")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
