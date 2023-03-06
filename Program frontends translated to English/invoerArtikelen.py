@@ -212,25 +212,25 @@ def invArtikel(m_email):
             grid.addWidget(QLabel('                                *'),2 , 0)
             grid.addWidget(QLabel('Required fields  '), 2, 1)
     
-            grid.addWidget(QLabel('Articlenumber'), 3, 0)
+            grid.addWidget(QLabel('Article number'), 3, 0)
             grid.addWidget(q1Edit, 3, 1)
     
             grid.addWidget(QLabel('ArticleDescription       *'), 4, 0)
             grid.addWidget(q2Edit, 4, 1)
     
-            grid.addWidget(QLabel('Articleprice                 *'), 5, 0)
+            grid.addWidget(QLabel('Article price                *'), 5, 0)
             grid.addWidget(q3Edit, 5 , 1) 
     
-            grid.addWidget(QLabel('Articlestock   '), 6, 0)
+            grid.addWidget(QLabel('Article stock   '), 6, 0)
             grid.addWidget(q4Edit, 6, 1)
     
-            grid.addWidget(QLabel('ArticleUnit                  *'), 7, 0)
+            grid.addWidget(QLabel('Article Unit                  *'), 7, 0)
             grid.addWidget(q5Edit, 7, 1)
     
-            grid.addWidget(QLabel('Minimumstock            *'), 8, 0)
+            grid.addWidget(QLabel('Minimum stock           *'), 8, 0)
             grid.addWidget(q6Edit, 8, 1)
     
-            grid.addWidget(QLabel('Ordersize                   *'), 9, 0)
+            grid.addWidget(QLabel('Order size                  *'), 9, 0)
             grid.addWidget(q7Edit, 9, 1)
     
             grid.addWidget(QLabel('WarehouseLocation    *'), 10, 0)
