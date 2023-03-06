@@ -307,7 +307,7 @@ def toonOrders(keuze,zoekterm, m_email):
                'Rwelding hand','Spacking','Bpacking','Rpacking', 'Sgalvanize',\
                'Bgalvanize','Rgalvanize','Smuffling','Bmuffling', 'Rmuffling',\
                'Spainting','Bpainting', 'Rpainting','Sspraying','Bspraying',\
-               'Rspraying','Spunching','Bpunching', 'Rpunching','Spressing','Bpressing',\
+               'Rspraying','Sstamping','Bstamping', 'Rstamping','Spressing','Bpressing',\
                'Rpressing','Sgritblasting','Bgritblasting','Rgritblasting','Smounting',\
                'Bmounting','Rmounting', 'Wtravelhours','Finished', 'Approved']
     
@@ -1244,7 +1244,7 @@ def toonOrders(keuze,zoekterm, m_email):
                     grid.addWidget(u59Edit, 18,6)
                     grid.addWidget(u60Edit, 18,7)
                     
-                    grid.addWidget(QLabel('Punching'), 18,8)
+                    grid.addWidget(QLabel('Stamping'), 18,8)
                     grid.addWidget(u61Edit, 18,9)
                     grid.addWidget(u62Edit, 18,10)
                     grid.addWidget(u63Edit, 18,11)
