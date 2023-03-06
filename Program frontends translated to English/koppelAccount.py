@@ -128,7 +128,7 @@ def zoekAccount(m_email, flag):
                 
             self.setFont(QFont('Arial', 10))
  
-            grid.addWidget(QLabel('Accountnumber'), 1, 0)
+            grid.addWidget(QLabel('Account number'), 1, 0)
             grid.addWidget(accEdit, 1, 1)
             
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 3, 0, 1, 2, Qt.AlignCenter)
@@ -231,7 +231,7 @@ def koppelLeverancier(m_email, maccountnr, flag):
     
            self.setFont(QFont('Arial', 10))
      
-           grid.addWidget(QLabel('Suppliernumber'), 1, 0)
+           grid.addWidget(QLabel('Supplier number'), 1, 0)
            grid.addWidget(levEdit, 1, 1)
     
            grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 3, 0, 1, 2, Qt.AlignCenter)
@@ -358,7 +358,7 @@ def koppelKoper(m_email, maccountnr, flag):
                 
            self.setFont(QFont('Arial', 10))
     
-           grid.addWidget(QLabel('Clientnumber'), 1, 0)
+           grid.addWidget(QLabel('Client number'), 1, 0)
            grid.addWidget(kbedrEdit, 1, 1)
            grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 3, 0, 1, 2, Qt.AlignCenter)
     
