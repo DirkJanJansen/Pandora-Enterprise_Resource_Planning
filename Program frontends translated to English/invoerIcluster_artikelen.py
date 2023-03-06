@@ -16,7 +16,7 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
+    msg.setText('Please re-enter incorrect input\nsearch term!')
     msg.setWindowTitle('Enter articles per cluster')
     msg.exec_()
     
@@ -80,10 +80,10 @@ def zoeken(m_email):
             k0Edit.setFixedWidth(320)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('                  Zoeken Artikelen')
-            k0Edit.addItem('1. Alle Artikelen')
-            k0Edit.addItem('2. Filter op artikelnummers')
-            k0Edit.addItem('3. Filter op artikelomschrijving')
+            k0Edit.addItem('                  Search articles')
+            k0Edit.addItem('1. All aticles')
+            k0Edit.addItem('2. Filtered bu articles numbers')
+            k0Edit.addItem('3. Filtered by articles description')
             k0Edit.activated[str].connect(self.k0Changed)
     
             self.Zoekterm = QLabel()
@@ -103,7 +103,7 @@ def zoeken(m_email):
             lbl.setPixmap(pixmap)
             grid.addWidget(lbl , 1, 0, 1, 2)
             
-            lbl2 = QLabel('Clusternumber')
+            lbl2 = QLabel('Cluster number')
             lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl2, 2, 0)
             grid.addWidget(clEdit, 2, 1)
@@ -250,7 +250,7 @@ def toonArtikelen(keuze,zoekterm, m_email, momschr, clusternr):
                 return self.header[col]
             return None
      
-    header = ['Artikelnumber', 'Description', 'Price', 'Stock', 'Unit',\
+    header = ['Article number', 'Description', 'Price', 'Stock', 'Unit',\
           'Minimum\nstock', 'Order size', 'Location', 'Group', 'Category', 'Size']
 
     metadata = MetaData()
@@ -317,11 +317,11 @@ def toonArtikelen(keuze,zoekterm, m_email, momschr, clusternr):
                     self.logo.setPixmap(self.pixmap)
                     grid.addWidget(self.logo , 0, 2, 1, 1, Qt.AlignRight)
                                   
-                    grid.addWidget(QLabel('Clusternumber               '+clusternr+\
+                    grid.addWidget(QLabel('Cluster number              '+clusternr+\
                                         '\n'+momschr[:35]), 1, 1, 1, 3)
                         
                     self.setFont(QFont('Arial', 10))
-                    grid.addWidget(QLabel('Articlenumber               '+str(artikelnr)), 3, 1, 1, 3)
+                    grid.addWidget(QLabel('Article number              '+str(artikelnr)), 3, 1, 1, 3)
                                   
                     self.setWindowTitle("Building clusters")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
