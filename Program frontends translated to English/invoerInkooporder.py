@@ -349,12 +349,12 @@ def inkoopRegels(m_email, rplev, mregel):
             
             grid.addWidget(QLabel("* Input required"), 6 , 2)
                                              
-            lbl1 = QLabel('Ordernumber')  
+            lbl1 = QLabel('Order number')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 6, 0)
             grid.addWidget(inkorderEdit, 6, 1)
                                           
-            lbl2 = QLabel('Articlenumber')  
+            lbl2 = QLabel('Article number')
             lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl2, 7, 0)
             grid.addWidget(artEdit, 7, 1)
