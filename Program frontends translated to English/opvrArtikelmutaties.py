@@ -25,7 +25,7 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
+    msg.setText('Please re-enter incorrect input\nsearch term!')
     msg.setWindowTitle('Request articles')
     msg.exec_()
   
@@ -74,7 +74,7 @@ def mutatieKeuze(m_email):
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
                                   
             grid.addWidget(k0Edit, 1, 1)
-            lbl1 = QLabel('Searchterm')
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 2, 0)
             grid.addWidget(zktermEdit, 2, 1)
