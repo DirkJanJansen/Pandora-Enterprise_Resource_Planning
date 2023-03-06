@@ -580,7 +580,7 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
             self.k0Edit.addItem('Allowed. leave')
             self.k0Edit.addItem('Illegal leave')
   
-            self.cBox = QCheckBox('Meerwerk')
+            self.cBox = QCheckBox('More/less work')
             self.cBox.setFont(QFont("Arial",10))
             self.cBox.setStyleSheet('color: black; background-color: #F8F7EE')
                                                                      
@@ -664,12 +664,12 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
             self.lblt.setFont(QFont("Arial", 10))
             grid.addWidget(self.lblt , 12, 0, 1, 4, Qt.AlignCenter)
             
-            lbl1 = QLabel('Accountnumber')
+            lbl1 = QLabel('Account number')
             lbl1.setFont(QFont("Arial", 10))
             grid.addWidget(lbl1, 6, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.zkaccEdit , 6, 2, 1, 1, Qt.AlignRight)
             
-            lbl2 = QLabel('Worknumber')
+            lbl2 = QLabel('Work number')
             lbl2.setFont(QFont("Arial", 10))
             grid.addWidget(lbl2, 7, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.zkwerknEdit, 7, 2, 1, 1, Qt.AlignRight)
