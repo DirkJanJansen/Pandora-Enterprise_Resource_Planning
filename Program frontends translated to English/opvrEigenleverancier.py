@@ -79,8 +79,8 @@ def eigenLeverancier(m_email):
                 return self.header[col]
             return None
   
-    header = ['Suppliernumber','Companyname', 'Legal status','VATnumber',\
-              'KvKnumber','Telephonenumber','Street', 'Housenumber','Suffix',\
+    header = ['Supplier number','Company name', 'Legal status','VAT number',\
+              'KvK number','Telephone number','Street', 'House number','Suffix',\
               'Zipcode','Residence']  
   
     data_list=[]
