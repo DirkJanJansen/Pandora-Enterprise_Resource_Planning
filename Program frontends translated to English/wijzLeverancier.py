@@ -194,7 +194,7 @@ def updateLeverancier(mlevnr, m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Wijzigen leverancier")
+            self.setWindowTitle("Modify supplier")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                                   
             self.setFont(QFont('Arial', 10))
