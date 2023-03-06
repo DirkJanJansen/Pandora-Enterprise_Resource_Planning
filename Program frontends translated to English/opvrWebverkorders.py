@@ -19,7 +19,7 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
+    msg.setText('Please re-enter incorrect input\nsearch term!')
     msg.setWindowTitle('Request web sales orders')               
     msg.exec_() 
     
@@ -85,15 +85,15 @@ def printFactuur(rpord,mstraat,mplaats,movbestnr):
     mblad = 1
     rgl = 0
     if platform == 'win32':
-        filename = '.\\forms\\Weborders_Facturen\\Weborder-factuur-'+str(rpord[0])+'.txt'
+        filename = '.\\forms\\Weborders_Facturen\\Web_order-bill_'+str(rpord[0])+'.txt'
     else:
-        filename = './forms/Weborders_Facturen/Weborder-factuur-'+str(rpord[0])+'.txt'
+        filename = './forms/Weborders_Facturen/Web-order_bill_'+str(rpord[0])+'.txt'
     adreskop=\
-    ('\n\n\n\n\n\n\nFACTUUR\n\n'+rpord[10]+' '+rpord[11]+' '+rpord[12]+' '+rpord[13]+',\n'+\
+    ('\n\n\n\n\n\n\nBill\n\n'+rpord[10]+' '+rpord[11]+' '+rpord[12]+' '+rpord[13]+',\n'+\
      mstraat+' '+rpord[15]+rpord[16]+',\n'+\
      rpord[14]+' '+mplaats+'.\n\n\n\n\n')
     kop=\
-    ('Ordernumber: '+ str(rpord[0])+'          Date : '+str(datetime.datetime.now())[0:10]+'  Page : '+str(mblad)+'\n'+
+    ('Order number: '+ str(rpord[0])+'          Date : '+str(datetime.datetime.now())[0:10]+'  Page : '+str(mblad)+'\n'+
     '==============================================================================================\n'+
     'Articlenr  Description                            Unit  Quantity  Price   Subtotal        BTW \n'+
     '==============================================================================================\n')
@@ -158,9 +158,9 @@ def printPakbon(rpord,mstraat,mplaats,movbestnr):
     mblad = 1
     rgl = 0
     if platform == 'win32':
-        filename = '.\\forms\\Weborders_Pakbonnen\\Weborder-pakbon-'+str(rpord[0])+'.txt'
+        filename = '.\\forms\\Weborders_Pakbonnen\\Web_order_packing_slip_'+str(rpord[0])+'.txt'
     else:
-        filename = './forms/Weborders_Pakbonnen/Weborder-pakbon-'+str(rpord[0])+'.txt'
+        filename = './forms/Weborders_Pakbonnen/Web_order-packing_slip_'+str(rpord[0])+'.txt'
     adreskop=\
     ('\n\n\n\n\n\n\nPacking slip\n\n'+rpord[10]+' '+rpord[11]+' '+rpord[12]+' '+rpord[13]+',\n'+\
      mstraat+' '+rpord[15]+rpord[16]+',\n'+\
@@ -208,7 +208,7 @@ def zoekWeborder(m_email, afd):
             k0Edit.addItem('1. All Orders')
             k0Edit.addItem('2. Filtered by Zipcode')
             k0Edit.addItem('3. Filtered by surname')
-            k0Edit.addItem('4. Filtered buy order number')
+            k0Edit.addItem('4. Filtered by order number')
             k0Edit.addItem('5. Filtered by order date')
             k0Edit.activated[str].connect(self.k0Changed)
                
@@ -318,7 +318,7 @@ def regelsOrder(rpova, afd):
                 self.logo.setPixmap(self.pixmap)
                 grid.addWidget(self.logo , 0, 5, 1, 1, Qt.AlignRight) 
                 
-                lbl1 = QLabel('OrderlinelID')
+                lbl1 = QLabel('Order lineID')
                 q1Edit = QLineEdit(str(rij[0]))
                 q1Edit.setAlignment(Qt.AlignRight)
                 q1Edit.setFixedWidth(90)
@@ -328,7 +328,7 @@ def regelsOrder(rpova, afd):
                 grid.addWidget(lbl1, 1, 0)
                 grid.addWidget(q1Edit, 1,1)
                 
-                lbl2 = QLabel('Ordernumber')
+                lbl2 = QLabel('Order number')
                 q2Edit = QLineEdit(str(rij[1]))
                 q2Edit.setFixedWidth(100)
                 q2Edit.setAlignment(Qt.AlignRight)
@@ -338,7 +338,7 @@ def regelsOrder(rpova, afd):
                 grid.addWidget(lbl2, 1, 2)
                 grid.addWidget(q2Edit, 1,3)
                 
-                lbl3 = QLabel('Articlenumber')
+                lbl3 = QLabel('Article number')
                 q3Edit = QLineEdit(str(rij[10]))
                 q3Edit.setFixedWidth(100)
                 q2Edit.setAlignment(Qt.AlignRight)
