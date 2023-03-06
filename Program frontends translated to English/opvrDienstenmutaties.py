@@ -25,7 +25,7 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
+    msg.setText('Please re-enter incorrect input\nsearch term!')
     msg.setWindowTitle('Request services / Equipment')
     msg.exec_()
         
@@ -50,7 +50,7 @@ def mutatieKeuze(m_email):
             k0Edit.addItem('4. Supplier number')
             k0Edit.addItem('5. Company name')
             k0Edit.addItem('6. By sales order')
-            k0Edit.addItem('7. Cost type (1-8)')
+            k0Edit.addItem('7. Cost type (1-9)')
             k0Edit.addItem('8. Booking date yyyy(-mm(-dd))')
             k0Edit.activated[str].connect(self.k0Changed)
                             
@@ -270,7 +270,7 @@ def toonMutaties(keuze,zoekterm, m_email):
                 return self.header[col]
             return None
   
-    header = ['Mutation number','Worknumber', 'Supplier orderID','Amount booking', 'Booking date', 'SupplierID',\
+    header = ['Mutation number','Work number', 'Supplier orderID','Amount booking', 'Booking date', 'SupplierID',\
               'Category work','VAT high', 'Description', 'Line number', 'Work number', 'Description',\
               'Supplier orderID', 'SupplierID', 'SupplierID','Company name', 'Legal status']
     
