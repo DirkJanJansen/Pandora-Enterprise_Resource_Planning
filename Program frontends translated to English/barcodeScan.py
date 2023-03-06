@@ -67,7 +67,7 @@ def info():
 
         If the item cannot be scanned, it is possible to manually change the barcode 
         with use of the keyboard. 
-        After the scanning is finished, the print receipt can be printed. 
+        After the scanning is finished, the receipt can be printed. 
         Before the program is closed, the "Next Customer" button must be pressed, 
         before the close button is released. 
         This will make the necessary bookings executed and prepared the order
@@ -105,7 +105,7 @@ def printing():
     
 def heading(mblad, mbonnr):
     kop=\
-    ('Counter Sales- Ordernumber: '+ str(mbonnr)+' Date : '+str(datetime.now())[0:10]+' page      '+str(mblad)+' \n'+
+    ('Counter Sales- Order number: '+ str(mbonnr)+' Date : '+str(datetime.now())[0:10]+' page      '+str(mblad)+' \n'+
     '==============================================================================================\n'+
     'Articlenr  Description                              Number       Price   Subtotal      VAT 21%\n'+
     '==============================================================================================\n')
@@ -152,9 +152,9 @@ def printBon(self):
         mblad = 0
         rgl = 0
         if platform == 'win32':
-            fbarc = '.\\forms\\Barcodelijsten\\'+str(mbonnr)+'.txt'
+            fbarc = '.\\forms\\Barcode_lists\\'+str(mbonnr)+'.txt'
         else:
-            fbarc = './forms//Barcodelijsten/'+str(mbonnr)+'.txt'
+            fbarc = './forms//Barcode_lists/'+str(mbonnr)+'.txt'
         
         for row in rpb:
             rgl += 1
@@ -398,7 +398,7 @@ def set_barcodenr(self):
              .format(float(mprijs)*float(maantal)*mbtw))
             self.mtotaal += float(mprijs)*float(maantal)
             self.mtotbtw += float(mprijs)*float(maantal)*mbtw
-            self.qtailtext = 'Totaal incl. BTW  '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' BTW'
+            self.qtailtext = 'Total  incl. VAT  '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' VAT'
             self.qtailEdit.setText(self.qtailtext)
             
             self.view.append(self.mlist[-1])
@@ -491,7 +491,7 @@ def barcodeScan(m_email, mret):
             self.qtailEdit.setReadOnly(True)
             self.qtailEdit.setFixedWidth(600)
             self.qtailEdit.setFocusPolicy(Qt.NoFocus)
-            self.qtailtext = 'Totaal incl. BTW  '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' BTW'
+            self.qtailtext = 'Total  incl. VAT  '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' VAT'
             self.qtailEdit.setText(self.qtailtext)
             
             grid .addWidget(mkop, 2, 0, 1, 3, Qt.AlignCenter)           
