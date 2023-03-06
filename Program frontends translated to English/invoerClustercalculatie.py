@@ -49,7 +49,7 @@ def info():
            With this choice the calculation data and/or the article data is 
            calculated or printed. The calculation takes place after starting the module.
                    
-        Menu Remote Works
+        Menu external works
         1. Enter working numbers 
            If work number does not yet exist, first enter work number, otherwise link.
            
@@ -243,7 +243,7 @@ def zoeken(m_email):
             k0Edit.addItem('AA-AL. Rails + welding assets')
             k0Edit.addItem('BA-BK. Beams + mounting')
             k0Edit.addItem('CA-CK. Level crossing + level crossing protection')
-            k0Edit.addItem('DA-DK. Crushed stone + earthmoving')
+            k0Edit.addItem('DA-DK. Crushed stone + earth moving')
             k0Edit.addItem('EA-EK. Switch + track constructions')
             k0Edit.addItem('FA-FK. Underground infrastructure')
             k0Edit.addItem('GA-GK. Train control + signals')
