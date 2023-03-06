@@ -24,7 +24,7 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
+    msg.setText('Please re-enter incorrect input\nsearch term!')
     msg.setWindowTitle('Request employee period data')               
     msg.exec_() 
 
@@ -534,7 +534,7 @@ def opvrWerknperiode(mwerknmrnr,mbetaalper, m_email):
             grid.addWidget(QLabel('Gross monthly salary'), 3, 2)
             grid.addWidget(q15Edit, 3, 3) 
                                                 
-            grid.addWidget(QLabel('Accountnumber'), 3, 0)
+            grid.addWidget(QLabel('Account number'), 3, 0)
             grid.addWidget(q2Edit, 3, 1)
             
             grid.addWidget(QLabel('Wage table'), 7, 0)
