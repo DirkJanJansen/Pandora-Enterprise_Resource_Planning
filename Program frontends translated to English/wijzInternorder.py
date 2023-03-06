@@ -21,8 +21,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
-    msg.setWindowTitle('Modify inernal order')
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Modify internal order')
     msg.exec_()
     
 def geenRecord():
@@ -30,7 +30,7 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
+    msg.setText('No record found, take another selection please!')
     msg.setWindowTitle('Requesting articles')             
     msg.exec_() 
  
@@ -40,7 +40,7 @@ def invoerOK():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Information)
     msg.setText('Modify successful!') 
-    msg.setWindowTitle('Workorder data')
+    msg.setWindowTitle('Work order data')
     msg.exec_()
 
 def jaarweek():
@@ -79,8 +79,8 @@ def zoeken(m_email):
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             k0Edit.addItem('        Sort key orders internal')
             k0Edit.addItem('1. All internal orders')
-            k0Edit.addItem('2. Filtered by workordernumber')
-            k0Edit.addItem('3. Filtered by articlenumber')
+            k0Edit.addItem('2. Filtered by work order number')
+            k0Edit.addItem('3. Filtered by article number')
             k0Edit.addItem('4. Filtered by (part) date of start')
             k0Edit.addItem('5. Filtered by (part) date of finish')
             k0Edit.addItem('6. Filtered by progress status A-H')
@@ -95,7 +95,7 @@ def zoeken(m_email):
             zktermEdit.setValidator(input_validator)
             zktermEdit.textChanged.connect(self.zktermChanged)
          
-            lbl1 = QLabel('Searchterm')  
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                            
             grid.addWidget(k0Edit, 2, 1)   
@@ -243,9 +243,9 @@ def toonOrders(keuze, zoekterm, m_email):
                 return self.header[col]
             return None
              
-    header = ['Workorder', 'Description','Articlelnumber','Amount',\
-               'Workletter','Order date', 'Progress status','Statusweek','Bookdate',\
-               'Startdate', 'Finished', 'Budgeted total','Realised total',\
+    header = ['Work order', 'Description','Article number','Amount',\
+               'Workletter','Order date', 'Progress status','Status week','Book date',\
+               'Start date', 'Finished', 'Budgeted total','Realised total',\
                'Budgeted materials','Realised materials','Budgeted wages',\
                'Realised wages', 'More/Less work', 'Ssawing','Bsawing', 'Rsawing',\
                'Splaning','Bplaning', 'Rplaning', 'Sstabbing','Bstabbing', 'Rstabbing',\
@@ -259,7 +259,7 @@ def toonOrders(keuze, zoekterm, m_email):
                'Rwelding hand','Spacking','Bpacking','Rpacking', 'Sgalvanize',\
                'Bgalvanize','Rgalvanize','Smuffling','Bmuffling', 'Rmuffling',\
                'Spainting','Bpainting', 'Rpainting','Sspraying','Bspraying',\
-               'Rspraying','Spunching','Bpunching', 'Rpunching','Spressing','Bpressing',\
+               'Rspraying','Sstamping','Bstamping', 'Rstamping','Spressing','Bpressing',\
                'Rpressing','Sgritblasting','Bgritblasting','Rgritblasting','Smounting',\
                'Bmounting','Rmounting', 'Wtravelhours','Finished', 'Approved']
     
@@ -525,21 +525,21 @@ def toonOrders(keuze, zoekterm, m_email):
                     input_validator = QRegExpValidator(reg_ex, q7Edit)
                     q7Edit.setValidator(input_validator)
                     
-                    lbl1 = QLabel('Workordernumber')
+                    lbl1 = QLabel('Work order number')
                     grid.addWidget(lbl1, 1, 0)
                     grid.addWidget(q1Edit, 1, 1)
                     
-                    lbl2 = QLabel('Workdescription')
+                    lbl2 = QLabel('Work description')
                     grid.addWidget(lbl2, 2, 0)
                     grid.addWidget(q2Edit, 2, 1, 1, 2)
                     
                     lbl3 = QLabel('Progress status')
                     grid.addWidget(lbl3, 3, 0)
                     grid.addWidget(q3Edit, 3, 1)
-                    lbl4 = QLabel('Statusweek: '+rpord[4])
+                    lbl4 = QLabel('Status week: '+rpord[4])
                     grid.addWidget(lbl4, 3, 1, 1, 2, Qt.AlignRight)
                     
-                    lbl5 = QLabel('Startdate')
+                    lbl5 = QLabel('Start date')
                     grid.addWidget(lbl5, 4, 0)
                     grid.addWidget(q4Edit, 4, 1)
                     
