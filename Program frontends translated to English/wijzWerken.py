@@ -105,7 +105,7 @@ def zoekWerk(m_email):
     
             self.setFont(QFont('Arial', 10))
          
-            grid.addWidget(QLabel('Worknumber'), 1, 0, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Work number'), 1, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(werknEdit, 1, 1)
             
             applyBtn = QPushButton('Search')
@@ -473,7 +473,7 @@ def wijzWerk(mwerknr, m_email):
             grid = QGridLayout()
             grid.setSpacing(20)
             
-            lbl1 = QLabel('Worknumber')
+            lbl1 = QLabel('Work number')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 1, 0)
             
