@@ -292,7 +292,7 @@ def invWerk(m_email):
             grid = QGridLayout()
             grid.setSpacing(20)
             
-            lbl1 = QLabel('Worknumber')
+            lbl1 = QLabel('Work number')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 1, 0)
             
@@ -350,7 +350,7 @@ def invWerk(m_email):
             grid.addWidget(lbl12, 11, 0)
             grid.addWidget(q10Edit, 11, 1)
             
-            lbl13 = QLabel('Earthmoving')
+            lbl13 = QLabel('Earth moving')
             lbl13.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl13, 12, 0)
             grid.addWidget(q11Edit, 12, 1)
