@@ -50,7 +50,7 @@ def toonGrafiek(m_email):
             self.chart = QChart()
             self.chart_view = QChartView(self.chart)
             self.chart_view.setRenderHint(QPainter.Antialiasing)
-            self.buttonPreview = QPushButton('Printing review', self)
+            self.buttonPreview = QPushButton('Printing preview', self)
             self.buttonPreview.setStyleSheet("color: black;  background-color: gainsboro")
             self.buttonPreview.clicked.connect(self.handle_preview)
             self.buttonPrint = QPushButton('Printing', self)
