@@ -17,8 +17,8 @@ def eindProgram():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Programma afgesloten.\nTot ziens!')
-    msg.setWindowTitle('BESTELLINGEN')               
+    msg.setText('Program closed.\nGoodbye!')
+    msg.setWindowTitle('Orders')
     msg.exec_() 
     
 def invoerOK(mloonnr, momschr):
