@@ -22,7 +22,7 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
+    msg.setText('Please re-enter incorrect input\nsearch term!')
     msg.setWindowTitle('Request cluster articles')
     msg.exec_()
     
@@ -58,7 +58,7 @@ def zoeken(m_email):
             k0Edit.addItem('AA-AL. Rails + welding assets')
             k0Edit.addItem('BA-BK. Beams + mounting')
             k0Edit.addItem('CA-CK. Level crossing + level crossing protection')
-            k0Edit.addItem('DA-DK. Crushed stone + earthmoving')
+            k0Edit.addItem('DA-DK. Crushed stone + earth moving')
             k0Edit.addItem('EA-EK. Switch + track constructions')
             k0Edit.addItem('FA-FK. Underground infrastructure')
             k0Edit.addItem('GA-GK. Train control + signals')
@@ -171,7 +171,7 @@ def toonClusterartikelen(zoekterm, m_email):
                 return self.header[col]
             return None
              
-    header = ['Clusternumber', 'Description', 'Price', 'Unit', 'Materials', 'Wages',\
+    header = ['Cluster number', 'Description', 'Price', 'Unit', 'Materials', 'Wages',\
               'Services', 'Equipment', 'Hiring', 'hours\nconstruction', 'hours mounting','hours\nreturn welding',\
               'hours\nchief mechanic', 'hours\npower-supply', 'hours OCL', 'hours\ntrack laying', 'hours\ntrack welding',\
               'hour hiring', 'trencher', 'pressing machine', 'Atlas crane',\
