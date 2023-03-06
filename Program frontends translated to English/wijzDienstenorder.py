@@ -299,7 +299,7 @@ def dienstenOrder(m_email, minkordernr, mregel):
           
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 10, 0, 1, 3, Qt.AlignCenter)
             
-            applyBtn = QPushButton('Orderlines')
+            applyBtn = QPushButton('Order lines')
             applyBtn.clicked.connect(self.accept)
                           
             cancelBtn = QPushButton('Close')
@@ -519,14 +519,14 @@ def dienstenRegels(m_email, rp1,rp2, rp3, mstraat, mplaats, mregel):
                 self.setFont(QFont('Arial', 10))
                 grid.addWidget(QLabel('Order for\nSupplier: '+str(rp2[0])+\
                  ',\n'+rp2[1]+' '+rp2[2]+',\n'+mstraat+' '+str(rp2[4])+\
-                 rp2[5]+',\n'+rp2[3]+' '+mplaats+'.\nOrderline '+str(mregel)), 1, 1, 1, 2)
+                 rp2[5]+',\n'+rp2[3]+' '+mplaats+'.\nOrder line '+str(mregel)), 1, 1, 1, 2)
                              
-                lbl1 = QLabel('Ordernumber')   
+                lbl1 = QLabel('Order number')
                 lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl1, 5, 0)
                 grid.addWidget(q1Edit, 5, 1)
                                               
-                lbl2 = QLabel('Worknumber')  
+                lbl2 = QLabel('Work number')
                 lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl2, 6, 0)
                 grid.addWidget(q2Edit, 6, 1)
