@@ -43,7 +43,7 @@ def zoeken(m_email):
             k0Edit.setFixedWidth(340)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('              Sort key clustergroups')
+            k0Edit.addItem('              Sort key cluster groups')
             k0Edit.addItem('0. All clusters')
             k0Edit.addItem('LA-LK. Machined parts')
             k0Edit.addItem('MA-MK. Bolts and nuts')
@@ -52,7 +52,7 @@ def zoeken(m_email):
             k0Edit.addItem('PA-PK. Sheet metal assembled')
             k0Edit.addItem('RA-RK. Plastic parts')
             k0Edit.addItem('SA-SK. Prefab mounting parts')
-            k0Edit.addItem('TA-TK. Composite parts')
+            k0Edit.addItem('TA-TK. Assembly parts')
             k0Edit.activated[str].connect(self.k0Changed)
       
             grid = QGridLayout()
@@ -162,14 +162,14 @@ def toonIclusters(keuze, m_email):
                 return self.header[col]
             return None
              
-    header = ['Clusternumber','Description','Price','Unit','Materials','Wages',\
+    header = ['Cluster number','Description','Price','Unit','Materials','Wages',\
               'Services','Equipment','Hiring','Set costs\nsawing','Sawing','Set costs\nplaning','Planing',\
               'Set costs\nstabbing','Stabbing','Set costs\ndrilling','Drilling','Set costs\nmilling','Milling','Set costs\nturning small',\
               'Turning small','Set costs\nturning big','Turning big','Set costs\nthreading','Threading',\
               'Set costs\nCNC turning','CNC turning','Set costs\nCNC milling','CNC milling',\
               'Set costs\ncutting','Cutting','Set costs\nfolding','Folding','Set costs\ndie-cutting','Die-cutting',\
               'Set costs\nwelding co2','Welding co2','Set costs\nwelding hand','Welding hand','Set costs\npacking',\
-              'Packing','Set costs\ngalvanise','Galvanise','Set costs\nsmuffling','Smuffling','Set costs\npainting',\
+              'Packing','Set costs\ngalvanise','Galvanise','Set costs\nmuffling','Muffling','Set costs\npainting',\
               'Painting','Set costs\nspraying','Spraying','Set costs\npunching','Punching','Set costs\npressing',\
               'Pressing','Set costs\ngrit blasting','Grit blasting','Set costs\nmounting','Mounting']
      
@@ -662,7 +662,7 @@ def toonIclusters(keuze, m_email):
                     grid = QGridLayout()
                     grid.setSpacing(20)
                     
-                    lbl1 = QLabel('Clusternumber')
+                    lbl1 = QLabel('Cluster number')
                     lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl1, 1, 0)
                     
