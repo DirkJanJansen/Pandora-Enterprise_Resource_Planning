@@ -56,7 +56,7 @@ def zoekCalculatie(m_email):
             lbl.setPixmap(pixmap)
             grid.addWidget(lbl , 0, 0, 1, 2)
             
-            lbl1 = QLabel('Calculation number\nor workorder.')
+            lbl1 = QLabel('Calculation number\nor work order.')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 1, 0)
             grid.addWidget(zkcalcEdit, 1, 1)
@@ -151,7 +151,7 @@ def opvragenCalc(mcalnr, mwerkomschr,mverw, mwerknr, m_email):
             grid.addWidget(self.logo , 0, 2, 1, 1, Qt.AlignRight)
               
             self.setFont(QFont('Arial', 10))
-            grid.addWidget(QLabel('Calculation: '+str(mcalnr)+'\nWorknumber: '+str(mwerknr)), 1, 1, 1, 3)
+            grid.addWidget(QLabel('Calculation: '+str(mcalnr)+'\nWork number: '+str(mwerknr)), 1, 1, 1, 3)
             grid.addWidget(QLabel(mwerkomschr[0:35]), 2 , 1, 1, 3)
                                    
             self.setWindowTitle("Request calculation / printing")
@@ -552,11 +552,11 @@ def printCalculatie(mcalnr, mwerknr):
     for row in rpcal:
         if rgl == 0 or rgl%57 == 0:
             if platform == 'win32':
-                filename = '.\\forms\\Intern_Clustercalculaties\\clustercalculatie-'+str(row[3])+'-'+str(mwerknr)+'.txt'
+                filename = '.\\forms\\Intern_Clustercalculaties\\clustercalculation_'+str(row[3])+'-'+str(mwerknr)+'.txt'
             else:
-                filename = './forms/Intern_Clustercalculaties/clustercalculatie-'+str(row[3])+'-'+str(mwerknr)+'.txt' 
+                filename = './forms/Intern_Clustercalculaties/clustercalculation_'+str(row[3])+'-'+str(mwerknr)+'.txt'
             kop=\
-    ('Werkorder: '+ str(mwerknr)+' '+'{:<24s}'.format(str(row[10]))+'  Calculatie: '+str(row[3])+'  Datum: '+str(datetime.datetime.now())[0:10]+'  Blad : '+str(mblad)+'\n'+
+    ('Work order: '+ str(mwerknr)+' '+'{:<24s}'.format(str(row[10]))+'  Calculation: '+str(row[3])+'  Date: '+str(datetime.datetime.now())[0:10]+'  Page : '+str(mblad)+'\n'+
     '================================================================================================\n'+
     'Cluster  Description        Unit    Number  Materials        Wages                       Amount\n'+
     '================================================================================================\n')
@@ -616,9 +616,9 @@ def printArtikellijst(mcalnr, mwerknr):
     for row in rpmat:
         if rgl == 0 or rgl%57 == 0:
             if platform == 'win32':
-                filename =  filename = '.\\forms\\Intern_Clustercalculaties\\materiaallijst-'+str(rpkop[0])+'-'+str(mwerknr)+'.txt'
+                filename =  filename = '.\\forms\\Intern_Clustercalculaties\\materials_list_'+str(rpkop[0])+'-'+str(mwerknr)+'.txt'
             else:
-                filename =  filename = './forms/Intern_Clustercalculaties/materiaallijst-'+str(rpkop[0])+'-'+str(mwerknr)+'.txt'
+                filename =  filename = './forms/Intern_Clustercalculaties/materials_list_'+str(rpkop[0])+'-'+str(mwerknr)+'.txt'
             kop=\
     ('Work order   '+ str(mwerknr)+'  Calculation:'+str(rpkop[0])+'   Date : '+str(datetime.datetime.now())[0:10]+'  Page :  '+str(mblad)+'\n'+
     '=============================================================================================\n'+
@@ -643,7 +643,7 @@ def toonCalculatie(mcalnr, mwerknr):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(50, 50, 1800, 900)
-            self.setWindowTitle('Clustercalculatie')
+            self.setWindowTitle('Cluster calculation')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -983,7 +983,7 @@ def toonArtikellijst(mcalnr, mwerknr):
                     grid = QGridLayout()
                     grid.setSpacing(20)
                     
-                    self.setWindowTitle("Opvragen Artikelen Clustercalculatie")
+                    self.setWindowTitle("Request Articles Cluster calculation")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                     
                     self.setFont(QFont('Arial', 10))   
