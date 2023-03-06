@@ -17,8 +17,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
-    msg.setWindowTitle('Request purchase orders')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Request purchase orders')
     msg.exec_() 
 
 def geenRecord():
@@ -49,9 +49,9 @@ def inkooporderKeuze(m_email):
             k0Edit.addItem('2. All purchase orders sorted by order number')
             k0Edit.addItem('3. Filtered by company name')
             k0Edit.addItem('4. Filtered by item description')
-            k0Edit.addItem('5. Filtered by ordernumber')
+            k0Edit.addItem('5. Filtered by order number')
             k0Edit.addItem('6. Filtered by delivery start yyyy(-mm(-dd))')
-            k0Edit.addItem('7. Filtered by ldelivery end yyyy(-mm(-dd))')
+            k0Edit.addItem('7. Filtered by delivery end yyyy(-mm(-dd))')
             k0Edit.activated[str].connect(self.k0Changed)
                             
             self.Zoekterm = QLabel()
@@ -69,7 +69,7 @@ def inkooporderKeuze(m_email):
             grid.addWidget(lbl , 0, 0, 1, 2)
                                   
             grid.addWidget(k0Edit, 1, 0, 1, 3, Qt.AlignRight)
-            lbl1 = QLabel('Searchterm')  
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight)
             grid.addWidget(lbl1, 2, 0, 1, 1, Qt. AlignRight)
             grid.addWidget(zktermEdit, 2, 1, 1, 2, Qt.AlignRight)
@@ -290,13 +290,13 @@ def opvrOrder(keuze,zoekterm, m_email):
             pixmap.scaled(256,256)  
             return(painter.drawPixmap(option.rect, pixmap))
    
-    header = ['OrderarticleID','Orderpurchasenumber','Articlenumber', 'Order quantity',\
+    header = ['Order articleID','Order purchase number','Article number', 'Order quantity',\
               'Purchase price','Delivery start','Delivery end', 'Complaint date', 'Complaint number', \
               'Receive date', 'Receive number', 'Acceptance date','Acceptance number',\
-              'Payed', 'Linenumber','Order purchase number', 'Supplier number',\
-              'Order date', 'Approved','Payed', 'Unsubscribed','Suppliernumber',\
-              'Companyname', 'Legal status', 'Articlenumber','Articledescription',\
-              'Articlestock', 'Article unit', 'Image',]    
+              'Payed', 'Line number','Order purchase number', 'Supplier number',\
+              'Order date', 'Approved','Payed', 'Unsubscribed','Supplier number',\
+              'Company name', 'Legal status', 'Article number','Article description',\
+              'Article stock', 'Article unit', 'Image']
         
     data_list=[]
     for row in rpinkorders:
@@ -485,10 +485,10 @@ def opvrOrder(keuze,zoekterm, m_email):
                     lbl1 = QLabel('Order details')
                     lbl1.setStyleSheet("font: 12pt Comic Sans MS")
                     grid.addWidget(lbl1, 1, 0)
-                    grid.addWidget(QLabel('Orderpurchasenumber'), 2, 0)
+                    grid.addWidget(QLabel('Order purchase number'), 2, 0)
                     grid.addWidget(q2Edit, 2, 1) 
                                                         
-                    grid.addWidget(QLabel('Suppliernumber'), 2, 2)
+                    grid.addWidget(QLabel('Supplier number'), 2, 2)
                     grid.addWidget(q4Edit, 2, 3)
                     
                     grid.addWidget(QLabel('Order date'), 2, 4)
@@ -497,16 +497,16 @@ def opvrOrder(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Approved'), 3, 0)
                     grid.addWidget(q8Edit, 3, 1)
                                                               
-                    grid.addWidget(QLabel('Paydate'), 3, 2)
+                    grid.addWidget(QLabel('Pay date'), 3, 2)
                     grid.addWidget(q11Edit, 3, 3)
                                               
                     grid.addWidget(QLabel('Unsubscribed'), 3, 4)
                     grid.addWidget(q12Edit, 3, 5)
          
-                    lbl2 = QLabel('Order line data'+' - linenumber: '+str(rpordartlev[14]))
+                    lbl2 = QLabel('Order line data'+' - line number: '+str(rpordartlev[14]))
                     lbl2.setStyleSheet("font: 12pt Comic Sans MS")               
                     grid.addWidget(lbl2, 5, 0, 1, 4)
-                    grid.addWidget(QLabel('Supplernumber'), 6, 0)
+                    grid.addWidget(QLabel('Suppler number'), 6, 0)
                     grid.addWidget(q13Edit, 6, 1) 
                     
                     grid.addWidget(QLabel('Company name'), 7, 0)
@@ -514,7 +514,7 @@ def opvrOrder(keuze,zoekterm, m_email):
                                    
                     grid.addWidget(q14Edit, 7, 4) 
                
-                    grid.addWidget(QLabel('Articlenumber'), 8, 0)
+                    grid.addWidget(QLabel('Articl enumber'), 8, 0)
                     grid.addWidget(q15Edit, 8, 1) 
                      
                     pixmap = QPixmap(rpordartlev[28])
@@ -528,7 +528,7 @@ def opvrOrder(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Order quantity'), 11, 0)
                     grid.addWidget(q18Edit, 11, 1)
                     
-                    grid.addWidget(QLabel('Purchase prijs'), 11, 2)
+                    grid.addWidget(QLabel('Purchase price'), 11, 2)
                     grid.addWidget(q17Edit, 11, 3)
                     
                     grid.addWidget(QLabel('Delivery start'), 11, 4)
