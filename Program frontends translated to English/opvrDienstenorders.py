@@ -16,7 +16,7 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
+    msg.setText('Please re-enter incorrect input\nsearch term!')
     msg.setWindowTitle('Request service orders')               
     msg.exec_() 
 
@@ -45,10 +45,10 @@ def inkooporderKeuze(m_email):
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             k0Edit.addItem('                Search sort key')
             k0Edit.addItem('1. All service orders sorted by work number')
-            k0Edit.addItem('2. Filtered by companyname')
-            k0Edit.addItem('3. Filtered by external workname')
-            k0Edit.addItem('4. Filtered by external worknumber')
-            k0Edit.addItem('5. Filtered on purchaseordernumber.')
+            k0Edit.addItem('2. Filtered by company name')
+            k0Edit.addItem('3. Filtered by external work name')
+            k0Edit.addItem('4. Filtered by external work number')
+            k0Edit.addItem('5. Filtered on purchase order number.')
             k0Edit.addItem('6. Delivery date yyyy(-mm(-dd))')
             k0Edit.activated[str].connect(self.k0Changed)
                             
@@ -67,7 +67,7 @@ def inkooporderKeuze(m_email):
             grid.addWidget(lbl , 0, 0, 1, 2)
                                   
             grid.addWidget(k0Edit, 1, 0, 1, 3, Qt.AlignRight)
-            lbl1 = QLabel('Searchterm')  
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight)
             grid.addWidget(lbl1, 2, 0)
             grid.addWidget(zktermEdit, 2, 1, 1, 1, Qt.AlignRight)
@@ -272,10 +272,10 @@ def opvrDienstorders(keuze,zoekterm, m_email):
                 return self.header[col]
             return None
        
-    header = ['Order purchasing\nservice number','Order purchase number', 'Worknumber','Type of service', 'Serve description', 'Contract price',\
+    header = ['Order purchasing\nservice number','Order purchase number', 'Work number','Type of service', 'Serve description', 'Contract price',\
           'Planned start', 'Real start','Planned ready', 'Real ready', 'Acceptance ready', 'Acceptance date', 'More-less work',\
           'Line number', 'Order purchase number','Supplier', 'Order date', 'Approved', 'Payed',\
-          'Unsubscribed','Suppliernumber', 'Suppliername' ,'Legal status','Worknumber','Workdescription']    
+          'Unsubscribed','Supplier number', 'Supplier name' ,'Legal status','Work number','Work description']
         
     data_list=[]
     for row in rpinkorders:
@@ -456,7 +456,7 @@ def opvrDienstorders(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Order purchase number'), 2, 0)
                     grid.addWidget(q2Edit, 2, 1) 
                                                         
-                    grid.addWidget(QLabel('Suppliernumber'), 2, 2)
+                    grid.addWidget(QLabel('Supplier number'), 2, 2)
                     grid.addWidget(q4Edit, 2, 3)
                     
                     grid.addWidget(QLabel('Order date'), 2, 4)
@@ -471,21 +471,21 @@ def opvrDienstorders(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Unsubscribed'), 3, 4)
                     grid.addWidget(q12Edit, 3, 5)
      
-                    lbl2 = QLabel('Orderlinedata'+' - linenumber: '+str(rporddnst[13]))
+                    lbl2 = QLabel('Order line data'+' - line number: '+str(rporddnst[13]))
                     lbl2.setStyleSheet("font: 12pt Comic Sans MS")               
                     grid.addWidget(lbl2, 5, 0, 1, 4)
-                    grid.addWidget(QLabel('Suppliernumber'), 6, 0)
+                    grid.addWidget(QLabel('Supplier number'), 6, 0)
                     grid.addWidget(q13Edit, 6, 1) 
                     
-                    grid.addWidget(QLabel('Companyname'), 7, 0)
+                    grid.addWidget(QLabel('Company name'), 7, 0)
                     grid.addWidget(q19Edit, 7, 1, 1, 4) 
                                    
                     grid.addWidget(q14Edit, 7, 4) 
                
-                    grid.addWidget(QLabel('Worknumber'), 8, 0)
+                    grid.addWidget(QLabel('Work number'), 8, 0)
                     grid.addWidget(q15Edit, 8, 1) 
                                                            
-                    grid.addWidget(QLabel('Workdescription'), 9, 0)
+                    grid.addWidget(QLabel('Work description'), 9, 0)
                     grid.addWidget(q16Edit, 9, 1, 1, 3)
                     
                     grid.addWidget(QLabel('Service description'), 10, 0)
