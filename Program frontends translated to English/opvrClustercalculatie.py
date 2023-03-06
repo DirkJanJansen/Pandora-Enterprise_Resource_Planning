@@ -512,11 +512,11 @@ def printCalculatie(mcalnr, mwerknr):
     for row in rpcal:
         if rgl == 0 or rgl%57 == 0:
             if platform == 'win32':
-                filename = '.\\forms\\Extern_Clustercalculaties\\clustercalculatie-'+str(row[3])+'-'+str(row[2])+'.txt'
+                filename = '.\\forms\\Extern_Clustercalculaties\\clustercalculation_'+str(row[3])+'-'+str(row[2])+'.txt'
             else:
-                filename = './forms/Extern_Clustercalculaties/clustercalculatie-'+str(row[3])+'-'+str(row[2])+'.txt'
+                filename = './forms/Extern_Clustercalculaties/clustercalculation_'+str(row[3])+'-'+str(row[2])+'.txt'
             kop=\
-    ('Werknummer: '+str(mwerknr)+' '+'{:<24s}'.format(str(row[13]))+'  Calculatie: '+str(row[3])+'  Datum: '+str(datetime.datetime.now())[0:10]+'  Blad : '+str(mblad)+'\n'+
+    ('Work number: '+str(mwerknr)+' '+'{:<24s}'.format(str(row[13]))+'  Calculation: '+str(row[3])+'  Date: '+str(datetime.datetime.now())[0:10]+'  Page : '+str(mblad)+'\n'+
     '=====================================================================================================\n'+
     'Cluster  Cluster             Unit    Number  Materials       Wages  Equipment     Services   Amount  \n'+
     '=====================================================================================================\n')
@@ -578,11 +578,11 @@ def printArtikellijst(mcalnr, mwerknr):
     for row in rpmat:
         if rgl == 0 or rgl%57 == 0:
             if platform == 'win32':
-                filename =  filename = '.\\forms\\Extern_Clustercalculaties\\materiaallijst-'+str(rpkop[0])+'-'+str(rpkop[1])+'.txt'
+                filename =  filename = '.\\forms\\Extern_Clustercalculaties\\material_list_'+str(rpkop[0])+'-'+str(rpkop[1])+'.txt'
             else:
-                filename =  filename = './forms/Extern_Clustercalculaties/materiaallijst-'+str(rpkop[0])+'-'+str(rpkop[1])+'.txt'
+                filename =  filename = './forms/Extern_Clustercalculaties/material_list_'+str(rpkop[0])+'-'+str(rpkop[1])+'.txt'
             kop=\
-    ('Werknummer:   '+str(mwerknr)+'  Calculatie: '+str(rpkop[0])+'   Datum: '+str(datetime.datetime.now())[0:10]+'  Blad :  '+str(mblad)+'\n'+
+    ('Work number:   '+str(mwerknr)+'  Calculation: '+str(rpkop[0])+'   Date: '+str(datetime.datetime.now())[0:10]+'  Page :  '+str(mblad)+'\n'+
     '=============================================================================================\n'+
     'Articlenr  Cluster                             Unit          Price      Number               \n'+
     '=============================================================================================\n')
@@ -660,7 +660,7 @@ def printDienstenlijst(mcalnr, mwerknr):
     m_uren = 0
     mtotaal = 0
     
-    header = ['Hiring','Trenchmachine','Pressing machine','Atlas crane','Crane big',\
+    header = ['Hiring','Trench machine','Pressing machine','Atlas crane','Crane big',\
           'Mainliner','Ballast\nscrapper machine','Wagon','Locomotor','Locomotive','Assemble Trolley',\
           'Stormobiel','Robel train','Direction','Housing','Cable work',\
           'Earth moving','Concrete work','Transport','Remaining']
@@ -670,12 +670,12 @@ def printDienstenlijst(mcalnr, mwerknr):
             return(foutWerknr())
         if rgl == 0 or rgl%57 == 0:
             if platform == 'win32':
-                filename = '.\\forms\\Extern_Clustercalculaties_Diensten\\clustercalculatie_'+str(row[2]).replace(' ', '_')+'.txt'
+                filename = '.\\forms\\Extern_Clustercalculaties_Diensten\\clustercalculation_'+str(row[2]).replace(' ', '_')+'.txt'
             else:
-                filename = './forms/Extern_Clustercalculaties_Diensten/clustercalculatie_'+str(row[2]).replace(' ', '_')+'.txt'
+                filename = './forms/Extern_Clustercalculaties_Diensten/clustercalculation_'+str(row[2]).replace(' ', '_')+'.txt'
             kop=\
-    ('Bestellijst intern voor Inkooporders bestellingen / reserveringen Diensten en Materiëel,\nWerknummer: '+str(mwerknr)+' '+'{:<24s}'.format(str(row[2]))+' Calculatie: '+str(row[3])+\
-     '  Datum: '+str(datetime.datetime.now())[0:10]+'  Blad : '+str(mblad)+'\n'+
+    ('Order list internal for purchase orders / reservations Services and Equipment,\nWork number: '+str(mwerknr)+' '+'{:<24s}'.format(str(row[2]))+' Calculation: '+str(row[3])+\
+     '  Date: '+str(datetime.datetime.now())[0:10]+'  Page : '+str(mblad)+'\n'+
     '=====================================================================================================\n'+
     'Cluster Cluster description   Number Unit    Description-Service   hours-sub Amount-Sub  Del.period  \n'+
     '=====================================================================================================\n')
@@ -927,7 +927,7 @@ def toonDienstenlijst(mcalnr, mwerknr):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(50, 50, 1500, 900)
-            self.setWindowTitle('Clustercalculatie')
+            self.setWindowTitle('Cluster calculation')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -1047,7 +1047,7 @@ def toonDienstenlijst(mcalnr, mwerknr):
             class Widget(QDialog):
                  def __init__(self, parent=None):
                     super(Widget, self).__init__(parent)
-                    self.setWindowTitle("Werken extern calculatiegegevens van diensten opvragen")
+                    self.setWindowTitle("Request works external calculation data services")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                                          
                     self.setFont(QFont('Arial', 10))
@@ -1362,7 +1362,7 @@ def toonDienstenlijst(mcalnr, mwerknr):
                     grid.addWidget(QLabel('{:12.2f}'.format(rpcalc[27])), 7, 5, 1, 1, Qt.AlignRight)
                     grid.addWidget(q32Edit, 7, 6)
                     
-                    grid.addWidget(QLabel('Ballast scrape machine'), 8, 4)
+                    grid.addWidget(QLabel('Ballast clearing machine'), 8, 4)
                     grid.addWidget(QLabel('{:12.2f}'.format(rpcalc[28])), 8, 5, 1, 1, Qt.AlignRight)
                     grid.addWidget(q33Edit, 8, 6)
                     
@@ -1407,7 +1407,7 @@ def toonDienstenlijst(mcalnr, mwerknr):
             
     win = MyWindow(data_list, header)
     win.exec_()
-            
+
 def toonArtikellijst(mcalnr, mwerknr):
     class MyWindow(QDialog):
         def __init__(self, data_list, header, *args):
@@ -1430,7 +1430,7 @@ def toonArtikellijst(mcalnr, mwerknr):
             layout = QVBoxLayout(self)
             layout.addWidget(table_view)
             self.setLayout(layout)
-    
+
     class MyTableModel(QAbstractTableModel):
         def __init__(self, parent, mylist, header, *args):
             QAbstractTableModel.__init__(self, parent, *args)
@@ -1456,12 +1456,12 @@ def toonArtikellijst(mcalnr, mwerknr):
             if orientation == Qt.Horizontal and role == Qt.DisplayRole:
                 return self.header[col]
             return None
-              
+
     header = ['Article number','Description','Reservation balance','ListID','Calculation',\
               'Work number','Purchase order number', 'Article number','Article price',\
               'Amount','Call-off','Remaining','Subtotal','Reservation date',\
               'Delivery end','Delivery start','Category']
-                   
+
     metadata = MetaData()
     materiaallijsten = Table('materiaallijsten', metadata,
          Column('matlijstID', Integer, primary_key=True),
@@ -1482,61 +1482,61 @@ def toonArtikellijst(mcalnr, mwerknr):
          Column('artikelID', Integer(), primary_key=True),
          Column('artikelomschrijving', String),
          Column('reserveringsaldo', Float))
-                                    
+
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    
+
     selmat = select([artikelen,materiaallijsten]).where(and_(materiaallijsten.c.artikelID == artikelen.c.artikelID,\
          materiaallijsten.c.artikelID == artikelen.c.artikelID,\
          materiaallijsten.c.calculatie == mcalnr))\
          .order_by(materiaallijsten.c.artikelID)
     rpmat = con.execute(selmat)
-    
+
     data_list=[]
     for row in rpmat:
         data_list += [(row)]
-        
+
     def showSelart(idx):
         martnr = idx.data()
         if idx.column() == 0:
             engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
             con = engine.connect()
-                
+
             selmat = select([artikelen, materiaallijsten]).where(\
                  and_(materiaallijsten.c.artikelID == artikelen.c.artikelID,\
                  materiaallijsten.c.artikelID == int(martnr),\
                  materiaallijsten.c.calculatie == mcalnr))\
                  .order_by(materiaallijsten.c.artikelID)
             rpmat = con.execute(selmat).first()
-             
+
             header = ['Article number','Description','Reservation balance','ListID','Calculation',\
               'Work number','Purchase order number','Article number','Article price',\
               'Amount','Call-off','Remaining','Subtotal','Reservation date',\
               'Delivery end','Delivery start', 'Category']
- 
+
             class MainWindow(QDialog):
                 def __init__(self):
                     QDialog.__init__(self)
-                    
+
                     grid = QGridLayout()
                     grid.setSpacing(20)
-                    
+
                     self.setWindowTitle("Request Articles Cluster calculation")
-                    self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
-                    
-                    self.setFont(QFont('Arial', 10))   
-                                                      
+                    self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
+
+                    self.setFont(QFont('Arial', 10))
+
                     self.lbl = QLabel()
                     self.pixmap = QPixmap('./images/logos/verbinding.jpg')
                     self.lbl.setPixmap(self.pixmap)
                     grid.addWidget(self.lbl , 0, 0)
-                    
+
                     grid.addWidget(QLabel('Request Articles calculation'),0, 1, 1, 2)
-            
+
                     self.logo = QLabel()
                     self.pixmap = QPixmap('./images/logos/logo.jpg')
                     self.logo.setPixmap(self.pixmap)
-                    grid.addWidget(self.logo , 0, 3, 1, 1, Qt.AlignRight)                
+                    grid.addWidget(self.logo , 0, 3, 1, 1, Qt.AlignRight)
                     index = 1
                     for item in header:
                         self.lbl = QLabel(header[index-1])
@@ -1591,17 +1591,17 @@ def toonArtikellijst(mcalnr, mwerknr):
                             grid.addWidget(self.lbl, index+1, 2)
                             grid.addWidget(q1Edit, index+1, 3)
                         index += 1
-                        
+
                     terugBtn = QPushButton('Close')
                     terugBtn.clicked.connect(self.accept)
-            
+
                     grid.addWidget(terugBtn, index+1, 3, 1, 1, Qt.AlignRight)
                     terugBtn.setFont(QFont("Arial",10))
                     terugBtn.setFixedWidth(100)
                     terugBtn.setStyleSheet("color: black;  background-color: gainsboro")
-                    
+
                     grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), index+2, 0, 1, 4, Qt.AlignCenter)
-                                                                            
+
                     self.setLayout(grid)
                     self.setGeometry(400, 200, 150, 150)
                             
