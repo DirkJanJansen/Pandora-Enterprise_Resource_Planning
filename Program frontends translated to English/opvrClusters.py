@@ -251,124 +251,124 @@ def toonClusters(keuze, m_email):
                     
                     self.setFont(QFont('Arial', 10))   
                     
-                    q1Edit = QLineEdit(rpsel[1])#omschrijving
+                    q1Edit = QLineEdit(rpsel[1])#description
                     q1Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q1Edit.setDisabled(True)
                                     
-                    q2Edit = QLineEdit('{:12.2f}'.format(rpsel[2])) #prijs
+                    q2Edit = QLineEdit('{:12.2f}'.format(rpsel[2])) #price
                     q2Edit.setFixedWidth(150)
                     q2Edit.setAlignment(Qt.AlignRight)
                     q2Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q2Edit.setDisabled(True)
                      
-                    q3Edit = QLineEdit(str(rpsel[3]))#eenheid
+                    q3Edit = QLineEdit(str(rpsel[3]))#unit
                     q3Edit.setFixedWidth(150)
                     q3Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q3Edit.setDisabled(True)
                     
-                    q4Edit = QLineEdit('{:12.2f}'.format(rpsel[4]))#materialen
+                    q4Edit = QLineEdit('{:12.2f}'.format(rpsel[4]))#materials
                     q4Edit.setFixedWidth(150)
                     q4Edit.setAlignment(Qt.AlignRight)
                     q4Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q4Edit.setDisabled(True)
                     
-                    q5Edit = QLineEdit('{:12.2f}'.format(rpsel[5])) #lonen
+                    q5Edit = QLineEdit('{:12.2f}'.format(rpsel[5])) #wages
                     q5Edit.setFixedWidth(150)
                     q5Edit.setAlignment(Qt.AlignRight)
                     q5Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q5Edit.setDisabled(True)
                     
-                    q6Edit = QLineEdit('{:12.2f}'.format(rpsel[6])) #diensten
+                    q6Edit = QLineEdit('{:12.2f}'.format(rpsel[6])) #services
                     q6Edit.setFixedWidth(150)
                     q6Edit.setAlignment(Qt.AlignRight)
                     q6Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q6Edit.setDisabled(True)
                     
-                    q7Edit = QLineEdit('{:12.2f}'.format(rpsel[7]))#materieel
+                    q7Edit = QLineEdit('{:12.2f}'.format(rpsel[7]))#equipment
                     q7Edit.setFixedWidth(150)
                     q7Edit.setAlignment(Qt.AlignRight)
                     q7Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q7Edit.setDisabled(True)
                     
-                    q8Edit = QLineEdit('{:12.2f}'.format(rpsel[8]))#inhuur
+                    q8Edit = QLineEdit('{:12.2f}'.format(rpsel[8]))#hiring
                     q8Edit.setFixedWidth(150)
                     q8Edit.setAlignment(Qt.AlignRight)
                     q8Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q8Edit.setDisabled(True)
                     
-                    q9Edit = QLineEdit('{:12.2f}'.format(rpsel[9]))#uren_constr
+                    q9Edit = QLineEdit('{:12.2f}'.format(rpsel[9]))#hours construction
                     q9Edit.setFixedWidth(150)
                     q9Edit.setAlignment(Qt.AlignRight)
                     q9Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q9Edit.setDisabled(True)
                     
-                    q10Edit = QLineEdit('{:12.2f}'.format(rpsel[10]))#uren_mont
+                    q10Edit = QLineEdit('{:12.2f}'.format(rpsel[10]))#hours mounting
                     q10Edit.setFixedWidth(150)
                     q10Edit.setAlignment(Qt.AlignRight)
                     q10Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q10Edit.setDisabled(True)
                     
-                    q11Edit = QLineEdit('{:12.2f}'.format(rpsel[11]))#urenretour
+                    q11Edit = QLineEdit('{:12.2f}'.format(rpsel[11]))#hours return welding
                     q11Edit.setFixedWidth(150)
                     q11Edit.setAlignment(Qt.AlignRight)
                     q11Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q11Edit.setDisabled(True)
                     
-                    q12Edit = QLineEdit('{:12.2f}'.format(rpsel[12]))#uren bfi
+                    q12Edit = QLineEdit('{:12.2f}'.format(rpsel[12]))#hours chief mechanic
                     q12Edit.setFixedWidth(150)
                     q12Edit.setAlignment(Qt.AlignRight)
                     q12Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q12Edit.setDisabled(True)
 
-                    q13Edit = QLineEdit('{:12.2f}'.format(rpsel[13]))#uren voeding
+                    q13Edit = QLineEdit('{:12.2f}'.format(rpsel[13]))#hours power-supply
                     q13Edit.setFixedWidth(150)
                     q13Edit.setAlignment(Qt.AlignRight)
                     q13Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q13Edit.setDisabled(True)
                     
-                    q14Edit = QLineEdit('{:12.2f}'.format(rpsel[14]))#urenbvl
+                    q14Edit = QLineEdit('{:12.2f}'.format(rpsel[14]))#hours OCL
                     q14Edit.setFixedWidth(150)
                     q14Edit.setAlignment(Qt.AlignRight)
                     q14Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q14Edit.setDisabled(True)
                        
-                    q15Edit = QLineEdit('{:12.2f}'.format(rpsel[15]))#urenspoorleg
+                    q15Edit = QLineEdit('{:12.2f}'.format(rpsel[15]))#hours track laying
                     q15Edit.setFixedWidth(150)
                     q15Edit.setAlignment(Qt.AlignRight)
                     q15Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q15Edit.setDisabled(True)
                     
-                    q16Edit = QLineEdit('{:12.2f}'.format(rpsel[16]))#uren spoorlas
+                    q16Edit = QLineEdit('{:12.2f}'.format(rpsel[16]))#hours track welding
                     q16Edit.setFixedWidth(150)
                     q16Edit.setAlignment(Qt.AlignRight)
                     q16Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q16Edit.setDisabled(True)
                     
-                    q17Edit = QLineEdit('{:12.2f}'.format(rpsel[17])) #uren_inhuur
+                    q17Edit = QLineEdit('{:12.2f}'.format(rpsel[17])) #hours hiring
                     q17Edit.setFixedWidth(150)
                     q17Edit.setAlignment(Qt.AlignRight)
                     q17Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q17Edit.setDisabled(True)
                        
-                    q18Edit = QLineEdit('{:12.2f}'.format(rpsel[18])) #sleuvengrave
+                    q18Edit = QLineEdit('{:12.2f}'.format(rpsel[18])) #hours trench machine
                     q18Edit.setFixedWidth(150)
                     q18Edit.setAlignment(Qt.AlignRight)
                     q18Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q18Edit.setDisabled(True)
                             
-                    q19Edit = QLineEdit('{:12.2f}'.format(rpsel[19])) #persapparaat
+                    q19Edit = QLineEdit('{:12.2f}'.format(rpsel[19])) #hours pressing machine
                     q19Edit.setFixedWidth(150)
                     q19Edit.setAlignment(Qt.AlignRight)
                     q19Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q19Edit.setDisabled(True)
                     
-                    q20Edit = QLineEdit('{:12.2f}'.format(rpsel[20])) # atlaskraan
+                    q20Edit = QLineEdit('{:12.2f}'.format(rpsel[20])) # atlas crane
                     q20Edit.setFixedWidth(150)
                     q20Edit.setAlignment(Qt.AlignRight)
                     q20Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q20Edit.setDisabled(True)
                     
-                    q21Edit = QLineEdit('{:12.2f}'.format(rpsel[21])) #kraan_groot
+                    q21Edit = QLineEdit('{:12.2f}'.format(rpsel[21])) #crane big
                     q21Edit.setFixedWidth(150)
                     q21Edit.setAlignment(Qt.AlignRight)
                     q21Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
@@ -380,7 +380,7 @@ def toonClusters(keuze, m_email):
                     q22Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q22Edit.setDisabled(True)
 
-                    q23Edit = QLineEdit('{:12.2f}'.format(rpsel[23])) #hormachine
+                    q23Edit = QLineEdit('{:12.2f}'.format(rpsel[23])) #ballast clearing machine
                     q23Edit.setFixedWidth(150)
                     q23Edit.setAlignment(Qt.AlignRight)
                     q23Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
@@ -398,13 +398,13 @@ def toonClusters(keuze, m_email):
                     q25Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q25Edit.setDisabled(True)
 
-                    q26Edit = QLineEdit('{:12.2f}'.format(rpsel[26])) #locomotief
+                    q26Edit = QLineEdit('{:12.2f}'.format(rpsel[26])) #locomotive
                     q26Edit.setFixedWidth(150)
                     q26Edit.setAlignment(Qt.AlignRight)
                     q26Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q26Edit.setDisabled(True)
 
-                    q27Edit = QLineEdit('{:12.2f}'.format(rpsel[27])) #montagewagen
+                    q27Edit = QLineEdit('{:12.2f}'.format(rpsel[27])) #assembly trolley
                     q27Edit.setFixedWidth(150)
                     q27Edit.setAlignment(Qt.AlignRight)
                     q27Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
@@ -416,55 +416,54 @@ def toonClusters(keuze, m_email):
                     q28Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q28Edit.setDisabled(True)
                                  
-                    q29Edit = QLineEdit('{:12.2f}'.format(rpsel[29])) #uren_telecom
+                    q29Edit = QLineEdit('{:12.2f}'.format(rpsel[29])) #hours telecom
                     q29Edit.setFixedWidth(150)
                     q29Edit.setAlignment(Qt.AlignRight)
                     q29Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q29Edit.setDisabled(True)
                                           
-                    q30Edit = QLineEdit('{:12.2f}'.format(rpsel[30])) #robeltrein
+                    q30Edit = QLineEdit('{:12.2f}'.format(rpsel[30])) #robel train
                     q30Edit.setFixedWidth(150)
                     q30Edit.setAlignment(Qt.AlignRight)
                     q30Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q30Edit.setDisabled(True)
                     
-                    q31Edit = QLineEdit('{:12.2f}'.format(rpsel[31])) #leiding
+                    q31Edit = QLineEdit('{:12.2f}'.format(rpsel[31])) #direction
                     q31Edit.setFixedWidth(150)
                     q31Edit.setAlignment(Qt.AlignRight)
                     q31Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q31Edit.setDisabled(True)
                                     
-                    q32Edit = QLineEdit('{:12.2f}'.format(rpsel[32])) # huisvesting
+                    q32Edit = QLineEdit('{:12.2f}'.format(rpsel[32])) # housing
                     q32Edit.setFixedWidth(150)
                     q32Edit.setAlignment(Qt.AlignRight)
                     q32Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q32Edit.setDisabled(True)
                     
-                    q33Edit = QLineEdit('{:12.2f}'.format(rpsel[33])) #kabelwerk
+                    q33Edit = QLineEdit('{:12.2f}'.format(rpsel[33])) #cable work
                     q33Edit.setFixedWidth(150)
                     q33Edit.setAlignment(Qt.AlignRight)
                     q33Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q33Edit.setDisabled(True)
                     
-                    q34Edit = QLineEdit('{:12.2f}'.format(rpsel[34])) #grondverzet
-                    q34Edit.setFixedWidth(150)
+                    q34Edit = QLineEdit('{:12.2f}'.format(rpsel[34])) #earth moving
                     q34Edit.setAlignment(Qt.AlignRight)
                     q34Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q34Edit.setDisabled(True)
                     
-                    q35Edit = QLineEdit('{:12.2f}'.format(rpsel[35])) #betonwerk
+                    q35Edit = QLineEdit('{:12.2f}'.format(rpsel[35])) #concrete work
                     q35Edit.setFixedWidth(150)
                     q35Edit.setAlignment(Qt.AlignRight)
                     q35Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q35Edit.setDisabled(True)
                     
-                    q36Edit = QLineEdit('{:12.2f}'.format(rpsel[36])) #vervoer
+                    q36Edit = QLineEdit('{:12.2f}'.format(rpsel[36])) #Transport
                     q36Edit.setFixedWidth(150)
                     q36Edit.setAlignment(Qt.AlignRight)
                     q36Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q36Edit.setDisabled(True)
                     
-                    q37Edit = QLineEdit('{:12.2f}'.format(rpsel[36])) #overig
+                    q37Edit = QLineEdit('{:12.2f}'.format(rpsel[36])) #Remaining
                     q37Edit.setFixedWidth(150)
                     q37Edit.setAlignment(Qt.AlignRight)
                     q37Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
@@ -545,7 +544,7 @@ def toonClusters(keuze, m_email):
                     grid.addWidget(lbl24, 14, 0)
                     grid.addWidget(q22Edit, 14, 1)
                     
-                    lbl25 = QLabel('Ballast grave hours')
+                    lbl25 = QLabel('Ballast clearing hours')
                     lbl25.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl25, 15, 0)
                     grid.addWidget(q23Edit, 15, 1)
@@ -590,7 +589,7 @@ def toonClusters(keuze, m_email):
                     grid.addWidget(lbl11, 9, 2)
                     grid.addWidget(q9Edit, 9, 3)
                         
-                    lbl12 = QLabel('Mounitn hours')
+                    lbl12 = QLabel('Mounting hours')
                     lbl12.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl12, 10, 2)
                     grid.addWidget(q10Edit, 10, 3)
