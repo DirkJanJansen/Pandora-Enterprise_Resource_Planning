@@ -42,7 +42,7 @@ def fout_email():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
     msg.setText('Invalid email address!')
-    msg.setWindowTitle('e-mailaddress!')
+    msg.setWindowTitle('e-mail address!')
     msg.exec_()
 
 def foutTelnr():
@@ -105,7 +105,7 @@ def Invoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Invoer gelukt!')
+    msg.setText('Insert successful!')
     msg.setWindowTitle('Supplier information')
     msg.exec_()
 
