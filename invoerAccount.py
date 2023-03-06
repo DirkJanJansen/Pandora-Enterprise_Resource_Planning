@@ -13,15 +13,15 @@ def foutPostcode():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Incorrect Zipcode inserted!')
-    msg.setWindowTitle('ZIPCODE!')
+    msg.setText('Foutieve postcode ingevoerd!')
+    msg.setWindowTitle('POSTCODE!')
     msg.exec_()
   
 def info():
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("About creating a new account")
+            self.setWindowTitle("Informatie over aanmaken nieuw account")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -41,31 +41,31 @@ def info():
             infolbl = QLabel(
       '''
 
-        About creating a new account                                                 
+        Informatie over aanmaken nieuw account                                                  
                                                                                               
                                                                                                
-        Required fields to insert:
+        Verplichte invoervelden: 
 
-        First name and last name. \t\t                                                              
+        Voornaam en achternaam.                                                              
                                                                                                
-        Zip code 4 numbers and 2 letters without space.\t\t
-        House number. (Dutch format)           
+        Postcode 4 cijfers en 2 letters zonder spatie.\t\t
+        Huisnummer.            
                                                                                                
-        Valid email address.                                                                     
+        Geldig emailadres.                                                                     
                                                                                                
-        Password minimum 8 signs.                                                       
-        Password control same as password.
+        Wachtwoord minimaal 8 tekens.                                                          
+        Wachtwoord controle identiek aan  wachtwoord.   
 
-        Date of birth format yyyy-mm-dd                                       
+        Geboortedatum formaat jjjj-mm-dd                                       
         
-        Optional: 
-        Phone number 10 digits, 1st digit a 0.  (Dutch format)                                         
+        Optioneel:                                                                                       
+        Telefoonnummer 10 cijfers, 1e cijfer een 0.                                            
     
   
      ''')
             grid.addWidget(infolbl, 0, 0)
             
-            cancelBtn = QPushButton('Close')
+            cancelBtn = QPushButton('Sluiten')
             cancelBtn.clicked.connect(self.close)  
             
             grid.addWidget(cancelBtn,  2, 0, 1, 1, Qt.AlignRight)
@@ -90,14 +90,14 @@ def passwcontrol(password, passwcontrol):
  
 def valid(item, valnr):
     if valnr == 1:
-        # Zipcode
+        # Postcode
         ab = re.compile("^([0-9]{4}[A-Za-z]{2})+$")
         if ab.match(item):
             return(True)
         else:
             return(False)
     elif valnr == 2:
-        #housenumber
+        #huisnummer
         if item.isnumeric() and len(item) < 7:
             return(True)
         else:
@@ -110,7 +110,7 @@ def valid(item, valnr):
         else:
             return(False)
     elif valnr == 6:
-        #telephonnumber
+        #telefoonnummer
         if (len(item) == 10 and item.isnumeric and item[0] == '0') or item == '':
             return(True)
         else:
@@ -132,8 +132,8 @@ def geenGegevens():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Not (all) required information filled in correctly!')
-    msg.setWindowTitle('Information!')
+    msg.setText('Niet (alle) vereiste gegevens juist ingevuld!')
+    msg.setWindowTitle('Gegevens!')
     msg.exec_()
 
 def fout_email():
@@ -141,8 +141,8 @@ def fout_email():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('incorrect email address!')
-    msg.setWindowTitle('e-mail address!')
+    msg.setText('ongeldig email adres!')
+    msg.setWindowTitle('e-mailadres!')
     msg.exec_()
 
 def foutTelnr():
@@ -150,8 +150,8 @@ def foutTelnr():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('no 10 digits!')
-    msg.setWindowTitle('Telephone number!')
+    msg.setText('geen 10 cijfers!')
+    msg.setWindowTitle('Telefoonnummer!')
     msg.exec_()
 
 def accountBestaat():
@@ -159,7 +159,7 @@ def accountBestaat():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Pre-existing account!')
+    msg.setText('Reeds bestaand account!')
     msg.setWindowTitle('Account')
     msg.exec_()
 
@@ -197,8 +197,8 @@ def Invoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Insert successful!')
-    msg.setWindowTitle('Account information')
+    msg.setText('Invoer gelukt!')
+    msg.setWindowTitle('Accountgegevens')
     msg.exec_()
     
 def nieuwAccount(self):
@@ -206,7 +206,7 @@ def nieuwAccount(self):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Insert account")
+            self.setWindowTitle("Invoer account")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                                   
             self.setFont(QFont('Arial', 10))
@@ -217,9 +217,8 @@ def nieuwAccount(self):
             q2Edit.setFont(QFont("Arial",10))
             q2Edit.setStyleSheet("color: black;  background-color: gainsboro")
             q2Edit.addItem(' ')
-            q2Edit.addItem('Mr. ')
-            q2Edit.addItem('Ms. ')
-            q2Edit.addItem('Mss. ')
+            q2Edit.addItem('Dhr. ')
+            q2Edit.addItem('Mevr. ')
             q2Edit.activated[str].connect(self.q2Changed)
             
             self.Voornaam = QLabel()
@@ -341,54 +340,54 @@ def nieuwAccount(self):
             grid.addWidget(logo , 1, 2, 1, 1, Qt.AlignRight)
     
             self.setFont(QFont('Arial', 10))
-            grid.addWidget(QLabel('Inserting new account'), 1, 1)
+            grid.addWidget(QLabel('Nieuw account invoeren'), 1, 1)
                         
             grid.addWidget(QLabel('                                  *'), 2, 0) 
-            grid.addWidget(QLabel('Required fields'), 2, 1)   
+            grid.addWidget(QLabel('Verplichte velden'), 2, 1)   
                          
-            grid.addWidget(QLabel('Prefix'), 3, 0)
+            grid.addWidget(QLabel('Aanhef'), 3, 0)
             grid.addWidget(q2Edit, 3, 1)
              
-            grid.addWidget(QLabel('FirstName                   *'), 4, 0)
+            grid.addWidget(QLabel('Voornaam                   *'), 4, 0)
             grid.addWidget(q3Edit, 4, 1)  
      
-            grid.addWidget(QLabel('Infix'), 5, 0)
+            grid.addWidget(QLabel('Tussenvoegel'), 5, 0)
             grid.addWidget(q4Edit, 5 , 1) 
              
-            grid.addWidget(QLabel('Surname                     *'), 6, 0)
+            grid.addWidget(QLabel('Achternaam                *'), 6, 0)
             grid.addWidget(q5Edit, 6, 1, 1 , 2) 
             
-            grid.addWidget(QLabel('DateOfBirth                 *'), 7, 0)
-            grid.addWidget(QLabel('                             formaat: yyyy-mm-dd'), 7, 1, 1, 2 )
+            grid.addWidget(QLabel('Geboortedatum           *'), 7, 0)
+            grid.addWidget(QLabel('                             formaat: jjjj-mm-dd'), 7, 1, 1, 2 )
             grid.addWidget(q14Edit, 7, 1)
                  
-            grid.addWidget(QLabel('Zipcode                      *'), 8, 0)
+            grid.addWidget(QLabel('Postcode                    *'), 8, 0)
             grid.addWidget(q6Edit, 8, 1)
      
-            grid.addWidget(QLabel('House number            *'), 9, 0)
+            grid.addWidget(QLabel('Huisnummer                *'), 9, 0)
             grid.addWidget(q7Edit, 9, 1)
             
-            grid.addWidget(QLabel('Suffix'), 9, 1, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Toevoeging'), 9, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(q8Edit, 9, 2)
     
             grid.addWidget(QLabel('e-mail                         *'), 10, 0)
             grid.addWidget(q9Edit, 10, 1, 1 ,2)
         
-            grid.addWidget(QLabel('Password                   *'), 11, 0)
+            grid.addWidget(QLabel('Wachtwoord                *'), 11, 0)
             grid.addWidget(q10Edit, 11, 1, 1 ,2) 
             
-            grid.addWidget(QLabel('Password Check         *'), 12, 0)
+            grid.addWidget(QLabel('Wachtwoord controle    *'), 12, 0)
             grid.addWidget(q11Edit, 12, 1, 1, 2) 
     
-            grid.addWidget(QLabel('TelephoneNumber'), 13, 0)
+            grid.addWidget(QLabel('Telefoonnummer'), 13, 0)
             grid.addWidget(q12Edit, 13, 1) 
            
-            grid.addWidget(QLabel('Account number'), 14, 0)
+            grid.addWidget(QLabel('Accountnummer'), 14, 0)
             grid.addWidget(q13Edit, 14, 1) 
                                 
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 16, 0, 1, 3, Qt.AlignCenter)
             
-            applyBtn = QPushButton('Insert')
+            applyBtn = QPushButton('Invoeren')
             applyBtn.clicked.connect(self.accept)
                        
             grid.addWidget(applyBtn, 14, 2, 1, 1, Qt.AlignRight)
@@ -396,7 +395,7 @@ def nieuwAccount(self):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Close')
+            cancelBtn = QPushButton('Sluiten')
             cancelBtn.clicked.connect(lambda: windowSluit(self))
         
             grid.addWidget(cancelBtn, 13, 2 , 1, 1, Qt.AlignRight)
