@@ -21,7 +21,7 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
+    msg.setText('Please re-enter incorrect input\nsearch term!')
     msg.setWindowTitle('Change pay table')
     msg.exec_()
     
@@ -46,7 +46,7 @@ def zoeken(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Wijzigen Loontabel")
+            self.setWindowTitle("Modify wages table")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -59,7 +59,7 @@ def zoeken(m_email):
             k0Edit.addItem('    Search sort key')
             k0Edit.addItem('1. Salary table internally')
             k0Edit.addItem('2. Salary table externally')
-            k0Edit.addItem('3. Wage table indirect')
+            k0Edit.addItem('3. Wages table indirect')
             k0Edit.activated[str].connect(self.k0Changed)
                  
             grid = QGridLayout()
