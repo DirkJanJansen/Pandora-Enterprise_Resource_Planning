@@ -322,7 +322,7 @@ def wijzArt(m_email, martikelnr):
             grid.addWidget(QLabel('                                 *'), 2, 0)
             grid.addWidget(QLabel('Required fields'), 2, 1)
         
-            grid.addWidget(QLabel('Articlenumber'), 3, 0)
+            grid.addWidget(QLabel('Article number'), 3, 0)
             grid.addWidget(q1Edit, 3, 1)
         
             grid.addWidget(QLabel('Article description       *'), 4, 0)
@@ -352,10 +352,10 @@ def wijzArt(m_email, martikelnr):
             grid.addWidget(QLabel('Barcode'), 12, 0)
             grid.addWidget(q10Edit, 12, 1)
         
-            grid.addWidget(QLabel('Articlethumbnail'), 13, 0)
+            grid.addWidget(QLabel('Article thumbnail'), 13, 0)
             grid.addWidget(q11Edit, 13, 1)
         
-            grid.addWidget(QLabel('Artikelphoto'), 14, 0)
+            grid.addWidget(QLabel('Artikel photo'), 14, 0)
             grid.addWidget(q12Edit, 14, 1)
             
             grid.addWidget(QLabel('Category                    *'),15,0)
