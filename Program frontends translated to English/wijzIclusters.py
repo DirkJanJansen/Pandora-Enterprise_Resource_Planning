@@ -66,7 +66,7 @@ def zoeken(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Cluster selektie")
+            self.setWindowTitle("Cluster selektion")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -85,7 +85,7 @@ def zoeken(m_email):
             k0Edit.addItem('PA-PK. Sheet metal assembled')
             k0Edit.addItem('RA-RK. Plastic parts')
             k0Edit.addItem('SA-SK. Prefab mounting parts')
-            k0Edit.addItem('TA-TK. Composite Parts')
+            k0Edit.addItem('TA-TK. Assembled Parts')
             k0Edit.activated[str].connect(self.k0Changed)
            
             grid = QGridLayout()
@@ -232,7 +232,7 @@ def toonIclusters(keuze, m_email) :
                 return self.header[col]
             return None
              
-    header = ['Clusternumber','Description','Price','Unit','Materials','Wages',\
+    header = ['Cluster number','Description','Price','Unit','Materials','Wages',\
               'Services','Equipment','Hiring','Set costs\nsawing','Sawing','Set costs\nplaning','Planing',\
               'Set costs\nstabbing','Stabbing','Set costs\ndrilling','Drilling','Set costs\nmilling','Milling','Set costs\nturning small',\
               'Turning small','Set costs\nturning big','Turning big','Set costs\nthreading','Threading',\
@@ -240,7 +240,7 @@ def toonIclusters(keuze, m_email) :
               'Set costs\ncutting','Cutting','Set costs\nfolding','Folding','Set costs\npunching','Punching',\
               'Set costs\nwelding co2','Welding co2','Set costs\nwelding hand','Welding hand','Set costs\npacking',\
               'Packing','Set costs\ngalvanise','Galvanise','Set costs\nmuffling','Muffling','Set costs\npainting',\
-              'Painting','Set costs\nspraying','Spraying','Set costs\npunching','Punching','Set costs\npressing',\
+              'Painting','Set costs\nspraying','Spraying','Set costs\nstamping','Stamping','Set costs\npressing',\
               'Pressing','Set costs\ngrit blasting','Grit blasting','Set costs\nmounting','Mounting']
     
     metadata = MetaData()
@@ -333,7 +333,7 @@ def toonIclusters(keuze, m_email) :
                     
                     grid = QGridLayout()
                     grid.setSpacing(20)
-                    self.setWindowTitle("Wijzigen Cluster")
+                    self.setWindowTitle("Modify cluster")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                     
                     self.setFont(QFont('Arial', 10))   
@@ -904,7 +904,7 @@ def toonIclusters(keuze, m_email) :
                     grid = QGridLayout()
                     grid.setSpacing(20)
                     
-                    lbl1 = QLabel('Clusternumber')
+                    lbl1 = QLabel('Cluster number')
                     lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl1, 1, 0)
                     
@@ -1151,12 +1151,12 @@ def toonIclusters(keuze, m_email) :
                     grid.addWidget(lbl50, 13, 6)
                     grid.addWidget(q48Edit, 13, 7)
                     
-                    lbl51 = QLabel('Set costs\npunching')
+                    lbl51 = QLabel('Set costs\nstamping')
                     lbl51.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl51, 14, 0)
                     grid.addWidget(q49Edit, 14, 1)
                  
-                    lbl52 = QLabel('Punching')
+                    lbl52 = QLabel('Stamping')
                     lbl52.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl52, 14, 2)
                     grid.addWidget(q50Edit, 14, 3)
