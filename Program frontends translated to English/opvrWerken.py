@@ -17,7 +17,7 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
+    msg.setText('Please re-enter incorrect input\nsearch term!')
     msg.setWindowTitle('Request external works')
     msg.exec_() 
 
@@ -76,7 +76,7 @@ def werkenKeuze(m_email):
             grid.addWidget(lbl , 0, 0, 1, 2)
                                   
             grid.addWidget(k4Edit, 1, 0, 1, 2, Qt.AlignRight)
-            lbl1 = QLabel('Searchterm')
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 2, 0)
             grid.addWidget(zktermEdit, 2, 1)
@@ -268,7 +268,7 @@ def toonWerken(keuze,zoekterm, m_email):
                 return self.header[col]
             return None
   
-    header = ['Worknumber','Workdescription', 'Progress status','Status week',\
+    header = ['Work number','Work description', 'Progress status','Status week',\
               'Start week','Order date','Contract price','Amount payed','Budgeted materials',\
               'Realised materials', 'Budgeted wages', 'Realised wages', 'Budgeted equipment',\
               'Realised equipment','Budgeted direction', 'Realised direction','Budgeted housing',\
@@ -697,19 +697,19 @@ def toonWerken(keuze,zoekterm, m_email):
             
                     self.setFont(QFont('Arial', 10))
                     
-                    grid.addWidget(QLabel('Worknumber'), 1, 0)
+                    grid.addWidget(QLabel('Work number'), 1, 0)
                     grid.addWidget(q1Edit, 1, 1) 
                     
-                    grid.addWidget(QLabel('Workdescription'), 1, 2)
+                    grid.addWidget(QLabel('Work description'), 1, 2)
                     grid.addWidget(q2Edit, 1, 3, 1, 3) 
                                                         
                     grid.addWidget(QLabel('Progress status'), 1, 6)
                     grid.addWidget(q3Edit, 1, 7)
                     
-                    grid.addWidget(QLabel('Statusweek'), 1, 7, 1, 1, Qt.AlignRight)
+                    grid.addWidget(QLabel('Status week'), 1, 7, 1, 1, Qt.AlignRight)
                     grid.addWidget(q4Edit, 1, 8) 
                      
-                    grid.addWidget(QLabel('Startweek'), 2, 2)
+                    grid.addWidget(QLabel('Start week'), 2, 2)
                     grid.addWidget(q5Edit, 2, 3)
                                                               
                     grid.addWidget(QLabel('Contract price'), 2, 4)
