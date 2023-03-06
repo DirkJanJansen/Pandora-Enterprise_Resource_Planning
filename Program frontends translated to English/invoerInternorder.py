@@ -93,7 +93,7 @@ def geenArtnr():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Warning)
     msg.setText('No existing article found\nNew article number is created!')
-    msg.setWindowTitle('Insert articlenumber')               
+    msg.setWindowTitle('Insert article number')
     msg.exec_() 
 
 def invWerkorder(m_email):
@@ -145,7 +145,7 @@ def invWerkorder(m_email):
             grid = QGridLayout()
             grid.setSpacing(20)
             
-            lbl1 = QLabel('Workorder')  
+            lbl1 = QLabel('Work order')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 1, 0)
             
@@ -162,7 +162,7 @@ def invWerkorder(m_email):
             grid.addWidget(lbl4, 3, 0)
             grid.addWidget(q2Edit, 3, 1)
         
-            lbl5 = QLabel('Articlenumber\n       Semi-finished product')
+            lbl5 = QLabel('Article number\n       Semi-finished product')
             lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl5, 4, 0)
             grid.addWidget(q3Edit, 4, 1) 
