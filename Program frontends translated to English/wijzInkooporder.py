@@ -285,7 +285,7 @@ def inkoopOrder(m_email, minkordernr, mregel):
             grid.addWidget(QLabel('Payed yyyy-mm-dd'), 7, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(q5Edit, 7, 1)  
             
-            grid.addWidget(QLabel('Unsubscriped yyyy-mm-dd'), 8, 0, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Unsubscribed yyyy-mm-dd'), 8, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(q6Edit, 8, 1)  
           
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 9, 0, 1, 3, Qt.AlignCenter)
@@ -535,12 +535,12 @@ def inkoopRegels(m_email, rp1, rp2, rp3, mstraat, mplaats, mregel):
                  ',\n'+rp2[1]+' '+rp2[2]+',\n'+mstraat+' '+str(rp2[4])+\
                  rp2[5]+',\n'+rp2[3]+' '+mplaats+'.\nOrder line '+str(mregel)), 1, 1, 1, 3)
                              
-                lbl1 = QLabel('Ordernumber')  
+                lbl1 = QLabel('Order number')
                 lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl1, 5, 0)
                 grid.addWidget(q1Edit, 5, 1)
                                               
-                lbl2 = QLabel('Orderline article')  
+                lbl2 = QLabel('Order line article')
                 lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl2, 6, 0)
                 grid.addWidget(q2Edit, 6, 1)
@@ -555,7 +555,7 @@ def inkoopRegels(m_email, rp1, rp2, rp3, mstraat, mplaats, mregel):
                 grid.addWidget(lbl4, 8, 0)
                 grid.addWidget(q4Edit,8, 1)
                 
-                lbl5 = QLabel('Deleivery start')  
+                lbl5 = QLabel('Delivery start')
                 lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl5, 9, 0)
                 grid.addWidget(q5Edit, 9, 1)
