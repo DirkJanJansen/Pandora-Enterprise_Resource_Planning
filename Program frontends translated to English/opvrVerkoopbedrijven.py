@@ -12,7 +12,7 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
+    msg.setText('Please re-enter incorrect input\nsearch term!')
     msg.setWindowTitle('Request sales companies')               
     msg.exec_() 
     
@@ -45,7 +45,7 @@ def koperKeuze(m_email):
             k4Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             k4Edit.addItem(' Search sort key')
             k4Edit.addItem('1. All Sales companies')
-            k4Edit.addItem('2. Comapny name')
+            k4Edit.addItem('2. Company name')
             k4Edit.addItem('3. Sales company number')
             k4Edit.addItem('4. Zip code number')
             k4Edit.activated[str].connect(self.k4Changed)
@@ -65,7 +65,7 @@ def koperKeuze(m_email):
             grid.addWidget(lbl , 1, 0, 1, 2)
                                   
             grid.addWidget(k4Edit, 2, 1)
-            lbl1 = QLabel('Searchterm')  
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 3, 0)
             grid.addWidget(zktermEdit, 3, 1)
@@ -176,8 +176,8 @@ def toonBedrijfverkoop(keuze,zoekterm, m_email):
                 return self.header[col]
             return None
  
-    header = ['SalescompanyID','Company name', 'Legal status','Department', 'VATnumber', 'KVKNumber',\
-              'Telephonenumber','Street', 'Housenumber', 'Suffix', 'Zipcode', 'Residence']  
+    header = ['Sales companyID','Company name', 'Legal status','Department', 'VAT number', 'KVK number',\
+              'Telephone number','Street', 'House number', 'Suffix', 'Zipcode', 'Residence']
    
     metadata = MetaData()   
     kopers= Table('kopers', metadata,
@@ -349,16 +349,16 @@ def toonBedrijfverkoop(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Legal status'), 3, 0)
                     grid.addWidget(q5Edit, 3, 1) 
                     
-                    grid.addWidget(QLabel('VATnumber'), 3, 1, 1, 1, Qt.AlignRight)
+                    grid.addWidget(QLabel('VAT number'), 3, 1, 1, 1, Qt.AlignRight)
                     grid.addWidget(q2Edit, 3, 2) 
                     
-                    grid.addWidget(QLabel('KvKnumber'), 4, 0)
+                    grid.addWidget(QLabel('KvK number'), 4, 0)
                     grid.addWidget(q4Edit, 4, 1) 
                     
                     grid.addWidget(QLabel('Street'), 5, 0)
                     grid.addWidget(q1Edit, 5, 1, 1, 3)
              
-                    grid.addWidget(QLabel('Housenumber'), 6, 0)
+                    grid.addWidget(QLabel('House number'), 6, 0)
                     grid.addWidget(q7Edit, 6, 1)
             
                     grid.addWidget(QLabel('Suffix'), 6, 1, 1, 1, Qt.AlignRight)
@@ -369,7 +369,7 @@ def toonBedrijfverkoop(keuze,zoekterm, m_email):
                     
                     grid.addWidget(q15Edit, 7, 1, 1, 2, Qt.AlignRight) 
              
-                    grid.addWidget(QLabel('Telephonenumber'), 8, 0)
+                    grid.addWidget(QLabel('Telephone number'), 8, 0)
                     grid.addWidget(q13Edit, 8, 1) 
                     
                     grid.addWidget(QLabel('Sales company number'), 9, 0)
