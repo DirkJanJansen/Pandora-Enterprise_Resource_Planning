@@ -164,7 +164,7 @@ def mutatieKeuze(m_email):
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
                                   
             grid.addWidget(k0Edit, 1, 1)
-            lbl1 = QLabel('Zoekterm')  
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 2, 0)
             grid.addWidget(zktermEdit, 2, 1)
@@ -389,7 +389,7 @@ def toonMutaties(keuze,zoekterm, m_email):
             return None
   
     header = ['Mutation number','Work number', 'Order PurchaseID','Amount booking', 'Booking date', 'Category',\
-              'Category-Description','VAT-high', 'Contract price', 'Line number', 'Work number', 'Description',\
+              'Category description','VAT-high', 'Contract price', 'Line number', 'Work number', 'Description',\
               'Order PurchaseID', 'SupplierID', 'SupplierID','Company name', 'Legal status']
     
     data_list=[]
@@ -1720,7 +1720,7 @@ def toonMutaties(keuze,zoekterm, m_email):
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
                  filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobiel'+'%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobile'+'%')))))\
+                 orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobiel'+'%')))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1750,7 +1750,7 @@ def toonMutaties(keuze,zoekterm, m_email):
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
                  filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobiel'+'%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobile'+'%')))))\
+                 orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobiel'+'%')))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
