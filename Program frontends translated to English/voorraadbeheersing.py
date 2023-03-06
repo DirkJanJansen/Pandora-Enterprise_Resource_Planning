@@ -80,10 +80,10 @@ def printBrief(rpartikel, bestelhoeveelheid, bestelBtn):
         besteltekst = 'Minimum order size reservation controlled: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n'
         termijn = ' 52 weeks'
     if platform == 'win32':
-        filename = '.\\forms\\Intern_Orderbrieven\\Orderbriefnr_'+str(bestnr)+'.txt'
+        filename = '.\\forms\\Intern_Orderbrieven\\Order_letter_number_'+str(bestnr)+'.txt'
     else:
-        filename = './forms/Intern_Orderbrieven/Orderbriefnr_'+str(bestnr)+'.txt'
-    open(filename,"w").write('\n\n\nDatum: '+str(vandaag)+'\n')
+        filename = './forms/Intern_Orderbrieven/Order_letter_number_'+str(bestnr)+'.txt'
+    open(filename,"w").write('\n\n\nDate: '+str(vandaag)+'\n')
     gegevens = ('\n\n'+\
     'Internal order slip serial number: '+str(bestnr)+'\n\n\n\n'+\
     'Order letter for warehouse item: '+str(rpartikel[0])+'\n\n'+\
