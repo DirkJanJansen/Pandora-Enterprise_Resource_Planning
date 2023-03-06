@@ -45,7 +45,7 @@ def info():
            Changes are only possible if the calculation is not yet linked 
            to a work order number. 
            In this case, choose an existing calculation number. 
-        7. Calculation/Item list - request/calculate/print
+        7. Calculation/Article list - request/calculate/print
            This retrieves the calculation data and / or the article data calculated
            or printed. The calculation takes place after starting the module.
             
@@ -91,8 +91,8 @@ def gerCalnr(mcalnr):
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Calculatienummer '+str(mcalnr)+'  is aangemaakt!')
-    msg.setWindowTitle('Clustercalculatie invoeren')               
+    msg.setText('Calculation number '+str(mcalnr)+'  is processed!')
+    msg.setWindowTitle('Inc=sert cluster calculation')
     msg.exec_()
 
 def windowSluit(self, m_email):
@@ -104,7 +104,7 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
+    msg.setText('Please re-enter incorrect\ninput search term!')
     msg.setWindowTitle('Insert Cluster calculation')
     msg.exec_()
     
@@ -131,7 +131,7 @@ def calcBestaat():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Calculation line already exists\nand is settled with\nintroduced quantity!')
+    msg.setText('Calculation line already exists\nand is corrected with\nintroduced quantity!')
     msg.setWindowTitle('Insert cluster calculation')
     msg.exec_() 
     
@@ -275,16 +275,16 @@ def zoeken(m_email):
             k0Edit.setFixedWidth(340)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('         Sorteersleutel Clustergroepen')
-            k0Edit.addItem('0. Alle Clusters')
-            k0Edit.addItem('LA-LK. Bewerkte onderdelen')
-            k0Edit.addItem('MA-MK. Bouten en Moeren')
-            k0Edit.addItem('NA-NK. Gietwerk bewerking')
-            k0Edit.addItem('OA-OK. Laswerk samengesteld')
-            k0Edit.addItem('PA-PK. Plaatwerk samengesteld')
-            k0Edit.addItem('RA-RK. Kunstof onderdelen')
-            k0Edit.addItem('SA-SK. Prefab Montagedelen')
-            k0Edit.addItem('TA-TK. Samengestelde Onderdelen')
+            k0Edit.addItem('         Sort key cluster groups')
+            k0Edit.addItem('0. All clusters')
+            k0Edit.addItem('LA-LK. Machined parts')
+            k0Edit.addItem('MA-MK. Nuts and bolts')
+            k0Edit.addItem('NA-NK. Casting machining')
+            k0Edit.addItem('OA-OK. Welding composite')
+            k0Edit.addItem('PA-PK. Sheet metal assembled')
+            k0Edit.addItem('RA-RK. Plastic parts')
+            k0Edit.addItem('SA-SK. Prefab mounting parts')
+            k0Edit.addItem('TA-TK. Assembled parts')
             k0Edit.activated[str].connect(self.k0Changed)
            
             grid = QGridLayout()
