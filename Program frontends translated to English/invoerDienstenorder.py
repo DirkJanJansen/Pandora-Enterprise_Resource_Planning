@@ -147,12 +147,12 @@ def zoekLeverancier(m_email, mlevnr, mwerknr, mregel):
             grid.addWidget(logo , 0, 2, 1, 1, Qt.AlignRight)
     
             self.setFont(QFont('Arial', 10))
-            grid.addWidget(QLabel('Supplier\nWorknumber\n Services'), 0, 1)
+            grid.addWidget(QLabel('Supplier\nWork number\nServices'), 0, 1)
     
             grid.addWidget(QLabel('Supplier'), 1, 0)
             grid.addWidget(levEdit, 1, 1)
             
-            grid.addWidget(QLabel('Worknumber'), 2, 0)
+            grid.addWidget(QLabel('Work number'), 2, 0)
             grid.addWidget(werknEdit, 2, 1)
             
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved - dj.jansen@casema.nl'), 3, 0, 1 ,3, Qt.AlignCenter)
@@ -284,9 +284,9 @@ def inkoopRegels(m_email, rplev, mregel):
             k0Edit.addItem('2. Direction')
             k0Edit.addItem('3. Housing')
             k0Edit.addItem('4. Cable work')
-            k0Edit.addItem('5. Earthmoving')
+            k0Edit.addItem('5. Earth-moving')
             k0Edit.addItem('6. Concrete work')
-            k0Edit.addItem('7. Transportation')
+            k0Edit.addItem('7. Transport')
             k0Edit.addItem('8. Remaining')
             k0Edit.addItem('A. Trencher')
             k0Edit.addItem('B. Press machine')
@@ -298,7 +298,7 @@ def inkoopRegels(m_email, rplev, mregel):
             k0Edit.addItem('H. Locomotor')
             k0Edit.addItem('J. Locomotive')
             k0Edit.addItem('K. Assembly trolley')
-            k0Edit.addItem('L. Stormobiel') 
+            k0Edit.addItem('L. Stormobiel')
             k0Edit.addItem('M. Robel train') 
             k0Edit.activated[str].connect(self.k0Changed)
             
@@ -352,14 +352,14 @@ def inkoopRegels(m_email, rplev, mregel):
             self.setFont(QFont('Arial', 10))
             grid.addWidget(QLabel('Order for\nSupplier: '+str(minkgeg[1])\
             +',\n'+minkgeg[2]+' '+minkgeg[3]+',\n'+minkgeg[4]+' '+str(minkgeg[5])\
-            +minkgeg[6]+',\n'+minkgeg[7]+' '+minkgeg[8]+'.\nOrderline '+str(mregel)), 1, 1, 1, 3)
+            +minkgeg[6]+',\n'+minkgeg[7]+' '+minkgeg[8]+'.\nOrder line '+str(mregel)), 1, 1, 1, 3)
                                              
-            lbl1 = QLabel('Ordernumber')  
+            lbl1 = QLabel('Order number')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 5, 0)
             grid.addWidget(inkorderEdit, 5, 1)
             
-            grid.addWidget(QLabel('Worknumber'), 6, 0, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Work number'), 6, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(werknEdit, 6, 1)  
  
             lbl8 = QLabel('Type of order  *')
@@ -721,7 +721,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mpers,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mpers,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mpers*rppar[1][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -739,7 +739,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(matlas,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(matlas,2))+' hours', omschrijving = momschr,\
                  aanneemsom = matlas*rppar[2][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -757,7 +757,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mkrgroot,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mkrgroot,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mkrgroot*rppar[3][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -775,7 +775,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mmainliner,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mmainliner,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mmainliner*rppar[4][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -793,7 +793,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mhor,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mhor,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mhor*rppar[5][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -811,7 +811,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mwagon,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mwagon,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mwagon*rppar[6][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -829,7 +829,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mlmotor,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mlmotor,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mlmotor*rppar[7][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -847,7 +847,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mlmotief,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mlmotief,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mlmotief*rppar[8][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -865,7 +865,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mmont,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mmont,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mmont*rppar[9][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -883,7 +883,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mstorm,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mstorm,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mstorm*rppar[10][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -901,7 +901,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mrobel,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mrobel,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mrobel*rppar[11][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
