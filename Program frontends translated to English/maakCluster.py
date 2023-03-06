@@ -253,7 +253,7 @@ def kiesSubClusterB(keuze, m_email):
             k0Edit.addItem('BA. Telecom train information')
             k0Edit.addItem('BB. Traffic control telecom')
             k0Edit.addItem('BC. Platform information telecom')
-            k0Edit.addItem('BD. Welding and pupinizing telecom cables')
+            k0Edit.addItem('BD. Welding and pupinize telecom cables')
             k0Edit.addItem('BE. Relay house telecom racks wiring')
             k0Edit.addItem('BF. Free track telecom installations')
             k0Edit.addItem('BG. Train control telecom ATB')
@@ -421,7 +421,7 @@ def kiesSubClusterD(keuze, m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Cluster selektie")
+            self.setWindowTitle("Cluster selection")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -785,7 +785,7 @@ def kiesSubClusterH(keuze, m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Cluster selektie")
+            self.setWindowTitle("Cluster selection")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -877,7 +877,7 @@ def kiesSubClusterJ(keuze, m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Cluster selektie")
+            self.setWindowTitle("Cluster selection")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
