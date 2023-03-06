@@ -17,8 +17,8 @@ def foutEmail():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Incorrect e-mailaddress')
-    msg.setWindowTitle('Incorrect emailaddress')
+    msg.setText('Incorrect e-mail address!')
+    msg.setWindowTitle('Incorrect email address')
     msg.exec_()
 
 def zoekEmailadres(m_email, klmail):
