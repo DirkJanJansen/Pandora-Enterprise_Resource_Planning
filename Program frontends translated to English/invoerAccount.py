@@ -365,7 +365,7 @@ def nieuwAccount(self):
             grid.addWidget(QLabel('Zipcode                      *'), 8, 0)
             grid.addWidget(q6Edit, 8, 1)
      
-            grid.addWidget(QLabel('Housenumber             *'), 9, 0)
+            grid.addWidget(QLabel('House number            *'), 9, 0)
             grid.addWidget(q7Edit, 9, 1)
             
             grid.addWidget(QLabel('Suffix'), 9, 1, 1, 1, Qt.AlignRight)
@@ -383,7 +383,7 @@ def nieuwAccount(self):
             grid.addWidget(QLabel('TelephoneNumber'), 13, 0)
             grid.addWidget(q12Edit, 13, 1) 
            
-            grid.addWidget(QLabel('Accountnumber'), 14, 0)
+            grid.addWidget(QLabel('Account number'), 14, 0)
             grid.addWidget(q13Edit, 14, 1) 
                                 
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 16, 0, 1, 3, Qt.AlignCenter)
