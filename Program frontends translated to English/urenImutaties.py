@@ -941,12 +941,12 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
             self.lblt.setFont(QFont("Arial", 10))
             grid.addWidget(self.lblt , 12, 0, 1, 4, Qt.AlignCenter)
             
-            lbl1 = QLabel('Accountnumber')
+            lbl1 = QLabel('Account number')
             lbl1.setFont(QFont("Arial", 10))
             grid.addWidget(lbl1, 6, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.zkaccEdit , 6, 2, 1, 1, Qt.AlignRight)
             
-            lbl2 = QLabel('Workordernumber')
+            lbl2 = QLabel('Work order number')
             lbl2.setFont(QFont("Arial", 10))
             grid.addWidget(lbl2, 7, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.zkwerknEdit, 7, 2, 1, 1, Qt.AlignRight)
