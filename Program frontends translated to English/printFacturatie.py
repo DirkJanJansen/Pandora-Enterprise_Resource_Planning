@@ -126,9 +126,9 @@ def maakLijst(m_email):
             if rgl == 0 or rgl%57 == 0:
                 mblad += 1
                 if platform == 'win32':
-                    filename = '.\\forms\\Facturen_Werken\\Factuur-Werken_'+str(datetime.datetime.now())[0:10]+'.txt'
+                    filename = '.\\forms\\Facturen_Werken\\Billing_works_'+str(datetime.datetime.now())[0:10]+'.txt'
                 else:
-                    filename = './forms/Facturen_Werken/Factuur-Werken_'+str(datetime.datetime.now())[0:10]+'.txt'
+                    filename = './forms/Facturen_Werken/Billing_works_'+str(datetime.datetime.now())[0:10]+'.txt'
                 kop =\
             ('Invoices external works Date: '+str(datetime.datetime.now())[0:10]+' Page '+str(mblad)+'\n'+
             "==============================================================================================\n"+
