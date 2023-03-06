@@ -16,7 +16,7 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
+    msg.setText('Please re-enter incorrect input\nsearch term!')
     msg.setWindowTitle('Request articles')               
     msg.exec_()
     
@@ -44,15 +44,15 @@ def artKeuze(m_email):
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             k0Edit.addItem('                    Search sort key')
-            k0Edit.addItem('1. Sorted by articlenumber')
+            k0Edit.addItem('1. Sorted by article number')
             k0Edit.addItem('2. Sorted by stock')
             k0Edit.addItem('3. Filtered by description')
-            k0Edit.addItem('4. Filtered by artcle group.')
+            k0Edit.addItem('4. Filtered by article group.')
             k0Edit.addItem('5. Filtered by storage location.')
             k0Edit.addItem('6. Obsolete after yyyy-mm-dd')
             k0Edit.addItem('7. To order by reservations')
             k0Edit.addItem('8. To order by stock controlled')
-            k0Edit.addItem('9. Minimum stock + ordersize < reservation')
+            k0Edit.addItem('9. Minimum stock + order size < reservation')
             k0Edit.activated[str].connect(self.k0Changed)
               
             self.Zoekterm = QLabel()
@@ -71,7 +71,7 @@ def artKeuze(m_email):
             grid.addWidget(lbl , 0, 0, 1, 2)
                                   
             grid.addWidget(k0Edit, 1, 0 ,1, 2, Qt.AlignRight)
-            lbl1 = QLabel('Searchterm')  
+            lbl1 = QLabel('Search term')
             grid.addWidget(lbl1, 2, 0 , 1, 1, Qt.AlignRight)
             grid.addWidget(zktermEdit, 2, 1)
             
@@ -228,8 +228,8 @@ def toonArtikelen(keuze,zoekterm, m_email):
             veld = self.mylist[index.row()][index.column()]
             if not index.isValid():
                 return None
-            #elif index.column() == 9 and role == Qt.DecorationRole: # alternatief picture echter
-                                                                     # met tekst rechts van path
+            #elif index.column() == 9 and role == Qt.DecorationRole: # alternative picture however
+                                                                     # with text right to path
             #    return QPixmap(index.data())
             elif role == Qt.TextAlignmentRole and (type(veld) == float or type(veld) == int):
                 return Qt.AlignRight | Qt.AlignVCenter
@@ -254,7 +254,7 @@ def toonArtikelen(keuze,zoekterm, m_email):
                 pixmap.scaled(256,256) 
                 return(painter.drawPixmap(option.rect, pixmap))
                                        
-    header = ['Articlenumber', 'Barcodenumber','Description', 'Image', 'Price', 'Stock', 'Unit',\
+    header = ['Article number', 'Barcodenumber','Description', 'Image', 'Price', 'Stock', 'Unit',\
           'Minimum stock', 'Order size', 'Location', 'Group', 'Category',\
           'Size', 'Mutation\ndate', 'Order balance' ,'Reservation\nbalance', \
           'Annual consumption\neven years','Annual consumption\nodd years']    
@@ -399,7 +399,7 @@ def toonArtikelen(keuze,zoekterm, m_email):
                     logo.setPixmap(pixmap)
                     grid.addWidget(logo , 0, 2, 1, 3, Qt.AlignRight) 
                   
-                    grid.addWidget(QLabel('Articlenumber'), 1, 0, 2, 1)
+                    grid.addWidget(QLabel('Article number'), 1, 0, 2, 1)
                     grid.addWidget(q1Edit, 1, 1, 2, 1)
                     
                     grid.addWidget(QLabel('Barcodenumber'), 1, 2, 2, 1)
@@ -408,7 +408,7 @@ def toonArtikelen(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Article description'), 3, 0)
                     grid.addWidget(q2Edit, 3, 1, 1 ,3)
                     
-                    grid.addWidget(QLabel('Articlegroup'), 4, 0)
+                    grid.addWidget(QLabel('Article group'), 4, 0)
                     grid.addWidget(q9Edit, 4, 1, 1, 3) 
                     
                     grid.addWidget(QLabel('Size'),5, 0)
