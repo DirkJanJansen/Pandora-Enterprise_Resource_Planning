@@ -13,7 +13,7 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Please re-enter incorrect input\nsearchterm!')
+    msg.setText('Please re-enter incorrect input\nsearch term!')
     msg.setWindowTitle('Requesting Accounts')               
     msg.exec_() 
 
@@ -47,7 +47,7 @@ def accKeuze(m_email):
             k0Edit.addItem(' Search sort key')
             k0Edit.addItem('1. All accounts')
             k0Edit.addItem('2. Zip code')
-            k0Edit.addItem('3. emailaddress.')
+            k0Edit.addItem('3. email address.')
             k0Edit.addItem('4. Surname.')
             k0Edit.addItem('5. Accounts suppliers.')
             k0Edit.addItem('6. Accounts employees.')
@@ -68,7 +68,7 @@ def accKeuze(m_email):
             grid.addWidget(lbl , 0, 0, 1, 2)
                                   
             grid.addWidget(k0Edit, 1, 1)
-            lbl1 = QLabel('Searchkey')  
+            lbl1 = QLabel('Search key')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 2, 0)
             grid.addWidget(zktermEdit, 2, 1)
@@ -237,14 +237,14 @@ def toonAccounts(keuze, zoekterm, m_email):
                 return self.header[col]
             return None
   
-    header = ['Accountnumber','Prefix', 'Firstname','Infix', 'Surname', 'Zipcode',\
-              'Housenumber','Suffix', 'E-mail', 'Telephonenumber', 'Accountcount', 'Date of birth']  
+    header = ['Account number','Prefix', 'Firstname','Infix', 'Surname', 'Zipcode',\
+              'House number','Suffix', 'E-mail', 'Telephone number', 'Account count', 'Date of birth']
     
     if keuze == 5:
-        header1 = ['Suppliernumber', 'Companyname', 'Legalform'] 
+        header1 = ['Supplier number', 'Company name', 'Legal form']
         header.extend(header1)
     elif keuze == 6:
-        header2 = ['Employeenumber','Account', 'Payscale']
+        header2 = ['Employee number','Account', 'Payscale']
         header.extend(header2)
    
     data_list=[]
@@ -400,7 +400,7 @@ def toonAccounts(keuze, zoekterm, m_email):
                     grid.addWidget(QLabel('Street'), 7, 0)
                     grid.addWidget(q6Edit, 7, 1, 1, 2) 
                
-                    grid.addWidget(QLabel('Housenumber'), 8, 0)
+                    grid.addWidget(QLabel('House number'), 8, 0)
                     grid.addWidget(q7Edit, 8, 1)
                     
                     grid.addWidget(QLabel('Suffix'), 8, 1, 1, 1, Qt.AlignRight)
@@ -415,10 +415,10 @@ def toonAccounts(keuze, zoekterm, m_email):
                     grid.addWidget(QLabel('e-mail'), 11, 0)
                     grid.addWidget(q11Edit, 11, 1, 1 ,2)
                        
-                    grid.addWidget(QLabel('Telephonenumber'), 12, 0)
+                    grid.addWidget(QLabel('Telephone number'), 12, 0)
                     grid.addWidget(q15Edit, 12, 1) 
                     
-                    grid.addWidget(QLabel('Accountnumber'),13, 0)
+                    grid.addWidget(QLabel('Account number'),13, 0)
                     grid.addWidget(q16Edit, 13, 1, 1, 2) 
                                                      
                     grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 15, 0, 1, 3, Qt.AlignCenter)
