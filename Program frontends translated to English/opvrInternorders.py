@@ -73,11 +73,11 @@ def printWerkbrief(mwerkorder, rpord, header):
     mblad = 1
     rgl = 0
     if platform == 'win32':
-        filename = '.\\forms\\Werkbrieven\\materiaallijst_werkgeleidebrief_'+str(mwerkorder)+'.txt'
+        filename = '.\\forms\\Werkbrieven\\materials_list_work_letter_'+str(mwerkorder)+'.txt'
     else:
-        filename = './forms/Werkbrieven/materiaallijst_werkgeleidebrief_'+str(mwerkorder)+'.txt'
+        filename = './forms/Werkbrieven/materials_list_work_letter_'+str(mwerkorder)+'.txt'
     kop=\
-    ('Materiallist from workorder:   '+ str(mwerkorder)+'   Date: '+str(datetime.datetime.now())[0:10]+'  Page :  '+str(mblad)+'\n'+
+    ('Material list from work order:   '+ str(mwerkorder)+'   Date: '+str(datetime.datetime.now())[0:10]+'  Page :  '+str(mblad)+'\n'+
     '=====================================================================================================\n'+
     'Line  Articlenr    Description                        Unit          Number      Received             \n'+
     '=====================================================================================================\n')
@@ -97,11 +97,11 @@ def printWerkbrief(mwerkorder, rpord, header):
     rgl = 0
     k = 0
     if platform == 'win32':
-        filename1 = '.\\forms\\Werkbrieven\\werkgeleidebrief_'+str(mwerkorder)+'.txt' 
+        filename1 = '.\\forms\\Werkbrieven\\work_guide_letter_'+str(mwerkorder)+'.txt'
     else:
-        filename1 = './forms/Werkbrieven/werkgeleidebrief_'+str(mwerkorder)+'.txt'
+        filename1 = './forms/Werkbrieven/work_guide_letter_'+str(mwerkorder)+'.txt'
     kop1=\
-     ('Workorder: '+str(mwerkorder)+' Workguideletter  Date  : '+str(datetime.datetime.now())[0:10]+' Page : '+str(mblad)+'\n'\
+     ('Work order: '+str(mwerkorder)+' Work guide letter  Date  : '+str(datetime.datetime.now())[0:10]+' Page : '+str(mblad)+'\n'\
      '=====================================================================================================\n'+
      'Line  Description  Operation   Number  Set time  Piece timeTotal hours Work hours                    \n'+
      '=====================================================================================================\n')
@@ -167,8 +167,8 @@ def zoeken(m_email):
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             k0Edit.addItem('        Sort key orders internal')
             k0Edit.addItem('1. All internal orders')
-            k0Edit.addItem('2. Filtered by workordernumber')
-            k0Edit.addItem('3. Filtered by articlenumber')
+            k0Edit.addItem('2. Filtered by work order number')
+            k0Edit.addItem('3. Filtered by article number')
             k0Edit.addItem('4. Filtered by (part) date of start')
             k0Edit.addItem('5. Filtered by (part) date of finish')
             k0Edit.addItem('6. Filtered by progress status A-H')
@@ -183,7 +183,7 @@ def zoeken(m_email):
             zktermEdit.setValidator(input_validator)
             zktermEdit.textChanged.connect(self.zktermChanged)
          
-            lbl1 = QLabel('Searchterm')
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                            
             grid.addWidget(k0Edit, 2, 1)   
@@ -291,9 +291,9 @@ def toonOrders(keuze,zoekterm, m_email):
                 return self.header[col]
             return None
               
-    header = ['Workorder', 'Description','Articlelnumber','Amount',\
-               'Workletter','Order date', 'Progress status','Statusweek','Bookdate',\
-               'Startdate', 'Finished', 'Budgeted total','Realised total',\
+    header = ['Work order', 'Description','Article number','Amount',\
+               'Workletter','Order date', 'Progress status','Status week','Book date',\
+               'Start date', 'Finished', 'Budgeted total','Realised total',\
                'Budgeted materials','Realised materials','Budgeted wages',\
                'Realised wages', 'More/Less work', 'Ssawing','Bsawing', 'Rsawing',\
                'Splaning','Bplaning', 'Rplaning', 'Sstabbing','Bstabbing', 'Rstabbing',\
@@ -1064,13 +1064,13 @@ def toonOrders(keuze,zoekterm, m_email):
 
                     self.setFont(QFont('Arial', 10))
                     
-                    grid.addWidget(QLabel('Workorder'), 1, 0)
+                    grid.addWidget(QLabel('Work order'), 1, 0)
                     grid.addWidget(q1Edit, 1, 1) 
                     
                     grid.addWidget(QLabel('Description'), 1, 2)
                     grid.addWidget(q2Edit, 1, 3, 1, 3) 
                                                         
-                    grid.addWidget(QLabel('Articlenumber'), 2, 0)
+                    grid.addWidget(QLabel('Article number'), 2, 0)
                     grid.addWidget(q3Edit, 2, 1)
                     
                     grid.addWidget(QLabel('Amount'), 2, 2)
@@ -1082,7 +1082,7 @@ def toonOrders(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Status week'), 3, 2)
                     grid.addWidget(q8Edit, 3, 3)
                     
-                    grid.addWidget(QLabel('Unsubscriped'), 3, 4)
+                    grid.addWidget(QLabel('Unsubscribed'), 3, 4)
                     grid.addWidget(q11Edit, 3, 5) 
                     
                     grid.addWidget(QLabel('Finished'), 2, 4)
@@ -1254,7 +1254,7 @@ def toonOrders(keuze,zoekterm, m_email):
                     grid.addWidget(u65Edit, 19,2)
                     grid.addWidget(u66Edit, 19,3)
                     
-                    grid.addWidget(QLabel('Gritblasting'), 19,4)
+                    grid.addWidget(QLabel('Grit blasting'), 19,4)
                     grid.addWidget(u67Edit, 19,5)
                     grid.addWidget(u68Edit, 19,6)
                     grid.addWidget(u69Edit, 19,7)
@@ -1275,7 +1275,7 @@ def toonOrders(keuze,zoekterm, m_email):
                     cancelBtn.setFixedWidth(100)
                     cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
                     
-                    werkbriefBtn = QPushButton('Workletter')
+                    werkbriefBtn = QPushButton('Work letter')
                     werkbriefBtn.clicked.connect(lambda: printWerkbrief(mwerkorder, rpord, header))
                 
                     grid.addWidget(werkbriefBtn, 20, 10, 1, 1, Qt.AlignRight)
