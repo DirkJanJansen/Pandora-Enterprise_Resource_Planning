@@ -4,6 +4,6 @@ python-barcode
 PyQt5
 PyQtChart
 psycopg2
-sqlalchemy
+sqlalchemy<2.0
 pypiwin32 #(only windows)
 postgreSQL
