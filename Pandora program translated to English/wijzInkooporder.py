@@ -42,7 +42,7 @@ def foutOrder():
     msg.setFont(QFont("Arial", 10))
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Ordernumber is incorrect!')
+    msg.setText('Order number is incorrect!')
     msg.setWindowTitle('Modify purchase order articles.')
     msg.exec_()   
     
