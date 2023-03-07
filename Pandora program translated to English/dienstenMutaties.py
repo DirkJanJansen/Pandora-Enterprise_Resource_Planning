@@ -665,8 +665,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('1. Inhuur'+'%'),\
-                 (orders_inkoop_diensten.c.werkomschr.ilike('1. Hiring'+'%'))))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('1. Hiring'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('1. Inhuur'+'%'))))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -694,8 +694,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('1. Inhuur'+'%'),\
-                 (orders_inkoop_diensten.c.werkomschr.ilike('1. Hiring'+'%'))))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('1. Hiring'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('1. Inhuur'+'%'))))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -723,8 +723,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('2. Leiding'+'%'),\
-                 (orders_inkoop_diensten.c.werkomschr.ilike('2. Direction'+'%'))))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('2. Direction'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('2. Leiding'+'%'))))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -752,8 +752,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('2. Leiding'+'%'), \
-                 (orders_inkoop_diensten.c.werkomschr.ilike('2. Direction'+'%'))))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('2. Direction'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('2. Leiding'+'%'))))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -781,8 +781,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('3. Huisvesting'+'%'),\
-                 (orders_inkoop_diensten.c.werkomschr.ilike('3. Housing'+'%'))))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('3. Housing'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('3. Huisvesting'+'%'))))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -811,8 +811,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('3. Huisvesting'+'%'),\
-                 (orders_inkoop_diensten.c.werkomschr.ilike('3. Housing'+'%'))))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('3. Housing'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('3. Huisvesting'+'%'))))))\
                 .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -841,8 +841,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('4. Kabelwerk'+'%'),\
-                 (orders_inkoop_diensten.c.werkomschr.ilike('4. Cable work'+'%'))))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('4. Cable work'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('4. Kabelwerk'+'%'))))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -871,8 +871,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('4. Kabelwerk'+'%'),\
-                 (orders_inkoop_diensten.c.werkomschr.ilike('4. Cable work'+'%'))))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('4. Cable work'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('4. Kabelwerk'+'%'))))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -900,8 +900,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('5. Grondverzet'+'%'),\
-                 (orders_inkoop_diensten.c.werkomschr.ilike('5. Earth-moving'+'%'))))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('5. Earth-moving'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('5. Grondverzet'+'%'))))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -930,8 +930,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('5. Grondverzet'+'%'),\
-                 (orders_inkoop_diensten.c.werkomschr.ilike('5. Earth-moving'+'%'))))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('5. Earth-moving'+'%',\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('5. Grondverzet'+'%')))))))\
                  .values(acceptatie_gereed=orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum=mboekd)
                 con.execute(upd)
@@ -959,8 +959,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('6. Betonwerk'+'%'),\
-                 (orders_inkoop_diensten.c.werkomschr.ilike('6. Concrete work'+'%'))))))\
+                filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('6. Concrete work'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('6. Betonwerk'+'%'))))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -989,8 +989,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                     con.execute(inscb)
                     upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                      c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel, \
-                     filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('6. Betonwerk'+'%'),\
-                     (orders_inkoop_diensten.c.werkomschr.ilike('6. Concrete work'+'%')))))) \
+                     filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('6. Concrete work'+'%'),\
+                     (orders_inkoop_diensten.c.werkomschr.ilike('6. Betonwerk'+'%')))))) \
                       .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                      + mbedrag, acceptatie_datum = mboekd)
                     con.execute(upd)
@@ -1018,8 +1018,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('7. Vervoer'+'%'),\
-                 (orders_inkoop_diensten.c.werkomschr.ilike('7. Transport'+'%'))))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('7. Transport'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('7. Vervoer'+'%'))))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1048,8 +1048,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('7. Vervoer'+'%'),\
-                 (orders_inkoop_diensten.c.werkomschr.ilike('7. Transport'+'%'))))))\
+                filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('7. Transport'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('7. Vervoer'+'%'))))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1077,8 +1077,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('8. Overig'+'%'),\
-                 (orders_inkoop_diensten.c.werkomschr.ilike('8. Remaining'+'%'))))))\
+                filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('8. Remaining'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('8. Overig'+'%'))))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1107,8 +1107,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('8. Overig' + '%'),\
-                 (orders_inkoop_diensten.c.werkomschr.ilike('8. Remaining'+'%'))))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('8. Remaining'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('8. Overig' + '%'))))))\
                     .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1136,8 +1136,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('A. Sleuvengraver'+'%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('A. Trencher'+'%')))\
+                 orders_inkoop_diensten.c.werkomschr.ilike('A. Trencher'+'%',\
+                 orders_inkoop_diensten.c.werkomschr.ilike('A. Sleuvengraver'+'%'))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1166,8 +1166,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('A. Sleuvengraver'+'%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('A. Trencher'+'%')))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('A. Trencher'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('A. Sleuvengraver'+'%')))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1194,8 +1194,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('B. Persapparaat'+'%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('B. Pressing device'+'%')))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('B. Pressing device'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('B. Persapparaat'+'%')))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1224,8 +1224,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('B. Persapparaat' + '%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('B. Pressing device' + '%')))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('B. Pressing device' + '%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('B. Persapparaat' + '%')))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1253,8 +1253,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel, \
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('C. Atlaskraan'+'%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('C. Atlas crane'+'%')))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('C. Atlas crane'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('C. Atlaskraan'+'%')))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1283,8 +1283,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('C. Atlaskraan' + '%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('C. Atlas crane'+'%')))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('C. Atlas crane'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('C. Atlaskraan' + '%')))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1312,8 +1312,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel, \
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('D. Kraan groot'+'%'), \
-                 orders_inkoop_diensten.c.werkomschr.ilike('D. Crane big'+'%')))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('D. Crane big'+'%'), \
+                 orders_inkoop_diensten.c.werkomschr.ilike('D. Kraan groot'+'%')))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1342,8 +1342,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('D. Kraan groot'+'%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('D. Crane big'+'%')))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('D. Crane big'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('D. Kraan groot'+'%')))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1399,9 +1399,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('E. Mainliner'+'%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('E. Mainliner'+'%')))))\
-                 .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
+                 orders_inkoop_diensten.c.werkomschr.ilike('E. Mainliner'+'%')))\
+                .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
                 stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
@@ -1428,8 +1427,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('F. Hormachine'+'%'),
-                 orders_inkoop_diensten.c.werkomschr.ilike('F. Ballast clearing machine'+'%')))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('F. Ballast clearing machine'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('F. Hormachine'+'%')))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1457,8 +1456,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel, \
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('F. Hormachine'+'%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('F. Ballast clearing machine' + '%'))))) \
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('F. Ballast clearing machine' + '%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('F. Hormachine'+'%'))))) \
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1486,8 +1485,7 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('G. Wagon'+'%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('G. Wagon'+'%')))))\
+                 orders_inkoop_diensten.c.werkomschr.ilike('G. Wagon'+'%')))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1515,8 +1513,7 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel, \
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('G. Wagon'+'%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('G. Wagon'+'%')))))\
+                 orders_inkoop_diensten.c.werkomschr.ilike('G. Wagon'+'%')))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1544,8 +1541,7 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('H. Locomotor'+'%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('H. Locomotor'+'%')))))\
+                 orders_inkoop_diensten.c.werkomschr.ilike('H. Locomotor'+'%')))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1573,8 +1569,7 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('H. Locomotor'+'%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('H. Locomotor'+'%')))))\
+                 orders_inkoop_diensten.c.werkomschr.ilike('H. Locomotor'+'%')))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1601,8 +1596,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('J. Locomotief'+'%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('J. Locomotive'+'%')))))\
+                 orders_inkoop_diensten.c.werkomschr.ilike('J. Locomotive'+'%'),\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('J. Locomotief'+'%')))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1631,8 +1626,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('J. Locomotief'+'%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('J. Locomotive'+'%')))))\
+                filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('J. Locomotive'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('J. Locomotief'+'%')))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1660,8 +1655,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('K. Montagewagen'+'%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('K. Assembly trolley' + '%')))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('K. Assembly trolley' + '%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('K. Montagewagen'+'%')))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1690,8 +1685,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('K. Montagewagen'+'%'),\
-                orders_inkoop_diensten.c.werkomschr.ilike('K. Assembly trolley'+'%')))))\
+                filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('K. Assembly trolley'+'%'),\
+                orders_inkoop_diensten.c.werkomschr.ilike('K. Montagewagen'+'%')))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1719,8 +1714,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobiel'+'%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobile'+'%')))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobile'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobiel'+'%')))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1749,8 +1744,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobiel'+'%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobile'+'%')))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobile'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobiel'+'%')))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1778,8 +1773,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('M. Robeltrein'+'%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('M. Robel train'+'%'))))) \
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('M. Robel train'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('M. Robeltrein'+'%'))))) \
                     .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1808,8 +1803,8 @@ def toonMutaties(keuze,zoekterm, m_email):
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('M. Robeltrein' + '%'),\
-                 orders_inkoop_diensten.c.werkomschr.ilike('M. Robel train' + '%')))))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('M. Robel train' + '%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('M. Robeltrein' + '%')))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
