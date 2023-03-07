@@ -439,4 +439,5 @@ From 2020-01-10 updates and changes are described on this page
 2023-03-06 Several english translated screenshots added
 2023-03-07 dienstenMutaties.py some translations adjusted
 2023-03-07 wijzInkooporder.py typo corrected
+2023-03-07 dienstenMutaties.py Order all services descriptions preferred text changed from dutch to english
 
