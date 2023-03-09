@@ -1022,7 +1022,7 @@ def hoofdMenu(m_email):
                 mboekd = accwerk[2]
             except:
                 maccountnr = '1'
-                mwerknr = '8'
+                mwerknr = '7'
                 mboekd = str(datetime.now())[0:10]
     elif mk7 == '1' and mp[7][3] == '1':
         import invoerWerken
