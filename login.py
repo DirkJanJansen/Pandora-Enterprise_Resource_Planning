@@ -1016,9 +1016,14 @@ def hoofdMenu(m_email):
         while True:
             accwerk = urenImutaties.urenMut(maccountnr, mwerknr, mboekd, m_email)
 	        # for convenience start with last used work , employee and mboekd 
-            maccountnr = accwerk[0]
-            mwerknr = accwerk[1]
-            mboekd = accwerk[2]
+            try:
+                maccountnr = accwerk[0]
+                mwerknr = accwerk[1]
+                mboekd = accwerk[2]
+            except:
+                maccountnr = '1'
+                mwerknr = '7'
+                mboekd = str(datetime.now())[0:10]
     elif mk7 == '1' and mp[7][3] == '1':
         import invoerWerken
         invoerWerken.invWerk(m_email)
@@ -1045,9 +1050,14 @@ def hoofdMenu(m_email):
         while True:
             accwerk = urenMutaties.urenMut(maccountnr, mwerknr, mboekd, m_email)
             # for convenience start with last used work , employee and mboekd 
-            maccountnr = accwerk[0]
-            mwerknr = accwerk[1]
-            mboekd = accwerk[2]
+            try:
+                maccountnr = accwerk[0]
+                mwerknr = accwerk[1]
+                mboekd = accwerk[2]
+            except:
+                maccountnr = '1'
+                mwerknr = '8'
+                mboekd = str(datetime.now())[0:10]
     elif mk8 == '1' and mp[8][3] == '1':
         import maakIcluster
         while True:
