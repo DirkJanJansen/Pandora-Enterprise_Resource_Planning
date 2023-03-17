@@ -442,4 +442,5 @@ From 2020-01-10 updates and changes are described on this page
 2023-03-07 dienstenMutaties.py Order all services descriptions preferred text changed from dutch to english
 2023-03-08 login.py entry for urenMutaties.py and urenImutaties.py corrected for leaving function by incorrect labor group
 2023-03-13 login.py in Dutch entry corrected for urenMutaties.py and urenImutaties.py by leaving function by incorrect labor group
+2023-03-17 Pandora.py in Dutch and English version corrected for mismatch by odd/even year if longer then a year not used
 
