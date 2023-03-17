@@ -44,8 +44,6 @@ con = engine.connect()
 mjaar = int(str(datetime.date.today())[0:4])
 selpar = select([params]).where(params.c.paramID == 99)
 rppar = con.execute(selpar).first()
-updeven = update(params).where(params.c.paramID == 99).values(tarief = int(mjaar%2))
-con.execute(updeven)
 
 if mjaar%2 == 1 and int(rppar[1]) == 0:
     updpar = update(params).where(params.c.paramID == 99).values(tarief = 1)
