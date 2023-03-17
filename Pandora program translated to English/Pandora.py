@@ -42,11 +42,14 @@ magazijnvoorraad = Table('magazijnvoorraad', metadata,\
 engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
 con = engine.connect()
 
-selpar = select([params]).where(params.c.paramID == 99)
-# rppar = con.execute(params.select().where(params.c.paramID == 99)).one() new method sqlachemy 2.0 >
-rppar = con.execute(selpar).first()
-
 mjaar = int(str(datetime.date.today())[0:4])
+selpar = select([params]).where(params.c.paramID == 99)
+rppar = con.execute(selpar).first()
+updeven = update(params).where(params.c.paramID == 99).values(tarief = int(mjaar%2))
+con.execute(updeven)
+
+selpar = select([params]).where(params.c.paramID == 99)
+rppar = con.execute(selpar).first()
 
 if mjaar%2 == 1 and int(rppar[1]) == 0:
     updpar = update(params).where(params.c.paramID == 99).values(tarief = 1)
@@ -60,12 +63,8 @@ if mjaar%2 == 1 and int(rppar[1]) == 0:
             
     for row in rpartikel:
         mjaar = int(str(datetime.datetime.now())[0:4])
-        try:
-            mbestgr = round(sqrt(2*row[5]*rppar2[1])/(row[1]*rppar[1]),0)
-            mjrverbr = row[4]
-        except:
-            mbestgr = row[11]
-            mjrverbr = 0
+        mbestgr = round(sqrt(2*row[5]*rppar2[1])/(row[1]*rppar[1]),0)
+        mjrverbr = row[4]
         if row[10] == 1 or row[10] == 5:
             minvrd = round(mjrverbr*1/17, 0) # < 3 weeks delivery time
         elif row[10] == 2 or row[10] == 6 or row[10] == 7 :
@@ -89,12 +88,9 @@ elif mjaar%2 == 0 and int(rppar[1]) == 1:
 
     for row in rpartikel:
         mjaar = int(str(datetime.datetime.now())[0:4])
-        try:
-            mbestgr = round(sqrt(2*row[4]*rppar2[1])/(row[1]*rppar1[1]),0)
-            mjrverbr = row[5]
-        except:
-            mbestgr = row[11]
-            mjrverbr = 0
+        mbestgr = round(sqrt(2*row[4]*rppar2[1])/(row[1]*rppar1[1]),0)
+        mjrverbr = row[5]
+        mjrverbr = 0
         if row[10] == 1 or row[10] == 5:
             minvrd = round(mjrverbr*1/17, 0) # < 3 weeks delivery time
         elif row[10] == 2 or row[10] == 6 or row[10] == 7 :
@@ -122,10 +118,10 @@ if mhjrmnd != mdbjrmnd:
     mincourant = 0
     for row in rpart:      
         mtotaal = mtotaal + row[1]*row[2]                       # total value of stock
-        if mvjrmnd < int(str(row[3][0:4])+str(row[3])[5:7]):    # see if last transaction less than a year agoo
+        if mvjrmnd < int(str(row[3][0:4])+str(row[3])[5:7]):    # see if last transaction less than a year ago
             mcourant = mcourant + row[1]*row[2]
         else:
-            mincourant = mincourant + row[1]*row[2]             # last transaction more than a year agoo
+            mincourant = mincourant + row[1]*row[2]             # last transaction more than a year ago
     updmvrd = update(magazijnvoorraad).where(magazijnvoorraad.c.jaarmaand == mhjrmnd)\
           .values(totaal = int(mtotaal), courant = int(mcourant), incourant = int(mincourant)) 
     # write totals in present year-month
