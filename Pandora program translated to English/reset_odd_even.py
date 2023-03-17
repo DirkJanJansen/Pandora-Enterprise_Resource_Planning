@@ -4,12 +4,12 @@ from sqlalchemy import Table, Column, Integer, String, MetaData, create_engine,\
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMessageBox, QApplication
 
-def odd_even():
+def odd_even(message):
     msg = QMessageBox()
     msg.setStyleSheet("font: 10pt Arial; color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Reset parameter successful!')
+    msg.setText(message)
     msg.setWindowTitle('Reset parameter')
     msg.exec_()
 
@@ -21,13 +21,16 @@ params = Table('params', metadata,
 
 engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
 con = engine.connect()
-
-mjaar = int(str(datetime.date.today())[0:4])
-updeven = update(params).where(params.c.paramID == 99).values(tarief = int(mjaar%2))
-con.execute(updeven)
+try:
+    mjaar = int(str(datetime.date.today())[0:4])
+    updeven = update(params).where(params.c.paramID == 99).values(tarief = int(mjaar%2))
+    con.execute(updeven)
+    message = "Reset parameter successful!"
+except:
+    message = "Reset parameter failed"
 app = QApplication(sys.argv)
 app.setStyle("Windows")
-sys.exit(odd_even())
+sys.exit(odd_even(message))
 app.exec_()
 
 
