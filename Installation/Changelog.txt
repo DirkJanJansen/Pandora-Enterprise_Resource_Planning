@@ -445,4 +445,5 @@ From 2020-01-10 updates and changes are described on this page
 2023-03-17 Pandora.py in Dutch and English version corrected for mismatch by odd/even year if longer then a year not used
 2023-03-17 Pandora.py mismatch correction removed and changed by a one-time program reset_odd_even.py in English and Dutch version
 2023-03-17 reset_odd_even.py message if reset successful.
+2023-03-17 procedure added for starting reset_odd_even.py in install texts
 
