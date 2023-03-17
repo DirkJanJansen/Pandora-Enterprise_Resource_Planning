@@ -41,10 +41,12 @@ magazijnvoorraad = Table('magazijnvoorraad', metadata,\
           
 engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
 con = engine.connect()
+mjaar = int(str(datetime.date.today())[0:4])
 selpar = select([params]).where(params.c.paramID == 99)
 rppar = con.execute(selpar).first()
+updeven = update(params).where(params.c.paramID == 99).values(tarief = int(mjaar%2))
+con.execute(updeven)
 
-mjaar = int(str(datetime.date.today())[0:4])
 if mjaar%2 == 1 and int(rppar[1]) == 0:
     updpar = update(params).where(params.c.paramID == 99).values(tarief = 1)
     con.execute(updpar)
@@ -57,12 +59,8 @@ if mjaar%2 == 1 and int(rppar[1]) == 0:
             
     for row in rpartikel:
         mjaar = int(str(datetime.datetime.now())[0:4])
-        try:
-            mbestgr = round(sqrt(2*row[5]*rppar2[1])/(row[1]*rppar[1]),0)
-            mjrverbr = row[4]
-        except:
-            mbestgr = row[11]
-            mjrverbr = 0
+        mbestgr = round(sqrt(2*row[5]*rppar2[1])/(row[1]*rppar[1]),0)
+        mjrverbr = row[4]
         if row[10] == 1 or row[10] == 5:
             minvrd = round(mjrverbr*1/17, 0) # < 3 weken levertijd
         elif row[10] == 2 or row[10] == 6 or row[10] == 7 :
@@ -86,12 +84,8 @@ elif mjaar%2 == 0 and int(rppar[1]) == 1:
         
     for row in rpartikel:
         mjaar = int(str(datetime.datetime.now())[0:4])
-        try:
-            mbestgr = round(sqrt(2*row[4]*rppar2[1])/(row[1]*rppar1[1]),0)
-            mjrverbr = row[5]
-        except:
-            mbestgr = row[11]
-            mjrverbr = 0
+        mbestgr = round(sqrt(2*row[4]*rppar2[1])/(row[1]*rppar1[1]),0)
+        mjrverbr = row[5]
         if row[10] == 1 or row[10] == 5:
             minvrd = round(mjrverbr*1/17, 0) # < 3 weken levertijd
         elif row[10] == 2 or row[10] == 6 or row[10] == 7 :
