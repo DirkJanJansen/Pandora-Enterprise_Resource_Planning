@@ -446,4 +446,5 @@ From 2020-01-10 updates and changes are described on this page
 2023-03-17 Pandora.py mismatch correction removed and changed by a one-time program reset_odd_even.py in English and Dutch version
 2023-03-17 reset_odd_even.py message if reset successful.
 2023-03-17 procedure added for starting reset_odd_even.py in install texts
+2023-03-20 logo mainmenu English changed text hoogdmenu to mainmeu
 
