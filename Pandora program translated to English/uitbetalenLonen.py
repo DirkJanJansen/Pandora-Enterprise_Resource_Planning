@@ -190,7 +190,7 @@ def maandBetalingen(m_email):
             'Payment to bank account                      Other information                               \n'+
             '=============================================================================================\n'+
             'Weekday this month x 8 hours  '+'{:>12.2f}'.format(row[52])+'   Employer pensioncontributiom  '+'{:>12.2f}'.format(row[46])+'\n'+
-            'Worked hours this month       '+'{:>12.2f}'.format(row[24])+'   Employer share WIA,IVA,WGA   '+'{:>12.2f}'.format(row[47])+'\n'+
+            'Worked hours this month       '+'{:>12.2f}'.format(row[24])+'   Employer share WIA,IVA,WGA    '+'{:>12.2f}'.format(row[47])+'\n'+
             'Booked hours this month       '+'{:>12.2f}'.format(row[24]+row[34]+row[35]+row[36]+row[37]+row[38]+row[39])+'   Reservation AWF               '+'{:>12.2f}'.format(row[48])+'\n'+
             'Overtime 125% this month      '+'{:>12.2f}'.format(row[28])+'   Employer share ZVW            '+'{:>12.2f}'.format(row[49])+'\n'+
             'Overtime 150% this month      '+'{:>12.2f}'.format(row[29])+'   Res.holiday allowance cum.    '+'{:>12.2f}'.format(row[23])+'\n'+
