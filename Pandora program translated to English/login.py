@@ -24,6 +24,7 @@ def goodbye():
     msg.setText('Googbye!       ')
     msg.setWindowTitle('LOGON')
     msg.exec_()
+    sys.exit()
      
 def info():
     class Widget(QDialog):
@@ -241,7 +242,7 @@ def inlog():
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
                        
             cancelBtn = QPushButton('Shutdown')
-            cancelBtn.clicked.connect(lambda: sys.exit(goodbye()))
+            cancelBtn.clicked.connect(lambda: goodbye())
                                       
             grid.addWidget(cancelBtn,  5, 2)
             cancelBtn.setFont(QFont("Arial",10))
