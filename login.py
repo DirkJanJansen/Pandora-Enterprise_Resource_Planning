@@ -24,6 +24,7 @@ def totZiens():
     msg.setText('Tot ziens!       ')
     msg.setWindowTitle('Loginscherm')
     msg.exec_()
+    sys.exit()
      
 def info():
     class Widget(QDialog):
@@ -241,7 +242,7 @@ def inlog():
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
                        
             cancelBtn = QPushButton('Afsluiten')
-            cancelBtn.clicked.connect(lambda: sys.exit(totZiens()))
+            cancelBtn.clicked.connect(lambda: totZiens())
                                       
             grid.addWidget(cancelBtn,  5, 2)
             cancelBtn.setFont(QFont("Arial",10))
