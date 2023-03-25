@@ -2,7 +2,7 @@ from login import hoofdMenu
 from PyQt5.QtCore import Qt, QRegExp
 from PyQt5.QtGui import QIcon, QFont, QPixmap, QRegExpValidator
 from PyQt5.QtWidgets import QLineEdit, QGridLayout, QDialog, QLabel,\
-            QPushButton, QComboBox, QCheckBox
+            QPushButton, QComboBox, QCheckBox, QMessageBox
 from sqlalchemy import (Table, Column, Integer, String, MetaData, create_engine,\
                         ForeignKey, Float, select, update, func, and_, Boolean)
     
