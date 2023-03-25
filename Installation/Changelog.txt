@@ -450,4 +450,5 @@ From 2020-01-10 updates and changes are described on this page
 2023-03-20 screenshots mainmenu and inactive mainmenu text cahnged to English
 2023-03-22 uitbetalenLonen.py alligning text WIA  corrected + Payrollslip.png screenshot updated
 2023-03-23 login.py sys.exit moved to goodbye() function
+2023-03-25 toonGrafieken.py Menu text changed Budgeted / Reliased
 
