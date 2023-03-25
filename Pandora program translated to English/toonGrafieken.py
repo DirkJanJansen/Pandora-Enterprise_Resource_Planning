@@ -50,7 +50,7 @@ def zoekwk(m_email):
             kEdit.setStyleSheet("color: black;  background-color: #F8F7EE")
             kEdit.addItem('                  Choice charts')
             kEdit.addItem('1. Costs total / budgeted costs')
-            kEdit.addItem('2. Wages budgeted realised')
+            kEdit.addItem('2. Wages budgeted / realised')
             kEdit.addItem('3. Materials budgeted / realised')
             kEdit.addItem('4. Equipment budgeted / realised')
             kEdit.addItem('5. Hiring budgeted / realised')
@@ -225,7 +225,7 @@ def printGrafiek(keuze, jrwk, m_email):
                 s2 = 11
                 t1 = 'Materials budgeted'
                 t2 = 'Materials realised'
-                t3 = 'Materials'
+                t3 = 'Materials '
                 c1 = Qt.cyan
                 c2 = Qt.magenta
                 ysch =  60000000       
