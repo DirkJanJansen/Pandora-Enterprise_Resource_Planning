@@ -452,4 +452,5 @@ From 2020-01-10 updates and changes are described on this page
 2023-03-23 login.py sys.exit moved to goodbye() function
 2023-03-25 toonGrafieken.py Menu text changed Budgeted / Reliased
 2023-03-25 urenMutaties.py import QMessageBox added
+2023-03-26 urenMutaties.py and urenImutaties.py worknumber error checking improved
 
