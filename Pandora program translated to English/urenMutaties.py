@@ -2,7 +2,7 @@ from login import hoofdMenu
 from PyQt5.QtCore import Qt, QRegExp
 from PyQt5.QtGui import QIcon, QFont, QPixmap, QRegExpValidator
 from PyQt5.QtWidgets import QLineEdit, QGridLayout, QDialog, QLabel,\
-            QPushButton, QComboBox, QCheckBox, QMessageBox
+            QPushButton, QComboBox, QCheckBox
 from sqlalchemy import (Table, Column, Integer, String, MetaData, create_engine,\
                         ForeignKey, Float, select, update, func, and_, Boolean)
     
@@ -19,14 +19,6 @@ def _11check(mcontr):
         return True
     else:
         return False
-
-def foutWerk():
-    msg = QMessageBox()
-    msg.setStyleSheet("color: black;  background-color: gainsboro")
-    msg.setIcon(QMessageBox.Critical)
-    msg.setText('Incorrect work number\nopted!')
-    msg.setWindowTitle('Entry incorrect')
-    msg.exec_()
 
 def windowSluit(self, m_email):
     self.close()
@@ -177,7 +169,8 @@ def urenBoeking(self, m_email):
        self.lblt.setText('Person not present in this labor pool!')
        self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
        return('', mwerknr, mboekd, m_email)
-    if mwerknr and len(mwerknr)== 9  and _11check(mwerknr):
+    selwerk = select([werken]).where(werken.c.werknummerID == mwerknr)
+    if mwerknr and len(mwerknr)== 9  and _11check(mwerknr) and con.execute(selwerk).first():
         mwerknr = int(mwerknr)
     else:
        self.urenEdit.setText('0')
@@ -186,14 +179,7 @@ def urenBoeking(self, m_email):
        self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
        return(maccountnr, '', mboekd, m_email)
                 
-    engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
-    con = engine.connect()
-    selwerk = select([werken]).where(werken.c.werknummerID == mwerknr)
-    try:
-      rpwerk = con.execute(selwerk).first()
-    except:
-      foutWerk()
-      return
+    rpwerk = con.execute(selwerk).first()
     muren = 0
     mu125 = 0
     mu150 = 0

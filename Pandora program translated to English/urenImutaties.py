@@ -207,7 +207,8 @@ def urenBoeking(self, m_email):
        self.lblt.setText('Person is not in this labor pool!')
        self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
        return('', mwerknr, mboekd, m_email)
-    if mwerknr and len(mwerknr)== 9  and _11check(mwerknr):
+    selwerk = select([orders_intern]).where(orders_intern.c.werkorderID == mwerknr)
+    if mwerknr and len(mwerknr)== 9  and _11check(mwerknr) and con.execute(selwerk).first():
         mwerknr = int(mwerknr)
     else:
        self.urenEdit.setText('0')
@@ -215,10 +216,7 @@ def urenBoeking(self, m_email):
        self.lblt.setText('This is not a valid work order number!')
        self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
        return(maccountnr, '', mboekd, m_email)
-                
-    engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
-    con = engine.connect()
-    selwerk = select([orders_intern]).where(orders_intern.c.werkorderID == mwerknr)
+        
     rpwerk = con.execute(selwerk).first()
     
     muren = 0
