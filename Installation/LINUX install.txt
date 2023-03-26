@@ -88,7 +88,7 @@ createdb bisystem
 restore database:
 pg_restore --dbname=bisystem  --verbose "/home/postgres/Pandora/data/bisystem.backup"
 
-To implement English version translated frontends, overwrite program files in folder Pandora with the contents of folder Pandora English
+To implement English version translated frontends, overwrite program files in folder Pandora with the contents of folder Pandora program translated to English
 
 Before starting the program for the first time run script reset_odd_even.py to set the parameter for odd-even year for the right year
 Ctrl+Alt+t (opens terminal)
