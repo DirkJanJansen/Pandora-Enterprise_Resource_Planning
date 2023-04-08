@@ -21,7 +21,7 @@ def goodbye():
     # release lock
     home = os.path.expanduser("~")
     os.remove(str(home)+'/.pandora_lock')
-    msg.setText('Googbye!       ')
+    msg.setText('Goodbye!       ')
     msg.setWindowTitle('LOGON')
     msg.exec_()
     sys.exit()
