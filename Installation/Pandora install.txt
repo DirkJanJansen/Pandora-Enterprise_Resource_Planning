@@ -12,7 +12,12 @@ App scaling is set at 125% in Windows
 For additional instructions for Linux see folder Linux "LINUX Install.txt".
 For adjustments or  additions see "Changelog.txt".
 
-Install python3,  pyqt5, pyqtchart same version as pyqt5, sqlalchemy version sqlalchemy  version   1.4.46 or before, psycopg2 and pypiwin32.
+Install python3
+pip install pyqt5
+pip install pyqtchart (same version as pyqt5)
+pip install sqlalchemy (version sqlalchemy  version   1.4.46 or before)
+pip install psycopg2 
+pip install pypiwin32
 
 For printing listings change this settings in notepad:
 Pagesettings: Left 0 Right 0 Top 14 Bottom 40
