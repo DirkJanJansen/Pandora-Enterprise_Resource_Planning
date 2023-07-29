@@ -18,6 +18,8 @@ pip install pyqtchart (same version as pyqt5)
 pip install sqlalchemy (version sqlalchemy  version   1.4.46 or before)
 pip install psycopg2 
 pip install pypiwin32
+pip install pillow
+pip install python-barcode
 
 For printing listings change this settings in notepad:
 Pagesettings: Left 0 Right 0 Top 14 Bottom 40
@@ -65,4 +67,3 @@ python reset_odd_even.py
 
 Dirk Jansen
 dj.jansen@casema.nl
-
