@@ -21,6 +21,9 @@ pip install pypiwin32
 pip install pillow
 pip install python-barcode
 
+If you want a editor:
+install pycharm community
+
 For printing listings change this settings in notepad:
 Pagesettings: Left 0 Right 0 Top 14 Bottom 40
 Font: Consolas 10
