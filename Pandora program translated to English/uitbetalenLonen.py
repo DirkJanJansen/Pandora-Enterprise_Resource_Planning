@@ -201,7 +201,7 @@ def maandBetalingen(m_email):
             'Hours doctor visit            '+'{:>12.2f}'.format(row[38])+'   Date of employment            '+'{:>12s}'.format(row[13])+'\n'+
             'Hours illnes                  '+'{:>12.2f}'.format(row[37])+'   Leave credit in hours         '+'{:>12.2f}'.format(row[43])+'\n'+
             'Hours permitted leave         '+'{:>12.2f}'.format(row[39])+'   Hourly wage                   '+'{:>12.2f}'.format(row[32])+'\n'+
-            '=========================================='+'   Reisuurloon                   '+'{:>12.2f}'.format(row[33])+'\n'+
+            '=========================================='+'   Travel hourly wage            '+'{:>12.2f}'.format(row[33])+'\n'+
             'Working hours cumulation      '+'{:>12.2f}'.format(row[51])+'                                \n'+
             '=============================================================================================\n'+
             'Amounts                                                                                      \n'+
