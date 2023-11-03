@@ -454,4 +454,5 @@ From 2020-01-10 updates and changes are described on this page
 2023-03-25 urenMutaties.py import QMessageBox added
 2023-03-26 urenMutaties.py and urenImutaties.py worknumber error checking improved
 2023-10-26 Pandora English uitbetalenLonen.py printlayout Payroll Dutch text "Reisuurloon" changed in "Travel hourly wage" 
+2023-11-03 Pandora English screenshot Payrollslip.png changed with "Travel hourly wage"
 
