@@ -606,7 +606,7 @@ def hoofdMenu(m_email):
 
             mplist=[k0Edit,k1Edit,k2Edit,k3Edit,k4Edit,k5Edit,k6Edit,k7Edit,\
                     k8Edit,k9Edit,k10Edit,k11Edit,k12Edit,k13Edit,k14Edit,k15Edit]
-            lineperm = ([0, 4, 6, 2, 6, 5],[0, 3, 4, 6, 1],[0, 1, 4, 6, 6],[0, 3, 4, 3, 4, 6, 6],[0, 3, 4, 6, 1, 6],\
+            lineperm = ([0, 4, 6, 2, 2, 5],[0, 3, 4, 6, 1],[0, 1, 4, 6, 6],[0, 3, 4, 3, 4, 6, 6],[0, 3, 4, 6, 1, 6],\
                         [0, 3, 4, 6, 4, 5, 1, 6, 3, 6],[0, 3, 4, 6, 3, 5, 3],[0, 3, 4, 6, 2, 6, 3, 3],\
                         [0, 3, 4, 6, 3, 6, 3, 6, 1],[0, 4, 4, 6, 3, 6, 3, 6, 1],[0, 6, 2, 1, 6, 3, 4, 1],\
                         [0, 6, 6, 2, 6, 2, 5, 6],[0, 2, 1, 1, 1],[0, 1, 6, 6, 6],[0, 1, 3, 3, 3, 4, 6, 4],[0])
@@ -930,7 +930,7 @@ def hoofdMenu(m_email):
          klmail = '' 
          import bestelOrder
          bestelOrder.artKeuze(m_email, 0, klmail)
-    elif mk0 == '4' and mp[0][6] == '1':
+    elif mk0 == '4' and mp[0][2] == '1':
         import opvrKlantenorders
         opvrKlantenorders.bestellingen(m_email)
     elif mk0 == '5' and mp[0][5] == '1':
