@@ -604,19 +604,25 @@ def hoofdMenu(m_email):
             rpaccount = conn.execute(sel).first()
             mp = rpaccount[2:18]
 
+            # list of Mainmenu
             mplist=[k0Edit,k1Edit,k2Edit,k3Edit,k4Edit,k5Edit,k6Edit,k7Edit,\
                     k8Edit,k9Edit,k10Edit,k11Edit,k12Edit,k13Edit,k14Edit,k15Edit]
+            # list of pointers by mainmenu and menulines per groups pointers towards database tasble accountpermissions
             lineperm = ([0, 4, 6, 2, 2, 5],[0, 3, 4, 6, 1],[0, 1, 4, 6, 6],[0, 3, 4, 3, 4, 6, 6],[0, 3, 4, 6, 1, 6],\
                         [0, 3, 4, 6, 4, 5, 1, 6, 3, 6],[0, 3, 4, 6, 3, 5, 3],[0, 3, 4, 6, 2, 6, 3, 3],\
                         [0, 3, 4, 6, 3, 6, 3, 6, 1],[0, 4, 4, 6, 3, 6, 3, 6, 1],[0, 6, 2, 1, 6, 3, 4, 1],\
                         [0, 6, 6, 2, 6, 2, 5, 6],[0, 2, 1, 1, 1],[0, 1, 6, 6, 6],[0, 1, 3, 3, 3, 4, 6, 4],[0])
-
+            #loop on mainmenu and permissions in table accounts
             for menu in range(0,16):
                 menuperms = lineperm[menu]
                 perms = mp[menu]
+                # if value in database is 0 for index 0 then disable mainmenulines
                 if mp[menu][0] == '0':
                     mplist[menu].setDisabled(True)
                     mplist[menu].setStyleSheet("color: darkgrey; background-color: gainsboro")
+                # subloop on menulines per menu
+                # translate submenuline with linepointer from lineperm list, check if 0 in accounts table
+                # if so disable menuline from selecting
                 for lines in range(0,len(menuperms)):
                     linepointer = menuperms[lines]
                     mperm = perms[linepointer]
@@ -624,6 +630,7 @@ def hoofdMenu(m_email):
                          mplist[menu].model().item(lines).setEnabled(False)
                          mplist[menu].model().item(lines).setForeground(QColor('darkgrey'))
                          mplist[menu].model().item(lines).setBackground(QColor('gainsboro'))
+            # combine account table functions with reprint functions, disable if 0
             if mp[8][5] == '0 ':
                  mplist[15].model().item(1).setEnabled(False)
                  mplist[15].model().item(1).setForeground(QColor('darkgrey'))
