@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QApplication
 from sqlalchemy import Table, Column, Integer, Float, String, MetaData, create_engine,\
     insert, select, update, func, Boolean
 
+'''
 # set lock for up to 1 session per PC
 
 home = os.path.expanduser("~")
@@ -12,7 +13,8 @@ if os.path.isfile(str(home)+'/.pandora_lock'):
     sys.exit()
 else:
     open(str(home)+'/.pandora_lock', 'w')
-    
+'''
+
 # following rules for annual consumption of items even/odd year per year
 # and calculate warehouse inventory value for charts per month
 

@@ -2,9 +2,9 @@
 from datetime import datetime
 from validZt import zt
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QFont, QPixmap, QIcon, QMovie
+from PyQt5.QtGui import QFont, QPixmap, QIcon, QMovie, QColor
 from PyQt5.QtWidgets import (QDialog, QGridLayout, QMessageBox,\
-                             QLabel, QLineEdit, QPushButton, QComboBox)
+                             QLabel, QLineEdit, QPushButton, QComboBox, QFrame)
 from sqlalchemy import (Table, Column, Integer, String, MetaData,\
                     create_engine, select)
 
@@ -18,9 +18,11 @@ def goodbye():
     msg.setStyleSheet("font: 10pt Arial; color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Information)
+    '''
     # release lock
     home = os.path.expanduser("~")
     os.remove(str(home)+'/.pandora_lock')
+    '''
     msg.setText('Goodbye!       ')
     msg.setWindowTitle('LOGON')
     msg.exec_()
@@ -153,25 +155,7 @@ def wrongLogon():
     msg.setText('Logon failed!')
     msg.setWindowTitle('ENTRY')
     msg.exec_()
-    
-def noMenu():
-    msg = QMessageBox()
-    msg.setStyleSheet("color: black;  background-color: gainsboro")
-    msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
-    msg.setIcon(QMessageBox.Warning)
-    msg.setText('This is the title line, choose a menu line!')
-    msg.setWindowTitle('No MenuChoice')
-    msg.exec_()
 
-def noEntrance():
-    msg = QMessageBox()
-    msg.setStyleSheet("color: black;  background-color: gainsboro")
-    msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
-    msg.setIcon(QMessageBox.Warning)
-    msg.setText('You are not authorized for this choice')
-    msg.setWindowTitle('AUTHORISATION')
-    msg.exec_()
-    
 def createAccount(self):
     from invoerAccount import nieuwAccount
     nieuwAccount(self)
@@ -182,13 +166,13 @@ def inlog():
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
             self.setWindowTitle("Pandora business information system logon screen")
-            self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
-     
+            self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
+
             self.setFont(QFont('Arial', 10))
-            self.setStyleSheet("background-color: #D9E1DF") 
+            self.setStyleSheet("background-color: #D9E1DF")
             grid = QGridLayout()
             grid.setSpacing(20)
-            
+
             self.email = QLabel()
             emailEdit = QLineEdit()
             emailEdit.setStyleSheet("background: #F8F7EE")
@@ -203,82 +187,82 @@ def inlog():
             wachtwEdit.setFixedWidth(200)
             wachtwEdit.setFont(QFont("Arial",10))
             wachtwEdit.textChanged.connect(self.wachtwChanged)
- 
+
             lbl = QLabel()
             pixmap = QPixmap('./images/logos/verbinding.jpg')
             lbl.setPixmap(pixmap)
             grid.addWidget(lbl, 0, 0, 1, 2)
-            
+
             lblinfo = QLabel(' Pandora logon')
             grid.addWidget(lblinfo, 0, 1, 1, 2, Qt.AlignLeft)
             lblinfo.setStyleSheet("color:rgba(45, 83, 115, 255); font: 25pt Comic Sans MS")
-            
+
             logo = QLabel()
             pixmap = QPixmap('./images/logos/logo.jpg')
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 2, 1, 1, Qt.AlignRight)
-             
+
             pandora = QLabel()
             movie = QMovie('./images/logos/pyqt5.gif')
             pandora.setMovie(movie)
             movie.start()
             grid.addWidget(pandora, 1 ,0, 1, 3, Qt.AlignCenter)
-                 
+
             grid.addWidget(QLabel('emailaddress or\nAccountnumber'), 3, 1)
             grid.addWidget(emailEdit, 3, 2)
-    
+
             grid.addWidget(QLabel('Password'), 4, 1)
             grid.addWidget(wachtwEdit, 4, 2)
-                                   
+
             self.setLayout(grid)
             self.setGeometry(600, 250, 150, 150)
-            
+
             applyBtn = QPushButton('Logon')
             applyBtn.clicked.connect(self.accept)
-            
+
             grid.addWidget(applyBtn, 5, 1, 1 , 2, Qt.AlignRight)
             applyBtn.setFont(QFont("Arial",10))
             applyBtn.setFixedWidth(90)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
-                       
+
             cancelBtn = QPushButton('Shutdown')
             cancelBtn.clicked.connect(lambda: goodbye())
-                                      
+
             grid.addWidget(cancelBtn,  5, 2)
             cancelBtn.setFont(QFont("Arial",10))
             cancelBtn.setFixedWidth(90)
             cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
-            
+
             nwBtn = QPushButton('New Account')
             nwBtn.clicked.connect(lambda: createAccount(self))
-            
+
             grid.addWidget(nwBtn,  5, 0, 1, 2, Qt.AlignRight)
             nwBtn.setFont(QFont("Arial",10))
             nwBtn.setFixedWidth(140)
             nwBtn.setStyleSheet("color: black;  background-color: gainsboro")
-            
+
             infoBtn = QPushButton('Information')
             infoBtn.clicked.connect(lambda: info())
-            
+
             grid.addWidget(infoBtn,  5, 0, 1, 2)
             infoBtn.setFont(QFont("Arial",10))
             infoBtn.setFixedWidth(120)
-            infoBtn.setStyleSheet("color: black;  background-color: gainsboro")           
-            
+            infoBtn.setStyleSheet("color: black;  background-color: gainsboro")
+
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 6, 0, 1, 3, Qt.AlignCenter)
-                       
+
         def emailChanged(self, text):
             self.email.setText(text)
-        
+
         def wachtwChanged(self, text):
             self.Wachtwoord.setText(text)
-        
+
         def returnemail(self):
             return self.email.text()
-        
+
         def returnWachtwoord(self):
             return self.Wachtwoord.text()
-        
+
         @staticmethod
         def getData(parent=None):
             dialog = Widget(parent)
@@ -292,8 +276,8 @@ def inlog():
             noChoice()
             inlog()
     if sys.platform == 'win32':
-        from win32api import GetKeyState 
-        from win32con import VK_CAPITAL 
+        from win32api import GetKeyState
+        from win32con import VK_CAPITAL
         capslk = GetKeyState(VK_CAPITAL)
         if capslk == 1:
             capslkOn()
@@ -308,10 +292,10 @@ def inlog():
         Column('accountID', Integer(), primary_key=True),
         Column('email', String, nullable=False),
         Column('password', String, nullable=False))
-    
+
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     conn = engine.connect()
-    
+
     if data[0] and zt(data[0],12):
         m_email = data[0]
         sel = select([accounts]).where(accounts.c.email == m_email)
@@ -339,7 +323,7 @@ def inlog():
     else:
         wrongLogon()
         inlog()
-       
+
     if data[1]:
         mwachtw = data[1]
     else:
@@ -350,16 +334,17 @@ def inlog():
         wrongPassword()
         inlog()
     hoofdMenu(m_email)
-       
+
 def hoofdMenu(m_email):
     #structure Menu's
     class Widget(QDialog):
-        def __init__(self, parent=None):
+        def __init__(self, parent=None, accperms=None):
             super(Widget, self).__init__(parent)
             self.setWindowTitle("Pandora Business Information System")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setFont(QFont('Arial', 10))
-            self.setStyleSheet("background-color: #D9E1DF")  
+            self.setStyleSheet("background-color: #D9E1DF")
+
             self.Keuze0 = QLabel()
             k0Edit = QComboBox()
             k0Edit.setFixedWidth(290)
@@ -372,7 +357,17 @@ def hoofdMenu(m_email):
             k0Edit.addItem('4. Requesting order overview')
             k0Edit.addItem('5. Printing order invoices')
             k0Edit.activated[str].connect(self.k0Changed)
-             
+
+            '''
+            def k0Changed():
+                self.k0Edit.setCurrentIndex(self.k0Edit.currentIndex())
+            self.k0Edit.currentIndexChanged.connect(k0Changed)
+                   
+            # translate items in account permissions to Menu S O I M P Q R for all function groups
+            # disable menu items if matching position from 2 to and including 8 in accounts is 0
+            # then all menuitems which are not permitted are not accessable.
+            '''
+
             self.Keuze1 = QLabel()
             k1Edit = QComboBox()
             k1Edit.setFixedWidth(290)
@@ -619,13 +614,81 @@ def hoofdMenu(m_email):
             sel = select([accounts]).where(accounts.c.email == m_email)
             rpaccount = conn.execute(sel).first()
             mp = rpaccount[2:18]
+
             mplist=[k0Edit,k1Edit,k2Edit,k3Edit,k4Edit,k5Edit,k6Edit,k7Edit,\
                     k8Edit,k9Edit,k10Edit,k11Edit,k12Edit,k13Edit,k14Edit,k15Edit]
-            for k in range(0,16):
-                if mp[k][0] == '0':
-                    mplist[k].setDisabled(True)
-                    mplist[k].setStyleSheet("color: darkgrey; background-color: gainsboro")
- 
+
+            lineperm = ([0, 4, 6, 2, 6, 5],[0, 3, 4, 6, 1],[0, 1, 4, 6, 6],[0, 3, 4, 3, 4, 6, 6],[0, 3, 4, 6, 1, 6],\
+                        [0, 3, 4, 6, 4, 5, 1, 6, 3, 6],[0, 3, 4, 6, 3, 5, 3],[0, 3, 4, 6, 2, 6, 3, 3],\
+                        [0, 3, 4, 6, 3, 6, 3, 6, 1],[0, 4, 4, 6, 3, 6, 3, 6, 1],[0, 6, 2, 1, 6, 3, 4, 1],\
+                        [0, 6, 6, 2, 6, 2, 5, 6],[0, 2, 1, 1, 1],[0, 1, 6, 6, 6],[0, 1, 3, 3, 3, 4, 6, 4],[0])
+
+            for menu in range(0,16):
+                menuperms = lineperm[menu]
+                perms = mp[menu]
+                if mp[menu][0] == '0':
+                    mplist[menu].setDisabled(True)
+                    mplist[menu].setStyleSheet("color: darkgrey; background-color: gainsboro")
+                for lines in range(0,len(menuperms)):
+                    linepointer = menuperms[lines]
+                    mperm = perms[linepointer]
+                    if mperm == '0' and linepointer > 0:
+                         mplist[menu].model().item(lines).setEnabled(False)
+                         mplist[menu].model().item(lines).setForeground(QColor('darkgrey'))
+                         mplist[menu].model().item(lines).setBackground(QColor('gainsboro'))
+                    if mp[8][5] == '0 ':
+                         mplist[15].model().item(1).setEnabled(False)
+                         mplist[15].model().item(1).setForeground(QColor('darkgrey'))
+                         mplist[15].model().item(1).setBackground(QColor('gainsboro'))
+                    if mp[9][5] == '0':
+                        mplist[15].model().item(2).setEnabled(False)
+                        mplist[15].model().item(2).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(2).setBackground(QColor('gainsboro'))
+                    if mp[5][5] == '0':
+                        mplist[15].model().item(3).setEnabled(False)
+                        mplist[15].model().item(3).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(3).setBackground(QColor('gainsboro'))
+                    if mp[6][5] == '0':
+                        mplist[15].model().item(4).setEnabled(False)
+                        mplist[15].model().item(4).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(4).setBackground(QColor('gainsboro'))
+                    if mp[7][5] == '0':
+                        mplist[15].model().item(5).setEnabled(False)
+                        mplist[15].model().item(5).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(5).setBackground(QColor('gainsboro'))
+                    if mp[5][5] == '0':
+                        mplist[15].model().item(6).setEnabled(False)
+                        mplist[15].model().item(6).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(6).setBackground(QColor('gainsboro'))
+                    if mp[5][5] == '0':
+                        mplist[15].model().item(7).setEnabled(False)
+                        mplist[15].model().item(7).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(7).setBackground(QColor('gainsboro'))
+                    if mp[10][5] == '0':
+                        mplist[15].model().item(8).setEnabled(False)
+                        mplist[15].model().item(8).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(8).setBackground(QColor('gainsboro'))
+                    if mp[10][5] == '0':
+                        mplist[15].model().item(9).setEnabled(False)
+                        mplist[15].model().item(9).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(9).setBackground(QColor('gainsboro'))
+                    if mp[11][5] == '0':
+                        mplist[15].model().item(10).setEnabled(False)
+                        mplist[15].model().item(10).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(10).setBackground(QColor('gainsboro'))
+                    if mp[11][5] == '0':
+                        mplist[15].model().item(11).setEnabled(False)
+                        mplist[15].model().item(11).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(11).setBackground(QColor('gainsboro'))
+                    if mp[3][5] == '0':
+                        mplist[15].model().item(12).setEnabled(False)
+                        mplist[15].model().item(12).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(12).setBackground(QColor('gainsboro'))
+                    if mp[5][5] == '0':
+                        mplist[15].model().item(13).setEnabled(False)
+                        mplist[15].model().item(13).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(13).setBackground(QColor('gainsboro'))
+
             grid = QGridLayout()
             grid.setSpacing(20)
              
@@ -867,7 +930,6 @@ def hoofdMenu(m_email):
     elif dlist[15]:
         mk15 = dlist[15][0] 
     else:
-        noMenu()
         hoofdMenu(m_email)
         
     if mk0 == '1' and mp[0][4] == '1':
@@ -1162,7 +1224,7 @@ def hoofdMenu(m_email):
     elif mk11 == '7' and mp[11][6] == '1' :
         import opvrUrenmutaties
         opvrUrenmutaties.loonKeuze(m_email)
-    elif mk12 == '1' and mp[12][0] == '1':
+    elif mk12 == '1' and mp[12][2] == '1':
         import voorraadbeheersing
         voorraadbeheersing.vrdKeuze(m_email)
     elif mk12 == '2' and mp[12][1] == '1':  
@@ -1302,7 +1364,6 @@ def hoofdMenu(m_email):
         import filePicklist
         filePicklist.fileList(m_email, path)
     else:
-        noEntrance() 
         hoofdMenu(m_email)
         
 inlog()
