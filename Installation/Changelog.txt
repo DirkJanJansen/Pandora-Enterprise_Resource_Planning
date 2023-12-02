@@ -455,4 +455,9 @@ From 2020-01-10 updates and changes are described on this page
 2023-03-26 urenMutaties.py and urenImutaties.py worknumber error checking improved
 2023-10-26 Pandora English uitbetalenLonen.py printlayout Payroll Dutch text "Reisuurloon" changed in "Travel hourly wage" 
 2023-11-03 Pandora English screenshot Payrollslip.png changed with "Travel hourly wage"
+2023-12-02 Pandora and Pandora English version both logon permissions method changed.
+           If no permission granted menuitemlines are disabled and outgrayed.
+           Old method was: menuitemlines were accessable, when no permission granted user got an error message. 
+           New method is more neat.
+2023-12-02 Pandora and Pandora English both outcommented lock for more then once logon.
 
