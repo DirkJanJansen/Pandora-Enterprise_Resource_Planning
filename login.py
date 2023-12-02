@@ -2,7 +2,7 @@
 from datetime import datetime
 from validZt import zt
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QFont, QPixmap, QIcon, QMovie
+from PyQt5.QtGui import QFont, QPixmap, QIcon, QMovie, QColor
 from PyQt5.QtWidgets import (QDialog, QGridLayout, QMessageBox,\
                              QLabel, QLineEdit, QPushButton, QComboBox)
 from sqlalchemy import (Table, Column, Integer, String, MetaData,\
@@ -18,9 +18,11 @@ def totZiens():
     msg.setStyleSheet("font: 10pt Arial; color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Information)
+    '''
     # release lock
     home = os.path.expanduser("~")
     os.remove(str(home)+'/.pandora_lock')
+    '''
     msg.setText('Tot ziens!       ')
     msg.setWindowTitle('Loginscherm')
     msg.exec_()
@@ -153,25 +155,7 @@ def foutInlog():
     msg.setText('Inlog onjuist!')
     msg.setWindowTitle('AANMELDING')
     msg.exec_()
-    
-def geenMenu():
-    msg = QMessageBox()
-    msg.setStyleSheet("color: black;  background-color: gainsboro")
-    msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
-    msg.setIcon(QMessageBox.Warning)
-    msg.setText('Dit is de titelregel, kies een menuregel!')
-    msg.setWindowTitle('Geen Menukeuze')
-    msg.exec_()
 
-def geenToegang():
-    msg = QMessageBox()
-    msg.setStyleSheet("color: black;  background-color: gainsboro")
-    msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
-    msg.setIcon(QMessageBox.Warning)
-    msg.setText('U bent niet geauthoriseerd voor deze keuze')
-    msg.setWindowTitle('AUTHORISATIE')
-    msg.exec_()
-    
 def maakAccount(self):
     from invoerAccount import nieuwAccount
     nieuwAccount(self)
@@ -619,13 +603,80 @@ def hoofdMenu(m_email):
             sel = select([accounts]).where(accounts.c.email == m_email)
             rpaccount = conn.execute(sel).first()
             mp = rpaccount[2:18]
+
             mplist=[k0Edit,k1Edit,k2Edit,k3Edit,k4Edit,k5Edit,k6Edit,k7Edit,\
                     k8Edit,k9Edit,k10Edit,k11Edit,k12Edit,k13Edit,k14Edit,k15Edit]
-            for k in range(0,16):
-                if mp[k][0] == '0':
-                    mplist[k].setDisabled(True)
-                    mplist[k].setStyleSheet("color: darkgrey; background-color: gainsboro")
- 
+            lineperm = ([0, 4, 6, 2, 6, 5],[0, 3, 4, 6, 1],[0, 1, 4, 6, 6],[0, 3, 4, 3, 4, 6, 6],[0, 3, 4, 6, 1, 6],\
+                        [0, 3, 4, 6, 4, 5, 1, 6, 3, 6],[0, 3, 4, 6, 3, 5, 3],[0, 3, 4, 6, 2, 6, 3, 3],\
+                        [0, 3, 4, 6, 3, 6, 3, 6, 1],[0, 4, 4, 6, 3, 6, 3, 6, 1],[0, 6, 2, 1, 6, 3, 4, 1],\
+                        [0, 6, 6, 2, 6, 2, 5, 6],[0, 2, 1, 1, 1],[0, 1, 6, 6, 6],[0, 1, 3, 3, 3, 4, 6, 4],[0])
+
+            for menu in range(0,16):
+                menuperms = lineperm[menu]
+                perms = mp[menu]
+                if mp[menu][0] == '0':
+                    mplist[menu].setDisabled(True)
+                    mplist[menu].setStyleSheet("color: darkgrey; background-color: gainsboro")
+                for lines in range(0,len(menuperms)):
+                    linepointer = menuperms[lines]
+                    mperm = perms[linepointer]
+                    if mperm == '0' and linepointer > 0:
+                         mplist[menu].model().item(lines).setEnabled(False)
+                         mplist[menu].model().item(lines).setForeground(QColor('darkgrey'))
+                         mplist[menu].model().item(lines).setBackground(QColor('gainsboro'))
+                    if mp[8][5] == '0 ':
+                         mplist[15].model().item(1).setEnabled(False)
+                         mplist[15].model().item(1).setForeground(QColor('darkgrey'))
+                         mplist[15].model().item(1).setBackground(QColor('gainsboro'))
+                    if mp[9][5] == '0':
+                        mplist[15].model().item(2).setEnabled(False)
+                        mplist[15].model().item(2).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(2).setBackground(QColor('gainsboro'))
+                    if mp[5][5] == '0':
+                        mplist[15].model().item(3).setEnabled(False)
+                        mplist[15].model().item(3).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(3).setBackground(QColor('gainsboro'))
+                    if mp[6][5] == '0':
+                        mplist[15].model().item(4).setEnabled(False)
+                        mplist[15].model().item(4).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(4).setBackground(QColor('gainsboro'))
+                    if mp[7][5] == '0':
+                        mplist[15].model().item(5).setEnabled(False)
+                        mplist[15].model().item(5).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(5).setBackground(QColor('gainsboro'))
+                    if mp[5][5] == '0':
+                        mplist[15].model().item(6).setEnabled(False)
+                        mplist[15].model().item(6).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(6).setBackground(QColor('gainsboro'))
+                    if mp[5][5] == '0':
+                        mplist[15].model().item(7).setEnabled(False)
+                        mplist[15].model().item(7).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(7).setBackground(QColor('gainsboro'))
+                    if mp[10][5] == '0':
+                        mplist[15].model().item(8).setEnabled(False)
+                        mplist[15].model().item(8).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(8).setBackground(QColor('gainsboro'))
+                    if mp[10][5] == '0':
+                        mplist[15].model().item(9).setEnabled(False)
+                        mplist[15].model().item(9).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(9).setBackground(QColor('gainsboro'))
+                    if mp[11][5] == '0':
+                        mplist[15].model().item(10).setEnabled(False)
+                        mplist[15].model().item(10).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(10).setBackground(QColor('gainsboro'))
+                    if mp[11][5] == '0':
+                        mplist[15].model().item(11).setEnabled(False)
+                        mplist[15].model().item(11).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(11).setBackground(QColor('gainsboro'))
+                    if mp[3][5] == '0':
+                        mplist[15].model().item(12).setEnabled(False)
+                        mplist[15].model().item(12).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(12).setBackground(QColor('gainsboro'))
+                    if mp[5][5] == '0':
+                        mplist[15].model().item(13).setEnabled(False)
+                        mplist[15].model().item(13).setForeground(QColor('darkgrey'))
+                        mplist[15].model().item(13).setBackground(QColor('gainsboro'))
+
             grid = QGridLayout()
             grid.setSpacing(20)
              
@@ -867,7 +918,6 @@ def hoofdMenu(m_email):
     elif dlist[15]:
         mk15 = dlist[15][0] 
     else:
-        geenMenu()
         hoofdMenu(m_email)
 
     if mk0 == '1' and mp[0][4] == '1':
@@ -1302,7 +1352,6 @@ def hoofdMenu(m_email):
         import filePicklist
         filePicklist.fileList(m_email, path)
     else:
-        geenToegang() 
         hoofdMenu(m_email)
         
 inlog()

@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QApplication
 from sqlalchemy import Table, Column, Integer, Float, String, MetaData, create_engine,\
     insert, select, update, func, Boolean
 
+'''
 # set lock voor maximaal 1 sessie per PC
     
 home = os.path.expanduser("~")
@@ -12,6 +13,7 @@ if os.path.isfile(str(home)+'/.pandora_lock'):
     sys.exit()
 else:
     open(str(home)+'/.pandora_lock', 'w')
+'''
     
 # volgende regels tbv jaarverbruik artikelen even/oneven jaar per jaar
 # en berekenen van voorraadwaarde magazijnen t.b.v. grafieken per maand
