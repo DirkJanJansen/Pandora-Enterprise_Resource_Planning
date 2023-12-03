@@ -711,7 +711,7 @@ def hoofdMenu(m_email):
                          mplist[menu].model().item(lines).setForeground(QColor('darkgrey'))
                          mplist[menu].model().item(lines).setBackground(QColor('gainsboro'))
             # combine account table functions with reprint functions, disable if 0
-            if mp[8][5] == '0 ':
+            if mp[8][5] == '0':
                  mplist[15].model().item(1).setEnabled(False)
                  mplist[15].model().item(1).setForeground(QColor('darkgrey'))
                  mplist[15].model().item(1).setBackground(QColor('gainsboro'))
