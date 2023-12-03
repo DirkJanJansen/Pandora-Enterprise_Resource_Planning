@@ -463,4 +463,6 @@ From 2020-01-10 updates and changes are described on this page
 2023-12-03 Pandora and Pandora English improved centering from mainmenu's, for previous method dit not operate well,
            mainly in Linux it did not work well. Now solved.
 2023-12-03 Pandora and Pandora English removed needless permission checks, for it's now controlled by inaccesable menulines.
+2023-12-03 Reprint printlisting doubles removed. login.py Pandora and Pandora english if another group wants permission to reprint
+           only give permission to print at the relevant department and do not give access to the menu at the relevant department.
 
