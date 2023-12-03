@@ -348,10 +348,15 @@ def hoofdMenu(m_email):
             self.Keuze0 = QLabel()
             k0Edit = QComboBox()
             k0Edit.setFixedWidth(290)
-            k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('Accounts'.center(48,' '))    
-            k0Edit.addItem('1. Modify account') 
+            k0Edit.addItem('Accounts')
+            k0Edit.setFont(QFont("Arial", 10))
+            k0Edit.setEditable(True)
+            k0Edit.lineEdit().setFont(QFont("Arial",10))
+            k0Edit.lineEdit().setReadOnly(True)
+            k0Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            k0Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+            k0Edit.addItem('1. Modify account')
             k0Edit.addItem('2. Requesting accounts')
             k0Edit.addItem('3. Ordering web articles')
             k0Edit.addItem('4. Requesting order overview')
@@ -363,7 +368,12 @@ def hoofdMenu(m_email):
             k1Edit.setFixedWidth(290)
             k1Edit.setFont(QFont("Arial",10))
             k1Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k1Edit.addItem('Suppliers'.center(48,' '))
+            k1Edit.addItem('Suppliers')
+            k1Edit.setEditable(True)
+            k1Edit.lineEdit().setFont(QFont("Arial",10))
+            k1Edit.lineEdit().setReadOnly(True)
+            k1Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            k1Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
             k1Edit.addItem('1. Insert supplier data')
             k1Edit.addItem('2. Modify supplier data')
             k1Edit.addItem('3. Request supplier data')
@@ -375,7 +385,12 @@ def hoofdMenu(m_email):
             k2Edit.setFixedWidth(290)
             k2Edit.setFont(QFont("Arial",10))
             k2Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k2Edit.addItem('Employees'.center(48,' '))
+            k2Edit.addItem('Employees')
+            k2Edit.setEditable(True)
+            k2Edit.lineEdit().setFont(QFont("Arial",10))
+            k2Edit.lineEdit().setReadOnly(True)
+            k2Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            k2Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
             k2Edit.addItem('1. Connect account-employee')
             k2Edit.addItem('2. Modify employee data')
             k2Edit.addItem('3. Request employees data')
@@ -387,7 +402,12 @@ def hoofdMenu(m_email):
             k3Edit.setFixedWidth(290)
             k3Edit.setFont(QFont("Arial",10))
             k3Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k3Edit.addItem('Purchase'.center(48,' '))
+            k3Edit.addItem('Purchase')
+            k3Edit.setEditable(True)
+            k3Edit.lineEdit().setFont(QFont("Arial",10))
+            k3Edit.lineEdit().setReadOnly(True)
+            k3Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            k3Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
             k3Edit.addItem('1. Insert orders materials')
             k3Edit.addItem('2. Modify orders materials')
             k3Edit.addItem('3. Insert orders services/equipment')
@@ -401,7 +421,12 @@ def hoofdMenu(m_email):
             k4Edit.setFixedWidth(290)
             k4Edit.setFont(QFont("Arial",10))
             k4Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k4Edit.addItem('Sales'.center(48,' '))
+            k4Edit.addItem('Sales')
+            k4Edit.setEditable(True)
+            k4Edit.lineEdit().setFont(QFont("Arial",10))
+            k4Edit.lineEdit().setReadOnly(True)
+            k4Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            k4Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
             k4Edit.addItem('1. Sales-company create')
             k4Edit.addItem('2. Sales-company modify')
             k4Edit.addItem('3. Sales-companies request')
@@ -414,7 +439,12 @@ def hoofdMenu(m_email):
             k5Edit.setFixedWidth(290)
             k5Edit.setFont(QFont("Arial",10))
             k5Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k5Edit.addItem('Warehouse'.center(48,' '))
+            k5Edit.addItem('Warehouse')
+            k5Edit.setEditable(True)
+            k5Edit.lineEdit().setFont(QFont("Arial",10))
+            k5Edit.lineEdit().setReadOnly(True)
+            k5Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            k5Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
             k5Edit.addItem('1. Insert articles')
             k5Edit.addItem('2. Modify articles')
             k5Edit.addItem('3. Request articles')
@@ -431,7 +461,12 @@ def hoofdMenu(m_email):
             k6Edit.setFixedWidth(290)
             k6Edit.setFont(QFont("Arial",10))
             k6Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k6Edit.addItem('Works internally'.center(48,' '))
+            k6Edit.addItem('Works internally')
+            k6Edit.setEditable(True)
+            k6Edit.lineEdit().setFont(QFont("Arial",10))
+            k6Edit.lineEdit().setReadOnly(True)
+            k6Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            k6Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
             k6Edit.addItem('1. Insert work orders')
             k6Edit.addItem('2. Modify work orders')
             k6Edit.addItem('3. Request work orders\n    Printing workinstructions')
@@ -445,7 +480,12 @@ def hoofdMenu(m_email):
             k7Edit.setFixedWidth(290)
             k7Edit.setFont(QFont("Arial",10))
             k7Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k7Edit.addItem('Works externally'.center(48,' '))
+            k7Edit.addItem('Works externally')
+            k7Edit.setEditable(True)
+            k7Edit.lineEdit().setFont(QFont("Arial",10))
+            k7Edit.lineEdit().setReadOnly(True)
+            k7Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            k7Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
             k7Edit.addItem('1. Insert work orders')
             k7Edit.addItem('2. Modify work orders')
             k7Edit.addItem('3. Request work orders')
@@ -460,7 +500,12 @@ def hoofdMenu(m_email):
             k8Edit.setFixedWidth(290)
             k8Edit.setFont(QFont("Arial",10))
             k8Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k8Edit.addItem('Calculation works internally'.center(48,' '))
+            k8Edit.addItem('Calculation works internally')
+            k8Edit.setEditable(True)
+            k8Edit.lineEdit().setFont(QFont("Arial",10))
+            k8Edit.lineEdit().setReadOnly(True)
+            k8Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            k8Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
             k8Edit.addItem('1. Create new clusters')
             k8Edit.addItem('2. Insert cluster data')
             k8Edit.addItem('3. Request cluster data')
@@ -476,7 +521,12 @@ def hoofdMenu(m_email):
             k9Edit.setFixedWidth(290)
             k9Edit.setFont(QFont("Arial",10))
             k9Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k9Edit.addItem('Calculation works externally'.center(48,' '))
+            k9Edit.addItem('Calculation works externally')
+            k9Edit.setEditable(True)
+            k9Edit.lineEdit().setFont(QFont("Arial",10))
+            k9Edit.lineEdit().setReadOnly(True)
+            k9Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            k9Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
             k9Edit.addItem('1. Create new clusters')
             k9Edit.addItem('2. Insert cluster data')
             k9Edit.addItem('3. Request cluster data')
@@ -492,7 +542,12 @@ def hoofdMenu(m_email):
             k10Edit.setFixedWidth(290)
             k10Edit.setFont(QFont("Arial",10))
             k10Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k10Edit.addItem('Payroll administration'.center(48,' '))
+            k10Edit.addItem('Payroll administration')
+            k10Edit.setEditable(True)
+            k10Edit.lineEdit().setFont(QFont("Arial",10))
+            k10Edit.lineEdit().setReadOnly(True)
+            k10Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            k10Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
             k10Edit.addItem('1. Request mutation of hours')
             k10Edit.addItem('2. Control hours for monthly wages')
             k10Edit.addItem('3. Payment of monthly wages')
@@ -507,7 +562,12 @@ def hoofdMenu(m_email):
             k11Edit.setFixedWidth(290)
             k11Edit.setFont(QFont("Arial",10))
             k11Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k11Edit.addItem('Accounting'.center(48,' '))
+            k11Edit.addItem('Accounting')
+            k11Edit.setEditable(True)
+            k11Edit.lineEdit().setFont(QFont("Arial",10))
+            k11Edit.lineEdit().setReadOnly(True)
+            k11Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            k11Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
             k11Edit.addItem('1. Article mutations requesting.')
             k11Edit.addItem('2. Services mutations requesting.')
             k11Edit.addItem('3. View and pay contributions')
@@ -522,7 +582,12 @@ def hoofdMenu(m_email):
             k12Edit.setFixedWidth(290)
             k12Edit.setFont(QFont("Arial",10))
             k12Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k12Edit.addItem('Stock management'.center(48,' '))
+            k12Edit.addItem('Stock management')
+            k12Edit.setEditable(True)
+            k12Edit.lineEdit().setFont(QFont("Arial",10))
+            k12Edit.lineEdit().setReadOnly(True)
+            k12Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            k12Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
             k12Edit.addItem('1. Stock management\n    ordering articles')
             k12Edit.addItem('2. Graph stocks \n    warehouse financial') 
             k12Edit.addItem('3. Overview stocks financial')
@@ -534,7 +599,12 @@ def hoofdMenu(m_email):
             k13Edit.setFixedWidth(290)
             k13Edit.setFont(QFont("Arial",10))
             k13Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k13Edit.addItem('Management Information'.center(48,' '))
+            k13Edit.addItem('Management Information')
+            k13Edit.setEditable(True)
+            k13Edit.lineEdit().setFont(QFont("Arial",10))
+            k13Edit.lineEdit().setReadOnly(True)
+            k13Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            k13Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
             k13Edit.addItem('1. Calculate financial data\n    execute at the end of every week.')
             k13Edit.addItem('2. Print graphs financial calculations\n    external works.')
             k13Edit.addItem('3. Print graphs number of works\n    external progress status.')
@@ -546,7 +616,12 @@ def hoofdMenu(m_email):
             k14Edit.setFixedWidth(290)
             k14Edit.setFont(QFont("Arial",10))
             k14Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k14Edit.addItem('Maintenance'.center(48,' '))
+            k14Edit.addItem('Maintenance')
+            k14Edit.setEditable(True)
+            k14Edit.lineEdit().setFont(QFont("Arial",10))
+            k14Edit.lineEdit().setReadOnly(True)
+            k14Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            k14Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
             k14Edit.addItem('1. Mutate authorisations')
             k14Edit.addItem('2. Connect account - supplier')
             k14Edit.addItem('3. Connect account - sales company')
@@ -561,8 +636,13 @@ def hoofdMenu(m_email):
             k15Edit.setFixedWidth(290)
             k15Edit.setFont(QFont("Arial",10))
             k15Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k15Edit.addItem('Reprinting of forms'.center(48,' '))
-            k15Edit.addItem('1. Calculation internal works') 
+            k15Edit.addItem('Reprinting of forms')
+            k15Edit.setEditable(True)
+            k15Edit.lineEdit().setFont(QFont("Arial",10))
+            k15Edit.lineEdit().setReadOnly(True)
+            k15Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            k15Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+            k15Edit.addItem('1. Calculation internal works')
             k15Edit.addItem('2. Calculation external works')  
             k15Edit.addItem('3. Internal orders purchase')
             k15Edit.addItem('4. Calling internal works')
@@ -929,146 +1009,146 @@ def hoofdMenu(m_email):
     else:
         hoofdMenu(m_email)
         
-    if mk0 == '1' and mp[0][4] == '1':
+    if mk0 == '1':
         import wijzAccount
         wijzAccount.updateAccount(m_email)
-    elif mk0 == '2' and mp[0][6] == '1':
+    elif mk0 == '2':
          import opvrAccounts
          opvrAccounts.accKeuze(m_email)
-    elif mk0 == '3' and mp[0][2] == '1': 
+    elif mk0 == '3':
          klmail = '' 
          import bestelOrder
          bestelOrder.artKeuze(m_email, 0, klmail)
-    elif mk0 == '4' and mp[0][2] == '1':
+    elif mk0 == '4':
         import opvrKlantenorders
         opvrKlantenorders.bestellingen(m_email)
-    elif mk0 == '5' and mp[0][5] == '1':
+    elif mk0 == '5':
         import printFacturen
         printFacturen.kiesOrder(m_email)
-    elif mk1 == '1' and mp[1][3] == '1':
+    elif mk1 == '1':
         import invoerLeverancier
         invoerLeverancier.bepaalLeverancier(m_email)
-    elif mk1 == '2' and mp[1][4] == '1':
+    elif mk1 == '2':
         import wijzLeverancier
         wijzLeverancier.zoekLeverancier(m_email)
-    elif mk1 == '3' and mp[1][6] == '1':
+    elif mk1 == '3':
         import opvrLeveranciers
         opvrLeveranciers.leveranciersKeuze(m_email)
-    elif mk1 == '4' and mp[1][1]:
+    elif mk1 == '4':
         import opvrEigenleverancier
         opvrEigenleverancier.eigenLeverancier(m_email)
-    elif mk2 == '1' and mp[2][1] == '1':
+    elif mk2 == '1':
         import koppelAccount
         koppelAccount.zoekAccount(m_email, 0)
-    elif mk2 == '2' and mp[2][4] == '1':
+    elif mk2 == '2':
         import wijzWerknemer
         while True:
             wijzWerknemer.zoekWerknemer(m_email)
-    elif mk2 == '3' and mp[2][6] == '1':
+    elif mk2 == '3':
         import opvrWerknemers
         opvrWerknemers.accKeuze(m_email)
-    elif mk2 == '4' and mp[2][6] == '1':
+    elif mk2 == '4':
         import opvrWerknperiode
         opvrWerknperiode.zoekWerknemer(m_email)
-    elif mk3 == '1' and mp[3][3] == '1':
+    elif mk3 == '1':
         mlevnr = 3
         mregel = 1
         import invoerInkooporder
         invoerInkooporder.zoekLeverancier(m_email, mlevnr,mregel)
-    elif mk3 == '2' and mp[3][4] == '1':
+    elif mk3 == '2':
         import wijzInkooporder
         mregel = 0
         minkordernr = 4
         wijzInkooporder.zoekInkooporder(m_email, minkordernr, mregel)
-    elif mk3 == '3' and mp[3][3] == '1':
+    elif mk3 == '3':
         mlevnr = 3
         mwerknr = 8
         mregel = 1
         import invoerDienstenorder
         invoerDienstenorder.zoekLeverancier(m_email, mlevnr, mwerknr, mregel)
-    elif mk3 == '4' and mp[3][4] == '1':
+    elif mk3 == '4':
         import wijzDienstenorder
         mregel = 0
         minkordernr = 4
         wijzDienstenorder.zoekInkooporder(m_email, minkordernr, mregel)
-    elif mk3 == '5' and mp[3][6] == '1':
+    elif mk3 == '5':
         import opvrInkooporders
         opvrInkooporders.inkooporderKeuze(m_email)
-    elif mk3 == '6' and mp[3][6] == '1':
+    elif mk3 == '6':
         import opvrDienstenorders
         opvrDienstenorders.inkooporderKeuze(m_email)
-    elif mk3 == '7' and mp[3][6] == '1':
+    elif mk3 == '7':
         import opvrReserveringen
         opvrReserveringen.resKeuze(m_email) 
-    elif mk4 == '1' and mp[4][3] == '1' :
+    elif mk4 == '1':
         import invoerVerkoopbedrijf
         while True:
             invoerVerkoopbedrijf.invBedrijf(m_email)
-    elif mk4 == '2' and mp[4][4] == '1' :
+    elif mk4 == '2':
         import wijzVerkoopbedrijf
         while True:
             wijzVerkoopbedrijf.zoekKoper(m_email)
-    elif mk4 == '3' and mp[4][6] == '1' :
+    elif mk4 == '3':
         import opvrVerkoopbedrijven
         opvrVerkoopbedrijven.koperKeuze(m_email)
-    elif mk4 == '4' and mp[4][1] == '1' :
+    elif mk4 == '4':
         import opvrEigenbedrijf
         opvrEigenbedrijf.eigenBedrijf(m_email)
-    elif mk4 == '5' and mp[4][6] == '1' :
+    elif mk4 == '5':
         import opvrWebverkorders
         opvrWebverkorders.zoekWeborder(m_email, 2) 
-    elif mk5 == '1' and mp[5][3] == '1':
+    elif mk5 == '1':
         import invoerArtikelen
         while True:
             invoerArtikelen.invArtikel(m_email)
-    elif mk5 == '2' and mp[5][4] == '1':
+    elif mk5 == '2':
         import wijzArtikel
         wijzArtikel.zoekArtikel(m_email)
-    elif mk5 == '3' and mp[5][6] == '1':
+    elif mk5 == '3':
         import opvrArtikelen
         opvrArtikelen.artKeuze(m_email)
-    elif mk5 == '4' and mp[5][4] == '1':
+    elif mk5 == '4':
         import magUitgifte
         magUitgifte.kiesSelektie(0, m_email)
-    elif mk5 == '5' and mp[5][5] == '1':
+    elif mk5 == '5':
         import magUitgifte
         magUitgifte.kiesSelektie(1, m_email)
-    elif mk5 == '6' and mp[5][1] == '1':
+    elif mk5 == '6':
         import dervingMutaties
         while True:
             dervingMutaties.dervingMut(m_email)
-    elif mk5 == '7' and mp[5][6] == '1':
+    elif mk5 == '7':
         import opvrWebverkorders
         while True:
             opvrWebverkorders.zoekWeborder(m_email, 0) 
-    elif mk5 == '8' and mp[5][3] == '1':
+    elif mk5 == '8':
         import retourPortalWeb
         klmail = ''
         while True:
             retourPortalWeb.zoekEmailadres(m_email, klmail) 
-    elif mk5 == '9' and mp[5][6] == '1':
+    elif mk5 == '9':
         if mp[5][1] == '1':
             mret = True
         else:
             mret = False
         import barcodeScan
         barcodeScan.barcodeScan(m_email, mret)
-    elif mk6 == '1' and mp[6][3] == '1' :
+    elif mk6 == '1':
         import invoerInternorder
         invoerInternorder.invWerkorder(m_email)
-    elif mk6 == '2' and mp[6][4] == '1' :
+    elif mk6 == '2':
         import wijzInternorder
         wijzInternorder.zoeken(m_email)        
-    elif mk6 == '3' and mp[6][6] == '1' :
+    elif mk6 == '3':
         import opvrInternorders
         opvrInternorders.zoeken(m_email)
-    elif mk6 == '4' and mp[6][3] == '1' : 
+    elif mk6 == '4' :
         import artikelAfroep
         artikelAfroep.zoekWerk(m_email, 0)
-    elif mk6 == '5' and mp[6][5] == '1' :
+    elif mk6 == '5':
         import magUitgifte
         magUitgifte.kiesSelektie(2, m_email)
-    elif mk6 == '6' and mp[6][3] == '1' :
+    elif mk6 == '6':
         import urenImutaties
         maccountnr = '1'
         mwerknr = '7'
@@ -1084,25 +1164,25 @@ def hoofdMenu(m_email):
                 maccountnr = '1'
                 mwerknr = '7'
                 mboekd = str(datetime.now())[0:10]
-    elif mk7 == '1' and mp[7][3] == '1':
+    elif mk7 == '1':
         import invoerWerken
         invoerWerken.invWerk(m_email)
-    elif mk7 == '2' and mp[7][4] == '1':
+    elif mk7 == '2':
         import wijzWerken
         wijzWerken.zoekWerk(m_email)
-    elif mk7 == '3' and mp[7][6] == '1':
+    elif mk7 == '3':
         import opvrWerken
         opvrWerken.werkenKeuze(m_email)        
-    elif mk7 == '4' and mp[7][2] == '1': 
+    elif mk7 == '4':
         import artikelAfroep
         artikelAfroep.zoekWerk(m_email, 1)
-    elif mk7 == '5' and mp[7][6] == '1':
+    elif mk7 == '5':
         import magUitgifte
         magUitgifte.kiesSelektie(3, m_email)
-    elif mk7 == '6' and mp[7][3] == '1':
+    elif mk7 == '6':
         import dienstenMutaties
         dienstenMutaties.mutatieKeuze(m_email)
-    elif mk7 == '7' and mp[7][3] == '1':
+    elif mk7 == '7':
         import urenMutaties
         maccountnr = '1'
         mwerknr = '8'
@@ -1118,242 +1198,242 @@ def hoofdMenu(m_email):
                 maccountnr = '1'
                 mwerknr = '8'
                 mboekd = str(datetime.now())[0:10]
-    elif mk8 == '1' and mp[8][3] == '1':
+    elif mk8 == '1':
         import maakIcluster
         while True:
             maakIcluster.kiesCluster(m_email)
-    elif mk8 == '2' and mp[8][4] == '1':
+    elif mk8 == '2':
         import wijzIclusters
         while True:
             wijzIclusters.zoeken(m_email)
-    elif mk8 == '3' and mp[8][6] == '1':
+    elif mk8 == '3':
         import opvrIclusters
         opvrIclusters.zoeken(m_email)
-    elif mk8 == '4' and mp[8][3] == '1':
+    elif mk8 == '4':
         import invoerIcluster_artikelen
         while True:
             invoerIcluster_artikelen.zoeken(m_email)
-    elif mk8 == '5' and mp[8][6] == '1':
+    elif mk8 == '5':
         import opvrIcluster_artikelen
         opvrIcluster_artikelen.zoeken(m_email)
-    elif mk8 == '6' and mp[8][3] == '1':
+    elif mk8 == '6':
         import invoerIclustercalculatie
         invoerIclustercalculatie.zoeken(m_email)
-    elif mk8 == '7' and mp[8][6] == '1':
+    elif mk8 == '7':
         import opvrIclustercalculatie
         while True:
             opvrIclustercalculatie.zoekCalculatie(m_email)
-    elif mk8 == '8' and mp[8][1] == '1':
+    elif mk8 == '8':
         import koppelIbegroting
         while True:
             koppelIbegroting.zoekBegroting(m_email)
-    elif mk9 == '1' and mp[9][4] == '1':
+    elif mk9 == '1':
         import maakCluster
         while True:
             maakCluster.kiesCluster(m_email)
-    elif mk9 == '2' and mp[9][4] == '1':
+    elif mk9 == '2':
         import wijzClusters
         while True:
             wijzClusters.zoeken(m_email)
-    elif mk9 == '3' and mp[9][6] == '1':
+    elif mk9 == '3':
         import opvrClusters
         opvrClusters.zoeken(m_email)                
-    elif mk9 == '4' and mp[9][3] == '1':
+    elif mk9 == '4':
         import invoerCluster_artikelen
         while True:
             invoerCluster_artikelen.zoeken(m_email)
-    elif mk9 == '5' and mp[9][6] == '1':
+    elif mk9 == '5':
         import opvrCluster_artikelen
         opvrCluster_artikelen.zoeken(m_email)
-    elif mk9 == '6' and mp[9][3] == '1':
+    elif mk9 == '6':
         import invoerClustercalculatie
         while True:
             invoerClustercalculatie.zoeken(m_email)
-    elif mk9 == '7' and mp[9][6] == '1':
+    elif mk9 == '7':
         import opvrClustercalculatie
         while True:
             opvrClustercalculatie.zoekCalculatie(m_email)
-    elif mk9 == '8' and mp[9][1] == '1':
+    elif mk9 == '8':
         import koppelBegroting
         while True:
             koppelBegroting.zoekBegroting(m_email)
-    elif mk10 == '1' and mp[10][6] == '1' :
+    elif mk10 == '1':
         import opvrUrenmutaties
         opvrUrenmutaties.loonKeuze(m_email)
-    elif mk10 == '2' and mp[10][2] == '1' :
+    elif mk10 == '2':
         import proefrun
         proefrun.maandPeriode(m_email)
-    elif mk10 == '3' and mp[10][1] == '1' :
+    elif mk10 == '3':
         import uitbetalenLonen
         uitbetalenLonen.maandBetalingen(m_email)
-    elif mk10 == '4' and mp[10][6] == '1' :
+    elif mk10 == '4':
         import opvrLoonbetalingen
         opvrLoonbetalingen.zoeken(m_email)
-    elif mk10 == '5' and mp[10][3] == '1' :
+    elif mk10 == '5':
         import invoerLoontabel
         while True:
             invoerLoontabel.invoerSchaal(m_email)        
-    elif mk10 == '6' and mp[10][4] == '1' :
+    elif mk10 == '6':
         import wijzLoontabel
         wijzLoontabel.zoeken(m_email)
-    elif mk10 == '7' and mp[10][1] == '1' :
+    elif mk10 == '7':
         import percentageLonen
         while True:
             percentageLonen.percLoonschaal(m_email)
-    elif mk11 == '1' and mp[11][6] == '1' :
+    elif mk11 == '1' :
         import opvrArtikelmutaties
         opvrArtikelmutaties.mutatieKeuze(m_email)
-    elif mk11 == '2' and mp[11][6] == '1' :
+    elif mk11 == '2':
         import opvrDienstenmutaties
         opvrDienstenmutaties.mutatieKeuze(m_email)
-    elif mk11 == '3' and mp[11][2] == '1' :
+    elif mk11 == '3':
         import afdrBetalen
         afdrBetalen.zoeken(m_email)
-    elif mk11 == '4' and mp[11][6] == '1' :
+    elif mk11 == '4':
         import opvrWebverkorders
         opvrWebverkorders.zoekWeborder(m_email, 1)
-    elif mk11 == '5' and mp[11][2] == '1' :
+    elif mk11 == '5':
         import webRetouren
         webRetouren.retKeuze(m_email)
-    elif mk11 == '6' and mp[11][5] == '1' :
+    elif mk11 == '6':
         import printFacturatie
         printFacturatie.maakLijst(m_email) 
-    elif mk11 == '7' and mp[11][6] == '1' :
+    elif mk11 == '7':
         import opvrUrenmutaties
         opvrUrenmutaties.loonKeuze(m_email)
-    elif mk12 == '1' and mp[12][2] == '1':
+    elif mk12 == '1':
         import voorraadbeheersing
         voorraadbeheersing.vrdKeuze(m_email)
-    elif mk12 == '2' and mp[12][1] == '1':  
+    elif mk12 == '2':
         import magvrdGrafiek
         magvrdGrafiek.toonGrafiek(m_email)
-    elif mk12 == '3' and mp[12][1] == '1':  
+    elif mk12 == '3':
         import magvrdGrafiek
         magvrdGrafiek.magVoorraad(m_email)  
-    elif mk12 == '4'and mp[12][1] == '1':
+    elif mk12 == '4':
         import opvrReserveringen
         opvrReserveringen.resKeuze(m_email)
-    elif mk13== '1' and mp[13][1] == '1' :
+    elif mk13== '1':
         import rapportage
         rapportage.JN(m_email)
-    elif mk13 == '2' and mp[13][6] == '1':
+    elif mk13 == '2':
         import toonGrafieken
         toonGrafieken.zoekwk(m_email)
-    elif mk13 == '3' and mp[13][6] == '1' :
+    elif mk13 == '3':
         import voortgangGrafiek
         while True:
             voortgangGrafiek.zoekwk(m_email)
-    elif mk13 == '4' and mp[13][6] == '1' : 
+    elif mk13 == '4':
         import toonResultaten
         toonResultaten.toonResult(m_email)
-    elif mk14 == '1' and mp[14][1] == '1':
+    elif mk14 == '1':
         import maakAuthorisatie
         while True:
              maakAuthorisatie.zoekAccount(m_email)
-    elif mk14 == '2' and mp[14][3] == '1':
+    elif mk14 == '2':
         import koppelAccount
         koppelAccount.zoekAccount(m_email, 2)
-    elif mk14 == '3' and mp[14][3] == '1':
+    elif mk14 == '3':
         import koppelAccount
         koppelAccount.zoekAccount(m_email, 1)
-    elif mk14 == '4' and mp[14][3] == '1':
+    elif mk14 == '4':
         import invoerParams
         while True:
             invoerParams.invParams(m_email)
-    elif mk14 == '5' and mp[14][4] == '1':
+    elif mk14 == '5':
         import wijzigParams
         wijzigParams.toonParams(m_email) 
-    elif mk14 == '6' and mp[14][6] == '1':
+    elif mk14 == '6':
         import opvrParams
         opvrParams.toonParams(m_email)
-    elif mk14 == '7' and mp[14][4] == '1':
+    elif mk14 == '7':
         import wijzWerktarief
         wijzWerktarief.winKeuze(m_email)
-    elif mk15 == '1' and mp[8][5] == '1':
+    elif mk15 == '1':
         if sys.platform == 'win32':
             path = '.\\forms\\Intern_Clustercalculaties\\'
         else:
             path = './forms/Intern_Clustercalculaties/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == '2' and mp[9][5] == '1':
+    elif mk15 == '2':
         if sys.platform == 'win32':
             path = '.\\forms\\Extern_Clustercalculaties\\'
         else:
             path = './forms/Extern_Clustercalculaties/'
         import filePicklist
         filePicklist.fileList(m_email, path) 
-    elif mk15 == '3' and (mp[5][5] == '1' or mp[3][5] == '1'):
+    elif mk15 == '3':
         if sys.platform == 'win32':
             path = '.\\forms\\Intern_Orderbrieven\\'
         else:
             path = './forms/Intern_Orderbrieven/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == '4' and mp[6][5] == '1':
+    elif mk15 == '4':
         if sys.platform == 'win32':
             path = '.\\forms\\Raaplijsten\\'
         else:
             path = './forms/Raaplijsten/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == '5' and mp[7][5] == '1':
+    elif mk15 == '5':
         if sys.platform == 'win32':
             path = '.\\forms\\Raaplijsten\\'
         else:
             path = './forms/Raaplijsten/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == '6' and mp[5][5] == '1':
+    elif mk15 == '6':
         if sys.platform == 'win32':
             path = '.\\forms\\Raaplijsten\\'
         else:
             path = './forms/Raaplijsten/'
         import filePicklist
         filePicklist.fileList(m_email, path)    
-    elif mk15 == '7' and mp[5][5] == '1':
+    elif mk15 == '7':
         if sys.platform == 'win32':
             path = '.\\forms\\Weborders_Pakbonnen\\'
         else:
             path = './forms/Weborders_Pakbonnen/'
         import filePicklist
         filePicklist.fileList(m_email, path)    
-    elif mk15 == '8' and mp[10][5] == '1':
+    elif mk15 == '8':
         if sys.platform == 'win32':
             path = '.\\forms\\Uren\\'
         else:
             path = './forms/Uren/'
         import filePicklist
         filePicklist.fileList(m_email, path)    
-    elif mk15 == '9' and mp[10][5] == '1':
+    elif mk15 == '9':
         if sys.platform == 'win32':
             path = '.\\forms\\Lonen\\'
         else:
             path = './forms/Lonen/'
         import filePicklist
         filePicklist.fileList(m_email, path)    
-    elif (mk15 == 'A') and mp[11][5] == '1':
+    elif mk15 == 'A':
         if sys.platform == 'win32':
             path = '.\\forms\\Facturen_Werken\\'
         else:
             path = './forms/Facturen_Werken/'
         import filePicklist
         filePicklist.fileList(m_email, path)    
-    elif (mk15 == 'B') and mp[11][5] == '1':
+    elif mk15 == 'B':
         if sys.platform == 'win32':
             path = '.\\forms\\Weborders_Facturen\\'
         else:
             path = './forms/Weborders_Facturen/'
         import filePicklist
         filePicklist.fileList(m_email, path) 
-    elif (mk15 == 'C') and (mp[3][5] == '1' or mp[7][5] == '1' or mp[9][5] == '1'):
+    elif (mk15 == 'C'):
         if sys.platform == 'win32':
             path = '.\\forms\\Extern_Clustercalculaties_Diensten\\'
         else:
             path = './forms/Extern_Clustercalculaties_Diensten/'
         import filePicklist
         filePicklist.fileList(m_email, path) 
-    elif (mk15 == 'D') and mp[5][5] == '1':
+    elif (mk15 == 'D'):
         if sys.platform == 'win32':
             path = '.\\forms\\Barcodelijsten\\'
         else:
