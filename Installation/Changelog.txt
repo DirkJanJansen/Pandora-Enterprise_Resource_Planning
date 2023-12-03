@@ -460,4 +460,7 @@ From 2020-01-10 updates and changes are described on this page
            Old method was: menuitemlines were accessable, when no permission granted user got an error message. 
            New method is more neat.
 2023-12-02 Pandora and Pandora English both outcommented lock for more then once logon.
+2023-12-03 Pandora and Pandora English improved centering from mainmenu's, for previous method dit not operate well,
+           mainly in Linux it did not work well. Now solved.
+2023-12-03 Pandora and Pandora English removed needless permission checks, for it's now controlled by inaccesable menulines.
 
