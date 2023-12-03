@@ -723,6 +723,10 @@ def hoofdMenu(m_email):
                 mplist[15].model().item(3).setEnabled(False)
                 mplist[15].model().item(3).setForeground(QColor('darkgrey'))
                 mplist[15].model().item(3).setBackground(QColor('gainsboro'))
+            if mp[3][5] == '0':
+                mplist[15].model().item(3).setEnabled(False)
+                mplist[15].model().item(3).setForeground(QColor('darkgrey'))
+                mplist[15].model().item(3).setBackground(QColor('gainsboro'))
             if mp[6][5] == '0':
                 mplist[15].model().item(4).setEnabled(False)
                 mplist[15].model().item(4).setForeground(QColor('darkgrey'))
@@ -756,6 +760,14 @@ def hoofdMenu(m_email):
                 mplist[15].model().item(11).setForeground(QColor('darkgrey'))
                 mplist[15].model().item(11).setBackground(QColor('gainsboro'))
             if mp[3][5] == '0':
+                mplist[15].model().item(12).setEnabled(False)
+                mplist[15].model().item(12).setForeground(QColor('darkgrey'))
+                mplist[15].model().item(12).setBackground(QColor('gainsboro'))
+            if mp[7][5] == '0':
+                mplist[15].model().item(12).setEnabled(False)
+                mplist[15].model().item(12).setForeground(QColor('darkgrey'))
+                mplist[15].model().item(12).setBackground(QColor('gainsboro'))
+            if mp[9][5] == '0':
                 mplist[15].model().item(12).setEnabled(False)
                 mplist[15].model().item(12).setForeground(QColor('darkgrey'))
                 mplist[15].model().item(12).setBackground(QColor('gainsboro'))
