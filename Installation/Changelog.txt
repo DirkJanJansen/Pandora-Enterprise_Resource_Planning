@@ -467,4 +467,5 @@ From 2020-01-10 updates and changes are described on this page
            only give permission to print at the relevant department and do not give access to the menu at the relevant department.
 2023-12-05 Pandora English Mainmenu lines adapted due to alignments.
 2023-12-05 Pandora Mainmenu lines adapted due to alignments
+2023-12-09 Pandora default set in English frontends. Dutch version in folder Pandora Dutch
 
