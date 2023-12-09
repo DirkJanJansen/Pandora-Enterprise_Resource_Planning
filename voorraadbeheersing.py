@@ -16,18 +16,18 @@ def artVerwerkt(rpartikelen, mbestgr, minvrd):
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
-    msg.setWindowTitle('Voorraadbeheersing')
+    msg.setWindowTitle('Stock control')
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Artikel: '+str(rpartikelen[0])+'\nOmschrijving: '+rpartikelen[1]+'\nMinimumvoorraad gewijzigd in '+str(minvrd)+'\nBestelgrootte gewijzigd in '+str(mbestgr))
+    msg.setText('Article: '+str(rpartikelen[0])+'\nDescription: '+rpartikelen[1]+'\nMinimum stock changed to '+str(minvrd)+'\nOrder size changed to '+str(mbestgr))
     msg.exec_()
     
 def bestelStatus():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
-    msg.setWindowTitle('Bestelbrief printen')
+    msg.setWindowTitle('Order letter printing')
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Bestelbrief is reeds aangemaakt!')
+    msg.setText('Order letter is already processed!')
     msg.exec_()
     
 def handle_paint_request(self, printer):
@@ -53,56 +53,56 @@ def printBrief(rpartikel, bestelhoeveelheid, bestelBtn):
     updpar = update(params).where(params.c.paramID == 100).values(tarief = int(bestnr+1))
     con.execute(updpar)
     if rpartikel[9] == 1:
-        besteltekst = 'Bestelgrootte voorraadgestuurd: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n' 
-        termijn = ' 3 weken'
+        besteltekst = 'Order size stock controlled: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n'
+        termijn = ' 3 weeks'
     elif rpartikel[9] == 2:
-        besteltekst = 'Bestelgrootte voorraadgestuurd: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n' 
-        termijn = ' 12 weken'
+        besteltekst = 'Order size stock controlled: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n'
+        termijn = ' 12 weeks'
     elif rpartikel[9] == 3:
-        besteltekst = 'Bestelgrootte voorraadgestuurd: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n'
-        termijn = ' 26 weken'
+        besteltekst = 'Order size stock controlled: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n'
+        termijn = ' 26 weeks'
     elif rpartikel[9] == 4:
-        besteltekst = 'Bestelgrootte voorraadgestuurd: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n' 
-        termijn = ' 52 weken'
+        besteltekst = 'Order size stock controlled: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n'
+        termijn = ' 52 weeks'
     elif rpartikel[9] == 5:
-        besteltekst = 'Minimale bestelgrootte reserveringgestuurd: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n'
-        termijn = ' 3 weken'
+        besteltekst = 'Minimum order size reservation controlled: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n'
+        termijn = ' 3 weeks'
     elif rpartikel[9] == 6:
-        besteltekst = 'Minimale bestelgrootte reserveringgestuurd: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n'
-        termijn = ' 6 weken'
+        besteltekst = 'Minimum order size reservation controlled: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n'
+        termijn = ' 6 weeks'
     elif rpartikel[9] == 7:
-        besteltekst = 'Minimale bestelgrootte reserveringgestuurd: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n'
-        termijn = ' 12 weken'
+        besteltekst = 'Minimum order size reservation controlled: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n'
+        termijn = ' 12 weeks'
     elif rpartikel[9] == 8:
-        besteltekst = 'Minimale bestelgrootte reserveringgestuurd: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n'
-        termijn = ' 24 weken'
+        besteltekst = 'Minimum order size reservation controlled: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n'
+        termijn = ' 24 weeks'
     elif rpartikel[9] == 9:
-        besteltekst = 'Minimale bestelgrootte reserveringgestuurd: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n'
-        termijn = ' 52 weken'
+        besteltekst = 'Minimum order size reservation controlled: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n'
+        termijn = ' 52 weeks'
     if platform == 'win32':
-        filename = '.\\forms\\Intern_Orderbrieven\\Orderbriefnr_'+str(bestnr)+'.txt'
+        filename = '.\\forms\\Intern_Orderbrieven\\Order_letter_number_'+str(bestnr)+'.txt'
     else:
-        filename = './forms/Intern_Orderbrieven/Orderbriefnr_'+str(bestnr)+'.txt'
-    open(filename,"w").write('\n\n\nDatum: '+str(vandaag)+'\n')
+        filename = './forms/Intern_Orderbrieven/Order_letter_number_'+str(bestnr)+'.txt'
+    open(filename,"w").write('\n\n\nDate: '+str(vandaag)+'\n')
     gegevens = ('\n\n'+\
-    'Interne orderbrief volgnummer: '+str(bestnr)+'\n\n\n\n'+\
-    'Bestelbrief voor magazijnartikel: '+str(rpartikel[0])+'\n\n'+\
-    'Artikelomschrijving: '+str(rpartikel[1])+'\n\n'+\
-    'Artikelprijs inclusief opslagen: '+'{:12.2f}'.format(rpartikel[2])+'\n\n'+\
-    'Artikelvoorraad : '+'{:12.2f}'.format(rpartikel[3])+'\n\n'+\
-    'Artikel eenheid: '+str(rpartikel[4])+'\n\n'+\
-    'Artikel miminimum voorraad:  '+'{:12.2f}'.format(rpartikel[5])+'\n\n'+\
-    'Bestelsaldo: '+'{:12.2f}'.format(rpartikel[6])+'\n\n'+\
-    'Bestelstatus: '+str(rpartikel[7])+'\n\n'+\
-    'Reserveringssaldo: '+'{:12.2f}'.format(rpartikel[8])+'\n\n'+\
-    'Categorie: '+str(rpartikel[9])+'\n\n'+\
-    str(besteltekst)+'Levertermijn : '+str(termijn)+'\n\n')
+    'Internal order slip serial number: '+str(bestnr)+'\n\n\n\n'+\
+    'Order letter for warehouse item: '+str(rpartikel[0])+'\n\n'+\
+    'Article description: '+str(rpartikel[1])+'\n\n'+\
+    'Article price including surcharges: '+'{:12.2f}'.format(rpartikel[2])+'\n\n'+\
+    'Article stock : '+'{:12.2f}'.format(rpartikel[3])+'\n\n'+\
+    'Article unit: '+str(rpartikel[4])+'\n\n'+\
+    'Article miminimum stock:  '+'{:12.2f}'.format(rpartikel[5])+'\n\n'+\
+    'Order balance: '+'{:12.2f}'.format(rpartikel[6])+'\n\n'+\
+    'Order status: '+str(rpartikel[7])+'\n\n'+\
+    'Reservation balance: '+'{:12.2f}'.format(rpartikel[8])+'\n\n'+\
+    'Category: '+str(rpartikel[9])+'\n\n'+\
+    str(besteltekst)+'Delivery term : '+str(termijn)+'\n\n')
     open(filename,"a").write(gegevens+'\n')
 
     class Window(QDialog):
         def __init__(self):
             QDialog.__init__(self)
-            self.setWindowTitle("Printen interne orderbrief") 
+            self.setWindowTitle("Printing internal order letter")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                                                   Qt.WindowMinMaxButtonsHint)
@@ -120,20 +120,20 @@ def printBrief(rpartikel, bestelhoeveelheid, bestelBtn):
         def create_view(self):
             lblinfo = QLabel(
         '\n\n\n'+\
-        'Datum: '+str(vandaag)+'\n\n\n'+\
-        'Interne orderbrief volgnummer: '+str(bestnr)+'\n\n\n\n'+\
-        'Bestelbrief voor magazijnartikel: '+str(rpartikel[0])+'\n\n'+\
-        'Artikelomschrijving: '+rpartikel[1]+'\n\n'+\
-        'Artikelprijs inclusief opslagen: '+'{:12.2f}'.format(rpartikel[2])+'\n\n'+\
-        'Artikelvoorraad : '+'{:12.2f}'.format(rpartikel[3])+'\n\n'+\
-        'Artikel eenheid: '+rpartikel[4]+'\n\n'+
-        'Artikel miminimum voorraad:  '+'{:12.2f}'.format(rpartikel[5])+'\n\n'+\
-        'Bestelsaldo: '+'{:12.2f}'.format(rpartikel[6])+'\n\n'+\
-        'Bestelstatus: '+str(rpartikel[7])+'\n\n'+\
-        'Reserveringssaldo: '+'{:12.2f}'.format(rpartikel[8])+'\n\n'+\
-        'Categorie: '+str(rpartikel[9])+'\n\n'+\
+        'Date: '+str(vandaag)+'\n\n\n'+\
+        'Internal order letter serial number: '+str(bestnr)+'\n\n\n\n'+\
+        'Order letter for warehouse article: '+str(rpartikel[0])+'\n\n'+\
+        'Article description: '+rpartikel[1]+'\n\n'+\
+        'Article price including surcharges: '+'{:12.2f}'.format(rpartikel[2])+'\n\n'+\
+        'Article stock : '+'{:12.2f}'.format(rpartikel[3])+'\n\n'+\
+        'Article unit: '+rpartikel[4]+'\n\n'+
+        'Article miminimum stock:  '+'{:12.2f}'.format(rpartikel[5])+'\n\n'+\
+        'Order balance: '+'{:12.2f}'.format(rpartikel[6])+'\n\n'+\
+        'Order status: '+str(rpartikel[7])+'\n\n'+\
+        'Reservation balance: '+'{:12.2f}'.format(rpartikel[8])+'\n\n'+\
+        'Category: '+str(rpartikel[9])+'\n\n'+\
         besteltekst+\
-        'Levertermijn : ' + termijn)
+        'Delivery term: ' + termijn)
             
             if platform == 'win32':
                 lblinfo.setStyleSheet("font: 72pt 'Comic Sans MS'")
@@ -165,7 +165,7 @@ def vrdKeuze(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Opvragen artikelen")
+            self.setWindowTitle("Requesting articles")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -175,10 +175,10 @@ def vrdKeuze(m_email):
             k0Edit.setFixedWidth(280)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('                  Uw Keuze ')
-            k0Edit.addItem('1. Reservering te bestellen')
-            k0Edit.addItem('2. Minimum Voorraad te bestellen')
-            k0Edit.addItem('3. Artikelen in bestelling')
+            k0Edit.addItem('                  Your choice ')
+            k0Edit.addItem('1. By reservation to order')
+            k0Edit.addItem('2. By minimum stock to order')
+            k0Edit.addItem('3. Articles on order')
    
             k0Edit.activated[str].connect(self.k0Changed)
               
@@ -202,7 +202,7 @@ def vrdKeuze(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1 ,1, Qt.AlignRight)
     
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 3, 1, 1, 1, Qt.AlignRight)
@@ -210,7 +210,7 @@ def vrdKeuze(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
               
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self,m_email))
     
             grid.addWidget(cancelBtn, 3, 0, 1, 1, Qt.AlignRight)
@@ -280,7 +280,7 @@ def jaarVerbruik(m_email, keuze):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(100, 50, 1800, 900)
-            self.setWindowTitle('Jaarverbruik afgelopen jaar')
+            self.setWindowTitle('Annual consumption last year')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -310,7 +310,7 @@ def jaarVerbruik(m_email, keuze):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 1, 15, 1, 1, Qt.AlignRight)
             
-            freshBtn = QPushButton('Verversen')
+            freshBtn = QPushButton('Refresh')
             freshBtn.clicked.connect(lambda: refresh(m_email, keuze, self))
 
             freshBtn.setFont(QFont("Arial",10))
@@ -319,7 +319,7 @@ def jaarVerbruik(m_email, keuze):
    
             grid.addWidget(freshBtn, 1, 14, 1, 1, Qt.AlignRight)
         
-            sluitBtn = QPushButton('Sluiten')
+            sluitBtn = QPushButton('Close')
             sluitBtn.clicked.connect(self.close)
 
             sluitBtn.setFont(QFont("Arial",10))
@@ -373,9 +373,9 @@ def jaarVerbruik(m_email, keuze):
                 pixmap.scaled(256,256) 
                 return(painter.drawPixmap(option.rect, pixmap))
                                        
-    header = ['Artikelnr', 'Omschrijving', 'Prijs', 'Voorraad', 'Eenheid','MinVrd',\
-              'BestelSaldo', 'Bestelstatus', 'ReserveringSaldo', 'Categorie', 'Afbeelding',\
-              'Te bestellen','Jaarverbruik-1', 'Jaarverbruik-2']    
+    header = ['Article number', 'Description', 'Price', 'Stock', 'Unit','Minimum stock',\
+              'Order balance', 'Order status', 'Reservation balance', 'Category', 'Image',\
+              'To order','Annual consumption-1', 'Annual consumption-2']
         
     data_list=[]
     for row in rpartikelen:
@@ -394,7 +394,7 @@ def jaarVerbruik(m_email, keuze):
                 def __init__(self, parent=None):
                     super(Widget, self).__init__(parent)
                 
-                    self.setWindowTitle("Aanpassen minimumvoorraad / bestelgrootte")
+                    self.setWindowTitle("Adjust minimum stock / order size")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                                 
                     self.setFont(QFont('Arial', 10))
@@ -501,56 +501,56 @@ def jaarVerbruik(m_email, keuze):
                     logo.setPixmap(pixmap)
                     grid.addWidget(logo , 0, 2, 1, 3, Qt.AlignRight) 
                   
-                    grid.addWidget(QLabel('Artikelnummer'), 1, 0, 2, 1)
+                    grid.addWidget(QLabel('Article number'), 1, 0, 2, 1)
                     grid.addWidget(q1Edit, 1, 1, 2, 1)
                 
-                    grid.addWidget(QLabel('Artikelomschrijving'), 3, 0)
+                    grid.addWidget(QLabel('Article description'), 3, 0)
                     grid.addWidget(q2Edit, 3, 1, 1 ,3)
                     
-                    grid.addWidget(QLabel('Eenheid'), 5, 0)
+                    grid.addWidget(QLabel('Unit'), 5, 0)
                     grid.addWidget(q5Edit, 5, 1)
                     
-                    grid.addWidget(QLabel('Artikelprijs'), 5, 2)
+                    grid.addWidget(QLabel('Article price'), 5, 2)
                     grid.addWidget(q3Edit, 5 , 3) 
                     
-                    grid.addWidget(QLabel('Voorraad'), 6, 0)
+                    grid.addWidget(QLabel('Stock'), 6, 0)
                     grid.addWidget(q4Edit, 6, 1)
                     
-                    grid.addWidget(QLabel('Bestelsaldo'), 7, 0)
+                    grid.addWidget(QLabel('Order balance'), 7, 0)
                     grid.addWidget(q16Edit, 7, 1)
                     
-                    grid.addWidget(QLabel('Reserveringsaldo '), 8, 0)
+                    grid.addWidget(QLabel('Reservation balance'), 8, 0)
                     grid.addWidget(q12Edit, 8, 1)
                                        
-                    grid.addWidget(QLabel('BestelStatus'),7 ,2)
+                    grid.addWidget(QLabel('Order status'),7 ,2)
                     grid.addWidget(q7Edit, 7, 3)
                     
-                    grid.addWidget(QLabel('Categorie'),8 ,2)
+                    grid.addWidget(QLabel('Category'),8 ,2)
                     grid.addWidget(q8Edit, 8,3)
                     
                     if rpartikel[9] > 4:
                         bestelhoeveelheid = rpartikel[8]+rpartikel[6]-rpartikel[3]
-                        grid.addWidget(QLabel('Te bestellen'), 10, 0)
+                        grid.addWidget(QLabel('To order'), 10, 0)
                         if rpartikel[7]:
                             grid.addWidget(QLabel('{:12.2f}'.format(bestelhoeveelheid, 2)), 10, 1, 1, 1, Qt.AlignRight)
                         else:
-                            grid.addWidget(QLabel('In bestelling'), 10, 1) 
-                        grid.addWidget(QLabel('Reserveringgestuurd'), 9, 2)
+                            grid.addWidget(QLabel('On order'), 10, 1)
+                        grid.addWidget(QLabel('Reservation controlled'), 9, 2)
                     else:
-                        grid.addWidget(QLabel('Bestelgrootte'),9 ,0)
+                        grid.addWidget(QLabel('Order size'),9 ,0)
                         grid.addWidget(q9Edit, 9,1)
-                        grid.addWidget(QLabel('Minimum voorraad'), 6, 2)
+                        grid.addWidget(QLabel('Minimum stock'), 6, 2)
                         grid.addWidget(q6Edit, 6, 3)
                         
                         bestelhoeveelheid = rpartikel[11]
-                        grid.addWidget(QLabel('Te bestellen'), 10, 0)
+                        grid.addWidget(QLabel('To order'), 10, 0)
                         if rpartikel[7]:
                             grid.addWidget(QLabel('{:12.2f}'.format(bestelhoeveelheid, 2)), 10, 1, 1, 1, Qt.AlignRight)
                         else:
-                            grid.addWidget(QLabel('In bestelling'), 10, 1)
-                        grid.addWidget(QLabel('Voorraadgestuurd'), 9, 2)
+                            grid.addWidget(QLabel('On order'), 10, 1)
+                        grid.addWidget(QLabel('Stock controlled'), 9, 2)
                     
-                    grid.addWidget(QLabel('Jaarverbruik'),10, 2)
+                    grid.addWidget(QLabel('Annual consumption'),10, 2)
                     grid.addWidget(q13Edit, 10, 3)
 
                     pixmap = QPixmap(rpartikel[10])
@@ -558,7 +558,7 @@ def jaarVerbruik(m_email, keuze):
                     lbl2.setPixmap(pixmap)
                     grid.addWidget(lbl2 , 1, 2, 2, 2, Qt.AlignRight)
                     
-                    bestelBtn = QPushButton('Bestelbrief')
+                    bestelBtn = QPushButton('Order letter')
                     bestelBtn.clicked.connect(lambda: bestelBrief(rpartikel, bestelhoeveelheid, bestelBtn))
                     
                     grid.addWidget(bestelBtn, 12, 3, 1, 1, Qt.AlignRight)
@@ -570,7 +570,7 @@ def jaarVerbruik(m_email, keuze):
                     else:
                         bestelBtn.setEnabled(False)
                     
-                    cancelBtn = QPushButton('Sluiten')
+                    cancelBtn = QPushButton('Close')
                     cancelBtn.clicked.connect(self.close)
                 
                     grid.addWidget(cancelBtn, 12, 2, 1, 1, Qt.AlignRight)

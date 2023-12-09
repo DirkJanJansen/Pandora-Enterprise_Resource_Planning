@@ -13,7 +13,7 @@ def maandBetalingen(m_email):
         class Widget(QDialog):
             def __init__(self):
                 QDialog.__init__(self)
-                self.setWindowTitle("Informatie uitbetalen lonen")
+                self.setWindowTitle("Information on paying wages")
                 self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                 self.setFont(QFont("Arial", 10))
                 grid = QGridLayout()
@@ -24,7 +24,7 @@ def maandBetalingen(m_email):
                 logo.setPixmap(pixmap)
                 grid.addWidget(logo , 0, 3, 1, 1, Qt.AlignRight)
                 
-                lblinfo = QLabel('Uitbetalen Lonen.')
+                lblinfo = QLabel('Paying wages.')
                 grid.addWidget(lblinfo, 0, 0, 1, 4, Qt.AlignCenter)
                 lblinfo.setStyleSheet("color:rgb(45, 83, 115); font: 25pt Comic Sans MS")
             
@@ -34,30 +34,27 @@ def maandBetalingen(m_email):
                 grid.addWidget(lbl, 0, 0)
                 lblinfo = QLabel(
             '''
-            Procedure:
-                
-            Binnen een week na het beëindigen van een maand, dient een uitdraai te worden
-            gemaakt met het programma "Controle uren tbv maandlonen" in het menu Loonadministratie.\t\t
-            Hieruit volgt een controle welke werknemers hun urenopgave nog niet (volledig)
-            hebben ingediend. 
-            Deze werknemers dienen alsnog hun urenopgave van de uit te betalen maand, binnen
-            enkele dagen in te leveren.
-            Als de lijst volledig is, dat wil zeggen de uurlijsten compleet zijn met alle uren
-            (werkuren, overuren ziekte verlof e.d.), kunnen de lonen worden uitbetaald met de 
-            menukeuze "Maandelijkse loonbetalingen". 
-            Dit dient medio van de maand te worden uitgevoerd na de voorgaande boekmaand.
+            Procedure: 
             
-            Indien een uitdraai wordt gemaakt van april (dit zal medio mei plaatsvinden),
-            worden na het invoeren van het programma met de maand jjjj-04 (jjjj staat voor
-            het betreffende jaartal) met de knop 'PRINTEN', eerst de vakantieuitkeringen geprint
-            en vervolgens de maandlonen.
-            
+            Within a week after the end of a month, a printout should be created with
+            the program "Control hours for monthly wages" in the menu Payroll.\t\t\t 
+            This results in an inspection of which employees do not yet (fully) report
+            their hours statement These employees must still enter their time statement
+            of the month to be paid, which must hand in now within a few days.
+            If the list is complete, that is, the time sheets are complete with all hours 
+            (working hours, overtime sick leave, etc.), wages can be paid with the menu option
+            "Monthly wage payments". This should be done in the middle of the month after the 
+            previous book month.
+            If a printout is made from April (this will take place in mid-May), after entering
+            the program with the month yyyy-04 (yyyy stands for the relevant year) with the button
+            'PRINT', first the holiday allowances and then the monthly wages are printed.               
+                        
             ''')
                     
                 grid.addWidget(lblinfo, 1, 0, 1, 4, Qt.AlignCenter)
                 lblinfo.setStyleSheet("font: 10pt Comic Sans MS; color: black ; background-color: #D9E1DF") 
                                
-                cancelBtn = QPushButton('Sluiten')
+                cancelBtn = QPushButton('Close')
                 cancelBtn.clicked.connect(self.close)  
                 
                 grid.addWidget(cancelBtn,  3, 0, 1, 4, Qt.AlignRight)
@@ -88,8 +85,8 @@ def maandBetalingen(m_email):
         msg.setStyleSheet("color: black;  background-color: gainsboro")
         msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
         msg.setIcon(QMessageBox.Information)
-        msg.setText('Ogenblik afdrukken wordt gestart!')
-        msg.setWindowTitle('Lonen uitbetalen')
+        msg.setText('Just a moment printing is started!')
+        msg.setWindowTitle('Paying wages')
         msg.exec_()
     
     def betaalVak(rpv):
@@ -98,37 +95,37 @@ def maandBetalingen(m_email):
             jaar = str(row[1])[0:4]
             mnd = 'Vakantietoeslag'
             if platform == 'win32' :
-                filename1 = '.\\forms\\Lonen\\loonspecificatie-'+str(row[2])+'-'+jaar+'_'+mnd+'.txt'
+                filename1 = '.\\forms\\Lonen\\wage_specification_'+str(row[2])+'-'+jaar+'_'+mnd+'.txt'
             else:
-                filename1 = './forms/Lonen/loonspecificatie-'+str(row[2])+'-'+jaar+'_'+mnd+'.txt'
+                filename1 = './forms/Lonen/wage_specification_'+str(row[2])+'-'+jaar+'_'+mnd+'.txt'
             gegevens =\
-            ('                             Specificatie '+mnd+' '+str(jaar)+'                             \n'+
+            ('                             Specification'+mnd+' '+str(jaar)+'                             \n'+
             '                                                                                             \n'+
-            '                       verwerkingsdatum       accountnr werknemer               jaar periode \n'+
-            'Geadresseerde          '+str(datetime.datetime.now())[0:10]+'             '+str(row[2])+'     '+str(row[3])+'    werkgever      '+str(row[1])+'\n'+
+            '                       proccessing date       accountnr employee                year period  \n'+
+            'Addressee              '+str(datetime.datetime.now())[0:10]+'             '+str(row[2])+'     '+str(row[3])+'    emmployer      '+str(row[1])+'\n'+
             '=============================================================================================\n'+
             '                                                                 Pandora Connect B.V.,       \n'+
             '     '+'{:<30s}'.format(row[4]+' '+ row[5]+' '+row[6]+',')+'                              '+'Lange Dreef 7,\n'+
             '     '+'{:<30s}'.format(row[7]+' '+ str(row[8])+' '+row[9]+',')+'                              '+'4131 NJ Vianen.\n'+
-            '     '+'{:<30s}'.format(row[10]+' '+ row[11]+'.')+'                              '+'Telefoon: 0347377304\n'+
+            '     '+'{:<30s}'.format(row[10]+' '+ row[11]+'.')+'                              '+'Telephone: 0347377304\n'+
             '                                                                 e-mail: dj.jansen@casema.nl  \n'+                                                                   
             '=============================================================================================\n'+
-            'Betalingen/Inhoudingen/dagen/uren/bedragen            belastbaar voor                        \n'+
-            'Omschrijving                   deze periode      tabel        tab.bijz.bel                   \n'+
+            'Payments  /Deductions /Days/Hours/Amounts             taxable for                            \n'+
+            'Description                    this period       table        special tax table              \n'+
             '---------------------------------------------------------------------------------------------\n'+
-            'Vakantietoeslag               '+'{:>12.2f}'.format(row[14])+'                    '+'{:>12.2f}'.format(row[14]-row[16])+'\n'+
+            'Holiday allowance             '+'{:>12.2f}'.format(row[14])+'                    '+'{:>12.2f}'.format(row[14]-row[16])+'\n'+
             '=============================================================================================\n'+
-            'Belasting Bijzonder Tarief    '+'{:>12.2f}'.format(row[26])+'                    '+'{:>12.2f}'.format(row[26])+'\n'+
-            'Pensioenpremie   onbelast     '+'{:>12.2f}'.format(row[16])+'                                \n'+ 
+            'Tax special rate              '+'{:>12.2f}'.format(row[26])+'                    '+'{:>12.2f}'.format(row[26])+'\n'+
+            'Pension contrib. not taxed    '+'{:>12.2f}'.format(row[16])+'                                \n'+
             '=============================================================================================\n'+
-            'Netto vakantieuitkering       '+'{:>12.2f}'.format(row[14]-row[16]-row[26])+'              \n'+
+            'Net holiday allowance         '+'{:>12.2f}'.format(row[14]-row[16]-row[26])+'              \n'+
             '=============================================================================================\n'+
-            'Werkgeversdeel pensioenpremie '+'{:>12.2f}'.format(row[46])+'                                \n'+
-            'Werkgeverspremie WIA,IVA,WGA  '+'{:>12.2f}'.format(row[47])+'                                \n'+
-            'Werkgeverspremie AWF          '+'{:>12.2f}'.format(row[48])+'                                \n'+
-            'Werkgeverspremie ZVW          '+'{:>12.2f}'.format(row[49])+'                                \n'+
+            'Employers share pension       '+'{:>12.2f}'.format(row[46])+'                                \n'+
+            'Employers contrib. WIA,IVA,WGA'+'{:>12.2f}'.format(row[47])+'                                \n'+
+            'Employers contrib. AWF        '+'{:>12.2f}'.format(row[48])+'                                \n'+
+            'Employers contrib ZVW         '+'{:>12.2f}'.format(row[49])+'                                \n'+
             '=============================================================================================\n'+
-            'Percentage bijzonder tarief   '+'{:>12.2f}'.format(row[25]*100)+'                            \n')
+            'Percentage special rate       '+'{:>12.2f}'.format(row[25]*100)+'                            \n')
             
             open(filename1, 'w').write(gegevens)
             if platform == 'win32':
@@ -146,72 +143,72 @@ def maandBetalingen(m_email):
             betaalVak(rpv)
             
         for row in rpperln:
-            mbetmnd = ['Januari','Februari',' Maart', 'April', 'Mei', 'Juni', 'Juli',\
-                    'Augustus','September', 'Oktober', 'November', 'December']
+            mbetmnd = ['January','February',' March', 'April', 'May', 'June', 'July',\
+                    'August','September', 'October', 'November', 'December']
             jaar = row[1][0:4]
             mndidx = int(row[1][5:7])-1
             mnd = mbetmnd[mndidx]
             if platform == 'win32':
-                filename = '.\\forms\\Lonen\\loonspecificatie-'+row[1]+'-'+str(row[2])+'.txt'
+                filename = '.\\forms\\Lonen\\wage_specification_'+row[1]+'-'+str(row[2])+'.txt'
             else:
-                filename = './forms/Lonen/loonspecificatie-'+row[1]+'-'+str(row[2])+'.txt'
+                filename = './forms/Lonen/wage_specification_'+row[1]+'-'+str(row[2])+'.txt'
             gegevens =\
-            ('                             Loonspecificatie '+str(mnd)+' '+str(jaar)+'           \n'+
+            ('                           Wage specification '+str(mnd)+' '+str(jaar)+'           \n'+
             '                                                                                             \n'+
-            '                       verwerkingsdatum       accountnr werknemer               jaar periode \n'+
-            'Geadresseerde          '+str(datetime.datetime.now())[0:10]+'             '+str(row[2])+'     '+str(row[3])+'    werkgever      '+str(row[1])+'\n'+
+            '                       proccessing date       accountnr employee                year period  \n'+
+            'Addressee              '+str(datetime.datetime.now())[0:10]+'             '+str(row[2])+'     '+str(row[3])+'    Employer       '+str(row[1])+'\n'+
             '=============================================================================================\n'+
             '                                                                 Pandora Connect B.V.,       \n'+
             '     '+'{:<30s}'.format(row[4]+' '+ row[5]+' '+row[6]+',')+'                              '+'Lange Dreef 7,\n'+
             '     '+'{:<30s}'.format(row[7]+' '+ str(row[8])+' '+row[9]+',')+'                              '+'4131 NJ Vianen.\n'+
-            '     '+'{:<30s}'.format(row[10]+' '+ row[11]+'.')+'                              '+'Telefoon: 0347377304\n'+
+            '     '+'{:<30s}'.format(row[10]+' '+ row[11]+'.')+'                              '+'Telephone: 0347377304\n'+
             '                                                                 e-mail: dj.jansen@casema.nl  \n'+                                                                   
             '=============================================================================================\n'+
-            'Betalingen/Inhoudingen/dagen/uren/bedragen          belastbaar voor                          \n'+
-            'Omschrijving                   deze periode      tabel   tab.bijz.bel                        \n'+
+            'Payments  /Deductions /Days/Hours/Amounts             taxable for                            \n'+
+            'Description                    this period       table        special tax table              \n'+
             '---------------------------------------------------------------------------------------------\n'+
-            'Bruto loon                    '+'{:>12.2f}'.format(row[14])+'{:>12.2f}'.format(row[14])+'    \n'+
-            '125% overwerk                 '+'{:>12.2f}'.format(row[28]*row[32]*1.25)+'               '+'{:>12.2f}'.format(row[28]*row[32]*1.25)+'\n'+
-            '150% overwerk                 '+'{:>12.2f}'.format(row[29]*row[32]*1.50)+'               '+'{:>12.2f}'.format(row[29]*row[32]*1.50) +'\n'+
-            '200% overwerk                 '+'{:>12.2f}'.format(row[30]*row[32]*2)+'               '+'{:>12.2f}'.format(row[30]*row[32]*2)+'\n'+ 
-            'Reisuren                      '+'{:>12.2f}'.format(row[27]*row[33])+'               '+'{:>12.2f}'.format(row[27]*row[33])+'\n'+
-            'Reisvergoeding                '+'{:>12.2f}'.format(row[22])+'                                \n'+
-            'Overige vergoedingen          '+'{:>12.2f}'.format(row[20])+'                                \n'+
-            'Periodieke vergoedingen       '+'{:>12.2f}'.format(row[21])+'                                \n'+
+            'Gross wages                   '+'{:>12.2f}'.format(row[14])+'{:>12.2f}'.format(row[14])+'    \n'+
+            '125% overtime                 '+'{:>12.2f}'.format(row[28]*row[32]*1.25)+'               '+'{:>12.2f}'.format(row[28]*row[32]*1.25)+'\n'+
+            '150% overtime                 '+'{:>12.2f}'.format(row[29]*row[32]*1.50)+'               '+'{:>12.2f}'.format(row[29]*row[32]*1.50) +'\n'+
+            '200% overtime                 '+'{:>12.2f}'.format(row[30]*row[32]*2)+'               '+'{:>12.2f}'.format(row[30]*row[32]*2)+'\n'+
+            'Travel hours                  '+'{:>12.2f}'.format(row[27]*row[33])+'               '+'{:>12.2f}'.format(row[27]*row[33])+'\n'+
+            'Travel allowance              '+'{:>12.2f}'.format(row[22])+'                                \n'+
+            'Other fees                    '+'{:>12.2f}'.format(row[20])+'                                \n'+
+            'Periodic fees                 '+'{:>12.2f}'.format(row[21])+'                                \n'+
             '                                                                                             \n'+
-            '                   Betalingen '+'{:>12.2f}'.format(row[14]+row[15]+row[22]+row[20]+row[21])+'{:>12.2f}'.format(row[14])+'   '+'{:>12.2f}'.format(row[15])+'\n'+
+            '                   Payements  '+'{:>12.2f}'.format(row[14]+row[15]+row[22]+row[20]+row[21])+'{:>12.2f}'.format(row[14])+'   '+'{:>12.2f}'.format(row[15])+'\n'+
             '=============================================================================================\n'+
-            'Pensioenpremie SPF  onbelast  '+'{:>12.2f}'.format(row[16])+'                                \n'+ 
-            'Loonheffing minus kortingen   '+'{:>12.2f}'.format(row[18])+'{:>12.2f}'.format(row[18])+'    \n'+
-            'Belasting Bijzonder Tarief    '+'{:>12.2f}'.format(row[26])+'               '+'{:>12.2f}'.format(row[26])+'\n'+
-            '                  Inhoudingen '+'{:>12.2f}'.format(row[16]+row[18]+row[26])+'                \n'+
+            'Pensioncontrib.SPF not taxed  '+'{:>12.2f}'.format(row[16])+'                                \n'+
+            'Payroll tax minus deductions  '+'{:>12.2f}'.format(row[18])+'{:>12.2f}'.format(row[18])+'    \n'+
+            'Special tax rate              '+'{:>12.2f}'.format(row[26])+'               '+'{:>12.2f}'.format(row[26])+'\n'+
+            '                  Deductions  '+'{:>12.2f}'.format(row[16]+row[18]+row[26])+'                \n'+
             '------------------------------------------------------------------                           \n'+
-            'Bijtelling Auto               '+'{:>12.2f}'.format(row[17])+'                                \n'+
-            '                 Bijtellingen             '+'{:>12.2f}'.format(row[17])+'                    \n'+
+            'Addition company car          '+'{:>12.2f}'.format(row[17])+'                                \n'+
+            '                 Additions                '+'{:>12.2f}'.format(row[17])+'                    \n'+
             '------------------------------------------------------------------                           \n'+
-            'Netto Loon                    '+'{:>12.2f}'.format(row[31])+'                                \n'+
-            'Betaling op bankrekening                     Overige gegevens                                \n'+
+            'Nett Wages                    '+'{:>12.2f}'.format(row[31])+'                                \n'+
+            'Payment to bank account                      Other information                               \n'+
             '=============================================================================================\n'+
-            'Weekdagen deze maand x 8 uur  '+'{:>12.2f}'.format(row[52])+'   Werkgeversdeel pensioenpremie '+'{:>12.2f}'.format(row[46])+'\n'+
-            'Gewerkte uren deze maand      '+'{:>12.2f}'.format(row[24])+'   Werkgeverspremie WIA,IVA,WGA  '+'{:>12.2f}'.format(row[47])+'\n'+
-            'Geboekte uren deze maand      '+'{:>12.2f}'.format(row[24]+row[34]+row[35]+row[36]+row[37]+row[38]+row[39])+'   Reservering AWF               '+'{:>12.2f}'.format(row[48])+'\n'+
-            'Overuren 125% deze maand      '+'{:>12.2f}'.format(row[28])+'   Werkgeverspremie ZVW          '+'{:>12.2f}'.format(row[49])+'\n'+
-            'Overuren 150% deze maand      '+'{:>12.2f}'.format(row[29])+'   Res.vakantietoeslag cumulatief'+'{:>12.2f}'.format(row[23])+'\n'+
-            'Overuren 200% deze maand      '+'{:>12.2f}'.format(row[30])+'   Loonschaal                    '+'{:>12.2f}'.format(row[41])+'\n'+
-            'Uren verlof deze maand        '+'{:>12.2f}'.format(row[34])+'   Loontrede                     '+'{:>12.2f}'.format(row[42])+'\n'+
-            'Uren extra verlof             '+'{:>12.2f}'.format(row[35])+'   Percentage bijzonder tarief   '+'{:>12.2f}'.format(row[25])+'\n'+
-            'Uren feestdag                 '+'{:>12.2f}'.format(row[36])+'   Geboortedatum                 '+'{:>12s}'.format(row[12])+'\n'+
-            'Uren bezoek dokter            '+'{:>12.2f}'.format(row[38])+'   Datum in diensttreding        '+'{:>12s}'.format(row[13])+'\n'+
-            'Uren ziekte                   '+'{:>12.2f}'.format(row[37])+'   Verloftegoed in  uren         '+'{:>12.2f}'.format(row[43])+'\n'+
-            'Uren geoorl. verzuim          '+'{:>12.2f}'.format(row[39])+'   Uurloon                       '+'{:>12.2f}'.format(row[32])+'\n'+
-            '=========================================='+'   Reisuurloon                   '+'{:>12.2f}'.format(row[33])+'\n'+
-            'Saldo werkuren cumulatief     '+'{:>12.2f}'.format(row[51])+'                                \n'+
+            'Weekday this month x 8 hours  '+'{:>12.2f}'.format(row[52])+'   Employer pensioncontributiom  '+'{:>12.2f}'.format(row[46])+'\n'+
+            'Worked hours this month       '+'{:>12.2f}'.format(row[24])+'   Employer share WIA,IVA,WGA    '+'{:>12.2f}'.format(row[47])+'\n'+
+            'Booked hours this month       '+'{:>12.2f}'.format(row[24]+row[34]+row[35]+row[36]+row[37]+row[38]+row[39])+'   Reservation AWF               '+'{:>12.2f}'.format(row[48])+'\n'+
+            'Overtime 125% this month      '+'{:>12.2f}'.format(row[28])+'   Employer share ZVW            '+'{:>12.2f}'.format(row[49])+'\n'+
+            'Overtime 150% this month      '+'{:>12.2f}'.format(row[29])+'   Res.holiday allowance cum.    '+'{:>12.2f}'.format(row[23])+'\n'+
+            'Overtime 200% this month      '+'{:>12.2f}'.format(row[30])+'   Pay scale                     '+'{:>12.2f}'.format(row[41])+'\n'+
+            'Hours leave this month        '+'{:>12.2f}'.format(row[34])+'   Wage step                     '+'{:>12.2f}'.format(row[42])+'\n'+
+            'Hours extra leave this month  '+'{:>12.2f}'.format(row[35])+'   Percentage special rate       '+'{:>12.2f}'.format(row[25])+'\n'+
+            'Hours holiday                 '+'{:>12.2f}'.format(row[36])+'   Date of birth                 '+'{:>12s}'.format(row[12])+'\n'+
+            'Hours doctor visit            '+'{:>12.2f}'.format(row[38])+'   Date of employment            '+'{:>12s}'.format(row[13])+'\n'+
+            'Hours illnes                  '+'{:>12.2f}'.format(row[37])+'   Leave credit in hours         '+'{:>12.2f}'.format(row[43])+'\n'+
+            'Hours permitted leave         '+'{:>12.2f}'.format(row[39])+'   Hourly wage                   '+'{:>12.2f}'.format(row[32])+'\n'+
+            '=========================================='+'   Travel hourly wage            '+'{:>12.2f}'.format(row[33])+'\n'+
+            'Working hours cumulation      '+'{:>12.2f}'.format(row[51])+'                                \n'+
             '=============================================================================================\n'+
-            'Bedragen                                                                                     \n'+
-            'Heffingsloon                  '+'{:>12.2f}'.format(row[14])+'                                \n'+
-            'Loonheffing                   '+'{:>12.2f}'.format(row[18])+'                                \n'+
-            'Algemene Heffingskorting      '+'{:>12.2f}'.format(row[44])+'                                \n'+
-            'Arbeidskorting                '+'{:>12.2f}'.format(row[45])+'                                \n'+
+            'Amounts                                                                                      \n'+
+            'Levy wages                    '+'{:>12.2f}'.format(row[14])+'                                \n'+
+            'Payroll tax                   '+'{:>12.2f}'.format(row[18])+'                                \n'+
+            'General levy shortfall        '+'{:>12.2f}'.format(row[44])+'                                \n'+
+            'Labour tax credit             '+'{:>12.2f}'.format(row[45])+'                                \n'+
             '=============================================================================================\n'+
             '=============================================================================================\n')
             open(filename, 'w').write(gegevens)
@@ -223,8 +220,8 @@ def maandBetalingen(m_email):
         return(True)
     
     def acceptInvoer(self):
-        reply = QMessageBox.question(self, 'Loongegevens',
-          "Zijn alle loongegevens ingevoerd\nvoor de opgegeven periode?",\
+        reply = QMessageBox.question(self, 'Wage data',
+          "Have all wage data been entered\nfor the specified period?",\
            QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if reply == QMessageBox.Yes:
             self.accept()
@@ -237,11 +234,13 @@ def maandBetalingen(m_email):
             msg.setIcon(QMessageBox.Information)
             msg.setFont(QFont('Arial', 10))
             msg.setText('''
-       Deze periode is geblokkerd en afgesloten
-       de uitdraai heeft al plaatsgevonden 
-       de gegevens worden niet opnieuw aangemaakt
-       OK voor STOPPEN, PRINTEN of OPVRAGEN!     ''')
-            msg.setWindowTitle('Lonen uitbetalen')
+            
+       This period has been blocked and closed 
+       The printout has already taken place 
+       the data will not be recreated 
+       OK for STOP, PRINT or REQUEST!
+      ''')
+            msg.setWindowTitle('Pay wages')
             msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             msg.exec_()
                        
@@ -249,23 +248,23 @@ def maandBetalingen(m_email):
         msg = QMessageBox()
         msg.setStyleSheet("color: black;  background-color: gainsboro")
         msg.setIcon(QMessageBox.Warning)
-        msg.setText('Geen geldige betaalperiode opgegeven!')
-        msg.setWindowTitle('Lonen uitbetalen')
+        msg.setText('No valid payment period specified!')
+        msg.setWindowTitle('Pay wages')
         msg.exec_()
     
     def progSluit():
         msg = QMessageBox()
         msg.setStyleSheet("color: black;  background-color: gainsboro")
         msg.setIcon(QMessageBox.Information)
-        msg.setText('Programma Afgesloten\nTot ziens!')
-        msg.setWindowTitle('Lonen uitbetalen')
+        msg.setText('Program Closed\nSee you soon!')
+        msg.setWindowTitle('Pay wages')
         msg.exec_()
      
     def toonMenu(rpwerknmr): 
         class Widget(QDialog):
             def __init__(self, parent=None):
                 super(Widget, self).__init__(parent)
-                self.setWindowTitle("Uitbetalen Lonen medewerkers")
+                self.setWindowTitle("Pay employees' wages")
                 self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                 
                 lbl = QLabel()
@@ -286,18 +285,19 @@ def maandBetalingen(m_email):
                 
                 grid.addWidget(QLabel
                 ('''
-                 De loongegevens zijn succesvol aangemaakt 
-                 met OPVRAGEN kunt u nu de gegevens van
-                 van de aangegeven periode bekijken en met 
-                 PRINTEN alle loonspecificaties printen.'''),1,0,1,3)
+                 The wage data has been successfully created
+                 with REQUEST you can now view the data of 
+                 the specified period and with 
+                 PRINT all wage specifications printing.
+                 '''),1,0,1,3)
                 
-                toonBtn = QPushButton('Opvragen')
+                toonBtn = QPushButton('Request')
                 toonBtn.clicked.connect(self.accept)
                 
-                printBtn = QPushButton('Printen')
+                printBtn = QPushButton('Print')
                 printBtn.clicked.connect(lambda: printGeg(rpwerknmr))
                 
-                cancelBtn = QPushButton('Sluiten')
+                cancelBtn = QPushButton('Close')
                 cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
                
                 grid.addWidget(toonBtn, 3, 2)
@@ -332,7 +332,7 @@ def maandBetalingen(m_email):
         class Widget(QDialog):
             def __init__(self, parent=None):
                 super(Widget, self).__init__(parent)
-                self.setWindowTitle("Periode opgeven tbv loonspecificaties")
+                self.setWindowTitle("Specify period for wage specifications")
                 self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
         
                 self.setFont(QFont('Arial', 10))
@@ -359,16 +359,16 @@ def maandBetalingen(m_email):
                 logo.setPixmap(pixmap)
                 grid.addWidget(logo , 0, 2, 1, 1, Qt.AlignRight)
                                
-                grid.addWidget(QLabel('Betaalperiode jjjj-mm'), 1, 0, 1, 2, Qt.AlignRight)
+                grid.addWidget(QLabel('Payment period yyyy-mm'), 1, 0, 1, 2, Qt.AlignRight)
                 grid.addWidget(betEdit, 1, 2)
                 
-                infoBtn = QPushButton('Informatie')
+                infoBtn = QPushButton('Information')
                 infoBtn.clicked.connect(lambda: info())
                   
-                cancelBtn = QPushButton('Sluiten')
+                cancelBtn = QPushButton('Close')
                 cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
              
-                applyBtn = QPushButton('Uitvoeren')
+                applyBtn = QPushButton('Proceed')
                 applyBtn.clicked.connect(lambda: acceptInvoer(self))
                       
                 grid.addWidget(applyBtn, 2, 2)
@@ -934,7 +934,7 @@ def maandBetalingen(m_email):
             def __init__(self, data_list, header, *args):
                 QWidget.__init__(self, *args,)
                 self.setGeometry(30, 60, 1500, 900)
-                self.setWindowTitle('Loonbetalingen opvragen')
+                self.setWindowTitle('Request wage payments')
                 self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                 self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -979,20 +979,20 @@ def maandBetalingen(m_email):
                     return self.header[col]
                 return None
                   
-        header = ['Betalingnr', 'Maandperiode', 'Accountnummer', 'Werknemer', 'Voornaam',\
-              'Tussenvoegsel','Achternaam', 'Straat', 'Huisnummer', 'Toevoeging',\
-              'Postcode', 'Woonplaats', 'Geboortedatum', 'Indienstdatum','Brutoloon',\
-              'Bruto variabel', 'Pensioenpremie', 'Bijtelling auto','Loonheffing',\
-              'Inhouding overig','Periodieke uitkering','Vergoeding overig',\
-              'Vergoeding reiskosten','Res. vakantietoeslag cum.','Werkuren',\
-              'Bijzonder tarief', 'Bedrag_byz_tarief','Reisuren', 'Overuren 125%',\
-              'Overuren 150%', 'Overuren 200%', 'Nettoloon','Uurloon', 'Reisuurloon',\
-              'Uren verlof', 'Uren extra verlof', 'Uren feestdag', 'Uren ziekte',\
-              'Uren dokter', 'Uren geoorl. verzuim', 'Uren ongeoorl. verzuim',\
-              'Loonschaal', 'Loontrede', 'Verlofsaldo', 'Alg. Heffingskorting',\
-              'Arbeidskorting', 'Werkgever pensioenpremie','Werkgever WAO-IVA-WGA premie',\
-              'Werkgever AWF premie', 'Werkgever ZVW kosten','Boekdatum',\
-              'Cumulatief verschil uren', 'Uren in deze maand', 'Geboekt deze maand']
+        header = ['Payment no.', 'Monthly period', 'Account number', 'Employee', 'Thirst name',\
+              'Infix','Surname', 'Street', 'House number', 'Suffix',\
+              'Zipcode', 'Residence', 'Birth date', 'Into service date','Gross salary',\
+              'Gross variable', 'Pension contribution', 'Addition car','Payroll tax',\
+              'Withholding other','Periodic payment','Other compensation',\
+              'Travel compensation','Res. holiday allowance cum.','Working hours',\
+              'Special rate hours', 'Amount special rate','Travel hours', 'Overtime 125%',\
+              'Overtime 150%', 'Overtime 200%', 'Net salary','Hourly wage', 'Travel hourly wage',\
+              'Leave hours', 'Extra leave hours', 'Holiday hours', 'Illness hours',\
+              'Doctor hours', 'Permitted leave hours', 'Illegal leave hours',\
+              'Wage scale', 'Wage step', 'Leave balance', 'General tax credit',\
+              'Employment tax credit', 'Employer pension contrib.','Employer WAO-IVA-WGA contrib.',\
+              'Employer AWF contrib.', 'Employer ZVW costs','Booking date',\
+              'Cumulative difference hours', 'Hours in this month', 'Booked this month']
     
         selperln = select([loonbetalingen]).where(loonbetalingen.c.periode == mjrmnd).order_by(loonbetalingen.c.achternaam, loonbetalingen.c.voornaam)
         rpperln = con.execute(selperln)
@@ -1024,7 +1024,7 @@ def maandBetalingen(m_email):
                         grid = QGridLayout()
                         grid.setSpacing(20)
                         
-                        self.setWindowTitle("Opvragen loonbetaling")
+                        self.setWindowTitle("Request wage payments")
                         self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                         
                         self.setFont(QFont('Arial', 10))   
@@ -1034,7 +1034,7 @@ def maandBetalingen(m_email):
                         self.lbl.setPixmap(self.pixmap)
                         grid.addWidget(self.lbl , 0, 0)
                         
-                        grid.addWidget(QLabel('Opvragen Loonbetalingen per werknemer en periode'),0, 2, 1, 3)
+                        grid.addWidget(QLabel('Request wage payments per employee and period'),0, 2, 1, 3)
                 
                         self.logo = QLabel()
                         self.pixmap = QPixmap('./images/logos/logo.jpg')
@@ -1067,7 +1067,7 @@ def maandBetalingen(m_email):
                             
                             index +=1
                             
-                        terugBtn = QPushButton('Sluiten')
+                        terugBtn = QPushButton('Close')
                         terugBtn.clicked.connect(self.accept)
                 
                         grid.addWidget(terugBtn, verpos+1, 5, 1 , 1, Qt.AlignRight)

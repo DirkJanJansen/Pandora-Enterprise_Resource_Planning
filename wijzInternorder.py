@@ -21,8 +21,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Wijzigen interne orders ')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Modify internal order')
     msg.exec_()
     
 def geenRecord():
@@ -30,8 +30,8 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Artikelen opvragen')               
+    msg.setText('No record found, take another selection please!')
+    msg.setWindowTitle('Requesting articles')             
     msg.exec_() 
  
 def invoerOK():
@@ -39,8 +39,8 @@ def invoerOK():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Wijziging gelukt!')
-    msg.setWindowTitle('Werkordergegevens')
+    msg.setText('Modify successful!') 
+    msg.setWindowTitle('Work order data')
     msg.exec_()
 
 def jaarweek():
@@ -77,14 +77,14 @@ def zoeken(m_email):
             k0Edit.setFixedWidth(280)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('        Sorteersleutel Orders Intern')
-            k0Edit.addItem('1. Alle Interne Orders')
-            k0Edit.addItem('2. Gefilterd op Werordernummer')
-            k0Edit.addItem('3. Gefilterd op Artikelnummer')
-            k0Edit.addItem('4. Gefilterd op (deel) startdatum')
-            k0Edit.addItem('5. Gefilterd op (deel) datum afgemeld')
-            k0Edit.addItem('6. Gefilterd op voorgangstatus A-H')
-            k0Edit.addItem('7. Gefilterd op (deel) omschrijving')
+            k0Edit.addItem('        Sort key orders internal')
+            k0Edit.addItem('1. All internal orders')
+            k0Edit.addItem('2. Filtered by work order number')
+            k0Edit.addItem('3. Filtered by article number')
+            k0Edit.addItem('4. Filtered by (part) date of start')
+            k0Edit.addItem('5. Filtered by (part) date of finish')
+            k0Edit.addItem('6. Filtered by progress status A-H')
+            k0Edit.addItem('7. Filtered by (part) description')
             k0Edit.activated[str].connect(self.k0Changed)
             
             self.Zoekterm = QLabel()
@@ -95,7 +95,7 @@ def zoeken(m_email):
             zktermEdit.setValidator(input_validator)
             zktermEdit.textChanged.connect(self.zktermChanged)
          
-            lbl1 = QLabel('Zoekterm')  
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                            
             grid.addWidget(k0Edit, 2, 1)   
@@ -107,7 +107,7 @@ def zoeken(m_email):
             
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 5, 0, 1, 3, Qt.AlignCenter)
     
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 4, 1, 1, 1, Qt.AlignRight)
@@ -115,7 +115,7 @@ def zoeken(m_email):
             applyBtn.setFixedWidth(110)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self,m_email))
     
             grid.addWidget(cancelBtn, 4, 0 , 1 , 2, Qt.AlignCenter)
@@ -164,7 +164,7 @@ def toonOrders(keuze, zoekterm, m_email):
     class MyWindow(QDialog):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
-            self.setWindowTitle('Wijzigen interne orders')
+            self.setWindowTitle('Modify internal orders')
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                     Qt.WindowMinMaxButtonsHint)
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
@@ -193,7 +193,7 @@ def toonOrders(keuze, zoekterm, m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 1, 15, 1, 1, Qt.AlignRight)
             
-            freshBtn = QPushButton('Verversen')
+            freshBtn = QPushButton('Refresh')
             freshBtn.clicked.connect(lambda: refresh(keuze, zoekterm, m_email, self))
 
             freshBtn.setFont(QFont("Arial",10))
@@ -202,7 +202,7 @@ def toonOrders(keuze, zoekterm, m_email):
    
             grid.addWidget(freshBtn, 1, 14, 1, 1, Qt.AlignRight)
         
-            sluitBtn = QPushButton('Sluiten')
+            sluitBtn = QPushButton('Close')
             sluitBtn.clicked.connect(self.close)
 
             sluitBtn.setFont(QFont("Arial",10))
@@ -243,25 +243,25 @@ def toonOrders(keuze, zoekterm, m_email):
                 return self.header[col]
             return None
              
-    header = ['Werkorder', 'Omschrijving','Artikelnummer','Hoeveelheid',\
-               'Werkbrief','Besteldatum', 'Voortgangstatus','Statusweek','Boekdatum',\
-               'Startdatum', 'Afgemeld', 'Begroot Totaal','Werkelijk Totaal',\
-               'Begroot Materialen','Werkelijk Materialen','Begroot Lonen',\
-               'Werkelijk Lonen', 'Meerminderwerk', 'Szagen','Bzagen', 'Wzagen',\
-               'Sschaven','Bschaven', 'Wschaven', 'Ssteken','Bsteken', 'Wsteken',\
-               'Sboren','Bboren', 'Wboren','Sfrezen','Bfrezen','WFrezen',\
-               'Sdraaien klein', 'Bdraaien klein','Wdraaien klein','Sdraaien groot',\
-               'Bdraaien groot','Wdraaien groot','Stappen','Btappen','Wtappen',\
-               'Snube draaien','Bnube draaien','Wnube draaien','Snube bewerken',\
-               'Bnube bewerken', 'Wnube bewerken', 'Sknippen','Bknippen', 'Wknippen',\
-               'Skanten', 'Bkanten', 'Wkanten','Sstansen','Bstansen', 'Wstansen',\
-               'Slassen Co2', 'Blassen Co2', 'Wlassen Co2','Slassen hand','Blassen hand',\
-               'Wlassen hand','Sverpakken','Bverpakken','Wverpakken', 'Sverzinken',\
-               'Bverzinken','Wverzinken','Smoffelen','Bmoffelen', 'Wmoffelen',\
-               'Sschilderen','Bschilderen', 'Wschilderen','Sspuiten','Bspuiten',\
-               'Wspuiten','Sponsen','Bponsen', 'Wponsen','Spersen','Bpersen',\
-               'Wpersen','Sgritstralen','Bgritstralen','Wgritstralen','Smontage',\
-               'Bmontage','Wmontage', 'Wreisuren','Gereed', 'Goedgekeurd']
+    header = ['Work order', 'Description','Article number','Amount',\
+               'Workletter','Order date', 'Progress status','Status week','Book date',\
+               'Start date', 'Finished', 'Budgeted total','Realised total',\
+               'Budgeted materials','Realised materials','Budgeted wages',\
+               'Realised wages', 'More/Less work', 'Ssawing','Bsawing', 'Rsawing',\
+               'Splaning','Bplaning', 'Rplaning', 'Sstabbing','Bstabbing', 'Rstabbing',\
+               'Sdrilling','Bdrilling', 'Rdrilling','Smilling','Bmilling','Rmilling',\
+               'Sturning small', 'Bturning small','Rturning small','Sturning big',\
+               'Bturning big','Rturning big','Sthreading','Bthreading','Rthreading',\
+               'SCNC turning','BCNC turning','RCNC turning','SCNC milling',\
+               'BCNC milling', 'RCNC milling', 'Scutting','Bcutting', 'Rcutting',\
+               'Sbending', 'Bbending', 'RBending','Ssizing','Bsizing', 'Rsizing',\
+               'Swelding Co2', 'Bwelding Co2', 'Rwelding Co2','Swelding hand','Bwelding hand',\
+               'Rwelding hand','Spacking','Bpacking','Rpacking', 'Sgalvanize',\
+               'Bgalvanize','Rgalvanize','Smuffling','Bmuffling', 'Rmuffling',\
+               'Spainting','Bpainting', 'Rpainting','Sspraying','Bspraying',\
+               'Rspraying','Sstamping','Bstamping', 'Rstamping','Spressing','Bpressing',\
+               'Rpressing','Sgritblasting','Bgritblasting','Rgritblasting','Smounting',\
+               'Bmounting','Rmounting', 'Wtravelhours','Finished', 'Approved']
     
     metadata = MetaData()
     orders_intern = Table('orders_intern', metadata,
@@ -442,7 +442,7 @@ def toonOrders(keuze, zoekterm, m_email):
                     grid = QGridLayout()
                     grid.setSpacing(12)
                     
-                    self.setWindowTitle("Wijzigen Werkorders Intern")
+                    self.setWindowTitle("Modify work order internal")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                       
                     self.setFont(QFont('Arial', 10))   
@@ -457,7 +457,7 @@ def toonOrders(keuze, zoekterm, m_email):
                     self.logo.setPixmap(self.pixmap)
                     grid.addWidget(self.logo , 0, 1, 1, 2, Qt.AlignRight) 
                     
-                    grid.addWidget(QLabel('Wijzigen Orders Intern'), 0, 0, 1, 3, Qt.AlignCenter)
+                    grid.addWidget(QLabel('Modify orders internal'), 0, 0, 1, 3, Qt.AlignCenter)
                         
                     self.Werkordernummer = QLabel()
                     q1Edit = QLineEdit(str(rpord[0]))
@@ -525,48 +525,48 @@ def toonOrders(keuze, zoekterm, m_email):
                     input_validator = QRegExpValidator(reg_ex, q7Edit)
                     q7Edit.setValidator(input_validator)
                     
-                    lbl1 = QLabel('Werkordernummer')
+                    lbl1 = QLabel('Work order number')
                     grid.addWidget(lbl1, 1, 0)
                     grid.addWidget(q1Edit, 1, 1)
                     
-                    lbl2 = QLabel('Werkomschrijving')
+                    lbl2 = QLabel('Work description')
                     grid.addWidget(lbl2, 2, 0)
                     grid.addWidget(q2Edit, 2, 1, 1, 2)
                     
-                    lbl3 = QLabel('Voorgangstatus')
+                    lbl3 = QLabel('Progress status')
                     grid.addWidget(lbl3, 3, 0)
                     grid.addWidget(q3Edit, 3, 1)
-                    lbl4 = QLabel('Statusweek: '+rpord[4])
+                    lbl4 = QLabel('Status week: '+rpord[4])
                     grid.addWidget(lbl4, 3, 1, 1, 2, Qt.AlignRight)
                     
-                    lbl5 = QLabel('Startdatum')
+                    lbl5 = QLabel('Start date')
                     grid.addWidget(lbl5, 4, 0)
                     grid.addWidget(q4Edit, 4, 1)
                     
-                    lbl6 = QLabel('Afgemeld')
+                    lbl6 = QLabel('Finished')
                     grid.addWidget(lbl6, 5, 0)
                     grid.addWidget(q5Edit, 5, 1)
                     
-                    lbl7 = QLabel('Hoeveelheid\nGereed')
+                    lbl7 = QLabel('Amount\nFinished')
                     grid.addWidget(lbl7, 6, 0)
                     grid.addWidget(q6Edit, 6, 1)
-                    lbl8 = QLabel('                           Artikel: '+str(rpord[16]))
+                    lbl8 = QLabel('                           Article: '+str(rpord[16]))
                     grid.addWidget(lbl8, 5, 1, 1, 2, Qt.AlignRight)
-                    lbl9 = QLabel('                 Bestelhoeveelheid: '+'{:12.2f}'.format(rpord[17]))
+                    lbl9 = QLabel('                 Order size       : '+'{:12.2f}'.format(rpord[17]))
                     grid.addWidget(lbl9, 6, 1, 1, 2, Qt.AlignRight)
                     
-                    lbl10 = QLabel('Hoeveelheid\nGoedgekeurd')
+                    lbl10 = QLabel('Amount\nApproved')
                     grid.addWidget(lbl10, 7, 0)
                     grid.addWidget(q7Edit, 7, 1)
               
-                    wijzig = QPushButton('Wijzig')
+                    wijzig = QPushButton('Modify')
                     wijzig.clicked.connect(self.accept)
     
                     grid.addWidget(wijzig, 9, 2, 1 , 1, Qt.AlignRight)
                     wijzig.setFont(QFont("Arial",10))
                     wijzig.setFixedWidth(100)
                     
-                    sluit = QPushButton('Sluiten')
+                    sluit = QPushButton('Close')
                     sluit.clicked.connect(self.close)
     
                     grid.addWidget(sluit, 9, 1 , 1 , 2, Qt.AlignCenter)

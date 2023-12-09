@@ -13,8 +13,8 @@ def eindModule(self,m_email):
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Invoer afgebroken.')
-    msg.setWindowTitle('LONEN')               
+    msg.setText('Input aborted.')
+    msg.setWindowTitle('Wages')
     msg.exec_()
     self.close()
     hoofdMenu(m_email)
@@ -23,8 +23,8 @@ def invoerOK(m_email):
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Invoer gelukt!')
-    msg.setWindowTitle('LONEN')
+    msg.setText('Input successful!')
+    msg.setWindowTitle('Wages')
     msg.exec_()
     hoofdMenu(m_email)
     
@@ -32,8 +32,8 @@ def invoerVerpl():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Invoer verplicht\nof sluit het programma!')
-    msg.setWindowTitle('LOONTABEL')
+    msg.setText('Input required\nor close the program!')
+    msg.setWindowTitle('Wage table')
     msg.exec_()
 
 def percLoonschaal(m_email):
@@ -44,7 +44,7 @@ def percLoonschaal(m_email):
             grid = QGridLayout()
             grid.setSpacing(12)
             
-            self.setWindowTitle("Procentueel aanpassen lonen")
+            self.setWindowTitle("Percentage adjustment of wages")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             
             self.setFont(QFont('Arial', 10))   
@@ -59,7 +59,7 @@ def percLoonschaal(m_email):
             self.logo.setPixmap(self.pixmap)
             grid.addWidget(self.logo , 0, 1, 1, 2, Qt.AlignRight) 
             
-            grid.addWidget(QLabel('     Lonen procentueel  aanpassen'), 1, 0, 1, 3, Qt.AlignCenter)
+            grid.addWidget(QLabel('     Adjust wages in percentage terms'), 1, 0, 1, 3, Qt.AlignCenter)
                 
             self.Percentage = QLabel()
             q1Edit = QLineEdit()
@@ -70,11 +70,11 @@ def percLoonschaal(m_email):
             input_validator = QRegExpValidator(reg_ex, q1Edit)
             q1Edit.setValidator(input_validator)
                           
-            lbl1 = QLabel('Percentage Verhoging')
+            lbl1 = QLabel('Percentage increase')
             grid.addWidget(lbl1, 2, 0, 1, 2, Qt.AlignRight)
             grid.addWidget(q1Edit, 2, 2)
                  
-            wijzig = QPushButton('Wijzig')
+            wijzig = QPushButton('Modify')
             wijzig.clicked.connect(self.accept)
     
             grid.addWidget(wijzig, 3, 1, 1 , 2, Qt.AlignRight)
@@ -82,7 +82,7 @@ def percLoonschaal(m_email):
             wijzig.setStyleSheet("color: black;  background-color: gainsboro; selection-background-color: gainsboro; selection-color: black")
             wijzig.setFixedWidth(100)  
             
-            sluit = QPushButton('Sluit')
+            sluit = QPushButton('Close')
             sluit.clicked.connect(lambda: eindModule(self, m_email))
     
             grid.addWidget(sluit, 3, 0, 1 , 2, Qt.AlignRight)

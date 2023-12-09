@@ -17,8 +17,8 @@ def printing():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Ogenblik afdrukken wordt gestart!')
-    msg.setWindowTitle('Printen Facturen')
+    msg.setText('Just a moment printing is started!')
+    msg.setWindowTitle('Printing invoices')
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.exec_()
 
@@ -27,9 +27,9 @@ def printGeg(m_email, filename):
     msgBox=QMessageBox()
     msgBox.setStyleSheet("color: black;  background-color: gainsboro")
     msgBox.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
-    msgBox.setWindowTitle("Printlijst te factureren werken")
+    msgBox.setWindowTitle("Print list to invoice works")
     msgBox.setIcon(QMessageBox.Information)
-    msgBox.setText("Wilt U de lijst van nog te factureren\nbedragen externe werken uitprinten?");
+    msgBox.setText("Would you like to print out the list of external works to be invoiced?");
     msgBox.setStandardButtons(QMessageBox.Yes)
     msgBox.addButton(QMessageBox.No)
     msgBox.setStyleSheet("color: black;  background-color: gainsboro")
@@ -126,13 +126,13 @@ def maakLijst(m_email):
             if rgl == 0 or rgl%57 == 0:
                 mblad += 1
                 if platform == 'win32':
-                    filename = '.\\forms\\Facturen_Werken\\Factuur-Werken_'+str(datetime.datetime.now())[0:10]+'.txt'
+                    filename = '.\\forms\\Facturen_Werken\\Billing_works_'+str(datetime.datetime.now())[0:10]+'.txt'
                 else:
-                    filename = './forms/Facturen_Werken/Factuur-Werken_'+str(datetime.datetime.now())[0:10]+'.txt'
+                    filename = './forms/Facturen_Werken/Billing_works_'+str(datetime.datetime.now())[0:10]+'.txt'
                 kop =\
-            ('Facturen Externe werken Datum: '+str(datetime.datetime.now())[0:10]+' Pagina '+str(mblad)+'\n'+
+            ('Invoices external works Date: '+str(datetime.datetime.now())[0:10]+' Page '+str(mblad)+'\n'+
             "==============================================================================================\n"+
-            "Werknummer      Omschrijving    Status   Aanneemsom nog-Factureren  reeds-Betaald     Meerwerk\n"+
+            "Work number     Description     Status   Contr.price still invoicing already payed   More work\n"+
             "==============================================================================================\n")
                 if rgl == 0:
                     open(filename, 'w').write(kop)

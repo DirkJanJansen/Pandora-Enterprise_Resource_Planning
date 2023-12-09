@@ -17,8 +17,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Externe werken opvragen')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Request external works')
     msg.exec_() 
 
 def geenRecord():
@@ -26,8 +26,8 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Externe werken opvragen')               
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Request external works')
     msg.exec_() 
 
 def jaarweek():
@@ -41,7 +41,7 @@ def werkenKeuze(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Financieël Overzicht Werken")
+            self.setWindowTitle("Financial Overview Works")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Times', 10))
@@ -51,14 +51,14 @@ def werkenKeuze(m_email):
             k4Edit.setFixedWidth(330)
             k4Edit.setFont(QFont("Times", 10))
             k4Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k4Edit.addItem('              Sorteersleutel voor zoeken')
-            k4Edit.addItem('1. Alle werken')
-            k4Edit.addItem('2. Werknummer')
-            k4Edit.addItem('3. Werkomschrijving')
-            k4Edit.addItem('4. Voortgangstatus.')
-            k4Edit.addItem('5. Aanneemsom >')
-            k4Edit.addItem('6. Aanneemsom <')
-            k4Edit.addItem('7. Afgerekend in % >')
+            k4Edit.addItem('              Search sort key')
+            k4Edit.addItem('1. All works')
+            k4Edit.addItem('2. Work number')
+            k4Edit.addItem('3. Work description')
+            k4Edit.addItem('4. Progress status')
+            k4Edit.addItem('5. Contract price >')
+            k4Edit.addItem('6. Contract price <')
+            k4Edit.addItem('7. Payed in % >')
             k4Edit.activated[str].connect(self.k4Changed)
             
             self.Zoekterm = QLabel()
@@ -76,7 +76,7 @@ def werkenKeuze(m_email):
             grid.addWidget(lbl , 0, 0, 1, 2)
                                   
             grid.addWidget(k4Edit, 1, 0, 1, 2, Qt.AlignRight)
-            lbl1 = QLabel('Zoekterm')  
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 2, 0)
             grid.addWidget(zktermEdit, 2, 1)
@@ -91,10 +91,10 @@ def werkenKeuze(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
     
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
             
-            sluitBtn = QPushButton('Sluiten')
+            sluitBtn = QPushButton('Close')
             sluitBtn.clicked.connect(lambda: windowSluit(self, m_email))
             
             grid.addWidget(applyBtn, 5, 1, 1 , 1, Qt.AlignRight)
@@ -226,7 +226,7 @@ def toonWerken(keuze,zoekterm, m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(50, 50, 1800, 900)
-            self.setWindowTitle('Werken extern opvragen')
+            self.setWindowTitle('Request external works')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -268,19 +268,19 @@ def toonWerken(keuze,zoekterm, m_email):
                 return self.header[col]
             return None
   
-    header = ['Werknummer','Werkomschrijving', 'Voortgangstatus','Statusweek',\
-              'Startweek','Opdrachtdatum','Aanneemsom','Betaald bedrag','Begr.Materialen',\
-              'Werk.Materialen', 'Begr.Lonen', 'Werk.Lonen', 'Begr.Materieel',\
-              'Werk.materieel','Begr.leiding', 'Werk.leiding','Begr.huisvesting',\
-              'Werk.huisvesting', 'Begr.inhuur','Werk.inhuur','Begr.Overig',\
-              'Werk.Overig', 'Begr.Vervoer', 'Werk.Vervoer', 'Begr.betonwerk',\
-              'Werk.betonwerk','Begr.kabelwerk', 'Werk.kabelwerk','Begr.grondverzet',\
-              'Werk,grondverzet', 'Meerminderwerk','Begr.constr.uren','Werk.constr.uren',\
-              'Begr.mont.uren', 'Werk.mont.uren', 'Begr.retourl.uren', 'Werk.retourl.uren',\
-              'Begr.telecomuren','Werk.telecomuren', 'Begr.bfi-uren','Werk.bfi-uren',\
-              'Begr.bvl-uren', 'Werk.bvl-uren','Begr.voedings-uren','Werk.voedings-uren',\
-              'Begr.spoorleg-uren','Werk.spoorleg-uren', 'Begr.spoorlas-uren',\
-              'Werk.spoorlas-uren', 'Begr.reis-uren', 'Werk.reis-uren']
+    header = ['Work number','Work description', 'Progress status','Status week',\
+              'Start week','Order date','Contract price','Amount payed','Budgeted materials',\
+              'Realised materials', 'Budgeted wages', 'Realised wages', 'Budgeted equipment',\
+              'Realised equipment','Budgeted direction', 'Realised direction','Budgeted housing',\
+              'Realised housing', 'Budgeted hiring','Realised hiring','Budgeted remaining',\
+              'Realised remaining', 'Budgeted transport', 'Realised transport', 'Budgeted\nconcrete work',\
+              'Realised\nconcrete work','Budgeted\ncable work', 'Realised\ncable work','Budgeted\nearth-moving',\
+              'Realised\nearth-moving', 'More/less work','Budgeted\nconstruction hours','Realised\nconstruction hours',\
+              'Budgeted\nmounting hours', 'Realised\nmounting hours', 'Budgeted return\nwelding hours', 'Realised return\nwelding hours',\
+              'Budgeted\ntelecom hours','Realised\ntelecom hours', 'Budgeted\nchief mechanic','Realised\nchief mechanic',\
+              'Budgeted\nOCL hours', 'Realised\nOCL hours','Budgeted\npower-supply hours','Realised\npower-supply hours',\
+              'Budgeted track\nlaying hours','Realised track\nlaying hours', 'Budgeted track\nwelding hours',\
+              'Realised track\nwelding hours', 'Budgeted\ntravel hours', 'Realised\ntravel hours']
    
     data_list=[]
     for row in rpwerken:
@@ -345,7 +345,7 @@ def toonWerken(keuze,zoekterm, m_email):
             class Widget(QDialog):
                  def __init__(self, parent=None):
                     super(Widget, self).__init__(parent)
-                    self.setWindowTitle("Werken extern gegevens opvragen")
+                    self.setWindowTitle("Request external work data")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                                           
                     self.setFont(QFont('Arial', 10))
@@ -697,90 +697,90 @@ def toonWerken(keuze,zoekterm, m_email):
             
                     self.setFont(QFont('Arial', 10))
                     
-                    grid.addWidget(QLabel('Werknummer'), 1, 0)
+                    grid.addWidget(QLabel('Work number'), 1, 0)
                     grid.addWidget(q1Edit, 1, 1) 
                     
-                    grid.addWidget(QLabel('Werkomschrijving'), 1, 2)
+                    grid.addWidget(QLabel('Work description'), 1, 2)
                     grid.addWidget(q2Edit, 1, 3, 1, 3) 
                                                         
-                    grid.addWidget(QLabel('Voortgangstatus'), 1, 6)
+                    grid.addWidget(QLabel('Progress status'), 1, 6)
                     grid.addWidget(q3Edit, 1, 7)
                     
-                    grid.addWidget(QLabel('Statusweek'), 1, 7, 1, 1, Qt.AlignRight)
+                    grid.addWidget(QLabel('Status week'), 1, 7, 1, 1, Qt.AlignRight)
                     grid.addWidget(q4Edit, 1, 8) 
                      
-                    grid.addWidget(QLabel('Startweek'), 2, 2)
+                    grid.addWidget(QLabel('Start week'), 2, 2)
                     grid.addWidget(q5Edit, 2, 3)
                                                               
-                    grid.addWidget(QLabel('Aanneemsom'), 2, 4)
+                    grid.addWidget(QLabel('Contract price'), 2, 4)
                     grid.addWidget(q8Edit, 2, 5)
                     
-                    grid.addWidget(QLabel('Meerminderwerk'), 2, 6)
+                    grid.addWidget(QLabel('More/less work'), 2, 6)
                     grid.addWidget(q9Edit, 2,7)
                           
-                    lbl1 = QLabel('Financieële totaal bedragen')
+                    lbl1 = QLabel('Total financial amounts')
                     lbl1.setStyleSheet("font: 12pt Comic Sans MS")
                     grid.addWidget(lbl1, 3, 0, 1, 2)
                     
-                    grid.addWidget(QLabel('Totaal opbrengsten'), 4, 0)
+                    grid.addWidget(QLabel('Total revenues'), 4, 0)
                     grid.addWidget(q21Edit, 4, 1)
                     
-                    grid.addWidget(QLabel('Totaal kosten'), 4, 2)
+                    grid.addWidget(QLabel('Total costs'), 4, 2)
                     grid.addWidget(q22Edit, 4, 3)
                     
-                    grid.addWidget(QLabel('Betaald bedrag'), 4, 4)
+                    grid.addWidget(QLabel('Amount payed'), 4, 4)
                     grid.addWidget(q11Edit, 4, 5)
                     
-                    grid.addWidget(QLabel('Te factureren'), 4,  6)
+                    grid.addWidget(QLabel('To be invoiced'), 4,  6)
                     grid.addWidget(q26Edit, 4, 7)
                     
-                    grid.addWidget(QLabel('Begroot'), 5, 1)
-                    grid.addWidget(QLabel('Werkelijk'), 5, 2)
-                    grid.addWidget(QLabel('Begroot'), 5, 4)
-                    grid.addWidget(QLabel('Werkelijk'), 5, 5)
-                    grid.addWidget(QLabel('Begroot'), 5, 7)
-                    grid.addWidget(QLabel('Werkelijk'), 5, 8)
+                    grid.addWidget(QLabel('Budgeted'), 5, 1)
+                    grid.addWidget(QLabel('Realised'), 5, 2)
+                    grid.addWidget(QLabel('Budgeted'), 5, 4)
+                    grid.addWidget(QLabel('Realised'), 5, 5)
+                    grid.addWidget(QLabel('Budgeted'), 5, 7)
+                    grid.addWidget(QLabel('Realised'), 5, 8)
            
-                    grid.addWidget(QLabel('Materialen'), 6, 0)
+                    grid.addWidget(QLabel('Materials'), 6, 0)
                     grid.addWidget(q12Edit, 6, 1) 
                     grid.addWidget(q13Edit, 6, 2) 
                     
-                    grid.addWidget(QLabel('Lonen'), 6, 3)
+                    grid.addWidget(QLabel('Wages'), 6, 3)
                     grid.addWidget(q19Edit, 6, 4)
                     grid.addWidget(q14Edit, 6, 5)
                                                 
-                    grid.addWidget(QLabel('Materieel'), 6, 6)
+                    grid.addWidget(QLabel('Equipment'), 6, 6)
                     grid.addWidget(q15Edit, 6, 7)                           
                     grid.addWidget(q16Edit, 6, 8)
                     
-                    grid.addWidget(QLabel('Derden'), 7, 0)
+                    grid.addWidget(QLabel('Third parties'), 7, 0)
                     grid.addWidget(q23Edit, 7, 1)
                     grid.addWidget(q24Edit, 7, 2)
                      
-                    grid.addWidget(QLabel('Leiding'), 7, 3)
+                    grid.addWidget(QLabel('Direction'), 7, 3)
                     grid.addWidget(q18Edit, 7, 4) 
                     grid.addWidget(q17Edit, 7,5) 
                         
-                    lbl2 = QLabel('Werkuren verbruik')
+                    lbl2 = QLabel('Working hours consumption')
                     lbl2.setStyleSheet("font: 12pt Comic Sans MS")
                     grid.addWidget(lbl2, 8, 0, 1, 2)
                     
-                    grid.addWidget(QLabel('Begroot'), 9, 1)
-                    grid.addWidget(QLabel('Werkelijk'), 9, 2)
-                    grid.addWidget(QLabel('Begroot'), 9, 4)
-                    grid.addWidget(QLabel('Werkelijk'), 9, 5) 
-                    grid.addWidget(QLabel('Begroot'), 9, 7)
-                    grid.addWidget(QLabel('Werkelijk'), 9, 8)  
+                    grid.addWidget(QLabel('Budgeted'), 9, 1)
+                    grid.addWidget(QLabel('Realised'), 9, 2)
+                    grid.addWidget(QLabel('Budgeted'), 9, 4)
+                    grid.addWidget(QLabel('Realised'), 9, 5)
+                    grid.addWidget(QLabel('Budgeted'), 9, 7)
+                    grid.addWidget(QLabel('Realised'), 9, 8)
                     
-                    grid.addWidget(QLabel('Construktie'), 10, 0)
+                    grid.addWidget(QLabel('Construction'), 10, 0)
                     grid.addWidget(u1Edit, 10,1)
                     grid.addWidget(u2Edit, 10,2) 
 
-                    grid.addWidget(QLabel('Montage'), 10, 3)
+                    grid.addWidget(QLabel('Mounting'), 10, 3)
                     grid.addWidget(u3Edit, 10,4)
                     grid.addWidget(u4Edit, 10,5) 
                     
-                    grid.addWidget(QLabel('Retourlas'), 10, 6)
+                    grid.addWidget(QLabel('Return welding'), 10, 6)
                     grid.addWidget(u5Edit, 10,7)
                     grid.addWidget(u6Edit, 10,8) 
                     
@@ -788,66 +788,66 @@ def toonWerken(keuze,zoekterm, m_email):
                     grid.addWidget(u7Edit, 11,1)
                     grid.addWidget(u8Edit, 11,2) 
                     
-                    grid.addWidget(QLabel('Bfi'), 11, 3)
+                    grid.addWidget(QLabel('Chief mechanic'), 11, 3)
                     grid.addWidget(u9Edit, 11,4)
                     grid.addWidget(u10Edit, 11,5)
                     
-                    grid.addWidget(QLabel('Bovenleiding'), 11, 6)
+                    grid.addWidget(QLabel('OCL'), 11, 6)
                     grid.addWidget(u11Edit, 11,7)
                     grid.addWidget(u12Edit, 11,8)
                     
-                    grid.addWidget(QLabel('Voeding'), 12, 0)
+                    grid.addWidget(QLabel('Power-supply'), 12, 0)
                     grid.addWidget(u13Edit, 12,1)
                     grid.addWidget(u14Edit, 12,2)
                     
-                    grid.addWidget(QLabel('Spoorleg'), 12, 3)
+                    grid.addWidget(QLabel('Track laying'), 12, 3)
                     grid.addWidget(u15Edit, 12,4)
                     grid.addWidget(u16Edit, 12,5)
                     
-                    grid.addWidget(QLabel('Spoorlas'), 12, 6)
+                    grid.addWidget(QLabel('Track welding'), 12, 6)
                     grid.addWidget(u17Edit, 12,7)
                     grid.addWidget(u18Edit, 12,8)
                     
-                    grid.addWidget(QLabel('Reisuren'), 13, 0)
+                    grid.addWidget(QLabel('Travel hours'), 13, 0)
                     grid.addWidget(u19Edit, 13,1)
                     grid.addWidget(u20Edit, 13,2)
                     
-                    lbl3 = QLabel('Diensten derden')
+                    lbl3 = QLabel('Services third parties')
                     lbl3.setStyleSheet("font: 12pt Comic Sans MS")
                     grid.addWidget(lbl3, 14, 0, 1, 2)
                     
-                    grid.addWidget(QLabel('Begroot'), 15, 1)
-                    grid.addWidget(QLabel('Werkelijk'), 15, 2)
-                    grid.addWidget(QLabel('Begroot'), 15, 4)
-                    grid.addWidget(QLabel('Werkelijk'), 15, 5) 
-                    grid.addWidget(QLabel('Begroot'), 15, 7)
-                    grid.addWidget(QLabel('Werkelijk'), 15, 8)  
+                    grid.addWidget(QLabel('Budgeted'), 15, 1)
+                    grid.addWidget(QLabel('Realised'), 15, 2)
+                    grid.addWidget(QLabel('Budgeted'), 15, 4)
+                    grid.addWidget(QLabel('Realised'), 15, 5)
+                    grid.addWidget(QLabel('Budgeted'), 15, 7)
+                    grid.addWidget(QLabel('Realised'), 15, 8)
                       
-                    grid.addWidget(QLabel('Huisvesting'), 16, 0)
+                    grid.addWidget(QLabel('Housing'), 16, 0)
                     grid.addWidget(d1Edit, 16,1)
                     grid.addWidget(d2Edit, 16,2)
                     
-                    grid.addWidget(QLabel('Inhuur'), 16, 3)
+                    grid.addWidget(QLabel('Hiring'), 16, 3)
                     grid.addWidget(d3Edit, 16,4)
                     grid.addWidget(d4Edit, 16,5)
                     
-                    grid.addWidget(QLabel('Overig'), 16, 6)
+                    grid.addWidget(QLabel('Remaining'), 16, 6)
                     grid.addWidget(d5Edit, 16,7)
                     grid.addWidget(d6Edit, 16,8)
                     
-                    grid.addWidget(QLabel('Vervoer'), 17, 0)
+                    grid.addWidget(QLabel('Transport'), 17, 0)
                     grid.addWidget(d7Edit, 17,1)
                     grid.addWidget(d8Edit, 17,2)
                     
-                    grid.addWidget(QLabel('Betonwerk'), 17, 3)
+                    grid.addWidget(QLabel('Concrete work'), 17, 3)
                     grid.addWidget(d9Edit, 17,4)
                     grid.addWidget(d10Edit, 17,5)
                     
-                    grid.addWidget(QLabel('Kabelwerk'), 17, 6)
+                    grid.addWidget(QLabel('Cable work'), 17, 6)
                     grid.addWidget(d11Edit, 17,7)
                     grid.addWidget(d12Edit, 17,8)
                     
-                    grid.addWidget(QLabel('Grondverzet'), 18, 0)
+                    grid.addWidget(QLabel('Earth-moving'), 18, 0)
                     grid.addWidget(d13Edit, 18,1)
                     grid.addWidget(d14Edit, 18,2)
                      
@@ -855,7 +855,7 @@ def toonWerken(keuze,zoekterm, m_email):
                     self.setLayout(grid)
                     self.setGeometry(400, 50, 350, 300)
                                                                             
-                    cancelBtn = QPushButton('Sluiten')
+                    cancelBtn = QPushButton('Close')
                     cancelBtn.clicked.connect(self.close)
                 
                     grid.addWidget(cancelBtn, 19, 8, 1, 1, Qt.AlignRight)

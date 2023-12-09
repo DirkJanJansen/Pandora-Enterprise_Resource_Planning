@@ -20,8 +20,8 @@ def foutArtnr():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Artikelnummer\nNiet aanwezig!')
-    msg.setWindowTitle('Artikel bestaat niet')
+    msg.setText('Item number\nNot present!')
+    msg.setWindowTitle('Article don\'t exist')
     msg.exec_()
        
 def progSluit():
@@ -29,8 +29,8 @@ def progSluit():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Programma Afgesloten\nTot ziens!')
-    msg.setWindowTitle('SLUITEN')
+    msg.setText('Program closed\nGoodbye!')
+    msg.setWindowTitle('Close')
     msg.exec_()
     
 def updateOK():
@@ -38,8 +38,8 @@ def updateOK():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Je gegevens zijn aangepast!')
-    msg.setWindowTitle('Gegevens!')
+    msg.setText('Your data have been adjusted!')
+    msg.setWindowTitle('Data!')
     msg.exec_()
            
 def _11check(martikelnr):
@@ -60,7 +60,7 @@ def zoekArtikel(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Artikelen Wijzigen.")
+            self.setWindowTitle("Modify articles.")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -90,13 +90,13 @@ def zoekArtikel(m_email):
     
             self.setFont(QFont('Arial', 10))
     
-            grid.addWidget(QLabel('Artikelnummer'), 1, 1)
+            grid.addWidget(QLabel('Articlenumber'), 1, 1)
             grid.addWidget(artEdit, 1, 2)
        
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
          
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
                   
             grid.addWidget(applyBtn, 2, 2, 1, 1, Qt.AlignRight)
@@ -178,7 +178,7 @@ def wijzArt(m_email, martikelnr):
         def __init__(self):
             super(Widget, self).__init__()
         
-            self.setWindowTitle("Artikelen wijzigen")
+            self.setWindowTitle("Modify articles")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                         
             self.setFont(QFont('Arial', 10))
@@ -222,6 +222,7 @@ def wijzArt(m_email, martikelnr):
             q5Edit.setFixedWidth(140)
             q5Edit.setFont(QFont("Arial",10))
             q5Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
+            q5Edit.addItem('piece')
             q5Edit.addItem('stuk')
             q5Edit.addItem('100')
             q5Edit.addItem('meter')
@@ -290,15 +291,15 @@ def wijzArt(m_email, martikelnr):
             q13Edit.setFixedWidth(320)
             q13Edit.setFont(QFont("Arial",10))
             q13Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-            q13Edit.addItem('1. Voorraadgestuurd < 3 weken.')
-            q13Edit.addItem('2. Voorraadgestuurd < 12 weken')
-            q13Edit.addItem('3. Voorraadgestuurd < 26 weken')
-            q13Edit.addItem('4. Voorraadgestuurd < 52 weken')
-            q13Edit.addItem('5. Reservering < 3 weken')
-            q13Edit.addItem('6. Reservering < 6 weken')
-            q13Edit.addItem('7. Reservering < 12 weken')
-            q13Edit.addItem('8. Reservering < 24 weken')
-            q13Edit.addItem('9. Reservering < 52 weken')            
+            q13Edit.addItem('1. Stock controlled < 3 weeks')
+            q13Edit.addItem('2. Stock controlled < 12 weeks')
+            q13Edit.addItem('3. Stock controlled < 26 weeks')
+            q13Edit.addItem('4. Stock controlled < 52 weeks')
+            q13Edit.addItem('5. Reservation < 3 weeks')
+            q13Edit.addItem('6. Reservation < 6 weeks')
+            q13Edit.addItem('7. Reservation < 12 weeks')
+            q13Edit.addItem('8. Reservation < 24 weeks')
+            q13Edit.addItem('9. Reservation < 52 weeks')        
             q13Edit.setCurrentIndex(rpartikel[12]-1)
             q13Edit.activated[str].connect(self.q13Changed)        
                     
@@ -316,53 +317,53 @@ def wijzArt(m_email, martikelnr):
             grid.addWidget(logo , 0, 2, 1, 1, Qt.AlignRight) 
         
             self.setFont(QFont('Arial', 10))
-            grid.addWidget(QLabel('Wijzigen artikel'), 1, 1)
+            grid.addWidget(QLabel('Modify article'), 1, 1)
         
-            grid.addWidget(QLabel('                                *'), 2, 0)
-            grid.addWidget(QLabel('Verplichte velden'), 2, 1)
+            grid.addWidget(QLabel('                                 *'), 2, 0)
+            grid.addWidget(QLabel('Required fields'), 2, 1)
         
-            grid.addWidget(QLabel('Artikelnummer'), 3, 0)
+            grid.addWidget(QLabel('Article number'), 3, 0)
             grid.addWidget(q1Edit, 3, 1)
         
-            grid.addWidget(QLabel('Artikelomschrijving     *'), 4, 0)
+            grid.addWidget(QLabel('Article description       *'), 4, 0)
             grid.addWidget(q2Edit, 4, 1)
         
-            grid.addWidget(QLabel('Artikelprijs                 *'), 5, 0)
+            grid.addWidget(QLabel('Article price                *'), 5, 0)
             grid.addWidget(q3Edit, 5 , 1) 
         
-            grid.addWidget(QLabel('Artikelvoorraad'), 6, 0)
+            grid.addWidget(QLabel('Article stock'), 6, 0)
             grid.addWidget(q4Edit, 6, 1)
           
-            grid.addWidget(QLabel('Eenheid                    *'), 7, 0)
+            grid.addWidget(QLabel('Unit                            *'), 7, 0)
             grid.addWidget(q5Edit, 7, 1)
         
-            grid.addWidget(QLabel('Minimumvoorraad      *'), 8, 0)
+            grid.addWidget(QLabel('Minimum stock            *'), 8, 0)
             grid.addWidget(q6Edit, 8, 1)
         
-            grid.addWidget(QLabel('Bestelgrootte             *'), 9, 0)
+            grid.addWidget(QLabel('Order size                   *'), 9, 0)
             grid.addWidget(q7Edit, 9, 1)
         
-            grid.addWidget(QLabel('Magazijnlocatie         *'), 10, 0)
+            grid.addWidget(QLabel('Warehouse location     *'), 10, 0)
             grid.addWidget(q8Edit, 10, 1)
         
-            grid.addWidget(QLabel('Artikelgroep              *'), 11, 0)
+            grid.addWidget(QLabel('Article group               *'), 11, 0)
             grid.addWidget(q9Edit, 11, 1) 
         
             grid.addWidget(QLabel('Barcode'), 12, 0)
             grid.addWidget(q10Edit, 12, 1)
         
-            grid.addWidget(QLabel('Artikelthumbnail'), 13, 0)
+            grid.addWidget(QLabel('Article thumbnail'), 13, 0)
             grid.addWidget(q11Edit, 13, 1)
         
-            grid.addWidget(QLabel('Artikelfoto'), 14, 0)
+            grid.addWidget(QLabel('Artikel photo'), 14, 0)
             grid.addWidget(q12Edit, 14, 1)
             
-            grid.addWidget(QLabel('Categorie                   *'),15,0)
-            grid.addWidget(q13Edit, 15, 1)
+            grid.addWidget(QLabel('Category                    *'),15,0)
+            grid.addWidget(q13Edit, 15, 1) 
         
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 16, 1)
                 
-            applyBtn = QPushButton('Wijzigen')
+            applyBtn = QPushButton('Modify')
             applyBtn.clicked.connect(self.accept)
         
             grid.addWidget(applyBtn, 15, 2)
@@ -370,7 +371,7 @@ def wijzArt(m_email, martikelnr):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: wijzSluit(self, m_email))
         
             grid.addWidget(cancelBtn, 14, 2)

@@ -24,8 +24,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Voortgangsgrafieken')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Progress charts')
     msg.exec_()
 
 def jaarweek():
@@ -40,15 +40,15 @@ def geenWeek():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Weeknummer is niet aanwezig!')
-    msg.setWindowTitle('Voortgangsgrafieken')               
+    msg.setText('Week number is not present')
+    msg.setWindowTitle('Progress charts')
     msg.exec_() 
     
 def info(self):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Informatie status van externe werken")
+            self.setWindowTitle("Information status external works")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -68,27 +68,24 @@ def info(self):
             infolbl = QLabel(
     '''
     
-    Informatie over Voortgangstatus
+    Information about progress status 
     
-    
-    A. Voorbereiding / Opdracht verwerven, materialen reserveren.
-    
-    B. Werk is gestart / 1e gedeelte materialen geleverd.           
-    
-    C. Werk is 33% gereed. (Factuur indienen van  1e termijn van 33%)
-    
-    D. Werk is 50% gereed.
-    
-    E. Werk is 75% gereed. (Factuur indienen van 2e termijn van 33%)
-    
-    F. Werk is 90 % gereed. (Factuur indienen van 3e termijn van 20%)\t\t       
-    
-    G. Werk is technisch gereed incl meerminderwerk.
-       (Factuur indienen van 14% +/- meerminderwerk)
-       
-    H. Werk is financieel afgerond en afgemeld.
-    
-    
+     A. Preparation / Acquisition assignment / Reservation materials.
+     
+     B. Work has started / 1st delivery materials is done. 
+     
+     C. Work is 33% completed. (Invoice of 1st term of 33%) 
+     
+     D. Work is 50% completed. 
+     
+     E. Work is 75% completed. (Invoice of 2nd term of 33%) 
+     
+     F. Work is 90% completed. (Invoice of 3rd term of 20%)\t\t 
+     
+     G. Work is technically completed including additional work. (Invoice of 14% +/- additional work) \n
+     
+     H. Work has been financially completed and deregistered.
+          
     ''')
             grid.addWidget(infolbl, 1, 0)
             infolbl.setStyleSheet("font: 10pt Comic Sans MS; color: black ; background-color: #D9E1DF")  
@@ -104,7 +101,7 @@ def zoekwk(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Printen status grafieken")
+            self.setWindowTitle("Printing stages charts")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -114,10 +111,10 @@ def zoekwk(m_email):
             kEdit.setFixedWidth(300)
             kEdit.setFont(QFont("Arial", 10))
             kEdit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            kEdit.addItem('                  Keuze grafieken')
-            kEdit.addItem('1. Grafiek status externe Werken')
-            kEdit.addItem('2. Grafiek werken status-aantal\n    Taartgrafiek')
-            kEdit.addItem('3. Grafiek werken status-aantal\n    Staafgrafiek')
+            kEdit.addItem('                  Choice graphs')
+            kEdit.addItem('1. Graph stages external works')
+            kEdit.addItem('2. Graph works stages-number\n    Pie chart')
+            kEdit.addItem('3. Graph works stages-number\n    Bar graph')
             kEdit.activated[str].connect(self.kChanged)
                
             self.Zoekterm = QLabel()
@@ -138,7 +135,7 @@ def zoekwk(m_email):
             grid.addWidget(lbl , 0, 0, 1, 2)
              
             grid.addWidget(kEdit, 1, 0, 1, 2, Qt.AlignRight)                     
-            lbl1 = QLabel('Jaarweek-uitdraai (jjjjww)')  
+            lbl1 = QLabel('Year week-report (yyyyww)')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 2, 0, 1, 2, Qt.AlignCenter)
             grid.addWidget(zktermEdit, 2, 1, 1, 1, Qt.AlignRight)
@@ -153,10 +150,10 @@ def zoekwk(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
     
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
             
-            sluitBtn = QPushButton('Sluiten')
+            sluitBtn = QPushButton('Close')
             sluitBtn.clicked.connect(lambda: windowSluit(self, m_email))            
           
             grid.addWidget(applyBtn, 3, 1, 1 , 1, Qt.AlignRight)
@@ -234,20 +231,20 @@ def barGrafiek(keuze, jrwk, m_email):
     class Window(QDialog):
         def __init__(self):          
             QDialog.__init__(self)
-            self.setWindowTitle("Printen grafiek status van externe werken over jaar "+jrwk[0:4]) 
+            self.setWindowTitle("Printing chart stages of external works from year "+jrwk[0:4])
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                                                   Qt.WindowMinMaxButtonsHint)
             self.chart = QChart()
             self.chart_view = QChartView(self.chart)
             self.chart_view.setRenderHint(QPainter.Antialiasing)
-            self.buttonPreview = QPushButton('Afdrukvoorbeeld', self)
+            self.buttonPreview = QPushButton('Print preview', self)
             self.buttonPreview.clicked.connect(self.handle_preview)
             self.buttonPreview.setStyleSheet("color: black;  background-color: gainsboro")
-            self.buttonPrint = QPushButton('Printen', self)
+            self.buttonPrint = QPushButton('Printing', self)
             self.buttonPrint.clicked.connect(self.handle_print) 
             self.buttonPrint.setStyleSheet("color: black;  background-color: gainsboro")
-            self.buttonSluit = QPushButton('Sluiten', self)
+            self.buttonSluit = QPushButton('Close', self)
             self.buttonSluit.clicked.connect(lambda: sluit(self, m_email)) 
             self.buttonSluit.setStyleSheet("color: black;  background-color: gainsboro")
             self.buttonInfo = QPushButton('Info', self)
@@ -263,13 +260,13 @@ def barGrafiek(keuze, jrwk, m_email):
             self.create_chart()
     
         def create_chart(self):
-            self.chart.setTitle('Grafiek kosten / baten van externe werken per status - opnameweek '+jrwk)
+            self.chart.setTitle('Chart costs / avail of external works per status by year week '+jrwk)
             font = QFont("Sans Serif", 10)
             font.setWeight(QFont.Bold)
             self.chart.setTitleFont(font)
-            set0 = QBarSet('Aanneemsom +/- Meerminderwerk')
-            set1 = QBarSet('Kosten')
-            set2 = QBarSet('Betaald Bedrag')
+            set0 = QBarSet('Contract price +/- More/less work')
+            set1 = QBarSet('Costs')
+            set2 = QBarSet('Amount payed')
     
             set0 << rpsr[0][2]+rpsr[0][7] << rpsr[1][2]+rpsr[1][7] << rpsr[2][2]+rpsr[2][7]<< rpsr[3][2]+rpsr[3][7] << rpsr[4][2]+rpsr[4][7] << rpsr[5][2]+rpsr[5][7] << rpsr[6][2]+rpsr[6][7] << rpsr[7][2]+rpsr[7][7] 
             set1 << rpsr[0][3] << rpsr[1][3] << rpsr[2][3] << rpsr[3][3] << rpsr[4][3] << rpsr[5][3] << rpsr[6][3] << rpsr[7][3]
@@ -341,20 +338,20 @@ def statusGrafiek(keuze, jrwk, m_email):
     class Window(QDialog):
         def __init__(self):
             QDialog.__init__(self)
-            self.setWindowTitle("Printen grafiek aantal externe werken per status over jaar "+jrwk[0:4]) 
+            self.setWindowTitle("Printing graph number of external works per status by year week "+jrwk[0:4])
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                                                   Qt.WindowMinMaxButtonsHint)
             self.chart = QChart()
             self.chart_view = QChartView(self.chart)
             self.chart_view.setRenderHint(QPainter.Antialiasing)
-            self.buttonPreview = QPushButton('Afdrukvoorbeeld', self)
+            self.buttonPreview = QPushButton('Print preview', self)
             self.buttonPreview.clicked.connect(self.handle_preview)
             self.buttonPreview.setStyleSheet("color: navy;  background-color: gainsboro")
-            self.buttonPrint = QPushButton('Printen', self)
+            self.buttonPrint = QPushButton('Printing', self)
             self.buttonPrint.clicked.connect(self.handle_print) 
             self.buttonPrint.setStyleSheet("color: navy;  background-color: gainsboro")
-            self.buttonSluit = QPushButton('Sluiten', self)
+            self.buttonSluit = QPushButton('Close', self)
             self.buttonSluit.clicked.connect(lambda: sluit(self, m_email))
             self.buttonSluit.setStyleSheet("color: navy;  background-color: gainsboro")
             self.buttonInfo = QPushButton('Info', self)
@@ -370,11 +367,11 @@ def statusGrafiek(keuze, jrwk, m_email):
             self.create_chart()
     
         def create_chart(self):
-            self.chart.setTitle('Grafiek aantal externe werken per status - opnameweek '+jrwk) 
+            self.chart.setTitle('Chart number of external works per status - by week '+jrwk)
             font = QFont("Sans Serif", 10)
             font.setWeight(QFont.Bold)
             self.chart.setTitleFont(font)
-            set0 = QBarSet('Aantal externe werken per status')
+            set0 = QBarSet('Number of external works per status')
       
             set0 << rpr[0][2] << rpr[1][2] << rpr[2][2] << rpr[3][2] << rpr[4][2] << rpr[5][2] << rpr[6][2] << rpr[7][2]
  
@@ -442,7 +439,7 @@ def statusPie(keuze, jrwk, m_email):
     class Window(QDialog):
         def __init__(self):          
             QDialog.__init__(self)
-            self.setWindowTitle("Printen grafiek status van externe werken over jaar "+jrwk[0:4]) 
+            self.setWindowTitle("Printing chart status of external works by year week "+jrwk[0:4])
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                                                   Qt.WindowMinMaxButtonsHint)
@@ -451,13 +448,13 @@ def statusPie(keuze, jrwk, m_email):
             self.chart.legend().setAlignment(Qt.AlignRight)
             self.view = QChartView(self.chart)
             self.view.setRenderHint(QPainter.Antialiasing)
-            self.buttonPreview = QPushButton('Afdrukvoorbeeld', self)
+            self.buttonPreview = QPushButton('Print preview', self)
             self.buttonPreview.clicked.connect(self.handle_preview)
             self.buttonPreview.setStyleSheet("color: black;  background-color: gainsboro")
-            self.buttonPrint = QPushButton('Printen', self)
+            self.buttonPrint = QPushButton('Printing', self)
             self.buttonPrint.clicked.connect(self.handle_print)
             self.buttonPrint.setStyleSheet("color: black;  background-color: gainsboro")
-            self.buttonSluit = QPushButton('Sluiten', self)
+            self.buttonSluit = QPushButton('Close', self)
             self.buttonSluit.clicked.connect(lambda: sluit(self, m_email))
             self.buttonSluit.setStyleSheet("color: black;  background-color: gainsboro")
             self.buttonInfo = QPushButton('Info', self)
@@ -472,7 +469,7 @@ def statusPie(keuze, jrwk, m_email):
             self.create_chart()
     
         def create_chart(self):
-            self.chart.setTitle('Grafiek aantal externe werken per status - opnameweek '+jrwk)
+            self.chart.setTitle('Chart number of external works per status  by year week '+jrwk)
             font = QFont("Sans Serif", 10)
             font.setWeight(QFont.Bold)
             self.chart.setTitleFont(font)

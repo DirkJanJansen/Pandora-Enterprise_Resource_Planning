@@ -25,8 +25,8 @@ def invoerOK():
     msg.setFont(QFont("Arial", 10))
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Invoer gelukt!')
-    msg.setWindowTitle('Inkooporder diensten wijzigen')
+    msg.setText('Insert successful!')
+    msg.setWindowTitle('Change purchase order services')
     msg.exec_()
         
 def foutCombinatie():
@@ -34,8 +34,8 @@ def foutCombinatie():
     msg.setFont(QFont("Arial", 10))
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Dit is geen inkooporder voor diensten!')
-    msg.setWindowTitle('Inkooporder diensten wijzigen')
+    msg.setText('This is not a purchase order for services!')
+    msg.setWindowTitle('Change purchase order services')
     msg.exec_()   
        
 def foutDienstorder():
@@ -44,15 +44,15 @@ def foutDienstorder():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Dienstenorder niet gevonden!')
-    msg.setWindowTitle('Inkooporder diensten wijzigen')
+    msg.setText('Service order not found!')
+    msg.setWindowTitle('Change purchase order services')
     msg.exec_()
                 
 def zoekInkooporder(m_email, minkordernr, mregel):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Inkooporder diensten wijzigen.")
+            self.setWindowTitle("Change purchase order services.")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setFont(QFont('Arial', 10))
                             
@@ -80,13 +80,13 @@ def zoekInkooporder(m_email, minkordernr, mregel):
     
             self.setFont(QFont('Arial', 10))
    
-            grid.addWidget(QLabel('Inkoopordernummer diensten'), 1, 0, 1, 2)
+            grid.addWidget(QLabel('Purchase order services'), 1, 0, 1, 2)
             grid.addWidget(inkordEdit, 1, 1)
        
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
         
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
                   
             grid.addWidget(applyBtn, 2, 1, 1 , 1, Qt.AlignRight)
@@ -202,7 +202,7 @@ def dienstenOrder(m_email, minkordernr, mregel):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Inkooporder diensten Wijzigen.")
+            self.setWindowTitle("Modify purchase order services.")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -270,7 +270,7 @@ def dienstenOrder(m_email, minkordernr, mregel):
             grid.addWidget(lbl , 1, 0)
                     
             self.setFont(QFont('Arial', 10))
-            grid.addWidget(QLabel('Bestelling voor\nLeverancier: '+str(rp2[0])+\
+            grid.addWidget(QLabel('Order for\nSupplier: '+str(rp2[0])+\
               ',\n'+rp2[1]+' '+rp2[2]+',\n'+mstraat+' '+str(rp2[4])+\
               rp2[5]+',\n'+rp2[3]+' '+mplaats+'.'), 1, 1, 1 , 2)
             
@@ -279,30 +279,30 @@ def dienstenOrder(m_email, minkordernr, mregel):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 5, 2, 1, 1, Qt.AlignCenter)
                       
-            grid.addWidget(QLabel('Inkoopordernummer'), 4, 0, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Purchase order number'), 4, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(inkordEdit, 4, 1)
             
-            grid.addWidget(QLabel('Werknummer'), 5, 0, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Work number'), 5, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(werknEdit, 5, 1)           
         
-            grid.addWidget(QLabel('Besteldatum'),6, 0, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Order date'),6, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(q3Edit, 6, 1)  
                    
-            grid.addWidget(QLabel('Goedgekeurd jjjj-mm-dd'), 7, 0, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Approved yyyy-mm-dd'), 7, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(q4Edit, 7, 1) 
             
-            grid.addWidget(QLabel('Betaald jjjj-mm-dd'), 8, 0, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Payed yyyy-mm-dd'), 8, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(q5Edit, 8, 1)  
             
-            grid.addWidget(QLabel('Afgemeld jjjj-mm-dd'), 9, 0, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Unsubscribed yyyy-mm-dd'), 9, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(q6Edit, 9, 1)  
           
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 10, 0, 1, 3, Qt.AlignCenter)
             
-            applyBtn = QPushButton('Bestelregels')
+            applyBtn = QPushButton('Order lines')
             applyBtn.clicked.connect(self.accept)
                           
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: wijzSluit(m_email, minkordernr, 0 ,self))
                        
             grid.addWidget(applyBtn, 9, 2, 1 , 1, Qt.AlignRight)
@@ -397,7 +397,7 @@ def dienstenRegels(m_email, rp1,rp2, rp3, mstraat, mplaats, mregel):
                 super(Widget, self).__init__(parent)
         
                 self.setFont(QFont('Arial', 10))
-                self.setWindowTitle("Bestelregels inkooporder diensten wijzigen")
+                self.setWindowTitle("Change service purchase order lines")
                 self.setFont(QFont('Arial', 10))
                                                           
                 self.Inkoopordernummer = QLabel()
@@ -517,77 +517,77 @@ def dienstenRegels(m_email, rp1,rp2, rp3, mstraat, mplaats, mregel):
                 grid.addWidget(logo , 1, 2, 1, 1, Qt.AlignRight)
            
                 self.setFont(QFont('Arial', 10))
-                grid.addWidget(QLabel('Bestelling voor\nLeverancier: '+str(rp2[0])+\
+                grid.addWidget(QLabel('Order for\nSupplier: '+str(rp2[0])+\
                  ',\n'+rp2[1]+' '+rp2[2]+',\n'+mstraat+' '+str(rp2[4])+\
-                 rp2[5]+',\n'+rp2[3]+' '+mplaats+'.\nOrderregel '+str(mregel)), 1, 1, 1, 2)
+                 rp2[5]+',\n'+rp2[3]+' '+mplaats+'.\nOrder line '+str(mregel)), 1, 1, 1, 2)
                              
-                lbl1 = QLabel('Ordernummer')  
+                lbl1 = QLabel('Order number')
                 lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl1, 5, 0)
                 grid.addWidget(q1Edit, 5, 1)
                                               
-                lbl2 = QLabel('Werknummer')  
+                lbl2 = QLabel('Work number')
                 lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl2, 6, 0)
                 grid.addWidget(q2Edit, 6, 1)
                 
-                lbl3 = QLabel('Werkomschrijving')  
+                lbl3 = QLabel('Work description')  
                 lbl3.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl3, 7, 0)
                 grid.addWidget(q3Edit,7, 1, 1, 2)
                            
-                lbl4 = QLabel('Omschrijving')  
+                lbl4 = QLabel('Description')  
                 lbl4.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl4, 8, 0)
                 grid.addWidget(q4Edit, 8, 1, 1, 2)
                 
-                lbl5 = QLabel('Aanneemsom')  
+                lbl5 = QLabel('Contract price')  
                 lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl5, 9, 0)
                 grid.addWidget(q5Edit, 9, 1)
                                         
-                lbl6 = QLabel('Geplande Start')  
+                lbl6 = QLabel('Planned start')  
                 lbl6.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl6, 10, 0)  
                 grid.addWidget(q6Edit, 10, 1)
                 
-                lbl7 = QLabel('Werkelijke Start')  
+                lbl7 = QLabel('Real start')  
                 lbl7.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl7, 11, 0)
                 grid.addWidget(q7Edit, 11, 1)
     
-                lbl8 = QLabel('Gepland Gereed')  
+                lbl8 = QLabel('Planned ready')  
                 lbl8.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl8, 12, 0)
                 grid.addWidget(q8Edit, 12, 1)
                 
-                lbl9 = QLabel('Werkelijk Gereed')  
+                lbl9 = QLabel('Real ready')  
                 lbl9.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl9, 13, 0)
                 grid.addWidget(q9Edit, 13, 1)
                 
-                lbl10 = QLabel('Bedrag Acceptatie')  
+                lbl10 = QLabel('Amount approved')  
                 lbl10.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl10, 14, 0)
                 grid.addWidget(q10Edit, 14, 1)
                 
-                lbl11 = QLabel('Datum Acceptatie')  
+                lbl11 = QLabel('Date acceptance')  
                 lbl11.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl11, 15, 0)
                 grid.addWidget(q11Edit, 15, 1)
                   
-                lbl12 = QLabel('Meerwerk\nStelpost')  
-                lbl12.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                grid.addWidget(lbl12, 9, 1)
-                grid.addWidget(q12Edit, 9, 2)
+                lbl12 = QLabel('Additional work\nProvisional sum')  
+                lbl12.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+                grid.addWidget(lbl12, 9, 2)
+                grid.addWidget(q12Edit, 9, 2,Qt.AlignRight)
                 
-                lbl13 = QLabel('Wijzigingen t.o.v het\noorspronkelijke bedrag\nworden geboekt als\nmeerwerk/stelpost')
+                lbl13 = QLabel('Changes to the original amount are recorded\nas additional work / Provisional sum')
                 grid.addWidget(lbl13, 10, 2, 1 , 2)
                                  
                 self.setLayout(grid)
                 self.setGeometry(600, 150, 150, 150)
         
-                applyBtn = QPushButton('Wijzigen / of\nVolgende regel')
+                applyBtn = QPushButton('Change /or\nNext line')
                 applyBtn.clicked.connect(self.accept)
                 
                 grid.addWidget(applyBtn, 15, 2, 1 , 1, Qt.AlignRight)
@@ -595,7 +595,7 @@ def dienstenRegels(m_email, rp1,rp2, rp3, mstraat, mplaats, mregel):
                 applyBtn.setFixedWidth(140)
                 applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
                 
-                cancelBtn = QPushButton('Sluiten')
+                cancelBtn = QPushButton('Close')
                 cancelBtn.clicked.connect(lambda: closeRegels(m_email, minkordernr, mregel, self))
                 
                 grid.addWidget(cancelBtn, 14, 2, 1, 1, Qt.AlignRight)

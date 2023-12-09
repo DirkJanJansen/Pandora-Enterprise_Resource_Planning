@@ -16,9 +16,9 @@ def jaarweek():
 def JN(m_email):
     msgBox=QMessageBox()
     msgBox.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
-    msgBox.setWindowTitle("Bereken Gegevens van Externe Werken")
+    msgBox.setWindowTitle("Calculate Data from external Works")
     msgBox.setIcon(QMessageBox.Information)
-    msgBox.setText("Wilt u de financiële gegevens van deze week berekenen?");
+    msgBox.setText("Do you want to calculate this week's financials?");
     msgBox.setStandardButtons(QMessageBox.Yes)
     msgBox.addButton(QMessageBox.No)
     msgBox.setDefaultButton(QMessageBox.Yes)
@@ -30,9 +30,9 @@ def JN(m_email):
 def geenGegevens():
     msgBox=QMessageBox()
     msgBox.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
-    msgBox.setWindowTitle("Bereken Gegevens van Externe Werken")
+    msgBox.setWindowTitle("Calculate financial data from external works")
     msgBox.setIcon(QMessageBox.Warning)
-    msgBox.setText("Nog geen gegevens aanwezig dit jaar!")
+    msgBox.setText("No data available for this year!")
     msgBox.exec_()
     
 def berBestaat(jrwk, m_email):
@@ -42,9 +42,9 @@ def berBestaat(jrwk, m_email):
             msg = QMessageBox()
             msg.setStyleSheet("color: black;  background-color: gainsboro")
             msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
-            msg.setWindowTitle("Berekening van Externe Werken")
+            msg.setWindowTitle("Calculation of external works")
             msg.setIcon(QMessageBox.Warning)
-            msg.setText('De rapportage van deze boekweek is aanwezig\n\nWilt u deze opnieuw berekenen?\n\nN.B. de bestaande gegegens zullen worden overschreven!')
+            msg.setText('This booking week\'s report is present\n\nDo you want to recalculate it?\n\nN.B. the existing data will be overwritten!')
             msg.setStandardButtons(QMessageBox.Yes)
             msg.addButton(QMessageBox.No)
             msg.setDefaultButton(QMessageBox.Yes)
@@ -74,8 +74,8 @@ def berGelukt():
             msg.setStyleSheet("color: black;  background-color: gainsboro")
             msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             msg.setIcon(QMessageBox.Information)
-            msg.setText('De berekening voor '+jaarweek()+' is gemaakt!')
-            msg.setWindowTitle('RESULTATEN')
+            msg.setText('The calculation for '+jaarweek()+' is completed!')
+            msg.setWindowTitle('Results')
             msg.exec_()
     window = Widget()
     window.show()    

@@ -41,7 +41,7 @@ def toonResult(m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(100, 50, 1700, 900)
-            self.setWindowTitle('Resultaten opvragen per boekweek')
+            self.setWindowTitle('Request results per book week')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -83,11 +83,11 @@ def toonResult(m_email):
                 return self.header[col]
             return None        
                                        
-    header = ['ID','Boekweek','Statusweek','Totaal begroot','Totaal werkelijk','Betaald bedrag',\
-          'Meer-/minderwerk','Onderhanden werk','Aanneemsom','Lonen begroot','Lonen werkelijk',\
-          'Materialen begroot','Materialen werkelijk','Materiëel begroot','Materiëel werkelijk',\
-          'Projectkosten begroot','Projectkosten werkelijk','Inhuur begroot','Inhuur werkelijk',\
-          'Diensten begroot','Diensten Werkelijk','Brutowinst']    
+    header = ['ID','Book week','Status week','Total budgeted','Total realised','Payed amount',\
+          'More/less work','Work in progress','Contract price','Wages budgeted','Wages realised',\
+          'Materials budgeted','Materials realised','Equipment budgeted','Equipment realised',\
+          'Project costs budgeted','Project costs realised','Hiring budgeted','Hiring realised',\
+          'Services budgeted','Services realised','Gross profit']
 
     data_list=[]
     for row in rpres:
@@ -108,7 +108,7 @@ def toonResult(m_email):
                     grid = QGridLayout()
                     grid.setSpacing(20)
                     
-                    self.setWindowTitle("Opvragen resultaten per boekweek")
+                    self.setWindowTitle("Request results per book week")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                     
                     self.setFont(QFont('Arial', 10))   
@@ -118,7 +118,7 @@ def toonResult(m_email):
                     self.lbl.setPixmap(self.pixmap)
                     grid.addWidget(self.lbl , 0, 0)
                     
-                    grid.addWidget(QLabel('Opvragen resultaten werken extern per boekweek'),0, 2, 1, 3)
+                    grid.addWidget(QLabel('Request results works external per booking week'),0, 2, 1, 3)
             
                     self.logo = QLabel()
                     self.pixmap = QPixmap('./images/logos/logo.jpg')
@@ -148,7 +148,7 @@ def toonResult(m_email):
                         
                         index +=1
                         
-                    terugBtn = QPushButton('Sluiten')
+                    terugBtn = QPushButton('Close')
                     terugBtn.clicked.connect(self.accept)
             
                     grid.addWidget(terugBtn, verpos+1, 5, 1 , 1, Qt.AlignRight)

@@ -11,8 +11,8 @@ def geenBetaalgeg():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen betaalgegevens voor\ndeze periode gevonden!')
-    msg.setWindowTitle('Werknemers periodegegevens opvragen')
+    msg.setText('No payment details for this period found!')
+    msg.setWindowTitle('Request employee period data')
     msg.exec_()
     
 def windowSluit(self, m_email):
@@ -24,8 +24,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Werknemers periodegegevens opvragen')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Request employee period data')               
     msg.exec_() 
 
 def geenRecord():
@@ -33,16 +33,16 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen urenmutaties van deze persoon gevonden\nin deze periode maak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Werknemers periodegegevens opvragen')               
+    msg.setText('No hour changes of this person found\nin this period please make another selection!')
+    msg.setWindowTitle('Request employee period data')               
     msg.exec_() 
     
 def foutWerknemer():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Werknemer niet gevonden\nen/of geen geldige periode opgegeven!')
-    msg.setWindowTitle('Werknemers periodegegevens opvragen')
+    msg.setText('Employee not found/or no valid period specified!')
+    msg.setWindowTitle('Request employee period data')
     msg.exec_()
                
 def _11check(minput):
@@ -63,7 +63,7 @@ def zoekWerknemer(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle('Periodegegevens opvragen')
+            self.setWindowTitle('Request period data')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     
             self.setFont(QFont('Arial', 10))
@@ -101,18 +101,18 @@ def zoekWerknemer(m_email):
     
             self.setFont(QFont('Arial', 10))
      
-            grid.addWidget(QLabel('Account-werknemer'), 1, 0)
+            grid.addWidget(QLabel('Account-employee'), 1, 0)
             grid.addWidget(werknemerEdit, 1, 1)
             
-            grid.addWidget(QLabel('Betaalperiode jjjj-mm'), 2, 0)
+            grid.addWidget(QLabel('Payment period yyyy-mm'), 2, 0)
             grid.addWidget(betEdit, 2, 1)
             
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 4, 0, 1, 2)
               
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
          
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
                   
             grid.addWidget(applyBtn, 3, 1)
@@ -182,8 +182,8 @@ def opvrWerknperiode(mwerknmrnr,mbetaalper, m_email):
     mbegin = str(mbetaalper[0:8]+'-'+'01')
     mtot = str(mbetaalper[0:8]+'-'+'31')
     midx = int(mbetaalper[5:7])
-    mbet = ['Januari','Februari',' Maart', 'April', 'Mei', 'Juni', 'Juli',\
-                'Augustus','September', 'Oktober', 'November', 'December']
+    mbet = ['January','February', 'March', 'April', 'May', 'June', 'July',\
+            'August','September', 'October', 'November', 'December']
     mbetmaand = str(mbet[midx-1])
     mbetjr = str(mbetaalper[0:4])
 
@@ -353,7 +353,7 @@ def opvrWerknperiode(mwerknmrnr,mbetaalper, m_email):
     mgverzuimbedr = 0
     moverzuimbedr = 0
     for row in rpwrkwnrln:
-        if row[4] == 'Reis':
+        if row[4] == 'Travel':
             mreisuren = mreisuren + float(row[3])
         if row[4] == '100%':
             muren = muren + float(row[3])
@@ -363,19 +363,19 @@ def opvrWerknperiode(mwerknmrnr,mbetaalper, m_email):
             muren150 = muren150 + float(row[3])
         if row[4] == '200%':
             muren200 = muren200 + float(row[3])
-        if row[4] == 'Verlof':
+        if row[4] == 'Leave':
             mverlof = mverlof + float(row[3])
-        if row[4] == 'Extra verlof':
+        if row[4] == 'Extra leave':
             mextraverlof = mextraverlof + float(row[3])
-        if row[4] == 'Ziekte':
+        if row[4] == 'Illness':
             mziek = mziek + float(row[3])
-        if row[4] == 'Feestdag':
+        if row[4] == 'Holiday':
             mfeest = mfeest + float(row[3])
-        if row[4] == 'Dokter':
+        if row[4] == 'Doctor':
             mdokter = mdokter + float(row[3])
-        if row[4] == 'Geoorl. Verzuim':
+        if row[4] == 'Permitted leave':
             mgverzuim = mgverzuim + float(row[3])
-        if row[4] == 'Ong. Verzuim':
+        if row[4] == 'Not permitted leave ':
             moverzuim = moverzuim + float(row[3])
             
         mreisuurl = rpwerkn[18]
@@ -396,7 +396,7 @@ def opvrWerknperiode(mwerknmrnr,mbetaalper, m_email):
     class Widget(QDialog):
          def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Werknemerperiodegegevens opvragen")
+            self.setWindowTitle("Request employee period data")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                                   
             self.setFont(QFont('Arial', 10))
@@ -528,117 +528,117 @@ def opvrWerknperiode(mwerknmrnr,mbetaalper, m_email):
             grid.addWidget(logo , 1, 3, 1, 1, Qt.AlignRight)
     
             self.setFont(QFont('Arial', 10))
-            grid.addWidget(QLabel('Opvragen werknemergegevens van\n'+mvoorn+\
-                ' '+machtern+'\nGeboren: '+mgeboren), 1, 1, 1, 3)
+            grid.addWidget(QLabel('Request employee data from\n'+mvoorn+\
+                ' '+machtern+'\nData of birth: '+mgeboren), 1, 1, 1, 3)
             
-            grid.addWidget(QLabel('Bruto maandloon'), 3, 2)
+            grid.addWidget(QLabel('Gross monthly salary'), 3, 2)
             grid.addWidget(q15Edit, 3, 3) 
                                                 
-            grid.addWidget(QLabel('Accountnummer'), 3, 0)
+            grid.addWidget(QLabel('Account number'), 3, 0)
             grid.addWidget(q2Edit, 3, 1)
             
-            grid.addWidget(QLabel('Loontabel'), 7, 0)
+            grid.addWidget(QLabel('Wage table'), 7, 0)
             grid.addWidget(q4Edit, 7 , 1) 
              
-            grid.addWidget(QLabel('Loontrede'), 8, 0)
+            grid.addWidget(QLabel('Wage step'), 8, 0)
             grid.addWidget(q5Edit, 8, 1)
                             
-            grid.addWidget(QLabel('Loonheffing'), 4, 2)
+            grid.addWidget(QLabel('Payroll tax'), 4, 2)
             grid.addWidget(q6Edit, 4, 3)
                           
-            grid.addWidget(QLabel('Reiskostenvergoeding'), 6, 0)
+            grid.addWidget(QLabel('Travel compensation'), 6, 0)
             grid.addWidget(q8Edit, 6, 1)
              
-            grid.addWidget(QLabel('Pensioenafdracht'), 5, 2)
+            grid.addWidget(QLabel('Pension payment'), 5, 2)
             grid.addWidget(q9Edit, 5, 3)
             
-            grid.addWidget(QLabel('Reservering vakantiegeld      '), 5, 0)
+            grid.addWidget(QLabel('Reservation holiday pay     '), 5, 0)
             grid.addWidget(q10Edit, 5, 1)  
      
-            grid.addWidget(QLabel('Werkgeversdeel pensioenpremie'), 6, 2)
+            grid.addWidget(QLabel('Employer\'s share of pension contributions'), 6, 2)
             grid.addWidget(q11Edit, 6, 3)
                    
-            grid.addWidget(QLabel('Periodieke uitkering belast'), 4, 0)
+            grid.addWidget(QLabel('Periodic payment taxed'), 4, 0)
             grid.addWidget(q12Edit, 4, 1) 
             
-            grid.addWidget(QLabel('Overige inhoudingen onbelast'), 7, 2)
+            grid.addWidget(QLabel('Other deductions tax-free'), 7, 2)
             grid.addWidget(q13Edit, 7, 3) 
             
-            grid.addWidget(QLabel('Bijtelling Bedrijfsauto'), 8, 2)
+            grid.addWidget(QLabel('Addition Company car'), 8, 2)
             grid.addWidget(q18Edit, 8, 3) 
             
-            grid.addWidget(QLabel('Werkgeversdeel Arbeidsongeschiktheid'), 9, 2)
+            grid.addWidget(QLabel('Employer\'s part Disability'), 9, 2)
             grid.addWidget(QLabel('{:12.2f}'.format(mwerkg_WAO_IVA_WGA)), 9, 3, 1, 1, Qt.AlignRight)
-            grid.addWidget(QLabel('Werkgeversdeel Werkloosheidswet'), 10, 2)
+            grid.addWidget(QLabel('Employer\'s part of the Unemployment Act'), 10, 2)
             grid.addWidget(QLabel('{:12.2f}'.format(mwerkg_AWF)), 10, 3, 1, 1, Qt.AlignRight)
-            grid.addWidget(QLabel('Werkgeversdeel Zorgverzekering'), 11, 2)
+            grid.addWidget(QLabel('Employer\'s share Health insurance'), 11, 2)
             grid.addWidget(QLabel('{:12.2f}'.format(mwerkg_ZVW)), 11, 3, 1, 1, Qt.AlignRight)
-            grid.addWidget(QLabel('Bijzonder tarief   % '), 12, 2)
+            grid.addWidget(QLabel('Special rate   % '), 12, 2)
             grid.addWidget(QLabel('{:12.2f}'.format(mbyztar)), 12, 3, 1, 1, Qt.AlignRight)
             
-            grid.addWidget(QLabel('Overige Vergoedingen onbelast'), 11, 0)
+            grid.addWidget(QLabel('Other deductions tax-free'), 11, 0)
             grid.addWidget(q19Edit, 11, 1) 
        
-            grid.addWidget(QLabel('Datum indiensttreding'), 12, 0)
+            grid.addWidget(QLabel('Date of entry into service'), 12, 0)
             grid.addWidget(q14Edit, 12, 1) 
             
-            grid.addWidget(QLabel('Verlofsaldo in uren'), 9, 0)
+            grid.addWidget(QLabel('Leave balance in hours'), 9, 0)
             grid.addWidget(q16Edit, 9, 1)
             
-            grid.addWidget(QLabel('Extra verlof in uren'), 10, 0)
+            grid.addWidget(QLabel('Extra leave in hours'), 10, 0)
             grid.addWidget(q17Edit, 10, 1)
             
-            grid.addWidget(QLabel('Uurloon'), 21, 0)
+            grid.addWidget(QLabel('Hourly wage'), 21, 0)
             grid.addWidget(QLabel('{:12.2f}'.format(muurl)), 21, 1, 1, 1, Qt.AlignRight) 
-            grid.addWidget(QLabel('Reisuurloon'), 21, 2)
+            grid.addWidget(QLabel('Travel hourly wage'), 21, 2)
             grid.addWidget(QLabel('{:12.2f}'.format(mreisuurl)), 21, 3, 1 ,1, Qt.AlignRight)
             
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 22, 0, 1, 3, Qt.AlignCenter)
-            grid.addWidget(QLabel('Periode gegevens van '+mbetmaand+' '+mbetjr), 13, 1, 1, 2)
-            grid.addWidget(QLabel('Uren'), 14, 0, 1, 1, Qt.AlignRight)
-            grid.addWidget(QLabel('Bedragen'), 14, 1, 1, 1, Qt.AlignRight)
-            grid.addWidget(QLabel('Uren'), 14, 2, 1, 1, Qt.AlignRight)
-            grid.addWidget(QLabel('Bedragen'), 14, 3, 1, 1, Qt.AlignRight)
-            grid.addWidget(QLabel('Werkuren 125%'), 15, 2)
+            grid.addWidget(QLabel('Period data of '+mbetmaand+' '+mbetjr), 13, 1, 1, 2)
+            grid.addWidget(QLabel('Hours'), 14, 0, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Amount'), 14, 1, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Hours'), 14, 2, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Amount'), 14, 3, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Working hours 125%'), 15, 2)
             grid.addWidget(QLabel('{:12.2f}'.format(muren125)), 15, 2, 1, 1, Qt.AlignRight)
             grid.addWidget(QLabel('{:12.2f}'.format(muurl125bedr)), 15, 3, 1, 1, Qt.AlignRight) 
-            grid.addWidget(QLabel('Werkuren 150%'), 16, 2)
+            grid.addWidget(QLabel('Working hours 150%'), 16, 2)
             grid.addWidget(QLabel('{:12.2f}'.format(muren150)), 16, 2, 1, 1, Qt.AlignRight)
             grid.addWidget(QLabel('{:12.2f}'.format(muurl150bedr)), 16, 3, 1, 1, Qt.AlignRight) 
-            grid.addWidget(QLabel('Werkuren 200%'), 17, 2)
+            grid.addWidget(QLabel('Working hours 200%'), 17, 2)
             grid.addWidget(QLabel('{:12.2f}'.format(muren200)), 17, 2, 1, 1, Qt.AlignRight)
             grid.addWidget(QLabel('{:12.2f}'.format(muurl200bedr)), 17, 3, 1, 1, Qt.AlignRight) 
-            grid.addWidget(QLabel('Reisuren'), 15, 0)
+            grid.addWidget(QLabel('Travel hours'), 15, 0)
             grid.addWidget(QLabel('{:12.2f}'.format(mreisuren)), 15, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(QLabel('{:12.2f}'.format(mreisbedr)), 15, 1, 1, 1, Qt.AlignRight) 
-            grid.addWidget(QLabel('Te betalen uren'), 16, 0) 
+            grid.addWidget(QLabel('Hours to be paid'), 16, 0) 
             grid.addWidget(QLabel('173.3'), 16, 0, 1, 1, Qt.AlignRight) 
-            grid.addWidget(QLabel('Werkuren 100%'), 17 ,0)
+            grid.addWidget(QLabel('Work. hours 100%'), 17 ,0)
             grid.addWidget(QLabel('{:12.2f}'.format(muren)), 17, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(QLabel('{:12.2f}'.format(muurlbedr)), 17, 1, 1, 1, Qt.AlignRight) 
-            grid.addWidget(QLabel('Verlof'), 18, 0)
+            grid.addWidget(QLabel('Leave'), 18, 0)
             grid.addWidget(QLabel('{:12.2f}'.format(mverlof)), 18, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(QLabel('{:12.2f}'.format(mverlofbedr)), 18, 1, 1, 1, Qt.AlignRight) 
-            grid.addWidget(QLabel('Ziekte'), 18, 2)
+            grid.addWidget(QLabel('Illness'), 18, 2)
             grid.addWidget(QLabel('{:12.2f}'.format(mziek)), 18, 2, 1, 1, Qt.AlignRight)
             grid.addWidget(QLabel('{:12.2f}'.format(mziekbedr)), 18, 3, 1, 1, Qt.AlignRight) 
-            grid.addWidget(QLabel('Feestdag'), 19, 0)
+            grid.addWidget(QLabel('Holiday'), 19, 0)
             grid.addWidget(QLabel('{:12.2f}'.format(mfeest)), 19, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(QLabel('{:12.2f}'.format(mfeestbedr)), 19, 1, 1, 1, Qt.AlignRight) 
-            grid.addWidget(QLabel('Dokter'), 19, 2)
+            grid.addWidget(QLabel('Doctor'), 19, 2)
             grid.addWidget(QLabel('{:12.2f}'.format(mdokter)), 19, 2, 1, 1, Qt.AlignRight)
             grid.addWidget(QLabel('{:12.2f}'.format(mdokterbedr)), 19, 3, 1, 1, Qt.AlignRight) 
-            grid.addWidget(QLabel('Geoorloofd verzuim'), 20, 0)
+            grid.addWidget(QLabel('Permitted leave'), 20, 0)
             grid.addWidget(QLabel('{:12.2f}'.format(mgverzuim)), 20, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(QLabel('{:12.2f}'.format(mgverzuimbedr)), 20, 1, 1, 1, Qt.AlignRight) 
-            grid.addWidget(QLabel('Ongeoorloofd verzuim'), 20, 2)
+            grid.addWidget(QLabel('Not permitted leave'), 20, 2)
             grid.addWidget(QLabel('{:12.2f}'.format(moverzuim)), 20, 2, 1, 1, Qt.AlignRight)
             grid.addWidget(QLabel('{:12.2f}'.format(moverzuimbedr)), 20, 3, 1, 1, Qt.AlignRight) 
             
             self.setLayout(grid)
             self.setGeometry(400, 50, 350, 300)
                      
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(self.close)
         
             grid.addWidget(cancelBtn, 22, 3, 1, 1, Qt.AlignRight)

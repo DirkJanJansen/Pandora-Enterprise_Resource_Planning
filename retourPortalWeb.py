@@ -17,15 +17,15 @@ def foutEmail():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Emailadres onjuist!')
-    msg.setWindowTitle('EMAILFOUT')
+    msg.setText('Incorrect e-mail address!')
+    msg.setWindowTitle('Incorrect email address')
     msg.exec_()
 
 def zoekEmailadres(m_email, klmail):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Web artikelen retourboeken.")
+            self.setWindowTitle("Web articles return items.")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -51,10 +51,10 @@ def zoekEmailadres(m_email, klmail):
     
             self.setFont(QFont('Arial', 10))
     
-            grid.addWidget(QLabel('Email adres klant\nof Klantnummer'), 1, 0)
+            grid.addWidget(QLabel('Email address customer\nor Customer number'), 1, 0)
             grid.addWidget(emailEdit, 1, 1)
            
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 2, 1, 1, 1, Qt.AlignRight)
@@ -62,7 +62,7 @@ def zoekEmailadres(m_email, klmail):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro") 
 
-            closeBtn = QPushButton('Sluiten')
+            closeBtn = QPushButton('Close')
             closeBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(closeBtn, 2, 1)

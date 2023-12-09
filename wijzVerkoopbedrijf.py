@@ -324,16 +324,16 @@ def updateKoper(m_email, mkopernr):
             grid.addWidget(QLabel('Legal status                *'), 4, 0)
             grid.addWidget(q5Edit, 4, 1) 
             
-            grid.addWidget(QLabel('VATnumber   *'), 4, 1, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('VAT number  *'), 4, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(q2Edit, 4, 2) 
             
-            grid.addWidget(QLabel('KvKnumber                 *'), 5, 0)
+            grid.addWidget(QLabel('KvK number                *'), 5, 0)
             grid.addWidget(q4Edit, 5, 1) 
             
             grid.addWidget(QLabel('Street'),6, 0)
             grid.addWidget(q1Edit, 6, 1, 1, 3)
      
-            grid.addWidget(QLabel('Housenumber             *'), 7, 0)
+            grid.addWidget(QLabel('House number            *'), 7, 0)
             grid.addWidget(q7Edit, 7, 1)
     
             grid.addWidget(QLabel('Suffix'), 7, 1, 1, 1, Qt.AlignRight)
@@ -344,10 +344,10 @@ def updateKoper(m_email, mkopernr):
             
             grid.addWidget(q15Edit, 8, 1, 1, 2, Qt.AlignRight) 
      
-            grid.addWidget(QLabel('Telephonenumber       *'), 9, 0)
+            grid.addWidget(QLabel('Telephone number      *'), 9, 0)
             grid.addWidget(q13Edit, 9, 1) 
             
-            grid.addWidget(QLabel('SalesCompanynumber'), 10, 0)
+            grid.addWidget(QLabel('Sales Company number'), 10, 0)
             grid.addWidget(q14Edit, 10, 1) 
                                 
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 11, 1)

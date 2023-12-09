@@ -21,8 +21,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Loontabel wijzigen')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Change pay table')
     msg.exec_()
     
 def geenRecord():
@@ -30,23 +30,23 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Loontabel wijzigen')               
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Change pay table')
     msg.exec_() 
    
 def invoerOK():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Invoer gelukt!')
-    msg.setWindowTitle('Loontabel wijzigen')
+    msg.setText('Insert successful!')
+    msg.setWindowTitle('Change pay table')
     msg.exec_()
     
 def zoeken(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Wijzigen Loontabel")
+            self.setWindowTitle("Modify wages table")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -56,10 +56,10 @@ def zoeken(m_email):
             k0Edit.setFixedWidth(210)
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             k0Edit.setFont(QFont("Arial",10))
-            k0Edit.addItem('   Sorteersleutel zoeken')
-            k0Edit.addItem('1. Looontabel intern')
-            k0Edit.addItem('2. Loontabel extern')
-            k0Edit.addItem('3. Loontabel indirekt')
+            k0Edit.addItem('    Search sort key')
+            k0Edit.addItem('1. Salary table internally')
+            k0Edit.addItem('2. Salary table externally')
+            k0Edit.addItem('3. Wages table indirect')
             k0Edit.activated[str].connect(self.k0Changed)
                  
             grid = QGridLayout()
@@ -82,7 +82,7 @@ def zoeken(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1 ,1, Qt.AlignRight)
     
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 3, 1, 1, 1, Qt.AlignRight)
@@ -90,7 +90,7 @@ def zoeken(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
               
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self,m_email))
     
             grid.addWidget(cancelBtn, 3, 1)
@@ -124,7 +124,7 @@ def loonTabellen(keuze, m_email):
     class MyWindow(QDialog):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
-            self.setWindowTitle('Loonbetalingen opvragen')
+            self.setWindowTitle('Request wage payments')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                     Qt.WindowMinMaxButtonsHint)
@@ -154,7 +154,7 @@ def loonTabellen(keuze, m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 1, 6, 1, 1, Qt.AlignRight)
             
-            freshBtn = QPushButton('Verversen')
+            freshBtn = QPushButton('Refresh')
             freshBtn.clicked.connect(lambda: refresh(keuze, m_email, self))
 
             freshBtn.setFont(QFont("Arial",10))
@@ -163,7 +163,7 @@ def loonTabellen(keuze, m_email):
    
             grid.addWidget(freshBtn, 1, 5, 1, 1, Qt.AlignRight |Qt.AlignTop)
         
-            sluitBtn = QPushButton('Sluiten')
+            sluitBtn = QPushButton('Close')
             sluitBtn.clicked.connect(self.close)
 
             sluitBtn.setFont(QFont("Arial",10))
@@ -204,8 +204,8 @@ def loonTabellen(keuze, m_email):
                 return self.header[col]
             return None
               
-    header = ['LoonID', 'Tabeluurloon', 'Werkuurloon', 'Reisuurloon', 'Direct',\
-      'Maandloon','Functieomschrijving', 'Wijzigingsdatum']
+    header = ['WageID', 'Tabular wages', 'Working hourly wage', 'Travel hourly wage', 'Direct',\
+      'Monthly payment','Job description', 'Modification date']
       
     metadata = MetaData()   
     lonen = Table('lonen', metadata,
@@ -255,7 +255,7 @@ def loonTabellen(keuze, m_email):
                     grid = QGridLayout()
                     grid.setSpacing(12)
                     
-                    self.setWindowTitle("Opvragen / wijzigen loontabellen")
+                    self.setWindowTitle("Request / change pay tables")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                     
                     self.setFont(QFont('Arial', 10))   
@@ -270,7 +270,7 @@ def loonTabellen(keuze, m_email):
                     self.logo.setPixmap(self.pixmap)
                     grid.addWidget(self.logo , 0, 1, 1, 2, Qt.AlignRight) 
                     
-                    grid.addWidget(QLabel('Opvragen / wijzigen loontabellen'), 0, 1)
+                    grid.addWidget(QLabel('Request / change pay tables'), 0, 1)
                         
                     self.Loontabelnummer = QLabel()
                     q1Edit = QLineEdit(str(rplon[0]))
@@ -323,43 +323,43 @@ def loonTabellen(keuze, m_email):
                     input_validator = QRegExpValidator(reg_ex, q6Edit)
                     q6Edit.setValidator(input_validator)
                     
-                    lbl1 = QLabel('Loontabelnummer')
+                    lbl1 = QLabel('Wage table number')
                     grid.addWidget(lbl1, 1, 0)
                     grid.addWidget(q1Edit, 1, 1)
                     
-                    lbl2 = QLabel('Functieomschrijving')
+                    lbl2 = QLabel('Job description')
                     grid.addWidget(lbl2, 2, 0)
                     grid.addWidget(q2Edit, 2, 1, 1, 2)
                     
-                    lbl3 = QLabel('Maandloon')
+                    lbl3 = QLabel('Monthly payment')
                     grid.addWidget(lbl3, 3, 0)
                     grid.addWidget(q3Edit, 3, 1)
                               
-                    lbl5 = QLabel('Tabeluurloon')
+                    lbl5 = QLabel('Tabular wages')
                     grid.addWidget(lbl5, 4, 0)
                     grid.addWidget(q4Edit, 4, 1)
                     
-                    lbl6 = QLabel('Werkuurloon begroot')
+                    lbl6 = QLabel('Working hourly wage budgeted')
                     grid.addWidget(lbl6, 5, 0)
                     grid.addWidget(q5Edit, 5, 1)
                     
-                    lbl7 = QLabel('Reisuurloon begroot')
+                    lbl7 = QLabel('Travel hourly wage budgeted')
                     grid.addWidget(lbl7, 6, 0)
                     grid.addWidget(q6Edit, 6, 1)
                     
-                    lbl8 = QLabel('Wijzigingsdatum')
+                    lbl8 = QLabel('Modification date')
                     lbl9 = QLabel(str(rplon[7]))
                     grid.addWidget(lbl8, 7 ,0)
                     grid.addWidget(lbl9, 7, 1)
                            
-                    wijzig = QPushButton('Wijzig')
+                    wijzig = QPushButton('Modify')
                     wijzig.clicked.connect(self.accept)
             
                     grid.addWidget(wijzig, 8, 1, 1 , 2, Qt.AlignRight)
                     wijzig.setFont(QFont("Arial",10))
                     wijzig.setFixedWidth(100) 
                      
-                    sluit = QPushButton('Sluiten')
+                    sluit = QPushButton('Close')
                     sluit.clicked.connect(self.close)
             
                     grid.addWidget(sluit, 8, 1, 1, 2, Qt.AlignCenter)

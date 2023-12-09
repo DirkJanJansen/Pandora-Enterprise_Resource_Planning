@@ -12,8 +12,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Werknemers opvragen')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Request employees')               
     msg.exec_() 
     
 def windowSluit(self, m_email):
@@ -25,15 +25,15 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Werknemers opvragen')               
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Request employees')               
     msg.exec_() 
 
 def accKeuze(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Opvragen accounts")
+            self.setWindowTitle("Request accounts")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -43,15 +43,15 @@ def accKeuze(m_email):
             k0Edit.setFixedWidth(230)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem(' Sorteersleutel voor zoeken')
-            k0Edit.addItem('1. Alle werknemers')
-            k0Edit.addItem('2. Achternaam.')
-            k0Edit.addItem('3. Per loontabelnummer.')
-            k0Edit.addItem('4. Accountnummer.')
-            k0Edit.addItem('5. Tabelloon/uur <.')
-            k0Edit.addItem('6. Tabelloon/uur >.')
-            k0Edit.addItem('7. Maandloon indirekten >.')           
-            k0Edit.addItem('8. Indienst (yyyy(-mm-dd))')
+            k0Edit.addItem(' Search sort key')
+            k0Edit.addItem('1. All employees')
+            k0Edit.addItem('2. Surname')
+            k0Edit.addItem('3. Per pay table number.')
+            k0Edit.addItem('4. Account number.')
+            k0Edit.addItem('5. Table wages/hour <.')
+            k0Edit.addItem('6. Table wages/hour >.')
+            k0Edit.addItem('7. Monthly wages indirect staff >.')           
+            k0Edit.addItem('8. Employment (yyyy(-mm-dd))')
             k0Edit.activated[str].connect(self.k0Changed)
             
             self.Zoekterm = QLabel()
@@ -69,7 +69,7 @@ def accKeuze(m_email):
             grid.addWidget(lbl , 1, 0, 1, 2)
                                   
             grid.addWidget(k0Edit, 2, 1)
-            lbl1 = QLabel('Zoekterm')  
+            lbl1 = QLabel('Search term')  
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 3, 0)
             grid.addWidget(zktermEdit, 3, 1)
@@ -84,7 +84,7 @@ def accKeuze(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 1, 1, 1, 1, Qt.AlignRight)
     
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 6, 1, 1 , 1, Qt.AlignRight)
@@ -92,7 +92,7 @@ def accKeuze(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 6, 1)
@@ -212,7 +212,7 @@ def toonWerknemers(keuze,zoekterm, m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(100, 50, 1600, 900)
-            self.setWindowTitle('Werknemergegevens opvragen')
+            self.setWindowTitle('Request employee data')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                     Qt.WindowMinMaxButtonsHint)
@@ -255,12 +255,12 @@ def toonWerknemers(keuze,zoekterm, m_email):
                 return self.header[col]
             return None
        
-    header = ['Accountnummer', 'Werknemernummer', 'Loonschaal', 'Loontrede', 'Loonheffing',\
-          'Pensioenpremie', 'Res. Vak.toeslag', 'Werkg. Pensioenpremie', 'Periodieke uitk.',\
-          'Overige inhoudingen', 'Overige Vergoedingen','Bedrijfsauto bijtelling',\
-          'Reiskostenvergoeding', 'Indienst datum', 'Verlof saldo', 'Extra verlof',\
-          'Accountnummer', 'Aanhef', 'Voornaam', 'Tussenvoegsel', 'Achternaam',\
-          'Geboortedatun', 'Loonschaal', 'Tabelloon', 'Reisuurloon', 'Maandloon']    
+    header = ['Account number', 'Employee number', 'Payscale', 'Wages step', 'Payroll tax',\
+          'Pension contribution', 'Res. Holiday surcharge', 'Employer pension contribution', 'Periodic payment.',\
+          'Other deductions', 'Other fees','Company car addition',\
+          'Travel compensation', 'Entry into service date', 'Leave balance', 'Extra leave',\
+          'Accountnumber', 'Prefix', 'First name', 'Infix', 'Surname',\
+          'Date of birth', 'Pay scale', 'Table wages', 'Travel hourly wages', 'Monthly salary']    
         
     data_list=[]
     for row in rpwerkn:
@@ -279,7 +279,7 @@ def toonWerknemers(keuze,zoekterm, m_email):
             class Widget(QDialog):
                  def __init__(self, parent=None):
                     super(Widget, self).__init__(parent)
-                    self.setWindowTitle("Werknemersgegevens opvragen")
+                    self.setWindowTitle("Request employee data")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                                           
                     self.setFont(QFont('Arial', 10))
@@ -382,63 +382,63 @@ def toonWerknemers(keuze,zoekterm, m_email):
                     grid.addWidget(logo , 1, 3, 1, 1, Qt.AlignRight)
             
                     self.setFont(QFont('Arial', 10))
-                    grid.addWidget(QLabel('Opvragen werknemergegevens van\n'+rpwrknmr[18]+\
-                    ' '+rpwrknmr[19]+' '+rpwrknmr[20]+'\nGeboren: '+rpwrknmr[21]), 1, 1, 1, 3)
+                    grid.addWidget(QLabel('Request employee data from\n'+rpwrknmr[18]+\
+                    ' '+rpwrknmr[19]+' '+rpwrknmr[20]+'\nData of birth: '+rpwrknmr[21]), 1, 1, 1, 3)
                     
-                    grid.addWidget(QLabel('Bruto maandloon'), 3, 2)
+                    grid.addWidget(QLabel('Gross monthly salary'), 3, 2)
                     grid.addWidget(q15Edit, 3, 3) 
                                                         
-                    grid.addWidget(QLabel('Accountnummer'), 3, 0)
+                    grid.addWidget(QLabel('Account number'), 3, 0)
                     grid.addWidget(q2Edit, 3, 1)
                     
-                    grid.addWidget(QLabel('Loontabel'), 6, 0)
+                    grid.addWidget(QLabel('Wages table'), 6, 0)
                     grid.addWidget(q4Edit, 6 , 1) 
                      
-                    grid.addWidget(QLabel('Loontrede'), 7, 0)
+                    grid.addWidget(QLabel('Wages step'), 7, 0)
                     grid.addWidget(q5Edit, 7, 1)
                                                               
-                    grid.addWidget(QLabel('Reiskostenvergoeding'), 4, 2)
+                    grid.addWidget(QLabel('Travel compensation'), 4, 2)
                     grid.addWidget(q8Edit, 4, 3)
                                               
-                    grid.addWidget(QLabel('Periodieke uitkering belast'), 5, 0)
+                    grid.addWidget(QLabel('Periodic payment taxed'), 5, 0)
                     grid.addWidget(q12Edit, 5, 1) 
                     
-                    grid.addWidget(QLabel('Overige inhoudingen onbelast'), 5, 2)
+                    grid.addWidget(QLabel('Other deductions tax-free'), 5, 2)
                     grid.addWidget(q13Edit, 5, 3) 
                     
-                    grid.addWidget(QLabel('Bijtelling Bedrijfsauto'), 4, 0)
+                    grid.addWidget(QLabel('Addition Company car'), 4, 0)
                     grid.addWidget(q18Edit, 4, 1) 
                                    
-                    grid.addWidget(QLabel('Overige Vergoedingen\nonbelast'), 6, 2)
+                    grid.addWidget(QLabel('Other Fees\non-taxed'), 6, 2)
                     grid.addWidget(q19Edit, 6, 3) 
                
-                    grid.addWidget(QLabel('Datum indiensttreding'), 8, 0)
+                    grid.addWidget(QLabel('Date of entry into service'), 8, 0)
                     grid.addWidget(q14Edit, 8, 1) 
                     
-                    grid.addWidget(QLabel('Verlofsaldo in uren'), 7, 2)
+                    grid.addWidget(QLabel('Leave balance in hours'), 7, 2)
                     grid.addWidget(q16Edit, 7, 3)
                     
-                    grid.addWidget(QLabel('Extra verlof in uren'), 8, 2)
+                    grid.addWidget(QLabel('Extra leave in hours'), 8, 2)
                     grid.addWidget(q17Edit, 8, 3)
                     
-                    grid.addWidget(QLabel('Uurloon'), 9, 0)
+                    grid.addWidget(QLabel('Hourly wages'), 9, 0)
                     grid.addWidget(QLabel('{:12.2f}'.format(rpwrknmr[23])), 9, 1, 1, 1, Qt.AlignRight) 
-                    grid.addWidget(QLabel('Reisuurloon'), 9, 2)
+                    grid.addWidget(QLabel('Travel hourly wages'), 9, 2)
                     grid.addWidget(QLabel('{:12.2f}'.format(rpwrknmr[24])), 9, 3, 1, 1, Qt.AlignRight)
-                    grid.addWidget(QLabel('Pensioenpremie'), 10, 0)
+                    grid.addWidget(QLabel('Pension contribution'), 10, 0)
                     grid.addWidget(QLabel('{:12.2f}'.format(rpwrknmr[5])), 10, 1, 1, 1, Qt.AlignRight) 
-                    grid.addWidget(QLabel('Reservering vakantietoeslag'), 10, 2)
+                    grid.addWidget(QLabel('Reservation holiday allowance'), 10, 2)
                     grid.addWidget(QLabel('{:12.2f}'.format(rpwrknmr[6])), 10, 3, 1, 1, Qt.AlignRight)
-                    grid.addWidget(QLabel('Werkgever pensioenpremie'), 11, 0)
+                    grid.addWidget(QLabel('Employer pension contribution'), 11, 0)
                     grid.addWidget(QLabel('{:12.2f}'.format(rpwrknmr[7])), 11, 1, 1, 1, Qt.AlignRight) 
-                    grid.addWidget(QLabel('Loonheffing'), 11, 2)
+                    grid.addWidget(QLabel('Payroll tax'), 11, 2)
                     grid.addWidget(QLabel('{:12.2f}'.format(rpwrknmr[4])), 11, 3, 1, 1, Qt.AlignRight)
                     
                     grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 13, 0, 1, 4, Qt.AlignCenter)
                     self.setLayout(grid)
                     self.setGeometry(500, 200, 350, 300)
                                                
-                    cancelBtn = QPushButton('Sluiten')
+                    cancelBtn = QPushButton('Close')
                     cancelBtn.clicked.connect(self.close)
                 
                     grid.addWidget(cancelBtn, 12, 3)

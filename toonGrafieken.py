@@ -30,15 +30,15 @@ def ongInvoer():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Voortgangsgrafieken')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Progress charts')
     msg.exec_()
  
 def zoekwk(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Keuze grafieken externe werken")
+            self.setWindowTitle("Choice charts external works")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -48,18 +48,18 @@ def zoekwk(m_email):
             kEdit.setFixedWidth(300)
             kEdit.setFont(QFont("Arial", 10))
             kEdit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            kEdit.addItem('                  Keuze Grafieken')
-            kEdit.addItem('1. Kosten totaal begroot-werkelijk')
-            kEdit.addItem('2. Lonen begroot-werkelijk')
-            kEdit.addItem('3. Materialen begroot-werkelijk')
-            kEdit.addItem('4. Materiëel begroot-werkelijk')
-            kEdit.addItem('5. Inhuur begroot-werkelijk')
-            kEdit.addItem('6. Diensten begroot-werkelijk')            
-            kEdit.addItem('7. Projektkosten begroot-werkelijk')
-            kEdit.addItem('8. Bruto winst - prognose / aktueel')
-            kEdit.addItem('9. Onderhandenwerk - Betaald bedrag')
-            kEdit.addItem('A. Opbrengsten - prognose / aktueel')
-            kEdit.addItem('B. Bruto winst werkelijk\n     Meerminderwerk')           
+            kEdit.addItem('                  Choice charts')
+            kEdit.addItem('1. Costs total / budgeted costs')
+            kEdit.addItem('2. Wages budgeted / realised')
+            kEdit.addItem('3. Materials budgeted / realised')
+            kEdit.addItem('4. Equipment budgeted / realised')
+            kEdit.addItem('5. Hiring budgeted / realised')
+            kEdit.addItem('6. Services budgeted / realised')
+            kEdit.addItem('7. Project costs budgeted / realised')
+            kEdit.addItem('8. Gross profit - prognosis / actual')
+            kEdit.addItem('9. Work in progress - Payed amount')
+            kEdit.addItem('A. Revenue - prognosis / actual')
+            kEdit.addItem('B. Gross profit realised\n     More/less work')
     
             kEdit.activated[str].connect(self.kChanged)
                
@@ -81,7 +81,7 @@ def zoekwk(m_email):
             grid.addWidget(lbl , 0, 0, 1, 2)
              
             grid.addWidget(kEdit, 1, 0, 1, 2, Qt.AlignRight)                     
-            lbl1 = QLabel('Jaarweek-uitdraai (jjjjww)')  
+            lbl1 = QLabel('Year week-report (yyyyww)')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 2, 0, 1, 2, Qt.AlignCenter)
             grid.addWidget(zktermEdit, 2, 1, 1, 1, Qt.AlignRight)
@@ -96,10 +96,10 @@ def zoekwk(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
     
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
  
-            sluitBtn = QPushButton('Sluiten')
+            sluitBtn = QPushButton('Close')
             sluitBtn.clicked.connect(lambda: windowSluit(self, m_email))
                      
             grid.addWidget(applyBtn, 3, 1, 1 , 1, Qt.AlignRight)
@@ -151,7 +151,7 @@ def printGrafiek(keuze, jrwk, m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle('Financieële grafieken externe werken')
+            self.setWindowTitle('Financial graphs external works')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -191,10 +191,10 @@ def printGrafiek(keuze, jrwk, m_email):
             
             selpar1 = select([params]).where(params.c.paramID == 97)
             rppar1 = con.execute(selpar1).first()
-            bo_incr = rppar1[1]/52  #begrote omzet per week
+            bo_incr = rppar1[1]/52  #budgeted turnover per week
             selpar2 = select([params]).where(params.c.paramID == 98)
             rppar2 = con.execute(selpar2).first()
-            bw_incr = rppar2[1]/52  #begrote winst per week
+            bw_incr = rppar2[1]/52  #budgeted profit per week
                                           
             jaar = jrwk[0:4]
             engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
@@ -205,63 +205,63 @@ def printGrafiek(keuze, jrwk, m_email):
             if keuze == '1':
                 s1 = 2
                 s2 = 3
-                t1 = 'Kosten totaal begroot'
-                t2 = 'Kosten totaal werkelijk'
-                t3 = 'Kosten totaal '
+                t1 = 'Costs total budgeted'
+                t2 = 'Costs total realised'
+                t3 = 'Costs total '
                 c1 = Qt.red
                 c2 = Qt.blue
                 ysch =  160000000
             elif keuze == '2':
                 s1 = 8
                 s2 = 9
-                t1 = 'Lonen begroot'
-                t2 = 'Lonen werkelijk'
-                t3 = 'Lonen '
+                t1 = 'Wages budgeted'
+                t2 = 'Wages realised'
+                t3 = 'Wages '
                 c1 = Qt.green
                 c2 = Qt.darkBlue
                 ysch =  100000000
             elif keuze == '3':
                 s1 = 10
                 s2 = 11
-                t1 = 'Materialen begroot'
-                t2 = 'Materialen werkelijk'
-                t3 = 'Materialen'
+                t1 = 'Materials budgeted'
+                t2 = 'Materials realised'
+                t3 = 'Materials '
                 c1 = Qt.cyan
                 c2 = Qt.magenta
                 ysch =  60000000       
             elif keuze == '4':
                 s1 = 12
                 s2 = 13
-                t1 = 'Materiëel begroot'
-                t2 = 'Materiëel werkelijk'
-                t3 = 'Materiëel '
+                t1 = 'Equipment budgeted'
+                t2 = 'Equipment realised'
+                t3 = 'Equipment '
                 c1 = Qt.darkYellow
                 c2 = Qt.darkGreen
                 ysch =  20000000
             elif keuze == '5':
                 s1 = 16
                 s2 = 17
-                t1 = 'Inhuur begroot'
-                t2 = 'Inhuur werkelijk'
-                t3 = 'Inhuur '
+                t1 = 'Hiring budgeted'
+                t2 = 'Hiring realised'
+                t3 = 'Hiring '
                 c1 = Qt.darkBlue
                 c2 = Qt.darkRed
                 ysch =  30000000
             elif keuze == '6':
                 s1 = 18
                 s2 = 19
-                t1 = 'Diensten begroot'
-                t2 = 'Diensten werkelijk'
-                t3 = 'Diensten '
+                t1 = 'Services budgeted'
+                t2 = 'Services realised'
+                t3 = 'Services '
                 c1 = Qt.red
                 c2 = Qt.blue
                 ysch =  30000000    
             elif keuze == '7':
                 s1 = 14
                 s2 = 15
-                t1 = 'Projektkosten begroot'
-                t2 = 'Projektkosten werkelijk'
-                t3 = 'Projektkosten '
+                t1 = 'Project costs budgeted'
+                t2 = 'Project costs realised'
+                t3 = 'Project costs '
                 c1 = Qt.darkYellow
                 c2 = Qt.darkCyan
                 ysch =  10000000    
@@ -278,18 +278,18 @@ def printGrafiek(keuze, jrwk, m_email):
                     x1 = x1 + [(xval1)]
                 s1 = 20
                 s2 = 20 
-                t1 = 'Bruto winst prognose'
-                t2 = 'Bruto winst actueel'
-                t3 = 'Bruto winst - prognose / aktueel '
+                t1 = 'Gross profit prognosis'
+                t2 = 'Gross profit actual'
+                t3 = 'Gross profit - prognosis / actual '
                 c1 = Qt.darkCyan
                 c2 = Qt.darkMagenta
                 ysch =  20000000
             elif keuze == '9':
                 s1 = 6
                 s2 = 4
-                t1 = 'Onderhandenwerk'
-                t2 = 'Betaald bedrag'
-                t3 = 'Onderhandenwerk - Betaald bedrag '
+                t1 = 'Work in progress'
+                t2 = 'Payed amount'
+                t3 = 'Work in progress - Payed amount '
                 c1 = Qt.yellow
                 c2 = Qt.green
                 ysch =  160000000
@@ -306,18 +306,18 @@ def printGrafiek(keuze, jrwk, m_email):
                     x2 = x2 + [(xval2)]
                 s1 = 7
                 s2 = 7
-                t1 = 'Omzet prognose'
-                t2 = 'Omzet aktueel'
-                t3 = 'Omzet '
+                t1 = 'Turnover prognosis'
+                t2 = 'Turnover actual'
+                t3 = 'Turnover '
                 c1 = Qt.red
                 c2 = Qt.blue
                 ysch =  160000000
             elif keuze == 'B':
                 s1 = 20
                 s2 = 5
-                t1 = 'Bruto winst werkelijk'
-                t2 = 'Meerminderwerk'
-                t3 = 'Bruto winst werkelijk / Meerminderwerk '
+                t1 = 'Gross profit realised'
+                t2 = 'More/less work'
+                t3 = 'Gross profit realised / More/less work '
                 c1 = Qt.darkRed
                 c2 = Qt.darkBlue
                 ysch =  30000000
@@ -370,7 +370,7 @@ def printGrafiek(keuze, jrwk, m_email):
             axisX = QCategoryAxis()
             axisY = QCategoryAxis()
         
-            axisX.setTitleText('Jaar '+jaar+' - Weeknummers')
+            axisX.setTitleText('Year '+jaar+' - Week number')
             axisX.setTitleBrush(QBrush(Qt.black))
             font = QFont("Sans Serif")
             axisX.setTitleFont(font)
@@ -395,7 +395,7 @@ def printGrafiek(keuze, jrwk, m_email):
                  
             axisY = QValueAxis()
             axisY.setTickCount(33)
-            axisY.setTitleText("Bedragen in Euro")
+            axisY.setTitleText("Amounts in Euros")
             axisY.setTitleFont(font)
             axisY.setLabelFormat('%d')
             axisY.setTitleBrush(QBrush(Qt.black))
@@ -428,13 +428,13 @@ def printGrafiek(keuze, jrwk, m_email):
             self.chartView = QChartView(chart)
             self.chartView.setRenderHint(QPainter.Antialiasing)
                      
-            buttonPreview = QPushButton('Afdrukvoorbeeld')
+            buttonPreview = QPushButton('Print preview')
             buttonPreview.clicked.connect(self.handle_preview)
             buttonPreview.setStyleSheet("color: black;  background-color: gainsboro")
-            buttonPrint = QPushButton('Printen')
+            buttonPrint = QPushButton('Printing')
             buttonPrint.clicked.connect(self.handle_print)
             buttonPrint.setStyleSheet("color: black;  background-color: gainsboro")
-            buttonSluit = QPushButton('Sluiten')
+            buttonSluit = QPushButton('Close')
             buttonSluit.clicked.connect(lambda: sluit(self, m_email))
             buttonSluit.setStyleSheet("color: black;  background-color: gainsboro")
             grid.addWidget(self.chartView, 0, 0, 0, 3)

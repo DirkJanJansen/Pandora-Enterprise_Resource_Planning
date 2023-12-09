@@ -12,8 +12,8 @@ def geenBest(m_email):
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Nog geen facturen aanwezig voor deze klant!')
-    msg.setWindowTitle('Facturen printen')
+    msg.setText('No invoices available for this customer yet!')
+    msg.setWindowTitle('Printing Invoices')
     msg.exec_()
     hoofdMenu(m_email)
 
@@ -22,8 +22,8 @@ def printing():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Ogenblik afdrukken wordt gestart!')
-    msg.setWindowTitle('Webverkooporders printen')
+    msg.setText('Wait printing starts')
+    msg.setWindowTitle('Print web sale orders')
     msg.exec_()
     
 def printGeg(filename, movbestnr):
@@ -31,9 +31,9 @@ def printGeg(filename, movbestnr):
     msgBox=QMessageBox()
     msgBox.setStyleSheet("color: black;  background-color: gainsboro")
     msgBox.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
-    msgBox.setWindowTitle("Printen orderfactuur")
+    msgBox.setWindowTitle("Print order invoice")
     msgBox.setIcon(QMessageBox.Information)
-    msgBox.setText("Wilt U factuur van ordernummer "+str(movbestnr)+" uitprinten?");
+    msgBox.setText("Do you want to print the invoice of order number "+str(movbestnr)+" ?");
     msgBox.setStandardButtons(QMessageBox.Yes)
     msgBox.addButton(QMessageBox.No)
     msgBox.setStyleSheet("color: black;  background-color: gainsboro")
@@ -93,7 +93,7 @@ def kiesOrder(m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(50, 50, 900, 900)
-            self.setWindowTitle('Printen orderfacturen')
+            self.setWindowTitle('Print order invoices')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -147,8 +147,8 @@ def kiesOrder(m_email):
                 return self.header[col]
             return None
       
-    header = ['Bestelnummer','','Besteldatum','Betaaldatum', 'Leverdatum','Totaalbedrag','', 'Accountnr',\
-              'Rekeningnr','','','','','','','','','','']
+    header = ['Order number','','Order date','Pay date', 'Delivery date','Total amount','', 'Account number',\
+              'Invoice number','','','','','','','','','','']
     
     data_list=[]
     for row in rpord:
@@ -156,9 +156,9 @@ def kiesOrder(m_email):
         
     def Heading(movbestnr, mblad):
         kop=\
-            ('Ordernummer: '+ str(movbestnr)+'          Datum: '+str(datetime.datetime.now())[0:10]+'      Besteldatum: '+str(rpc[2])+' Blad : '+str(mblad)+'\n'+
+            ('Order number: '+ str(movbestnr)+'          Date: '+str(datetime.datetime.now())[0:10]+'      Order date: '+str(rpc[2])+' Page : '+str(mblad)+'\n'+
             '==============================================================================================\n'+
-            'Artikelnr  Omschrijving                        Eenheid Aantal     Prijs   Subtotaal       BTW \n'+
+            'Articlenr  Description                         Unity   Number     Price   Subtotal        VAT \n'+
             '==============================================================================================\n')
         return(kop)
         
@@ -196,11 +196,11 @@ def kiesOrder(m_email):
             mblad = 1
             rgl = 0
             if platform == 'win32':
-                filename = '.\\forms\\Weborders_Facturen\\Weborder-factuur_'+str(rpc[0])+'.txt'
+                filename = '.\\forms\\Weborders_Facturen\\Web_order_bill_'+str(rpc[0])+'.txt'
             else:
-                filename = './forms/Weborders_Facturen/Weborder-factuur_'+str(rpc[0])+'.txt' 
+                filename = './forms/Weborders_Facturen/Web_order_bill_'+str(rpc[0])+'.txt'
             adreskop=\
-            ('\n\n\n\n\n\n\nFACTUUR\n\n'+rpc[10]+' '+rpc[11]+' '+rpc[12]+' '+rpc[13]+',\n'+\
+            ('\n\n\n\n\n\n\nBill\n\n'+rpc[10]+' '+rpc[11]+' '+rpc[12]+' '+rpc[13]+',\n'+\
              mstraat+' '+rpc[15]+rpc[16]+',\n'+\
              rpc[14]+' '+mplaats+'.\n\n\n\n\n')
             open(filename,'w').write(adreskop)
@@ -225,7 +225,7 @@ def kiesOrder(m_email):
             tail =(\
                    
             '----------------------------------------------------------------------------------------------\n'+
-            'Totaal factuurbedrag inclusief 21% BTW                                  '+'{:10.2f}'.format(mtotaal)+' \n'+
+            'Total  invoiceamount including 21% VAT                                  '+'{:10.2f}'.format(mtotaal)+' \n'+
             '==============================================================================================\n')    
             open(filename,'a').write(tail)
         printGeg(filename, movbestnr)

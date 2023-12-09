@@ -21,15 +21,15 @@ def betalingGeboekt():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Betaling is geboekt!')
-    msg.setWindowTitle('RETOURBETALING')               
+    msg.setText('Payment has been booked!')
+    msg.setWindowTitle('Return payment')               
     msg.exec_() 
 
 def retKeuze(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Opvragen Webretouren")
+            self.setWindowTitle("Requesting web returns")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -39,10 +39,10 @@ def retKeuze(m_email):
             k0Edit.setFixedWidth(230)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem(' Sorteersleutel voor zoeken')
-            k0Edit.addItem('1. Gesorteerd op e-mailadres')
-            k0Edit.addItem('2. Gefilterd niet betaald')
-            k0Edit.addItem('3. Gefilterd betaald')
+            k0Edit.addItem(' Search sort key')
+            k0Edit.addItem('1. Sorted on e-mail address')
+            k0Edit.addItem('2. Filtered not payed')
+            k0Edit.addItem('3. Filtered payed')
             k0Edit.activated[str].connect(self.k0Changed)
                    
             grid = QGridLayout()
@@ -65,7 +65,7 @@ def retKeuze(m_email):
             
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 6, 0, 1, 3)
         
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 5, 2, 1, 1, Qt.AlignRight)
@@ -73,7 +73,7 @@ def retKeuze(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            closeBtn = QPushButton('Sluiten')
+            closeBtn = QPushButton('Close')
             closeBtn.clicked.connect(lambda: windowSluit(m_email, self))
     
             grid.addWidget(closeBtn, 5, 1, 1, 1)
@@ -107,7 +107,7 @@ def toonRetouren(m_email, keuze):
     class MyWindow(QDialog):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
-            self.setWindowTitle('Webretouren betalen/ opvragen')
+            self.setWindowTitle('Web returns paying/ requesting')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                     Qt.WindowMinMaxButtonsHint)
@@ -135,7 +135,7 @@ def toonRetouren(m_email, keuze):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 1, 7, 1, 1, Qt.AlignRight)
             
-            freshBtn = QPushButton('Verversen')
+            freshBtn = QPushButton('Refresh')
             freshBtn.clicked.connect(lambda: refresh(m_email, keuze, self))
 
             freshBtn.setFont(QFont("Arial",10))
@@ -144,7 +144,7 @@ def toonRetouren(m_email, keuze):
    
             grid.addWidget(freshBtn, 1, 6, 1, 1, Qt.AlignRight)
             
-            sluitBtn = QPushButton('Sluiten')
+            sluitBtn = QPushButton('Close')
             sluitBtn.clicked.connect(self.close)
 
             sluitBtn.setFont(QFont("Arial",10))
@@ -184,8 +184,8 @@ def toonRetouren(m_email, keuze):
                 return self.header[col]
             return None
   
-    header = ['Retournummer','E-mailadres', 'Bedrag','Rekeningnummer', 'Artikelnummer',\
-              'Aantal','Ordernummer','Betaald', 'Boeking']
+    header = ['Return number','E-mail address', 'Amount','Account number', 'Article number',\
+              'Number','Order','Payed', 'Booking']
     
     metadata = MetaData()              
     webretouren = Table('webretouren', metadata,
@@ -223,8 +223,8 @@ def toonRetouren(m_email, keuze):
         mretnr = idx.data()
         if idx.column() == 0:
             
-            header = ['Retournummer','E-mailadres', 'Bedrag','Rekeningnummer', 'Artikelnummer',\
-                  'Aantal','Ordernummer','Betaald', 'Boeking']
+            header = ['Return number','E-mail address', 'Amount','Account number', 'Article number',\
+                  'Number','Order','Payed', 'Booking']
             
             metadata = MetaData()              
             webretouren = Table('webretouren', metadata,
@@ -252,7 +252,7 @@ def toonRetouren(m_email, keuze):
                     grid = QGridLayout()
                     grid.setSpacing(20)
                      
-                    self.setWindowTitle("Retouren Webartikelen")
+                    self.setWindowTitle("Returns Web articles")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                     
                     self.setFont(QFont('Arial', 10))   
@@ -262,7 +262,7 @@ def toonRetouren(m_email, keuze):
                     self.lbl.setPixmap(self.pixmap)
                     grid.addWidget(self.lbl , 0, 0)
                     
-                    grid.addWidget(QLabel('Retouren Webartikelen'),0, 1, 1, 2)
+                    grid.addWidget(QLabel('Returns Web articles'),0, 1, 1, 2)
             
                     self.logo = QLabel()
                     self.pixmap = QPixmap('./images/logos/logo.jpg')
@@ -287,7 +287,7 @@ def toonRetouren(m_email, keuze):
                         grid.addWidget(q1Edit, index, 1)
                         index +=1
                         
-                    cBox = QCheckBox('Betalen')
+                    cBox = QCheckBox('Paying')
                     if mbet:
                         cBox.setDisabled(True)
                     cBox.stateChanged.connect(self.cBoxChanged)

@@ -11,8 +11,8 @@ def geenBetaalgeg():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen betaalgegevens voor\ndeze periode gevonden!')
-    msg.setWindowTitle('Gegevens!')
+    msg.setText('No payment details found for this period!')
+    msg.setWindowTitle('Payment details!')
     msg.exec_()
     
 def wijzSluit(self, m_email):
@@ -27,7 +27,7 @@ def info():
     class Widget(QDialog):
         def __init__(self):
             QDialog.__init__(self)
-            self.setWindowTitle("Informatie vervangend werk")
+            self.setWindowTitle("Information replacement work")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setFont(QFont("Arial", 10))
             grid = QGridLayout()
@@ -38,7 +38,7 @@ def info():
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 3, 1, 1, Qt.AlignRight)
             
-            lblinfo = QLabel('Vervangend werk.')
+            lblinfo = QLabel('Replacement work.')
             grid.addWidget(lblinfo, 0, 0, 1, 4, Qt.AlignCenter)
             lblinfo.setStyleSheet("color:rgb(45, 83, 115); font: 25pt Comic Sans MS")
         
@@ -48,22 +48,23 @@ def info():
             grid.addWidget(lbl, 0, 0)
             lblinfo = QLabel(
         '''
-        Indien een werknemer vervangend werk moet verrichten in een andere discipline,
-        dient het nieuwe loontabelnummer van deze discipline  te worden ingevuld 
-        in het veld Loontabel.
-        Bij het veld Orig blijft dan het oude loontabelnummer staan, waarmee zijn of haar\t
-        loon wordt bepaald.
-        De werkloongegevens voor doorboeking naar de werken worden
-        berekend met het gewijzigde loontabelnummer.
-        Bij het hervatten van het oorspronkelijk werk, dient het loontabelnummer 
-        te worden teruggewijzigd naar de inhoud van het veld Orig, zodat beide velden
-        weer gelijk zijn en de oorspronkelijke situatie is hersteld.
+        If an employee needs to perform substitute work in another discipline,
+        the new wages table number of this discipline must be filled in
+        in the wages table field. 
+        The Orig field will then retain the old pay table number, with which his or her\t
+        wages are determined. 
+        The work wages data for transfer to the works is calculated with the changed
+        wages table number. 
+        When resuming the original work, the wages table number has to be changed back
+        to the contents of the Orig field so that both fields be equal again and the
+        original situation has been restored.
+       
         ''')
                 
             grid.addWidget(lblinfo, 1, 0, 1, 4, Qt.AlignCenter)
             lblinfo.setStyleSheet("font: 10pt Comic Sans MS; color: black ; background-color: #D9E1DF") 
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(self.close)  
             
             grid.addWidget(cancelBtn,  3, 0, 1, 4, Qt.AlignRight)
@@ -84,16 +85,16 @@ def foutWerknemer():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Werknemer niet gevonden!')
-    msg.setWindowTitle('WERKNEMER')
+    msg.setText('Employee not found!')
+    msg.setWindowTitle('EMPLOYEE')
     msg.exec_()
                
 def updateOK():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Je gegevens zijn aangepast!')
-    msg.setWindowTitle('Gegevens!')
+    msg.setText('Your data have been adjusted!')
+    msg.setWindowTitle('DATA!')
     msg.exec_()
 
 def _11check(minput):
@@ -114,7 +115,7 @@ def zoekWerknemer(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Werknemergegevens wijzigen.")
+            self.setWindowTitle("Modify employee data.")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     
             self.setFont(QFont('Arial', 10))
@@ -143,13 +144,13 @@ def zoekWerknemer(m_email):
     
             self.setFont(QFont('Arial', 10))
      
-            grid.addWidget(QLabel('Account-werknemer'), 1, 0)
+            grid.addWidget(QLabel('Account-employee'), 1, 0)
             grid.addWidget(werknemerEdit, 1, 1)
                        
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
          
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
                   
             grid.addWidget(applyBtn, 2, 1, 1, 1, Qt.AlignRight)
@@ -282,7 +283,7 @@ def updateWerknemer(m_email, mwerknmr):
     class Widget(QDialog):
          def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Werknemersgegevens aanpassen")
+            self.setWindowTitle("Modify employee data")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                                   
             self.setFont(QFont('Arial', 10))
@@ -424,58 +425,58 @@ def updateWerknemer(m_email, mwerknmr):
             grid.addWidget(logo , 1, 4, 1, 1, Qt.AlignCenter)
     
             self.setFont(QFont('Arial', 10))
-            grid.addWidget(QLabel('Aanpassen werknemergegevens van\n'+mvoorn+\
-                ' '+machtern+'\nGeboren: '+mgeboren), 1, 1, 1, 3)
+            grid.addWidget(QLabel('Modify employee data from\n'+mvoorn+\
+                ' '+machtern+'\nDate of birth: '+mgeboren), 1, 1, 1, 3)
             
-            grid.addWidget(QLabel('Bruto maandloon'), 3, 2)
+            grid.addWidget(QLabel('Gross monthly salary'), 3, 2)
             grid.addWidget(q15Edit, 3, 3) 
                                                 
-            grid.addWidget(QLabel('Accountnummer'), 3, 0)
+            grid.addWidget(QLabel('Account number'), 3, 0)
             grid.addWidget(q2Edit, 3, 1)
             
-            grid.addWidget(QLabel('Loontabel'), 6, 0)
+            grid.addWidget(QLabel('Wages table'), 6, 0)
             grid.addWidget(q4Edit, 6 , 1) 
             
             grid.addWidget(QLabel('Orig'), 6, 1, 1, 1, Qt.AlignCenter)
             grid.addWidget(o4Edit, 6, 1, 1, 1, Qt.AlignRight)
              
-            grid.addWidget(QLabel('Loontrede'), 7, 0)
+            grid.addWidget(QLabel('Wages step'), 7, 0)
             grid.addWidget(q5Edit, 7, 1)
                                                       
-            grid.addWidget(QLabel('Reiskostenvergoeding'), 4, 2)
+            grid.addWidget(QLabel('Travel compensation'), 4, 2)
             grid.addWidget(q8Edit, 4, 3)
                                       
-            grid.addWidget(QLabel('Periodieke uitkering belast'), 5, 0)
+            grid.addWidget(QLabel('Periodic payment taxed'), 5, 0)
             grid.addWidget(q12Edit, 5, 1) 
             
-            grid.addWidget(QLabel('Overige inhoudingen onbelast'), 5, 2)
+            grid.addWidget(QLabel('Other deductions tax-free'), 5, 2)
             grid.addWidget(q13Edit, 5, 3) 
             
-            grid.addWidget(QLabel('Bijtelling Bedrijfsauto'), 4, 0)
+            grid.addWidget(QLabel('Addition Company car'), 4, 0)
             grid.addWidget(q18Edit, 4, 1) 
                            
-            grid.addWidget(QLabel('Overige Vergoedingen\nonbelast'), 6, 2)
+            grid.addWidget(QLabel('Other Fees\nnon-taxed'), 6, 2)
             grid.addWidget(q19Edit, 6, 3) 
        
-            grid.addWidget(QLabel('Datum indiensttreding'), 8, 0)
+            grid.addWidget(QLabel('Date of entry into service'), 8, 0)
             grid.addWidget(q14Edit, 8, 1) 
             
-            grid.addWidget(QLabel('Verlofsaldo in uren'), 7, 2)
+            grid.addWidget(QLabel('Leave balance in hours'), 7, 2)
             grid.addWidget(q16Edit, 7, 3)
             
-            grid.addWidget(QLabel('Extra verlof in uren'), 8, 2)
+            grid.addWidget(QLabel('Extra leave in hours'), 8, 2)
             grid.addWidget(q17Edit, 8, 3)
             
-            grid.addWidget(QLabel('Uurloon'), 9, 0)
+            grid.addWidget(QLabel('Hourly wages'), 9, 0)
             grid.addWidget(QLabel(str(round(muurl, 2))), 9, 1, 1, 1, Qt.AlignRight) 
-            grid.addWidget(QLabel('Reisuurloon'), 9, 2)
+            grid.addWidget(QLabel('Travel hourly wages'), 9, 2)
             grid.addWidget(QLabel(str(round(mreisuurl, 2))), 9, 3)
             
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 10, 1, 1, 2)
             self.setLayout(grid)
             self.setGeometry(400, 250, 350, 300)
                          
-            applyBtn = QPushButton('Wijzigen')
+            applyBtn = QPushButton('Modify')
             applyBtn.clicked.connect(self.accept)
                        
             grid.addWidget(applyBtn, 10, 4)
@@ -483,7 +484,7 @@ def updateWerknemer(m_email, mwerknmr):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
                                 
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: wijzSluit(self, m_email))
         
             grid.addWidget(cancelBtn, 9, 4)
@@ -491,7 +492,7 @@ def updateWerknemer(m_email, mwerknmr):
             cancelBtn.setFixedWidth(100)
             cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            infoBtn = QPushButton('Informatie')
+            infoBtn = QPushButton('Information')
             infoBtn.clicked.connect(lambda: info())
         
             grid.addWidget(infoBtn, 8, 4)

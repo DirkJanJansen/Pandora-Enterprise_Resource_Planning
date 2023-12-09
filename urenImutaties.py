@@ -29,13 +29,13 @@ def info():
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Informatie ERP Systeem Pandora")
+            self.setWindowTitle("Information ERP System Pandora")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setFont(QFont('Arial', 10))
             grid = QGridLayout()
             grid.setSpacing(20)
             
-            lblinfo = QLabel('Informatie ERP Pandora')
+            lblinfo = QLabel('ERP System Pandora')
             grid.addWidget(lblinfo, 0, 0, 1, 2, Qt.AlignCenter)
             lblinfo.setStyleSheet("color:rgba(45, 83, 115, 255); font: 25pt Comic Sans MS")
             
@@ -52,41 +52,39 @@ def info():
             infolbl = QLabel(
       '''
         \t\t\t\t\t\t\t\t\t\t 
-                                        Informatie over te muteren uren.  
-                                         
-        De module start met de volgende variabele gegevens:
-        Accountnummer: leeg veld in te vullen met accountnummer van de werknemer.
-        Werkodernummer: leeg veld in te vullen met het werkordernummer, waarvoor 
-        wordt gewerkt.
-        Aanwezig/Afwezig: kies hier de soort uren, waarvoor de boeking moet worden gedaan,
-        bv. 100% reguliere uren, 125% overwerk, 150% overwerk, 200% overwerk, 
-        of een van de diverse genoemde afwezigheidsuren voor verlof ziekte enz.
-        Aantal uren: Uren die zijn gewerkt op de dag van de werkzaamheden.
-        Bij het label voor de werkelijke totaaluren wordt de vakdiscipline aangegeven,
-        waarvoor de uren zijn geboekt.
-        Datum werkzaamheden:  datum van de huidige dag in het formaat jjjj-mm-dd
-        Button 'Muteren' Standaard button met tekst 'Muteren'
-        Bij het aanpassen of invullen van de velden 'Accountnummer', 'Werkordernummer'
-        en 'Datum werkzaamheden', zal het systeem bij opkomen van de velden de laatst
-        ingetoetste gegevens onthouden, zodat een snelle invoer mogelijk is.
-        De keuze Aanwezig/Afwezig zal standaard ingevuld worden met 100% uren,
-        omdat dit de meest voorkomende keuze zal zijn.
-        Bij het intoetsen van de gegevens zal  bij een juiste invoer de knop
-        'Muteren' groen kleuren. Bij een foutieve of niet gelukte invoer zal de 
-        knop 'Muteren' rood kleuren, in dit geval dient een korrektie te worden 
-        gemaakt, omdat de invoer niet is geboekt!
-        In het statusveld onder de invulvelden, wordt de status en informatie
-        van de afwezigheidsuren getoond, b.v. bij verlofuren het verlofsaldo.
-        Tevens worden in dit statusveld de foutmeldingen weergegeven, bij een
-        ongeldige invoer.
-   
+                                        Information about hours to mutate.  
+        
+        The module starts with the following variable data:
+        Account number: blank field to be filled in with the employee's account number.
+        Work order number: blank field to be filled in with the work order number,
+        for which is being worked on. 
+        Present/Absent: choose here the type of hours for which the booking must be made,
+        e.g. 100% regular hours, 125% overtime, 150% overtime, 200% overtime,
+        or one of the various hours of absence mentioned for sick leave etc.
+        Number of hours: Hours worked on the day of work.
+        The label for the actual total hours indicates the professional discipline,
+        for which the hours are booked. 
+        Date of work: date of the current day in the format yyyy-mm-dd
+        
+        When modifying or filling in the fields 'Account number', 'Work order number' 
+        and 'Date of work', the system will remember the last used key data 
+        when the fields arise so that a quick entry is possible.
+        The option Present/Absent will be filled in by default with 100% hours, 
+        Because this will be the most common choice. 
+        When entering the data, if entered correctly, the button Mutate' turn green. 
+        In the event of an incorrect or unsuccessful entry, the button 'Mutate' turn red,
+        in this case a correction should be created, because the entry was not booked!
+        In the status field below the input fields, the status and information of 
+        the absence hours is showed, e.g. in the case of leave hours the leave balance is showed. 
+        This status field also displays the error messages, in the case of a invalid entry.
+          
      ''')
             grid.addWidget(infolbl, 1, 0)
                            
             infolbl.setStyleSheet("font: 10pt Comic Sans MS; color: black ; background-color: #D9E1DF")   
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 2, 0, 1, 2, Qt.AlignCenter)
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(self.close)  
             
             grid.addWidget(cancelBtn, 2, 0, 1, 1,  Qt.AlignRight)
@@ -206,21 +204,19 @@ def urenBoeking(self, m_email):
     else:
        self.urenEdit.setText('0')
        self.lblt.setStyleSheet("font: bold; color: red")
-       self.lblt.setText('Persoon niet in deze arbeidspool!')
+       self.lblt.setText('Person is not in this labor pool!')
        self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
        return('', mwerknr, mboekd, m_email)
-    if mwerknr and len(mwerknr)== 9  and _11check(mwerknr):
+    selwerk = select([orders_intern]).where(orders_intern.c.werkorderID == mwerknr)
+    if mwerknr and len(mwerknr)== 9  and _11check(mwerknr) and con.execute(selwerk).first():
         mwerknr = int(mwerknr)
     else:
        self.urenEdit.setText('0')
        self.lblt.setStyleSheet("font: bold; color: red")
-       self.lblt.setText('Dit is geen geldig werkordernummer!')
+       self.lblt.setText('This is not a valid work order number!')
        self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
        return(maccountnr, '', mboekd, m_email)
-                
-    engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
-    con = engine.connect()
-    selwerk = select([orders_intern]).where(orders_intern.c.werkorderID == mwerknr)
+
     rpwerk = con.execute(selwerk).first()
     
     muren = 0
@@ -244,13 +240,13 @@ def urenBoeking(self, m_email):
     
     mboekuren = float(self.urenEdit.text())
     
-    mlist = ['100%','125%','150%','200%','Reis','Verlof','Extra verlof','Ziekte',\
-            'Feestdag','Dokter','Geoorl. verzuim','Ong. verzuim']
+    mlist = ['100%','125%','150%','200%','Travel','Leaf','Extra leaf','Illness',\
+            'Holiday','Doctor','Permitted default','Not permitted default']
     
     if rpwerk[2] == 'H':
         self.urenEdit.setText('0')
         self.lblt.setStyleSheet("font: bold; color: red")
-        self.lblt.setText('Werk is gereed en afgemeld!')
+        self.lblt.setText('Work is ready and closed!')
         self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
         return(maccountnr, mwerknr, mboekd, m_email)
     elif mboekuren and msoort == 0 and mstatus:
@@ -294,7 +290,7 @@ def urenBoeking(self, m_email):
     else:
         self.urenEdit.setText('0')
         self.lblt.setStyleSheet("font: bold;color: red")
-        self.lblt.setText('Geen uren ingevoerd!')
+        self.lblt.setText('No hours inserted!')
         self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
         return(maccountnr, mwerknr, mboekd, m_email)
             
@@ -362,8 +358,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[11]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[12]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Zagen'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours Sawing'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -379,8 +375,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[13]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[14]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Schaven'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours planing'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -396,8 +392,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[15]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[16]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Steken'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours stabbing'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -413,8 +409,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[17]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[18]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Boren'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours drilling'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -430,8 +426,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[19]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[20]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Frezen'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours milling'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -447,8 +443,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[21]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[22]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Draaien klein'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours turning small'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -464,8 +460,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[23]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[24]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Draaien groot'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours turning big'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -481,8 +477,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[25]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[26]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Tappen'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'TTotals: Realised / Budgeted\nhours threading'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -498,8 +494,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[27]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[28]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Nubé draaien'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours CNC turning'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -515,8 +511,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[29]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[30]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Nubé bewerken'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours CNC milling'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -532,8 +528,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[31]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[32]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Knippen'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours cutting'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -549,8 +545,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[33]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[34]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Kanten'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours bending'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -566,8 +562,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[35]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[36]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Stanzen'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours sizing'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -583,8 +579,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[37]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[38]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Lassen co2'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours welding co2'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -600,8 +596,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[39]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[40]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Lassen hand'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours welding hand'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -617,8 +613,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[41]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[42]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Verpakken'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours packing'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -634,8 +630,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[43]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[44]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Verzinken'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours galvanize'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -651,8 +647,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[45]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[46]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Moffelen'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours smuffling'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -668,8 +664,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[47]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[48]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Schilderen'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours painting'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -685,8 +681,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[49]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[50]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Spuiten'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours spraying'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -702,8 +698,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[51]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[52]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Ponsen'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours punching'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -719,8 +715,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[53]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[54]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Persen'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours pressing'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -736,8 +732,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[55]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[56]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Gritstralen'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours gritblasting'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -753,8 +749,8 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[57]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[58]))
-        lblptext = 'Totalen: Werkelijk / Begroot\nUren Montage'
-        lbltext = 'Muteren uren (werken - lonen) niet cumulatief'
+        lblptext = 'Totals: Realised / Budgeted\nhours mounting'
+        lbltext = 'Mutate hours (works - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
         self.lblt.setText(lbltext)
@@ -765,43 +761,43 @@ def urenBoeking(self, m_email):
             selsal = select([werknemers]).where(werknemers.c.accountID == maccountnr)
             rpsal = con.execute(selsal).first()
             msaldo = str(rpsal[3])
-            lbltext = mboekuren+' Verlofuren ingevoerd, Saldo = '+msaldo+' uren.'
+            lbltext = mboekuren+' Leave hours entered, Balance = '+msaldo+' hours.'
             lblptext = '\n'
             self.lblt.setStyleSheet("color: navy")
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         elif msoort == 6 and wrkgr > 52:
-            lbltext = mboekuren+' Extra verlofuren ingevoerd'
+            lbltext = mboekuren+' Extra leave hours entered'
             lblptext = '\n'
             self.lblt.setStyleSheet("color: navy")
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         elif msoort == 7 and wrkgr > 52:
-            lbltext = mboekuren+' Uren ziekte ingevoerd'
+            lbltext = mboekuren+' Illness hours entered'
             lblptext = '\n'
             self.lblt.setStyleSheet("color: navy")
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         elif msoort == 8 and wrkgr > 52:
-            lbltext = mboekuren+' Uren feestdagen ingevoerd'
+            lbltext = mboekuren+' Hours holiday entered'
             lblptext = '\n'
             self.lblt.setStyleSheet("color: navy")
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         elif msoort == 9 and wrkgr > 52:
-            lbltext = mboekuren+' Uren dokterbezoek ingevoerd'
+            lbltext = mboekuren+' Hours doctor visit entered'
             lblptext = '\n'
             self.lblt.setStyleSheet("color: navy")
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         elif msoort == 10 and wrkgr > 52:
-            lbltext = mboekuren+' Uren geoorloofd verzuim ingevoerd'
+            lbltext = mboekuren+' Hours allowed absence entered'
             lblptext = '\n'
             self.lblt.setStyleSheet("color: navy")
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         elif msoort == 11 and wrkgr > 52:
-            lbltext = mboekuren+' Uren ongeoorloofd verzuim ingevoerd'
+            lbltext = mboekuren+' Hours illegal absence entered'
             lblptext = '\n'
             self.lblt.setStyleSheet("color: navy")
             self.lblt.setText(lbltext)
@@ -809,7 +805,7 @@ def urenBoeking(self, m_email):
         else:
             self.urenEdit.setText('0')
             self.lblt.setStyleSheet("font: bold;color: red")
-            self.lblt.setText('Persoon niet in deze arbeidspool!')
+            self.lblt.setText('Person not in this labor pool!')
             self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
             return(maccountnr, mwerknr, mboekd, m_email) 
             
@@ -822,7 +818,7 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
         def __init__(self):
             super(Widget,self).__init__()
             
-            self.setWindowTitle("Uren invoeren interne werken - lonen")
+            self.setWindowTitle("Entering hours of internal work - wages")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                                 Qt.WindowMinMaxButtonsHint)
@@ -854,16 +850,16 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
             self.k0Edit.addItem('125%')
             self.k0Edit.addItem('150%')
             self.k0Edit.addItem('200%')
-            self.k0Edit.addItem('Reis')
-            self.k0Edit.addItem('Verlof')
-            self.k0Edit.addItem('Extra verlof')
-            self.k0Edit.addItem('Ziekte')
-            self.k0Edit.addItem('Feestdag')
-            self.k0Edit.addItem('Dokter')
-            self.k0Edit.addItem('Geoorl. verzuim')
-            self.k0Edit.addItem('Ong. verzuim')
+            self.k0Edit.addItem('Travel')
+            self.k0Edit.addItem('Leave')
+            self.k0Edit.addItem('Extra leave')
+            self.k0Edit.addItem('Illness')
+            self.k0Edit.addItem('Holiday')
+            self.k0Edit.addItem('Doctor')
+            self.k0Edit.addItem('Allowed absence')
+            self.k0Edit.addItem('Illegal absence')
   
-            self.cBox = QCheckBox('Meerwerk')
+            self.cBox = QCheckBox('More/less work')
             self.cBox.setFont(QFont("Arial",10))
             self.cBox.setStyleSheet('color: black; background-color: #F8F7EE')
                                                                      
@@ -938,29 +934,29 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 3, 1, 1, Qt.AlignRight)       
 
-            self.lblt = QLabel('Muteren uren (werken - lonen) niet cumulatief')
+            self.lblt = QLabel('Mutate hours (works - wages) not cumulative')
             self.lblt.setStyleSheet("color: black")
             self.lblt.setFont(QFont("Arial", 10))
             grid.addWidget(self.lblt , 12, 0, 1, 4, Qt.AlignCenter)
             
-            lbl1 = QLabel('Accountnummer')
+            lbl1 = QLabel('Account number')
             lbl1.setFont(QFont("Arial", 10))
             grid.addWidget(lbl1, 6, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.zkaccEdit , 6, 2, 1, 1, Qt.AlignRight)
             
-            lbl2 = QLabel('Werkordernummer')
+            lbl2 = QLabel('Work order number')
             lbl2.setFont(QFont("Arial", 10))
             grid.addWidget(lbl2, 7, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.zkwerknEdit, 7, 2, 1, 1, Qt.AlignRight)
                 
-            lbl3 = QLabel('Soort Uren')
+            lbl3 = QLabel('Type of hours')
             lbl3.setFont(QFont("Arial", 10))
             grid.addWidget(lbl3, 8, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.k0Edit, 8, 2, 1, 1, Qt.AlignRight)
                         
             grid.addWidget(self.cBox, 8, 3)
             
-            self.lblprof = QLabel('Totalen: Werkelijk / Begroot\nUren')
+            self.lblprof = QLabel('Totals:Realised/Budgeted Hours')
             self.lblprof.setFont(QFont("Arial", 10))
             self.lblprof.setFixedWidth(200)
             self.lblprof.setAlignment(Qt.AlignRight)
@@ -968,17 +964,17 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
             grid.addWidget(self.urentotEdit, 9, 2, 1, 1, Qt.AlignRight)
             grid.addWidget(self.urenbegrEdit, 9, 3, 1, 1)
             
-            lbl4 = QLabel('Urenmutatie')
+            lbl4 = QLabel('Hours mutation')
             lbl4.setFont(QFont("Arial", 10))
             grid.addWidget(lbl4, 10, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.urenEdit, 10, 2, 1, 1, Qt.AlignRight)
                                        
-            lbl5 = QLabel('Boekdatum')
+            lbl5 = QLabel('Book date')
             lbl5.setFont(QFont("Arial", 10))
             grid.addWidget(lbl5, 11, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.boekdatumEdit, 11, 2, 1, 1, Qt.AlignRight)
             
-            self.applyBtn = QPushButton('Muteren')
+            self.applyBtn = QPushButton('Mutate')
             self.applyBtn.clicked.connect(lambda: urenBoeking(self, m_email))
                
             self.applyBtn.setFont(QFont("Arial",10))
@@ -987,7 +983,7 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
                
             grid.addWidget(self.applyBtn,13, 3 , 1 , 1, Qt.AlignRight)
                 
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email)) 
     
             grid.addWidget(cancelBtn, 13, 2, 1 , 1, Qt.AlignRight)
@@ -995,7 +991,7 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
             cancelBtn.setFixedWidth(100)
             cancelBtn.setStyleSheet("color: black; background-color: gainsboro") 
                    
-            infoBtn = QPushButton('Informatie')
+            infoBtn = QPushButton('Information')
             infoBtn.clicked.connect(lambda: info()) 
     
             grid.addWidget(infoBtn, 13, 1, 1, 1, Qt.AlignRight)

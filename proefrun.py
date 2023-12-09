@@ -21,8 +21,8 @@ def ongPeriode():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen geldige betaalperiode opgegeven!')
-    msg.setWindowTitle('Controle werkuren')
+    msg.setText('No valid payment period specified!')
+    msg.setWindowTitle('Control working hours')
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.exec_()
        
@@ -84,7 +84,7 @@ def toonGeg(mjrmnd):
                 return self.header[col]
             return None
                  
-    header = ['Accountnr', 'Voornaam', 'Tussenvoegsel', 'Achternaam', 'Uren', 'Geboekt']
+    header = ['Account number', 'First name', 'Infix', 'Surname', 'Hours', 'Booked']
     if platform == 'win32':
         with open('.\\forms\\Uren\\'+str(mjrmnd)+'.csv', newline='') as f:
             fname = csv.reader(f, delimiter='|', quotechar='@')
@@ -108,7 +108,7 @@ def maandPeriode(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Periode opgeven tbv loonspecificaties")
+            self.setWindowTitle("Specify period for wage specifications")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     
             self.setFont(QFont('Arial', 10))
@@ -135,13 +135,13 @@ def maandPeriode(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
                            
-            grid.addWidget(QLabel('Betaalperiode jjjj-mm'), 1, 0)
+            grid.addWidget(QLabel('Payment period yyyy-mm'), 1, 0)
             grid.addWidget(betEdit, 1, 1)
               
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
          
-            applyBtn = QPushButton('Uitvoeren')
+            applyBtn = QPushButton('Perform')
             applyBtn.clicked.connect(self.accept)
                   
             grid.addWidget(applyBtn, 2, 1, 1 ,1, Qt.AlignRight)
@@ -225,9 +225,9 @@ def controleUren(mjrmnd, m_email):
                 csvfilename = './forms/Uren/'+str(mjrmnd)+'.csv' 
             open (csvfilename, "w").write("")
             kop = \
-    ("Controle uren tbv loonbetalingen van periode "+str(mjrmnd)+" Pagina "+str(mblad)+"\n"+
+    ("Control hours for wages payments of period "+str(mjrmnd)+" Page "+str(mblad)+"\n"+
      "============================================================\n"
-     "Account   Werknemer                        Uren     Gewerkt \n"
+     "Account   Employee                         Hours    Worked  \n"
      "============================================================\n")
             open(filename, "w").write(kop)
         elif rgl%57 == 0:
@@ -277,7 +277,7 @@ def controleUren(mjrmnd, m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Controle uren per periode")
+            self.setWindowTitle("Control hours by period")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             
             lbl = QLabel()
@@ -297,18 +297,18 @@ def controleUren(mjrmnd, m_email):
             self.setGeometry(400, 300, 500, 150)
             
             grid.addWidget(QLabel('''
-            Deze module dient om het aantal geboekte uren 
-            per periode en per werknemer te controleren, 
-            voor de definitieve uitdraai wordt gemaakt.
+            This module serves to check the number 
+            of hours, booked by period and per employee, 
+            before the final printout is made.
             '''), 1, 0, 1, 3)
              
-            toonBtn = QPushButton('Tonen')
+            toonBtn = QPushButton('Show')
             toonBtn.clicked.connect(lambda: toonGeg(mjrmnd))
           
-            printBtn = QPushButton('Printen')
+            printBtn = QPushButton('Printing')
             printBtn.clicked.connect(lambda: printGeg(mjrmnd))
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: winSluit(self, m_email))
             
             grid.addWidget(toonBtn, 3, 2)
