@@ -20,8 +20,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Artikelen opvragen')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Request articles')               
     msg.exec_()
     
 def geenRecord():
@@ -29,8 +29,8 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Artikelen opvragen')               
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Request articles')               
     msg.exec_() 
  
 def windowSluit(self, m_email):
@@ -42,8 +42,8 @@ def printing():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Ogenblik afdrukken wordt gestart!')
-    msg.setWindowTitle('Werkgeleidebrief printen')
+    msg.setText('Just a moment printing is started!')
+    msg.setWindowTitle('Print work guide letter')
     msg.exec_()
     
 def printWerkbrief(mwerkorder, rpord, header):
@@ -73,13 +73,13 @@ def printWerkbrief(mwerkorder, rpord, header):
     mblad = 1
     rgl = 0
     if platform == 'win32':
-        filename = '.\\forms\\Werkbrieven\\materiaallijst_werkgeleidebrief_'+str(mwerkorder)+'.txt'
+        filename = '.\\forms\\Werkbrieven\\materials_list_work_letter_'+str(mwerkorder)+'.txt'
     else:
-        filename = './forms/Werkbrieven/materiaallijst_werkgeleidebrief_'+str(mwerkorder)+'.txt'
+        filename = './forms/Werkbrieven/materials_list_work_letter_'+str(mwerkorder)+'.txt'
     kop=\
-    ('Materiaallijst van Werkorder:   '+ str(mwerkorder)+'   Datum: '+str(datetime.datetime.now())[0:10]+'  Blad :  '+str(mblad)+'\n'+
+    ('Material list from work order:   '+ str(mwerkorder)+'   Date: '+str(datetime.datetime.now())[0:10]+'  Page :  '+str(mblad)+'\n'+
     '=====================================================================================================\n'+
-    'Regel Artikelnr    Omschrijving                       Eenheid       Aantal      Ontvangen            \n'+
+    'Line  Articlenr    Description                        Unit          Number      Received             \n'+
     '=====================================================================================================\n')
     for row in rpmat:
         if rgl == 0 or rgl%57 == 0:
@@ -97,13 +97,13 @@ def printWerkbrief(mwerkorder, rpord, header):
     rgl = 0
     k = 0
     if platform == 'win32':
-        filename1 = '.\\forms\\Werkbrieven\\werkgeleidebrief_'+str(mwerkorder)+'.txt' 
+        filename1 = '.\\forms\\Werkbrieven\\work_guide_letter_'+str(mwerkorder)+'.txt'
     else:
-        filename1 = './forms/Werkbrieven/werkgeleidebrief_'+str(mwerkorder)+'.txt'
+        filename1 = './forms/Werkbrieven/work_guide_letter_'+str(mwerkorder)+'.txt'
     kop1=\
-     ('Werkorder: '+str(mwerkorder)+' Werkgeleidebrief  Datum: '+str(datetime.datetime.now())[0:10]+' Blad : '+str(mblad)+'\n'\
+     ('Work order: '+str(mwerkorder)+' Work guide letter  Date  : '+str(datetime.datetime.now())[0:10]+' Page : '+str(mblad)+'\n'\
      '=====================================================================================================\n'+
-     'Regel Omschrijving bewerking   Aantal  Steltijd  Stuktijd  Totaaluren  Gemaakte uren                 \n'+
+     'Line  Description  Operation   Number  Set time  Piece timeTotal hours Work hours                    \n'+
      '=====================================================================================================\n')
     for column in rpord:
         if rgl == 0 or rgl%57 == 0:
@@ -142,7 +142,7 @@ def zoeken(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Orders_ Intern")
+            self.setWindowTitle("Orders internal")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -165,14 +165,14 @@ def zoeken(m_email):
             k0Edit.setFixedWidth(280)
             k0Edit.setFont(QFont("Arial", 10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('        Sorteersleutel Orders Intern')
-            k0Edit.addItem('1. Alle Interne Orders')
-            k0Edit.addItem('2. Gefilterd op Werordernummer')
-            k0Edit.addItem('3. Gefilterd op Artikelnummer')
-            k0Edit.addItem('4. Gefilterd op (deel) startdatum')
-            k0Edit.addItem('5. Gefilterd op (deel) datum afgemeld')
-            k0Edit.addItem('6. Gefilterd op voorgangstatus A-H')
-            k0Edit.addItem('7. Gefilterd op (deel) omschrijving')
+            k0Edit.addItem('        Sort key orders internal')
+            k0Edit.addItem('1. All internal orders')
+            k0Edit.addItem('2. Filtered by work order number')
+            k0Edit.addItem('3. Filtered by article number')
+            k0Edit.addItem('4. Filtered by (part) date of start')
+            k0Edit.addItem('5. Filtered by (part) date of finish')
+            k0Edit.addItem('6. Filtered by progress status A-H')
+            k0Edit.addItem('7. Filtered by (part) description')
             k0Edit.activated[str].connect(self.k0Changed)
             
             self.Zoekterm = QLabel()
@@ -183,7 +183,7 @@ def zoeken(m_email):
             zktermEdit.setValidator(input_validator)
             zktermEdit.textChanged.connect(self.zktermChanged)
          
-            lbl1 = QLabel('Zoekterm')  
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                            
             grid.addWidget(k0Edit, 2, 1)   
@@ -195,7 +195,7 @@ def zoeken(m_email):
             
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 5, 0, 1, 3, Qt.AlignCenter)
     
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
                 
             grid.addWidget(applyBtn, 4, 1, 1, 1, Qt.AlignRight)
@@ -203,7 +203,7 @@ def zoeken(m_email):
             applyBtn.setFixedWidth(120)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
 
             grid.addWidget(cancelBtn, 4, 1)
@@ -249,7 +249,7 @@ def toonOrders(keuze,zoekterm, m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(100, 50, 1700, 900)
-            self.setWindowTitle('Interne orders opvragen')
+            self.setWindowTitle('Request internal orders')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -291,25 +291,25 @@ def toonOrders(keuze,zoekterm, m_email):
                 return self.header[col]
             return None
               
-    header = ['Werkorder', 'Omschrijving','Artikelnummer','Hoeveelheid',\
-               'Werkbrief','Besteldatum', 'Voortgangstatus','Statusweek','Boekdatum',\
-               'Startdatum', 'Afgemeld','Begroot Totaal','Werkelijk Totaal',\
-               'Begroot Materialen','Werkelijk Materialen','Begroot Lonen',\
-               'Werkelijk Lonen', 'Meerminderwerk', 'Szagen','Bzagen', 'Wzagen',\
-               'Sschaven','Bschaven', 'Wschaven', 'Ssteken','Bsteken', 'Wsteken',\
-               'Sboren','Bboren', 'Wboren','Sfrezen','Bfrezen','WFrezen',\
-               'Sdraaien klein', 'Bdraaien klein','Wdraaien klein','Sdraaien groot',\
-               'Bdraaien groot','Wdraaien groot','Stappen','Btappen','Wtappen',\
-               'Snube draaien','Bnube draaien','Wnube draaien','Snube bewerken',\
-               'Bnube bewerken', 'Wnube bewerken', 'Sknippen','Bknippen', 'Wknippen',\
-               'Skanten', 'Bkanten', 'Wkanten','Sstansen','Bstansen', 'Wstansen',\
-               'Slassen Co2', 'Blassen Co2', 'Wlassen Co2','Slassen hand','Blassen hand',\
-               'Wlassen hand','Sverpakken','Bverpakken','Wverpakken', 'Sverzinken',\
-               'Bverzinken','Wverzinken','Smoffelen','Bmoffelen', 'Wmoffelen',\
-               'Sschilderen','Bschilderen', 'Wschilderen','Sspuiten','Bspuiten',\
-               'Wspuiten','Sponsen','Bponsen', 'Wponsen','Spersen','Bpersen',\
-               'Wpersen','Sgritstralen','Bgritstralen','Wgritstralen','Smontage',\
-               'Bmontage','Wmontage', 'Wreisuren', 'Gereed', 'Goedgekeurd']
+    header = ['Work order', 'Description','Article number','Amount',\
+               'Workletter','Order date', 'Progress status','Status week','Book date',\
+               'Start date', 'Finished', 'Budgeted total','Realised total',\
+               'Budgeted materials','Realised materials','Budgeted wages',\
+               'Realised wages', 'More/Less work', 'Ssawing','Bsawing', 'Rsawing',\
+               'Splaning','Bplaning', 'Rplaning', 'Sstabbing','Bstabbing', 'Rstabbing',\
+               'Sdrilling','Bdrilling', 'Rdrilling','Sfmilling','Bmilling','Rmilling',\
+               'Sturning small', 'Bturning small','Rturning small','Sturning big',\
+               'Bturning big','Rturning big','Sthreading','Bthreading','Rthreading',\
+               'SCNC turning','BCNC turning','RCNC turning','SCNC milling',\
+               'BCNC milling', 'RCNC milling', 'Scutting','Bcutting', 'Rcutting',\
+               'Sbending', 'Bbending', 'RBending','Ssizing','Bsizing', 'Rsizing',\
+               'Swelding Co2', 'Bwelding Co2', 'Rwelding Co2','Swelding hand','Bwelding hand',\
+               'Rwelding hand','Spacking','Bpacking','Rpacking', 'Sgalvanize',\
+               'Bgalvanize','Rgalvanize','Smuffling','Bmuffling', 'Rmuffling',\
+               'Spainting','Bpainting', 'Rpainting','Sspraying','Bspraying',\
+               'Rspraying','Sstamping','Bstamping', 'Rstamping','Spressing','Bpressing',\
+               'Rpressing','Sgritblasting','Bgritblasting','Rgritblasting','Smounting',\
+               'Bmounting','Rmounting', 'Wtravelhours','Finished', 'Approved']
     
     metadata = MetaData()
     orders_intern = Table('orders_intern', metadata,
@@ -489,7 +489,7 @@ def toonOrders(keuze,zoekterm, m_email):
                     grid = QGridLayout()
                     grid.setSpacing(16)
                     
-                    self.setWindowTitle("Opvragen Orders Intern")
+                    self.setWindowTitle("Request orders internal")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                     
                     self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
@@ -1060,206 +1060,206 @@ def toonOrders(keuze,zoekterm, m_email):
                     logo.setPixmap(pixmap)
                     grid.addWidget(logo , 0, 11, 1, 1, Qt.AlignRight)
                     
-                    grid.addWidget(QLabel('Interne order opvragen / werkbrief printen'), 0, 0, 1, 12, Qt.AlignCenter)
+                    grid.addWidget(QLabel('Request internal order / printing workletter'), 0, 0, 1, 12, Qt.AlignCenter)
 
                     self.setFont(QFont('Arial', 10))
                     
-                    grid.addWidget(QLabel('Werkorder'), 1, 0)
+                    grid.addWidget(QLabel('Work order'), 1, 0)
                     grid.addWidget(q1Edit, 1, 1) 
                     
-                    grid.addWidget(QLabel('Werkomschrijving'), 1, 2)
+                    grid.addWidget(QLabel('Description'), 1, 2)
                     grid.addWidget(q2Edit, 1, 3, 1, 3) 
                                                         
-                    grid.addWidget(QLabel('Artikelnummer'), 2, 0)
+                    grid.addWidget(QLabel('Article number'), 2, 0)
                     grid.addWidget(q3Edit, 2, 1)
                     
-                    grid.addWidget(QLabel('Hoeveelheid'), 2, 2)
+                    grid.addWidget(QLabel('Amount'), 2, 2)
                     grid.addWidget(q4Edit, 2, 3, 1, 2) 
       
-                    grid.addWidget(QLabel('Voortgangstatus'), 3, 0)
+                    grid.addWidget(QLabel('Progress status'), 3, 0)
                     grid.addWidget(q7Edit, 3, 1)
                     
-                    grid.addWidget(QLabel('Statusweek'), 3, 2)
+                    grid.addWidget(QLabel('Status week'), 3, 2)
                     grid.addWidget(q8Edit, 3, 3)
                     
-                    grid.addWidget(QLabel('Afgemeld'), 3, 4)
+                    grid.addWidget(QLabel('Unsubscribed'), 3, 4)
                     grid.addWidget(q11Edit, 3, 5) 
                     
-                    grid.addWidget(QLabel('Gereed'), 2, 4)
+                    grid.addWidget(QLabel('Finished'), 2, 4)
                     grid.addWidget(q19Edit, 2, 5)
                     
-                    grid.addWidget(QLabel('Goedgekeurd'), 2, 6)
+                    grid.addWidget(QLabel('Approved'), 2, 6)
                     grid.addWidget(q20Edit, 2, 7)
                     
-                    grid.addWidget(QLabel('Reisuren'), 3, 6)
+                    grid.addWidget(QLabel('Travel hours'), 3, 6)
                     grid.addWidget(u73Edit, 3,7)
                    
-                    grid.addWidget(QLabel('Boekdatum'), 4, 0)
+                    grid.addWidget(QLabel('Booking date'), 4, 0)
                     grid.addWidget(q9Edit, 4, 1) 
                     
-                    grid.addWidget(QLabel('Besteldatum'), 4, 2)
+                    grid.addWidget(QLabel('Order date'), 4, 2)
                     grid.addWidget(q6Edit, 4, 3)
      
-                    grid.addWidget(QLabel('Startdatum'), 4, 4)
+                    grid.addWidget(QLabel('Start date'), 4, 4)
                     grid.addWidget(q10Edit, 4, 5) 
                             
-                    lbl1 = QLabel('Financiële totaal bedragen')
+                    lbl1 = QLabel('Total financial amounts')
                     lbl1.setStyleSheet("font: 12pt Comic Sans MS")
                     grid.addWidget(lbl1, 6, 0, 1, 2)
                                         
-                    grid.addWidget(QLabel('Begroot'), 7, 1)
-                    grid.addWidget(QLabel('Werkelijk'), 7, 2)
-                    grid.addWidget(QLabel('Begroot'), 7, 4)
-                    grid.addWidget(QLabel('Werkelijk'), 7, 5)
-                    grid.addWidget(QLabel('Begroot'), 7, 7)
-                    grid.addWidget(QLabel('Werkelijk'), 7, 8)
-                    grid.addWidget(QLabel('Werkelijk'), 7, 10)
+                    grid.addWidget(QLabel('Budgeted'), 7, 1)
+                    grid.addWidget(QLabel('Realised'), 7, 2)
+                    grid.addWidget(QLabel('Budgeted'), 7, 4)
+                    grid.addWidget(QLabel('Realised'), 7, 5)
+                    grid.addWidget(QLabel('Budgeted'), 7, 7)
+                    grid.addWidget(QLabel('Realised'), 7, 8)
+                    grid.addWidget(QLabel('Realised'), 7, 10)
                                                  
-                    grid.addWidget(QLabel('Totaal'), 8, 0)
+                    grid.addWidget(QLabel('Total'), 8, 0)
                     grid.addWidget(q12Edit, 8, 1) 
                     grid.addWidget(q13Edit, 8, 2) 
                     
-                    grid.addWidget(QLabel('Materialen'), 8, 3)
+                    grid.addWidget(QLabel('Materials'), 8, 3)
                     grid.addWidget(q14Edit, 8, 4) 
                     grid.addWidget(q15Edit, 8, 5) 
                                    
-                    grid.addWidget(QLabel('Lonen'), 8, 6)
+                    grid.addWidget(QLabel('Wages'), 8, 6)
                     grid.addWidget(q16Edit, 8, 7) 
                     grid.addWidget(q17Edit, 8, 8) 
                     
-                    grid.addWidget(QLabel('meerminderwerk'), 8, 9)    
+                    grid.addWidget(QLabel('More/less work'), 8, 9)    
                     grid.addWidget(q18Edit, 8, 10)
                                       
-                    lbl2 = QLabel('Werkuren verbruik')
+                    lbl2 = QLabel('Working hours consumption')
                     lbl2.setStyleSheet("font: 12pt Comic Sans MS")
                     grid.addWidget(lbl2, 10, 0, 1, 2)
                     
-                    grid.addWidget(QLabel('Steltijd'), 11, 1)
-                    grid.addWidget(QLabel('Begroot'), 11, 2)
-                    grid.addWidget(QLabel('Werkelijk'), 11, 3)
-                    grid.addWidget(QLabel('Steltijd'), 11, 5)
-                    grid.addWidget(QLabel('Begroot'), 11, 6)
-                    grid.addWidget(QLabel('Werkelijk'), 11, 7) 
-                    grid.addWidget(QLabel('Steltijd'), 11, 9)
-                    grid.addWidget(QLabel('Begroot'), 11, 10)
-                    grid.addWidget(QLabel('Werkelijk'), 11, 11) 
+                    grid.addWidget(QLabel('Set time'), 11, 1)
+                    grid.addWidget(QLabel('Budgeted'), 11, 2)
+                    grid.addWidget(QLabel('Realised'), 11, 3)
+                    grid.addWidget(QLabel('Set time'), 11, 5)
+                    grid.addWidget(QLabel('Budgeted'), 11, 6)
+                    grid.addWidget(QLabel('Realised'), 11, 7) 
+                    grid.addWidget(QLabel('Set time'), 11, 9)
+                    grid.addWidget(QLabel('Budgeted'), 11, 10)
+                    grid.addWidget(QLabel('Realised'), 11, 11) 
                                       
-                    grid.addWidget(QLabel('Zagen'), 12, 0)
+                    grid.addWidget(QLabel('Sawing'), 12, 0)
                     grid.addWidget(u1Edit, 12,1)
                     grid.addWidget(u2Edit, 12,2)
                     grid.addWidget(u3Edit, 12,3)
 
-                    grid.addWidget(QLabel('Schaven'), 12, 4)
+                    grid.addWidget(QLabel('Planing'), 12, 4)
                     grid.addWidget(u4Edit, 12,5)
                     grid.addWidget(u5Edit, 12,6) 
                     grid.addWidget(u6Edit, 12,7)
                     
-                    grid.addWidget(QLabel('Steken'), 12, 8)
+                    grid.addWidget(QLabel('Stabbing'), 12, 8)
                     grid.addWidget(u7Edit, 12,9)
                     grid.addWidget(u8Edit, 12,10) 
                     grid.addWidget(u9Edit, 12,11)
                     
-                    grid.addWidget(QLabel('Boren'), 13, 0)
+                    grid.addWidget(QLabel('Drilling'), 13, 0)
                     grid.addWidget(u10Edit, 13,1)
                     grid.addWidget(u11Edit, 13,2) 
                     grid.addWidget(u12Edit, 13,3)
                     
-                    grid.addWidget(QLabel('Frezen'), 13, 4)
+                    grid.addWidget(QLabel('Milling'), 13, 4)
                     grid.addWidget(u13Edit, 13,5)
                     grid.addWidget(u14Edit, 13,6)
                     grid.addWidget(u15Edit, 13,7)
                     
-                    grid.addWidget(QLabel('Draaien klein'), 13, 8)
+                    grid.addWidget(QLabel('Turning small'), 13, 8)
                     grid.addWidget(u16Edit, 13,9)
                     grid.addWidget(u17Edit, 13,10)
                     grid.addWidget(u18Edit, 13,11)
                     
-                    grid.addWidget(QLabel('Draaien groot'), 14, 0)
+                    grid.addWidget(QLabel('Turning big'), 14, 0)
                     grid.addWidget(u19Edit, 14,1)
                     grid.addWidget(u20Edit, 14,2)
                     grid.addWidget(u21Edit, 14,3)
                     
-                    grid.addWidget(QLabel('Tappen'), 14, 4)
+                    grid.addWidget(QLabel('Threading'), 14, 4)
                     grid.addWidget(u22Edit, 14, 5)
                     grid.addWidget(u23Edit, 14, 6)
                     grid.addWidget(u24Edit, 14, 7)
                     
-                    grid.addWidget(QLabel('Nube draaien'), 14, 8)
+                    grid.addWidget(QLabel('CNC turning'), 14, 8)
                     grid.addWidget(u25Edit, 14,9)
                     grid.addWidget(u26Edit, 14,10)
                     grid.addWidget(u27Edit, 14,11)
                     
-                    grid.addWidget(QLabel('Nube bewerken'), 15, 0)
+                    grid.addWidget(QLabel('CNC milling'), 15, 0)
                     grid.addWidget(u28Edit, 15,1)
                     grid.addWidget(u29Edit, 15,2)
                     grid.addWidget(u30Edit, 15,3)
                     
-                    grid.addWidget(QLabel('Knippen'), 15, 4)
+                    grid.addWidget(QLabel('Cutting'), 15, 4)
                     grid.addWidget(u31Edit, 15, 5)
                     grid.addWidget(u32Edit, 15, 6)
                     grid.addWidget(u33Edit, 15, 7)
                     
-                    grid.addWidget(QLabel('Kanten'), 15, 8)
+                    grid.addWidget(QLabel('Bending'), 15, 8)
                     grid.addWidget(u34Edit, 15,9)
                     grid.addWidget(u35Edit, 15,10)
                     grid.addWidget(u36Edit, 15,11)
                     
-                    grid.addWidget(QLabel('Stansen'), 16, 0)
+                    grid.addWidget(QLabel('Sizing'), 16, 0)
                     grid.addWidget(u37Edit, 16,1)
                     grid.addWidget(u38Edit, 16,2)
                     grid.addWidget(u39Edit, 16,3)
                     
-                    grid.addWidget(QLabel('Lassen co2'), 16, 4)
+                    grid.addWidget(QLabel('Welding co2'), 16, 4)
                     grid.addWidget(u40Edit, 16,5)
                     grid.addWidget(u41Edit, 16,6)
                     grid.addWidget(u42Edit, 16,7)
                      
-                    grid.addWidget(QLabel('Lassen hand'), 16,8)
+                    grid.addWidget(QLabel('Welding hand'), 16,8)
                     grid.addWidget(u43Edit, 16,9)
                     grid.addWidget(u44Edit, 16,10)
                     grid.addWidget(u45Edit, 16,11)
                     
-                    grid.addWidget(QLabel('Verpakken'), 17,0)
+                    grid.addWidget(QLabel('Packing'), 17,0)
                     grid.addWidget(u46Edit, 17,1)
                     grid.addWidget(u47Edit, 17,2)
                     grid.addWidget(u48Edit, 17,3)
                     
-                    grid.addWidget(QLabel('Verzinken'), 17,4)
+                    grid.addWidget(QLabel('Galvanize'), 17,4)
                     grid.addWidget(u49Edit, 17,5)
                     grid.addWidget(u50Edit, 17,6)
                     grid.addWidget(u51Edit, 17,7)
                     
-                    grid.addWidget(QLabel('Moffelen'), 17,8)
+                    grid.addWidget(QLabel('Muffling'), 17,8)
                     grid.addWidget(u52Edit, 17,9)
                     grid.addWidget(u53Edit, 17,10)
                     grid.addWidget(u54Edit, 17,11)
                     
-                    grid.addWidget(QLabel('Schilderen'), 18,0)
+                    grid.addWidget(QLabel('Painting'), 18,0)
                     grid.addWidget(u55Edit, 18,1)
                     grid.addWidget(u56Edit, 18,2)
                     grid.addWidget(u57Edit, 18,3)
                     
-                    grid.addWidget(QLabel('Spuiten'), 18,4)
+                    grid.addWidget(QLabel('Spraying'), 18,4)
                     grid.addWidget(u58Edit, 18,5)
                     grid.addWidget(u59Edit, 18,6)
                     grid.addWidget(u60Edit, 18,7)
                     
-                    grid.addWidget(QLabel('Ponsen'), 18,8)
+                    grid.addWidget(QLabel('Stamping'), 18,8)
                     grid.addWidget(u61Edit, 18,9)
                     grid.addWidget(u62Edit, 18,10)
                     grid.addWidget(u63Edit, 18,11)
                     
-                    grid.addWidget(QLabel('Persen'), 19,0)
+                    grid.addWidget(QLabel('Pressing'), 19,0)
                     grid.addWidget(u64Edit, 19,1)
                     grid.addWidget(u65Edit, 19,2)
                     grid.addWidget(u66Edit, 19,3)
                     
-                    grid.addWidget(QLabel('Gritstralen'), 19,4)
+                    grid.addWidget(QLabel('Grit blasting'), 19,4)
                     grid.addWidget(u67Edit, 19,5)
                     grid.addWidget(u68Edit, 19,6)
                     grid.addWidget(u69Edit, 19,7)
                     
-                    grid.addWidget(QLabel('Montage'), 19,8)
+                    grid.addWidget(QLabel('Mounting'), 19,8)
                     grid.addWidget(u70Edit, 19,9)
                     grid.addWidget(u71Edit, 19,10)
                     grid.addWidget(u72Edit, 19,11)
@@ -1267,7 +1267,7 @@ def toonOrders(keuze,zoekterm, m_email):
                     self.setLayout(grid)
                     self.setGeometry(400, 50, 350, 300)
                                                                             
-                    cancelBtn = QPushButton('Sluiten')
+                    cancelBtn = QPushButton('Close')
                     cancelBtn.clicked.connect(self.close)
                 
                     grid.addWidget(cancelBtn, 20, 11, 1, 1, Qt.AlignRight)
@@ -1275,7 +1275,7 @@ def toonOrders(keuze,zoekterm, m_email):
                     cancelBtn.setFixedWidth(100)
                     cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
                     
-                    werkbriefBtn = QPushButton('Werkbrief')
+                    werkbriefBtn = QPushButton('Work letter')
                     werkbriefBtn.clicked.connect(lambda: printWerkbrief(mwerkorder, rpord, header))
                 
                     grid.addWidget(werkbriefBtn, 20, 10, 1, 1, Qt.AlignRight)

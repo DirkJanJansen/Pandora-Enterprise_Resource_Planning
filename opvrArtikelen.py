@@ -16,8 +16,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Artikelen opvragen')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Request articles')               
     msg.exec_()
     
 def geenRecord():
@@ -25,15 +25,15 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Artikelen opvragen')               
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Request articles')               
     msg.exec_() 
 
 def artKeuze(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Opvragen artikelen")
+            self.setWindowTitle("Request articles")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -43,16 +43,16 @@ def artKeuze(m_email):
             k0Edit.setFixedWidth(340)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('                    Sorteersleutel zoeken')
-            k0Edit.addItem('1. Gesorteerd op artikelnr')
-            k0Edit.addItem('2. Gesorteerd op voorraad')
-            k0Edit.addItem('3. Gefilterd omschrijving')
-            k0Edit.addItem('4. Gefilterd artikelgroep.')
-            k0Edit.addItem('5. Gefilterd opslaglocatie.')
-            k0Edit.addItem('6. Incourant na jjjj-mm-dd')
-            k0Edit.addItem('7. Te bestellen via reserveringen')
-            k0Edit.addItem('8. Te bestellen voorraadgestuurd')
-            k0Edit.addItem('9. Min.voorraad + bestelgrootte < reservering')
+            k0Edit.addItem('                    Search sort key')
+            k0Edit.addItem('1. Sorted by article number')
+            k0Edit.addItem('2. Sorted by stock')
+            k0Edit.addItem('3. Filtered by description')
+            k0Edit.addItem('4. Filtered by article group.')
+            k0Edit.addItem('5. Filtered by storage location.')
+            k0Edit.addItem('6. Obsolete after yyyy-mm-dd')
+            k0Edit.addItem('7. To order by reservations')
+            k0Edit.addItem('8. To order by stock controlled')
+            k0Edit.addItem('9. Minimum stock + order size < reservation')
             k0Edit.activated[str].connect(self.k0Changed)
               
             self.Zoekterm = QLabel()
@@ -71,7 +71,7 @@ def artKeuze(m_email):
             grid.addWidget(lbl , 0, 0, 1, 2)
                                   
             grid.addWidget(k0Edit, 1, 0 ,1, 2, Qt.AlignRight)
-            lbl1 = QLabel('Zoekterm')  
+            lbl1 = QLabel('Search term')
             grid.addWidget(lbl1, 2, 0 , 1, 1, Qt.AlignRight)
             grid.addWidget(zktermEdit, 2, 1)
             
@@ -85,7 +85,7 @@ def artKeuze(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1 ,1, Qt.AlignRight)
     
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 3, 1, 1, 1, Qt.AlignRight)
@@ -93,7 +93,7 @@ def artKeuze(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
               
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self,m_email))
     
             grid.addWidget(cancelBtn, 3, 1)
@@ -196,7 +196,7 @@ def toonArtikelen(keuze,zoekterm, m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(100, 50, 1800, 900)
-            self.setWindowTitle('Artikelen opvragen')
+            self.setWindowTitle('Request articles')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -228,8 +228,8 @@ def toonArtikelen(keuze,zoekterm, m_email):
             veld = self.mylist[index.row()][index.column()]
             if not index.isValid():
                 return None
-            #elif index.column() == 9 and role == Qt.DecorationRole: # alternatief picture echter
-                                                                     # met tekst rechts van path
+            #elif index.column() == 9 and role == Qt.DecorationRole: # alternative picture however
+                                                                     # with text right to path
             #    return QPixmap(index.data())
             elif role == Qt.TextAlignmentRole and (type(veld) == float or type(veld) == int):
                 return Qt.AlignRight | Qt.AlignVCenter
@@ -254,10 +254,10 @@ def toonArtikelen(keuze,zoekterm, m_email):
                 pixmap.scaled(256,256) 
                 return(painter.drawPixmap(option.rect, pixmap))
                                        
-    header = ['Artikelnr', 'Barcodenummer','Omschrijving', 'Afbeelding', 'Prijs', 'Voorraad', 'Eenheid',\
-          'MinVrd', 'BestGr', 'Locatie', 'Groep', 'Categorie',\
-          'Afmeting', 'Mutatie\ndatum', 'Bestelsaldo' ,'Reservering\nsaldo', \
-          'Jaarverbruik\neven jaren','Jaarverbruik\noneven jaren']    
+    header = ['Article number', 'Barcodenumber','Description', 'Image', 'Price', 'Stock', 'Unit',\
+          'Minimum stock', 'Order size', 'Location', 'Group', 'Category',\
+          'Size', 'Mutation\ndate', 'Order balance' ,'Reservation\nbalance', \
+          'Annual consumption\neven years','Annual consumption\nodd years']    
         
     data_list=[]
     for row in rpartikelen:
@@ -275,7 +275,7 @@ def toonArtikelen(keuze,zoekterm, m_email):
                 def __init__(self):
                     super(Widget, self).__init__()
                 
-                    self.setWindowTitle("Artikelen opvragen")
+                    self.setWindowTitle("Request articles")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                                 
                     self.setFont(QFont('Arial', 10))
@@ -399,49 +399,49 @@ def toonArtikelen(keuze,zoekterm, m_email):
                     logo.setPixmap(pixmap)
                     grid.addWidget(logo , 0, 2, 1, 3, Qt.AlignRight) 
                   
-                    grid.addWidget(QLabel('Artikelnummer'), 1, 0, 2, 1)
+                    grid.addWidget(QLabel('Article number'), 1, 0, 2, 1)
                     grid.addWidget(q1Edit, 1, 1, 2, 1)
                     
-                    grid.addWidget(QLabel('Barcodenummer'), 1, 2, 2, 1)
+                    grid.addWidget(QLabel('Barcodenumber'), 1, 2, 2, 1)
                     grid.addWidget(q1aEdit, 1, 3, 2, 1)
                 
-                    grid.addWidget(QLabel('Artikelomschrijving'), 3, 0)
+                    grid.addWidget(QLabel('Article description'), 3, 0)
                     grid.addWidget(q2Edit, 3, 1, 1 ,3)
                     
-                    grid.addWidget(QLabel('Artikelgroep'), 4, 0)
+                    grid.addWidget(QLabel('Article group'), 4, 0)
                     grid.addWidget(q9Edit, 4, 1, 1, 3) 
                     
-                    grid.addWidget(QLabel('Afmeting'),5, 0)
+                    grid.addWidget(QLabel('Size'),5, 0)
                     grid.addWidget(q14Edit, 5, 1)
                     
-                    grid.addWidget(QLabel('Eenheid'), 5, 2)
+                    grid.addWidget(QLabel('Unit'), 5, 2)
                     grid.addWidget(q5Edit, 5, 3)
                     
-                    grid.addWidget(QLabel('Magazijnlocatie'), 6, 0)
+                    grid.addWidget(QLabel('Warehouse location'), 6, 0)
                     grid.addWidget(q8Edit, 6, 1)
          
-                    grid.addWidget(QLabel('Artikelprijs'), 6, 2)
+                    grid.addWidget(QLabel('Article price'), 6, 2)
                     grid.addWidget(q3Edit, 6 , 3) 
                 
-                    grid.addWidget(QLabel('Artikelvoorraad'), 7, 0)
+                    grid.addWidget(QLabel('Article stock'), 7, 0)
                     grid.addWidget(q4Edit, 7, 1)
                     
-                    grid.addWidget(QLabel('Minimumvoorraad'), 7, 2)
+                    grid.addWidget(QLabel('Minimum stock'), 7, 2)
                     grid.addWidget(q6Edit, 7, 3)
                     
-                    grid.addWidget(QLabel('Bestelsaldo'), 8, 0)
+                    grid.addWidget(QLabel('Order balance'), 8, 0)
                     grid.addWidget(q16Edit, 8, 1)
                     
-                    grid.addWidget(QLabel('Reserveringsaldo '), 8, 2)
+                    grid.addWidget(QLabel('Reservation balance'), 8, 2)
                     grid.addWidget(q12Edit, 8, 3)
                     
-                    grid.addWidget(QLabel('Bestelgrootte '), 9, 0)
+                    grid.addWidget(QLabel('Order size'), 9, 0)
                     grid.addWidget(q7Edit, 9, 1)
                     
-                    grid.addWidget(QLabel('Categorie'),9 ,2)
+                    grid.addWidget(QLabel('Category'),9 ,2)
                     grid.addWidget(q13Edit, 9, 3)
         
-                    grid.addWidget(QLabel('Mutatiedatum'),10, 0)
+                    grid.addWidget(QLabel('Mutation date'),10, 0)
                     grid.addWidget(q15Edit, 10, 1)
           
                     pixmap = QPixmap(rpartikel[9])
@@ -451,7 +451,7 @@ def toonArtikelen(keuze,zoekterm, m_email):
                 
                     grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 12, 0, 1, 4, Qt.AlignCenter)
                         
-                    cancelBtn = QPushButton('Sluiten')
+                    cancelBtn = QPushButton('Close')
                     cancelBtn.clicked.connect(self.close)
                 
                     grid.addWidget(cancelBtn, 11, 3, 1, 1, Qt.AlignRight)

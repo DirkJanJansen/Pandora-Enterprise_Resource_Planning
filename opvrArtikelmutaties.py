@@ -16,8 +16,8 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Materialen uitgeven/ printen')               
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Provide/print materials')
     msg.exec_() 
     
 def ongInvoer():
@@ -25,15 +25,15 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Artikelen opvragen')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Request articles')
     msg.exec_()
   
 def mutatieKeuze(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Opvragen Artikelmutaties")
+            self.setWindowTitle("Request article mutations")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -43,14 +43,14 @@ def mutatieKeuze(m_email):
             k0Edit.setFixedWidth(240)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem(' Sorteersleutel voor zoeken')
-            k0Edit.addItem('1. Alle mutaties')
-            k0Edit.addItem('2. Werk(en) (omschrijving)')
-            k0Edit.addItem('3. Leverancier(s) (naam)')
-            k0Edit.addItem('4. Verkooporders')
-            k0Edit.addItem('5. Interne werkorders')
-            k0Edit.addItem('6. Op yyyy(-mm(-dd))')
-            k0Edit.addItem('7. Balieverkoop orders')
+            k0Edit.addItem('       Search sort key')
+            k0Edit.addItem('1. All mutations')
+            k0Edit.addItem('2. Work(s) (Description)')
+            k0Edit.addItem('3. Supplier(s) (Name)')
+            k0Edit.addItem('4. Sale orders')
+            k0Edit.addItem('5. Internal work orders')
+            k0Edit.addItem('6. By yyyy(-mm(-dd))')
+            k0Edit.addItem('7. Counter sales orders')
             
             k0Edit.activated[str].connect(self.k0Changed)
                             
@@ -74,7 +74,7 @@ def mutatieKeuze(m_email):
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
                                   
             grid.addWidget(k0Edit, 1, 1)
-            lbl1 = QLabel('Zoekterm')  
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 2, 0)
             grid.addWidget(zktermEdit, 2, 1)
@@ -84,7 +84,7 @@ def mutatieKeuze(m_email):
             
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved  dj.jansen@casema.nl'), 4, 0, 1, 3, Qt.AlignCenter)
                       
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 3, 1, 1, 1, Qt.AlignRight)
@@ -92,7 +92,7 @@ def mutatieKeuze(m_email):
             applyBtn.setFixedWidth(110)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 3, 1)
@@ -219,7 +219,7 @@ def toonMutaties(keuze, zoekterm, m_email):
         def __init__(self, data_list, header, *args):
             QDialog.__init__(self, *args,)
             self.setGeometry(50, 50, 1800, 900)
-            self.setWindowTitle('Artikelmutaties opvragen')
+            self.setWindowTitle('Request articles mutations')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -261,14 +261,14 @@ def toonMutaties(keuze, zoekterm, m_email):
                 return self.header[col]
             return None
   
-    header = ['Mutatienummer','Artikelnummer', 'Hoeveelheid','Boekdatum', 'Werknummer', 'Orderinkoopnummer',\
-              'Bestelordernummer','Internordernummer', 'Totaal magazijnprijs', 'BTW-hoog',\
-              'Baliebonnummer', 'Artikelomschrijving', 'Artikelprijs']  
+    header = ['Mutation number','Article number', 'Amount','Booking date', 'Work number', 'Order purchase number',\
+              'Sales order number','Internal order number', 'Total warehouse price', 'VAT high',\
+              'Counter receipt number', 'Article description', 'Article price']
     if keuze == 2:
-        header1 = ['Werknummer',' Werkomschrijving']
+        header1 = ['Work number','Work description']
         header.extend(header1)
     elif keuze == 3:
-        header2 = ['Leveranciernummer', 'Bedrijfsnaam'] 
+        header2 = ['Supplier number', 'Company name']
         header.extend(header2)
   
     data_list=[]

@@ -14,21 +14,21 @@ def geenGegevens():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setFont(QFont("Arial", 10))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Er zijn nog geen transacties!')
-    msg.setWindowTitle('Transacties')
+    msg.setText('There are no transactions yet!')
+    msg.setWindowTitle('Transactions')
     msg.exec_() 
 
 def info():
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Informatie Barcodescannen")
+            self.setWindowTitle("Barcode Scanning Information")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setFont(QFont('Arial', 10))
             grid = QGridLayout()
             grid.setSpacing(20)
             
-            lblinfo = QLabel('Informatie ERP Pandora')
+            lblinfo = QLabel('Pandora ERP Information')
             grid.addWidget(lblinfo, 0, 0, 1, 2, Qt.AlignCenter)
             lblinfo.setStyleSheet("color:rgba(45, 83, 115, 255); font: 25pt Comic Sans MS")
             
@@ -43,44 +43,43 @@ def info():
             grid.addWidget(lbl, 0, 0)
             
             infolbl = QLabel('''\t\t\t\t\t\t\t\t\t\t
-        Instruktie barcode scannen.
+
+        Barcode scanning instructions. 
         
-        Als testscanner is een hand laserscanner gebruikt van het type Nedis BCRLR100BK
-        De produkten kunnen gescand worden tot een afstand van 55cm.
-        Standaard wordt gescand met een hoeveelheid van 1.
-        Indien meerdere produkten van het zelfde artikelnummer benodigd zijn, kan d.m.v. de 
-        spinbox het juiste aantal worden gekozen voor het scannen. 
-        Dit kan met de pijltjes van de spinbox of met het muiswieltje.
-        Na de barcodescan wordt het aantal weer teruggezet op 1.
-        Indien het scannen wordt gestart wordt de sluitknop geblokkeerd tot de knop volgende
-        klant wordt gedrukt.
-        De printknop en de klantknop worden geblokkeerd tot de eerste transactie is geboekt.
-        In de volgende gevallen wordt onder het displayscherm in het rood een foutmelding
-        getoond.
+        A hand laser scanner of the type Nedis BCRLR100BK was used as a test scanner 
+        The products can be scanned up to a distance of 55cm. 
+        By default, it scans with a quantity of 1. 
+        If several products of the same article number is required,
+        the correct number is chosen for scanning with the Spinbox. 
+        This can be done with the arrows of the spinbox or with the mouse wheel. 
+        After the barcode scan, the number is reset to 1. 
+        When scanning starts, the close button is blocked until the button 
+        "Next customer" is printed. 
+        The "Print" button and the "Next Customer" button are blocked until the first transaction
+        is booked. 
+        In the following cases, an error message appears in red below the display screen.
         
-        1. Als een leesfout met scannen van de barcode plaatsvindt.
-        2. Bij onvoldoende voorraad om de bestelling te leveren, tevens wordt de magazijn 
-           voorraad getoond.
-        3. Indien het produkt (nog) niet in het assortiment is opgenomen.
-        Tevens klinkt in deze 3 gevallen een akoestisch alarm.
+        1. If a barcode scanning read error occurs. 
+        2. In case of insufficient stock to deliver the order, 
+           the warehouse stock will also be showed. 
+        3. If the product is not (yet) included in the range. 
+        An acoustic alarm also sounds in these 3 cases. 
+
+        If the item cannot be scanned, it is possible to manually change the barcode 
+        with use of the keyboard. 
+        After the scanning is finished, the receipt can be printed. 
+        Before the program is closed, the "Next Customer" button must be pressed, 
+        before the close button is released. 
+        This will make the necessary bookings executed and prepared the order
+        for the next customer.
         
-        Indien het artikel niet gescand kan worden, is het mogelijk om de barcode handmatig 
-        in te geven, toets hierna <Enter> op het toetsenbord.
-                           
-        Nadat het scannen gereed is kan de printbon worden uitgeprint.
-        Voor het programma wordt afgesloten, dient eerst de klantknop te worden ingedrukt,
-        voor de sluitknop wordt vrijgegeven. Hiermee worden de noodzakelijke boekingen
-        uitgevoerd en de order voor de volgende klant voorbereid.
-        
-        Voor het retourboeken van een artikel wordt de ± button gebruikt. Deze knop is
-        beschikbaar als de rol (S) van Magazijn in het menu authorisaties is geactiveerd..
         ''')
             grid.addWidget(infolbl, 1, 0)
                            
             infolbl.setStyleSheet("font: 10pt Comic Sans MS; color: black ; background-color: #D9E1DF")   
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 2, 0, 1, 2, Qt.AlignCenter)
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(self.close)  
             
             grid.addWidget(cancelBtn, 2, 0, 1, 1,  Qt.AlignRight)
@@ -100,15 +99,15 @@ def printing():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Information)
     msg.setFont(QFont("Arial", 10))
-    msg.setText('Ogenblik afdrukken wordt gestart!')
-    msg.setWindowTitle('Webverkooporders printen')
+    msg.setText('Just a moment printing is starting!')
+    msg.setWindowTitle('Printing web sales orders')
     msg.exec_()
     
 def heading(mblad, mbonnr):
     kop=\
-    ('Balieverkoop - Ordernummer: '+ str(mbonnr)+' Datum: '+str(datetime.now())[0:10]+' bladzijde '+str(mblad)+' \n'+
+    ('Counter Sales- Order number: '+ str(mbonnr)+' Date : '+str(datetime.now())[0:10]+' page      '+str(mblad)+' \n'+
     '==============================================================================================\n'+
-    'Artikelnr  Omschrijving                             Aantal       Prijs   Subtotaal     BTW 21%\n'+
+    'Articlenr  Description                              Number       Price   Subtotal      VAT 21%\n'+
     '==============================================================================================\n')
     return(kop)
 
@@ -116,10 +115,10 @@ def printBon(self):
     msgBox=QMessageBox()
     msgBox.setStyleSheet("color: black;  background-color: gainsboro")
     msgBox.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
-    msgBox.setWindowTitle("Printen orderbon")
+    msgBox.setWindowTitle("Print order form")
     msgBox.setIcon(QMessageBox.Information)
     msgBox.setFont(QFont("Arial", 10))
-    msgBox.setText("Wilt U de orderbon printen?");
+    msgBox.setText("Do you want to print the order form?");
     msgBox.setStandardButtons(QMessageBox.Yes)
     msgBox.addButton(QMessageBox.No)
     msgBox.setStyleSheet("color: black;  background-color: gainsboro")
@@ -153,9 +152,9 @@ def printBon(self):
         mblad = 0
         rgl = 0
         if platform == 'win32':
-            fbarc = '.\\forms\\Barcodelijsten\\'+str(mbonnr)+'.txt'
+            fbarc = '.\\forms\\Barcode_lists\\'+str(mbonnr)+'.txt'
         else:
-            fbarc = './forms//Barcodelijsten/'+str(mbonnr)+'.txt'
+            fbarc = './forms//Barcode_lists/'+str(mbonnr)+'.txt'
         
         for row in rpb:
             rgl += 1
@@ -179,7 +178,7 @@ def printBon(self):
              
         tail=\
         ('==============================================================================================\n'+
-        'Totaal bedrag af te rekenen inclusief BTW  en bedrag BTW 21%          '+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mtotbtw)+' \n'+
+        'Total amount  to be settled including VAT and amount VAT 21%          '+'{:>12.2f}'.format(self.mtotaal)+'{:>12.2f}'.format(self.mtotbtw)+' \n'+
         '==============================================================================================\n')
         if rgl > 0:
             open(fbarc,'a').write(tail) 
@@ -267,7 +266,7 @@ def nextClient(self):
             mafdrnr = 1
             
         insdr = insert(afdrachten).values(afdrachtID = mafdrnr, boekdatum = mboekd,\
-             soort = 'BTW afdracht 21%', bedrag = self.mtotbtw, instantie = 'Belastingdienst',\
+             soort = 'VAT remittance 21%', bedrag = self.mtotbtw, instantie = 'Tax authorities',\
              ovbestelID = int(mbonnr), rekeningnummer= 'NL10 ABNA 9999999977')
         con.execute(insdr)
         self.closeBtn.setEnabled(True)
@@ -283,7 +282,7 @@ def nextClient(self):
         self.mtotbtw = 0.00
         self.mlist = []
         self.view.setText('')
-        self.qtailtext = 'Totaal incl. BTW  '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' BTW'
+        self.qtailtext = 'Total incl.  VAT  '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' VAT'
         self.qtailEdit.setText(self.qtailtext)
     else:
         updpar = update(params).where(params.c.paramID == 103).values(lock = False)
@@ -364,7 +363,7 @@ def set_barcodenr(self):
         rpart = con.execute(selart).first()
         rpbal = con.execute(selbal).first()
         if rpart and rpart[4] < maantal:
-            self.albl.setText('Foutmelding: '+str(int(rpart[4]))+' voorradig!')
+            self.albl.setText('Error message: '+str(int(rpart[4]))+' stocked!')
             geefAlarm()
         elif rpart:
             martnr = rpart[0]
@@ -399,12 +398,12 @@ def set_barcodenr(self):
              .format(float(mprijs)*float(maantal)*mbtw))
             self.mtotaal += float(mprijs)*float(maantal)
             self.mtotbtw += float(mprijs)*float(maantal)*mbtw
-            self.qtailtext = 'Totaal incl. BTW  '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' BTW'
+            self.qtailtext = 'Total  incl. VAT  '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' VAT'
             self.qtailEdit.setText(self.qtailtext)
             
             self.view.append(self.mlist[-1])
         else:
-            self.albl.setText('Foutmelding: Artikel niet in assortiment!')
+            self.albl.setText('Error message: Item not in assortment!')
             geefAlarm()
                   
         self.closeBtn.setDisabled(True)
@@ -415,7 +414,7 @@ def set_barcodenr(self):
         self.nextBtn.setStyleSheet("font: 12pt Arial; color: black; background-color: gainsboro")
     else:
         #alarm if barcode scan failed
-        self.albl.setText('Foutmelding: Scanfout barcode!')
+        self.albl.setText('Error message: Barcode scan error!')
         geefAlarm()
     
     self.q1Edit.setSelection(0,13)
@@ -426,7 +425,7 @@ def barcodeScan(m_email, mret):
         def __init__(self):
             super(widget,self).__init__()
             
-            self.setWindowTitle("Balieverkoop")
+            self.setWindowTitle("Counter Sales")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                                 Qt.WindowMinimizeButtonHint) #Qt.WindowMinMaxButtonsHint
@@ -462,12 +461,12 @@ def barcodeScan(m_email, mret):
             grid = QGridLayout()
             grid.setSpacing(10)
           
-            koplbl = QLabel('Pandora kassasysteem')
+            koplbl = QLabel('Pandora POS System')
             koplbl.setStyleSheet("color:rgba(45, 83, 115, 255); font: 30pt Comic Sans MS")
             grid.addWidget(koplbl, 1, 0, 1, 3, Qt.AlignCenter)
             
             mkop = QTextEdit()
-            mkoptext = 'Artikelnr Omschrijving\nAantal       Prijs   Subtotaal         BTW'
+            mkoptext = 'Aticlenr  Description \nNumber       Price   Subtotal          VAT'
             mkop.setText(mkoptext)
             mkop.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
             mkop.setReadOnly(True)
@@ -492,7 +491,7 @@ def barcodeScan(m_email, mret):
             self.qtailEdit.setReadOnly(True)
             self.qtailEdit.setFixedWidth(600)
             self.qtailEdit.setFocusPolicy(Qt.NoFocus)
-            self.qtailtext = 'Totaal incl. BTW  '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' BTW'
+            self.qtailtext = 'Total  incl. VAT  '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' VAT'
             self.qtailEdit.setText(self.qtailtext)
             
             grid .addWidget(mkop, 2, 0, 1, 3, Qt.AlignCenter)           
@@ -503,12 +502,12 @@ def barcodeScan(m_email, mret):
             self.albl.setStyleSheet("font: bold 18px; color: red")
             grid.addWidget(self.albl, 5, 0, 1, 3, Qt.AlignCenter)
 
-            lbl1 = QLabel('Barcodescan')
+            lbl1 = QLabel('Barcode scan')
             lbl1.setFont(QFont("Arial", 12))
             grid.addWidget(lbl1, 7, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.q1Edit , 7, 2, 1, 1, Qt.AlignRight)
             
-            lbl2 = QLabel('Aantal      ')
+            lbl2 = QLabel('Number      ')
             lbl2.setFont(QFont("Arial", 12))
             grid.addWidget(lbl2, 8, 2, 1, 1, Qt.AlignCenter)
             grid.addWidget(self.qspin, 8, 2, 1, 1, Qt.AlignRight)
@@ -536,7 +535,7 @@ def barcodeScan(m_email, mret):
             lbl3.setFont(QFont("Arial", 10))
             grid.addWidget(lbl3, 11, 0, 1, 3, Qt.AlignCenter)
             
-            self.printBtn = QPushButton('Printen')
+            self.printBtn = QPushButton('Printing')
             self.printBtn.clicked.connect(lambda: printBon(self))
       
             grid.addWidget(self.printBtn, 10, 2, 1, 1, Qt.AlignRight)
@@ -545,7 +544,7 @@ def barcodeScan(m_email, mret):
             self.printBtn.setFixedWidth(100)
             self.printBtn.setStyleSheet("color: black;  background-color: gainsboro")
                                                    
-            self.closeBtn = QPushButton('Sluiten')
+            self.closeBtn = QPushButton('Close')
             self.closeBtn.clicked.connect(lambda: windowSluit(self, m_email))
 
             grid.addWidget(self.closeBtn, 10, 1, 1, 2, Qt.AlignCenter)
@@ -554,7 +553,7 @@ def barcodeScan(m_email, mret):
             self.closeBtn.setFixedWidth(100)
             self.closeBtn.setStyleSheet("color: black; background-color: gainsboro")
                                    
-            infoBtn = QPushButton('Informatie')
+            infoBtn = QPushButton('Info')
             infoBtn.clicked.connect(lambda: info())
     
             grid.addWidget(infoBtn, 10, 1)
@@ -563,7 +562,7 @@ def barcodeScan(m_email, mret):
             infoBtn.setFixedWidth(100)
             infoBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            self.nextBtn = QPushButton('Volgende Klant')
+            self.nextBtn = QPushButton('Next Customer')
             self.nextBtn.clicked.connect(lambda: nextClient(self))
     
             grid.addWidget(self.nextBtn, 8, 1, 2, 1, Qt.AlignCenter)   

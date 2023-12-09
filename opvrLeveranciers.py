@@ -13,8 +13,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Leveranciers opvragen')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Request suppliers')               
     msg.exec_()
     
 def geenRecord():
@@ -22,8 +22,8 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Leveranciers opvragen')               
+    msg.setText('No record found\nplease make another selection!')
+    msg.setWindowTitle('Request suppliers')               
     msg.exec_() 
     
 def windowSluit(self, m_email):
@@ -34,7 +34,7 @@ def leveranciersKeuze(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Leveranciers Overzicht")
+            self.setWindowTitle("Suppliers Overview.")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Times', 10))
@@ -44,10 +44,10 @@ def leveranciersKeuze(m_email):
             k4Edit.setFixedWidth(230)
             k4Edit.setFont(QFont("Times", 10))
             k4Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k4Edit.addItem(' Sorteersleutel voor zoeken')
-            k4Edit.addItem('1. Alle Leveranciers')
-            k4Edit.addItem('2. Bedrijfsnaam')
-            k4Edit.addItem('3. Leveranciernummer.')
+            k4Edit.addItem(' Search sort key')
+            k4Edit.addItem('1. All Supplers.')
+            k4Edit.addItem('2. Company name.')
+            k4Edit.addItem('3. Supplernumber.')
             k4Edit.activated[str].connect(self.k4Changed)
             
             self.Zoekterm = QLabel()
@@ -80,7 +80,7 @@ def leveranciersKeuze(m_email):
             self.setLayout(grid)
             self.setGeometry(600, 300, 150, 150)
     
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
                 
             grid.addWidget(applyBtn, 4, 1, 1 , 1, Qt.AlignRight)
@@ -88,7 +88,7 @@ def leveranciersKeuze(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 4, 1)
@@ -165,7 +165,7 @@ def toonLeveranciers(keuze,zoekterm, m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(50, 50, 1500, 900)
-            self.setWindowTitle('Leveranciers opvragen')
+            self.setWindowTitle('Request Suppliers')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -207,9 +207,9 @@ def toonLeveranciers(keuze,zoekterm, m_email):
                 return self.header[col]
             return None
   
-    header = ['Leveranciernummer','Bedrijfsnaam', 'Rechtsvorm','BTWnummer',\
-              'KvKnummer','Telefoonnummer','Straat', 'Huisnummer','Toevoeging',\
-              'Postcode','Woonplaats']  
+    header = ['Supplier number','Company name', 'Legal Status','VAT umber',\
+              'KvK number','Telephone number','Street', 'House number','Suffix',\
+              'Zipcode','Residence']  
   
     data_list=[]
     for row in rplev:

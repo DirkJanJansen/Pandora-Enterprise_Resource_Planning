@@ -28,8 +28,8 @@ def foutInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutief artikelnummer opgegeven.!')
-    msg.setWindowTitle('Dervingsartikelen muteren')               
+    msg.setText('Incorrect article number specified.!')
+    msg.setWindowTitle('Mutating loss articles')               
     msg.exec_() 
     
 def ongInvoer():
@@ -37,8 +37,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Materialen uitgeven/ printen')               
+    msg.setText('Please re-enter incorrect\ninput search term!')
+    msg.setWindowTitle('Provide / printing materials')               
     msg.exec_() 
     
 def geenRecord():
@@ -46,8 +46,8 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Materialen uitgeven/ printen')               
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Provide / printing materials')               
     msg.exec_() 
     
 def windowSluit(self, m_email):
@@ -58,8 +58,8 @@ def invoerOK():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Invoer gelukt!')
-    msg.setWindowTitle('Dervingmutaties')
+    msg.setText('Insert successful!')
+    msg.setWindowTitle('Mutating loss articles')
     msg.exec_()
 				            
 def negVoorraad():
@@ -67,8 +67,8 @@ def negVoorraad():
         msg.setStyleSheet("color: black;  background-color: gainsboro")
         msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
         msg.setIcon(QMessageBox.Critical)
-        msg.setText('Te weinig voorraad\nvoor de transactie!')
-        msg.setWindowTitle('Dervingmutatities')
+        msg.setText('Too little stock for the transaction!')
+        msg.setWindowTitle('Mutating loss articles')
         msg.exec_()
         
 def foutHoev():
@@ -76,15 +76,15 @@ def foutHoev():
         msg.setStyleSheet("color: black;  background-color: gainsboro")
         msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
         msg.setIcon(QMessageBox.Warning)
-        msg.setText('Geen juiste hoeveelheid!')
-        msg.setWindowTitle('Dervingmutaties')
+        msg.setText('Not the right amount!')
+        msg.setWindowTitle('Mutating loss articles')
         msg.exec_()
                 
 def dervingMut(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Materiaaluitgifte muteren")
+            self.setWindowTitle("Mutate material provision")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -94,11 +94,11 @@ def dervingMut(m_email):
             derving.setFixedWidth(200)
             derving.setFont(QFont("Times", 10))
             derving.setStyleSheet("color: black;  background-color: #F8F7EE")
-            derving.addItem('    Kies soort Derving')
-            derving.addItem('1. Incourant')
-            derving.addItem('2. Magazijn verschillen.')
-            derving.addItem('3. Beschadiging')
-            derving.addItem('4. Houdbaarheid')
+            derving.addItem(' Choose type off loss')
+            derving.addItem('1. Obsolete.')
+            derving.addItem('2. Warehouse differences.')
+            derving.addItem('3. Damaged')
+            derving.addItem('4. Shelf life')
             derving.activated[str].connect(self.dervingChanged)
                               
             self.Artikelnummer = QLabel()
@@ -132,17 +132,17 @@ def dervingMut(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 2, 1, 1, Qt.AlignRight) 
                          
-            lbl1 = QLabel('Dervingnummer')  
+            lbl1 = QLabel('Loss number')  
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 1, 0)
             grid.addWidget(derving, 1, 1)
                                           
-            lbl2 = QLabel('Artikelnummer')  
+            lbl2 = QLabel('Article number')  
             lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl2, 2, 0)
             grid.addWidget(artEdit, 2, 1)
              
-            lbl3 = QLabel('Hoeveelheid')  
+            lbl3 = QLabel('Amount')  
             lbl3.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl3, 3, 0)
             grid.addWidget(hoevEdit, 3 , 1)
@@ -150,7 +150,7 @@ def dervingMut(m_email):
             self.setLayout(grid)
             self.setGeometry(500, 300, 150, 150)
     
-            applyBtn = QPushButton('Muteren')
+            applyBtn = QPushButton('Mutate')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 5, 1, 1 , 2, Qt.AlignRight)
@@ -158,7 +158,7 @@ def dervingMut(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
            
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email)) 
             
             grid.addWidget(cancelBtn,5, 1, Qt.AlignCenter)
@@ -200,16 +200,16 @@ def dervingMut(m_email):
         dervingMut(m_email)
     elif data[0][0] == '1':
         mderving = '999999990'
-        momschr = 'Incourant'
+        momschr = 'Obsolete'
     elif data[0][0] == '2':
         mderving = '999999989'
-        momschr = 'Magazijn verschillen'
+        momschr = 'Warehouse differences'
     elif data[0][0] ==  '3':
         mderving = '999999977'
-        momschr = 'Beschadiging'
+        momschr = 'Damaged'
     elif data[0][0] == '4':
         mderving = '999999965'
-        momschr = 'Houdbaarheid'
+        momschr = 'Shelf life'
                    
     if data[1] and len(data[1]) == 9 and _11check(data[1]):
         martikelnr = int(data[1])

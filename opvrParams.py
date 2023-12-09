@@ -12,7 +12,7 @@ def toonParams(m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(300, 50, 900, 900)
-            self.setWindowTitle('Parameters opvragen')
+            self.setWindowTitle('Request parameters')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -55,7 +55,7 @@ def toonParams(m_email):
                 return self.header[col]
             return None
              
-    header = ['ParamID', 'Item', 'Tarief', 'Verrekening', 'Ondergrens', 'Bovengrens', 'Datum','Lock','Tarieffactor']
+    header = ['ParamID', 'Item', 'Tariff', 'Conversion', 'Lower limit', 'Upper limit', 'Date','Lock','Rate factor']
     
     metadata = MetaData()
     params = Table('params', metadata,
@@ -102,7 +102,7 @@ def toonParams(m_email):
                     
                     grid = QGridLayout()
                     grid.setSpacing(20)
-                    self.setWindowTitle("Opvragen Parameters")
+                    self.setWindowTitle("Request parameters")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                     
                     self.setFont(QFont('Arial', 10))   
@@ -151,7 +151,7 @@ def toonParams(m_email):
                     grid = QGridLayout()
                     grid.setSpacing(20)
                     
-                    lbl1 = QLabel('Parameternummer')  
+                    lbl1 = QLabel('Parameter number')
                     grid.addWidget(lbl1, 1, 0)
                     
                     lbl2 = QLabel(str(rppar[0]))
@@ -161,23 +161,23 @@ def toonParams(m_email):
                     grid.addWidget(lbl3, 2, 0)
                     grid.addWidget(q1Edit, 2, 1, 1, 2) 
                                                          
-                    lbl4 = QLabel('Tarief')  
+                    lbl4 = QLabel('Tariff')
                     grid.addWidget(lbl4, 3, 0)
                     grid.addWidget(q2Edit, 3, 1)
                     
-                    lbl5 = QLabel('Verrekening')  
+                    lbl5 = QLabel('Conversion')
                     grid.addWidget(lbl5, 4, 0)
                     grid.addWidget(q3Edit, 4, 1, 1, 2)
                     
-                    lbl6 = QLabel('Ondergrens')  
+                    lbl6 = QLabel('Lower limit')
                     grid.addWidget(lbl6, 5, 0)
                     grid.addWidget(q4Edit, 5, 1)
                                    
-                    lbl7 = QLabel('Bovengrens')  
+                    lbl7 = QLabel('Upper limit')
                     grid.addWidget(lbl7, 6, 0)
                     grid.addWidget(q5Edit, 6, 1)
                     
-                    lbl8 = QLabel('Aanpassing')
+                    lbl8 = QLabel('Adaptation')
                     grid.addWidget(lbl8, 7, 0)
                     lbl9 = QLabel(rppar[6])
                     grid.addWidget(lbl9, 7, 1)
@@ -185,7 +185,7 @@ def toonParams(m_email):
                     lbl10 = QLabel('Lock: '+str(rppar[7]))
                     grid.addWidget(lbl10, 7, 2)
                     
-                    lbl11 = QLabel('Tarieffactor: ')
+                    lbl11 = QLabel('Rate factor: ')
                     grid.addWidget(lbl11, 8, 0)
                     grid.addWidget(q6Edit, 8, 1)
                                             
@@ -204,7 +204,7 @@ def toonParams(m_email):
                     self.setLayout(grid)
                     self.setGeometry(500, 300, 150, 150)
             
-                    applyBtn = QPushButton('Sluiten')
+                    applyBtn = QPushButton('Close')
                     applyBtn.clicked.connect(self.accept)
             
                     grid.addWidget(applyBtn, 9, 2, 1, 1, Qt.AlignRight)

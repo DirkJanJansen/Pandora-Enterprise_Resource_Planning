@@ -16,8 +16,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Loonbetalingen opvragen')               
+    msg.setText('Invalid input\nsearch term re-enter please!')
+    msg.setWindowTitle('Request wage payments')
     msg.exec_() 
 
 def geenRecord():
@@ -25,15 +25,15 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Loonbetalingen opvragen')               
+    msg.setText('No record found\nmake another selection please!')
+    msg.setWindowTitle('Request wage payments')
     msg.exec_() 
 
 def zoeken(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Loonbetalingen")
+            self.setWindowTitle("Payments")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -43,10 +43,10 @@ def zoeken(m_email):
             k0Edit.setFixedWidth(250)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('     Opvragen Loonbetalingen')
-            k0Edit.addItem('1. Gesorteerd op periode')
-            k0Edit.addItem('2. Gefilterd op periode (jjjj-mm)\n    of (jjjjvak)')
-            k0Edit.addItem('3. Gefilterd op achternaam')
+            k0Edit.addItem('     Request wage payments')
+            k0Edit.addItem('1. Sorted by period')
+            k0Edit.addItem('2. Filtered by period (yyyy-mm)\n    or (yyyyvak)')
+            k0Edit.addItem('3. Filtered by surname')
             k0Edit.activated[str].connect(self.k0Changed)
     
             self.Zoekterm = QLabel()
@@ -64,7 +64,7 @@ def zoeken(m_email):
             grid.addWidget(lbl , 1, 0, 1, 2)
                                   
             grid.addWidget(k0Edit, 2, 0, 1, 2, Qt.AlignRight)
-            lbl1 = QLabel('Zoekterm')  
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight)
             grid.addWidget(lbl1, 3, 0)
             grid.addWidget(zktermEdit, 3, 0, 1, 2, Qt.AlignRight)
@@ -79,7 +79,7 @@ def zoeken(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 1, 1, 1, 1, Qt.AlignRight)
     
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 4, 1, 1 , 1, Qt.AlignRight)
@@ -87,7 +87,7 @@ def zoeken(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            closeBtn = QPushButton('Sluiten')
+            closeBtn = QPushButton('Close')
             closeBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(closeBtn, 4, 0, 1, 2, Qt.AlignCenter)
@@ -136,7 +136,7 @@ def toonBetalingen(keuze,zoekterm, m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(10, 50, 1900, 900)
-            self.setWindowTitle('Loonbetalingen opvragen')
+            self.setWindowTitle('Request wage payments')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -181,22 +181,22 @@ def toonBetalingen(keuze,zoekterm, m_email):
             if orientation == Qt.Horizontal and role == Qt.DisplayRole:
                 return self.header[col]
             return None
-              
-    header = ['Betalingnr', 'Maandperiode', 'Accountnummer', 'Werknemer', 'Voornaam',\
-      'Tussenvoegsel','Achternaam', 'Straat', 'Huisnummer', 'Toevoeging',\
-      'Postcode', 'Woonplaats', 'Geboortedatum', 'Indienstdatum','Brutoloon',\
-      'Bruto variabel', 'Pensioenpremie', 'Bijtelling auto','Loonheffing',\
-      'Inhouding overig','Periodieke uitkering','Vergoeding overig',\
-      'Vergoeding reiskosten','Res. vakantietoeslag','Werkuren',\
-      'Bijzonder tarief', 'Bedrag_byz_tarief','Reisuren', 'Overuren 125%',\
-      'Overuren 150%', 'Overuren 200%', 'Nettoloon','Uurloon', 'Reisuurloon',\
-      'Uren verlof', 'Uren extra verlof', 'Uren feestdag', 'Uren ziekte',\
-      'Uren dokter', 'Uren geoorl. verzuim', 'Uren ongeoorl. verzuim',\
-      'Loonschaal', 'Loontrede', 'Verlofsaldo', 'Alg. Heffingskorting',\
-      'Arbeidskorting', 'Werkgever pensioenpremie','Werkgever WAO-IVA-WGA premie',\
-      'Werkgever AWF premie', 'Werkgever ZVW kosten','Boekdatum', 'Cumulatief verschil uren',\
-      'Uren in deze maand', 'Geboekt deze maand']
-  
+
+    header = ['Payment no.', 'Monthly period', 'Account number', 'Employee', 'Thirst name', \
+              'Infix', 'Surname', 'Street', 'House number', 'Suffix', \
+              'Zipcode', 'Residence', 'Birth date', 'Into service date', 'Gross salary', \
+              'Gross variable', 'Pension contribution', 'Addition car', 'Payroll tax', \
+              'Withholding other', 'Periodic payment', 'Other compensation', \
+              'Travel compensation', 'Res. holiday allowance cum.', 'Working hours', \
+              'Special rate hours', 'Amount special rate', 'Travel hours', 'Overtime 125%', \
+              'Overtime 150%', 'Overtime 200%', 'Net salary', 'Hourly wage', 'Travel hourly wage', \
+              'Leave hours', 'Extra leave hours', 'Holiday hours', 'Illness hours', \
+              'Doctor hours', 'Permitted leave hours', 'Illegal leave hours', \
+              'Wage scale', 'Wage step', 'Leave balance', 'General tax credit', \
+              'Employment tax credit', 'Employer pension contrib.', 'Employer WAO-IVA-WGA contrib.', \
+              'Employer AWF contrib.', 'Employer ZVW costs', 'Booking date', \
+              'Cumulative difference hours', 'Hours in this month', 'Booked this month']
+
     metadata = MetaData()   
     loonbetalingen = Table('loonbetalingen', metadata,
         Column('betalingID', Integer(), primary_key=True),
@@ -287,21 +287,21 @@ def toonBetalingen(keuze,zoekterm, m_email):
             con = engine.connect()
             selbet = select([loonbetalingen]).where(loonbetalingen.c.betalingID == mbetaalnr)
             rpbet = con.execute(selbet).first()
-            
-            header = ['Betalingnr', 'Maandperiode', 'Accountnummer', 'Werknemer', 'Voornaam',\
-              'Tussenvoegsel','Achternaam', 'Straat', 'Huisnummer', 'Toevoeging',\
-              'Postcode', 'Woonplaats', 'Geboortedatum', 'Indienstdatum','Brutoloon',\
-              'Bruto variabel', 'Pensioenpremie', 'Bijtelling auto','Loonheffing',\
-              'Inhouding overig','Periodieke uitkering','Vergoeding overig',\
-              'Vergoeding reiskosten','Res. vakantietoeslag','Werkuren',\
-              'Bijzonder tarief', 'Bedrag_byz_tarief','Reisuren', 'Overuren 125%',\
-              'Overuren 150%', 'Overuren 200%', 'Nettoloon','Uurloon', 'Reisuurloon',\
-              'Uren verlof', 'Uren extra verlof', 'Uren feestdag', 'Uren ziekte',\
-              'Uren dokter', 'Uren geoorl. verzuim', 'Uren ongeoorl. verzuim',\
-              'Loonschaal', 'Loontrede', 'Verlofsaldo', 'Alg. Heffingskorting',\
-              'Arbeidskorting', 'Werkgever pensioenpremie','Werkgever WAO-IVA-WGA premie',\
-              'Werkgever AWF premie', 'Werkgever ZVW kosten','Boekdatum', 'Cumulatief verschil uren',\
-              'Uren in deze maand', 'Geboekt deze maand']
+
+            header = ['Payment no.', 'Monthly period', 'Account number', 'Employee', 'Thirst name', \
+                      'Infix', 'Surname', 'Street', 'House number', 'Suffix', \
+                      'Zipcode', 'Residence', 'Birth date', 'Into service date', 'Gross salary', \
+                      'Gross variable', 'Pension contribution', 'Addition car', 'Payroll tax', \
+                      'Withholding other', 'Periodic payment', 'Other compensation', \
+                      'Travel compensation', 'Res. holiday allowance cum.', 'Working hours', \
+                      'Special rate hours', 'Amount special rate', 'Travel hours', 'Overtime 125%', \
+                      'Overtime 150%', 'Overtime 200%', 'Net salary', 'Hourly wage', 'Travel hourly wage', \
+                      'Leave hours', 'Extra leave hours', 'Holiday hours', 'Illness hours', \
+                      'Doctor hours', 'Permitted leave hours', 'Illegal leave hours', \
+                      'Wage scale', 'Wage step', 'Leave balance', 'General tax credit', \
+                      'Employment tax credit', 'Employer pension contrib.', 'Employer WAO-IVA-WGA contrib.', \
+                      'Employer AWF contrib.', 'Employer ZVW costs', 'Booking date', \
+                      'Cumulative difference hours', 'Hours in this month', 'Booked this month']
             
             class MainWindow(QDialog):
                 def __init__(self):
@@ -310,7 +310,7 @@ def toonBetalingen(keuze,zoekterm, m_email):
                     grid = QGridLayout()
                     grid.setSpacing(20)
                     
-                    self.setWindowTitle("Opvragen loonbetaling")
+                    self.setWindowTitle("Request wage payments")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                     
                     self.setFont(QFont('Arial', 10))   
@@ -320,7 +320,7 @@ def toonBetalingen(keuze,zoekterm, m_email):
                     self.lbl.setPixmap(self.pixmap)
                     grid.addWidget(self.lbl , 0, 0)
                     
-                    grid.addWidget(QLabel('Opvragen Loonbetalingen per werknemer en periode'),0, 2, 1, 3)
+                    grid.addWidget(QLabel('Request wage payments per employee and period'),0, 2, 1, 3)
             
                     self.logo = QLabel()
                     self.pixmap = QPixmap('./images/logos/logo.jpg')
@@ -353,7 +353,7 @@ def toonBetalingen(keuze,zoekterm, m_email):
                         
                         index +=1
                         
-                    terugBtn = QPushButton('Sluiten')
+                    terugBtn = QPushButton('Close')
                     terugBtn.clicked.connect(self.accept)
             
                     grid.addWidget(terugBtn, verpos+1, 5, 1 , 1, Qt.AlignRight)

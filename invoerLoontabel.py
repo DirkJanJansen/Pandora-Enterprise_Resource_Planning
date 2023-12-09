@@ -17,24 +17,24 @@ def eindProgram():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Programma afgesloten.\nTot ziens!')
-    msg.setWindowTitle('BESTELLINGEN')               
+    msg.setText('Program closed.\nGoodbye!')
+    msg.setWindowTitle('Orders')
     msg.exec_() 
     
 def invoerOK(mloonnr, momschr):
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Invoer van loonschaal: '+mloonnr+' '+momschr+' gelukt!')
-    msg.setWindowTitle('LOONTABEL')
+    msg.setText('Insert of pay scale: '+mloonnr+' '+momschr+' successful!')
+    msg.setWindowTitle('Pay scale')
     msg.exec_()
     
 def invoerVerpl():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Invoer alle velden verplicht\nBegin opnieuw met invoeren\nOf beëindig het programma!')
-    msg.setWindowTitle('LOONTABEL')
+    msg.setText('Input all fields required\nStart again with enter\nOr end the program!')
+    msg.setWindowTitle('Pay scale')
     msg.exec_()
 
 def invoerSchaal(m_email):
@@ -66,7 +66,7 @@ def invoerSchaal(m_email):
             grid = QGridLayout()
             grid.setSpacing(12)
             
-            self.setWindowTitle("Invoeren Loontabel")
+            self.setWindowTitle("Input wage table")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             
             self.setFont(QFont('Arial', 10))   
@@ -81,7 +81,7 @@ def invoerSchaal(m_email):
             self.logo.setPixmap(self.pixmap)
             grid.addWidget(self.logo , 0, 1, 1, 2, Qt.AlignRight) 
             
-            grid.addWidget(QLabel('        Invoeren Loonschalen'), 0, 0, 1, 3, Qt.AlignCenter)
+            grid.addWidget(QLabel('        Entering pay scales'), 0, 0, 1, 3, Qt.AlignCenter)
                 
             self.Loontabelnummer = QLabel()
             q1Edit = QLineEdit(str(mloonnr))
@@ -124,39 +124,39 @@ def invoerSchaal(m_email):
             input_validator = QRegExpValidator(reg_ex, q6Edit)
             q6Edit.setValidator(input_validator)
        
-            lbl1 = QLabel('Loontabelnummer')
+            lbl1 = QLabel('Wage table number')
             grid.addWidget(lbl1, 1, 0)
             grid.addWidget(q1Edit, 1, 1)
             
-            lbl2 = QLabel('Functieomschrijving')
+            lbl2 = QLabel('Job description')
             grid.addWidget(lbl2, 2, 0)
             grid.addWidget(q2Edit, 2, 1, 1, 2)
             
-            lbl3 = QLabel('Maandloon')
+            lbl3 = QLabel('Monthly salary')
             grid.addWidget(lbl3, 3, 0)
             grid.addWidget(q3Edit, 3, 1)
                       
-            lbl5 = QLabel('Tabeluurloon')
+            lbl5 = QLabel('Tabular wages')
             grid.addWidget(lbl5, 4, 0)
             grid.addWidget(q4Edit, 4, 1)
            
-            lbl7 = QLabel('Reisuurloon')
+            lbl7 = QLabel('Travel hourly wage')
             grid.addWidget(lbl7, 5, 0)
             grid.addWidget(q6Edit, 5, 1)
             
-            lbl8 = QLabel('Wijzigingsdatum')
+            lbl8 = QLabel('Modification date')
             lbl9 = QLabel(mboekd)
             grid.addWidget(lbl8, 6 ,0)
             grid.addWidget(lbl9, 6, 1)
        
-            wijzig = QPushButton('Invoer')
+            wijzig = QPushButton('Insert')
             wijzig.clicked.connect(self.accept)
     
             grid.addWidget(wijzig, 7, 1, 1 , 2, Qt.AlignRight)
             wijzig.setFont(QFont("Arial",10))
             wijzig.setFixedWidth(100)  
             
-            sluit = QPushButton('Sluit')
+            sluit = QPushButton('Close')
             sluit.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(sluit, 7, 1, 1, 2, Qt.AlignCenter)

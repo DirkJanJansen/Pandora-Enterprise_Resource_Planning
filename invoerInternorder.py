@@ -65,8 +65,8 @@ def foutInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Verplichte Invoer!')
-    msg.setWindowTitle('Invoer werkorders')
+    msg.setText('Required input!')
+    msg.setWindowTitle('Insert work orders')
     msg.exec_()
   
 def Invoer():
@@ -74,8 +74,8 @@ def Invoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Invoer gelukt!')
-    msg.setWindowTitle('Invoeren werkorders')
+    msg.setText('Insert successful!')
+    msg.setWindowTitle('Insert work orders')
     msg.exec_()
     
 def foutArtikel():
@@ -83,8 +83,8 @@ def foutArtikel():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutief Artikelnummer ingevoerd!')
-    msg.setWindowTitle('Invoer Artikelnummer')               
+    msg.setText('Incorrect Article number entered!')
+    msg.setWindowTitle('Insert work orders')               
     msg.exec_() 
     
 def geenArtnr():
@@ -92,8 +92,8 @@ def geenArtnr():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen bestaand artikel gevonden\nNieuw artikelnummer wordt aangemaakt!')
-    msg.setWindowTitle('Invoer Artikelnummer')               
+    msg.setText('No existing article found\nNew article number is created!')
+    msg.setWindowTitle('Insert article number')
     msg.exec_() 
 
 def invWerkorder(m_email):
@@ -102,7 +102,7 @@ def invWerkorder(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Invoer werkorders")
+            self.setWindowTitle("Insert work orders")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                                   
             self.setFont(QFont('Arial', 10))
@@ -145,29 +145,29 @@ def invWerkorder(m_email):
             grid = QGridLayout()
             grid.setSpacing(20)
             
-            lbl1 = QLabel('Werkorder')  
+            lbl1 = QLabel('Work order')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 1, 0)
             
             lbl2 = QLabel(str(bepaalWerknr()))
             grid.addWidget(lbl2, 1, 1)
                    
-            lbl3 = QLabel('Omschrijving')  
+            lbl3 = QLabel('Description')  
             lbl3.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl3, 2, 0)
             grid.addWidget(q1Edit, 2, 1, 1, 3)
               
-            lbl4 = QLabel('Start werk')  
+            lbl4 = QLabel('Start work')  
             lbl4.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl4, 3, 0)
             grid.addWidget(q2Edit, 3, 1)
         
-            lbl5 = QLabel('Artikelnummer\n       Halffabrikaat   ')  
+            lbl5 = QLabel('Article number\n       Semi-finished product')
             lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl5, 4, 0)
             grid.addWidget(q3Edit, 4, 1) 
             
-            lbl6 = QLabel('Hoeveelheid')  
+            lbl6 = QLabel('Amount')  
             lbl6.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl6, 5, 0)
             grid.addWidget(q4Edit, 5, 1) 
@@ -186,7 +186,7 @@ def invWerkorder(m_email):
             self.setLayout(grid)
             self.setGeometry(500, 300, 150, 150)
     
-            applyBtn = QPushButton('Invoer')
+            applyBtn = QPushButton('Insert')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 6, 2, 1, 1, Qt.AlignRight)
@@ -194,7 +194,7 @@ def invWerkorder(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 6, 1, 1 , 1, Qt.AlignRight)

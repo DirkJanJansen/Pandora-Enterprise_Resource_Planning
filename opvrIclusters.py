@@ -12,8 +12,8 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Iclusters opvragen')               
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Request clusters')
     msg.exec_() 
  
 def windowSluit(self,m_email):
@@ -25,15 +25,15 @@ def ongKeuze():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Ongeldige keuze')
-    msg.setWindowTitle('Clusters invoeren')               
+    msg.setText('Invalid choice')
+    msg.setWindowTitle('Insert clusters')
     msg.exec_() 
 
 def zoeken(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Cluster selektie")
+            self.setWindowTitle("Cluster selection")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -43,16 +43,16 @@ def zoeken(m_email):
             k0Edit.setFixedWidth(340)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('              Sorteersleutel Clustergroepen')
-            k0Edit.addItem('0. Alle Clusters')
-            k0Edit.addItem('LA-LK. Bewerkte onderdelen')
-            k0Edit.addItem('MA-MK. Bouten en Moeren')
-            k0Edit.addItem('NA-NK. Gietwerk bewerking')
-            k0Edit.addItem('OA-OK. Laswerk samengesteld')
-            k0Edit.addItem('PA-PK. Plaatwerk samengesteld')
-            k0Edit.addItem('RA-RK. Kunstof onderdelen')
-            k0Edit.addItem('SA-SK. Prefab Montagedelen')
-            k0Edit.addItem('TA-TK. Samengestelde Onderdelen')
+            k0Edit.addItem('              Sort key cluster groups')
+            k0Edit.addItem('0. All clusters')
+            k0Edit.addItem('LA-LK. Machined parts')
+            k0Edit.addItem('MA-MK. Bolts and nuts')
+            k0Edit.addItem('NA-NK. Casting machining')
+            k0Edit.addItem('OA-OK. Welding composite')
+            k0Edit.addItem('PA-PK. Sheet metal assembled')
+            k0Edit.addItem('RA-RK. Plastic parts')
+            k0Edit.addItem('SA-SK. Prefab mounting parts')
+            k0Edit.addItem('TA-TK. Assembly parts')
             k0Edit.activated[str].connect(self.k0Changed)
       
             grid = QGridLayout()
@@ -75,7 +75,7 @@ def zoeken(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
    
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 2, 1, 1, 1, Qt.AlignRight)
@@ -83,7 +83,7 @@ def zoeken(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self,m_email))
     
             grid.addWidget(cancelBtn, 2, 0, 1 , 2, Qt.AlignCenter)
@@ -120,7 +120,7 @@ def toonIclusters(keuze, m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(100, 50, 1700, 900)
-            self.setWindowTitle('Intern Cluster Calculatie')
+            self.setWindowTitle('Internal cluster calculation')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -162,16 +162,16 @@ def toonIclusters(keuze, m_email):
                 return self.header[col]
             return None
              
-    header = ['Clusternr','Omschrijving','Prijs','Eenheid','Materialen','Lonen',\
-              'Diensten','Materiëel','Inhuur','St.zagen','Zagen','St.schaven','Schaven',\
-              'St.steken','Steken','St.boren','Boren','St.frezen','Frezen','St.draaien klein',\
-              'Draaien klein','St.draaien_groot','Draaien groot','St.tappen','Tappen',\
-              'St.nube draaien','Nube draaien','St.nube bewerken','Nube bewerken',\
-              'St.knippen','Knippen','St.kanten','Kanten','St.stansen','Stansen',\
-              'St.lassen co2','Lassen co2','St.lassen hand','Lassen hand','St.verpakken',\
-              'Verpakken','St.verzinken','Verzinken','St.moffelen','Moffelen','St.schilderen',\
-              'Schilderen','St.spuiten','Spuiten','St.ponsen','Ponsen','St.persen',\
-              'Persen','St.gritstralen','Gritstralen','St.montage','Montage']
+    header = ['Cluster number','Description','Price','Unit','Materials','Wages',\
+              'Services','Equipment','Hiring','Set costs\nsawing','Sawing','Set costs\nplaning','Planing',\
+              'Set costs\nstabbing','Stabbing','Set costs\ndrilling','Drilling','Set costs\nmilling','Milling','Set costs\nturning small',\
+              'Turning small','Set costs\nturning big','Turning big','Set costs\nthreading','Threading',\
+              'Set costs\nCNC turning','CNC turning','Set costs\nCNC milling','CNC milling',\
+              'Set costs\ncutting','Cutting','Set costs\nfolding','Folding','Set costs\ndie-cutting','Die-cutting',\
+              'Set costs\nwelding co2','Welding co2','Set costs\nwelding hand','Welding hand','Set costs\npacking',\
+              'Packing','Set costs\ngalvanise','Galvanise','Set costs\nmuffling','Muffling','Set costs\npainting',\
+              'Painting','Set costs\nspraying','Spraying','Set costs\nstam[ping','Stamping','Set costs\npressing',\
+              'Pressing','Set costs\ngrit blasting','Grit blasting','Set costs\nmounting','Mounting']
      
     metadata = MetaData()
     iclusters = Table('iclusters', metadata,
@@ -264,7 +264,7 @@ def toonIclusters(keuze, m_email):
                     
                     grid = QGridLayout()
                     grid.setSpacing(20)
-                    self.setWindowTitle("Opvragen Cluster")
+                    self.setWindowTitle("Request cluster")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                     
                     self.setFont(QFont('Arial', 10))   
@@ -662,289 +662,289 @@ def toonIclusters(keuze, m_email):
                     grid = QGridLayout()
                     grid.setSpacing(20)
                     
-                    lbl1 = QLabel('Clusternummer')  
+                    lbl1 = QLabel('Cluster number')
                     lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl1, 1, 0)
                     
                     lbl2 = QLabel(clusternr)
                     grid.addWidget(lbl2, 1, 1)
                            
-                    lbl3 = QLabel('Omschrijving')  
+                    lbl3 = QLabel('Description')
                     lbl3.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl3, 1, 2)
                     grid.addWidget(q1Edit, 1, 3, 1, 3) # RowSpan 1 ,ColumnSpan 3
                                                          
-                    lbl4 = QLabel('Prijs')  
+                    lbl4 = QLabel('Price')
                     lbl4.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl4, 2, 0)
                     grid.addWidget(q2Edit, 2, 1)
                     
-                    lbl5 = QLabel('Eenheid')  
+                    lbl5 = QLabel('Unit')
                     lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl5, 2, 2)
                     grid.addWidget(q3Edit, 2, 3)
                     
-                    lbl6 = QLabel('Materialen')  
+                    lbl6 = QLabel('Materials')
                     lbl6.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl6, 2, 4)
                     grid.addWidget(q4Edit, 2, 5)
                     
-                    lbl7 = QLabel('Lonen')  
+                    lbl7 = QLabel('Wages')
                     lbl7.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl7, 2, 6)
                     grid.addWidget(q5Edit, 2, 7)
                     
-                    lbl8 = QLabel('Diensten')  
+                    lbl8 = QLabel('Services')
                     lbl8.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl8, 3, 0)
                     grid.addWidget(q6Edit, 3, 1)
                     
-                    lbl9 = QLabel('Materiëel')  
+                    lbl9 = QLabel('Equipment')
                     lbl9.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl9, 3, 2)
                     grid.addWidget(q7Edit, 3, 3)
                     
-                    lbl10 = QLabel('Inhuur')  
+                    lbl10 = QLabel('Hiring')
                     lbl10.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl10, 3, 4)
                     grid.addWidget(q8Edit, 3, 5)
                     
-                    lbl11 = QLabel('St.zagen')  
+                    lbl11 = QLabel('Set costs\nsawing')
                     lbl11.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl11, 4, 0)
                     grid.addWidget(q9Edit, 4, 1)
                     
-                    lbl12 = QLabel('Zagen')  
+                    lbl12 = QLabel('Sawing')
                     lbl12.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl12, 4, 2)
                     grid.addWidget(q10Edit, 4, 3)
                     
-                    lbl13 = QLabel('St.schaven')  
+                    lbl13 = QLabel('Set costs\nplaning')
                     lbl13.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl13, 4, 4)
                     grid.addWidget(q11Edit, 4, 5)
                       
-                    lbl14 = QLabel('Schaven')  
+                    lbl14 = QLabel('Planing')
                     lbl14.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl14, 4, 6)
                     grid.addWidget(q12Edit, 4, 7)
                     
-                    lbl15 = QLabel('St.steken')  
+                    lbl15 = QLabel('Set costs\nstabbing')
                     lbl15.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl15, 5, 0)
                     grid.addWidget(q13Edit, 5, 1)
                     
-                    lbl16 = QLabel('Steken')  
+                    lbl16 = QLabel('Stabbing')
                     lbl16.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl16, 5, 2)
                     grid.addWidget(q14Edit, 5, 3)
                     
-                    lbl17 = QLabel('St.boren')  
+                    lbl17 = QLabel('Set costs\ndrilling')
                     lbl17.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl17, 5, 4)
                     grid.addWidget(q15Edit, 5, 5)
                     
-                    lbl18 = QLabel('Boren')  
+                    lbl18 = QLabel('Drilling')
                     lbl18.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl18, 5, 6)
                     grid.addWidget(q16Edit, 5, 7)
                     
-                    lbl19 = QLabel('St.frezen')  
+                    lbl19 = QLabel('Set costs\nmilling')
                     lbl19.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl19, 6, 0)
                     grid.addWidget(q17Edit, 6, 1)
                     
-                    lbl20 = QLabel('Frezen')  
+                    lbl20 = QLabel('Milling')
                     lbl20.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl20, 6, 2)
                     grid.addWidget(q18Edit, 6, 3)
                     
-                    lbl21 = QLabel('St.draaien-klein')  
+                    lbl21 = QLabel('Set costs\nturning small')
                     lbl21.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl21, 6, 4)
                     grid.addWidget(q19Edit, 6, 5)
                     
-                    lbl22 = QLabel('Draaien-klein')  
+                    lbl22 = QLabel('Turning small')
                     lbl22.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl22, 6, 6)
                     grid.addWidget(q20Edit, 6, 7)
                     
-                    lbl23 = QLabel('St.draaien-groot')  
+                    lbl23 = QLabel('Set costs\nturning big')
                     lbl23.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl23, 7, 0)
                     grid.addWidget(q21Edit, 7, 1)
                     
-                    lbl26 = QLabel('Draaien-groot')  
+                    lbl26 = QLabel('Turning big')
                     lbl26.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl26, 7, 2)
                     grid.addWidget(q22Edit, 7, 3)
                     
-                    lbl27 = QLabel('St.tappen')  
+                    lbl27 = QLabel('Set costs\nthreading')
                     lbl27.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl27, 7, 4)
                     grid.addWidget(q23Edit, 7, 5)
                     
-                    lbl28 = QLabel('Tappen')  
+                    lbl28 = QLabel('Threading')
                     lbl28.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl28, 7, 6)
                     grid.addWidget(q24Edit, 7, 7)
                     
-                    lbl27 = QLabel('St.nube_draaien')  
+                    lbl27 = QLabel('Set costs\nCNC turning')
                     lbl27.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl27, 8, 0)
                     grid.addWidget(q25Edit, 8, 1)
                     
-                    lbl28 = QLabel('Nube_draaien')  
+                    lbl28 = QLabel('CNC turning')
                     lbl28.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl28, 8, 2)
                     grid.addWidget(q26Edit, 8, 3)
                     
-                    lbl29 = QLabel('St.nube-bewerken')  
+                    lbl29 = QLabel('Set costs\nCNC milling')
                     lbl29.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl29, 8, 4)
                     grid.addWidget(q27Edit, 8, 5)
                     
-                    lbl30 = QLabel('Nube-bewerken')  
+                    lbl30 = QLabel('CNC milling')
                     lbl30.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl30, 8, 6)
                     grid.addWidget(q28Edit, 8, 7)
                     
-                    lbl31 = QLabel('St.knippen')  
+                    lbl31 = QLabel('Set costs\ncutting')
                     lbl31.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl31, 9, 0)
                     grid.addWidget(q29Edit, 9, 1)
                     
-                    lbl32 = QLabel('Knippen')  
+                    lbl32 = QLabel('Cutting')
                     lbl32.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl32, 9, 2)
                     grid.addWidget(q30Edit, 9, 3)
                     
-                    lbl33 = QLabel('St.kanten')  
+                    lbl33 = QLabel('Set costs\nfolding')
                     lbl33.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl33, 9, 4)
                     grid.addWidget(q31Edit, 9, 5)
                     
-                    lbl34 = QLabel('Kanten')  
+                    lbl34 = QLabel('Folding')
                     lbl34.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl34, 9, 6)
                     grid.addWidget(q32Edit, 9, 7)
                     
-                    lbl35 = QLabel('St.stansen')  
+                    lbl35 = QLabel('Set costs\nstamping')
                     lbl35.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl35, 10, 0)
                     grid.addWidget(q33Edit, 10, 1)
                     
-                    lbl36 = QLabel('Stansen')  
+                    lbl36 = QLabel('Stamping')
                     lbl36.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl36, 10, 2)
                     grid.addWidget(q34Edit, 10, 3)
                     
-                    lbl37 = QLabel('St.Lassen-Co2')  
+                    lbl37 = QLabel('Set costs\nwelding co2')
                     lbl37.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl37, 10, 4)
                     grid.addWidget(q35Edit, 10, 5)
                     
-                    lbl38 = QLabel('Lassen-Co2')  
+                    lbl38 = QLabel('Welding co2')
                     lbl38.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl38, 10, 6)
                     grid.addWidget(q36Edit, 10, 7)
                     
-                    lbl39 = QLabel('St.Lassen-hand')  
+                    lbl39 = QLabel('Set costs\nwelding hand')
                     lbl39.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl39, 11, 0)
                     grid.addWidget(q37Edit, 11, 1)
                     
-                    lbl40 = QLabel('Lassen-hand')  
+                    lbl40 = QLabel('Welding hand')
                     lbl40.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl40, 11, 2)
                     grid.addWidget(q38Edit, 11, 3)
                     
-                    lbl41 = QLabel('St.Verpakken')  
+                    lbl41 = QLabel('Set costs\npacking')
                     lbl41.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl41, 11, 4)
                     grid.addWidget(q39Edit, 11, 5)
                         
-                    lbl42 = QLabel('Verpakken')  
+                    lbl42 = QLabel('Packing')
                     lbl42.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl42, 11, 6)
                     grid.addWidget(q40Edit, 11, 7)
                     
-                    lbl43 = QLabel('St.Verzinken')  
+                    lbl43 = QLabel('Set costs\ngalvanise')
                     lbl43.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl43, 12, 0)
                     grid.addWidget(q41Edit, 12, 1)
                     
-                    lbl44 = QLabel('Verzinken')  
+                    lbl44 = QLabel('Galvanise')
                     lbl44.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl44, 12, 2)
                     grid.addWidget(q42Edit, 12, 3)
                     
-                    lbl45 = QLabel('St.Moffelen')  
+                    lbl45 = QLabel('Set costs\nmuffling')
                     lbl45.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl45, 12, 4)
                     grid.addWidget(q43Edit, 12, 5)
                     
-                    lbl46 = QLabel('Moffelen')  
+                    lbl46 = QLabel('muffling')
                     lbl46.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl46, 12, 6)
                     grid.addWidget(q44Edit, 12, 7)
                     
-                    lbl47 = QLabel('St.Schilderen')  
+                    lbl47 = QLabel('Set costs\npainting')
                     lbl47.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl47, 13, 0)
                     grid.addWidget(q45Edit, 13, 1)
                     
-                    lbl48 = QLabel('Schilderen')  
+                    lbl48 = QLabel('Painting')
                     lbl48.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl48, 13, 2)
                     grid.addWidget(q46Edit, 13, 3)
                     
-                    lbl49 = QLabel('St.Spuiten')  
+                    lbl49 = QLabel('Set costs\nspraying')
                     lbl49.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl49, 13, 4)
                     grid.addWidget(q47Edit, 13, 5)
                                                               
-                    lbl50 = QLabel('Spuiten')  
+                    lbl50 = QLabel('Spraying')
                     lbl50.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl50, 13, 6)
                     grid.addWidget(q48Edit, 13, 7)
                     
-                    lbl51 = QLabel('St.Ponsen')
+                    lbl51 = QLabel('Set costs\npunching')
                     lbl51.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl51, 14, 0)
                     grid.addWidget(q49Edit, 14, 1)
                  
-                    lbl52 = QLabel('Ponsen')
+                    lbl52 = QLabel('Punching')
                     lbl52.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl52, 14, 2)
                     grid.addWidget(q50Edit, 14, 3)
                     
-                    lbl53 = QLabel('St.Persen')  
+                    lbl53 = QLabel('Set costs\npressing')
                     lbl53.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl53, 14, 4)
                     grid.addWidget(q51Edit, 14, 5)
                     
-                    lbl54 = QLabel('Persen')  
+                    lbl54 = QLabel('Pressing')
                     lbl54.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl54, 14, 6)
                     grid.addWidget(q52Edit, 14, 7)
                     
-                    lbl55 = QLabel('St.Gritstralen')  
+                    lbl55 = QLabel('Set costs\ngrit blasting')
                     lbl55.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl55, 15, 0)
                     grid.addWidget(q53Edit, 15, 1)
                     
-                    lbl56 = QLabel('Gritstralen')  
+                    lbl56 = QLabel('Grit blasting')
                     lbl56.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl56, 15, 2)
                     grid.addWidget(q54Edit, 15, 3)
                     
-                    lbl57 = QLabel('St.Montage')  
+                    lbl57 = QLabel('Set costs\nmounting')
                     lbl57.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl57, 15, 4)
                     grid.addWidget(q55Edit, 15, 5)
                     
-                    lbl58 = QLabel('Montage')  
+                    lbl58 = QLabel('Mounting')
                     lbl58.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl58, 15, 6)
                     grid.addWidget(q56Edit, 15, 7)
@@ -959,13 +959,13 @@ def toonIclusters(keuze, m_email):
                     logo.setPixmap(pixmap)
                     grid.addWidget(logo , 0, 7, 1 , 1, Qt.AlignRight)
                     
-                    grid.addWidget(QLabel('Opvragen interne clusters'), 0, 1, 1, 8, Qt.AlignCenter)
+                    grid.addWidget(QLabel('Request internal clusters'), 0, 1, 1, 8, Qt.AlignCenter)
                                                     
                     grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 18, 0, 1, 8, Qt.AlignCenter)
                     self.setLayout(grid)
                     self.setGeometry(300, 100, 150, 150)
             
-                    sluitBtn = QPushButton('Sluiten')
+                    sluitBtn = QPushButton('Close')
                     sluitBtn.clicked.connect(self.close)
             
                     grid.addWidget(sluitBtn, 17, 7, 1, 1, Qt.AlignRight)

@@ -11,8 +11,8 @@ def geenOrders():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen bestellingen aanwezig!')
-    msg.setWindowTitle('Besteloverzicht opvragen')               
+    msg.setText('No orders present!')
+    msg.setWindowTitle('Request order overview')               
     msg.exec_()
     
 def bestellingen(m_email):
@@ -73,7 +73,7 @@ def toonBest(rp_bestellingen, m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(50, 50, 1500, 900)
-            self.setWindowTitle('Besteloverzicht')
+            self.setWindowTitle('Order overview')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -128,8 +128,8 @@ def toonBest(rp_bestellingen, m_email):
                 pixmap.scaled(256,256) 
                 return(painter.drawPixmap(option.rect, pixmap)) 
    
-    header = ['Bestelnummer','Besteldatum', 'Betaaldatum','Leverdatum', 'Hoeveelheid',\
-              'Artikelnummer','Omschrijving','Verkoopprijs', 'Afbeelding', 'Retour']
+    header = ['Order','Order date', 'Pay date','Delivery date', 'Quantity',\
+              'Article number','Description','Selling price', 'Image', 'Return']
     
     data_list=[]
     for row in rp_bestellingen:

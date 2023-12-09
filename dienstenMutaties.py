@@ -6,7 +6,7 @@ from PyQt5.QtGui import QFont, QPixmap, QRegExpValidator, QIcon
 from PyQt5.QtWidgets import QLabel, QPushButton, QCheckBox,\
      QMessageBox, QLineEdit, QGridLayout, QDialog, QComboBox, QWidget, QTableView
 from sqlalchemy import (Table, Column, String,  Integer, Float, MetaData, \
-                            ForeignKey, create_engine, insert, select, update, func, and_)
+                            ForeignKey, create_engine, insert, select, update, func, and_, or_)
 
 def refresh(keuze, zoekterm, m_email, self):
     self.close()
@@ -34,48 +34,48 @@ def invoerOK():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Invoer gelukt!')
-    msg.setWindowTitle('INVOER')
+    msg.setText('Insert successful!')
+    msg.setWindowTitle('Entry')
     msg.exec_()
     
 def foutCombinatie():
         msg = QMessageBox()
         msg.setStyleSheet("color: black;  background-color: gainsboro")
         msg.setIcon(QMessageBox.Warning)
-        msg.setText('De combinatie van inkooporder,\nkostensoort en orderregel\nkomt niet voor!')
-        msg.setWindowTitle('INVOERFOUT')
+        msg.setText('The combination of purchase order,\ncost type and order line\n does not occur!')
+        msg.setWindowTitle('Entry incorrect')
         msg.exec_()
        
 def foutInkooporder():
         msg = QMessageBox()
         msg.setStyleSheet("color: black;  background-color: gainsboro")
         msg.setIcon(QMessageBox.Critical)
-        msg.setText('Foutief Inkooporder\nopgegeven!')
-        msg.setWindowTitle('INVOERFOUT')
+        msg.setText('Incorrect purchase order\nopted!')
+        msg.setWindowTitle('Entry incorrect')
         msg.exec_()
                
 def foutWerk():
         msg = QMessageBox()
         msg.setStyleSheet("color: black;  background-color: gainsboro")
         msg.setIcon(QMessageBox.Critical)
-        msg.setText('Foutief werknummer\nopgegeven!')
-        msg.setWindowTitle('INVOERFOUT')
+        msg.setText('Incorrect work number\nopted!')
+        msg.setWindowTitle('Entry incorrect')
         msg.exec_()
  
 def geenSoort():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen kostensoort gekozen')
-    msg.setWindowTitle('INVOERFOUT')               
+    msg.setText('No cost type chosen')
+    msg.setWindowTitle('Entry incorrect')
     msg.exec_()
        
 def geenRegel():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen regelnummer ingevoerd')
-    msg.setWindowTitle('INVOERFOUT')               
+    msg.setText('No line number entered')
+    msg.setWindowTitle('Entry incorrect')
     msg.exec_()
     
 def geenRecord():
@@ -83,24 +83,24 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Materialen uitgeven/ printen')               
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Publishing/printing materials')
     msg.exec_() 
   
 def geenKeuze():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen kostensoort\nkeuze gemaakt')
-    msg.setWindowTitle('INVOERFOUT')               
+    msg.setText('No cost type\nchoice made')
+    msg.setWindowTitle('Entry incorrect')
     msg.exec_()    
     
 def werkGereed():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Werknummer is afgemeld,\nboekingen niet meer mogelijk!')
-    msg.setWindowTitle('Gegevens!')
+    msg.setText('Work number is unsubscribed,\n bookings no longer possible!')
+    msg.setWindowTitle('Data!')
     msg.exec_()
     
 def ongInvoer():
@@ -108,8 +108,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Artikelen opvragen')               
+    msg.setText('Please re-enter incorrect input\nsearchterm!')
+    msg.setWindowTitle('Request articles')
     msg.exec_()
     
 def jaarweek():
@@ -123,7 +123,7 @@ def mutatieKeuze(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Opvragen Mutaties Diensten-Portal Boekhouding")
+            self.setWindowTitle("Request changes services-portal accounting")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -133,14 +133,14 @@ def mutatieKeuze(m_email):
             k0Edit.setFixedWidth(230)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem(' Sorteersleutel voor zoeken')
-            k0Edit.addItem('1. Alle diensten')
-            k0Edit.addItem('2. Werknummer')
-            k0Edit.addItem('3. Werkomschrijving')
-            k0Edit.addItem('4. Leveranciernummer')
-            k0Edit.addItem('5. Bedrijfsnaam')
-            k0Edit.addItem('6. Op verkooporder')
-            k0Edit.addItem('7. Kostensoort (1-9)')
+            k0Edit.addItem(' Search sort key')
+            k0Edit.addItem('1. All services')
+            k0Edit.addItem('2. Work number')
+            k0Edit.addItem('3. Work description')
+            k0Edit.addItem('4. Supplier number')
+            k0Edit.addItem('5. Company name')
+            k0Edit.addItem('6. By sales order')
+            k0Edit.addItem('7. Cost type (1-9)')
             
             k0Edit.activated[str].connect(self.k0Changed)
                             
@@ -164,7 +164,7 @@ def mutatieKeuze(m_email):
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
                                   
             grid.addWidget(k0Edit, 1, 1)
-            lbl1 = QLabel('Zoekterm')  
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 2, 0)
             grid.addWidget(zktermEdit, 2, 1)
@@ -174,7 +174,7 @@ def mutatieKeuze(m_email):
             
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 4, 0, 1, 3 , Qt.AlignCenter)
    
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 3, 1, 1, 1, Qt.AlignRight)
@@ -182,7 +182,7 @@ def mutatieKeuze(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 3, 1)
@@ -307,7 +307,7 @@ def toonMutaties(keuze,zoekterm, m_email):
     class MyWindow(QDialog):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
-            self.setWindowTitle('Kosten diensten muteren')
+            self.setWindowTitle('Mutate costs services')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -338,7 +338,7 @@ def toonMutaties(keuze,zoekterm, m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 1, 15, 1, 1, Qt.AlignRight)
             
-            freshBtn = QPushButton('Verversen')
+            freshBtn = QPushButton('Refresh')
             freshBtn.clicked.connect(lambda: refresh(keuze, zoekterm, m_email, self))
 
             freshBtn.setFont(QFont("Arial",10))
@@ -347,7 +347,7 @@ def toonMutaties(keuze,zoekterm, m_email):
    
             grid.addWidget(freshBtn, 1, 14, 1, 1, Qt.AlignRight)
         
-            sluitBtn = QPushButton('Sluiten')
+            sluitBtn = QPushButton('Close')
             sluitBtn.clicked.connect(self.close)
 
             sluitBtn.setFont(QFont("Arial",10))
@@ -388,9 +388,9 @@ def toonMutaties(keuze,zoekterm, m_email):
                 return self.header[col]
             return None
   
-    header = ['Mutatienummer','Werknummer', 'OrderinkoopID','Boekbedrag', 'Boekdatun', 'Categorie',\
-              'Categorie-Omschrijving','BTW-hoog', 'Aanneemsom', 'Regelnummer', 'Werknummer', 'Omschrijving',\
-              'OrderinkoopID', 'LeverancierID', 'LeverancierID','Bedrijfsnaam', 'Rechtsvorm']  
+    header = ['Mutation number','Work number', 'Order PurchaseID','Amount booking', 'Booking date', 'Category',\
+              'Category description','VAT-high', 'Contract price', 'Line number', 'Work number', 'Description',\
+              'Order PurchaseID', 'SupplierID', 'SupplierID','Company name', 'Legal status']
     
     data_list=[]
     for row in rp:
@@ -426,7 +426,7 @@ def toonMutaties(keuze,zoekterm, m_email):
             class Widget(QDialog):
                 def __init__(self, parent=None):
                     super(Widget, self).__init__(parent)
-                    self.setWindowTitle("Kosten Diensten Muteren")
+                    self.setWindowTitle("Mutate costs services")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             
                     self.setFont(QFont('Arial', 10))
@@ -489,20 +489,20 @@ def toonMutaties(keuze,zoekterm, m_email):
                     logo.setPixmap(pixmap)
                     grid.addWidget(logo , 0, 2, 1, 1, Qt.AlignRight)       
                
-                    lblt = QLabel('Mutaties (kosten derden) niet cumulatief.\nVoor \'Sluiten\' geen bedrag invullen.')
+                    lblt = QLabel('Mutations (costs third parties) not cumulative.\nFor \'Close\' do not enter an amount.')
                     grid.addWidget(lblt , 8, 0, 1, 3, Qt.AlignCenter)
                     
                     grid.addWidget(QLabel('\u00A9 2017 all rights reserved - dj.jansen@casema.nl'), 9, 0, 1, 3, Qt.AlignCenter )
                       
-                    lbl1 = QLabel('  Meer/Minderwerk = Checkbox actief')
+                    lbl1 = QLabel('  More/less work = Checkbox active')
                     grid.addWidget(lbl1, 7 , 1)
                     
-                    lbl2 = QLabel('Werknummer')  
+                    lbl2 = QLabel('Work number')
                     lbl2.setAlignment(Qt.AlignRight)
                     grid.addWidget(lbl2, 1, 0)
                     grid.addWidget(zkwerknEdit,1, 1)
                     
-                    q1 = QLabel('Inkoopordernummer')  
+                    q1 = QLabel('Purchase order number')
                     q1.setAlignment(Qt.AlignRight)
                     grid.addWidget(q1, 3, 0)
                     grid.addWidget(q1Edit,3, 1)  
@@ -512,24 +512,24 @@ def toonMutaties(keuze,zoekterm, m_email):
                     grid.addWidget(lbl3, 4, 0)
                     grid.addWidget(k0Edit, 4, 1)
                     
-                    lbl4 = QLabel('Omschrijving')  
+                    lbl4 = QLabel('Description')
                     lbl4.setAlignment(Qt.AlignRight)
                     grid.addWidget(lbl4, 5, 0)
                     grid.addWidget(q4Edit, 5, 1, 1, 3)   
                     
-                    lbl5 = QLabel('Bedrag')  
+                    lbl5 = QLabel('Amount')
                     lbl5.setAlignment(Qt.AlignRight)
                     grid.addWidget(lbl5, 6, 0)
                     grid.addWidget(q2Edit,6, 1)
                     
-                    lbl6 = QLabel('         Orderregel')  
+                    lbl6 = QLabel('         Order line')
                     grid.addWidget(lbl6, 4, 2)
                     grid.addWidget(q3Edit, 4, 2, 1, 2)
                                        
                     self.setLayout(grid)
                     self.setGeometry(500, 100, 150, 150)
                                
-                    applyBtn = QPushButton('Muteren\nSluiten')
+                    applyBtn = QPushButton('Mutate\nClose')
                     applyBtn.clicked.connect(self.accept)
     
                     grid.addWidget(applyBtn, 8, 2, 1 , 1, Qt.AlignRight)
@@ -537,7 +537,7 @@ def toonMutaties(keuze,zoekterm, m_email):
                     applyBtn.setFixedWidth(100)
                     applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
                                  
-                    cBox = QCheckBox('     Meerwerk')
+                    cBox = QCheckBox('     More/less work')
                     cBox.stateChanged.connect(self.cBoxChanged)
                     grid.addWidget(cBox, 6, 2)
                       
@@ -660,12 +660,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              '1. Inhuur meerwerk', leverancierID = mlevnr,\
+                              '1. Hiring More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('1. Inhuur'+'%')))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('1. Hiring'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('1. Inhuur'+'%'))))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -688,12 +689,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              '1. Inhuur bestekswerk', leverancierID = mlevnr,\
+                              '1. Hiring work-scope', leverancierID = mlevnr,\
                               btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('1. Inhuur'+'%')))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('1. Hiring'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('1. Inhuur'+'%'))))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -716,12 +718,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              '2. Leiding meerwerk', leverancierID = mlevnr,\
+                              '2. Direction More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('2. Leiding'+'%')))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('2. Direction'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('2. Leiding'+'%'))))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -744,12 +747,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              '2. Leiding bestekswerk', leverancierID = mlevnr,\
+                              '2. Direction work-scope', leverancierID = mlevnr,\
                               btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('2. Leiding'+'%')))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('2. Direction'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('2. Leiding'+'%'))))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -772,12 +776,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              '3. Huisvesting meerwerk', leverancierID = mlevnr,\
+                              '3. Housing More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('3. Huisvesting'+'%')))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('3. Housing'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('3. Huisvesting'+'%'))))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -801,13 +806,14 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              '3. Huisvesting bestekswerk', leverancierID = mlevnr,\
+                              '3. Housing work-scope', leverancierID = mlevnr,\
                               btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('3. Huisvesting'+'%')))\
-                 .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('3. Housing'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('3. Huisvesting'+'%'))))))\
+                .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
                 stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
@@ -830,12 +836,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              '4. Kabelwerk meerwerk', leverancierID = mlevnr,\
+                              '4. Cable work More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('4. Kabelwerk'+'%')))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('4. Cable work'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('4. Kabelwerk'+'%'))))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -859,12 +866,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              '4. Kabelwerk bestekswerk', leverancierID = mlevnr,\
+                              '4. Cable work work-scope', leverancierID = mlevnr,\
                               btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('4. Kabelwerk'+'%')))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('4. Cable work'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('4. Kabelwerk'+'%'))))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -887,12 +895,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              '5. Grondverzet meerwerk', leverancierID = mlevnr,\
+                              '5. Earth-moving More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('5. Grondverzet'+'%')))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('5. Earth-moving'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('5. Grondverzet'+'%'))))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -916,14 +925,15 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              '5. Grondverzet bestekswerk', leverancierID = mlevnr,\
+                              '5. Earth-moving work-scope', leverancierID = mlevnr,\
                               btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('5. Grondverzet'+'%')))\
-                 .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
-                 + mbedrag, acceptatie_datum = mboekd)
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('5. Earth-moving'+'%',\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('5. Grondverzet'+'%')))))))\
+                 .values(acceptatie_gereed=orders_inkoop_diensten.c.acceptatie_gereed\
+                 + mbedrag, acceptatie_datum=mboekd)
                 con.execute(upd)
                 stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
                    values(grondverzet = werken.c.grondverzet+mbedrag)
@@ -944,12 +954,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              '6. Betonwerk meerwerk', leverancierID = mlevnr,\
+                              '6. Concrete work More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('6. Betonwerk'+'%')))\
+                filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('6. Concrete work'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('6. Betonwerk'+'%'))))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -973,13 +984,14 @@ def toonMutaties(keuze,zoekterm, m_email):
                     inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                                   werknummerID = mwerknr, orderinkoopID = minkordernr,\
                                   boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                                  '6. Betonwerk bestekswerk', leverancierID = mlevnr,\
+                                  '6. Concrete work work-scope', leverancierID = mlevnr,\
                                   btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                     con.execute(inscb)
                     upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
-                     c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                     orders_inkoop_diensten.c.werkomschr.ilike('6. Betonwerk'+'%')))\
-                     .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
+                     c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel, \
+                     filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('6. Concrete work'+'%'),\
+                     (orders_inkoop_diensten.c.werkomschr.ilike('6. Betonwerk'+'%')))))) \
+                      .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                      + mbedrag, acceptatie_datum = mboekd)
                     con.execute(upd)
                     stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
@@ -1001,12 +1013,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              '7. Vervoer meerwerk', leverancierID = mlevnr,\
+                              '7. Transport More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('7. Vervoer'+'%')))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('7. Transport'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('7. Vervoer'+'%'))))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1030,12 +1043,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              '7. Vervoer bestekswerk', leverancierID = mlevnr,\
+                              '7. Transport work-scope', leverancierID = mlevnr,\
                               btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('7. Vervoer'+'%')))\
+                filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('7. Transport'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('7. Vervoer'+'%'))))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1058,12 +1072,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              '8. Overig meerwerk', leverancierID = mlevnr,\
+                              '8. Remaining More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('8. Overig'+'%')))\
+                filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('8. Remaining'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('8. Overig'+'%'))))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1087,13 +1102,14 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              '8. Overig bestekswerk', leverancierID = mlevnr,\
+                              '8. Remaining work-scope', leverancierID = mlevnr,\
                               btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('8. Overig'+'%')))\
-                 .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('8. Remaining'+'%'),\
+                 (orders_inkoop_diensten.c.werkomschr.ilike('8. Overig' + '%'))))))\
+                    .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
                 stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
@@ -1115,12 +1131,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = int(minkordernr),\
                               boekbedrag = -mbedrag, boekdatum = mboekd, werkomschr =\
-                              'A. Sleuvengraver meerwerk', leverancierID = mlevnr,\
+                              'A. Trencher More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel, omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('A. Sleuvengraver'+'%')))\
+                 orders_inkoop_diensten.c.werkomschr.ilike('A. Trencher'+'%',\
+                 orders_inkoop_diensten.c.werkomschr.ilike('A. Sleuvengraver'+'%'))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1144,12 +1161,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                         werknummerID = mwerknr, orderinkoopID = minkordernr,\
                         boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                       'A. Sleuvengraver bestekswerk', leverancierID = mlevnr,\
+                       'A. Trencher work-scope', leverancierID = mlevnr,\
                         btw_hoog = mbedrag*.21, regel = mregel, omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('A. Sleuvengraver'+'%')))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('A. Trencher'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('A. Sleuvengraver'+'%')))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1171,12 +1189,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'B. Persapparaat meerwerk', leverancierID = mlevnr,\
+                              'B. Pressing device More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('B. Persapparaat'+'%')))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('B. Pressing device'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('B. Persapparaat'+'%')))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1200,12 +1219,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'B. Persapparaat bestekswerk', leverancierID = mlevnr,\
+                              'B. Pressing device work-scope', leverancierID = mlevnr,\
                               btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('B. Persapparaat'+'%')))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('B. Pressing device' + '%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('B. Persapparaat' + '%')))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1228,12 +1248,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'C. Atlaskraan meerwerk', leverancierID = mlevnr,\
+                              'C. Atlas crane More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
-                 c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('C. Atlaskraan'+'%')))\
+                 c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel, \
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('C. Atlas crane'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('C. Atlaskraan'+'%')))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1257,12 +1278,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'C. Atlaskraan bestekswerk', leverancierID = mlevnr,\
+                              'C. Atlas crane work-scope', leverancierID = mlevnr,\
                               btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('C. Atlaskraan'+'%')))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('C. Atlas crane'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('C. Atlaskraan' + '%')))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1285,12 +1307,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'D. Kraan groot meerwerk', leverancierID = mlevnr,\
+                              'D. Crane big More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
-                 c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('D. Kraan groot'+'%')))\
+                 c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel, \
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('D. Crane big'+'%'), \
+                 orders_inkoop_diensten.c.werkomschr.ilike('D. Kraan groot'+'%')))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1314,12 +1337,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'D. Kraan groot bestekswerk', leverancierID = mlevnr,\
+                              'D. Crane big work-scope', leverancierID = mlevnr,\
                               btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('D. Kraan groot'+'%')))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('D. Crane big'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('D. Kraan groot'+'%')))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1341,7 +1365,7 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'E. Mainliner meerwerk', leverancierID = mlevnr,\
+                              'E. Mainliner More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
@@ -1370,13 +1394,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'E. Mainliner bestekswerk', leverancierID = mlevnr,\
+                              'E. Mainliner work-scope', leverancierID = mlevnr,\
                               btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
                  orders_inkoop_diensten.c.werkomschr.ilike('E. Mainliner'+'%')))\
-                 .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
+                .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
                 stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
@@ -1398,12 +1422,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'F. Hormachine meerwerk', leverancierID = mlevnr,\
+                              'F. Ballast clearing machine More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('F. Hormachine'+'%')))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('F. Ballast clearing machine'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('F. Hormachine'+'%')))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1426,12 +1451,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'F. Hormachine bestekswerk', leverancierID = mlevnr,\
+                              'F. Ballast clearing machine work-scope', leverancierID = mlevnr,\
                               btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
-                 c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('F. Hormachine'+'%')))\
+                 c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel, \
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('F. Ballast clearing machine' + '%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('F. Hormachine'+'%'))))) \
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1454,7 +1480,7 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'G. Wagon meerwerk', leverancierID = mlevnr,\
+                              'G. Wagon More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
@@ -1482,11 +1508,11 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'G. Wagon bestekswerk', leverancierID = mlevnr,\
+                              'G. Wagon work-scope', leverancierID = mlevnr,\
                               btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
-                 c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
+                 c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel, \
                  orders_inkoop_diensten.c.werkomschr.ilike('G. Wagon'+'%')))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
@@ -1510,7 +1536,7 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'H. Locomotor meerwerk', leverancierID = mlevnr,\
+                              'H. Locomotor More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
@@ -1538,7 +1564,7 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'H. Locomotor bestekswerk', leverancierID = mlevnr,\
+                              'H. Locomotor work-scope', leverancierID = mlevnr,\
                               btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
@@ -1565,12 +1591,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'J. Locomotief meerwerk', leverancierID = mlevnr,\
+                              'J. Locomotive More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('J. Locomotief'+'%')))\
+                 orders_inkoop_diensten.c.werkomschr.ilike('J. Locomotive'+'%'),\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('J. Locomotief'+'%')))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1594,12 +1621,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'J. Locomotief bestekswerk', leverancierID = mlevnr,\
+                              'J. Locomotive work-scope', leverancierID = mlevnr,\
                               btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('J. Locomotief'+'%')))\
+                filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('J. Locomotive'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('J. Locomotief'+'%')))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1622,12 +1650,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'K. Montagewagen meerwerk', leverancierID = mlevnr,\
+                              'K. Assembly trolley More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('K. Montagewagen'+'%')))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('K. Assembly trolley' + '%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('K. Montagewagen'+'%')))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1651,12 +1680,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'K. Montagewagen bestekswerk', leverancierID = mlevnr,\
+                              'K. Assembly trolley work-scope', leverancierID = mlevnr,\
                               btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('K. Montagewagen'+'%')))\
+                filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('K. Assembly trolley'+'%'),\
+                orders_inkoop_diensten.c.werkomschr.ilike('K. Montagewagen'+'%')))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1679,12 +1709,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'L. Stormobiel meerwerk', leverancierID = mlevnr,\
+                              'L. Stormobile More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobiel'+'%')))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobile'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobiel'+'%')))))\
                  .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
@@ -1708,12 +1739,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'L. Stormobiel bestekswerk', leverancierID = mlevnr,\
+                              'L. Stormobile work-scope', leverancierID = mlevnr,\
                               btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobiel'+'%')))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobile'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('L. Stormobiel'+'%')))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)
@@ -1736,13 +1768,14 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'M. Robeltrein meerwerk', leverancierID = mlevnr,\
+                              'M. Robel train More/less work', leverancierID = mlevnr,\
                                btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('M. Robeltrein'+'%')))\
-                 .values(acceptatie_datum = mboekd, meerminderwerk =\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('M. Robel train'+'%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('M. Robeltrein'+'%'))))) \
+                    .values(acceptatie_datum = mboekd, meerminderwerk =\
                  orders_inkoop_diensten.c.meerminderwerk + mbedrag)
                 con.execute(upd)
                 stmt = update(werken).where(werken.c.werknummerID == mwerknr).\
@@ -1765,12 +1798,13 @@ def toonMutaties(keuze,zoekterm, m_email):
                 inscb = insert(dienstenmutaties).values(mutatieID = mutatienr,\
                               werknummerID = mwerknr, orderinkoopID = minkordernr,\
                               boekbedrag = mbedrag, boekdatum = mboekd, werkomschr =\
-                              'M. Robeltrein bestekswerk', leverancierID = mlevnr,\
+                              'M. Robel train work-scope', leverancierID = mlevnr,\
                               btw_hoog = mbedrag*.21, regel = mregel,  omschrijving = momschr)
                 con.execute(inscb)
                 upd = update(orders_inkoop_diensten).where(and_(orders_inkoop_diensten.\
                  c.orderinkoopID == minkordernr, orders_inkoop_diensten.c.regel == mregel,\
-                 orders_inkoop_diensten.c.werkomschr.ilike('M. Robeltrein'+'%')))\
+                 filter(or_(orders_inkoop_diensten.c.werkomschr.ilike('M. Robel train' + '%'),\
+                 orders_inkoop_diensten.c.werkomschr.ilike('M. Robeltrein' + '%')))))\
                  .values(acceptatie_gereed = orders_inkoop_diensten.c.acceptatie_gereed\
                  + mbedrag, acceptatie_datum = mboekd)
                 con.execute(upd)

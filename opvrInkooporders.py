@@ -17,8 +17,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Inkooporders opvragen')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Request purchase orders')
     msg.exec_() 
 
 def geenRecord():
@@ -26,15 +26,15 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Inkooporders opvragen')               
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Request purchase orders')               
     msg.exec_() 
 
 def inkooporderKeuze(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Opvragen inkooporders materialen")
+            self.setWindowTitle("Request purchase orders materials")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -44,14 +44,14 @@ def inkooporderKeuze(m_email):
             k0Edit.setFixedWidth(330)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('              Sorteersleutel voor zoeken')
-            k0Edit.addItem('1. Alle inkooporders op artikelnr gesorteerd')
-            k0Edit.addItem('2. Alle inkooporders op ordernr gesorteerd')
-            k0Edit.addItem('3. Filter op bedrijfsnaam')
-            k0Edit.addItem('4. Filter op artikelomschrijving')
-            k0Edit.addItem('5. Filter op ordernummer')
-            k0Edit.addItem('6. Filter op levering start yyyy(-mm(-dd))')
-            k0Edit.addItem('7. Filter op levering eind yyyy(-mm(-dd))')
+            k0Edit.addItem('                  Search sort key')
+            k0Edit.addItem('1. All purchase orders sorted by item number')
+            k0Edit.addItem('2. All purchase orders sorted by order number')
+            k0Edit.addItem('3. Filtered by company name')
+            k0Edit.addItem('4. Filtered by item description')
+            k0Edit.addItem('5. Filtered by order number')
+            k0Edit.addItem('6. Filtered by delivery start yyyy(-mm(-dd))')
+            k0Edit.addItem('7. Filtered by delivery end yyyy(-mm(-dd))')
             k0Edit.activated[str].connect(self.k0Changed)
                             
             self.Zoekterm = QLabel()
@@ -69,7 +69,7 @@ def inkooporderKeuze(m_email):
             grid.addWidget(lbl , 0, 0, 1, 2)
                                   
             grid.addWidget(k0Edit, 1, 0, 1, 3, Qt.AlignRight)
-            lbl1 = QLabel('Zoekterm')  
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight)
             grid.addWidget(lbl1, 2, 0, 1, 1, Qt. AlignRight)
             grid.addWidget(zktermEdit, 2, 1, 1, 2, Qt.AlignRight)
@@ -84,7 +84,7 @@ def inkooporderKeuze(m_email):
             
             self.setGeometry(500, 300, 150, 150)
     
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 3, 1, 1, 2, Qt.AlignRight)
@@ -92,7 +92,7 @@ def inkooporderKeuze(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 3, 1)
@@ -232,7 +232,7 @@ def opvrOrder(keuze,zoekterm, m_email):
        def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(100, 50, 1600, 900)
-            self.setWindowTitle('Inkooporders opvragen')
+            self.setWindowTitle('Request purchase orders')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -290,13 +290,13 @@ def opvrOrder(keuze,zoekterm, m_email):
             pixmap.scaled(256,256)  
             return(painter.drawPixmap(option.rect, pixmap))
    
-    header = ['OrderartikelID','Orderinkoopnummer','Artikelnummer', 'Bestelaantal',\
-              'Inkoopprijs','Levering start','Levering eind', 'Recl.Datum', 'Recl.aantal', \
-              'Ontvangsdatum', 'Ontv.aantal', 'Acceptatiedatum','Geacc.hoeveelheid',\
-              'Betaald', 'Regelnummer','Orderinkoopnummer', 'Leveranciernummer',\
-              'Besteldatum', 'Goedgekeeurd','Betaald', 'Afgemeld','Leveranciernummer',\
-              'Bedrijfsnaam', 'Rechtsvorm', 'Artikelnummer','Artikelomschr',\
-              'Artikelvoorraad', 'Artikeleenheid', 'Afbeelding',]    
+    header = ['Order articleID','Order purchase number','Article number', 'Order quantity',\
+              'Purchase price','Delivery start','Delivery end', 'Complaint date', 'Complaint number', \
+              'Receive date', 'Receive number', 'Acceptance date','Acceptance number',\
+              'Payed', 'Line number','Order purchase number', 'Supplier number',\
+              'Order date', 'Approved','Payed', 'Unsubscribed','Supplier number',\
+              'Company name', 'Legal status', 'Article number','Article description',\
+              'Article stock', 'Article unit', 'Image']
         
     data_list=[]
     for row in rpinkorders:
@@ -319,7 +319,7 @@ def opvrOrder(keuze,zoekterm, m_email):
             class Widget(QDialog):
                  def __init__(self, parent=None):
                     super(Widget, self).__init__(parent)
-                    self.setWindowTitle("Inkooporders materialen opvragen")
+                    self.setWindowTitle("Request purchase orders for materials")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                                           
                     self.setFont(QFont('Arial', 10))
@@ -482,39 +482,39 @@ def opvrOrder(keuze,zoekterm, m_email):
             
                     self.setFont(QFont('Arial', 10))
                     
-                    lbl1 = QLabel('Ordergegevens')
+                    lbl1 = QLabel('Order details')
                     lbl1.setStyleSheet("font: 12pt Comic Sans MS")
                     grid.addWidget(lbl1, 1, 0)
-                    grid.addWidget(QLabel('Orderinkoopnummer'), 2, 0)
+                    grid.addWidget(QLabel('Order purchase number'), 2, 0)
                     grid.addWidget(q2Edit, 2, 1) 
                                                         
-                    grid.addWidget(QLabel('Leveranciernummer'), 2, 2)
+                    grid.addWidget(QLabel('Supplier number'), 2, 2)
                     grid.addWidget(q4Edit, 2, 3)
                     
-                    grid.addWidget(QLabel('Besteldatum'), 2, 4)
+                    grid.addWidget(QLabel('Order date'), 2, 4)
                     grid.addWidget(q5Edit, 2 , 5) 
                      
-                    grid.addWidget(QLabel('Goedgekeurd'), 3, 0)
+                    grid.addWidget(QLabel('Approved'), 3, 0)
                     grid.addWidget(q8Edit, 3, 1)
                                                               
-                    grid.addWidget(QLabel('Betaaldatum'), 3, 2)
+                    grid.addWidget(QLabel('Pay date'), 3, 2)
                     grid.addWidget(q11Edit, 3, 3)
                                               
-                    grid.addWidget(QLabel('Afgemeld'), 3, 4)
+                    grid.addWidget(QLabel('Unsubscribed'), 3, 4)
                     grid.addWidget(q12Edit, 3, 5)
          
-                    lbl2 = QLabel('Orderregelgegevens'+' - regelnummer: '+str(rpordartlev[14]))
+                    lbl2 = QLabel('Order line data'+' - line number: '+str(rpordartlev[14]))
                     lbl2.setStyleSheet("font: 12pt Comic Sans MS")               
                     grid.addWidget(lbl2, 5, 0, 1, 4)
-                    grid.addWidget(QLabel('Leveranciernummer'), 6, 0)
+                    grid.addWidget(QLabel('Suppler number'), 6, 0)
                     grid.addWidget(q13Edit, 6, 1) 
                     
-                    grid.addWidget(QLabel('Bedrijfsnaam'), 7, 0)
+                    grid.addWidget(QLabel('Company name'), 7, 0)
                     grid.addWidget(q19Edit, 7, 1, 1, 4) 
                                    
                     grid.addWidget(q14Edit, 7, 4) 
                
-                    grid.addWidget(QLabel('Artikelnummer'), 8, 0)
+                    grid.addWidget(QLabel('Articl enumber'), 8, 0)
                     grid.addWidget(q15Edit, 8, 1) 
                      
                     pixmap = QPixmap(rpordartlev[28])
@@ -522,47 +522,47 @@ def opvrOrder(keuze,zoekterm, m_email):
                     lbl3.setPixmap(pixmap)
                     grid.addWidget(lbl3 , 8, 3, 2, 3, Qt.AlignTop)
                             
-                    grid.addWidget(QLabel('Artikelomschrijving'), 10, 0)
+                    grid.addWidget(QLabel('Article description'), 10, 0)
                     grid.addWidget(q16Edit, 10, 1, 1, 4)
                     
-                    grid.addWidget(QLabel('Bestelaantal'), 11, 0)
+                    grid.addWidget(QLabel('Order quantity'), 11, 0)
                     grid.addWidget(q18Edit, 11, 1)
                     
-                    grid.addWidget(QLabel('Inkoopprijs'), 11, 2)
+                    grid.addWidget(QLabel('Purchase price'), 11, 2)
                     grid.addWidget(q17Edit, 11, 3)
                     
-                    grid.addWidget(QLabel('Levering start'), 11, 4)
+                    grid.addWidget(QLabel('Delivery start'), 11, 4)
                     grid.addWidget(q20Edit, 11, 5)
                     
-                    grid.addWidget(QLabel('Levering eind'), 12, 0)
+                    grid.addWidget(QLabel('Delivery end'), 12, 0)
                     grid.addWidget(q28Edit, 12, 1)
                                    
-                    grid.addWidget(QLabel('Reclamatiedatum'), 12, 2)
+                    grid.addWidget(QLabel('Complaint date'), 12, 2)
                     grid.addWidget(q21Edit, 12, 3)
                     
-                    grid.addWidget(QLabel('Reclamaties aantal'), 12, 4)
+                    grid.addWidget(QLabel('Complaints number'), 12, 4)
                     grid.addWidget(q22Edit, 12, 5)
                     
-                    grid.addWidget(QLabel('Ontvangstdatum'), 13, 0)
+                    grid.addWidget(QLabel('Received date'), 13, 0)
                     grid.addWidget(q23Edit, 13, 1)
                     
-                    grid.addWidget(QLabel('Ontvangen aantal'), 13, 2)
+                    grid.addWidget(QLabel('Received number'), 13, 2)
                     grid.addWidget(q24Edit, 13, 3)
                     
-                    grid.addWidget(QLabel('Acceptatie datum'), 13,  4)
+                    grid.addWidget(QLabel('Approval date'), 13,  4)
                     grid.addWidget(q25Edit, 13, 5)
                     
-                    grid.addWidget(QLabel('Acceptatie aantal'), 14, 0)
+                    grid.addWidget(QLabel('Approval number'), 14, 0)
                     grid.addWidget(q26Edit, 14, 1)
                     
-                    grid.addWidget(QLabel('Betaald aantal'), 14, 2)
+                    grid.addWidget(QLabel('Payed number'), 14, 2)
                     grid.addWidget(q27Edit, 14, 3)
                                                               
                     grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 16, 0, 1, 6, Qt.AlignCenter)
                     self.setLayout(grid)
                     self.setGeometry(500, 200, 350, 300)
                                                
-                    cancelBtn = QPushButton('Sluiten')
+                    cancelBtn = QPushButton('Close')
                     cancelBtn.clicked.connect(self.close)
                 
                     grid.addWidget(cancelBtn, 15, 5, 1, 1, Qt.AlignRight)

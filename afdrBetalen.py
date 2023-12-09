@@ -16,8 +16,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Afdrachten betalingen')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Contributions payments')
     msg.exec_()
 
 def windowSluit(self, m_email):
@@ -28,15 +28,15 @@ def betalingGelukt():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Betaling is geboekt!')
-    msg.setWindowTitle('Afdrachten betalingen')
+    msg.setText('Payment is booked!')
+    msg.setWindowTitle('Contributions payments')
     msg.exec_()
 
 def zoeken(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Afdrachten betalingen")
+            self.setWindowTitle("Contributions payments")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setFont(QFont('Arial', 10))
                               
@@ -45,14 +45,14 @@ def zoeken(m_email):
             k0Edit.setFixedWidth(250)
             k0Edit.setFont(QFont("Arial", 10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem(' Opvragen/Betalen Afdrachten')
-            k0Edit.addItem('1. Gesorteerd op periode')
-            k0Edit.addItem('2. Gefilterd op tijdvak')
-            k0Edit.addItem('3. Gefilterd niet betaald')
-            k0Edit.addItem('4. Gefilterd op instantie')
-            k0Edit.addItem('5. Gefilterd op boekdatum')
-            k0Edit.addItem('6. Gefilterd op Balieverkopen')
-            k0Edit.addItem('7. Gefilterd op Online-orders')
+            k0Edit.addItem(' Request/Pay contributions')
+            k0Edit.addItem('1. Sorted by period')
+            k0Edit.addItem('2. Filtered by time period')
+            k0Edit.addItem('3. Filtered by not payed')
+            k0Edit.addItem('4. Filtered by authority')
+            k0Edit.addItem('5. Filtered by booking date')
+            k0Edit.addItem('6. Filtered by counter sales')
+            k0Edit.addItem('7. Filtered by online orders')
             
             k0Edit.activated[str].connect(self.k0Changed)
     
@@ -71,7 +71,7 @@ def zoeken(m_email):
             grid.addWidget(lbl , 0, 0, 1, 2)
                                   
             grid.addWidget(k0Edit, 1, 1)
-            lbl1 = QLabel('Zoekterm')  
+            lbl1 = QLabel('Sear term')
             grid.addWidget(lbl1, 2, 1)
             grid.addWidget(zktermEdit, 2, 1, 1, 1, Qt.AlignRight)
             
@@ -85,7 +85,7 @@ def zoeken(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
     
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 3, 1, 1 , 1, Qt.AlignRight)
@@ -93,7 +93,7 @@ def zoeken(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            closeBtn = QPushButton('Sluiten')
+            closeBtn = QPushButton('Close')
             closeBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(closeBtn, 3, 1)
@@ -137,7 +137,7 @@ def toonAfdrachten(keuze, zoekterm, m_email):
     class MyWindow(QDialog):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
-            self.setWindowTitle('Afdrachten opvragen / betalen')        
+            self.setWindowTitle('Contributions Requesting/Paying')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                     Qt.WindowMinMaxButtonsHint)
@@ -167,7 +167,7 @@ def toonAfdrachten(keuze, zoekterm, m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 1, 15, 1, 1, Qt.AlignRight)
             
-            freshBtn = QPushButton('Verversen')
+            freshBtn = QPushButton('Refresh')
             freshBtn.clicked.connect(lambda: refresh(keuze, zoekterm, m_email, self))
 
             freshBtn.setFont(QFont("Arial",10))
@@ -176,7 +176,7 @@ def toonAfdrachten(keuze, zoekterm, m_email):
    
             grid.addWidget(freshBtn, 1, 14, 1, 1, Qt.AlignRight)
         
-            sluitBtn = QPushButton('Sluiten')
+            sluitBtn = QPushButton('Close')
             sluitBtn.clicked.connect(self.close)
 
             sluitBtn.setFont(QFont("Arial",10))
@@ -217,9 +217,9 @@ def toonAfdrachten(keuze, zoekterm, m_email):
                 return self.header[col]
             return None
         
-    header = ['Afdrachtnr', 'Soort afdracht', 'Bedrag        ', 'Boekdatum', 'Betaaldatum',\
-              'Betaalstatus', 'Instantie','Werknemer', 'Werknummer', 'Werkorder',\
-              'Rekeningnummer', 'Betaling over periode', 'Inkooporder', 'Verkooporder']
+    header = ['Contrib. number', 'Type contribution', 'Amount        ', 'Booking date', 'Pay date',\
+              'Pay status', 'Authority','Employer', 'Work number', 'Work order',\
+              'Account number', 'Payment over period', 'Supplier order', 'OrderID']
     metadata = MetaData()   
     afdrachten = Table('afdrachten', metadata,
         Column('afdrachtID', Integer(), primary_key=True),
@@ -307,7 +307,7 @@ def toonAfdrachten(keuze, zoekterm, m_email):
                     grid = QGridLayout()
                     grid.setSpacing(20)
                     
-                    self.setWindowTitle("Betalen afdrachtrekening")
+                    self.setWindowTitle("Pay contribution bill")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                     
                     self.setFont(QFont('Arial', 10))   
@@ -401,80 +401,80 @@ def toonAfdrachten(keuze, zoekterm, m_email):
                     q12Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q12Edit.setDisabled(True)    
                 
-                    lbl1 = QLabel('Afdrachtnummer')  
+                    lbl1 = QLabel('Contribution number')
                     lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl1, 1, 0)
                     
                     lbl2 = QLabel(str(mafdrnr))
                     grid.addWidget(lbl2, 1, 1)
                            
-                    lbl3 = QLabel('Soort')  
+                    lbl3 = QLabel('Type')
                     lbl3.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl3, 2, 0)
                     grid.addWidget(q1Edit, 2, 1)
                                                          
-                    lbl4 = QLabel('Bedrag')  
+                    lbl4 = QLabel('Amount')
                     lbl4.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl4, 3, 0)
                     grid.addWidget(q2Edit, 3, 1)
                     
-                    lbl5 = QLabel('Boekdatum')  
+                    lbl5 = QLabel('Booking date')
                     lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl5, 4, 0)
                     grid.addWidget(q3Edit, 4, 1)
                     
-                    lbl6 = QLabel('Betaaldatum')  
+                    lbl6 = QLabel('Pay date')
                     lbl6.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl6, 5, 0)
                     grid.addWidget(q4Edit, 5, 1)
                     
-                    cBox = QCheckBox('Betaal')
+                    cBox = QCheckBox('Pay')
                     cBox.stateChanged.connect(self.cBoxChanged)
                     grid.addWidget(cBox, 5, 2)
                     if len(rpbet[4])==10:
                        cBox.setEnabled(False)
                     
-                    lbl7 = QLabel('Instantie')  
+                    lbl7 = QLabel('Authority')
                     lbl7.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl7, 6, 0)
                     grid.addWidget(q5Edit, 6, 1, 1, 2)
                     
-                    lbl8 = QLabel('Werknemer')  
+                    lbl8 = QLabel('Employee')
                     lbl8.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl8, 7, 0)
                     grid.addWidget(q6Edit, 7, 1)
                     
-                    lbl9 = QLabel('Werknummer')  
+                    lbl9 = QLabel('Work number')
                     lbl9.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl9, 8, 0)
                     grid.addWidget(q7Edit, 8, 1)
                     
-                    lbl10 = QLabel('Werkorder')  
+                    lbl10 = QLabel('Work order')
                     lbl10.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl10, 9, 0)
                     grid.addWidget(q8Edit, 9, 1)
                     
-                    lbl20 = QLabel('Rekeningnummer')  
+                    lbl20 = QLabel('Account number')
                     lbl20.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl20, 10, 0)
                     grid.addWidget(q9Edit, 10, 1, 1, 2)
                       
-                    lbl21 = QLabel('Periode')  
+                    lbl21 = QLabel('Period')
                     lbl21.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl21, 11, 0)
                     grid.addWidget(q10Edit, 11, 1)
                     
-                    lbl22 = QLabel('Inkooporder')  
+                    lbl22 = QLabel('Supplier order')
                     lbl22.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl22, 12, 0)
                     grid.addWidget(q11Edit, 12, 1)
                        
-                    lbl23 = QLabel('Verkooporder')  
+                    lbl23 = QLabel('OrderID')
                     lbl23.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl23, 13, 0)
                     grid.addWidget(q12Edit, 13, 1)
                    
-                    btlBtn = QPushButton('Betalen')
+                    btlBtn = QPushButton('Paying')
                     btlBtn.clicked.connect(self.accept)
             
                     grid.addWidget(btlBtn, 14, 2, 1 , 1, Qt.AlignRight)
@@ -482,7 +482,7 @@ def toonAfdrachten(keuze, zoekterm, m_email):
                     btlBtn.setFixedWidth(100)
                     btlBtn.setStyleSheet("color: black;  background-color: gainsboro")
                     
-                    sluitBtn = QPushButton('Sluiten')
+                    sluitBtn = QPushButton('Close')
                     sluitBtn.clicked.connect(self.close)
             
                     grid.addWidget(sluitBtn, 14, 1, 1, 1, Qt.AlignRight)

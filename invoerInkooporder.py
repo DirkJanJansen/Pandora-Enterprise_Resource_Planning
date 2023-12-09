@@ -13,8 +13,8 @@ def foutInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Verplichte Invoer!')
-    msg.setWindowTitle('Invoer werkorders')
+    msg.setText('Mandatory Entry!')
+    msg.setWindowTitle('Insert work orders')
     msg.exec_()
     
 def foutLeverancier():
@@ -23,8 +23,8 @@ def foutLeverancier():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))        
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Leverancier niet gevonden!')
-    msg.setWindowTitle('INKOOPORDER')
+    msg.setText('Supplier not found!')
+    msg.setWindowTitle('PURCHASE ORDER')
     msg.exec_()
 
 def geenArtnr():
@@ -33,8 +33,8 @@ def geenArtnr():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen bestaand artikel gevonden\nNieuw artikelnummer wordt aangemaakt!')
-    msg.setWindowTitle('Invoer Artikelnummer')               
+    msg.setText('No existing article found\nNew article number is created!')
+    msg.setWindowTitle('Insert Article number')
     msg.exec_() 
 
 def invoerOk(mregel):
@@ -42,8 +42,8 @@ def invoerOk(mregel):
     msg.setFont(QFont("Arial", 10))
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Bestelregel '+str(mregel)+' ingevoerd')
-    msg.setWindowTitle('Bestelling regelinkooporder')
+    msg.setText('Order line '+str(mregel)+' entered')
+    msg.setWindowTitle('Order line purchase order')
     msg.exec_()
     
 def reedsBesteld():
@@ -51,8 +51,8 @@ def reedsBesteld():
     msg.setFont(QFont("Arial", 10))
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Dit produkt is in de bestelprocedure\nBestellen is weer mogelijk na uitlevering!')
-    msg.setWindowTitle('Bestelling regelinkooporder')
+    msg.setText('This product is in the ordering process\nOrdering is possible again after delivery!')
+    msg.setWindowTitle('Order line purchase order')
     msg.exec_()
     
 def foutArtikel():
@@ -60,8 +60,8 @@ def foutArtikel():
     msg.setFont(QFont("Arial", 10))
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Onjuist artikelnummer, of niet alle vereiste gegevens ingevoerd!')
-    msg.setWindowTitle('Bestelling regel inkooporder')
+    msg.setText('Incorrect item number, or not all required data entered!')
+    msg.setWindowTitle('Order line purchase order')
     msg.exec_()
         
 def onvBesteld(aantal):
@@ -69,11 +69,11 @@ def onvBesteld(aantal):
     msg.setFont(QFont("Arial", 10))
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Er zijn '+str(aantal)+' artikelen minder opgegeven'+
-     '\nom in reserveringen minus voorraad te voorzien!'+\
-     '\nZie "Voorraadmanagement-Reserveringen"'+\
-     '\nVoer de bestelregel opnieuw in met vergrote hoeveelheid!')
-    msg.setWindowTitle('Bestelling regel inkooporder')
+    msg.setText('There are '+str(aantal)+' items less specified'+
+     '\nto provide reservations minus stock!'+\
+     '\nSee "Inventory Management Reservations"'+\
+     '\nRe-enter the order line with increased quantity!')
+    msg.setWindowTitle('Order line purchase order')
     msg.exec_()
   
 def windowSluit(self, m_email):
@@ -91,8 +91,8 @@ def foutLeveranciernr():
             msg = QMessageBox()
             msg.setStyleSheet("color: black;  background-color: gainsboro")
             msg.setIcon(QMessageBox.Warning)
-            msg.setText('Leverancier niet gevonden!')
-            msg.setWindowTitle('Bestelling inkooporder')
+            msg.setText('Supplier not found!')
+            msg.setWindowTitle('Ordering purchase order')
             msg.exec_()
             
     window = Widget()
@@ -140,7 +140,7 @@ def zoekLeverancier(m_email, mlevnr, mregel):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Leverancier zoeken materialen.")
+            self.setWindowTitle("Supplier search materials.")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -169,13 +169,13 @@ def zoekLeverancier(m_email, mlevnr, mregel):
     
             self.setFont(QFont('Arial', 10))
      
-            grid.addWidget(QLabel('Leverancier'), 2, 1)
+            grid.addWidget(QLabel('Supplier'), 2, 1)
             grid.addWidget(levEdit, 2, 2)
        
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
          
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
                     
             grid.addWidget(applyBtn, 3, 2, 1, 1, Qt.AlignRight)
@@ -265,7 +265,7 @@ def inkoopRegels(m_email, rplev, mregel):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle('Bestelregels inkooporder materialen invoeren')
+            self.setWindowTitle('Enter purchase order order materials')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -335,7 +335,7 @@ def inkoopRegels(m_email, rplev, mregel):
             pixmap = QPixmap('./images/logos/verbinding.jpg')
             lbl.setPixmap(pixmap)
             grid.addWidget(lbl ,0, 0)
-            grid.addWidget(QLabel("Artikelen bestellen"), 0, 1)
+            grid.addWidget(QLabel("Order articles"), 0, 1)
             
             logo = QLabel()
             pixmap = QPixmap('./images/logos/logo.jpg')
@@ -343,42 +343,42 @@ def inkoopRegels(m_email, rplev, mregel):
             grid.addWidget(logo , 0, 2, 1, 1, Qt.AlignRight)
             
             self.setFont(QFont('Arial', 10))
-            grid.addWidget(QLabel('Bestelling voor\nLeverancier: '+str(minkgeg[1])+\
+            grid.addWidget(QLabel('Order for\nSupplier: '+str(minkgeg[1])+\
               ',\n'+minkgeg[2]+' '+minkgeg[3]+',\n'+minkgeg[4]+' '+str(minkgeg[5])+\
-              minkgeg[6]+',\n'+minkgeg[7]+' '+minkgeg[8]+'.\nOrderregel '+str(mregel)), 1, 1, 5, 2)
+              minkgeg[6]+',\n'+minkgeg[7]+' '+minkgeg[8]+'.\nOrder line '+str(mregel)), 1, 1, 5, 2)
             
-            grid.addWidget(QLabel("* Invoer vereist"), 6 , 2)
+            grid.addWidget(QLabel("* Input required"), 6 , 2)
                                              
-            lbl1 = QLabel('Ordernummer')  
+            lbl1 = QLabel('Order number')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 6, 0)
             grid.addWidget(inkorderEdit, 6, 1)
                                           
-            lbl2 = QLabel('Artikelnummer')  
+            lbl2 = QLabel('Article number')
             lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl2, 7, 0)
             grid.addWidget(artEdit, 7, 1)
             grid.addWidget(QLabel("*"), 7,2)
             
-            lbl3 = QLabel('Bestelhoeveelheid')  
+            lbl3 = QLabel('Order quantity')  
             lbl3.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl3, 8, 0)
             grid.addWidget(hoevEdit,8, 1)
             grid.addWidget(QLabel("*"), 8,2)
                        
-            lbl4 = QLabel('Inkoopeenheidsprijs')  
+            lbl4 = QLabel('Purchase unit price')  
             lbl4.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl4, 9, 0)
             grid.addWidget(prijsEdit,9, 1)
             grid.addWidget(QLabel("*"), 9,2)
             
-            lbl5 = QLabel('Levering start jjjj-mm-dd')  
+            lbl5 = QLabel('Delivery starts yyyy-mm-dd')  
             lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl5, 10, 0)
             grid.addWidget(startEdit, 10, 1)
             grid.addWidget(QLabel("*"),10, 2)
             
-            lbl6 = QLabel('Levering eind jjjj-mm-dd')  
+            lbl6 = QLabel('Delivery ends yyyy-mm-dd')  
             lbl6.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl6, 11, 0)
             grid.addWidget(endEdit, 11, 1)
@@ -386,7 +386,7 @@ def inkoopRegels(m_email, rplev, mregel):
             self.setLayout(grid)
             self.setGeometry(600, 300, 150, 150)
     
-            applyBtn = QPushButton('Invoeren')
+            applyBtn = QPushButton('Insert')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 12, 2, 1 , 1, Qt.AlignRight)
@@ -394,7 +394,7 @@ def inkoopRegels(m_email, rplev, mregel):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            sluitBtn = QPushButton('Sluiten')
+            sluitBtn = QPushButton('Close')
             sluitBtn.clicked.connect(lambda: sluitRegels(m_email, mlevnr, 0, self))
     
             grid.addWidget(sluitBtn, 12, 1, 1, 1, Qt.AlignRight)

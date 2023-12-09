@@ -16,8 +16,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Artikelen opvragen')               
+    msg.setText('Invalid input, try again please!')
+    msg.setWindowTitle('Request articles')
     msg.exec_()
     
 def geenRecord():
@@ -25,15 +25,15 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Artikelen opvragen')               
+    msg.setText('No record found\ntry another selection please!')
+    msg.setWindowTitle('Request articles')
     msg.exec_() 
 
 def selektie(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle('Materiaallijsten opvragen')
+            self.setWindowTitle('Request materials lists')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -43,9 +43,9 @@ def selektie(m_email):
             k0Edit.setFixedWidth(220)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('         Calculatie keuze')
-            k0Edit.addItem('1. Externe calculaties')
-            k0Edit.addItem('2. Interne calculaties')
+            k0Edit.addItem('         Calculation choice')
+            k0Edit.addItem('1. External calculations')
+            k0Edit.addItem('2. Internal calculations')
             k0Edit.activated[str].connect(self.k0Changed)
             
             grid = QGridLayout()
@@ -68,7 +68,7 @@ def selektie(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1 ,1, Qt.AlignRight)
     
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
     
@@ -76,7 +76,7 @@ def selektie(m_email):
             applyBtn.setFont(QFont("Arial",10))
             applyBtn.setFixedWidth(100)
               
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self,m_email))
     
             grid.addWidget(cancelBtn, 2, 0, 1, 2, Qt.AlignCenter)
@@ -139,7 +139,7 @@ def matLijst(keuze, m_email):
         def __init__(self, data_list, header, *args):
             QDialog.__init__(self, *args,)
             self.setGeometry(50, 50, 1400, 900)
-            self.setWindowTitle('Materialen bestellijsten opvragen')
+            self.setWindowTitle('Request material order lists')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -181,9 +181,9 @@ def matLijst(keuze, m_email):
                 return self.header[col]
             return None
   
-    header = ['LijstID','Werknummer','Externe calculatie','Interne calculatie','Artikelnummer',\
-              'Hoeveelheid','Inkoopordernummer','Bestelling','Reserveringsdatum',\
-              'Levertijd start','Levertijd eind','Categorie','Verwerkt'] 
+    header = ['ListID','Work number','External calculation','Internal calculation','Article number',\
+              'Amount','Purchase order number','Order','Reservation date',\
+              'Delivery date start','Delivery date end','Category','Processed']
   
     data_list=[]
     for row in rpmatlijst:

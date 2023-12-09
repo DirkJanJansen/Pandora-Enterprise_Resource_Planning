@@ -16,8 +16,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Invoeren artikelen per cluster')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Enter articles per cluster')
     msg.exec_()
     
 def geenRecord():
@@ -25,33 +25,33 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Invoeren artikelen per cluster')               
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Enter articles per cluster')
     msg.exec_() 
 
 def invoerOK():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Invoer gelukt!')
-    msg.setWindowTitle('Invoeren artikelen per cluster')
+    msg.setText('Insert successful!')
+    msg.setWindowTitle('Enter articles per cluster')
     msg.exec_()
 
 def calcBestaat():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Cluster-Artikelregel bestaat\nbestaande hoeveelheid is vervangen\ndoor gewijzigde hoeveelheid!')
+    msg.setText('Cluster item line exists\nexisting quantity has been replaced\nby changed quantity!')
 
-    msg.setWindowTitle('Invoeren artikelen per cluster')
+    msg.setWindowTitle('Enter articles per cluster')
     msg.exec_()
     
 def foutCluster():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Niet bestaand clusternummer\nCorrigeer!')
-    msg.setWindowTitle('Invoeren artikelen per cluster')
+    msg.setText('Nonexistent cluster number\nCorrect!')
+    msg.setWindowTitle('Enter articles per cluster')
     msg.exec_() 
 
 def zoeken(m_email):
@@ -59,7 +59,7 @@ def zoeken(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Cluster -> Artikelen bereik")
+            self.setWindowTitle("Cluster -> Articles range")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -80,10 +80,10 @@ def zoeken(m_email):
             k0Edit.setFixedWidth(320)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('                  Zoeken Artikelen')
-            k0Edit.addItem('1. Alle Artikelen')
-            k0Edit.addItem('2. Filter op artikelnummers')
-            k0Edit.addItem('3. Filter op artikelomschrijving')
+            k0Edit.addItem('                  Search articles')
+            k0Edit.addItem('1. All aticles')
+            k0Edit.addItem('2. Filtered bu articles numbers')
+            k0Edit.addItem('3. Filtered by articles description')
             k0Edit.activated[str].connect(self.k0Changed)
     
             self.Zoekterm = QLabel()
@@ -103,13 +103,13 @@ def zoeken(m_email):
             lbl.setPixmap(pixmap)
             grid.addWidget(lbl , 1, 0, 1, 2)
             
-            lbl2 = QLabel('Clusternummer')  
+            lbl2 = QLabel('Cluster number')
             lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl2, 2, 0)
             grid.addWidget(clEdit, 2, 1)
             
             grid.addWidget(k0Edit, 3, 0, 1, 2, Qt.AlignRight)
-            lbl1 = QLabel('Zoekterm')  
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 4, 0)
             grid.addWidget(zktermEdit, 4, 1)
@@ -124,7 +124,7 @@ def zoeken(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 1, 1, 1, 1, Qt.AlignRight)
    
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 5, 1 , 1 ,1, Qt.AlignRight)
@@ -132,7 +132,7 @@ def zoeken(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 5, 1, 1, 2)
@@ -208,7 +208,7 @@ def toonArtikelen(keuze,zoekterm, m_email, momschr, clusternr):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(100, 50, 1350, 900)
-            self.setWindowTitle('Cluster Artikelen')
+            self.setWindowTitle('Cluster Articles')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint) 
@@ -250,8 +250,8 @@ def toonArtikelen(keuze,zoekterm, m_email, momschr, clusternr):
                 return self.header[col]
             return None
      
-    header = ['Artikelnr', 'Omschrijving', 'Prijs', 'Voorraad', 'Eenheid',\
-          'MinVrd', 'BestGr', 'Locatie', 'Groep', 'Categorie', 'Afmeting']
+    header = ['Article number', 'Description', 'Price', 'Stock', 'Unit',\
+          'Minimum\nstock', 'Order size', 'Location', 'Group', 'Category', 'Size']
 
     metadata = MetaData()
 
@@ -317,18 +317,18 @@ def toonArtikelen(keuze,zoekterm, m_email, momschr, clusternr):
                     self.logo.setPixmap(self.pixmap)
                     grid.addWidget(self.logo , 0, 2, 1, 1, Qt.AlignRight)
                                   
-                    grid.addWidget(QLabel('Clusternummer               '+clusternr+\
+                    grid.addWidget(QLabel('Cluster number              '+clusternr+\
                                         '\n'+momschr[:35]), 1, 1, 1, 3)
                         
                     self.setFont(QFont('Arial', 10))
-                    grid.addWidget(QLabel('Artikelnummer               '+str(artikelnr)), 3, 1, 1, 3)
+                    grid.addWidget(QLabel('Article number              '+str(artikelnr)), 3, 1, 1, 3)
                                   
-                    self.setWindowTitle("Clusters Samenstellen")
+                    self.setWindowTitle("Building clusters")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                     self.setFont(QFont('Arial', 10))
                
                     self.Hoeveelheid = QLabel(self)
-                    self.Hoeveelheid.setText('Hoeveelheid ')
+                    self.Hoeveelheid.setText('Amount ')
                     self.hoev = QLineEdit(self)
                     self.hoev.setFixedWidth(210)
                     reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
@@ -340,16 +340,16 @@ def toonArtikelen(keuze,zoekterm, m_email, momschr, clusternr):
                     
                     grid.addWidget(QLabel('\u00A9 2017 all rights reserved\n     dj.jansen@casema.nl'), 6, 0, 1, 3, Qt.AlignCenter)
                     
-                    self.applyBtn = QPushButton('Invoeren', self)
+                    self.applyBtn = QPushButton('Insert', self)
                     self.applyBtn.clicked.connect(self.clickMethod)
                     grid.addWidget(self.applyBtn, 5, 2, 1, 1, Qt.AlignRight)
                     self.applyBtn.setFont(QFont("Arial",10))
                     self.applyBtn.setFixedWidth(100)
                     self.applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
                     
-                    self.cancelBtn = QPushButton('Sluiten')
+                    self.cancelBtn = QPushButton('Close')
                     self.cancelBtn.clicked.connect(self.close)
-                    grid.addWidget(self.cancelBtn, 5, 1, 1, 2, Qt.AlignCenter) 
+                    grid.addWidget(self.cancelBtn, 5, 2, 1, 2)
                     self.cancelBtn.setFont(QFont("Arial",10))
                     self.cancelBtn.setFixedWidth(100)
                     self.cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")

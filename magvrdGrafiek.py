@@ -19,7 +19,7 @@ def alertText(m_email):
     msg.setWindowIcon(QIcon('./logos/logo.jpg'))
     msg.setFont(QFont("Arial", 10))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Gegevens voor grafiek niet volledig!')
+    msg.setText('Data for chart not complete!')
     msg.setWindowTitle('Warning message')
     msg.exec_() 
     hoofdMenu(m_email)
@@ -43,20 +43,20 @@ def toonGrafiek(m_email):
     class Window(QDialog):
         def __init__(self):          
             QDialog.__init__(self)
-            self.setWindowTitle("Printen grafiek magazijnvoorraad bedragen") 
+            self.setWindowTitle("Printing chart warehouse stock amounts")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                                                   Qt.WindowMinMaxButtonsHint)
             self.chart = QChart()
             self.chart_view = QChartView(self.chart)
             self.chart_view.setRenderHint(QPainter.Antialiasing)
-            self.buttonPreview = QPushButton('Afdrukvoorbeeld', self)
+            self.buttonPreview = QPushButton('Printing preview', self)
             self.buttonPreview.setStyleSheet("color: black;  background-color: gainsboro")
             self.buttonPreview.clicked.connect(self.handle_preview)
-            self.buttonPrint = QPushButton('Printen', self)
+            self.buttonPrint = QPushButton('Printing', self)
             self.buttonPrint.setStyleSheet("color: black;  background-color: gainsboro")
             self.buttonPrint.clicked.connect(self.handle_print) 
-            self.sluiten = QPushButton('Sluiten', self)
+            self.sluiten = QPushButton('Close', self)
             self.sluiten.setStyleSheet("color: black;  background-color: gainsboro")
             self.sluiten.clicked.connect(lambda: sluiten(self, m_email))
             layout = QGridLayout(self)
@@ -67,14 +67,14 @@ def toonGrafiek(m_email):
             self.create_chart()
   
         def create_chart(self):
-            self.chart.setTitle('Grafiek financieën magazijnvoorraad')
+            self.chart.setTitle('Chart finances warehouse inventory')
             font = QFont("Sans Serif", 10)
             font.setWeight(QFont.Bold)
             self.chart.setTitleFont(font)
            
-            set0 = QBarSet('Totaal')
-            set1 = QBarSet('Courant')
-            set2 = QBarSet('Incourant')
+            set0 = QBarSet('Total')
+            set1 = QBarSet('Current')
+            set2 = QBarSet('Obsolete')
             
             set0 << rpvrd[0][1] << rpvrd[1][1] << rpvrd[2][1] << rpvrd[3][1] << rpvrd[4][1] << rpvrd[5][1] << rpvrd[6][1] << rpvrd[7][1] << rpvrd[8][1] << rpvrd[9][1] << rpvrd[10][1] << rpvrd[11][1] 
             set1 << rpvrd[0][2] << rpvrd[1][2] << rpvrd[2][2] << rpvrd[3][2] << rpvrd[4][2] << rpvrd[5][2] << rpvrd[6][2] << rpvrd[7][2] << rpvrd[8][2] << rpvrd[9][2] << rpvrd[10][2] << rpvrd[11][2] 
@@ -94,7 +94,7 @@ def toonGrafiek(m_email):
             self.chart.createDefaultAxes()  
             axisX = QBarCategoryAxis()
             axisX.append(categories)
-            axisX.setTitleText('Voortschrijdende periode over 12 maanden')
+            axisX.setTitleText('12-month rolling period')
             self.chart.setAxisX(axisX, barseries)
             axisX.setRange(rpvrd[0][0], rpvrd[11][0])
             axisX.setLabelsAngle(-90)
@@ -148,7 +148,7 @@ def magVoorraad(m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(100, 50, 600, 900)
-            self.setWindowTitle('Jaarverbruik afgelopen jaar')
+            self.setWindowTitle('Annual consumption last year')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -189,7 +189,7 @@ def magVoorraad(m_email):
                 return self.header[col]
             return None
                                         
-    header = ['Jaar-Maand', 'Totaal Voorraad', 'Courante Voorraad', 'Incourante Voorraad']    
+    header = ['Year-Month', 'Total stock', 'Current stock', 'Obsolete stock']
         
     data_list=[]
     for row in rpvrd:

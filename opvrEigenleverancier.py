@@ -37,7 +37,7 @@ def eigenLeverancier(m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(50, 50, 1500, 900)
-            self.setWindowTitle('Leveranciers opvragen')
+            self.setWindowTitle('Suppliers requesting')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -79,9 +79,9 @@ def eigenLeverancier(m_email):
                 return self.header[col]
             return None
   
-    header = ['Leveranciernummer','Bedrijfsnaam', 'Rechtsvorm','BTWnummer',\
-              'KvKnummer','Telefoonnummer','Straat', 'Huisnummer','Toevoeging',\
-              'Postcode','Woonplaats']  
+    header = ['Supplier number','Company name', 'Legal status','VAT number',\
+              'KvK number','Telephone number','Street', 'House number','Suffix',\
+              'Zipcode','Residence']  
   
     data_list=[]
     for row in rplev:

@@ -13,17 +13,17 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Icluster-artikelen opvragen')               
-    msg.exec_() 
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Request cluster articles')
+    msg.exec_()
     
 def geenRegels():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Er zijn nog geen artikelregels aanwezig voor dit cluster!')
-    msg.setWindowTitle('Cluster-artikelen opvragen')               
+    msg.setText('There are no article rules for this cluster yet!')
+    msg.setWindowTitle('Request cluster articles')
     msg.exec_()
     
 def ongInvoer():
@@ -31,8 +31,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Icluster-artikelen opvragen')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Request cluster articles')
     msg.exec_()
     
 def windowSluit(self, m_email):
@@ -43,7 +43,7 @@ def zoeken(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Cluster artikelregels")
+            self.setWindowTitle("Cluster article lines")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -53,16 +53,16 @@ def zoeken(m_email):
             k0Edit.setFixedWidth(340)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('            Sorteersleutel Clustergroepen')
+            k0Edit.addItem('            Cluster Groups Sort Key')
             k0Edit.addItem('0. Alle Clusters')
-            k0Edit.addItem('LA-LK. Bewerkte onderdelen')
-            k0Edit.addItem('MA-MK. Bouten en Moeren')
-            k0Edit.addItem('NA-NK. Gietwerk bewerking')
-            k0Edit.addItem('OA-OK. Laswerk samengesteld')
-            k0Edit.addItem('PA-PK. Plaatwerk samengesteld')
-            k0Edit.addItem('RA-RK. Kunstof onderdelen')
-            k0Edit.addItem('SA-SK. Prefab Montagedelen')
-            k0Edit.addItem('TA-TK. Samengestelde Onderdelen')
+            k0Edit.addItem('LA-LK. Machined parts')
+            k0Edit.addItem('MA-MK. Bolts and nuts')
+            k0Edit.addItem('NA-NK. Casting machining')
+            k0Edit.addItem('OA-OK. Welding composite')
+            k0Edit.addItem('PA-PK. Sheet metal assembled')
+            k0Edit.addItem('RA-RK. Plastic parts')
+            k0Edit.addItem('SA-SK. Prefab mounting parts')
+            k0Edit.addItem('TA-TK. Composite parts')
             k0Edit.activated[str].connect(self.k0Changed)
     
             grid = QGridLayout()
@@ -85,7 +85,7 @@ def zoeken(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
    
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 2, 1, 1, 1, Qt.AlignRight)
@@ -93,7 +93,7 @@ def zoeken(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 2, 0, 1 , 2, Qt.AlignCenter)
@@ -129,7 +129,7 @@ def  toonIclusterartikelen(zoekterm, m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(50, 50, 1800, 900)
-            self.setWindowTitle('Artikelen per cluster opvragen')
+            self.setWindowTitle('Request articles per cluster')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -171,12 +171,12 @@ def  toonIclusterartikelen(zoekterm, m_email):
                 return self.header[col]
             return None
               
-    header = ['Clusternr', 'Omschrijving', 'Prijs', 'Eenheid', 'Materialen', 'Lonen',\
-              'Diensten', 'Materiëel', 'Inhuur', 'Zagen', 'Schaven','Steken',\
-              'Boren', 'Frezen', 'Draaien-klein', 'Draaien-groot', 'Tappen',\
-              'Nube-draaien', 'Nube-bewerken', 'Knippen', 'Kanten',\
-              'Stansen', 'Lassen-CO2', 'Lassen-Hand', 'Verpakken', 'Verzinken',\
-              'Moffelen', 'Schilderen', 'Spuiten', 'Ponsen','Persen','Gritstralen']
+    header = ['Cluster number', 'Description', 'Price', 'Unit', 'Materials', 'Wages',\
+              'Services', 'Equipment', 'Hiring', 'Sawing', 'Planing','Stabbing',\
+              'Drilling', 'Milling', 'Turning small', 'Turning big', 'Threading',\
+              'CNC turning', 'CNC milling', 'Cutting', 'Folding',\
+              'Die-cutting', 'Welding CO2', 'Welding hand', 'Packing', 'Galvanise',\
+              'Muffling', 'Painting', 'Spraying', 'Punching','Pressing','Grit blasting']
     
     metadata = MetaData()
     iclusters = Table('iclusters', metadata,
@@ -271,7 +271,7 @@ def  toonIclusterartikelen(zoekterm, m_email):
                         
                         grid = QGridLayout()
                         grid.setSpacing(20)
-                        self.setWindowTitle("Opvragen artikelregels per cluster")
+                        self.setWindowTitle("Request article lines per cluster")
                         self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                         
                         self.setFont(QFont('Arial', 10))   
@@ -307,41 +307,41 @@ def  toonIclusterartikelen(zoekterm, m_email):
                         grid = QGridLayout()
                         grid.setSpacing(20)
                         
-                        lbl1 = QLabel('Clusternummer')  
+                        lbl1 = QLabel('Cluster number')
                         lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                         grid.addWidget(lbl1, 1, 0)
                         
                         lbl2 = QLabel(clusternr)
                         grid.addWidget(lbl2, 1, 1)
                         
-                        lbl9 = QLabel('Regelnummer: ')
+                        lbl9 = QLabel('Line number: ')
                         lbl9.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                         grid.addWidget(lbl9, 1, 2)
                         
                         lbl10 = QLabel(str(regel))
                         grid.addWidget(lbl10, 1, 3)
                                
-                        lbl3 = QLabel('Clusteromschrijving')  
+                        lbl3 = QLabel('Cluster description')
                         lbl3.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                         grid.addWidget(lbl3, 2, 0)
                         grid.addWidget(q1Edit, 2, 1, 1, 3) 
                         
-                        lbl8 = QLabel('Artikelnummer')  
+                        lbl8 = QLabel('Article number')
                         lbl8.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                         grid.addWidget(lbl8, 3, 0)
                         grid.addWidget(q6Edit, 3, 1)
                                                                 
-                        lbl4 = QLabel('Artikelprijs')  
+                        lbl4 = QLabel('Article price')
                         lbl4.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                         grid.addWidget(lbl4, 4, 0)
                         grid.addWidget(q2Edit, 4, 1)
                         
-                        lbl5 = QLabel('Hoeveelheid\nArtikelen per cluster')  
+                        lbl5 = QLabel('Quantity\nArticles per cluster')
                         lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                         grid.addWidget(lbl5, 5, 0)
                         grid.addWidget(q3Edit, 5, 1)
                        
-                        lbl7 = QLabel('Artikelomschrijving')  
+                        lbl7 = QLabel('Article description')
                         lbl7.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                         grid.addWidget(lbl7, 6, 0)
                         grid.addWidget(q5Edit, 6, 1, 1, 3)
@@ -361,7 +361,7 @@ def  toonIclusterartikelen(zoekterm, m_email):
                         self.setLayout(grid)
                         self.setGeometry(500, 300, 150, 150)
                 
-                        applyBtn = QPushButton('Regels')
+                        applyBtn = QPushButton('Lines')
                         applyBtn.clicked.connect(self.accept)
                 
                         grid.addWidget(applyBtn, 7, 3, 1, 1, Qt.AlignRight)

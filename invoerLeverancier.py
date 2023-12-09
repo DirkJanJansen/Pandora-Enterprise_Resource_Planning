@@ -12,8 +12,8 @@ def foutPostcode():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Foutieve postcode ingevoerd!')
-    msg.setWindowTitle('Postcode')
+    msg.setText('Zipcode incorrectly inserted!')
+    msg.setWindowTitle('Zipcode')
     msg.exec_()
     
 def hash_password(password):
@@ -28,8 +28,8 @@ def geenGegevens():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Niet (alle) vereiste gegevens ingevuld!')
-    msg.setWindowTitle('Gegevens!')
+    msg.setText('Not (all) required data filled in!')
+    msg.setWindowTitle('Data!')
     msg.exec_()
     
 def windowSluit(self, m_email):
@@ -41,8 +41,8 @@ def fout_email():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('ongeldig email adres!')
-    msg.setWindowTitle('e-mailadres!')
+    msg.setText('Invalid email address!')
+    msg.setWindowTitle('e-mail address!')
     msg.exec_()
 
 def foutTelnr():
@@ -50,8 +50,8 @@ def foutTelnr():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('geen 10 cijfers!')
-    msg.setWindowTitle('Telefoonnummer!')
+    msg.setText('No 10 digits!')
+    msg.setWindowTitle('Telephone number!')
     msg.exec_()
 
 def dontMatch():
@@ -59,8 +59,8 @@ def dontMatch():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Wachtwoord niet identiek\nen/of minder dan 8 tekens!')
-    msg.setWindowTitle('Wachtwoord!')
+    msg.setText('Password not identical/or less than 8 characters!')
+    msg.setWindowTitle('Password!')
     msg.exec_()
  
 def leverancierBestaat():
@@ -68,7 +68,7 @@ def leverancierBestaat():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Leverancier is al aanweizg!')
+    msg.setText('Supplier is already present!')
     msg.setWindowTitle('Account')
     msg.exec_()
 
@@ -105,15 +105,15 @@ def Invoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Invoer gelukt!')
-    msg.setWindowTitle('Leveranciergegevens')
+    msg.setText('Insert successful!')
+    msg.setWindowTitle('Supplier information')
     msg.exec_()
 
 def invLeverancier(mlevnr, m_email):                                 
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Invoer leverancier")
+            self.setWindowTitle("Insert supplier")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                                   
             self.setFont(QFont('Arial', 10))
@@ -215,44 +215,44 @@ def invLeverancier(mlevnr, m_email):
             grid.addWidget(logo , 0, 2, 1, 2, Qt.AlignRight)
     
             self.setFont(QFont('Arial', 10))
-            grid.addWidget(QLabel('Nieuwe leverancier invoeren'), 0, 1, 1, 2,Qt.AlignCenter)
+            grid.addWidget(QLabel('Insert new supplier'), 0, 1, 1, 2,Qt.AlignCenter)
                         
-            grid.addWidget(QLabel('                              *'), 1, 0) 
-            grid.addWidget(QLabel('Verplichte velden'), 1, 1)   
+            grid.addWidget(QLabel('                               *'), 1, 0) 
+            grid.addWidget(QLabel('Required fields'),1, 1)   
                          
-            grid.addWidget(QLabel('Bedrijfsnaam           *'), 2, 0)
+            grid.addWidget(QLabel('Company name        *'), 2, 0)
             grid.addWidget(q3Edit, 2, 1, 1, 3)  
                  
-            grid.addWidget(QLabel('Rechtsvorm             *'), 3, 0)
+            grid.addWidget(QLabel('Legal status              *'), 3, 0)
             grid.addWidget(q5Edit, 3, 1) 
             
-            grid.addWidget(QLabel('BTWnummer   *'), 3, 1, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('VAT number   *'), 3, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(q2Edit, 3, 2) 
             
-            grid.addWidget(QLabel('KvKnummer             *'), 4, 0)
+            grid.addWidget(QLabel('KvK number              *'), 4, 0)
             grid.addWidget(q4Edit, 4, 1) 
                  
-            grid.addWidget(QLabel('Postcode  *'), 4, 1, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Zipcode   *'), 4, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(q6Edit, 4, 2)
      
-            grid.addWidget(QLabel('Huisnummer            *'), 5, 0)
+            grid.addWidget(QLabel('House number           *'), 5, 0)
             grid.addWidget(q7Edit, 5, 1)
     
-            grid.addWidget(QLabel('Toevoeging'), 5, 1, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Suffix'), 5, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(q8Edit, 5, 2)
       
-            grid.addWidget(QLabel('Telefoonnummer      *'), 6, 0)
+            grid.addWidget(QLabel('Telephone number     *'), 6, 0)
             grid.addWidget(q12Edit, 6, 1) 
             
-            grid.addWidget(QLabel('Leveranciernummer'), 7, 0)
+            grid.addWidget(QLabel('Supplier number'), 7, 0)
             grid.addWidget(q13Edit, 7, 1) 
                                 
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 8, 1)
               
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
             
-            applyBtn = QPushButton('Invoeren')
+            applyBtn = QPushButton('Insert')
             applyBtn.clicked.connect(self.accept)
                        
             grid.addWidget(applyBtn, 7, 2, 1, 1, Qt.AlignRight)

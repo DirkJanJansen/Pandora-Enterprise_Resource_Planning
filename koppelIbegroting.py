@@ -17,8 +17,8 @@ def foutWerknr():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Werkorder niet aanwezig, \nmaak eerst een werkorder aan,\nalvorens de begroting te koppelen!')
-    msg.setWindowTitle('Koppel begroting')
+    msg.setText('Work order not present, \ncreate a work order first,\nbefore linking the budget!')
+    msg.setWindowTitle('Linking budget')
     msg.exec_()
     
 def gekoppeld():
@@ -26,8 +26,8 @@ def gekoppeld():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Werknummer is reeds gekoppeld!')
-    msg.setWindowTitle('Koppel begroting')
+    msg.setText('Work number is already linked!')
+    msg.setWindowTitle('Linking budget')
     msg.exec_()
         
 def verwFout(mwerknr):
@@ -35,8 +35,8 @@ def verwFout(mwerknr):
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Koppeling heeft al plaatsgevonden\nde begrote gegevens zijn eerder\nnaar werk '+str(mwerknr)+' overgezet!')
-    msg.setWindowTitle('Koppel begroting')
+    msg.setText('Link has already taken place\nthe budgeted data is earlier\nto work '+str(mwerknr)+' transferred!')
+    msg.setWindowTitle('Linking budget')
     msg.exec_()
     
 def foutCalc():
@@ -44,8 +44,8 @@ def foutCalc():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Calculatie niet aanwezig!')
-    msg.setWindowTitle('Koppel begroting')
+    msg.setText('Calculation not present!')
+    msg.setWindowTitle('Linking budget')
     msg.exec_()
         
 def geenOpdracht():
@@ -53,8 +53,8 @@ def geenOpdracht():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Nog geen opdracht aanwezig!')
-    msg.setWindowTitle('Koppel begroting')
+    msg.setText('Order not yet present!')
+    msg.setWindowTitle('Linking budget')
     msg.exec_()
 
 def gegevensOk():
@@ -62,15 +62,15 @@ def gegevensOk():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Transfer is gelukt!')
-    msg.setWindowTitle('Koppel begroting')
+    msg.setText('Transfer is successful!')
+    msg.setWindowTitle('Linking budget')
     msg.exec_()
    
 def zoekBegroting(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Calculatie koppelen")
+            self.setWindowTitle("Linking calculation")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -101,12 +101,12 @@ def zoekBegroting(m_email):
             lbl.setPixmap(pixmap)
             grid.addWidget(lbl , 1, 0)
             
-            lbl1 = QLabel('Calculatienummer')  
+            lbl1 = QLabel('Calculation number')
             lbl1.setAlignment(Qt.AlignRight)
             grid.addWidget(lbl1, 3, 0)
             grid.addWidget(zkcalcEdit, 3, 1)
             
-            lbl2 = QLabel('Werkorder')
+            lbl2 = QLabel('Work order')
             lbl2.setAlignment(Qt.AlignRight)
             grid.addWidget(lbl2, 4, 0)
             grid.addWidget(zkwerknrEdit, 4, 1)
@@ -121,7 +121,7 @@ def zoekBegroting(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo ,  1, 0, 1, 2, Qt.AlignRight)
    
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 6, 1)
@@ -129,7 +129,7 @@ def zoekBegroting(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 6, 0, 1, 1,Qt.AlignRight)
@@ -203,9 +203,9 @@ def zoekBegroting(m_email):
 def koppelCalc(mcalnr, mwerknr, mwerkomschr, m_email):
     msgBox=QMessageBox()
     msgBox.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
-    msgBox.setWindowTitle("Begroting Koppelen")
+    msgBox.setWindowTitle("Linking budget")
     msgBox.setIcon(QMessageBox.Warning)
-    msgBox.setText('Omschrijving: '+mwerkomschr+'\nDeze calculatie alleen koppelen\nindien gegevens definitief zijn\nDoorgaan?')
+    msgBox.setText('Description: '+mwerkomschr+'\nThis calculation only linking\nthen data is definitive\nProceed?')
     msgBox.setStandardButtons(QMessageBox.Yes)
     msgBox.addButton(QMessageBox.No)
     msgBox.setDefaultButton(QMessageBox.Yes)

@@ -16,32 +16,32 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Urenmutaties opvragen')               
-    msg.exec_() 
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Request hours mutations')
+    msg.exec_()
 
 def geenRecord():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Urenmutaties opvragen')               
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Request hours mutations')
     msg.exec_() 
 
 def foutInvoer():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Foutieve Invoer')
-    msg.setWindowTitle('Urenmutaties opvragen')               
+    msg.setText('Incorrect input!')
+    msg.setWindowTitle('Request hours mutations')
     msg.exec_() 
   
 def loonKeuze(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Overzicht loongegevens portal-boekhouding")
+            self.setWindowTitle("Overview payroll data portal accounting")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Times', 10))
@@ -51,14 +51,14 @@ def loonKeuze(m_email):
             k4Edit.setFixedWidth(220)
             k4Edit.setFont(QFont("Times", 10))
             k4Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k4Edit.addItem('         Maak uw keuze')
-            k4Edit.addItem('1. Alle loongegevens')
-            k4Edit.addItem('2. Soort uren categorie')
-            k4Edit.addItem('3. Loongroep tot-met.')
-            k4Edit.addItem('4. Periode jjjj(-mm(-dd)).')
-            k4Edit.addItem('5. Werknummer.')
-            k4Edit.addItem('6. Indirect/Direct I of D.')
-            k4Edit.addItem('7. Op (deel) achternaam.')
+            k4Edit.addItem('         Make your choice')
+            k4Edit.addItem('1. All wage data.')
+            k4Edit.addItem('2. Type of hours category.')
+            k4Edit.addItem('3. Wage group to-including.')
+            k4Edit.addItem('4. Period yyyy(-mm(-dd)).')
+            k4Edit.addItem('5. Work number.')
+            k4Edit.addItem('6. Indirect/Direct I or D.')
+            k4Edit.addItem('7. By (partial) surname.')
             k4Edit.activated[str].connect(self.k4Changed)
             
             self.Zoekterm = QLabel()
@@ -76,7 +76,7 @@ def loonKeuze(m_email):
             grid.addWidget(lbl , 0, 0, 1, 2)
                                   
             grid.addWidget(k4Edit, 1, 1)
-            lbl1 = QLabel('Zoekterm')  
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 2, 0)
             grid.addWidget(zktermEdit, 2, 1)
@@ -91,7 +91,7 @@ def loonKeuze(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
     
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 3, 1, 1 , 1, Qt.AlignRight)
@@ -99,7 +99,7 @@ def loonKeuze(m_email):
             applyBtn.setFixedWidth(110)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 3, 1)
@@ -267,7 +267,7 @@ def toonMutaties(keuze, zoekterm, m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(10, 50, 1400, 900)
-            self.setWindowTitle('Loonbetalingen opvragen')
+            self.setWindowTitle('Request wage payments')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -310,9 +310,9 @@ def toonMutaties(keuze, zoekterm, m_email):
                 return self.header[col]
             return None
               
-    header = ['Acountnummer', 'Voornaam', 'Tussenvoegsel', 'Achternaam', 'Loonschaal',\
-      'Tabelloon', 'Reisuurloon','Aantal uren','Soort uren', 'Bruto-loonbedrag',\
-      'Werknummer', 'Boekdatum','Meerwerkstatus']
+    header = ['Account number', 'First name', 'Infix', 'Surname', 'Wage scale',\
+      'Table wages', 'Travel hourly wage','Number of hours','Type of hours', 'Gross salary amount',\
+      'Work number', 'Book date','Additional work status']
     
     data_list=[]
     for row in rpwrklonen:

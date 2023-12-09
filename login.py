@@ -4,7 +4,7 @@ from validZt import zt
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont, QPixmap, QIcon, QMovie, QColor
 from PyQt5.QtWidgets import (QDialog, QGridLayout, QMessageBox,\
-                             QLabel, QLineEdit, QPushButton, QComboBox)
+                             QLabel, QLineEdit, QPushButton, QComboBox, QFrame)
 from sqlalchemy import (Table, Column, Integer, String, MetaData,\
                     create_engine, select)
 
@@ -13,7 +13,7 @@ def check_password(hashed_password, user_password):
     (password, salt) = hashed_password.split(':')
     return (password == hashlib.sha256(salt.encode() + user_password.encode()).hexdigest())
 
-def totZiens():
+def goodbye():
     msg = QMessageBox()
     msg.setStyleSheet("font: 10pt Arial; color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
@@ -23,8 +23,8 @@ def totZiens():
     home = os.path.expanduser("~")
     os.remove(str(home)+'/.pandora_lock')
     '''
-    msg.setText('Tot ziens!       ')
-    msg.setWindowTitle('Loginscherm')
+    msg.setText('Goodbye!       ')
+    msg.setWindowTitle('LOGON')
     msg.exec_()
     sys.exit()
      
@@ -32,13 +32,13 @@ def info():
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Informatie ERP Systeem Pandora")
+            self.setWindowTitle("Information ERP System Pandora")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setFont(QFont('Arial', 10))
             grid = QGridLayout()
             grid.setSpacing(20)
             
-            lblinfo = QLabel('Informatie ERP Pandora')
+            lblinfo = QLabel('Information ERP Pandora')
             grid.addWidget(lblinfo, 0, 0, 1, 2, Qt.AlignCenter)
             lblinfo.setStyleSheet("color:rgba(45, 83, 115, 255); font: 25pt Comic Sans MS")
             
@@ -55,28 +55,28 @@ def info():
             infolbl = QLabel(
       '''
 
-        Informatie Enterprise Resource Planning (ERP) systeem Pandora 
+        Information Enterprise Resource Planning (ERP) system Pandora 
         
-        De software valt onder GNU GPLv3 (Licentie is bijgesloten).
+        The software is licensed under GNU GPLv3 (License is enclosed).
          
-        Het systeem is ontworpen in Python 3 met PyQt5 als grafische interface.
-        Als relationeel database systeem is toegepast PostgreSQL met interface SQLAlchemy Core.
-        De inlog is gerealiseerd met gecrypte SHA256 controle met geauthoriseerde
-        en per account instelbare permissies. Dit op menuniveau en op overige bewerkingen
-        b.v. bestellen, opvragen, invoeren, wijzigen, printen enz. De permissies kunnen door
-        bevoegde personen worden toegekend of aangepast. Het aanmaken van een account kan door elke
-        persoon geschieden. Het account wordt standaard met de permissies opvragen en wijzigen
-        van account, plaatsen webbestellingen, opvragen en printen van bestelgegegevens aangemaakt.
-        Alle overige authorisaties dienen door een daartoe bevoegd persoon te worden uitgevoerd.
-        Koppeling van het account is mogelijk naar werknemer, leverancier of koper. Met bevoegdheden
-        per afdeling of werkdiscipline kunnen dan de overige bevoegdheden worden toegekend.
-        Zie voor bevoegdheden de info bij onderhoudsmenu-authorisaties.
-        Vanuit het hoofdmenu zijn de volgende submenu's toegankelijk:
-        Accounts, Leveranciers, Werknemers, Inkoop, Verkoop, Magazijn, Werken Intern, Werken Extern,\t
-        Calculatie Intern, Calculatie Extern, Loonadminstratie, Boekhouding, Voorraadmanagement,
-        Management Informatie, Onderhoud, Herprinten formulieren. 
-        Het authoriseren van deze submenu's en bewerkingen kunnen worden toegekend met
-        het onderhoudsmenu, bevoegdheden muteren.                                   
+        The system is designed in Python 3 with PyQt5 as the graphical interface.
+        As relational database system is applied PostgreSQL with interface SQLAlchemy Core.
+        The login is realized with encrypted SHA256 control with authorized
+        and account-adjustable permissions. This at menu level and on other operations
+        e.g. ordering, requesting, entering, changing, printing, etc. The permissions can be assigned
+        by authorized persons. The creation of a account can be done by any person.
+        By default, the account is created with the permissions to query and change own account,
+        placing web orders, requesting and printing order data.
+        All other authorizations must be carried out by an authorized person.
+        Linking of the account is possible to employee, supplier, or buyer. 
+        The other authorizations can then be granted for each department or work discipline.
+        For this privileges, see the info for maintenance menu authorizations.
+        The following submenus can be accessed from the main menu:
+        Accounts, Suppliers, Employees, Purchasing, Sales, Warehouse, Working Internally, Working Externally,\t
+        Calculation Internal, External Calculation, Wages Administration, Accounting, Stock Management,
+        Management Information, Maintenance, Reprinting forms. 
+        Authorizing these submenus and operations can be assigned with
+        the maintenance menu, mutate permissions.                                 
   
      ''')
             grid.addWidget(infolbl, 1, 0)
@@ -84,7 +84,7 @@ def info():
             infolbl.setStyleSheet("font: 10pt Comic Sans MS; color: black ; background-color: #D9E1DF")   
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 2, 0, 1, 2, Qt.AlignCenter)
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(self.close)  
             
             grid.addWidget(cancelBtn, 2, 0, 1, 1,  Qt.AlignRight)
@@ -102,13 +102,13 @@ def closeIt(self):
     self.close()
     inlog()  
       
-def geenKeuze():
+def noChoice():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen keuze\nof meer dan één keuze gemaakt!')
-    msg.setWindowTitle('KEUZEMENU')
+    msg.setText('No choice\nor more than one choice made!')
+    msg.setWindowTitle('MENU')
     msg.exec_()
     
 def capslkOn():
@@ -116,47 +116,47 @@ def capslkOn():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Capslock is ingeschakeld!')
-    msg.setWindowTitle('AANMELDING!')
+    msg.setText('Capslock is enabled!')
+    msg.setWindowTitle('ENTRY!')
     msg.exec_()
 
-def foutemailAdres():
+def wrongemailAddress():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('E-mail adres onjuist')
-    msg.setWindowTitle('AANMELDING')
+    msg.setText('E-mail address incorrect')
+    msg.setWindowTitle('ENTRY')
     msg.exec_()
 
-def foutWachtw():
+def wrongPassword():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Wachtwoord onjuist')
-    msg.setWindowTitle('AANMELDING')
+    msg.setText('Password incorrect')
+    msg.setWindowTitle('ENTRY')
     msg.exec_()
     
-def foutKlantnummer():
+def wrongcustomNumber():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Klantnummer onjuist!')
-    msg.setWindowTitle('AANMELDING')
+    msg.setText('Customnumber incorrect!')
+    msg.setWindowTitle('ENTRY')
     msg.exec_()
     
-def foutInlog():
+def wrongLogon():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Inlog onjuist!')
-    msg.setWindowTitle('AANMELDING')
+    msg.setText('Logon failed!')
+    msg.setWindowTitle('ENTRY')
     msg.exec_()
 
-def maakAccount(self):
+def createAccount(self):
     from invoerAccount import nieuwAccount
     nieuwAccount(self)
      
@@ -165,14 +165,14 @@ def inlog():
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Pandora bedrijfs informatie systeem login scherm")
-            self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
-     
+            self.setWindowTitle("Pandora business information system logon screen")
+            self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
+
             self.setFont(QFont('Arial', 10))
-            self.setStyleSheet("background-color: #D9E1DF") 
+            self.setStyleSheet("background-color: #D9E1DF")
             grid = QGridLayout()
             grid.setSpacing(20)
-            
+
             self.email = QLabel()
             emailEdit = QLineEdit()
             emailEdit.setStyleSheet("background: #F8F7EE")
@@ -187,82 +187,82 @@ def inlog():
             wachtwEdit.setFixedWidth(200)
             wachtwEdit.setFont(QFont("Arial",10))
             wachtwEdit.textChanged.connect(self.wachtwChanged)
- 
+
             lbl = QLabel()
             pixmap = QPixmap('./images/logos/verbinding.jpg')
             lbl.setPixmap(pixmap)
             grid.addWidget(lbl, 0, 0, 1, 2)
-            
-            lblinfo = QLabel(' Pandora login')
+
+            lblinfo = QLabel(' Pandora logon')
             grid.addWidget(lblinfo, 0, 1, 1, 2, Qt.AlignLeft)
             lblinfo.setStyleSheet("color:rgba(45, 83, 115, 255); font: 25pt Comic Sans MS")
-            
+
             logo = QLabel()
             pixmap = QPixmap('./images/logos/logo.jpg')
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 2, 1, 1, Qt.AlignRight)
-             
+
             pandora = QLabel()
             movie = QMovie('./images/logos/pyqt5.gif')
             pandora.setMovie(movie)
             movie.start()
             grid.addWidget(pandora, 1 ,0, 1, 3, Qt.AlignCenter)
-                 
-            grid.addWidget(QLabel('emailadres of\nKlantnummer'), 3, 1)
+
+            grid.addWidget(QLabel('emailaddress or\nAccountnumber'), 3, 1)
             grid.addWidget(emailEdit, 3, 2)
-    
-            grid.addWidget(QLabel('Wachtwoord'), 4, 1)
+
+            grid.addWidget(QLabel('Password'), 4, 1)
             grid.addWidget(wachtwEdit, 4, 2)
-                                   
+
             self.setLayout(grid)
             self.setGeometry(600, 250, 150, 150)
-            
-            applyBtn = QPushButton('Login')
+
+            applyBtn = QPushButton('Logon')
             applyBtn.clicked.connect(self.accept)
-            
+
             grid.addWidget(applyBtn, 5, 1, 1 , 2, Qt.AlignRight)
             applyBtn.setFont(QFont("Arial",10))
             applyBtn.setFixedWidth(90)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
-                       
-            cancelBtn = QPushButton('Afsluiten')
-            cancelBtn.clicked.connect(lambda: totZiens())
-                                      
+
+            cancelBtn = QPushButton('Shutdown')
+            cancelBtn.clicked.connect(lambda: goodbye())
+
             grid.addWidget(cancelBtn,  5, 2)
             cancelBtn.setFont(QFont("Arial",10))
             cancelBtn.setFixedWidth(90)
             cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
-            
-            nwBtn = QPushButton('Nieuw Account')
-            nwBtn.clicked.connect(lambda: maakAccount(self))
-            
+
+            nwBtn = QPushButton('New Account')
+            nwBtn.clicked.connect(lambda: createAccount(self))
+
             grid.addWidget(nwBtn,  5, 0, 1, 2, Qt.AlignRight)
             nwBtn.setFont(QFont("Arial",10))
             nwBtn.setFixedWidth(140)
             nwBtn.setStyleSheet("color: black;  background-color: gainsboro")
-            
-            infoBtn = QPushButton('Informatie')
+
+            infoBtn = QPushButton('Information')
             infoBtn.clicked.connect(lambda: info())
-            
+
             grid.addWidget(infoBtn,  5, 0, 1, 2)
             infoBtn.setFont(QFont("Arial",10))
             infoBtn.setFixedWidth(120)
-            infoBtn.setStyleSheet("color: black;  background-color: gainsboro")           
-            
+            infoBtn.setStyleSheet("color: black;  background-color: gainsboro")
+
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 6, 0, 1, 3, Qt.AlignCenter)
-                       
+
         def emailChanged(self, text):
             self.email.setText(text)
-        
+
         def wachtwChanged(self, text):
             self.Wachtwoord.setText(text)
-        
+
         def returnemail(self):
             return self.email.text()
-        
+
         def returnWachtwoord(self):
             return self.Wachtwoord.text()
-        
+
         @staticmethod
         def getData(parent=None):
             dialog = Widget(parent)
@@ -273,11 +273,11 @@ def inlog():
     data = window.getData()
     for item in data:
          if item.startswith(' '):
-            geenKeuze()
+            noChoice()
             inlog()
     if sys.platform == 'win32':
-        from win32api import GetKeyState 
-        from win32con import VK_CAPITAL 
+        from win32api import GetKeyState
+        from win32con import VK_CAPITAL
         capslk = GetKeyState(VK_CAPITAL)
         if capslk == 1:
             capslkOn()
@@ -292,10 +292,10 @@ def inlog():
         Column('accountID', Integer(), primary_key=True),
         Column('email', String, nullable=False),
         Column('password', String, nullable=False))
-    
+
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     conn = engine.connect()
-    
+
     if data[0] and zt(data[0],12):
         m_email = data[0]
         sel = select([accounts]).where(accounts.c.email == m_email)
@@ -306,7 +306,7 @@ def inlog():
             m_email = rpaccount[1]
             mpassword = rpaccount[2]
         else:
-            foutemailAdres()
+            wrongemailAddress()
             inlog()
     elif data[0] and zt(data[0],1):
         mklantnr = data[0]
@@ -318,65 +318,66 @@ def inlog():
             m_email = rpaccount[1]
             mpassword = rpaccount[2]
         else:
-            foutKlantnummer()
+            wrongcustomNumber()
             inlog()
     else:
-        foutInlog()
+        wrongLogon()
         inlog()
-       
+
     if data[1]:
         mwachtw = data[1]
     else:
-        foutWachtw()
+        wrongPassword()
         inlog()
 
     if not check_password(mpassword,mwachtw):
-        foutWachtw()
+        wrongPassword()
         inlog()
     hoofdMenu(m_email)
-       
+
 def hoofdMenu(m_email):
     #structure Menu's
     class Widget(QDialog):
-        def __init__(self, parent=None):
+        def __init__(self, parent=None, accperms=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Pandora bedrijfs informatie systeem")
+            self.setWindowTitle("Pandora Business Information System")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setFont(QFont('Arial', 10))
-            self.setStyleSheet("background-color: #D9E1DF")  
+            self.setStyleSheet("background-color: #D9E1DF")
+
             self.Keuze0 = QLabel()
             k0Edit = QComboBox()
             k0Edit.setFixedWidth(310)
-            k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             k0Edit.addItem('Accounts')
+            k0Edit.setFont(QFont("Arial", 10))
             k0Edit.setEditable(True)
             k0Edit.lineEdit().setFont(QFont("Arial",10))
             k0Edit.lineEdit().setReadOnly(True)
             k0Edit.lineEdit().setAlignment(Qt.AlignCenter)
             k0Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k0Edit.addItem('1. Wijzigen account') 
-            k0Edit.addItem('2. Opvragen accounts')
-            k0Edit.addItem('3. Bestellen webartikelen')
-            k0Edit.addItem('4. Opvragen besteloverzicht')
-            k0Edit.addItem('5. Printen orderfacturen')
+            k0Edit.addItem('1. Modify account')
+            k0Edit.addItem('2. Requesting accounts')
+            k0Edit.addItem('3. Ordering web articles')
+            k0Edit.addItem('4. Requesting order overview')
+            k0Edit.addItem('5. Printing order invoices')
             k0Edit.activated[str].connect(self.k0Changed)
-             
+
             self.Keuze1 = QLabel()
             k1Edit = QComboBox()
             k1Edit.setFixedWidth(310)
             k1Edit.setFont(QFont("Arial",10))
             k1Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k1Edit.addItem('Leveranciers')
+            k1Edit.addItem('Suppliers')
             k1Edit.setEditable(True)
-            k1Edit.lineEdit().setFont(QFont("Arial", 10))
+            k1Edit.lineEdit().setFont(QFont("Arial",10))
             k1Edit.lineEdit().setReadOnly(True)
             k1Edit.lineEdit().setAlignment(Qt.AlignCenter)
             k1Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k1Edit.addItem('1. Invoeren leveranciergegevens')
-            k1Edit.addItem('2. Wijzigen leveranciergegevens')
-            k1Edit.addItem('3. Opvragen leveranciergegevens')
-            k1Edit.addItem('4. Zelf gegevens opvragen.')
+            k1Edit.addItem('1. Insert supplier data')
+            k1Edit.addItem('2. Modify supplier data')
+            k1Edit.addItem('3. Request supplier data')
+            k1Edit.addItem('4. Self requesting own data.')
             k1Edit.activated[str].connect(self.k1Changed)
             
             self.Keuze2 = QLabel()
@@ -384,16 +385,16 @@ def hoofdMenu(m_email):
             k2Edit.setFixedWidth(310)
             k2Edit.setFont(QFont("Arial",10))
             k2Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k2Edit.addItem('Werknemers')
+            k2Edit.addItem('Employees')
             k2Edit.setEditable(True)
-            k2Edit.lineEdit().setFont(QFont("Arial", 10))
+            k2Edit.lineEdit().setFont(QFont("Arial",10))
             k2Edit.lineEdit().setReadOnly(True)
             k2Edit.lineEdit().setAlignment(Qt.AlignCenter)
             k2Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k2Edit.addItem('1. Koppelen account-werknemer')
-            k2Edit.addItem('2. Wijzigen werknemergegevens')
-            k2Edit.addItem('3. Opvragen werknemersgegevens')
-            k2Edit.addItem('4. Opvragen werknemer-periode')
+            k2Edit.addItem('1. Connect account-employee')
+            k2Edit.addItem('2. Modify employee data')
+            k2Edit.addItem('3. Request employees data')
+            k2Edit.addItem('4. Request employee-period')
             k2Edit.activated[str].connect(self.k2Changed)
             
             self.Keuze3 = QLabel()
@@ -401,18 +402,18 @@ def hoofdMenu(m_email):
             k3Edit.setFixedWidth(310)
             k3Edit.setFont(QFont("Arial",10))
             k3Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k3Edit.addItem('Inkoop')
+            k3Edit.addItem('Purchase')
             k3Edit.setEditable(True)
-            k3Edit.lineEdit().setFont(QFont("Arial", 10))
+            k3Edit.lineEdit().setFont(QFont("Arial",10))
             k3Edit.lineEdit().setReadOnly(True)
             k3Edit.lineEdit().setAlignment(Qt.AlignCenter)
             k3Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k3Edit.addItem('1. Invoeren orders materialen')
-            k3Edit.addItem('2. Wijzigen orders materialen')
-            k3Edit.addItem('3. Invoeren orders diensten')
-            k3Edit.addItem('4. Wijzigen orders diensten')
-            k3Edit.addItem('5. Opvragen orders materialen')
-            k3Edit.addItem('6. Opvragen orders diensten')
+            k3Edit.addItem('1. Insert orders materials')
+            k3Edit.addItem('2. Modify orders materials')
+            k3Edit.addItem('3. Insert orders services/equipment')
+            k3Edit.addItem('4. Modify orders services/equipment')
+            k3Edit.addItem('5. Request orders materials')
+            k3Edit.addItem('6. Request orders services/equipment')
             k3Edit.activated[str].connect(self.k3Changed)
             
             self.Keuze4 = QLabel()
@@ -420,17 +421,17 @@ def hoofdMenu(m_email):
             k4Edit.setFixedWidth(310)
             k4Edit.setFont(QFont("Arial",10))
             k4Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k4Edit.addItem('Verkoop')
+            k4Edit.addItem('Sales')
             k4Edit.setEditable(True)
             k4Edit.lineEdit().setFont(QFont("Arial",10))
             k4Edit.lineEdit().setReadOnly(True)
             k4Edit.lineEdit().setAlignment(Qt.AlignCenter)
             k4Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k4Edit.addItem('1. Verkoop-bedrijf aanmaken')
-            k4Edit.addItem('2. Verkoop-bedrijf wijzigen')
-            k4Edit.addItem('3. Verkoop-bedrijven opvragen')
-            k4Edit.addItem('4. Zelf gegevens opvragen')
-            k4Edit.addItem('5. Webverkooporders opvragen')
+            k4Edit.addItem('1. Sales-company create')
+            k4Edit.addItem('2. Sales-company modify')
+            k4Edit.addItem('3. Sales-companies request')
+            k4Edit.addItem('4. Own data request')
+            k4Edit.addItem('5. Web sales orders requesting')
             k4Edit.activated[str].connect(self.k4Changed)
  
             self.Keuze5 = QLabel()
@@ -438,21 +439,21 @@ def hoofdMenu(m_email):
             k5Edit.setFixedWidth(310)
             k5Edit.setFont(QFont("Arial",10))
             k5Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k5Edit.addItem('Magazijn')
+            k5Edit.addItem('Warehouse')
             k5Edit.setEditable(True)
             k5Edit.lineEdit().setFont(QFont("Arial",10))
             k5Edit.lineEdit().setReadOnly(True)
             k5Edit.lineEdit().setAlignment(Qt.AlignCenter)
             k5Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k5Edit.addItem('1. Invoeren artikelen')
-            k5Edit.addItem('2. Wijzigen artikelen')
-            k5Edit.addItem('3. Opvragen artikelen')
-            k5Edit.addItem('4. Uitgifte materialen (raaplijst)')
-            k5Edit.addItem('5. Printen raaplijsten')
-            k5Edit.addItem('6. Boeken verschillen/overbodig')
-            k5Edit.addItem('7. Uitgifte webartikelen /printen')
-            k5Edit.addItem('8. Web-artikelen retour boeken')
-            k5Edit.addItem('9. Balieverkoop - barcodescan')
+            k5Edit.addItem('1. Insert articles')
+            k5Edit.addItem('2. Modify articles')
+            k5Edit.addItem('3. Request articles')
+            k5Edit.addItem('4. Issuing materials (picklist)')
+            k5Edit.addItem('5. Printing picklists')
+            k5Edit.addItem('6. Booking differences/obsolete')
+            k5Edit.addItem('7. Issuing web articles/printing')
+            k5Edit.addItem('8. Return booking web items')
+            k5Edit.addItem('9. Counter sales - barcode scan')
             k5Edit.activated[str].connect(self.k5Changed)
               
             self.Keuze6 = QLabel()
@@ -460,18 +461,18 @@ def hoofdMenu(m_email):
             k6Edit.setFixedWidth(310)
             k6Edit.setFont(QFont("Arial",10))
             k6Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k6Edit.addItem('Werken intern')
+            k6Edit.addItem('Works internally')
             k6Edit.setEditable(True)
-            k6Edit.lineEdit().setFont(QFont("Arial", 10))
+            k6Edit.lineEdit().setFont(QFont("Arial",10))
             k6Edit.lineEdit().setReadOnly(True)
             k6Edit.lineEdit().setAlignment(Qt.AlignCenter)
             k6Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k6Edit.addItem('1. Invoer werkopdrachten')
-            k6Edit.addItem('2. Wijzig werkopdrachten')
-            k6Edit.addItem('3. Opvragen werkopdrachten/printen')
-            k6Edit.addItem('4. Afroepen materialen')
-            k6Edit.addItem('5. Printen raaplijsten')
-            k6Edit.addItem('6. Uurverbruik muteren')
+            k6Edit.addItem('1. Insert work orders')
+            k6Edit.addItem('2. Modify work orders')
+            k6Edit.addItem('3. Request work orders/printing')
+            k6Edit.addItem('4. Calling materials')
+            k6Edit.addItem('5. Printing picklists')
+            k6Edit.addItem('6. Mutate hourly consumption')
             k6Edit.activated[str].connect(self.k6Changed)
             
             self.Keuze7 = QLabel()
@@ -479,19 +480,19 @@ def hoofdMenu(m_email):
             k7Edit.setFixedWidth(310)
             k7Edit.setFont(QFont("Arial",10))
             k7Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k7Edit.addItem('Werken extern')
+            k7Edit.addItem('Works externally')
             k7Edit.setEditable(True)
-            k7Edit.lineEdit().setFont(QFont("Arial", 10))
+            k7Edit.lineEdit().setFont(QFont("Arial",10))
             k7Edit.lineEdit().setReadOnly(True)
             k7Edit.lineEdit().setAlignment(Qt.AlignCenter)
             k7Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k7Edit.addItem('1. Invoeren werken')
-            k7Edit.addItem('2. Wijzigen werken')
-            k7Edit.addItem('3. Opvragen werken')
-            k7Edit.addItem('4. Afroepen materialen')
-            k7Edit.addItem('5. Printen raaplijsten')
-            k7Edit.addItem('6. Muteren kosten diensten')
-            k7Edit.addItem('7. Uurverbruik muteren')
+            k7Edit.addItem('1. Insert work orders')
+            k7Edit.addItem('2. Modify work orders')
+            k7Edit.addItem('3. Request work orders')
+            k7Edit.addItem('4. Calling materials')
+            k7Edit.addItem('5. Printing picklists')
+            k7Edit.addItem('6. Mutate cost services')
+            k7Edit.addItem('7. Mutate hourly consumption')
             k7Edit.activated[str].connect(self.k7Changed)
             
             self.Keuze8 = QLabel()
@@ -499,20 +500,20 @@ def hoofdMenu(m_email):
             k8Edit.setFixedWidth(310)
             k8Edit.setFont(QFont("Arial",10))
             k8Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k8Edit.addItem('Calculatie interne werken')
+            k8Edit.addItem('Calculation works internally')
             k8Edit.setEditable(True)
-            k8Edit.lineEdit().setFont(QFont("Arial", 10))
+            k8Edit.lineEdit().setFont(QFont("Arial",10))
             k8Edit.lineEdit().setReadOnly(True)
             k8Edit.lineEdit().setAlignment(Qt.AlignCenter)
             k8Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k8Edit.addItem('1. Nieuwe clusters aanmaken')
-            k8Edit.addItem('2. Clustergegevens invoeren')
-            k8Edit.addItem('3. Clustergegevens opvragen')
-            k8Edit.addItem('4. Invoeren artikelregels per cluster')
-            k8Edit.addItem('5. Opvragen artikelregels per cluster')
-            k8Edit.addItem('6. Calculatie maken/wijzigen')
-            k8Edit.addItem('7. Calculatie/Artikellijst printen')
-            k8Edit.addItem('8. Calculatie koppelen -> produktie')
+            k8Edit.addItem('1. Create new clusters')
+            k8Edit.addItem('2. Insert cluster data')
+            k8Edit.addItem('3. Request cluster data')
+            k8Edit.addItem('4. Insert article lines per cluster')
+            k8Edit.addItem('5. Request article lines per cluster') 
+            k8Edit.addItem('6. Create/change calculation')
+            k8Edit.addItem('7. Calculation/Article list/printing')
+            k8Edit.addItem('8. Calculation connect -> production')
             k8Edit.activated[str].connect(self.k8Changed)
         
             self.Keuze9 = QLabel()
@@ -520,20 +521,20 @@ def hoofdMenu(m_email):
             k9Edit.setFixedWidth(310)
             k9Edit.setFont(QFont("Arial",10))
             k9Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k9Edit.addItem('Calculatie externe werken')
+            k9Edit.addItem('Calculation works externally')
             k9Edit.setEditable(True)
             k9Edit.lineEdit().setFont(QFont("Arial",10))
             k9Edit.lineEdit().setReadOnly(True)
             k9Edit.lineEdit().setAlignment(Qt.AlignCenter)
             k9Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k9Edit.addItem('1. Nieuwe clusters aanmaken')
-            k9Edit.addItem('2. Clustergegevens invoeren')
-            k9Edit.addItem('3. Clustergegevens opvragen')
-            k9Edit.addItem('4. Invoeren artikelregels per cluster')
-            k9Edit.addItem('5. Opvragen artikelregels per cluster')
-            k9Edit.addItem('6. Calculatie maken / wijzigen')
-            k9Edit.addItem('7. Calculatie/Artikellijst printen')
-            k9Edit.addItem('8. Calculatie koppelen -> produktie')
+            k9Edit.addItem('1. Create new clusters')
+            k9Edit.addItem('2. Insert cluster data')
+            k9Edit.addItem('3. Request cluster data')
+            k9Edit.addItem('4. Insert article lines per cluster')
+            k9Edit.addItem('5. Request article lines per cluster')
+            k9Edit.addItem('6. Create/change calculation')
+            k9Edit.addItem('7. Calculation/Article list/printing')
+            k9Edit.addItem('8. Calculation connect -> production')
             k9Edit.activated[str].connect(self.k9Changed)
   
             self.Keuze10 = QLabel()
@@ -541,19 +542,19 @@ def hoofdMenu(m_email):
             k10Edit.setFixedWidth(310)
             k10Edit.setFont(QFont("Arial",10))
             k10Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k10Edit.addItem('Loonadministratie')
+            k10Edit.addItem('Payroll administration')
             k10Edit.setEditable(True)
-            k10Edit.lineEdit().setFont(QFont("Arial", 10))
+            k10Edit.lineEdit().setFont(QFont("Arial",10))
             k10Edit.lineEdit().setReadOnly(True)
             k10Edit.lineEdit().setAlignment(Qt.AlignCenter)
             k10Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k10Edit.addItem('1. Uren mutaties opvragen')
-            k10Edit.addItem('2. Controle uren tbv maanlonen')
-            k10Edit.addItem('3. Maandelijkse loonbetalingen')
-            k10Edit.addItem('4. Opvragen loonbetalingen')
-            k10Edit.addItem('5. Invoeren Loonschalen')
-            k10Edit.addItem('6. Loonschalen wijzigen/opvragen')
-            k10Edit.addItem('7. Procentueel lonen verhogen')
+            k10Edit.addItem('1. Request mutation of hours')
+            k10Edit.addItem('2. Control hours for monthly wages')
+            k10Edit.addItem('3. Payment of monthly wages')
+            k10Edit.addItem('4. Request wages payments')
+            k10Edit.addItem('5. Insert wages scales')
+            k10Edit.addItem('6. Modify wages scales/requesting')
+            k10Edit.addItem('7. Increase wages with percentage')
             k10Edit.activated[str].connect(self.k10Changed)
             
             self.Keuze11 = QLabel()
@@ -561,19 +562,19 @@ def hoofdMenu(m_email):
             k11Edit.setFixedWidth(310)
             k11Edit.setFont(QFont("Arial",10))
             k11Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k11Edit.addItem('Boekhouding')
+            k11Edit.addItem('Accounting')
             k11Edit.setEditable(True)
             k11Edit.lineEdit().setFont(QFont("Arial",10))
             k11Edit.lineEdit().setReadOnly(True)
             k11Edit.lineEdit().setAlignment(Qt.AlignCenter)
             k11Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k11Edit.addItem('1. Artikel mutaties opvragen.')
-            k11Edit.addItem('2. Diensten mutaties opvragen')
-            k11Edit.addItem('3. Inzien en betalen afdrachten')
-            k11Edit.addItem('4. Weborders betaling/printen factuur')
-            k11Edit.addItem('5. Retouren betalingen boeken')
-            k11Edit.addItem('6. Printen lijst te factureren')
-            k11Edit.addItem('7. Uren mutaties opvragen')
+            k11Edit.addItem('1. Article mutations requesting')
+            k11Edit.addItem('2. Services mutations requesting')
+            k11Edit.addItem('3. View and pay contributions')
+            k11Edit.addItem('4. Weborders payments/print invoices')
+            k11Edit.addItem('5. Book return payments')
+            k11Edit.addItem('6. Print list to invoice external works')
+            k11Edit.addItem('7. Request mutations of hours')
             k11Edit.activated[str].connect(self.k11Changed)
             
             self.Keuze12 = QLabel()
@@ -581,16 +582,16 @@ def hoofdMenu(m_email):
             k12Edit.setFixedWidth(310)
             k12Edit.setFont(QFont("Arial",10))
             k12Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k12Edit.addItem('Voorraadmanagement')
+            k12Edit.addItem('Stock management')
             k12Edit.setEditable(True)
             k12Edit.lineEdit().setFont(QFont("Arial",10))
             k12Edit.lineEdit().setReadOnly(True)
             k12Edit.lineEdit().setAlignment(Qt.AlignCenter)
             k12Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k12Edit.addItem('1. Voorraadbeheersing/artikelen')
-            k12Edit.addItem('2. Grafiek voorraden/financiëel')
-            k12Edit.addItem('3. Overzicht voorraden financiëel')
-            k12Edit.addItem('4. Opvragen reserveringen')
+            k12Edit.addItem('1. Stock management, order articles')
+            k12Edit.addItem('2. Graph stocks, warehouse financial')
+            k12Edit.addItem('3. Overview stocks financial')
+            k12Edit.addItem('4. Request reservations')
             k12Edit.activated[str].connect(self.k12Changed)
             
             self.Keuze13 = QLabel()
@@ -598,36 +599,36 @@ def hoofdMenu(m_email):
             k13Edit.setFixedWidth(310)
             k13Edit.setFont(QFont("Arial",10))
             k13Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k13Edit.addItem('Management informatie')
+            k13Edit.addItem('Management Information')
             k13Edit.setEditable(True)
             k13Edit.lineEdit().setFont(QFont("Arial",10))
             k13Edit.lineEdit().setReadOnly(True)
             k13Edit.lineEdit().setAlignment(Qt.AlignCenter)
             k13Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k13Edit.addItem('1. Bereken financiën eens/week')
-            k13Edit.addItem('2. Printen grafieken financiën werken')
-            k13Edit.addItem('3. Printen grafieken voortgangstatus')
-            k13Edit.addItem('4. Opvragen resultaten werken')
-            k13Edit.activated[str].connect(self.k13Changed) 
+            k13Edit.addItem('1. Calculate financial data once/week')
+            k13Edit.addItem('2. Print finance graphs external works')
+            k13Edit.addItem('3. Print graphs by progress status')
+            k13Edit.addItem('4. Request results works')
+            k13Edit.activated[str].connect(self.k13Changed)
          
             self.Keuze14 = QLabel()
             k14Edit = QComboBox()
             k14Edit.setFixedWidth(310)
             k14Edit.setFont(QFont("Arial",10))
             k14Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k14Edit.addItem('Onderhoud')
+            k14Edit.addItem('Maintenance')
             k14Edit.setEditable(True)
-            k14Edit.lineEdit().setFont(QFont("Arial", 10))
+            k14Edit.lineEdit().setFont(QFont("Arial",10))
             k14Edit.lineEdit().setReadOnly(True)
             k14Edit.lineEdit().setAlignment(Qt.AlignCenter)
             k14Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k14Edit.addItem('1. Bevoegdheden muteren')
-            k14Edit.addItem('2. Koppel account-leverancier')
-            k14Edit.addItem('3. Koppel account-verkoopbedrijf')
-            k14Edit.addItem('4. Invoeren parameters')
-            k14Edit.addItem('5. Wijzigen parameters')
-            k14Edit.addItem('6. Opvragen parameters')
-            k14Edit.addItem('7. Verkoop-werktarieven bijwerken')
+            k14Edit.addItem('1. Mutate authorisations')
+            k14Edit.addItem('2. Connect account - supplier')
+            k14Edit.addItem('3. Connect account - sales company')
+            k14Edit.addItem('4. Insert parameters')
+            k14Edit.addItem('5. Modify parameters')
+            k14Edit.addItem('6. Request parameters')
+            k14Edit.addItem('7. Sales work rates updating')
             k14Edit.activated[str].connect(self.k14Changed)
 
             self.Keuze15 = QLabel()
@@ -635,25 +636,25 @@ def hoofdMenu(m_email):
             k15Edit.setFixedWidth(310)
             k15Edit.setFont(QFont("Arial",10))
             k15Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k15Edit.addItem('Herprinten van formulieren')
+            k15Edit.addItem('Reprinting of forms')
             k15Edit.setEditable(True)
-            k15Edit.lineEdit().setFont(QFont("Arial", 10))
+            k15Edit.lineEdit().setFont(QFont("Arial",10))
             k15Edit.lineEdit().setReadOnly(True)
             k15Edit.lineEdit().setAlignment(Qt.AlignCenter)
             k15Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k15Edit.addItem('1. Calculatie interne werken') 
-            k15Edit.addItem('2. Calculatie externe werken')  
-            k15Edit.addItem('3. Interne orderbrieven tbv inkoop')
-            k15Edit.addItem('4. Afroepen werken intern')
-            k15Edit.addItem('5. Afroepen werken extern')
-            k15Edit.addItem('6. Raaplijsten magazijn')
-            k15Edit.addItem('7. Web orders pakbon')
-            k15Edit.addItem('8. Controle uren tbv lonen')
-            k15Edit.addItem('9. Loonspecificaties personeel')
-            k15Edit.addItem('A. Factureren externe werken')
-            k15Edit.addItem('B. Web orders betalingen') 
-            k15Edit.addItem('C. Inkooporders diensten/materieel')  
-            k15Edit.addItem('D. Balieverkoop orderfacturen') 
+            k15Edit.addItem('1. Calculation internal works')
+            k15Edit.addItem('2. Calculation external works')  
+            k15Edit.addItem('3. Internal orders purchase')
+            k15Edit.addItem('4. Calling internal works')
+            k15Edit.addItem('5. Calling external works')
+            k15Edit.addItem('6. Picklists warehouse')
+            k15Edit.addItem('7. Web orders packing slip')
+            k15Edit.addItem('8. Control hours for paying wages')
+            k15Edit.addItem('9. Wages specification employees')
+            k15Edit.addItem('A. Invoices external works')
+            k15Edit.addItem('B. Web orders payments') 
+            k15Edit.addItem('C. Purchase orders services/material')  
+            k15Edit.addItem('D. Counter sale order invoices') 
             k15Edit.activated[str].connect(self.k15Changed)
             
             #disable menu's if no permission is granted in table accounts
@@ -687,7 +688,8 @@ def hoofdMenu(m_email):
             # list of Mainmenu
             mplist=[k0Edit,k1Edit,k2Edit,k3Edit,k4Edit,k5Edit,k6Edit,k7Edit,\
                     k8Edit,k9Edit,k10Edit,k11Edit,k12Edit,k13Edit,k14Edit,k15Edit]
-            # list of pointers by mainmenu and menulines per groups pointers towards database table accountpermissions
+
+            # list of pointers by mainmenu and menulines per groups pointers towards database tasble accountpermissions
             lineperm = ([0, 4, 6, 2, 2, 5],[0, 3, 4, 6, 1],[0, 1, 4, 6, 6],[0, 3, 4, 3, 4, 6, 6],[0, 3, 4, 6, 1, 6],\
                         [0, 3, 4, 6, 4, 5, 1, 6, 3, 6],[0, 3, 4, 6, 3, 5, 3],[0, 3, 4, 6, 2, 6, 3, 3],\
                         [0, 3, 4, 6, 3, 6, 3, 6, 1],[0, 4, 4, 6, 3, 6, 3, 6, 1],[0, 6, 2, 1, 6, 3, 4, 1],\
@@ -800,7 +802,7 @@ def hoofdMenu(m_email):
             pixmap = QPixmap('./images/logos/logo.jpg')
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 11, 1, 2, 1, Qt.AlignRight)
-            
+
             pandora = QLabel()
             pixmap = QPixmap('./images/logos/verbinding.jpg')
             pandora.setPixmap(pixmap)
@@ -811,7 +813,7 @@ def hoofdMenu(m_email):
             self.setLayout(grid)
             self.setGeometry(600, 100, 150, 150)
             
-            applyBtn = QPushButton('Kiezen')
+            applyBtn = QPushButton('Choose')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 13, 1, 1 , 1, Qt.AlignRight)
@@ -819,7 +821,7 @@ def hoofdMenu(m_email):
             applyBtn.setFixedWidth(130)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Uitloggen')
+            cancelBtn = QPushButton('Logout')
             cancelBtn.clicked.connect(lambda: closeIt(self))
     
             grid.addWidget(cancelBtn, 13, 1)
@@ -1006,17 +1008,17 @@ def hoofdMenu(m_email):
         mk15 = dlist[15][0] 
     else:
         hoofdMenu(m_email)
-
+        
     if mk0 == '1':
         import wijzAccount
         wijzAccount.updateAccount(m_email)
     elif mk0 == '2':
-        import opvrAccounts
-        opvrAccounts.accKeuze(m_email)
+         import opvrAccounts
+         opvrAccounts.accKeuze(m_email)
     elif mk0 == '3':
-        klmail = ''
-        import bestelOrder
-        bestelOrder.artKeuze(m_email, 0, klmail)
+         klmail = '' 
+         import bestelOrder
+         bestelOrder.artKeuze(m_email, 0, klmail)
     elif mk0 == '4':
         import opvrKlantenorders
         opvrKlantenorders.bestellingen(m_email)
@@ -1052,7 +1054,7 @@ def hoofdMenu(m_email):
         mlevnr = 3
         mregel = 1
         import invoerInkooporder
-        invoerInkooporder.zoekLeverancier(m_email, mlevnr, mregel)
+        invoerInkooporder.zoekLeverancier(m_email, mlevnr,mregel)
     elif mk3 == '2':
         import wijzInkooporder
         mregel = 0
@@ -1077,7 +1079,7 @@ def hoofdMenu(m_email):
         opvrDienstenorders.inkooporderKeuze(m_email)
     elif mk3 == '7':
         import opvrReserveringen
-        opvrReserveringen.resKeuze(m_email)
+        opvrReserveringen.resKeuze(m_email) 
     elif mk4 == '1':
         import invoerVerkoopbedrijf
         while True:
@@ -1094,7 +1096,7 @@ def hoofdMenu(m_email):
         opvrEigenbedrijf.eigenBedrijf(m_email)
     elif mk4 == '5':
         import opvrWebverkorders
-        opvrWebverkorders.zoekWeborder(m_email, 2)
+        opvrWebverkorders.zoekWeborder(m_email, 2) 
     elif mk5 == '1':
         import invoerArtikelen
         while True:
@@ -1118,12 +1120,12 @@ def hoofdMenu(m_email):
     elif mk5 == '7':
         import opvrWebverkorders
         while True:
-            opvrWebverkorders.zoekWeborder(m_email, 0)
+            opvrWebverkorders.zoekWeborder(m_email, 0) 
     elif mk5 == '8':
         import retourPortalWeb
         klmail = ''
         while True:
-            retourPortalWeb.zoekEmailadres(m_email, klmail)
+            retourPortalWeb.zoekEmailadres(m_email, klmail) 
     elif mk5 == '9':
         if mp[5][1] == '1':
             mret = True
@@ -1136,11 +1138,11 @@ def hoofdMenu(m_email):
         invoerInternorder.invWerkorder(m_email)
     elif mk6 == '2':
         import wijzInternorder
-        wijzInternorder.zoeken(m_email)
+        wijzInternorder.zoeken(m_email)        
     elif mk6 == '3':
         import opvrInternorders
         opvrInternorders.zoeken(m_email)
-    elif mk6 == '4':
+    elif mk6 == '4' :
         import artikelAfroep
         artikelAfroep.zoekWerk(m_email, 0)
     elif mk6 == '5':
@@ -1153,7 +1155,7 @@ def hoofdMenu(m_email):
         mboekd = str(datetime.now())[0:10]
         while True:
             accwerk = urenImutaties.urenMut(maccountnr, mwerknr, mboekd, m_email)
-            # for convenience start with last used work , employee and mboekd
+	        # for convenience start with last used work , employee and mboekd 
             try:
                 maccountnr = accwerk[0]
                 mwerknr = accwerk[1]
@@ -1170,7 +1172,7 @@ def hoofdMenu(m_email):
         wijzWerken.zoekWerk(m_email)
     elif mk7 == '3':
         import opvrWerken
-        opvrWerken.werkenKeuze(m_email)
+        opvrWerken.werkenKeuze(m_email)        
     elif mk7 == '4':
         import artikelAfroep
         artikelAfroep.zoekWerk(m_email, 1)
@@ -1235,7 +1237,7 @@ def hoofdMenu(m_email):
             wijzClusters.zoeken(m_email)
     elif mk9 == '3':
         import opvrClusters
-        opvrClusters.zoeken(m_email)
+        opvrClusters.zoeken(m_email)                
     elif mk9 == '4':
         import invoerCluster_artikelen
         while True:
@@ -1270,7 +1272,7 @@ def hoofdMenu(m_email):
     elif mk10 == '5':
         import invoerLoontabel
         while True:
-            invoerLoontabel.invoerSchaal(m_email)
+            invoerLoontabel.invoerSchaal(m_email)        
     elif mk10 == '6':
         import wijzLoontabel
         wijzLoontabel.zoeken(m_email)
@@ -1278,7 +1280,7 @@ def hoofdMenu(m_email):
         import percentageLonen
         while True:
             percentageLonen.percLoonschaal(m_email)
-    elif mk11 == '1':
+    elif mk11 == '1' :
         import opvrArtikelmutaties
         opvrArtikelmutaties.mutatieKeuze(m_email)
     elif mk11 == '2':
@@ -1295,7 +1297,7 @@ def hoofdMenu(m_email):
         webRetouren.retKeuze(m_email)
     elif mk11 == '6':
         import printFacturatie
-        printFacturatie.maakLijst(m_email)
+        printFacturatie.maakLijst(m_email) 
     elif mk11 == '7':
         import opvrUrenmutaties
         opvrUrenmutaties.loonKeuze(m_email)
@@ -1307,11 +1309,11 @@ def hoofdMenu(m_email):
         magvrdGrafiek.toonGrafiek(m_email)
     elif mk12 == '3':
         import magvrdGrafiek
-        magvrdGrafiek.magVoorraad(m_email)
+        magvrdGrafiek.magVoorraad(m_email)  
     elif mk12 == '4':
         import opvrReserveringen
         opvrReserveringen.resKeuze(m_email)
-    elif mk13 == '1':
+    elif mk13== '1':
         import rapportage
         rapportage.JN(m_email)
     elif mk13 == '2':
@@ -1327,7 +1329,7 @@ def hoofdMenu(m_email):
     elif mk14 == '1':
         import maakAuthorisatie
         while True:
-            maakAuthorisatie.zoekAccount(m_email)
+             maakAuthorisatie.zoekAccount(m_email)
     elif mk14 == '2':
         import koppelAccount
         koppelAccount.zoekAccount(m_email, 2)
@@ -1340,7 +1342,7 @@ def hoofdMenu(m_email):
             invoerParams.invParams(m_email)
     elif mk14 == '5':
         import wijzigParams
-        wijzigParams.toonParams(m_email)
+        wijzigParams.toonParams(m_email) 
     elif mk14 == '6':
         import opvrParams
         opvrParams.toonParams(m_email)
@@ -1360,7 +1362,7 @@ def hoofdMenu(m_email):
         else:
             path = './forms/Extern_Clustercalculaties/'
         import filePicklist
-        filePicklist.fileList(m_email, path)
+        filePicklist.fileList(m_email, path) 
     elif mk15 == '3':
         if sys.platform == 'win32':
             path = '.\\forms\\Intern_Orderbrieven\\'
@@ -1388,49 +1390,49 @@ def hoofdMenu(m_email):
         else:
             path = './forms/Raaplijsten/'
         import filePicklist
-        filePicklist.fileList(m_email, path)
+        filePicklist.fileList(m_email, path)    
     elif mk15 == '7':
         if sys.platform == 'win32':
             path = '.\\forms\\Weborders_Pakbonnen\\'
         else:
             path = './forms/Weborders_Pakbonnen/'
         import filePicklist
-        filePicklist.fileList(m_email, path)
+        filePicklist.fileList(m_email, path)    
     elif mk15 == '8':
         if sys.platform == 'win32':
             path = '.\\forms\\Uren\\'
         else:
             path = './forms/Uren/'
         import filePicklist
-        filePicklist.fileList(m_email, path)
+        filePicklist.fileList(m_email, path)    
     elif mk15 == '9':
         if sys.platform == 'win32':
             path = '.\\forms\\Lonen\\'
         else:
             path = './forms/Lonen/'
         import filePicklist
-        filePicklist.fileList(m_email, path)
+        filePicklist.fileList(m_email, path)    
     elif mk15 == 'A':
         if sys.platform == 'win32':
             path = '.\\forms\\Facturen_Werken\\'
         else:
             path = './forms/Facturen_Werken/'
         import filePicklist
-        filePicklist.fileList(m_email, path)
+        filePicklist.fileList(m_email, path)    
     elif mk15 == 'B':
         if sys.platform == 'win32':
             path = '.\\forms\\Weborders_Facturen\\'
         else:
             path = './forms/Weborders_Facturen/'
         import filePicklist
-        filePicklist.fileList(m_email, path)
+        filePicklist.fileList(m_email, path) 
     elif (mk15 == 'C'):
         if sys.platform == 'win32':
             path = '.\\forms\\Extern_Clustercalculaties_Diensten\\'
         else:
             path = './forms/Extern_Clustercalculaties_Diensten/'
         import filePicklist
-        filePicklist.fileList(m_email, path)
+        filePicklist.fileList(m_email, path) 
     elif (mk15 == 'D'):
         if sys.platform == 'win32':
             path = '.\\forms\\Barcodelijsten\\'
@@ -1440,5 +1442,5 @@ def hoofdMenu(m_email):
         filePicklist.fileList(m_email, path)
     else:
         hoofdMenu(m_email)
-
+        
 inlog()

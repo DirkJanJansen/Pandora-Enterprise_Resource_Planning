@@ -48,8 +48,8 @@ def foutInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Verplichte velden\nniet allen ingevoerd!')
-    msg.setWindowTitle('INVOERFOUT')
+    msg.setText('Required fields\nnot all entered!')
+    msg.setWindowTitle('Incorrect Input')
     msg.exec_()
    
 def Invoer():
@@ -57,8 +57,8 @@ def Invoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Invoer gelukt!')
-    msg.setWindowTitle('Werknummergegevens')
+    msg.setText('Insert successful!')
+    msg.setWindowTitle('Work number data')
     msg.exec_()
 
 def windowSluit(self, m_email):
@@ -69,7 +69,7 @@ def invWerk(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Invoer werken")
+            self.setWindowTitle("Input works")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                                   
             self.setFont(QFont('Arial', 10))
@@ -292,132 +292,132 @@ def invWerk(m_email):
             grid = QGridLayout()
             grid.setSpacing(20)
             
-            lbl1 = QLabel('Werknummer')  
+            lbl1 = QLabel('Work number')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 1, 0)
             
             lbl2 = QLabel(str(bepaalWerknr()))
             grid.addWidget(lbl2, 1, 1)
                    
-            lbl3 = QLabel('Omschrijving')  
+            lbl3 = QLabel('Description')
             lbl3.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl3, 2, 0)
             grid.addWidget(q1Edit, 2, 1, 1, 3)
             
            # addWidget (arg__1, row, column, rowSpan, columnSpan[, alignment=0])                                
-            lbl4 = QLabel('Aanneemsom')  
+            lbl4 = QLabel('Contract price')
             lbl4.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl4, 3, 0)
             grid.addWidget(q2Edit, 3, 1)
             
-            lbl5 = QLabel('Materialen')  
+            lbl5 = QLabel('Materials')
             lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl5, 4, 0)
             grid.addWidget(q3Edit, 4, 1)
             
-            lbl6 = QLabel('Materieel')  
+            lbl6 = QLabel('Equipment')
             lbl6.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl6, 5, 0)
             grid.addWidget(q4Edit, 5, 1)
             
-            lbl7 = QLabel('Huisvesting')  
+            lbl7 = QLabel('Housing')
             lbl7.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl7, 6, 0)
             grid.addWidget(q5Edit, 6, 1)
             
-            lbl8 = QLabel('Leiding')  
+            lbl8 = QLabel('Direction')
             lbl8.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl8, 7, 0)
             grid.addWidget(q6Edit, 7, 1)
             
-            lbl9 = QLabel('Inhuur')  
+            lbl9 = QLabel('Hiring')
             lbl9.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl9, 8, 0)
             grid.addWidget(q7Edit, 8, 1)
             
-            lbl10 = QLabel('Vervoer')  
+            lbl10 = QLabel('Transport')
             lbl10.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl10, 9, 0)
             grid.addWidget(q8Edit, 9, 1)
             
-            lbl11 = QLabel('Betonwerk')  
+            lbl11 = QLabel('Concrete work')
             lbl11.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl11, 10, 0)
             grid.addWidget(q9Edit, 10, 1)
                 
-            lbl12 = QLabel('Kabelwerk')  
+            lbl12 = QLabel('Cable work')
             lbl12.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl12, 11, 0)
             grid.addWidget(q10Edit, 11, 1)
             
-            lbl13 = QLabel('Grondverzet')  
+            lbl13 = QLabel('Earth moving')
             lbl13.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl13, 12, 0)
             grid.addWidget(q11Edit, 12, 1)
             
-            lbl14 = QLabel('Overig')  
+            lbl14 = QLabel('Remaining')
             lbl14.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl14, 13, 0)
             grid.addWidget(q12Edit, 13, 1)
             
-            lblwk = QLabel('Status-JaarWeek')
+            lblwk = QLabel('Status-YearWeek')
             lblwk.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lblwk, 1,2)
             
             lblst = QLabel('A  '+str(jaarweek()))
             grid.addWidget(lblst,1,3)
                
-            lbl15 = QLabel('Uren_Construktie')  
+            lbl15 = QLabel('Hours Construction')
             lbl15.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl15, 3, 2)
             grid.addWidget(q13Edit, 3, 3)
          
-            lbl16 = QLabel('Uren_Montage')  
+            lbl16 = QLabel('Hours_Mounting')
             lbl16.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl16, 4, 2)
             grid.addWidget(q14Edit, 4, 3)
             
-            lbl17 = QLabel('Uren_Retourlas')  
+            lbl17 = QLabel('Hours return welding')
             lbl17.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl17, 5, 2)
             grid.addWidget(q15Edit, 5, 3)
             
-            lbl18 = QLabel('Uren_Telecom')  
+            lbl18 = QLabel('Hours telecom')
             lbl18.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl18, 6, 2)
             grid.addWidget(q16Edit, 6, 3)
             
-            lbl19 = QLabel('Uren_Bfi')  
+            lbl19 = QLabel('Hours chief mechanic')
             lbl19.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl19, 7, 2)
             grid.addWidget(q17Edit, 7, 3)
             
-            lbl20 = QLabel('Uren_Bvl')  
+            lbl20 = QLabel('Hours OCL')
             lbl20.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl20, 8, 2)
             grid.addWidget(q18Edit, 8, 3)
                     
-            lbl21 = QLabel('Uren_Spoorleg')  
+            lbl21 = QLabel('Hours track laying')
             lbl21.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl21, 9, 2)
             grid.addWidget(q19Edit, 9, 3)
             
-            lbl22 = QLabel('Uren_Spoorlas')  
+            lbl22 = QLabel('Hours track welding')
             lbl22.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl22, 10, 2)
             grid.addWidget(q20Edit, 10, 3)
             
-            lbl23 = QLabel('Uren_Reis')  
+            lbl23 = QLabel('Hours travel')
             lbl23.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl23, 11, 2)
             grid.addWidget(q21Edit, 11, 3)
             
-            lbl24 = QLabel('Begroot_Lonen')  
+            lbl24 = QLabel('Budgeted_Wages')
             lbl24.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl24, 12, 2)
             grid.addWidget(q22Edit, 12, 3)
             
-            lbl25 = QLabel('Start werk')  
+            lbl25 = QLabel('Start work')
             lbl25.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl25, 13, 2)
             grid.addWidget(q23Edit, 13, 3)
@@ -437,7 +437,7 @@ def invWerk(m_email):
             self.setLayout(grid)
             self.setGeometry(100, 100, 150, 150)
     
-            applyBtn = QPushButton('Invoeren')
+            applyBtn = QPushButton('Insert')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 14, 3, 1, 1, Qt.AlignCenter)
@@ -445,7 +445,7 @@ def invWerk(m_email):
             applyBtn.setFixedWidth(120)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            sluitBtn = QPushButton('Sluiten')
+            sluitBtn = QPushButton('Close')
             sluitBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(sluitBtn, 14, 2, 1, 1, Qt.AlignRight)

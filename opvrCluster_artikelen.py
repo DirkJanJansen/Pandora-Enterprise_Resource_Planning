@@ -13,8 +13,8 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Cluster-artikelen opvragen')               
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Request cluster articles')
     msg.exec_() 
     
 def ongInvoer():
@@ -22,8 +22,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Cluster-artikelen opvragen')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Request cluster articles')
     msg.exec_()
     
 def geenRegels():
@@ -31,8 +31,8 @@ def geenRegels():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Er zijn nog geen artikelregels aanwezig voor dit cluster!')
-    msg.setWindowTitle('Cluster-artikelen opvragen')               
+    msg.setText('There are no article rules for this cluster yet!')
+    msg.setWindowTitle('Request cluster articles')
     msg.exec_() 
     
 def windowSluit(self, m_email):
@@ -43,27 +43,27 @@ def zoeken(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Cluster artikelregels")
+            self.setWindowTitle("Cluster article lines")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
                               
             self.Keuze = QLabel()
             k0Edit = QComboBox()
-            k0Edit.setFixedWidth(340)
+            k0Edit.setFixedWidth(400)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('              Sorteersleutel Clustergroepen')
-            k0Edit.addItem('0. Alle Clusters')
-            k0Edit.addItem('AA-AK. Spoorstaven + lasmiddelen')
-            k0Edit.addItem('BA-BK. Liggers + bevestiging')
-            k0Edit.addItem('CA-CK. Overwegen + overwegbeveiliging')
-            k0Edit.addItem('DA-DK. Steenslag + grond aanvulling')
-            k0Edit.addItem('EA-EK. Wissel + baanconstrukties')
-            k0Edit.addItem('FA-FK. Ondergrondse infrastruktuur')
-            k0Edit.addItem('GA-GK. Treinbeheersing + seinen')
-            k0Edit.addItem('HA-HK. Bovenleiding + draagconstruktie')
-            k0Edit.addItem('JA-JK. Voedingen + Onderstations')
+            k0Edit.addItem('                 Cluster Groups Sort Key')
+            k0Edit.addItem('0. All clusters')
+            k0Edit.addItem('AA-AL. Rails + welding assets')
+            k0Edit.addItem('BA-BK. Beams + mounting')
+            k0Edit.addItem('CA-CK. Level crossing + level crossing protection')
+            k0Edit.addItem('DA-DK. Crushed stone + earth moving')
+            k0Edit.addItem('EA-EK. Switch + track constructions')
+            k0Edit.addItem('FA-FK. Underground infrastructure')
+            k0Edit.addItem('GA-GK. Train control + signals')
+            k0Edit.addItem('HA-HK. OCL + support structure')
+            k0Edit.addItem('JA-JK. Power supplies + substations')
             k0Edit.activated[str].connect(self.k0Changed)
         
             grid = QGridLayout()
@@ -86,7 +86,7 @@ def zoeken(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
    
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 2, 1, 1, 1, Qt.AlignRight)
@@ -94,7 +94,7 @@ def zoeken(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 2, 0, 1 , 2, Qt.AlignCenter)
@@ -129,7 +129,7 @@ def toonClusterartikelen(zoekterm, m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(100, 50, 1800, 900)
-            self.setWindowTitle('Artikelen per cluster opvragen')
+            self.setWindowTitle('Request articles per cluster')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -171,12 +171,12 @@ def toonClusterartikelen(zoekterm, m_email):
                 return self.header[col]
             return None
              
-    header = ['Clusternr', 'Omschrijving', 'Prijs', 'Eenheid', 'Materialen', 'Lonen',\
-              'Diensten', 'Materiëel', 'Inhuur', 'uren_constr', 'uren_mont','uren_retourlas',\
-              'uren_bfi', 'uren_voeding', 'uren_bvl', 'uren_spoorleg', 'uren_spoorlas',\
-              'uren_inhuur', 'Sleuvengraver', 'Persapparaat', 'Atlaskraan',\
-              'Kraan_groot', 'Mainliner', 'Hormachine', 'Wagon', 'Locomotor',\
-              'Locomotief', 'Montagewagen', 'Stormobiel', 'uren_telecom']
+    header = ['Cluster number', 'Description', 'Price', 'Unit', 'Materials', 'Wages',\
+              'Services', 'Equipment', 'Hiring', 'hours\nconstruction', 'hours mounting','hours\nreturn welding',\
+              'hours\nchief mechanic', 'hours\npower-supply', 'hours OCL', 'hours\ntrack laying', 'hours\ntrack welding',\
+              'hour hiring', 'trencher', 'pressing machine', 'Atlas crane',\
+              'Crane big', 'Mainliner', 'Ballast\nscraper machine', 'Wagon', 'Locomotor',\
+              'Locomotive', 'Assembler trolley', 'Stormobiel', 'hours telecom']
     
     metadata = MetaData()
     clusters = Table('clusters', metadata,
@@ -270,7 +270,7 @@ def toonClusterartikelen(zoekterm, m_email):
                         
                         grid = QGridLayout()
                         grid.setSpacing(20)
-                        self.setWindowTitle("Opvragen artikelregels per cluster")
+                        self.setWindowTitle("Request article lines per cluster")
                         self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                         
                         self.setFont(QFont('Arial', 10))   
@@ -306,41 +306,41 @@ def toonClusterartikelen(zoekterm, m_email):
                         grid = QGridLayout()
                         grid.setSpacing(20)
                         
-                        lbl1 = QLabel('Clusternummer')  
+                        lbl1 = QLabel('Cluster number')
                         lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                         grid.addWidget(lbl1, 1, 0)
                         
                         lbl2 = QLabel(clusternr)
                         grid.addWidget(lbl2, 1, 1)
                         
-                        lbl9 = QLabel('Regelnummer: ')
+                        lbl9 = QLabel('Line number: ')
                         lbl9.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                         grid.addWidget(lbl9, 1, 2)
                         
                         lbl10 = QLabel(str(regel))
                         grid.addWidget(lbl10, 1, 3)
                                
-                        lbl3 = QLabel('Clusteromschrijving')  
+                        lbl3 = QLabel('Cluster description')
                         lbl3.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                         grid.addWidget(lbl3, 2, 0)
                         grid.addWidget(q1Edit, 2, 1, 1, 3) 
                         
-                        lbl8 = QLabel('Artikelnummer')  
+                        lbl8 = QLabel('Article number')
                         lbl8.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                         grid.addWidget(lbl8, 3, 0)
                         grid.addWidget(q6Edit, 3, 1)
                                                                 
-                        lbl4 = QLabel('Artikelprijs')  
+                        lbl4 = QLabel('Article price')
                         lbl4.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                         grid.addWidget(lbl4, 4, 0)
                         grid.addWidget(q2Edit, 4, 1)
                         
-                        lbl5 = QLabel('Hoeveelheid\nArtikelen per cluster')  
+                        lbl5 = QLabel('Amount\nArticles per cluster')
                         lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                         grid.addWidget(lbl5, 5, 0)
                         grid.addWidget(q3Edit, 5, 1)
                        
-                        lbl7 = QLabel('Artikelomschrijving')  
+                        lbl7 = QLabel('Article description')
                         lbl7.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                         grid.addWidget(lbl7, 6, 0)
                         grid.addWidget(q5Edit, 6, 1, 1, 3)
@@ -360,7 +360,7 @@ def toonClusterartikelen(zoekterm, m_email):
                         self.setLayout(grid)
                         self.setGeometry(500, 300, 150, 150)
                 
-                        applyBtn = QPushButton('Regels')
+                        applyBtn = QPushButton('Lines')
                         applyBtn.clicked.connect(self.accept)
                 
                         grid.addWidget(applyBtn, 7, 3, 1, 1, Qt.AlignRight)

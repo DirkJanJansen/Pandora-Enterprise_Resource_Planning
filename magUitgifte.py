@@ -22,8 +22,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Materialen uitgeven/ printen')               
+    msg.setText('Please re-enter incorrect\ninput search term!')
+    msg.setWindowTitle('Picking/printing materials')               
     msg.exec_() 
     
 def geenRecord():
@@ -31,8 +31,8 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Materialen uitgeven/ printen')               
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Picking/printing materials')               
     msg.exec_() 
  
 def _11check(mcontr):
@@ -54,8 +54,8 @@ def printing():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Ogenblik afdrukken wordt gestart!')
-    msg.setWindowTitle('AFDRUKKEN')
+    msg.setText('Just a moment printing is starting!')
+    msg.setWindowTitle('Printing')
     msg.exec_()
     
 def printGeg(filename):
@@ -63,9 +63,9 @@ def printGeg(filename):
     msgBox=QMessageBox()
     msgBox.setStyleSheet("color: black;  background-color: gainsboro")
     msgBox.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
-    msgBox.setWindowTitle("Printen raaplijst")
+    msgBox.setWindowTitle("Printing picklist")
     msgBox.setIcon(QMessageBox.Information)
-    msgBox.setText("Wilt U de raaplijst uitprinten?")
+    msgBox.setText("Do you want to print the picklist?")
     msgBox.setStandardButtons(QMessageBox.Yes)
     msgBox.addButton(QMessageBox.No)
     msgBox.setStyleSheet("color: black;  background-color: gainsboro")
@@ -81,16 +81,16 @@ def foutWerknr():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Werknummer niet gevonden\nWerknummer bestaat niet!')
-    msg.setWindowTitle('Gegevens!')
+    msg.setText('Work number not found\nWork number does not exist!')
+    msg.setWindowTitle('Data!')
     msg.exec_()
         
 def invoerOK():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Invoer gelukt!')
-    msg.setWindowTitle('RAAPLIJST')
+    msg.setText('Insert successful!')
+    msg.setWindowTitle('Picklist')
     msg.exec_()
     
 def negVoorraad():
@@ -98,8 +98,8 @@ def negVoorraad():
         msg.setStyleSheet("color: black;  background-color: gainsboro")
         msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
         msg.setIcon(QMessageBox.Critical)
-        msg.setText('Te weinig voorraad\nvoor de transactie!')
-        msg.setWindowTitle('VOORRAAD ONVOLDOENDE')
+        msg.setText('Too little stock for the transaction!')
+        msg.setWindowTitle('Insufficient stock')
         msg.exec_()
         
 def foutHoev():
@@ -107,8 +107,8 @@ def foutHoev():
         msg.setStyleSheet("color: black;  background-color: gainsboro")
         msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
         msg.setIcon(QMessageBox.Warning)
-        msg.setText('Geen wijzigingen\ndoorgevoerd!')
-        msg.setWindowTitle('INVOERFOUT')
+        msg.setText('No changes\nimplemented!')
+        msg.setWindowTitle('Input error')
         msg.exec_()
 
 def werkGereed():
@@ -116,8 +116,8 @@ def werkGereed():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Werknummer is afgemeld,\nboekingen niet meer mogelijk!')
-    msg.setWindowTitle('Gegevens!')
+    msg.setText('Work number is unsubscribed,\nbookings no longer possible!')
+    msg.setWindowTitle('Data!')
     msg.exec_()
           
 def eindProgram():
@@ -125,8 +125,8 @@ def eindProgram():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Programma afgesloten.\nTot ziens!')
-    msg.setWindowTitle('BESTELLINGEN')               
+    msg.setText('Program closed.\nGoodbye!')
+    msg.setWindowTitle('Orders')               
     msg.exec_() 
 				            
 def printRaaplijst(keuze, zoekterm, m_email, route):
@@ -158,49 +158,49 @@ def printRaaplijst(keuze, zoekterm, m_email, route):
         if keuze == 1:
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.geleverd < raaplijst.c.afroep,\
                  raaplijst.c.artikelID == artikelen.c.artikelID)).order_by(raaplijst.c.werkorder, raaplijst.c.leverdatum)
-            kop1 = 'Raaplijst Alle Afroepen '
+            kop1 = 'Picklist all call-up '
             tekst1 = ''
         elif keuze == 2:
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder < 800000000,\
               raaplijst.c.geleverd < raaplijst.c.afroep, raaplijst.c.artikelID ==\
               artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum)
             kop1 = ''
-            tekst1 = 'Raaplijst Werkorders '
+            tekst1 = 'Picklist work orders '
         elif keuze == 3:
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder > 800000000,\
               raaplijst.c.geleverd < raaplijst.c.afroep, raaplijst.c.artikelID ==\
               artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum)
             kop1 = ''
-            tekst1 = 'Raaplijst Werknummers '
+            tekst1 = 'Picklist work numbers '
         elif keuze == 4 and validZt.zt(zoekterm, 15):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder == int(zoekterm),\
               raaplijst.c.geleverd < raaplijst.c.afroep, raaplijst.c.artikelID ==\
               artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum)
             kop1 = ''
-            tekst1 = 'Raaplijst Ordernummer '
+            tekst1 = 'Picklist order number '
         elif keuze == 5 and validZt.zt(zoekterm, 2):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.artikelID == int(zoekterm),\
               raaplijst.c.geleverd < raaplijst.c.afroep, raaplijst.c.artikelID ==\
               artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum)
             kop1 = ''
-            tekst1 = 'Raaplijst Artikelnummer '       
+            tekst1 = 'Picklist article number '
         elif keuze == 6 and validZt.zt(zoekterm, 10):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.leverdatum.like(zoekterm+'%'),
                 raaplijst.c.geleverd < raaplijst.c.afroep, raaplijst.c.artikelID ==\
                 artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum, raaplijst.c.werkorder)
             kop1 = ''
-            tekst1 = 'Raaplijst Leverdatum '
+            tekst1 = 'Picklist delivery date '
         elif keuze == 7 and validZt.zt(zoekterm, 9):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.postcode.ilike(zoekterm+'%'),\
                  raaplijst.c.geleverd < raaplijst.c.afroep, raaplijst.c.artikelID ==\
                  artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum, raaplijst.c.werkorder)
             kop1 = ''
-            tekst1 = 'Raaplijst Postcode '
+            tekst1 = 'Picklist zipcode '
         elif keuze == 8:
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.geleverd >= raaplijst.c.afroep,\
                raaplijst.c.afroep > 0, raaplijst.c.artikelID == artikelen.c.artikelID))\
                .order_by(raaplijst.c.werkorder, raaplijst.c.leverdatum)
-            kop1 = 'Uitgeleverd ' 
+            kop1 = 'Completed ' 
             tekst1 = ''
         else:
             ongInvoer()
@@ -211,39 +211,39 @@ def printRaaplijst(keuze, zoekterm, m_email, route):
               raaplijst.c.geleverd < raaplijst.c.afroep, raaplijst.c.artikelID ==\
               artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum)
             kop1 = ''
-            tekst1 = 'Raaplijst Werkorders '
+            tekst1 = 'Picklist work orders '
         elif keuze == 4 and validZt.zt(zoekterm, 15):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder < 800000000,\
               raaplijst.c.werkorder == int(zoekterm), raaplijst.c.geleverd < raaplijst.c.afroep,\
               raaplijst.c.artikelID == artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum)
             kop1 = ''
-            tekst1 = 'Raaplijst Werkorder '
+            tekst1 = 'Picklist work order '
         elif keuze == 5 and validZt.zt(zoekterm, 2):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder < 800000000,\
               raaplijst.c.artikelID == int(zoekterm), raaplijst.c.geleverd < raaplijst.c.afroep,\
               raaplijst.c.artikelID == artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum)
             kop1 = ''
-            tekst1 = 'Raaplijst Artikelnummer '       
+            tekst1 = 'Picklist artlicle number '
         elif keuze == 6 and validZt.zt(zoekterm, 10):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder < 800000000,\
                 raaplijst.c.leverdatum.like(zoekterm+'%'), raaplijst.c.geleverd < raaplijst.c.afroep,\
                 raaplijst.c.artikelID == artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum,\
                 raaplijst.c.werkorder)
             kop1 = ''
-            tekst1 = 'Raaplijst Leverdatum '
+            tekst1 = 'Picklist delivery date '
         elif keuze == 7 and validZt.zt(zoekterm, 9):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder < 800000000,\
                  raaplijst.c.postcode.ilike(zoekterm+'%'),raaplijst.c.geleverd < raaplijst.c.afroep,\
                  raaplijst.c.artikelID == artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum,\
                  raaplijst.c.werkorder)
             kop1 = ''
-            tekst1 = 'Raaplijst Postcode '
+            tekst1 = 'Picklist zipcode '
         elif keuze == 8:
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder < 800000000,\
                raaplijst.c.geleverd >= raaplijst.c.afroep, raaplijst.c.afroep > 0,\
                raaplijst.c.artikelID == artikelen.c.artikelID)).order_by(raaplijst.c.werkorder,\
                 raaplijst.c.leverdatum)
-            kop1 = 'Uitgeleverd ' 
+            kop1 = 'Completed ' 
             tekst1 = ''
         else:
             ongInvoer()
@@ -254,39 +254,39 @@ def printRaaplijst(keuze, zoekterm, m_email, route):
               raaplijst.c.geleverd < raaplijst.c.afroep, raaplijst.c.artikelID ==\
               artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum)
             kop1 = ''
-            tekst1 = 'Raaplijst Werknummers '
+            tekst1 = 'Picklist work numbers '
         elif keuze == 4 and validZt.zt(zoekterm, 15):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder > 800000000,\
               raaplijst.c.werkorder == int(zoekterm), raaplijst.c.geleverd < raaplijst.c.afroep,\
               raaplijst.c.artikelID == artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum)
             kop1 = ''
-            tekst1 = 'Raaplijst Werknummer '
+            tekst1 = 'Picklist work number '
         elif keuze == 5 and validZt.zt(zoekterm, 2):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder > 800000000,\
               raaplijst.c.artikelID == int(zoekterm), raaplijst.c.geleverd < raaplijst.c.afroep,\
               raaplijst.c.artikelID == artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum)
             kop1 = ''
-            tekst1 = 'Raaplijst Artikelnummer '       
+            tekst1 = 'Picklist article number '
         elif keuze == 6 and validZt.zt(zoekterm, 10):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder > 800000000,\
                 raaplijst.c.leverdatum.like(zoekterm+'%'), raaplijst.c.geleverd < raaplijst.c.afroep,\
                 raaplijst.c.artikelID == artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum,\
                 raaplijst.c.werkorder)
             kop1 = ''
-            tekst1 = 'Raaplijst Leverdatum '
+            tekst1 = 'Picklist delivery date '
         elif keuze ==7 and validZt.zt(zoekterm, 9):
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder > 800000000,\
                  raaplijst.c.postcode.ilike(zoekterm+'%'), raaplijst.c.geleverd < raaplijst.c.afroep,\
                  raaplijst.c.artikelID == artikelen.c.artikelID)).order_by(raaplijst.c.leverdatum,\
                  raaplijst.c.werkorder)
             kop1 = ''
-            tekst1 = 'Raaplijst Postcode '
+            tekst1 = 'Picklist zipcode '
         elif keuze == 8:
             selrl = select([raaplijst, artikelen]).where(and_(raaplijst.c.werkorder > 800000000,\
                 raaplijst.c.geleverd >= raaplijst.c.afroep, raaplijst.c.afroep > 0,\
                 raaplijst.c.artikelID == artikelen.c.artikelID)).order_by(raaplijst.c.werkorder,\
                 raaplijst.c.leverdatum)
-            kop1 = 'Uitgeleverd ' 
+            kop1 = 'Completed ' 
             tekst1 = ''
         else:
             ongInvoer()
@@ -305,15 +305,15 @@ def printRaaplijst(keuze, zoekterm, m_email, route):
         from sys import platform
         if rgl == 0 or rgl%57 == 0:
             kop4=\
-    (tekst1+str(kop1)+' Datum: '+str(datetime.datetime.now())[0:10]+'  Blad :  '+str(mblad)+' '+
-     'Afleveradres '+row[12]+' '+str(row[8])+row[9]+', '+row[7]+' '+row[13]+'.\n'+
+    (tekst1+str(kop1)+' Date: '+str(datetime.datetime.now())[0:10]+'  Page :  '+str(mblad)+' '+
+     'Delivery address '+row[12]+' '+str(row[8])+row[9]+', '+row[7]+' '+row[13]+'.\n'+
     '=============================================================================================\n'+
-    'Artikelnr  Omschrijving                       Afroep Geleverd Leverdatum Werkorder  Locatie  \n'+
+    'Articlenr  Description                        Call-upDelivered   _date   Workorder  Location \n'+
     '=============================================================================================\n')
             kop5=\
     (tekst1+str(kop1)+' Datum: '+str(datetime.datetime.now())[0:10]+'  Blad :  '+str(mblad)+'\n'+
     '=============================================================================================\n'+
-    'Artikelnr  Omschrijving                       Afroep Geleverd Leverdatum Werkorder  Locatie  \n'+
+    'Artikelnr  Description                        Call-upDelivered   _date   Workorder  Location \n'+
     '=============================================================================================\n')
   
             if keuze == 2:
@@ -337,9 +337,9 @@ def printRaaplijst(keuze, zoekterm, m_email, route):
             else:
                 kop = kop5
             if platform == 'win32':
-                filename = '.\\forms\\Raaplijsten\\raaplijst-'+str(kop1)+'-'+str(datetime.datetime.now())[0:10]+'.txt'
+                filename = '.\\forms\\Raaplijsten\\picklist-'+str(kop1)+'-'+str(datetime.datetime.now())[0:10]+'.txt'
             else:
-                filename = './forms/Raaplijsten/raaplijst-'+str(kop1)+'-'+str(datetime.datetime.now())[0:10]+'.txt'
+                filename = './forms/Raaplijsten/picklist-'+str(kop1)+'-'+str(datetime.datetime.now())[0:10]+'.txt'
 
             if rgl == 0:
                 open(filename, 'w').write(kop)
@@ -359,9 +359,9 @@ def kiesSelektie(route, m_email):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
             if route == 0:
-                self.setWindowTitle("Raaplijst materialen uitgifte")
+                self.setWindowTitle("Picklist material")
             else:
-                self.setWindowTitle("Raaplijst printen") 
+                self.setWindowTitle("Picklist printing")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -372,15 +372,15 @@ def kiesSelektie(route, m_email):
                 k0Edit.setFixedWidth(240)
                 k0Edit.setFont(QFont("Arial",10))
                 k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-                k0Edit.addItem('  Sorteersleutel voor zoeken')
-                k0Edit.addItem('1. Alle afroepen')
-                k0Edit.addItem('2. Interne werkorders')
-                k0Edit.addItem('3. Externe werknummers')
-                k0Edit.addItem('4. Per ordernummer')
-                k0Edit.addItem('5. Per artikelnummer')           
-                k0Edit.addItem('6. Op leverdatum')
-                k0Edit.addItem('7. Op Poscode ivm Transport')
-                k0Edit.addItem('8. Uitgeleverde afroepen')
+                k0Edit.addItem('  Search sort key')
+                k0Edit.addItem('1. All call-up')
+                k0Edit.addItem('2. Internal work order')
+                k0Edit.addItem('3. External work order')
+                k0Edit.addItem('4. By order number')
+                k0Edit.addItem('5. By article number')
+                k0Edit.addItem('6. By delivery date')
+                k0Edit.addItem('7. By zipcode due\n     to transportation')
+                k0Edit.addItem('8. Delivered call-off')
                 k0Edit.activated[str].connect(self.k0Changed)
             elif route == 2:
                 self.Keuze = QLabel()
@@ -388,13 +388,13 @@ def kiesSelektie(route, m_email):
                 k0Edit.setFixedWidth(240)
                 k0Edit.setFont(QFont("Arial",10))
                 k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-                k0Edit.addItem('  Sorteersleutel voor zoeken')
-                k0Edit.addItem('2. Interne werkorders')
-                k0Edit.addItem('4. Per ordernummer')
-                k0Edit.addItem('5. Per artikelnummer')           
-                k0Edit.addItem('6. Op leverdatum')
-                k0Edit.addItem('7. Op Poscode ivm Transport')
-                k0Edit.addItem('8. Uitgeleverde afroepen')
+                k0Edit.addItem('  Search sort key')
+                k0Edit.addItem('2. Internal work order')
+                k0Edit.addItem('4. By order number')
+                k0Edit.addItem('5. By article number')
+                k0Edit.addItem('6. By delivery date')
+                k0Edit.addItem('7. By zipcode due\n     to transportation')
+                k0Edit.addItem('8. Delivered call-off')
                 k0Edit.activated[str].connect(self.k0Changed)
             elif route == 3:
                 self.Keuze = QLabel()
@@ -402,13 +402,13 @@ def kiesSelektie(route, m_email):
                 k0Edit.setFixedWidth(240)
                 k0Edit.setFont(QFont("Arial",10))
                 k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-                k0Edit.addItem('  Sorteersleutel voor zoeken')
-                k0Edit.addItem('3. Externe werknummers')
-                k0Edit.addItem('4. Per ordernummer')
-                k0Edit.addItem('5. Per artikelnummer')           
-                k0Edit.addItem('6. Op leverdatum')
-                k0Edit.addItem('7. Op Poscode ivm Transport')
-                k0Edit.addItem('8. Uitgeleverde afroepen')
+                k0Edit.addItem('   Search sort key')
+                k0Edit.addItem('3. External work numbers')
+                k0Edit.addItem('4. By order number')
+                k0Edit.addItem('5. By article number')
+                k0Edit.addItem('6. By delivery date')
+                k0Edit.addItem('7. By zipcode due\n     to transportation')
+                k0Edit.addItem('8. Delivered call-off')
                 k0Edit.activated[str].connect(self.k0Changed)  
                 
             self.Zoekterm = QLabel()
@@ -426,9 +426,9 @@ def kiesSelektie(route, m_email):
             grid.addWidget(lbl , 0, 0, 1, 2)
             
             if route == 0:
-                grid.addWidget(QLabel('Keuzemenu voor het uitgeven van materialen'), 1, 0, 1, 3, Qt.AlignCenter)
+                grid.addWidget(QLabel('Drop-down menu for issuing materials'), 1, 0, 1, 3, Qt.AlignCenter)
             else:
-                grid.addWidget(QLabel('Keuzemenu voor het printen van raaplijsten'), 1, 0, 1, 3, Qt.AlignCenter)
+                grid.addWidget(QLabel('Drop-down menu for printing picklists'), 1, 0, 1, 3, Qt.AlignCenter)
              
             logo = QLabel()
             pixmap = QPixmap('./images/logos/logo.jpg')
@@ -436,7 +436,7 @@ def kiesSelektie(route, m_email):
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
                                   
             grid.addWidget(k0Edit, 2, 1)
-            lbl1 = QLabel('Zoekterm')  
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 3, 0)
             grid.addWidget(zktermEdit, 3, 1)
@@ -446,7 +446,7 @@ def kiesSelektie(route, m_email):
             
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved  dj.jansen@casema.nl'), 5, 0, 1, 3, Qt.AlignCenter)
                       
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
                                        
             grid.addWidget(applyBtn, 4, 1, 1, 1, Qt.AlignRight)
@@ -454,7 +454,7 @@ def kiesSelektie(route, m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 4, 1)
@@ -501,7 +501,7 @@ def raapLijst(keuze, zoekterm, m_email, route):
     class MyWindow(QDialog):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
-            self.setWindowTitle('Raaplijst Opvragen / Muteren')
+            self.setWindowTitle('Picklist Request / Mutate')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -529,7 +529,7 @@ def raapLijst(keuze, zoekterm, m_email, route):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 1, 12, 1, 1, Qt.AlignRight)
             
-            freshBtn = QPushButton('Verversen')
+            freshBtn = QPushButton('Refresh')
             freshBtn.clicked.connect(lambda: refresh(keuze, zoekterm, m_email, route, self))
 
             freshBtn.setFont(QFont("Arial",10))
@@ -538,7 +538,7 @@ def raapLijst(keuze, zoekterm, m_email, route):
    
             grid.addWidget(freshBtn, 1, 11, 1, 1, Qt.AlignRight)
             
-            sluitBtn = QPushButton('Sluiten')
+            sluitBtn = QPushButton('Close')
             sluitBtn.clicked.connect(self.close)
 
             sluitBtn.setFont(QFont("Arial",10))
@@ -598,9 +598,9 @@ def raapLijst(keuze, zoekterm, m_email, route):
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
  
-    header = ['LijstID','Artikelnr','Werkorder','Afroep','Leverdatum','Geleverd',\
-          'Meerwerk','Postcode', 'Huisnummer','Toevoeging', 'Alternatief Adres',\
-          'Boekdatum','Straat','Woonplaats']
+    header = ['ListID','Article number','Work order','Call-up','Delivery date','Delivered',\
+          'Additional work','Zipcode', 'House number','Suffix', 'Alternative Address',\
+          'Booking date','Street','Residence']
     
     import validZt 
     if keuze == 1:
@@ -680,7 +680,7 @@ def raapLijst(keuze, zoekterm, m_email, route):
             class Widget(QDialog):
                 def __init__(self, parent=None):
                     super(Widget, self).__init__(parent)
-                    self.setWindowTitle("Materiaaluitgifte muteren")
+                    self.setWindowTitle("Mutate material provision")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             
                     self.setFont(QFont('Arial', 10))
@@ -730,33 +730,33 @@ def raapLijst(keuze, zoekterm, m_email, route):
                     logo.setPixmap(pixmap)
                     grid.addWidget(logo , 0, 2, 1, 1, Qt.AlignRight) 
                                  
-                    lbl1 = QLabel('Werknummer')  
+                    lbl1 = QLabel('Work number')
                     lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl1, 1, 0)
                     grid.addWidget(zkwerknEdit, 1, 1)
                                                   
-                    lbl2 = QLabel('Artikelnummer')  
+                    lbl2 = QLabel('Article number')
                     lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl2, 2, 0)
                     grid.addWidget(artEdit, 2, 1)
                     
-                    lbl4 = QLabel('Afroep: '+ str(mafroep)+ ' - Reeds geleverd: '+str(mgeleverd))
+                    lbl4 = QLabel('Call-up: '+ str(mafroep)+ ' - Already delivered: '+str(mgeleverd))
                     grid.addWidget(lbl4, 3, 0, 1, 3, Qt.AlignCenter)
-                    lbl3 = QLabel('Uitgifte')  
+                    lbl3 = QLabel('Provide')  
                     lbl3.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl3, 4, 0)
                     grid.addWidget(hoevEdit, 4 , 1)
                     
                     if mmmstatus:
-                        grid.addWidget(QLabel('Meerwerk'), 4, 2)
+                        grid.addWidget(QLabel('Additional work'), 4, 2)
                         
-                    grid.addWidget(QLabel('Leverdatum'), 5, 0, Qt.AlignRight)
+                    grid.addWidget(QLabel('Delivery date'), 5, 0, Qt.AlignRight)
                     grid.addWidget(QLabel(mleverdat), 5, 1)                     
                     
                     self.setLayout(grid)
                     self.setGeometry(500, 300, 150, 150)
               
-                    applyBtn = QPushButton('Muteren')
+                    applyBtn = QPushButton('Mutate')
                     applyBtn.clicked.connect(self.accept)
             
                     grid.addWidget(applyBtn, 6, 2, 1 , 1, Qt.AlignRight)
@@ -764,7 +764,7 @@ def raapLijst(keuze, zoekterm, m_email, route):
                     applyBtn.setFixedWidth(100)
                     applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
                     
-                    sluitBtn = QPushButton('Sluiten')
+                    sluitBtn = QPushButton('Close')
                     sluitBtn.clicked.connect(self.close)
             
                     grid.addWidget(sluitBtn, 6, 0, 1, 2, Qt.AlignRight)

@@ -14,55 +14,55 @@ def insGelukt(mclusternr, momschr):
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Clusternummer: '+mclusternr+'\n"'+momschr+'" is aangemaakt!')
+    msg.setText('Cluster number: '+mclusternr+'\n"'+momschr+'" is created!')
     msg.setFont(QFont("Arial",10))
-    msg.setWindowTitle('Clusters aanmaken')               
+    msg.setWindowTitle('Create clusters')
     msg.exec_() 
     
-def insMislukt():
+def insMislukt(mclusternr, momschr):
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Aanmaak van clusternummer is mislukt!')
+    msg.setText('Creation of cluster '+mclusternr+'\n"'+momschr+'" has failed!\nCluster number already exist!')
     msg.setFont(QFont("Arial",10))
-    msg.setWindowTitle('Clusters aanmaken')               
-    msg.exec_() 
+    msg.setWindowTitle('Create clusters')
+    msg.exec_()
 
 def ongKeuze():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Ongeldige keuze')
+    msg.setText('Invalid choice')
     msg.setFont(QFont("Arial",10))
-    msg.setWindowTitle('Clusters invoeren')               
+    msg.setWindowTitle('Create clusters')
     msg.exec_() 
 
 def kiesCluster(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Cluster selektie")
+            self.setWindowTitle("Cluster selection")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
                               
             self.Keuze = QLabel()
             k0Edit = QComboBox()
-            k0Edit.setFixedWidth(340)
+            k0Edit.setFixedWidth(400)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('                   Keuze Clustergroepen')
-            k0Edit.addItem('AA-AL. Spoorstaven + lasmiddelen')
-            k0Edit.addItem('BA-BK. Telecominstallaties')
-            k0Edit.addItem('CA-CK. Overwegen + overwegbeveiliging')
-            k0Edit.addItem('DA-DK. Steenslag + grond aanvulling')
-            k0Edit.addItem('EA-EK. Wissel + baanconstrukties')
-            k0Edit.addItem('FA-FK. Ondergrondse infrastruktuur')
-            k0Edit.addItem('GA-GK. Treinbeheersing + seinen')
-            k0Edit.addItem('HA-HK. Bovenleiding + draagconstruktie')
-            k0Edit.addItem('JA-JK. Voedingen + Onderstations')
+            k0Edit.addItem('                   Choice of cluster groups')
+            k0Edit.addItem('AA-AL. Rails + welding assets')
+            k0Edit.addItem('BA-BK. Telecom installations')
+            k0Edit.addItem('CA-CK. Level crossing + level crossing protection')
+            k0Edit.addItem('DA-DK. Crushed stone + soil replenishment')
+            k0Edit.addItem('EA-EK. Switch + track constructions')
+            k0Edit.addItem('FA-FK. Underground infrastructure')
+            k0Edit.addItem('GA-GK. Train control + signals')
+            k0Edit.addItem('HA-HK. Overhead line + support structure')
+            k0Edit.addItem('JA-JK. Power supplies + substations')
             k0Edit.activated[str].connect(self.k0Changed)
  
             grid = QGridLayout()
@@ -85,7 +85,7 @@ def kiesCluster(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
    
-            applyBtn = QPushButton('Subgroep')
+            applyBtn = QPushButton('Subgroup')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 2, 1, 1, 1, Qt.AlignRight)
@@ -93,7 +93,7 @@ def kiesCluster(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 2, 1, 1, 1, Qt.AlignCenter)
@@ -153,22 +153,22 @@ def kiesSubClusterA(keuze, m_email):
                               
             self.Keuze = QLabel()
             k0Edit = QComboBox()
-            k0Edit.setFixedWidth(340)
+            k0Edit.setFixedWidth(400)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('         Subgroep Spoorstaven-lasmiddelen')
-            k0Edit.addItem('AA. Spoorbaan UIC54 recht op hout')
-            k0Edit.addItem('AB. Spoorbaan UIC54 recht op beton')
-            k0Edit.addItem('AC. Spoorbaan UIC60 recht op hout')
-            k0Edit.addItem('AD. Spoorbaan UIC60 recht op beton')
-            k0Edit.addItem('AE. Spoorbaan NP46 recht op hout')
-            k0Edit.addItem('AF. Spoorbaan NP46 recht op beton')
-            k0Edit.addItem('AG. Spoorbaan UIC54 verk. op hout')
-            k0Edit.addItem('AH. Spoorbaan UIC54 veranting op beton')
-            k0Edit.addItem('AI. Spoorbaan UIC60 verkanting op hout')
-            k0Edit.addItem('AJ. Spoorbaan UIC60 verkanting op beton')
-            k0Edit.addItem('AK. Spoorbaan NP46 verkanting op hout')
-            k0Edit.addItem('AL. Spoorbaan NP46 verkanting op beton')
+            k0Edit.addItem('         Subgroup Rails + welding assets')
+            k0Edit.addItem('AA. Railway UIC54 straight on wood')
+            k0Edit.addItem('AB. Railway UIC54 straight on concrete')
+            k0Edit.addItem('AC. Railway UIC60 straight on wood')
+            k0Edit.addItem('AD. Railway UIC60 straight on concrete')
+            k0Edit.addItem('AE. Railway NP46 straight on wood')
+            k0Edit.addItem('AF. Railway NP46 straight on concrete')
+            k0Edit.addItem('AG. Railway UIC54 banking on wood')
+            k0Edit.addItem('AH. Railway UIC54 banking on concrete')
+            k0Edit.addItem('AI. Railway UIC60 banking on wood')
+            k0Edit.addItem('AJ. Railway UIC60 banking on concrete')
+            k0Edit.addItem('AK. Railway NP46 banking on wood')
+            k0Edit.addItem('AL. Railway NP46 banking on on concrete')
             
             k0Edit.activated[str].connect(self.k0Changed)
  
@@ -192,7 +192,7 @@ def kiesSubClusterA(keuze, m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
    
-            applyBtn = QPushButton('Maak cluster')
+            applyBtn = QPushButton('Create cluster')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 2, 1, 1, 1, Qt.AlignRight)
@@ -200,7 +200,7 @@ def kiesSubClusterA(keuze, m_email):
             applyBtn.setFixedWidth(110)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 2, 1, 1, 1,Qt.AlignCenter)
@@ -246,21 +246,21 @@ def kiesSubClusterB(keuze, m_email):
                               
             self.Keuze = QLabel()
             k0Edit = QComboBox()
-            k0Edit.setFixedWidth(340)
+            k0Edit.setFixedWidth(400)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('           Subgroep Telecominstallaties')
-            k0Edit.addItem('BA. Treininformatie telecom')
-            k0Edit.addItem('BB. Verkeersleiding telecom')
-            k0Edit.addItem('BC. Perron informatie telecom')
-            k0Edit.addItem('BD. Lassen en pupiniseren telecomkabels')
-            k0Edit.addItem('BE. Relaishuis telecomrekken bedraden')
-            k0Edit.addItem('BF. Vrije baan telecominstallaties')
-            k0Edit.addItem('BG. Treinbeheersing telecom ATB')
-            k0Edit.addItem('BH. Omroepinformatie telecom')
-            k0Edit.addItem('BI. Onderhoud telecom stations')
-            k0Edit.addItem('BJ. Subgroep 10 telecom')
-            k0Edit.addItem('BK. Subgroep 11 telecom')
+            k0Edit.addItem('           Subgroup Telecom installations')
+            k0Edit.addItem('BA. Telecom train information')
+            k0Edit.addItem('BB. Traffic control telecom')
+            k0Edit.addItem('BC. Platform information telecom')
+            k0Edit.addItem('BD. Welding and pupinize telecom cables')
+            k0Edit.addItem('BE. Relay house telecom racks wiring')
+            k0Edit.addItem('BF. Free track telecom installations')
+            k0Edit.addItem('BG. Train control telecom ATB')
+            k0Edit.addItem('BH. Telecom broadcasting information')
+            k0Edit.addItem('BI. Maintenance telecom stations')
+            k0Edit.addItem('BJ. Subgroup 10 telecom')
+            k0Edit.addItem('BK. Subgroup 11 telecom')
             k0Edit.activated[str].connect(self.k0Changed)
  
             grid = QGridLayout()
@@ -283,7 +283,7 @@ def kiesSubClusterB(keuze, m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
    
-            applyBtn = QPushButton('Maak cluster')
+            applyBtn = QPushButton('Create cluster')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 2, 1, 1, 1, Qt.AlignRight)
@@ -291,7 +291,7 @@ def kiesSubClusterB(keuze, m_email):
             applyBtn.setFixedWidth(110)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 2, 1, 1, 1,Qt.AlignCenter)
@@ -330,28 +330,28 @@ def kiesSubClusterC(keuze, m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Cluster selektie")
+            self.setWindowTitle("Cluster selection")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
                               
             self.Keuze = QLabel()
             k0Edit = QComboBox()
-            k0Edit.setFixedWidth(340)
+            k0Edit.setFixedWidth(400)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('   Subgroep Overwegen-overwegbeveiliging')
-            k0Edit.addItem('CA. AHOB installatie overwegen')
-            k0Edit.addItem('CB. AKI installatie overwegen')
-            k0Edit.addItem('CC. Relaiskasten overweg')
-            k0Edit.addItem('CD. Borden en bebakening overwegen')
-            k0Edit.addItem('CE. Voeding overwegen')
-            k0Edit.addItem('CF. Aankondiging overwegen')
-            k0Edit.addItem('CG. Overweg beplating')
-            k0Edit.addItem('CH. Sugroep overwegen H')
-            k0Edit.addItem('CI. Subgroep overwegen I')
-            k0Edit.addItem('CJ. Subgroep overwegen J')
-            k0Edit.addItem('CK. Subgroep overwegen K')
+            k0Edit.addItem('   Level crossing protection subgroup')
+            k0Edit.addItem('CA. AHCB installation crossing')
+            k0Edit.addItem('CB. ASI installation crossing')
+            k0Edit.addItem('CC. Relay cabinets crossing')
+            k0Edit.addItem('CD. Signs and signage crossing')
+            k0Edit.addItem('CE. Power-supply crossing')
+            k0Edit.addItem('CF. Announcement crossing')
+            k0Edit.addItem('CG. Level crossing plating')
+            k0Edit.addItem('CH. Subgroup crossing H')
+            k0Edit.addItem('CI. Subgroup crossing I')
+            k0Edit.addItem('CJ. Subgroup crossing J')
+            k0Edit.addItem('CK. Subgroup crossing K')
             k0Edit.activated[str].connect(self.k0Changed)
  
             grid = QGridLayout()
@@ -374,7 +374,7 @@ def kiesSubClusterC(keuze, m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
    
-            applyBtn = QPushButton('Maak cluster')
+            applyBtn = QPushButton('Create cluster')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 2, 1, 1, 1, Qt.AlignRight)
@@ -382,7 +382,7 @@ def kiesSubClusterC(keuze, m_email):
             applyBtn.setFixedWidth(110)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 2, 1, 1, 1,Qt.AlignCenter)
@@ -421,28 +421,28 @@ def kiesSubClusterD(keuze, m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Cluster selektie")
+            self.setWindowTitle("Cluster selection")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
                               
             self.Keuze = QLabel()
             k0Edit = QComboBox()
-            k0Edit.setFixedWidth(340)
+            k0Edit.setFixedWidth(400)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('              Subgroep Onderbouw')
-            k0Edit.addItem('DA. Subgroep Onderbouw A')
-            k0Edit.addItem('DB. Subgroep Onderbouw B')
-            k0Edit.addItem('DC. Subgroep Onderbouw C')
-            k0Edit.addItem('DD. Subgroep Onderbouw D')
-            k0Edit.addItem('DE. Subgroep Onderbouw E')
-            k0Edit.addItem('DF. Subgroep Onderbouw F')
-            k0Edit.addItem('DG. Subgroep Onderbouw G')
-            k0Edit.addItem('DH. Subgroep Onderbouw H')
-            k0Edit.addItem('DI. Subgroep Onderbouw I')
-            k0Edit.addItem('DJ. Subgroep Onderbouw J')
-            k0Edit.addItem('DK. Subgroep Onderbouw K')
+            k0Edit.addItem('              Subgroup Substructure')
+            k0Edit.addItem('DA. Subgroup Substructure A')
+            k0Edit.addItem('DB. Subgroup Substructure B')
+            k0Edit.addItem('DC. Subgroup Substructure C')
+            k0Edit.addItem('DD. Subgroup Substructure D')
+            k0Edit.addItem('DE. Subgroup Substructure E')
+            k0Edit.addItem('DF. Subgroup Substructure F')
+            k0Edit.addItem('DG. Subgroup Substructure G')
+            k0Edit.addItem('DH. Subgroup Substructure H')
+            k0Edit.addItem('DI. Subgroup Substructure I')
+            k0Edit.addItem('DJ. Subgroup Substructure J')
+            k0Edit.addItem('DK. Subgroup Substructure K')
             k0Edit.activated[str].connect(self.k0Changed)
  
             grid = QGridLayout()
@@ -465,7 +465,7 @@ def kiesSubClusterD(keuze, m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
    
-            applyBtn = QPushButton('Maak cluster')
+            applyBtn = QPushButton('Create cluster')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 2, 1, 1, 1, Qt.AlignRight)
@@ -473,7 +473,7 @@ def kiesSubClusterD(keuze, m_email):
             applyBtn.setFixedWidth(110)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 2, 1, 1, 1,Qt.AlignCenter)
@@ -512,28 +512,28 @@ def kiesSubClusterE(keuze, m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Cluster selektie")
+            self.setWindowTitle("Cluster selection")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
                               
             self.Keuze = QLabel()
             k0Edit = QComboBox()
-            k0Edit.setFixedWidth(340)
+            k0Edit.setFixedWidth(400)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('       Subgroep Wissel-Baanconstrukties')
-            k0Edit.addItem('EA. Subgroep Wissels + baan A')
-            k0Edit.addItem('EB. Subgroep Wissels + baan B')
-            k0Edit.addItem('EC. Subgroep Wissels + baan C')
-            k0Edit.addItem('ED. Subgroep Wissels + baan D')
-            k0Edit.addItem('EE. Subgroep Wissels + baan E')
-            k0Edit.addItem('EF. Subgroep Wissels + baan F')
-            k0Edit.addItem('EG. Subgroep Wissels + baan G')
-            k0Edit.addItem('EH. Subgroep Wissels + baan H')
-            k0Edit.addItem('EI. Subgroep Wissels + baan I')
-            k0Edit.addItem('EJ. Subgroep Wissels + baan J')
-            k0Edit.addItem('EK. Subgroep Wissels + baan K')
+            k0Edit.addItem('       Subgroup Switch-Track Constructions')
+            k0Edit.addItem('EA. Subgroup Switches + track A')
+            k0Edit.addItem('EB. Subgroup Switches + track B')
+            k0Edit.addItem('EC. Subgroup Switches + track C')
+            k0Edit.addItem('ED. Subgroup Switches + track D')
+            k0Edit.addItem('EE. Subgroup Switches + track E')
+            k0Edit.addItem('EF. Subgroup Switches + track F')
+            k0Edit.addItem('EG. Subgroup Switches + track G')
+            k0Edit.addItem('EH. Subgroup Switches + track H')
+            k0Edit.addItem('EI. Subgroup Switches + track I')
+            k0Edit.addItem('EJ. Subgroup Switches + track J')
+            k0Edit.addItem('EK. Subgroup Switches + track K')
             k0Edit.activated[str].connect(self.k0Changed)
  
             grid = QGridLayout()
@@ -556,7 +556,7 @@ def kiesSubClusterE(keuze, m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
    
-            applyBtn = QPushButton('Maak cluster')
+            applyBtn = QPushButton('Create cluster')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 2, 1, 1, 1, Qt.AlignRight)
@@ -564,7 +564,7 @@ def kiesSubClusterE(keuze, m_email):
             applyBtn.setFixedWidth(110)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 2, 1, 1, 1,Qt.AlignCenter)
@@ -610,21 +610,21 @@ def kiesSubClusterF(keuze, m_email):
                               
             self.Keuze = QLabel()
             k0Edit = QComboBox()
-            k0Edit.setFixedWidth(340)
+            k0Edit.setFixedWidth(400)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem(' Subgroep Ondergrondse Infrastruktuur')
-            k0Edit.addItem('FA. Subgroep Ondergr. infra A')
-            k0Edit.addItem('FB. Subgroep Ondergr. infra B')
-            k0Edit.addItem('FC. Subgroep Ondergr. infra C')
-            k0Edit.addItem('FD. Subgroep Ondergr. infra D')
-            k0Edit.addItem('FE. Subgroep Ondergr. infra E')
-            k0Edit.addItem('FF. Subgroep Ondergr. infra F')
-            k0Edit.addItem('FG. Subgroep Ondergr. infra G')
-            k0Edit.addItem('FH. Subgroep Ondergr. infra H')
-            k0Edit.addItem('FI. Subgroep Ondergr. infra I')
-            k0Edit.addItem('FJ. Subgroep Ondergr. infra J')
-            k0Edit.addItem('FK. Subgroep Ondergr. infra K')
+            k0Edit.addItem(' Subgroup Underground Infrastructure')
+            k0Edit.addItem('FA. Subgroup underground infra A')
+            k0Edit.addItem('FB. Subgroup underground infra B')
+            k0Edit.addItem('FC. Subgroup underground infra C')
+            k0Edit.addItem('FD. Subgroup underground infra D')
+            k0Edit.addItem('FE. Subgroup underground infra E')
+            k0Edit.addItem('FF. Subgroup underground infra F')
+            k0Edit.addItem('FG. Subgroup underground infra G')
+            k0Edit.addItem('FH. Subgroup underground infra H')
+            k0Edit.addItem('FI. Subgroup underground infra I')
+            k0Edit.addItem('FJ. Subgroup underground infra J')
+            k0Edit.addItem('FK. Subgroup underground infra K')
             k0Edit.activated[str].connect(self.k0Changed)
  
             grid = QGridLayout()
@@ -647,7 +647,7 @@ def kiesSubClusterF(keuze, m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
    
-            applyBtn = QPushButton('Maak cluster')
+            applyBtn = QPushButton('Create cluster')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 2, 1, 1, 1, Qt.AlignRight)
@@ -655,7 +655,7 @@ def kiesSubClusterF(keuze, m_email):
             applyBtn.setFixedWidth(110)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 2, 1, 1, 1,Qt.AlignCenter)
@@ -701,21 +701,21 @@ def kiesSubClusterG(keuze, m_email):
                               
             self.Keuze = QLabel()
             k0Edit = QComboBox()
-            k0Edit.setFixedWidth(340)
+            k0Edit.setFixedWidth(400)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('     Subgroep Treinbeheersing-Seinen')
-            k0Edit.addItem('GA. Subgroep treinbeheersing + seinen A')
-            k0Edit.addItem('GB. Subgroep treinbeheersing + seinen B')
-            k0Edit.addItem('GC. Subgroep treinbeheersing + seinen C')
-            k0Edit.addItem('GD. Subgroep treinbeheersing + seinen D')
-            k0Edit.addItem('GE. Subgroep treinbeheersing + seinen E')
-            k0Edit.addItem('GF. Subgroep treinbeheersing + seinen F')
-            k0Edit.addItem('GG. Subgroep treinbeheersing + seinen G')
-            k0Edit.addItem('GH. Subgroep treinbeheersing + seinen H')
-            k0Edit.addItem('GI. Subgroep treinbeheersing + seinen I')
-            k0Edit.addItem('GJ. Subgroep treinbeheersing + seinen J')
-            k0Edit.addItem('GK. Subgroep treinbeheersing + seinen K')
+            k0Edit.addItem('     Subgroup Train control-signals')
+            k0Edit.addItem('GA. Subgroup train control + signals A')
+            k0Edit.addItem('GB. Subgroup train control + signals B')
+            k0Edit.addItem('GC. Subgroup train control + signals C')
+            k0Edit.addItem('GD. Subgroup train control + signals D')
+            k0Edit.addItem('GE. Subgroup train control + signals E')
+            k0Edit.addItem('GF. Subgroup train control + signals F')
+            k0Edit.addItem('GG. Subgroup train control + signals G')
+            k0Edit.addItem('GH. Subgroup train control + signals H')
+            k0Edit.addItem('GI. Subgroup train control + signals I')
+            k0Edit.addItem('GJ. Subgroup train control + signals J')
+            k0Edit.addItem('GK. Subgroup train control + signals K')
             k0Edit.activated[str].connect(self.k0Changed)
  
             grid = QGridLayout()
@@ -738,7 +738,7 @@ def kiesSubClusterG(keuze, m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
    
-            applyBtn = QPushButton('Maak cluster')
+            applyBtn = QPushButton('Create cluster')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 2, 1, 1, 1, Qt.AlignRight)
@@ -746,7 +746,7 @@ def kiesSubClusterG(keuze, m_email):
             applyBtn.setFixedWidth(110)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 2, 1, 1, 1,Qt.AlignCenter)
@@ -785,28 +785,28 @@ def kiesSubClusterH(keuze, m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Cluster selektie")
+            self.setWindowTitle("Cluster selection")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
                               
             self.Keuze = QLabel()
             k0Edit = QComboBox()
-            k0Edit.setFixedWidth(340)
+            k0Edit.setFixedWidth(400)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('   Subgroep Bovenleiding-Draagconstruktie')
-            k0Edit.addItem('HA. Subgroep Bvl + draagconstruktie A')
-            k0Edit.addItem('HB. Subgroep Bvl + draagconstruktie B')
-            k0Edit.addItem('HC. Subgroep Bvl + draagconstruktie C')
-            k0Edit.addItem('HD. Subgroep Bvl + draagconstruktie D')
-            k0Edit.addItem('HE. Subgroep Bvl + draagconstruktie E')
-            k0Edit.addItem('HF. Subgroep Bvl + draagconstruktie F')
-            k0Edit.addItem('HG. Subgroep Bvl + draagconstruktie G')
-            k0Edit.addItem('HH. Subgroep Bvl + draagconstruktie H')
-            k0Edit.addItem('HI. Subgroep Bvl + draagconstruktie I')
-            k0Edit.addItem('HJ. Subgroep Bvl + draagconstruktie J')
-            k0Edit.addItem('HK. Subgroep Bvl + draagconstruktie K')
+            k0Edit.addItem('   Subgroup OCL-Carrying Structure')
+            k0Edit.addItem('HA. Subgroup OCL-Carrying Structure A')
+            k0Edit.addItem('HB. Subgroup OCL-Carrying Structure B')
+            k0Edit.addItem('HC. Subgroup OCL-Carrying Structure C')
+            k0Edit.addItem('HD. Subgroup OCL-Carrying Structure D')
+            k0Edit.addItem('HE. Subgroup OCL-Carrying Structure E')
+            k0Edit.addItem('HF. Subgroup OCL-Carrying Structure F')
+            k0Edit.addItem('HG. Subgroup OCL-Carrying Structure G')
+            k0Edit.addItem('HH. Subgroup OCL-Carrying Structure H')
+            k0Edit.addItem('HI. Subgroup OCL-Carrying Structure I')
+            k0Edit.addItem('HJ. Subgroup OCL-Carrying Structure J')
+            k0Edit.addItem('HK. Subgroup OCL-Carrying Structure K')
             k0Edit.activated[str].connect(self.k0Changed)
  
             grid = QGridLayout()
@@ -829,7 +829,7 @@ def kiesSubClusterH(keuze, m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
    
-            applyBtn = QPushButton('Maak cluster')
+            applyBtn = QPushButton('Create cluster')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 2, 1, 1, 1, Qt.AlignRight)
@@ -837,7 +837,7 @@ def kiesSubClusterH(keuze, m_email):
             applyBtn.setFixedWidth(110)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 2, 1, 1, 1,Qt.AlignCenter)
@@ -877,28 +877,28 @@ def kiesSubClusterJ(keuze, m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Cluster selektie")
+            self.setWindowTitle("Cluster selection")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
                               
             self.Keuze = QLabel()
             k0Edit = QComboBox()
-            k0Edit.setFixedWidth(340)
+            k0Edit.setFixedWidth(400)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('    Subgroep Voedingen + Onderstations')
-            k0Edit.addItem('JA  Subgroep Voedingen + Onderstations A')
-            k0Edit.addItem('JB. Subgroep Voedingen + Onderstations B')
-            k0Edit.addItem('JC. Subgroep Voedingen + Onderstations C')
-            k0Edit.addItem('JD. Subgroep Voedingen + Onderstations D')
-            k0Edit.addItem('JE. Subgroep Voedingen + Onderstations E')
-            k0Edit.addItem('JF. Subgroep Voedingen + Onderstations F')
-            k0Edit.addItem('JG. Subgroep Voedingen + Onderstations G')
-            k0Edit.addItem('JH. Subgroep Voedingen + Onderstations H')
-            k0Edit.addItem('JI. Subgroep Voedingen + Onderstations I')
-            k0Edit.addItem('JJ. Subgroep Voedingen + Onderstations J')
-            k0Edit.addItem('JK. Subgroep Voedingen + Onderstations K')
+            k0Edit.addItem('    Subgroup Power Supplies + Substations')
+            k0Edit.addItem('JA  Subgroup Power Supplies + Substations A')
+            k0Edit.addItem('JB. Subgroup Power Supplies + Substations B')
+            k0Edit.addItem('JC. Subgroup Power Supplies + Substations C')
+            k0Edit.addItem('JD. Subgroup Power Supplies + Substations D')
+            k0Edit.addItem('JE. Subgroup Power Supplies + Substations E')
+            k0Edit.addItem('JF. Subgroup Power Supplies + Substations F')
+            k0Edit.addItem('JG. Subgroup Power Supplies + Substations G')
+            k0Edit.addItem('JH. Subgroup Power Supplies + Substations H')
+            k0Edit.addItem('JI. Subgroup Power Supplies + Substations I')
+            k0Edit.addItem('JJ. Subgroup Power Supplies + Substations J')
+            k0Edit.addItem('JK. Subgroup Power Supplies + Substations K')
             k0Edit.activated[str].connect(self.k0Changed)
  
             grid = QGridLayout()
@@ -921,7 +921,7 @@ def kiesSubClusterJ(keuze, m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
    
-            applyBtn = QPushButton('Maak cluster')
+            applyBtn = QPushButton('Create cluster')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 2, 1, 1, 1, Qt.AlignRight)
@@ -929,7 +929,7 @@ def kiesSubClusterJ(keuze, m_email):
             applyBtn.setFixedWidth(110)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 2, 1, 1, 1,Qt.AlignCenter)
@@ -962,26 +962,27 @@ def kiesSubClusterJ(keuze, m_email):
         keuze1 = data[0][1]
         momschr = data[0][4:]
     keuze = keuze+keuze1
-    maakCluster(keuze, momschr) 
+    maakCluster(keuze, momschr)
+
 
 def maakCluster(keuze, momschr):
     metadata = MetaData()
     clusters = Table('clusters', metadata,
-        Column('clusterID', String, primary_key=True),
-        Column('omschrijving', String))
- 
+                     Column('clusterID', String, primary_key=True),
+                     Column('omschrijving', String))
+
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    
-    selcllast = select([clusters]).where(clusters.c.clusterID.like(keuze+'%')).order_by(clusters.c.clusterID.desc())
+
+    selcllast = select([clusters]).where(clusters.c.clusterID.like(keuze + '%')).order_by(clusters.c.clusterID.desc())
     rpcllast = con.execute(selcllast).first()
     if rpcllast:
-        mclusternr = keuze+('00000'+str(int(rpcllast[0][2:7])+1))[-5:]
+        mclusternr = keuze + ('00000' + str(int(rpcllast[0][2:7]) + 1))[-5:]
     else:
-        mclusternr = keuze+'00001'
-  
-    inscl = insert(clusters).values(clusterID = mclusternr, omschrijving = momschr)
-    if mclusternr:       
+        mclusternr = keuze + '00001'
+
+    inscl = insert(clusters).values(clusterID=mclusternr, omschrijving=momschr)
+    if mclusternr:
         con.execute(inscl)
         insGelukt(mclusternr, momschr)
     else:

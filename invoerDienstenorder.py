@@ -14,8 +14,8 @@ def invoerGelukt():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))        
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Invoer dienstenorder gelukt!')
-    msg.setWindowTitle('Inkooporder diensten')
+    msg.setText('Import service order successful!')
+    msg.setWindowTitle('Purchase order services')
     msg.exec_()
     
 def foutInvoer():
@@ -24,8 +24,8 @@ def foutInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))        
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer. Voer gegevens opnieuw in!')
-    msg.setWindowTitle('Inkooporder diensten')
+    msg.setText('Incorrect insert. Re-enter data!')
+    msg.setWindowTitle('Purchase order services')
     msg.exec_() 
     
 def invoerBestaat():
@@ -34,8 +34,8 @@ def invoerBestaat():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))        
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('De betreffende dienst is al verwerkt!')
-    msg.setWindowTitle('Inkooporder diensten')
+    msg.setText('The service in question has already been processed!')
+    msg.setWindowTitle('Purchase order services')
     msg.exec_() 
 
 def geenRegels():
@@ -44,8 +44,8 @@ def geenRegels():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))        
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen calculatieregels van betreffende dienst aanwezig!')
-    msg.setWindowTitle('Inkooporder diensten')
+    msg.setText('No calculation lines of the relevant service available!')
+    msg.setWindowTitle('Purchase order services')
     msg.exec_()     
     
 def sluitRegels(m_email, mlevnr, mwerknr, mregel, self):
@@ -58,8 +58,8 @@ def foutLeverancier():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))        
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Leverancier/Werknummer\nniet gevonden!')
-    msg.setWindowTitle('Inkooporder diensten')
+    msg.setText('Supplier/Work number\nnot found!')
+    msg.setWindowTitle('Purchase order services')
     msg.exec_()
         
 def windowSluit(self, m_email):
@@ -110,7 +110,7 @@ def zoekLeverancier(m_email, mlevnr, mwerknr, mregel):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Inkooporders diensten invoeren.")
+            self.setWindowTitle("Insert purchase orders services")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -147,20 +147,20 @@ def zoekLeverancier(m_email, mlevnr, mwerknr, mregel):
             grid.addWidget(logo , 0, 2, 1, 1, Qt.AlignRight)
     
             self.setFont(QFont('Arial', 10))
-            grid.addWidget(QLabel('Leverancier\nWerknummer\n  Diensten'), 0, 1)
+            grid.addWidget(QLabel('Supplier\nWork number\nServices'), 0, 1)
     
-            grid.addWidget(QLabel('Leverancier'), 1, 0)
+            grid.addWidget(QLabel('Supplier'), 1, 0)
             grid.addWidget(levEdit, 1, 1)
             
-            grid.addWidget(QLabel('Werknummer'), 2, 0)
+            grid.addWidget(QLabel('Work number'), 2, 0)
             grid.addWidget(werknEdit, 2, 1)
             
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved - dj.jansen@casema.nl'), 3, 0, 1 ,3, Qt.AlignCenter)
        
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
          
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
                   
             grid.addWidget(applyBtn, 2, 2)
@@ -253,7 +253,7 @@ def inkoopRegels(m_email, rplev, mregel):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Bestelregels inkooporder diensten inbrengen")
+            self.setWindowTitle("Insert purchase order service order lines")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -279,27 +279,27 @@ def inkoopRegels(m_email, rplev, mregel):
             k0Edit.setFixedWidth(250)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('   Keuze Diensten / Materieel') 
-            k0Edit.addItem('1. Inhuur')
-            k0Edit.addItem('2. Leiding')
-            k0Edit.addItem('3. Huisvesting')
-            k0Edit.addItem('4. Kabelwerk')
-            k0Edit.addItem('5. Grondverzet')
-            k0Edit.addItem('6. Betonwerk')
-            k0Edit.addItem('7. Vervoer')
-            k0Edit.addItem('8. Overig')
-            k0Edit.addItem('A. Sleuvengraver')
-            k0Edit.addItem('B. Persapparaat')
-            k0Edit.addItem('C. Atlaskraan')
-            k0Edit.addItem('D. Kraan groot')
+            k0Edit.addItem('   Choice of Services / Equipment') 
+            k0Edit.addItem('1. Hiring')
+            k0Edit.addItem('2. Direction')
+            k0Edit.addItem('3. Housing')
+            k0Edit.addItem('4. Cable work')
+            k0Edit.addItem('5. Earth-moving')
+            k0Edit.addItem('6. Concrete work')
+            k0Edit.addItem('7. Transport')
+            k0Edit.addItem('8. Remaining')
+            k0Edit.addItem('A. Trencher')
+            k0Edit.addItem('B. Press machine')
+            k0Edit.addItem('C. Atlas crane')
+            k0Edit.addItem('D. Big crane')
             k0Edit.addItem('E. Mainliner')
-            k0Edit.addItem('F. Hormachine')
+            k0Edit.addItem('F. Ballast clearing machine')
             k0Edit.addItem('G. Wagon')
             k0Edit.addItem('H. Locomotor')
-            k0Edit.addItem('J. Locomotief')
-            k0Edit.addItem('K. Montagewagen')
-            k0Edit.addItem('L. Stormobiel') 
-            k0Edit.addItem('M. Robeltrein') 
+            k0Edit.addItem('J. Locomotive')
+            k0Edit.addItem('K. Assembly trolley')
+            k0Edit.addItem('L. Stormobiel')
+            k0Edit.addItem('M. Robel train') 
             k0Edit.activated[str].connect(self.k0Changed)
             
             self.OrderregelPrijs = QLabel()
@@ -350,45 +350,45 @@ def inkoopRegels(m_email, rplev, mregel):
             grid.addWidget(lbl ,1, 0)
             
             self.setFont(QFont('Arial', 10))
-            grid.addWidget(QLabel('Bestelling voor\nLeverancier: '+str(minkgeg[1])\
+            grid.addWidget(QLabel('Order for\nSupplier: '+str(minkgeg[1])\
             +',\n'+minkgeg[2]+' '+minkgeg[3]+',\n'+minkgeg[4]+' '+str(minkgeg[5])\
-            +minkgeg[6]+',\n'+minkgeg[7]+' '+minkgeg[8]+'.\nOrderregel '+str(mregel)), 1, 1, 1, 3)
+            +minkgeg[6]+',\n'+minkgeg[7]+' '+minkgeg[8]+'.\nOrder line '+str(mregel)), 1, 1, 1, 3)
                                              
-            lbl1 = QLabel('Ordernummer')  
+            lbl1 = QLabel('Order number')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 5, 0)
             grid.addWidget(inkorderEdit, 5, 1)
             
-            grid.addWidget(QLabel('Werknummer'), 6, 0, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Work number'), 6, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(werknEdit, 6, 1)  
  
-            lbl8 = QLabel('Soort Order  *')
+            lbl8 = QLabel('Type of order  *')
             lbl8.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl8, 7, 0)
             grid.addWidget(k0Edit, 7, 1)
              
             '''
-            lbl4 = QLabel('Aanneemsom')  
+            lbl4 = QLabel('Contract price')  
             lbl4.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl4, 8, 0)
             grid.addWidget(q1Edit, 8, 1)
             '''
             
-            lbl5 = QLabel('Omschrijving  *')  
+            lbl5 = QLabel('Description  *')  
             lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl5, 9, 0)
             grid.addWidget(q2Edit, 9, 1, 1 , 3)
             
-            lbl6 = QLabel('Geplande Start jjjj-mm-dd  *')  
+            lbl6 = QLabel('Planned start yyyy-mm-dd  *')  
             lbl6.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl6, 10, 0)
             grid.addWidget(q3Edit, 10, 1)
             
-            lbl7 = QLabel('Gepland Gereed jjjj-mm-dd  *')  
+            lbl7 = QLabel('Planned ready yyyy-mm-dd  *')  
             lbl7.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl7, 11, 0)
             grid.addWidget(q4Edit, 11, 1)
-            grid.addWidget(QLabel('* Verplichte Invoer'), 11, 2, 1, 2)
+            grid.addWidget(QLabel('* Required insert'), 11, 2, 1, 2)
                    
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved - dj.jansen@casema.nl'), 13, 0, 1, 4, Qt.AlignCenter)
          
@@ -400,7 +400,7 @@ def inkoopRegels(m_email, rplev, mregel):
             self.setLayout(grid)
             self.setGeometry(600, 150, 150, 150)
     
-            applyBtn = QPushButton('Invoeren')
+            applyBtn = QPushButton('Insert')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 12, 3, 1 , 1, Qt.AlignRight)
@@ -408,7 +408,7 @@ def inkoopRegels(m_email, rplev, mregel):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            sluitBtn = QPushButton('Sluiten')
+            sluitBtn = QPushButton('Close')
             sluitBtn.clicked.connect(lambda: sluitRegels(m_email, mlevnr, mwerknr, mregel, self))
     
             grid.addWidget(sluitBtn, 12, 2)
@@ -721,7 +721,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mpers,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mpers,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mpers*rppar[1][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -739,7 +739,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(matlas,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(matlas,2))+' hours', omschrijving = momschr,\
                  aanneemsom = matlas*rppar[2][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -757,7 +757,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mkrgroot,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mkrgroot,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mkrgroot*rppar[3][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -775,7 +775,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mmainliner,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mmainliner,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mmainliner*rppar[4][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -793,7 +793,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mhor,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mhor,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mhor*rppar[5][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -811,7 +811,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mwagon,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mwagon,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mwagon*rppar[6][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -829,7 +829,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mlmotor,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mlmotor,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mlmotor*rppar[7][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -847,7 +847,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mlmotief,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mlmotief,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mlmotief*rppar[8][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -865,7 +865,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mmont,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mmont,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mmont*rppar[9][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -883,7 +883,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mstorm,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mstorm,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mstorm*rppar[10][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
@@ -901,7 +901,7 @@ def inkoopRegels(m_email, rplev, mregel):
             mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mrobel,2))+' uren', omschrijving = momschr,\
+                 werkomschr = soort+' '+str(round(mrobel,2))+' hours', omschrijving = momschr,\
                  aanneemsom = mrobel*rppar[11][1],\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)

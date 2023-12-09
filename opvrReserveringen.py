@@ -17,8 +17,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Reserveringen opvragen')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Request reservations')               
     msg.exec_()
     
 def foutBestel():
@@ -26,8 +26,8 @@ def foutBestel():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Bestelling is al eerder uitgevoerd!')
-    msg.setWindowTitle('Reserveringen opvragen')               
+    msg.setText('Order has been executed before!')
+    msg.setWindowTitle('Request reservations')               
     msg.exec_()
     
 def foutOrder():
@@ -35,8 +35,8 @@ def foutOrder():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Ongeldig inkoopordernummer!')
-    msg.setWindowTitle('Reserveringen opvragen')               
+    msg.setText('Invalid purchase order number!')
+    msg.setWindowTitle('Request reservations')               
     msg.exec_()
    
 def geenRecord():
@@ -44,8 +44,8 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Reserveringen opvragen')               
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Request reservations')               
     msg.exec_() 
     
 def updateOk():
@@ -53,15 +53,15 @@ def updateOk():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Wijzigen zijn uitgevoerd')
-    msg.setWindowTitle('Reserveringen opvragen')
+    msg.setText('Adjustments have been made')
+    msg.setWindowTitle('Request reservations')
     msg.exec_()
 
 def resKeuze(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Opvragen reserveringen")
+            self.setWindowTitle("Request reservations")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -71,15 +71,15 @@ def resKeuze(m_email):
             k0Edit.setFixedWidth(350)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('                   Sorteersleutel zoeken')
-            k0Edit.addItem('1. Alle reserveringen')
-            k0Edit.addItem('2. Gesorteerd op reserveringsdatum')
-            k0Edit.addItem('3. Gesorteerd op start levering')
-            k0Edit.addItem('4. Gefilterd op artikelnummer')
-            k0Edit.addItem('5. Gefilterd op werknummer / werkorder')
-            k0Edit.addItem('6. Gefilterd op bestelde artikelen')
-            k0Edit.addItem('7. Gefilterd op te bestellen artikelen')
-            k0Edit.addItem('8. Gefilterd op categorienummer')
+            k0Edit.addItem('                   Search sort key')
+            k0Edit.addItem('1. All reservations')
+            k0Edit.addItem('2. Sorted by date of reservation')
+            k0Edit.addItem('3. Sorted by start delivery')
+            k0Edit.addItem('4. Filtered by article number')
+            k0Edit.addItem('5. Filtered by work number / work order')
+            k0Edit.addItem('6. Filtered by ordered items')
+            k0Edit.addItem('7. Filtered by items to order')
+            k0Edit.addItem('8. Filtered by category number')
             k0Edit.activated[str].connect(self.k0Changed)
             
             self.Zoekterm = QLabel()
@@ -97,7 +97,7 @@ def resKeuze(m_email):
             grid.addWidget(lbl , 0, 0, 1, 2)
                                   
             grid.addWidget(k0Edit, 1, 0 ,1, 2, Qt.AlignRight)
-            lbl1 = QLabel('Zoekterm')  
+            lbl1 = QLabel('Search term')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 2, 0)
             grid.addWidget(zktermEdit, 2, 1)
@@ -112,7 +112,7 @@ def resKeuze(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1 ,1, Qt.AlignRight)
     
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 3, 1, 1, 1, Qt.AlignRight)
@@ -120,7 +120,7 @@ def resKeuze(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
               
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self,m_email))
     
             grid.addWidget(cancelBtn, 3, 1)
@@ -224,7 +224,7 @@ def toonReserveringen(keuze, zoekterm, m_email):
         def __init__(self, data_list, header, *args):
             QDialog.__init__(self, *args,)
             self.setGeometry(100, 50, 1600, 900)
-            self.setWindowTitle('Reserveringen opvragen')
+            self.setWindowTitle('Request reservations')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -269,10 +269,10 @@ def toonReserveringen(keuze, zoekterm, m_email):
                 return self.header[col]
             return None
        
-    header = ['MatlijstID','Artikelnummer','Werknummer','Calculatie','Icalculatie',\
-              'Inkoopordernummer','Hoeveelheid','Reserveringdatum','Levertijd begin',\
-              'Levertijd einde','Categorie', 'Artikelnummer','Artikelomschrijving',\
-              'Artikelprijs','Artikelvoorraad','Categorie','Bestelsaldo','Reserveringsaldo']  
+    header = ['MatlistID','Article number','Work number','Calculation','Icalculation',\
+              'Purchase order number','Quantity','Reservation date','Delivery time start',\
+              'Delivery time end','Category', 'Article number','Article description',\
+              'Article price','Article stock','Category','Order balance','Reservation balance']  
         
     data_list=[]
     for row in rpres:
@@ -290,7 +290,7 @@ def toonReserveringen(keuze, zoekterm, m_email):
                 def __init__(self, parent=None):
                     super(Widget, self).__init__(parent)
                 
-                    self.setWindowTitle("Reserveringen opvragen")
+                    self.setWindowTitle("Request reserverations")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                                 
                     self.setFont(QFont('Arial', 10))
@@ -416,57 +416,57 @@ def toonReserveringen(keuze, zoekterm, m_email):
                     logo.setPixmap(pixmap)
                     grid.addWidget(logo , 0, 3, 1, 1, Qt.AlignRight) 
                   
-                    grid.addWidget(QLabel('MatlijstID'), 1, 0)
+                    grid.addWidget(QLabel('MatlistID'), 1, 0)
                     grid.addWidget(q1Edit, 1, 1)
                 
-                    grid.addWidget(QLabel('Artikelnummer'), 2, 0)
+                    grid.addWidget(QLabel('Article number'), 2, 0)
                     grid.addWidget(q2Edit, 2, 1)
                     
-                    grid.addWidget(QLabel('Werknummer'), 2, 2)
+                    grid.addWidget(QLabel('Work number'), 2, 2)
                     grid.addWidget(q4Edit, 2, 3)
                     
-                    grid.addWidget(QLabel('Calculatie'), 3, 0)
+                    grid.addWidget(QLabel('Calculation'), 3, 0)
                     grid.addWidget(q5Edit, 3, 1)
                     
-                    grid.addWidget(QLabel('Icalculatie'), 3, 2)
+                    grid.addWidget(QLabel('Icalculation'), 3, 2)
                     grid.addWidget(q10Edit, 3, 3)
                 
-                    grid.addWidget(QLabel('Artikelomschrijving'), 4, 0)
+                    grid.addWidget(QLabel('Article description'), 4, 0)
                     grid.addWidget(q3Edit, 4 ,1, 1, 3) 
                                              
-                    grid.addWidget(QLabel('Inkoopordernummer'), 5, 0)
+                    grid.addWidget(QLabel('Purchase order number'), 5, 0)
                     grid.addWidget(q6Edit, 5, 1)
                                                       
-                    grid.addWidget(QLabel('Hoeveelheid'), 5, 2)
+                    grid.addWidget(QLabel('Quantity'), 5, 2)
                     grid.addWidget(q17Edit, 5, 3)
                     
-                    grid.addWidget(QLabel('Artikelvoorraad'), 6, 0)
+                    grid.addWidget(QLabel('Article stock'), 6, 0)
                     grid.addWidget(q18Edit, 6, 1)
                 
-                    grid.addWidget(QLabel('Reserveringsaldo'), 6, 2)
+                    grid.addWidget(QLabel('Reservation balance'), 6, 2)
                     grid.addWidget(q7Edit, 6, 3)
                 
-                    grid.addWidget(QLabel('Reserveringsdatum'), 7, 0)
+                    grid.addWidget(QLabel('Reservation date'), 7, 0)
                     grid.addWidget(q8Edit, 7, 1)
                     
-                    grid.addWidget(QLabel('Bestelsaldo'), 7, 2)
+                    grid.addWidget(QLabel('Order balance'), 7, 2)
                     grid.addWidget(q16Edit, 7, 3)
                 
-                    grid.addWidget(QLabel('Levering start'), 8, 0)
+                    grid.addWidget(QLabel('Delivery start'), 8, 0)
                     grid.addWidget(q9Edit, 8, 1) 
                                                           
-                    grid.addWidget(QLabel('Levering eind'), 8, 2)
+                    grid.addWidget(QLabel('Delivery end'), 8, 2)
                     grid.addWidget(q11Edit, 8, 3)
                     
-                    grid.addWidget(QLabel('Categorie'), 9,0)
+                    grid.addWidget(QLabel('Category'), 9,0)
                     grid.addWidget(q13Edit, 9, 1)
                     
-                    grid.addWidget(QLabel('Artikelprijs'), 9, 2)
+                    grid.addWidget(QLabel('Article price'), 9, 2)
                     grid.addWidget(q14Edit, 9, 3)
                                      
                     grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 11, 0, 1, 4, Qt.AlignCenter)
                        
-                    cancelBtn = QPushButton('Sluiten')
+                    cancelBtn = QPushButton('Close')
                     cancelBtn.clicked.connect(self.close)
                 
                     grid.addWidget(cancelBtn, 10, 3, 1, 1, Qt.AlignRight)

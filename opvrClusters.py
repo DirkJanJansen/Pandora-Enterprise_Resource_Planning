@@ -12,8 +12,8 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Clusters opvragen')               
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Request clusters')
     msg.exec_() 
     
 def ongInvoer():
@@ -21,8 +21,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Ongeldige invoer')
-    msg.setWindowTitle('Clusters opvragen')               
+    msg.setText('Invalid entry')
+    msg.setWindowTitle('Request clusters')
     msg.exec_()
 
 def windowSluit(self, m_email):
@@ -33,29 +33,29 @@ def zoeken(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Cluster artikelregels")
+            self.setWindowTitle("Cluster article lines")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
                               
             self.Keuze = QLabel()
             k0Edit = QComboBox()
-            k0Edit.setFixedWidth(340)
+            k0Edit.setFixedWidth(400)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('              Sorteersleutel Clustergroepen')
-            k0Edit.addItem('0. Alle Clusters')
-            k0Edit.addItem('AA-AL. Spoorstaven + lasmiddelen')
-            k0Edit.addItem('BA-BK. Liggers + bevestiging')
-            k0Edit.addItem('CA-CK. Overwegen + overwegbeveiliging')
-            k0Edit.addItem('DA-DK. Steenslag + grond aanvulling')
-            k0Edit.addItem('EA-EK. Wissel + baanconstrukties')
-            k0Edit.addItem('FA-FK. Ondergrondse infrastruktuur')
-            k0Edit.addItem('GA-GK. Treinbeheersing + seinen')
-            k0Edit.addItem('HA-HK. Bovenleiding + draagconstruktie')
-            k0Edit.addItem('JA-JK. Voedingen + Onderstations')
+            k0Edit.addItem('                 Cluster groups sort key')
+            k0Edit.addItem('0. All clusters')
+            k0Edit.addItem('AA-AL. Rails + welding assets')
+            k0Edit.addItem('BA-BK. Beams + mounting')
+            k0Edit.addItem('CA-CK. Level crossing + level crossing protection')
+            k0Edit.addItem('DA-DK. Crushed stone + earth moving')
+            k0Edit.addItem('EA-EK. Switch + track constructions')
+            k0Edit.addItem('FA-FK. Underground infrastructure')
+            k0Edit.addItem('GA-GK. Train control + signals')
+            k0Edit.addItem('HA-HK. OCL + support structure')
+            k0Edit.addItem('JA-JK. Power supplies + substations')
             k0Edit.activated[str].connect(self.k0Changed)
-        
+
             grid = QGridLayout()
             grid.setSpacing(20)
                           
@@ -76,7 +76,7 @@ def zoeken(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
    
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 2, 1, 1, 1, Qt.AlignRight)
@@ -84,7 +84,7 @@ def zoeken(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 2, 0, 1 , 2, Qt.AlignCenter)
@@ -121,7 +121,7 @@ def toonClusters(keuze, m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(100, 50, 1700, 900)
-            self.setWindowTitle('Clusters opvragen')
+            self.setWindowTitle('Request clusters')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -162,14 +162,14 @@ def toonClusters(keuze, m_email):
             if orientation == Qt.Horizontal and role == Qt.DisplayRole:
                 return self.header[col]
             return None
-             
-    header = ['Clusternr', 'Omschrijving', 'Prijs', 'Eenheid', 'Materialen', 'Lonen',\
-              'Diensten', 'Materiëel', 'Inhuur', 'uren_constr', 'uren_mont','uren_retourlas',\
-              'uren_bfi', 'uren_voeding', 'uren_bvl', 'uren_spoorleg', 'uren_spoorlas',\
-              'uren_inhuur', 'Sleuvengraver', 'Persapparaat', 'Atlaskraan',\
-              'Kraan_groot', 'Mainliner', 'Hormachine', 'Wagon', 'Locomotor',\
-              'Locomotief', 'Montagewagen', 'Stormobiel', 'uren_telecom', 'Robeltrein',\
-              'Leiding','Huisvesting','Kabelwerk','Grondverzet','Betonwerk','Vervoer','Overig']
+
+    header = ['Cluster number', 'Description', 'Price', 'Unit', 'Materials', 'Wages', \
+              'Services', 'Equipment', 'Hiring', 'hours\nconstruction', 'hours mounting', 'hours\nreturn welding', \
+              'hours\nchief mechanic', 'hours\npower-supply', 'hours\nOCL', 'hours\ntrack laying','hours\ntrack welding', \
+              'hours\nhiring', 'Trench machine', 'Press machine', 'Atlas crane', \
+              'Crane big', 'Mainliner', 'Ballast scrape\nmachine', 'Wagon', 'Locomotor', \
+              'Locomotive', 'Assembly\ntrolley', 'Stormobiel', 'hours\ntelecom', 'Robel train', \
+              'Direction', 'Housing', 'Cable work', 'Earth moving', 'Concrete work', 'Transport', 'Remaining']
         
     metadata = MetaData()
     clusters = Table('clusters', metadata,
@@ -246,129 +246,129 @@ def toonClusters(keuze, m_email):
                     
                     grid = QGridLayout()
                     grid.setSpacing(20)
-                    self.setWindowTitle("Clusters opvragen")
+                    self.setWindowTitle("Request clusters")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                     
                     self.setFont(QFont('Arial', 10))   
                     
-                    q1Edit = QLineEdit(rpsel[1])#omschrijving
+                    q1Edit = QLineEdit(rpsel[1])#description
                     q1Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q1Edit.setDisabled(True)
                                     
-                    q2Edit = QLineEdit('{:12.2f}'.format(rpsel[2])) #prijs
+                    q2Edit = QLineEdit('{:12.2f}'.format(rpsel[2])) #price
                     q2Edit.setFixedWidth(150)
                     q2Edit.setAlignment(Qt.AlignRight)
                     q2Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q2Edit.setDisabled(True)
                      
-                    q3Edit = QLineEdit(str(rpsel[3]))#eenheid
+                    q3Edit = QLineEdit(str(rpsel[3]))#unit
                     q3Edit.setFixedWidth(150)
                     q3Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q3Edit.setDisabled(True)
                     
-                    q4Edit = QLineEdit('{:12.2f}'.format(rpsel[4]))#materialen
+                    q4Edit = QLineEdit('{:12.2f}'.format(rpsel[4]))#materials
                     q4Edit.setFixedWidth(150)
                     q4Edit.setAlignment(Qt.AlignRight)
                     q4Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q4Edit.setDisabled(True)
                     
-                    q5Edit = QLineEdit('{:12.2f}'.format(rpsel[5])) #lonen
+                    q5Edit = QLineEdit('{:12.2f}'.format(rpsel[5])) #wages
                     q5Edit.setFixedWidth(150)
                     q5Edit.setAlignment(Qt.AlignRight)
                     q5Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q5Edit.setDisabled(True)
                     
-                    q6Edit = QLineEdit('{:12.2f}'.format(rpsel[6])) #diensten
+                    q6Edit = QLineEdit('{:12.2f}'.format(rpsel[6])) #services
                     q6Edit.setFixedWidth(150)
                     q6Edit.setAlignment(Qt.AlignRight)
                     q6Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q6Edit.setDisabled(True)
                     
-                    q7Edit = QLineEdit('{:12.2f}'.format(rpsel[7]))#materieel
+                    q7Edit = QLineEdit('{:12.2f}'.format(rpsel[7]))#equipment
                     q7Edit.setFixedWidth(150)
                     q7Edit.setAlignment(Qt.AlignRight)
                     q7Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q7Edit.setDisabled(True)
                     
-                    q8Edit = QLineEdit('{:12.2f}'.format(rpsel[8]))#inhuur
+                    q8Edit = QLineEdit('{:12.2f}'.format(rpsel[8]))#hiring
                     q8Edit.setFixedWidth(150)
                     q8Edit.setAlignment(Qt.AlignRight)
                     q8Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q8Edit.setDisabled(True)
                     
-                    q9Edit = QLineEdit('{:12.2f}'.format(rpsel[9]))#uren_constr
+                    q9Edit = QLineEdit('{:12.2f}'.format(rpsel[9]))#hours construction
                     q9Edit.setFixedWidth(150)
                     q9Edit.setAlignment(Qt.AlignRight)
                     q9Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q9Edit.setDisabled(True)
                     
-                    q10Edit = QLineEdit('{:12.2f}'.format(rpsel[10]))#uren_mont
+                    q10Edit = QLineEdit('{:12.2f}'.format(rpsel[10]))#hours mounting
                     q10Edit.setFixedWidth(150)
                     q10Edit.setAlignment(Qt.AlignRight)
                     q10Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q10Edit.setDisabled(True)
                     
-                    q11Edit = QLineEdit('{:12.2f}'.format(rpsel[11]))#urenretour
+                    q11Edit = QLineEdit('{:12.2f}'.format(rpsel[11]))#hours return welding
                     q11Edit.setFixedWidth(150)
                     q11Edit.setAlignment(Qt.AlignRight)
                     q11Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q11Edit.setDisabled(True)
                     
-                    q12Edit = QLineEdit('{:12.2f}'.format(rpsel[12]))#uren bfi
+                    q12Edit = QLineEdit('{:12.2f}'.format(rpsel[12]))#hours chief mechanic
                     q12Edit.setFixedWidth(150)
                     q12Edit.setAlignment(Qt.AlignRight)
                     q12Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q12Edit.setDisabled(True)
 
-                    q13Edit = QLineEdit('{:12.2f}'.format(rpsel[13]))#uren voeding
+                    q13Edit = QLineEdit('{:12.2f}'.format(rpsel[13]))#hours power-supply
                     q13Edit.setFixedWidth(150)
                     q13Edit.setAlignment(Qt.AlignRight)
                     q13Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q13Edit.setDisabled(True)
                     
-                    q14Edit = QLineEdit('{:12.2f}'.format(rpsel[14]))#urenbvl
+                    q14Edit = QLineEdit('{:12.2f}'.format(rpsel[14]))#hours OCL
                     q14Edit.setFixedWidth(150)
                     q14Edit.setAlignment(Qt.AlignRight)
                     q14Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q14Edit.setDisabled(True)
                        
-                    q15Edit = QLineEdit('{:12.2f}'.format(rpsel[15]))#urenspoorleg
+                    q15Edit = QLineEdit('{:12.2f}'.format(rpsel[15]))#hours track laying
                     q15Edit.setFixedWidth(150)
                     q15Edit.setAlignment(Qt.AlignRight)
                     q15Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q15Edit.setDisabled(True)
                     
-                    q16Edit = QLineEdit('{:12.2f}'.format(rpsel[16]))#uren spoorlas
+                    q16Edit = QLineEdit('{:12.2f}'.format(rpsel[16]))#hours track welding
                     q16Edit.setFixedWidth(150)
                     q16Edit.setAlignment(Qt.AlignRight)
                     q16Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q16Edit.setDisabled(True)
                     
-                    q17Edit = QLineEdit('{:12.2f}'.format(rpsel[17])) #uren_inhuur
+                    q17Edit = QLineEdit('{:12.2f}'.format(rpsel[17])) #hours hiring
                     q17Edit.setFixedWidth(150)
                     q17Edit.setAlignment(Qt.AlignRight)
                     q17Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q17Edit.setDisabled(True)
                        
-                    q18Edit = QLineEdit('{:12.2f}'.format(rpsel[18])) #sleuvengrave
+                    q18Edit = QLineEdit('{:12.2f}'.format(rpsel[18])) #hours trench machine
                     q18Edit.setFixedWidth(150)
                     q18Edit.setAlignment(Qt.AlignRight)
                     q18Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q18Edit.setDisabled(True)
                             
-                    q19Edit = QLineEdit('{:12.2f}'.format(rpsel[19])) #persapparaat
+                    q19Edit = QLineEdit('{:12.2f}'.format(rpsel[19])) #hours pressing machine
                     q19Edit.setFixedWidth(150)
                     q19Edit.setAlignment(Qt.AlignRight)
                     q19Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q19Edit.setDisabled(True)
                     
-                    q20Edit = QLineEdit('{:12.2f}'.format(rpsel[20])) # atlaskraan
+                    q20Edit = QLineEdit('{:12.2f}'.format(rpsel[20])) # atlas crane
                     q20Edit.setFixedWidth(150)
                     q20Edit.setAlignment(Qt.AlignRight)
                     q20Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q20Edit.setDisabled(True)
                     
-                    q21Edit = QLineEdit('{:12.2f}'.format(rpsel[21])) #kraan_groot
+                    q21Edit = QLineEdit('{:12.2f}'.format(rpsel[21])) #crane big
                     q21Edit.setFixedWidth(150)
                     q21Edit.setAlignment(Qt.AlignRight)
                     q21Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
@@ -380,7 +380,7 @@ def toonClusters(keuze, m_email):
                     q22Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q22Edit.setDisabled(True)
 
-                    q23Edit = QLineEdit('{:12.2f}'.format(rpsel[23])) #hormachine
+                    q23Edit = QLineEdit('{:12.2f}'.format(rpsel[23])) #ballast clearing machine
                     q23Edit.setFixedWidth(150)
                     q23Edit.setAlignment(Qt.AlignRight)
                     q23Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
@@ -398,13 +398,13 @@ def toonClusters(keuze, m_email):
                     q25Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q25Edit.setDisabled(True)
 
-                    q26Edit = QLineEdit('{:12.2f}'.format(rpsel[26])) #locomotief
+                    q26Edit = QLineEdit('{:12.2f}'.format(rpsel[26])) #locomotive
                     q26Edit.setFixedWidth(150)
                     q26Edit.setAlignment(Qt.AlignRight)
                     q26Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q26Edit.setDisabled(True)
 
-                    q27Edit = QLineEdit('{:12.2f}'.format(rpsel[27])) #montagewagen
+                    q27Edit = QLineEdit('{:12.2f}'.format(rpsel[27])) #assembly trolley
                     q27Edit.setFixedWidth(150)
                     q27Edit.setAlignment(Qt.AlignRight)
                     q27Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
@@ -416,55 +416,54 @@ def toonClusters(keuze, m_email):
                     q28Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q28Edit.setDisabled(True)
                                  
-                    q29Edit = QLineEdit('{:12.2f}'.format(rpsel[29])) #uren_telecom
+                    q29Edit = QLineEdit('{:12.2f}'.format(rpsel[29])) #hours telecom
                     q29Edit.setFixedWidth(150)
                     q29Edit.setAlignment(Qt.AlignRight)
                     q29Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q29Edit.setDisabled(True)
                                           
-                    q30Edit = QLineEdit('{:12.2f}'.format(rpsel[30])) #robeltrein
+                    q30Edit = QLineEdit('{:12.2f}'.format(rpsel[30])) #robel train
                     q30Edit.setFixedWidth(150)
                     q30Edit.setAlignment(Qt.AlignRight)
                     q30Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q30Edit.setDisabled(True)
                     
-                    q31Edit = QLineEdit('{:12.2f}'.format(rpsel[31])) #leiding
+                    q31Edit = QLineEdit('{:12.2f}'.format(rpsel[31])) #direction
                     q31Edit.setFixedWidth(150)
                     q31Edit.setAlignment(Qt.AlignRight)
                     q31Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q31Edit.setDisabled(True)
                                     
-                    q32Edit = QLineEdit('{:12.2f}'.format(rpsel[32])) # huisvesting
+                    q32Edit = QLineEdit('{:12.2f}'.format(rpsel[32])) # housing
                     q32Edit.setFixedWidth(150)
                     q32Edit.setAlignment(Qt.AlignRight)
                     q32Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q32Edit.setDisabled(True)
                     
-                    q33Edit = QLineEdit('{:12.2f}'.format(rpsel[33])) #kabelwerk
+                    q33Edit = QLineEdit('{:12.2f}'.format(rpsel[33])) #cable work
                     q33Edit.setFixedWidth(150)
                     q33Edit.setAlignment(Qt.AlignRight)
                     q33Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q33Edit.setDisabled(True)
                     
-                    q34Edit = QLineEdit('{:12.2f}'.format(rpsel[34])) #grondverzet
-                    q34Edit.setFixedWidth(150)
+                    q34Edit = QLineEdit('{:12.2f}'.format(rpsel[34])) #earth moving
                     q34Edit.setAlignment(Qt.AlignRight)
                     q34Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q34Edit.setDisabled(True)
                     
-                    q35Edit = QLineEdit('{:12.2f}'.format(rpsel[35])) #betonwerk
+                    q35Edit = QLineEdit('{:12.2f}'.format(rpsel[35])) #concrete work
                     q35Edit.setFixedWidth(150)
                     q35Edit.setAlignment(Qt.AlignRight)
                     q35Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q35Edit.setDisabled(True)
                     
-                    q36Edit = QLineEdit('{:12.2f}'.format(rpsel[36])) #vervoer
+                    q36Edit = QLineEdit('{:12.2f}'.format(rpsel[36])) #Transport
                     q36Edit.setFixedWidth(150)
                     q36Edit.setAlignment(Qt.AlignRight)
                     q36Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q36Edit.setDisabled(True)
                     
-                    q37Edit = QLineEdit('{:12.2f}'.format(rpsel[36])) #overig
+                    q37Edit = QLineEdit('{:12.2f}'.format(rpsel[36])) #Remaining
                     q37Edit.setFixedWidth(150)
                     q37Edit.setAlignment(Qt.AlignRight)
                     q37Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
@@ -473,194 +472,194 @@ def toonClusters(keuze, m_email):
                     grid = QGridLayout()
                     grid.setSpacing(10)
                     
-                    lbl1 = QLabel('Clusternummer')  
+                    lbl1 = QLabel('Cluster number')
                     lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl1, 1, 0)
                     
                     lbl2 = QLabel(clusternr)
                     grid.addWidget(lbl2, 1, 1)
                            
-                    lbl3 = QLabel('Omschrijving')  
+                    lbl3 = QLabel('Description')
                     lbl3.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl3, 2, 0)
                     grid.addWidget(q1Edit, 2, 1, 1, 3) # RowSpan 1 ,ColumnSpan 3
                                                          
-                    lbl4 = QLabel('Prijs')  
+                    lbl4 = QLabel('Price')
                     lbl4.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl4, 3, 0)
                     grid.addWidget(q2Edit, 3, 1)
                     
-                    lbl5 = QLabel('Eenheid')  
+                    lbl5 = QLabel('Unit')
                     lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl5, 4, 0)
                     grid.addWidget(q3Edit, 4, 1)
                     
-                    lbl6 = QLabel('Materialen')  
+                    lbl6 = QLabel('Materials')
                     lbl6.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl6, 5, 0)
                     grid.addWidget(q4Edit, 5, 1)
                     
-                    lbl7 = QLabel('Lonen')  
+                    lbl7 = QLabel('Wages')
                     lbl7.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl7, 6, 0)
                     grid.addWidget(q5Edit, 6, 1)
                     
-                    lbl8 = QLabel('Diensten')  
+                    lbl8 = QLabel('Services')
                     lbl8.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl8, 7, 0)
                     grid.addWidget(q6Edit, 7, 1)
                     
-                    lbl9 = QLabel('Materiëel')  
+                    lbl9 = QLabel('Equipment')
                     lbl9.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl9, 8, 0)
                     grid.addWidget(q7Edit, 8, 1)
                     
-                    lbl10 = QLabel('Inhuur')  
+                    lbl10 = QLabel('Hiring')
                     lbl10.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl10, 9, 0)
                     grid.addWidget(q8Edit, 9, 1)
                     
-                    lbl20 = QLabel('Sleuvengraven-uren')  
+                    lbl20 = QLabel('Trench machine hours')
                     lbl20.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl20, 10, 0)
                     grid.addWidget(q18Edit, 10, 1)
                       
-                    lbl21 = QLabel('Persapparaat-uren')  
+                    lbl21 = QLabel('Pressing machine hours')
                     lbl21.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl21, 11, 0)
                     grid.addWidget(q19Edit, 11, 1)
                     
-                    lbl22 = QLabel('Atlaskraan-uren')  
+                    lbl22 = QLabel('Atlas crane hours')
                     lbl22.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl22, 12, 0)
                     grid.addWidget(q20Edit, 12, 1)
                     
-                    lbl23 = QLabel('Kraan_groot-uren')  
+                    lbl23 = QLabel('Crane big hours')
                     lbl23.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl23, 13, 0)
                     grid.addWidget(q21Edit, 13, 1)
                     
-                    lbl24 = QLabel('Mainliner-uren')  
+                    lbl24 = QLabel('Mainliner hours')
                     lbl24.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl24, 14, 0)
                     grid.addWidget(q22Edit, 14, 1)
                     
-                    lbl25 = QLabel('Hormachine-uren')  
+                    lbl25 = QLabel('Ballast clearing hours')
                     lbl25.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl25, 15, 0)
                     grid.addWidget(q23Edit, 15, 1)
                     
-                    lbl26 = QLabel('Wagon-uren')  
+                    lbl26 = QLabel('Wagon hours')
                     lbl26.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl26, 16, 0)
                     grid.addWidget(q24Edit, 16, 1)
                     
-                    lbl27 = QLabel('Locomotor-uren')  
+                    lbl27 = QLabel('Locomotor hours')
                     lbl27.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl27, 3, 2)
                     grid.addWidget(q25Edit, 3, 3)
                     
-                    lbl28 = QLabel('Locomotief-uren')  
+                    lbl28 = QLabel('Locomotive hours')
                     lbl28.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl28, 4, 2)
                     grid.addWidget(q26Edit, 4, 3)
                                                           
-                    lbl29 = QLabel('Montage-uren')  
+                    lbl29 = QLabel('Mounting hours')
                     lbl29.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl29, 5, 2)
                     grid.addWidget(q27Edit, 5, 3)
                     
-                    lbl30 = QLabel('Stormobiel-uren')  
+                    lbl30 = QLabel('Stormobiel hours')
                     lbl30.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl30, 6, 2)
                     grid.addWidget(q28Edit, 6, 3)
                     
-                    lbl31 = QLabel('Telecom-uren')
+                    lbl31 = QLabel('Telecom hours')
                     lbl31.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl31, 17, 2)
                     grid.addWidget(q29Edit, 17, 3) 
                                         
-                    lbl19 = QLabel('Inhuur-uren')  
+                    lbl19 = QLabel('Hiring hours')
                     lbl19.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl19, 8, 2)
                     grid.addWidget(q17Edit, 8, 3)      
                     
-                    lbl11 = QLabel('Construktie-uren')  
+                    lbl11 = QLabel('Construction hours')
                     lbl11.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl11, 9, 2)
                     grid.addWidget(q9Edit, 9, 3)
                         
-                    lbl12 = QLabel('Montage-uren')  
+                    lbl12 = QLabel('Mounting hours')
                     lbl12.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl12, 10, 2)
                     grid.addWidget(q10Edit, 10, 3)
                     
-                    lbl13 = QLabel('Retourlas-uren')  
+                    lbl13 = QLabel('Return welding hours')
                     lbl13.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl13, 11, 2)
                     grid.addWidget(q11Edit, 11, 3)
                     
-                    lbl14 = QLabel('BFI-uren')  
+                    lbl14 = QLabel('Chief mechanic hours')
                     lbl14.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl14, 12, 2)
                     grid.addWidget(q12Edit, 12, 3)
                                                                                                   
-                    lbl15 = QLabel('Voeding-uren')  
+                    lbl15 = QLabel('Power-supply hours')
                     lbl15.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl15, 13, 2)
                     grid.addWidget(q13Edit, 13, 3)
                  
-                    lbl16 = QLabel('Bovenleiding-uren')
+                    lbl16 = QLabel('OCL hours')
                     lbl16.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl16, 14, 2)
                     grid.addWidget(q14Edit, 14, 3)
                     
-                    lbl17 = QLabel('Spoorleg-uren')  
+                    lbl17 = QLabel('Track laying hours')
                     lbl17.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl17, 15, 2)
                     grid.addWidget(q15Edit, 15, 3)
                     
-                    lbl18 = QLabel('Spoorlas-uren')  
+                    lbl18 = QLabel('Track welding hours')
                     lbl18.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl18, 16, 2)
                     grid.addWidget(q16Edit, 16, 3)
                     
-                    lbl31 = QLabel('Robeltrein-uren')  
+                    lbl31 = QLabel('Robel train hours')
                     lbl31.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl31, 7, 2)
                     grid.addWidget(q30Edit, 7, 3)
                     
-                    lbl32 = QLabel('Leiding')  
+                    lbl32 = QLabel('Direction')
                     lbl32.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl32, 17, 0)
                     grid.addWidget(q31Edit, 17, 1)
                     
-                    lbl33 = QLabel('Huisvesting')  
+                    lbl33 = QLabel('Housing')
                     lbl33.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl33, 18, 0)
                     grid.addWidget(q32Edit, 18, 1)
                     
-                    lbl34 = QLabel('Kabelwerk')  
+                    lbl34 = QLabel('Cable work')
                     lbl34.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl34, 18, 2)
                     grid.addWidget(q33Edit, 18, 3)
                     
-                    lbl35 = QLabel('Grondverzet')  
+                    lbl35 = QLabel('Earth moving')
                     lbl35.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl35, 19, 0)
                     grid.addWidget(q34Edit, 19, 1)
                     
-                    lbl36 = QLabel('Betonwerk')  
+                    lbl36 = QLabel('Concrete work')
                     lbl36.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl36, 19, 2)
                     grid.addWidget(q35Edit, 19, 3)
                 
-                    lbl37 = QLabel('Vervoer')  
+                    lbl37 = QLabel('Transport')
                     lbl37.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl37, 20, 0)
                     grid.addWidget(q36Edit, 20, 1)
                 
-                    lbl38 = QLabel('Overig')  
+                    lbl38 = QLabel('Remaining')
                     lbl38.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl38, 20, 2)
                     grid.addWidget(q37Edit, 20, 3)
@@ -680,7 +679,7 @@ def toonClusters(keuze, m_email):
                     self.setLayout(grid)
                     self.setGeometry(400, 50, 150, 150)
             
-                    applyBtn = QPushButton('Sluiten')
+                    applyBtn = QPushButton('Close')
                     applyBtn.clicked.connect(self.close)
             
                     grid.addWidget(applyBtn, 21, 3, 1, 1, Qt.AlignRight| Qt.AlignBottom)

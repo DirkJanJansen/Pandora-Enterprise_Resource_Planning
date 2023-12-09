@@ -12,13 +12,13 @@ def info():
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Informatie ERP Systeem Pandora")
+            self.setWindowTitle("Information ERP System Pandora")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setFont(QFont('Arial', 10))
             grid = QGridLayout()
             grid.setSpacing(20)
             
-            lblinfo = QLabel('Informatie ERP Pandora')
+            lblinfo = QLabel('Information ERP Pandora')
             grid.addWidget(lblinfo, 0, 0, 1, 2, Qt.AlignCenter)
             lblinfo.setStyleSheet("color:rgba(45, 83, 115, 255); font: 20pt Comic Sans MS")
             
@@ -33,45 +33,46 @@ def info():
             grid.addWidget(lbl, 0, 0)
             
             infolbl = QLabel(
-      '''
-
-        Informatie over clustercalculatie maken en koppelen naar werkorder.
+     '''
+               
+        Information about  create cluster calculation and link to work order. 
         
-        De volgorde van het aanmaken en koppelen van een calculatie is:
-                      
-        Menu Calculatie interne werken
-        6. Calculatie maken of wijzigen.
-           Accepteer het eerste vrije nummer hetgeen door het systeem wordt ingevuld.\t
-           Wijzigen is alleen mogelijk indien de calculatie nog niet is gekoppeld
-           aan een werkordernummer. Kies in dit geval een bestaand calculatienummer.
-        7. Calculatie/Artikellijst - opvragen/berekenen/printen
-           Hiermee worden de calculatiegegevens en /of de artikelgegevens opgevraagd
-           berekend of geprint. De berekening geschiedt na het starten van de module.
-        
-        Menu Interne Werken
-        1. Invoeren Werkopdrachten
-           Werkordernummer wordt ingevuld. Invoeren omschrijving, start werk
-           Artikelnummer halffabrikaat en hoeveelheid. Omschrijving en hoeveelheid
-           dienen identiek te zijn aan de gegevens van de calculatie. Artikelnummer
-           halffabrikaat verwijst naar het artikelnummer van het gereedprodukt.
-           Maak zonodig dit artikelnummer eerst aan, indien het nog niet bestaat.
-           
-        Menu Calculatie interne werken   
-        8. Calculatie koppelen produktie.
-           De koppeling van de calculatie met het werknummer wordt gemaakt en de
-           artikelgegevens en werktarieven worden overgezet naar de werkorder.
-        
-        Menu Interne Werken
-        3. Opvragen werkopdrachten Printen Werkbrief.
-            Print hierna de Werkbrief voor de produktie van de artikelen.
-           
-     ''')
+        The order of creating and linking a calculation is:
+         
+        Menu Calculation internal works 
+        6. Create or change calculation. 
+           Accept the first free number entered by the system.\t 
+           Changes are only possible if the calculation is not yet linked 
+           to a work order number. 
+           In this case, choose an existing calculation number. 
+        7. Calculation/Article list - request/calculate/print
+           This retrieves the calculation data and / or the article data calculated
+           or printed. The calculation takes place after starting the module.
+            
+        Menu Internal Works
+        1. Entering Work Assignments
+           Work order number is filled in. Enter description, start work 
+           Article number semi-finished product and quantity. Description and quantity
+           must be identical to the data of the calculation. 
+           Article number Semi-finished product refers to the article number of the finished product.
+           If necessary, create this article number first, if it does not already exist.
+            
+        Menu Calculation internal works 
+        8. Calculation linking production.
+           The link of the calculation with the working number is made and the
+           Article information and work rates are transferred to the work order.
+            
+        Internal Works menu 
+        3. Request work orders Print Work Letter.
+           Then print the Newsletter for the production of the articles. 
+      
+    ''')
             grid.addWidget(infolbl, 1, 0)
                            
             infolbl.setStyleSheet("font: 10pt Comic Sans MS; color: black ; background-color: #D9E1DF")   
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 2, 0, 1, 2, Qt.AlignCenter)
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(self.close)  
             
             grid.addWidget(cancelBtn, 2, 0, 1, 1,  Qt.AlignRight)
@@ -90,8 +91,8 @@ def gerCalnr(mcalnr):
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Calculatienummer '+str(mcalnr)+'  is aangemaakt!')
-    msg.setWindowTitle('Clustercalculatie invoeren')               
+    msg.setText('Calculation number '+str(mcalnr)+'  is processed!')
+    msg.setWindowTitle('Inc=sert cluster calculation')
     msg.exec_()
 
 def windowSluit(self, m_email):
@@ -103,8 +104,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Clustercalculatie invoeren')               
+    msg.setText('Please re-enter incorrect\ninput search term!')
+    msg.setWindowTitle('Insert Cluster calculation')
     msg.exec_()
     
 def geenRecord():
@@ -112,8 +113,8 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Clustercalculatie invoeren')               
+    msg.setText('No record found\nmake another selection please!')
+    msg.setWindowTitle('Insert cluster calculation')
     msg.exec_() 
 
 def invoerOK():
@@ -121,8 +122,8 @@ def invoerOK():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Invoer gelukt')
-    msg.setWindowTitle('Clustercalculatie invoeren')
+    msg.setText('Insert successful')
+    msg.setWindowTitle('Insert cluster calculation')
     msg.exec_()
 
 def calcBestaat():
@@ -130,8 +131,8 @@ def calcBestaat():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Calculatieregel bestaat al\nen is verrekend met\ningebrachte hoeveelheid!')
-    msg.setWindowTitle('Clustercalculatie invoeren')
+    msg.setText('Calculation line already exists\nand is corrected with\nintroduced quantity!')
+    msg.setWindowTitle('Insert cluster calculation')
     msg.exec_() 
     
 def calcGekoppeld():
@@ -139,17 +140,17 @@ def calcGekoppeld():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Calculatie is al gekoppeld aan werk\nwijzigen is niet meer mogelijk!')
-    msg.setWindowTitle('Clustercalculatie invoeren')
+    msg.setText('Calculation is already linked to work\nchange is no longer possible!')
+    msg.setWindowTitle('Insert cluster calculation')
     msg.exec_() 
     
 def schoonCalculatie(mcalnr, m_email):
     msgBox=QMessageBox()
     msgBox.setStyleSheet("color: black;  background-color: gainsboro")
     msgBox.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
-    msgBox.setWindowTitle("Calculatie Aanpassen")
+    msgBox.setWindowTitle("Adjust calculation")
     msgBox.setIcon(QMessageBox.Warning)
-    msgBox.setText("Deze calculatie bestaat al\nwilt u deze calculatie aanpassen?");
+    msgBox.setText("This calculation exists\ndo you want to adjust this calculation?");
     msgBox.setStandardButtons(QMessageBox.Yes)
     msgBox.addButton(QMessageBox.No)
     msgBox.setDefaultButton(QMessageBox.Yes)
@@ -254,7 +255,7 @@ def zoeken(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Calculatie intern werk maken / wijzigen")
+            self.setWindowTitle("Create / change calculation internal work")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -274,16 +275,16 @@ def zoeken(m_email):
             k0Edit.setFixedWidth(340)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('         Sorteersleutel Clustergroepen')
-            k0Edit.addItem('0. Alle Clusters')
-            k0Edit.addItem('LA-LK. Bewerkte onderdelen')
-            k0Edit.addItem('MA-MK. Bouten en Moeren')
-            k0Edit.addItem('NA-NK. Gietwerk bewerking')
-            k0Edit.addItem('OA-OK. Laswerk samengesteld')
-            k0Edit.addItem('PA-PK. Plaatwerk samengesteld')
-            k0Edit.addItem('RA-RK. Kunstof onderdelen')
-            k0Edit.addItem('SA-SK. Prefab Montagedelen')
-            k0Edit.addItem('TA-TK. Samengestelde Onderdelen')
+            k0Edit.addItem('         Sort key cluster groups')
+            k0Edit.addItem('0. All clusters')
+            k0Edit.addItem('LA-LK. Machined parts')
+            k0Edit.addItem('MA-MK. Nuts and bolts')
+            k0Edit.addItem('NA-NK. Casting machining')
+            k0Edit.addItem('OA-OK. Welding composite')
+            k0Edit.addItem('PA-PK. Sheet metal assembled')
+            k0Edit.addItem('RA-RK. Plastic parts')
+            k0Edit.addItem('SA-SK. Prefab mounting parts')
+            k0Edit.addItem('TA-TK. Assembled parts')
             k0Edit.activated[str].connect(self.k0Changed)
            
             grid = QGridLayout()
@@ -296,7 +297,7 @@ def zoeken(m_email):
             
             grid.addWidget(k0Edit, 2, 0, 1, 2, Qt.AlignRight)
             
-            lbl2 = QLabel('Calculatie')  
+            lbl2 = QLabel('Calculation')
             lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl2, 1, 0)
             grid.addWidget(kEdit, 1, 1,)
@@ -311,7 +312,7 @@ def zoeken(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
    
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
                 
             grid.addWidget(applyBtn, 3, 1, 1, 1, Qt.AlignRight)
@@ -319,7 +320,7 @@ def zoeken(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 3, 0, 1, 2,Qt.AlignCenter)
@@ -327,7 +328,7 @@ def zoeken(m_email):
             cancelBtn.setFixedWidth(100)
             cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            infoBtn = QPushButton('Informatie')
+            infoBtn = QPushButton('Information')
             infoBtn.clicked.connect(lambda: info())
     
             grid.addWidget(infoBtn, 3, 0)
@@ -380,7 +381,7 @@ def toonIclusters(m_email, keuze, mcalnr):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(100, 50, 900, 900)
-            self.setWindowTitle('Clustercalculatie intern werk')
+            self.setWindowTitle('Cluster calculation internal work')
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
@@ -421,8 +422,8 @@ def toonIclusters(m_email, keuze, mcalnr):
                 return self.header[col]
             return None
  
-    header = ['Clusternr', 'Omschrijving', 'Prijs', 'Eenheid', 'Materialen', 'Lonen',\
-              'Diensten', 'Materiëel', 'Inhuur']
+    header = ['Cluster number', 'Description', 'Price', 'Unit', 'Materials', 'Wages',\
+              'Services', 'Equipment', 'Hiring']
     
     metadata = MetaData()
     
@@ -485,17 +486,17 @@ def toonIclusters(m_email, keuze, mcalnr):
                     grid.addWidget(self.logo , 0, 2, 1, 1, Qt.AlignRight)
                       
                     self.setFont(QFont('Arial', 10))
-                    grid.addWidget(QLabel('Calculatienummer:          '+str(mcalnr)), 1, 1, 1, 3)
+                    grid.addWidget(QLabel('Calculation number:          '+str(mcalnr)), 1, 1, 1, 3)
                     self.setFont(QFont('Arial', 10))
-                    grid.addWidget(QLabel('Clusternummer               '+str(clusternr)+\
+                    grid.addWidget(QLabel('Cluster number               '+str(clusternr)+\
                            '\n'+rpcl[1]), 2, 1, 1, 3)
                                
-                    self.setWindowTitle("Clustercalculatie intern werk maken") 
+                    self.setWindowTitle("Create cluster calculation internal work")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                     self.setFont(QFont('Arial', 10))
                                        
                     self.Hoeveelheid = QLabel(self)
-                    self.Hoeveelheid.setText('Hoeveelheid ')
+                    self.Hoeveelheid.setText('Amount ')
                     self.hoev = QLineEdit(self)
                     self.hoev.setFixedWidth(100)
                     reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
@@ -507,14 +508,14 @@ def toonIclusters(m_email, keuze, mcalnr):
                     
                     grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 5, 0, 1, 3, Qt.AlignCenter)
                     
-                    self.applyBtn = QPushButton('Invoeren', self)
+                    self.applyBtn = QPushButton('Insert', self)
                     self.applyBtn.clicked.connect(self.clickMethod)
                     grid.addWidget(self.applyBtn, 4, 2, 1, 1, Qt.AlignRight)
                     self.applyBtn.setFont(QFont("Arial",10))
                     self.applyBtn.setFixedWidth(100) 
                     self.applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
                     
-                    self.cancelBtn = QPushButton('Sluiten')
+                    self.cancelBtn = QPushButton('Close')
                     self.cancelBtn.clicked.connect(self.close)
                     grid.addWidget(self.cancelBtn, 4, 1, 1, 1, Qt.AlignRight)
                     self.cancelBtn.setFont(QFont("Arial",10))

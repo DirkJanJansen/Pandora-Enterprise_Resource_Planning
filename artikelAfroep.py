@@ -40,24 +40,24 @@ def foutWerknr():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Werknummer niet gevonden\nWerknummer bestaat niet!')
-    msg.setWindowTitle('Gegevens!')
+    msg.setText('Work number not found\nWork number does not exist!')
+    msg.setWindowTitle('Data!')
     msg.exec_()
         
 def foutPostcode():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Postcode/huisnummer combinatie bestaat niet!')
-    msg.setWindowTitle('Artikel afroepen')
+    msg.setText('Zipcode/house number combination does not exist!')
+    msg.setWindowTitle('Request articles')
     msg.exec_()
 
 def invoerOK():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Invoer gelukt!')
-    msg.setWindowTitle('Artikel afroepen')
+    msg.setText('Insert successful!')
+    msg.setWindowTitle('Request articles')
     msg.exec_()
     			            
 def negVoorraad():
@@ -65,8 +65,8 @@ def negVoorraad():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Te weinig voorraad\nvoor de transactie!')
-    msg.setWindowTitle('Artikel afroepen')
+    msg.setText('Too little stock for the transaction!')
+    msg.setWindowTitle('Request articles')
     msg.exec_()
         
 def foutHoev():
@@ -74,8 +74,8 @@ def foutHoev():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen wijzigingen\ndoorgevoerd!')
-    msg.setWindowTitle('Artikel afroepen')
+    msg.setText('No changes\nimplemented!')
+    msg.setWindowTitle('Request articles')
     msg.exec_()
 
 def werkGereed():
@@ -83,8 +83,17 @@ def werkGereed():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Werknummer is afgemeld,\nboekingen niet meer mogelijk!')
-    msg.setWindowTitle('Artikel afroepen')
+    msg.setText('Work number is unsubscribed,\nbookings no longer possible!')
+    msg.setWindowTitle('Request articles')
+    msg.exec_()
+
+def geenArtikel():
+    msg = QMessageBox()
+    msg.setStyleSheet("color: black;  background-color: gainsboro")
+    msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
+    msg.setIcon(QMessageBox.Warning)
+    msg.setText('No call-off articles found for this worknumber!')
+    msg.setWindowTitle('Request articles')
     msg.exec_()
     
 def geenRaaplijst(koppelnr):
@@ -92,8 +101,8 @@ def geenRaaplijst(koppelnr):
     msg.setStyleSheet("color: black;  background-color: gainsboro; font: 10pt Arial")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen raapregels van werk '+str(koppelnr)+' aanwezig!')
-    msg.setWindowTitle('Raaplijst opvragen')
+    msg.setText('No picking lines from work '+str(koppelnr)+' present!')
+    msg.setWindowTitle('Request picklist')
     msg.exec_()
       
 def zoekWerk(m_email, soort):
@@ -101,9 +110,9 @@ def zoekWerk(m_email, soort):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
             if soort  == 0:
-                self.setWindowTitle("Werken intern wijzigen.")
+                self.setWindowTitle("Modify internal works.")
             else:
-                self.setWindowTitle("Werken extern wijzigen.")  
+                self.setWindowTitle("Modify external works.")  
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -134,10 +143,10 @@ def zoekWerk(m_email, soort):
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
                                 
     
-            grid.addWidget(QLabel('Werknummer'), 1, 0, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Worknumber'), 1, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(werknEdit, 1, 1)
        
-            zoekBtn = QPushButton('Zoeken')
+            zoekBtn = QPushButton('Search')
             zoekBtn.clicked.connect(self.accept)
                   
             grid.addWidget(zoekBtn, 2, 1)
@@ -145,7 +154,7 @@ def zoekWerk(m_email, soort):
             zoekBtn.setFixedWidth(100)
             zoekBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            sluitBtn = QPushButton('Sluiten')
+            sluitBtn = QPushButton('Close')
             sluitBtn.clicked.connect(lambda: windowSluit(self, m_email))
                   
             grid.addWidget(sluitBtn, 2, 0, 1, 1, Qt.AlignRight)
@@ -203,6 +212,7 @@ def zoekWerk(m_email, soort):
         zoekWerk(m_email, soort)
     else:
         koppelnr = int(koppelnr)
+
         artikelAfroep(koppelnr, m_email)
 
 def raapLijst(koppelnr):
@@ -210,7 +220,7 @@ def raapLijst(koppelnr):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(50, 50, 1000, 900)
-            self.setWindowTitle('Raaplijst Opvragen')
+            self.setWindowTitle('Request picklist')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -274,9 +284,9 @@ def raapLijst(koppelnr):
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
  
-    header = ['LijstID','Artikelnr','Werkorder','Afroep','Leverdatum','Geleverd',\
-          'Meerwerk','Postcode', 'Huisnummer','Toevoeging', 'Alternatief Adres',\
-          'Straat', 'Woonplaats']
+    header = ['ListID','Article number','Work order','Call-off','Delivery date','Delivered',\
+          'More/less work','Zip code', 'House number','Suffix', 'Alternative address',\
+          'Street', 'Residence']
     
     selafr = select([raaplijst]).where(and_(raaplijst.c.werkorder == koppelnr,\
        raaplijst.c.afroep != 0)).order_by(raaplijst.c.werkorder, raaplijst.c.leverdatum)
@@ -363,7 +373,7 @@ def raapLijst(koppelnr):
             class Widget(QDialog):
                 def __init__(self, parent=None):
                     super(Widget, self).__init__(parent)
-                    self.setWindowTitle("Materiaalafroep opvragen")
+                    self.setWindowTitle("Requesting material call-off")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                     self.setFont(QFont('Arial', 10))
                                  
@@ -421,50 +431,50 @@ def raapLijst(koppelnr):
                     logo.setPixmap(pixmap)
                     grid.addWidget(logo , 0, 2, 1, 1, Qt.AlignRight) 
                                  
-                    lbl1 = QLabel('Werknummer')  
+                    lbl1 = QLabel('Work number')
                     lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl1, 1, 0)
                     grid.addWidget(zkwerknEdit, 1, 1)
                                                   
-                    lbl2 = QLabel('Artikelnummer')  
+                    lbl2 = QLabel('Article number')
                     lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl2, 2, 0)
                     grid.addWidget(artEdit, 2, 1)
                      
-                    lbl3 = QLabel('Leverdatum')  
+                    lbl3 = QLabel('Delivery date')  
                     lbl3.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl3, 3, 0)
                     grid.addWidget(leverEdit, 3 , 1)
                     
-                    lbl4 = QLabel('Afroep')  
+                    lbl4 = QLabel('Call-off')  
                     lbl4.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl4, 4, 0)
                     grid.addWidget(afroepEdit, 4 , 1)
                     if mmmstatus:
-                        grid.addWidget(QLabel('Meerwerk'), 4, 2)
+                        grid.addWidget(QLabel('More/less work'), 4, 2)
                     
-                    lbl5 = QLabel('Geleverd')  
+                    lbl5 = QLabel('Delivered')  
                     lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl5, 5, 0)
                     grid.addWidget(geleverdEdit, 5 , 1)
                     if mmmstatus:
-                        grid.addWidget(QLabel('Meerwerk'), 5, 2)   
+                        grid.addWidget(QLabel('More/less work'), 5, 2)   
                    
-                    lbl6 = QLabel('Resterend')  
+                    lbl6 = QLabel('Remaining')  
                     lbl6.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl6, 6, 0)
                     grid.addWidget(restEdit, 6 , 1)
                     
                     if mpostcode and mhuisnr:
-                        grid.addWidget(QLabel('Afleveradres:       '+mstraat+' '+str(mhuisnr)+' '+mtoev), 7, 0, 1 ,3)
-                        grid.addWidget(QLabel('Woonplaats:        '+mpostcode+' '+mplaats), 8, 0, 1, 3)
+                        grid.addWidget(QLabel('Delivery address:       '+mstraat+' '+str(mhuisnr)+' '+mtoev), 7, 0, 1 ,3)
+                        grid.addWidget(QLabel('Residence:        '+mpostcode+' '+mplaats), 8, 0, 1, 3)
                     if maltern:
-                        grid.addWidget(QLabel('Alternatief adres: '+maltern), 9, 0, 1 ,3)
+                        grid.addWidget(QLabel('Alternative address: '+maltern), 9, 0, 1 ,3)
                                
                     self.setLayout(grid)
                     self.setGeometry(500, 300, 150, 150)
                        
-                    cancelBtn = QPushButton('Sluiten')
+                    cancelBtn = QPushButton('Close')
                     cancelBtn.clicked.connect(self.accept) 
                     cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
                     
@@ -485,7 +495,7 @@ def artikelAfroep(koppelnr, m_email):
     class MyWindow(QDialog):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
-            self.setWindowTitle('Afroepen Materialen')
+            self.setWindowTitle('Call-off materials')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                     Qt.WindowMinMaxButtonsHint)
@@ -518,7 +528,7 @@ def artikelAfroep(koppelnr, m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 1, 7, 1, 1, Qt.AlignRight)
             
-            freshBtn = QPushButton('Verversen')
+            freshBtn = QPushButton('Refresh')
             freshBtn.clicked.connect(lambda: art_refresh(koppelnr, m_email, self))
 
             freshBtn.setFont(QFont("Arial",10))
@@ -527,7 +537,7 @@ def artikelAfroep(koppelnr, m_email):
    
             grid.addWidget(freshBtn, 1, 6, 1, 1, Qt.AlignRight)
         
-            sluitBtn = QPushButton('Sluiten')
+            sluitBtn = QPushButton('Close')
             sluitBtn.clicked.connect(self.close)
 
             sluitBtn.setFont(QFont("Arial",10))
@@ -591,7 +601,15 @@ def artikelAfroep(koppelnr, m_email):
         engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
         con = engine.connect()
         selcl = select([icalculaties]).where(icalculaties.c.koppelnummer == koppelnr)
-        rpcl = con.execute(selcl).first()
+        if con.execute(selcl).first():
+            rpcl = con.execute(selcl).first()
+            selam = select([artikelen, materiaallijsten, orders_intern]).where(and_(artikelen.c. \
+                      artikelID == materiaallijsten.c.artikelID,
+                      materiaallijsten.c.icalculatie == rpcl[1], \
+                      orders_intern.c.werkorderID == koppelnr)).order_by(materiaallijsten.c.artikelID)
+        else:
+            geenArtikel()
+            zoekWerk(m_email, soort)
         selam = select([artikelen, materiaallijsten, orders_intern]).where(and_(artikelen.c.\
             artikelID==materiaallijsten.c.artikelID, materiaallijsten.c.icalculatie == rpcl[1],\
             orders_intern.c.werkorderID == koppelnr))
@@ -619,15 +637,19 @@ def artikelAfroep(koppelnr, m_email):
         con = engine.connect()
     
         selcl = select([calculaties]).where(calculaties.c.koppelnummer == koppelnr)
-        rpcl = con.execute(selcl).first()
-        selam = select([artikelen, materiaallijsten, werken]).where(and_(artikelen.c.\
-            artikelID==materiaallijsten.c.artikelID, materiaallijsten.c.calculatie == rpcl[1],\
-            werken.c.werknummerID == koppelnr)).order_by(materiaallijsten.c.artikelID)
-   
+
+        if con.execute(selcl).first():
+            rpcl = con.execute(selcl).first()
+            selam = select([artikelen, materiaallijsten, werken]).where(and_(artikelen.c.\
+               artikelID==materiaallijsten.c.artikelID, materiaallijsten.c.calculatie == rpcl[1],\
+               werken.c.werknummerID == koppelnr)).order_by(materiaallijsten.c.artikelID)
+        else:
+            geenArtikel()
+            zoekWerk(m_email, soort)
         rpam = con.execute(selam)
 
-    header = ['Artikelnr','Artikelomschrijving','-','-','Hoeveelheid','-',\
-          'Resterend','Afroep', 'Werknummer']
+    header = ['Article number','Article description','-','-','Amount','-',\
+          'Remaining','Call-off', 'Work number']
 
     data_list=[]
     for row in rpam:
@@ -639,7 +661,7 @@ def artikelAfroep(koppelnr, m_email):
             class Widget(QDialog):
                 def __init__(self, parent=None):
                     super(Widget, self).__init__(parent)
-                    self.setWindowTitle("Materialen afroepen")
+                    self.setWindowTitle("Request materials")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             
                     self.setFont(QFont('Arial', 10))
@@ -713,7 +735,7 @@ def artikelAfroep(koppelnr, m_email):
                     lbl.setPixmap(pixmap)
                     grid.addWidget(lbl ,0, 0)
                     
-                    lbl4 = QLabel('Afroepen materialen samenstellen')
+                    lbl4 = QLabel('Assemble call-off materials')
                     lbl4.setStyleSheet("font: 12pt Comic Sans MS")
                     grid.addWidget(lbl4, 0, 1)
                     logo = QLabel()
@@ -723,44 +745,44 @@ def artikelAfroep(koppelnr, m_email):
                
                     grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 9, 0, 1, 3, Qt.AlignCenter)
                                      
-                    lbl1 = QLabel('Werknummer')  
+                    lbl1 = QLabel('Work number')
                     lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl1, 1, 0)
                     grid.addWidget(zkwerknEdit, 1, 1)
                                                   
-                    lbl2 = QLabel('Artikelnummer')  
+                    lbl2 = QLabel('Article number')
                     lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl2, 2, 0)
                     grid.addWidget(artEdit, 2, 1)
                      
-                    lbl3 = QLabel('Afroep')  
+                    lbl3 = QLabel('Call-off')  
                     lbl3.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl3, 3, 0)
                     grid.addWidget(hoevEdit, 3 ,1)
                    
-                    cBox = QCheckBox('Meerwerk')
+                    cBox = QCheckBox('More/less work')
                     cBox.stateChanged.connect(self.cBoxChanged)
                     grid.addWidget(cBox, 3, 2)
                   
-                    lbl8 = QLabel('Afleveradres')
+                    lbl8 = QLabel('Delivery address')
                     lbl8.setStyleSheet("font: 12pt Comic Sans MS")
                     grid.addWidget(lbl8, 4, 1)
                     
-                    lbl4 = QLabel('Postcode')  
+                    lbl4 = QLabel('Zip code')  
                     lbl4.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl4, 5, 0)
                     grid.addWidget(pcEdit, 5 , 1)
                     
-                    lbl5 = QLabel('Huisnummer')  
+                    lbl5 = QLabel('House number')
                     lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl5, 6, 0)
                     grid.addWidget(hnoEdit, 6 , 1)
                     
-                    lbl6 = QLabel('Toevoeging')  
+                    lbl6 = QLabel('Suffix')  
                     grid.addWidget(lbl6, 6, 0, 1, 2, Qt.AlignRight)
                     grid.addWidget(toevEdit, 6, 2)
                     
-                    lbl7 = QLabel('Alternatief adres')  
+                    lbl7 = QLabel('Alternative address')  
                     lbl7.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl7, 7, 0)
                     grid.addWidget(altEdit, 7 , 1, 1, 3)
@@ -768,7 +790,7 @@ def artikelAfroep(koppelnr, m_email):
                     self.setLayout(grid)
                     self.setGeometry(500, 300, 150, 150)
                    
-                    applyBtn = QPushButton('Muteren')
+                    applyBtn = QPushButton('Mutate')
                     applyBtn.setStyleSheet("color: black;  background-color: gainsboro") 
                     applyBtn.clicked.connect(self.accept)
             
@@ -776,19 +798,19 @@ def artikelAfroep(koppelnr, m_email):
                     applyBtn.setFont(QFont("Arial",10))
                     applyBtn.setFixedWidth(100)
                      
-                    sluitBtn = QPushButton('Sluiten')
+                    sluitBtn = QPushButton('Close')
                     sluitBtn.setStyleSheet("color: black;  background-color: gainsboro") 
                     sluitBtn.clicked.connect(self.close)
             
-                    grid.addWidget(sluitBtn, 8, 0, 1, 3, Qt.AlignCenter)
+                    grid.addWidget(sluitBtn, 8, 0, 1, 2, Qt.AlignRight)
                     sluitBtn.setFont(QFont("Arial",10))
                     sluitBtn.setFixedWidth(100)
                     
-                    opvrBtn = QPushButton('Raaplijst')
+                    opvrBtn = QPushButton('Picklist')
                     opvrBtn.setStyleSheet("color: black;  background-color: gainsboro") 
                     opvrBtn.clicked.connect(lambda: raapLijst(koppelnr))
             
-                    grid.addWidget(opvrBtn, 8, 1, 1, 1, Qt.AlignRight)
+                    grid.addWidget(opvrBtn, 8, 1, 1, 3)
                     opvrBtn.setFont(QFont("Arial",10))
                     opvrBtn.setFixedWidth(100)
                                      
@@ -988,12 +1010,12 @@ def artikelAfroep(koppelnr, m_email):
                                 super(Button, self).__init__(parent)
                                                             
                                 msgBox = QMessageBox()
-                                msgBox.setWindowTitle("Artikelafroep")
+                                msgBox.setWindowTitle("Call-off articles")
                                 msgBox.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                                 msgBox.setStyleSheet("color: black;  background-color: gainsboro; font-size: 16px;height: 20px; width: 50px")
-                                msgBox.setText('De afroep '+str(mhoev)+' is groter dan nog te leveren '+str(round(mresterend,3)))
-                                msgBox.addButton(QPushButton('Doorgaan'), QMessageBox.YesRole)
-                                msgBox.addButton(QPushButton('Stoppen'), QMessageBox.RejectRole)
+                                msgBox.setText('The call-off '+str(mhoev)+' is bigger than yet to be delivered '+str(round(mresterend,3)))
+                                msgBox.addButton(QPushButton('Continue'), QMessageBox.YesRole)
+                                msgBox.addButton(QPushButton('Stop'), QMessageBox.RejectRole)
                                 retour = msgBox.exec_()
                                 if retour:
                                     artAfroep(idx)
@@ -1051,12 +1073,12 @@ def artikelAfroep(koppelnr, m_email):
                                 super(Button, self).__init__(parent)
                                 
                                 msgBox = QMessageBox()
-                                msgBox.setWindowTitle("Artikelafroep")
+                                msgBox.setWindowTitle("Call-off articles")
                                 msgBox.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                                 msgBox.setStyleSheet("color: black;  background-color: gainsboro; font-size: 10pt")
-                                msgBox.setText('De afroep '+str(mhoev)+' is groter dan nog te leveren '+str(round(mresterend,3)))
-                                msgBox.addButton(QPushButton('Doorgaan'), QMessageBox.YesRole)
-                                msgBox.addButton(QPushButton('Stoppen'), QMessageBox.RejectRole)
+                                msgBox.setText('The call-off '+str(mhoev)+' is bigger than yet to be delivered '+str(round(mresterend,3)))
+                                msgBox.addButton(QPushButton('Continue'), QMessageBox.YesRole)
+                                msgBox.addButton(QPushButton('Stop'), QMessageBox.RejectRole)
                                 retour = msgBox.exec_()
                                 if retour:
                                     artAfroep(idx)

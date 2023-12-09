@@ -13,8 +13,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Accounts opvragen')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Requesting Accounts')               
     msg.exec_() 
 
 def geenRecord():
@@ -22,8 +22,8 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Accounts opvragen')               
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Requesting Accounts')               
     msg.exec_() 
 
 def windowSluit(self, m_email):
@@ -34,7 +34,7 @@ def accKeuze(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Opvragen accounts")
+            self.setWindowTitle("Requesting Accounts")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -44,13 +44,13 @@ def accKeuze(m_email):
             k0Edit.setFixedWidth(230)
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             k0Edit.setFont(QFont("Arial",10))
-            k0Edit.addItem(' Sorteersleutel voor zoeken')
-            k0Edit.addItem('1. Alle accounts')
-            k0Edit.addItem('2. Postcode')
-            k0Edit.addItem('3. emailadres.')
-            k0Edit.addItem('4. Achternaam.')
-            k0Edit.addItem('5. Accounts leveranciers.')
-            k0Edit.addItem('6. Accounts werknemers.')
+            k0Edit.addItem(' Search sort key')
+            k0Edit.addItem('1. All accounts')
+            k0Edit.addItem('2. Zip code')
+            k0Edit.addItem('3. email address.')
+            k0Edit.addItem('4. Surname.')
+            k0Edit.addItem('5. Accounts suppliers.')
+            k0Edit.addItem('6. Accounts employees.')
             k0Edit.activated[str].connect(self.k0Changed)
             
             self.Zoekterm = QLabel()
@@ -68,7 +68,7 @@ def accKeuze(m_email):
             grid.addWidget(lbl , 0, 0, 1, 2)
                                   
             grid.addWidget(k0Edit, 1, 1)
-            lbl1 = QLabel('Zoekterm')  
+            lbl1 = QLabel('Search key')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 2, 0)
             grid.addWidget(zktermEdit, 2, 1)
@@ -83,7 +83,7 @@ def accKeuze(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1 , 1, Qt.AlignRight)
     
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
                 
             grid.addWidget(applyBtn, 3, 1, 1 , 1, Qt.AlignRight)
@@ -91,7 +91,7 @@ def accKeuze(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 3, 1, 1 , 1)
@@ -192,7 +192,7 @@ def toonAccounts(keuze, zoekterm, m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(50, 50, 1500, 900)
-            self.setWindowTitle('Accountgegevens opvragen')
+            self.setWindowTitle('Request account information')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -237,14 +237,14 @@ def toonAccounts(keuze, zoekterm, m_email):
                 return self.header[col]
             return None
   
-    header = ['Accountnummer','Aanhef', 'Voornaam','Tussenvoegsel', 'Achternaam', 'Postcode',\
-              'Huisnummer','Toevoeging', 'E-mail', 'Telefoonnummer', 'Accountcount', 'Geboortedatum']  
+    header = ['Account number','Prefix', 'Firstname','Infix', 'Surname', 'Zipcode',\
+              'House number','Suffix', 'E-mail', 'Telephone number', 'Account count', 'Date of birth']
     
     if keuze == 5:
-        header1 = ['Leveranciernummer', 'Bedrijfsnaam', 'Rechtsvorm'] 
+        header1 = ['Supplier number', 'Company name', 'Legal form']
         header.extend(header1)
     elif keuze == 6:
-        header2 = ['Werknemernummer','Account', 'Loonschaal']
+        header2 = ['Employee number','Account', 'Payscale']
         header.extend(header2)
    
     data_list=[]
@@ -281,7 +281,7 @@ def toonAccounts(keuze, zoekterm, m_email):
             class Widget(QDialog):
                 def __init__(self, parent=None):
                     super(Widget, self).__init__(parent)
-                    self.setWindowTitle("Accountgegevens opvragen")
+                    self.setWindowTitle("Requesting accountdata")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                                           
                     self.setFont(QFont('Arial', 10))
@@ -380,45 +380,45 @@ def toonAccounts(keuze, zoekterm, m_email):
                     grid.addWidget(logo , 1, 2, 1, 1, Qt.AlignRight)
             
                     self.setFont(QFont('Arial', 10))
-                    grid.addWidget(QLabel('Opvragen persoongegevens'), 1, 1)
+                    grid.addWidget(QLabel('Requesting personal data'), 1, 1)
                                        
-                    grid.addWidget(QLabel('Aanhef'), 2, 0)
+                    grid.addWidget(QLabel('Prefix'), 2, 0)
                     grid.addWidget(q2Edit, 2, 1)
                     
-                    grid.addWidget(QLabel('Voornaam'), 3, 0)
+                    grid.addWidget(QLabel('First name'), 3, 0)
                     grid.addWidget(q3Edit, 3, 1)  
              
-                    grid.addWidget(QLabel('Tussenvoegsel'), 4, 0)
+                    grid.addWidget(QLabel('Infix'), 4, 0)
                     grid.addWidget(q4Edit, 4 , 1) 
                      
-                    grid.addWidget(QLabel('Achternaam'), 5, 0)
+                    grid.addWidget(QLabel('Surname'), 5, 0)
                     grid.addWidget(q5Edit, 5, 1, 1, 2)
                     
-                    grid.addWidget(QLabel('Geboortedatum'), 6, 0)
+                    grid.addWidget(QLabel('Date of birth'), 6, 0)
                     grid.addWidget(q17Edit, 6, 1)
                          
-                    grid.addWidget(QLabel('Straat'), 7, 0)
+                    grid.addWidget(QLabel('Street'), 7, 0)
                     grid.addWidget(q6Edit, 7, 1, 1, 2) 
                
-                    grid.addWidget(QLabel('Huisnummer'), 8, 0)
+                    grid.addWidget(QLabel('House number'), 8, 0)
                     grid.addWidget(q7Edit, 8, 1)
                     
-                    grid.addWidget(QLabel('Toevoeging'), 8, 1, 1, 1, Qt.AlignRight)
+                    grid.addWidget(QLabel('Suffix'), 8, 1, 1, 1, Qt.AlignRight)
                     grid.addWidget(q8Edit, 8, 2)
                      
-                    grid.addWidget(QLabel('Postcode'), 9, 0)
+                    grid.addWidget(QLabel('Zipcode'), 9, 0)
                     grid.addWidget(q9Edit, 9, 1)
                     
-                    grid.addWidget(QLabel('Woonplaats'), 10, 0)
+                    grid.addWidget(QLabel('Residence'), 10, 0)
                     grid.addWidget(q10Edit, 10, 1, 1, 2)    
              
                     grid.addWidget(QLabel('e-mail'), 11, 0)
                     grid.addWidget(q11Edit, 11, 1, 1 ,2)
                        
-                    grid.addWidget(QLabel('Telefoonnummer'), 12, 0)
+                    grid.addWidget(QLabel('Telephone number'), 12, 0)
                     grid.addWidget(q15Edit, 12, 1) 
                     
-                    grid.addWidget(QLabel('Accountnummer'),13, 0)
+                    grid.addWidget(QLabel('Account number'),13, 0)
                     grid.addWidget(q16Edit, 13, 1, 1, 2) 
                                                      
                     grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 15, 0, 1, 3, Qt.AlignCenter)
@@ -426,7 +426,7 @@ def toonAccounts(keuze, zoekterm, m_email):
                     self.setLayout(grid)
                     self.setGeometry(500, 150, 350, 300)
                                                          
-                    cancelBtn = QPushButton('Sluiten')
+                    cancelBtn = QPushButton('Close')
                     cancelBtn.clicked.connect(self.close)
                
                     grid.addWidget(cancelBtn, 14, 2, 1, 1, Qt.AlignRight)

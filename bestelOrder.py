@@ -18,8 +18,8 @@ def bestGelukt():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Betaling heeft plaatsgevonden\nBestelling wordt in behandeling genomen!')
-    msg.setWindowTitle('Bestellingen')               
+    msg.setText('Payment has been made\nOrder will be processed!')
+    msg.setWindowTitle('Orders')               
     msg.exec_()
     
 def betMislukt():
@@ -27,8 +27,8 @@ def betMislukt():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Betaling is niet gelukt\nbetaling opnieuw uitvoeren!')
-    msg.setWindowTitle('Betalingen')               
+    msg.setText('Payment was not successful\npayment redo!')
+    msg.setWindowTitle('Payments')               
     msg.exec_()
     
 def betGelukt():
@@ -36,8 +36,8 @@ def betGelukt():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Betaling is geslaagd!')
-    msg.setWindowTitle('Betalingen')               
+    msg.setText('Payment has been successful!')
+    msg.setWindowTitle('Payments')               
     msg.exec_()
   
 def ongInvoer():
@@ -45,8 +45,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren a.u.b.!')
-    msg.setWindowTitle('Artikelen opvragen')               
+    msg.setText('Please re-enter incorrect input\nsearch term!')
+    msg.setWindowTitle('Request articles')               
     msg.exec_()
     
 def geenRecord():
@@ -54,8 +54,8 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie a.u.b.!')
-    msg.setWindowTitle('Artikelen opvragen')               
+    msg.setText('No record found\ncreate another selection please!')
+    msg.setWindowTitle('Request articles')               
     msg.exec_() 
     
 def geenRegels():
@@ -63,8 +63,8 @@ def geenRegels():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Nog geen lopende bestelling aanwezig\neerst bestellen a.u.b.!')
-    msg.setWindowTitle('Bestellen')               
+    msg.setText('No pending order yet\nfirst order please!')
+    msg.setWindowTitle('Ordering')               
     msg.exec_()
     
 def foutPostcode():
@@ -72,8 +72,8 @@ def foutPostcode():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Onjuiste postcode en / of huisnummer ingebracht\nof onjuiste combinatie van postcode en huisnummer!')
-    msg.setWindowTitle('Postcode')               
+    msg.setText('Incorrect Zipcode and/or house number inserted\nor incorrect combination of postcode and house number!')
+    msg.setWindowTitle('Zipcode')               
     msg.exec_()
     return(False)
    
@@ -83,8 +83,8 @@ def negVoorraad(maant):
     #msg.setStyleSheet("font: italic 10pt Arial; color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Er is een tekort van '+str(int(maant))+' op de voorraad\nDe bestelling kan niet worden uitgevoerd, sorry!')
-    msg.setWindowTitle('Voorraad onvoldoende')
+    msg.setText('There is a shortage of '+str(int(maant))+' on the stock\nThe order cannot be executed, sorry!')
+    msg.setWindowTitle('Stock insufficient')
     msg.exec_()
     
 def foutAlert(e):
@@ -92,15 +92,15 @@ def foutAlert(e):
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('\n\nEr heeft zich een fout voorgedaan.\nGeef foutmelding door aan Systeembeheer.\nDruk op OK om programma af te sluiten!\n\nFoutmelding: '+str(e))
-    msg.setWindowTitle('Systeemfout')
+    msg.setText('\n\nAn error occurred.\nPass error message to system administration.\nPress OK to exit program!\n\nError message: '+str(e))
+    msg.setWindowTitle('System error')
     msg.exec_()
     
 def info():
     class Widget(QDialog):
         def __init__(self):
             QDialog.__init__(self)
-            self.setWindowTitle("Informatie bestelprocedure")
+            self.setWindowTitle("Information ordering procedure")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setFont(QFont("Arial", 10))
             grid = QGridLayout()
@@ -111,7 +111,7 @@ def info():
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 3, 1, 1, Qt.AlignRight)
             
-            lblinfo = QLabel('Uitleg over bestellingen')
+            lblinfo = QLabel('Explanation of orders')
             grid.addWidget(lblinfo, 0, 0, 1, 4, Qt.AlignCenter)
             lblinfo.setStyleSheet("color:rgb(45, 83, 115); font: 25pt Comic Sans MS")
         
@@ -121,44 +121,42 @@ def info():
             grid.addWidget(lbl, 0, 0)
             lblinfo = QLabel(
         '''
-        Kies op het artikelscherm de rij met het gewenste artikel. 
-        Klik vervolgens met de muis op het eerste veld. 
-        Deze actie opent een bestelscherm.
-        Op dit bestelscherm zijn de gegevens van het gekozen produkt te zien,
-        zoals prijs en omschrijving en tevens een verkleinde afbeelding.
-        Tevens zijn een 3 tal knoppen zichtbaar. Foto, Bestellen en Winkelwagen.
-        Met Foto wordt een vergrote afbeelding van het produkt getoond.
-        Voor bestellen het bestelaantal invullen en met knop "Bestellen" wordt
-        het produkt aan de winkelwagen toegevoegd. De inhoud van de winkelwagen 
-        is altijd met de knop winkelwagen op te vragen.
-        Tevens kun je hier de aantallen nog wijzigen, met op 0 stellen wordt het
-        desbetreffende produkt verwijderd. Klikken op eerste veld van betreffend
-        produkt, aantal wijzigen en de knop "Aanpassen" klikken.
-        Indien de selektie akkoord is, kun je onder in het scherm eventueel een 
-        alternatief verzendadres opgeven. Geef hier naam, postcode en huisnummer in. 
-        De straat- en plaatsnaam wordt door het systeem ingevuld.
-        Indien verzendadres niet wordt ingevuld worden de goederen naar het
-        factuuradres verzonden.
-        
-        Vervolgens druk je op de knop "Bereken gegevens".
-        Hierna worden alle bedragen en overige gegevens weergegeven.
-        Na het plaatsen van het vinkje voor het accepteren van de algemene
-        voorwaarden wordt de betaalknop aktief en kun je verder naar afrekenen.
-        De volgorde van Berekening gegevens en Akkoord algemene voorwaarden is belangrijk.\t
-        Zolang betaling niet daadwerkelijk heeft plaatsgevonden, kunnen nog aanpassingen
-        worden uitgevoerd. Sluit en heropen hiertoe het bestelscherm.
-        De volgende betaalmethoden zijn mogelijk:
-        iDeal via alle banken in Nederland.
-        Creditcard via Visa, American Express of Maestro/Mastercard.
-        Tevens kan voor PayPal worden gekozen of voor Afterpay. Voor Afterpay wordt
-        echter een extra vergoeding berekend van Euro 2,50 voor verzekering en kosten.
-        Na gelukte betaling wordt de bestelling in behandeling genomen.
+        On the article screen, choose the row with the desired item.
+        Then click the first field with the mouse. 
+        This action opens an order screen.
+        On this order screen you can see the details of the chosen product,
+        such as price and description and also a reduced image.
+        4 buttons are also visible. Photo, Order and Close and a image of the shopping cart. 
+        Button Photo shows an enlarged image of the product.
+        Before ordering, enter the order quantity and with the "Order" button 
+        the product is added to the shopping cart. The contents of the shopping cart
+        can always be requested with the shopping cart button. 
+        You can also change the numbers here, with input 0 the product in question is removed.
+        Click on first field of the subject product, change quantity and click the "Customize" button.
+        If the selection is agreed, you can optionally specify a alternate shipping address.
+        Enter name, postal code and house number. The street and city name is filled in by the system.
+        The zip code system is based on the Dutch Zip code system.
+        If shipping address is not entered, the goods will be sent to the billing address.
+                
+        Then press the "Calculate data" button.
+        After this, all amounts and other data are displayed.
+        After placing the check mark for accepting the general Conditions,
+        the payment button becomes active and you can proceed to checkout.
+        The order of Data Calculation and General Terms and Conditions Agreement is important.\t
+        As long as payment has not actually taken place, adjustments can still be done.
+        To do this, close and reopen the order screen. The following payment methods are possible:
+        iDeal via all banks in the Netherlands. Credit card via Visa, American Express or Maestro/Mastercard.
+        You can also opt for PayPal or for Afterpay. For Afterpay, however, an additional fee of Euro 2.50
+        is charged for insurance and costs. 
+        The paying is only a testing environment, paying is not really executed in this test setup.
+        After successful payment, the order will be processed.
+       
         ''')
                 
             grid.addWidget(lblinfo, 1, 0, 1, 4, Qt.AlignCenter)
             lblinfo.setStyleSheet("font: 10pt Comic Sans MS; color: black ; background-color: #D9E1DF") 
             
-            cancelBtn = QPushButton('Sluiten')
+            cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(self.close)  
             
             grid.addWidget(cancelBtn,  3, 0, 1, 4, Qt.AlignRight)
@@ -229,7 +227,7 @@ def writeVal(valint , rpweb, self):
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
     if valint == 0:
-        tekst = "Aantal is 0, de bestelregel is verwijderd"
+        tekst = "Number is 0, the order line has been removed"
         delart = delete(webbestellingen).where(webbestellingen.c.webID == rpweb[6])
         con.execute(delart)
     else:
@@ -239,14 +237,14 @@ def writeVal(valint , rpweb, self):
     updart = update(artikelen).where(artikelen.c.artikelID == rpweb[7]).\
             values(reserveringsaldo = artikelen.c.reserveringsaldo + valint - rpweb[9])
     con.execute(updart)
-    tekst = 'Bestelaantal is aangepast naar '+str(valint)+'.'
+    tekst = 'Order quantity has been adjusted to '+str(valint)+'.'
     self.close()
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
     msg.setText(tekst)
-    msg.setWindowTitle('Bestelaantal')
+    msg.setWindowTitle('Order quantity')
     msg.exec_()
     
 def invoerOK(mbedrag, mrek, martnr, mhoev, movbestnr, m_email, klmail):
@@ -256,7 +254,7 @@ def invoerOK(mbedrag, mrek, martnr, mhoev, movbestnr, m_email, klmail):
     msg.setIcon(QMessageBox.Information)
     mdag =  str(datetime.datetime.now())[0:10]
     if mbedrag < 0:
-        msg.setText('Creditrecord aangemaakt voor klant!\n'+klmail+' € '+'{:12.2f}'.format(mbedrag,2))
+        msg.setText('Credit record created for customer!\n'+klmail+' € '+'{:12.2f}'.format(mbedrag,2))
         metadata = MetaData()              
         webretouren = Table('webretouren', metadata,
             Column('retourID', Integer(), primary_key=True),
@@ -279,7 +277,7 @@ def invoerOK(mbedrag, mrek, martnr, mhoev, movbestnr, m_email, klmail):
               bedrag = mbedrag, rekening = mrek, artikelID = martnr, aantal = mhoev,\
               ordernummer = movbestnr, boeking = mdag)
         con.execute(insret)
-    msg.setWindowTitle('Retourboeking maken')
+    msg.setWindowTitle('Create return booking')
     msg.exec_()
     
 def maak11proef(basisnr):
@@ -298,7 +296,7 @@ def showFoto(fotopad):
       class Widget(QDialog):
           def __init__(self, parent=None):
               super(Widget, self).__init__(parent)
-              self.setWindowTitle("Afbeelding Webartikel")
+              self.setWindowTitle("Image Web article")
               self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
               self.setFont(QFont('Arial', 10))
               pixmap = QPixmap(fotopad)
@@ -316,13 +314,13 @@ def invoerBasket(martnr, martomschr, mhoev, verkprijs):
     if mhoev == 1:
         ww = ' is '
     else:
-        ww = ' zijn '
+        ww = ' are '
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Er'+ww+str(int(mhoev))+' st. '+martomschr+'\nartikelnummer: '+str(martnr)+'\nin de winkelwagen geplaatst!')
-    msg.setWindowTitle('Inhoud winkelwagen')
+    msg.setText('There'+ww+str(int(mhoev))+' pcs. '+martomschr+'\narticlenumber: '+str(martnr)+'\nplaced in the shopping cart!')
+    msg.setWindowTitle('Shopping cart contents')
     msg.exec_() 
            
 def verwerkArtikel(martnr,retstat, m_email, mhoev, self, klmail):
@@ -582,7 +580,7 @@ def verwerkArtikel(martnr,retstat, m_email, mhoev, self, klmail):
         except:
             mafdrachrnr = 1
         iafdr = insert(afdrachten).values(afdrachtID=mafdrachtnr,\
-         soort = 'BTW afdracht 21%', instantie = 'Belastingdienst',\
+         soort = 'VAT payment 21%', instantie = 'Tax authorities',\
          rekeningnummer = 'NL10 ABNA 9999999977', boekdatum = mboekd,\
          bedrag = mhoev*rppers[2]*(1+rppar[3][1])*(rppar[0][1]),\
          periode = mboekd[0:7], ovbestelID = movbestnr)
@@ -712,7 +710,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
         class MyWindow(QDialog):
             def __init__(self, data_list, header):
                 QDialog.__init__(self)
-                self.setWindowTitle('Inhoud winkelwagen')
+                self.setWindowTitle('Shopping cart contents')
                 self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                 self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                                   Qt.WindowMinMaxButtonsHint)
@@ -746,7 +744,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                 
                 grid.addWidget(table_view, 0, 0, 1, 6)
                                
-                grid.addWidget(QLabel('Bezorgadres:      (wijzigen indien gewenst)'), 1, 0, 1 ,2)
+                grid.addWidget(QLabel('Delivery address:           (change if desired)'), 1, 0, 1 ,2)
                 
                 if rpw[7] == '':
                     e1 = QLineEdit(rpw[15])
@@ -760,7 +758,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                 reg_ex = QRegExp("^.{1,30}$")
                 input_validator = QRegExpValidator(reg_ex, e1)
                 e1.setValidator(input_validator)
-                grid.addWidget(QLabel('Voornaam'), 2, 0)
+                grid.addWidget(QLabel('First name'), 2, 0)
                 grid.addWidget(e1, 2, 1)
                  
                 if rpw[7] == '':
@@ -775,7 +773,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                 reg_ex = QRegExp("^.{1,10}$")
                 input_validator = QRegExpValidator(reg_ex, e2)
                 e2.setValidator(input_validator)
-                grid.addWidget(QLabel('Tussenvoegsel'), 2, 2)
+                grid.addWidget(QLabel('Infix'), 2, 2)
                 grid.addWidget(e2, 2, 3)
                 
                 if rpw[7] == '':
@@ -790,7 +788,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                 reg_ex = QRegExp("^.{1,50}$")
                 input_validator = QRegExpValidator(reg_ex, e3)
                 e3.setValidator(input_validator)
-                grid.addWidget(QLabel('Achternaam'), 2, 4)
+                grid.addWidget(QLabel('Surname'), 2, 4)
                 grid.addWidget(e3, 2, 5)
                 
                 if rpw[7] == '':
@@ -805,7 +803,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                 reg_ex = QRegExp("^[0-9]{4}[A-Za-z]{2}$")
                 input_validator = QRegExpValidator(reg_ex, e4)
                 e4.setValidator(input_validator)
-                grid.addWidget(QLabel('Postcode'), 3, 2)
+                grid.addWidget(QLabel('Zipcode'), 3, 2)
                 grid.addWidget(e4, 3, 3) 
         
                 if rpw[7] == '':
@@ -821,7 +819,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                 input_validator = QRegExpValidator(reg_ex, e5)
                 e5.setValidator(input_validator)
                 grid.addWidget(e5, 3, 1)  #huisnummer
-                grid.addWidget(QLabel('Toev.'), 3, 1, 1, 1, Qt.AlignCenter)
+                grid.addWidget(QLabel('Suffix'), 3, 1, 1, 1, Qt.AlignCenter)
                 
                 if rpw[7] == '':
                     e6 = QLineEdit(rpw[20])
@@ -835,7 +833,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                 reg_ex = QRegExp("^.{0,8}")
                 input_validator = QRegExpValidator(reg_ex, e6)
                 e6.setValidator(input_validator)
-                grid.addWidget(e6, 3, 1, 1, 1, Qt.AlignRight)   #Toevoeging huisnummer
+                grid.addWidget(e6, 3, 1, 1, 1, Qt.AlignRight)   #addition housenumber
                               
                 from postcode import checkpostcode
                 postcStatus = True
@@ -849,9 +847,9 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                         postcStatus=foutPostcode()   
                             
                 mfactsp = checkpostcode(rpw[18], int(rpw[19]))
-                grid.addWidget(QLabel('Factuuradres: '+rpw[15]+' '+rpw[16]+' '+rpw[17]+',  '+mfactsp[0]+' '+rpw[19]+', '+rpw[18]+' '+mfactsp[1]+'.'), 4, 0, 1 ,4)
+                grid.addWidget(QLabel('Billing address: '+rpw[15]+' '+rpw[16]+' '+rpw[17]+',  '+mfactsp[0]+' '+rpw[19]+', '+rpw[18]+' '+mfactsp[1]+'.'), 4, 0, 1 ,4)
  
-                freshBtn = QPushButton('Berekening\ngegevens')
+                freshBtn = QPushButton('Calculate\ndata')
                 freshBtn.clicked.connect(lambda: refresh(m_email, self,\
                    btnStatus, e1.text(), e2.text(), e3.text(), e4.text(), e5.text(), e6.text(), klmail))
 
@@ -871,7 +869,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
               
                 grid.addWidget(betaalBtn, 6, 5, 2, 1, Qt.AlignLeft | Qt.AlignTop)
   
-                sluitBtn = QPushButton('Sluiten')
+                sluitBtn = QPushButton('Close')
                 sluitBtn.clicked.connect(self.close)
 
                 sluitBtn.setFont(QFont("Arial",10))
@@ -880,7 +878,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                 
                 grid.addWidget(sluitBtn, 7, 4, 1, 1, Qt.AlignRight)
                 
-                helpBtn = QPushButton('Informatie')
+                helpBtn = QPushButton('Information')
                 helpBtn.clicked.connect(lambda: help())
 
                 helpBtn.setFont(QFont("Arial",10))
@@ -889,7 +887,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                 
                 grid.addWidget(helpBtn, 7, 3, 1, 1, Qt.AlignRight)
                 
-                helpBtn = QPushButton('Informatie')
+                helpBtn = QPushButton('Information')
                 helpBtn.clicked.connect(lambda: info())
 
                 helpBtn.setFont(QFont("Arial",10))
@@ -899,7 +897,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                 grid.addWidget(helpBtn, 7, 3, 1, 1, Qt.AlignRight)
                 
                 betaalBtn.setEnabled(False)
-                cBox = QCheckBox('Akkoord algemene voorwaarden')
+                cBox = QCheckBox('Agree terms and conditions!')
                 def cboxChange():
                     cBox = self.sender()
                     if (cBox.isChecked() and postcStatus and  btnStatus):
@@ -916,13 +914,13 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                 postnl = rppost[1]
                 factbedrag = subtot+postnl
                               
-                grid.addWidget(QLabel('Som subtotalen:  '), 5, 0)
+                grid.addWidget(QLabel('Sum subtotals:  '), 5, 0)
                 grid.addWidget(QLabel('{:12.2f}'.format(subtot)), 5, 1, 1, 1, Qt.AlignRight)
-                grid.addWidget(QLabel('Bedrag BTW 21%: '), 5 ,2, 1, 2)
+                grid.addWidget(QLabel('VAT amount 21%: '), 5 ,2, 1, 2)
                 grid.addWidget(QLabel('{:12.2f}'.format(btwsub)), 5, 3, 1, 1, Qt.AlignRight)
-                grid.addWidget(QLabel('Bezorgkosten PostNL: '), 6, 0)
+                grid.addWidget(QLabel('Delivery costs PostNL: '), 6, 0)
                 grid.addWidget(QLabel('{:12.2f}'.format(postnl)), 6, 1, 1, 1, Qt.AlignRight)
-                grid.addWidget(QLabel('Totaal factuurbedrag: '), 7, 0)
+                grid.addWidget(QLabel('Total invoice amount: '), 7, 0)
                 grid.addWidget(QLabel('{:12.2f}'.format(factbedrag)), 7, 1, 1, 1, Qt.AlignRight)
      
                 grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 8, 0, 1, 6, Qt.AlignCenter)
@@ -966,8 +964,8 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                 pixmap.scaled(256,256) 
                 return(painter.drawPixmap(option.rect, pixmap))
  
-        header = ['Artikelnr','Omschrijving', 'Thumb','Foto','ArtikelPrijs', 'Eenheid',\
-                  'WebID','Artikelnr', 'email','Aantal','Stukprijs', 'Subtotaal', 'BTW',\
+        header = ['Article number','Description', 'Thumb','Photo','Article price', 'Unity',\
+                  'WebID','Article number', 'email','Amount','Unit price', 'Subtotal', 'VAT',\
                   '','','','','','']
                           
         data_list=[]
@@ -986,7 +984,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                    def __init__(self):
                         QDialog.__init__(self)
                                                          
-                        self.setWindowTitle("Aantal wijzigen")
+                        self.setWindowTitle("Modify number")
                         self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                         self.setFont(QFont('Arial', 10))
                         
@@ -1016,9 +1014,9 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                                                                          
                         self.qspin.valueChanged.connect(valuechange)
                                                                  
-                        grid.addWidget(QLabel('Wijzig bestelaantal van artikel\n'+str(rpweb[0])+' '+rpweb[1]), 2, 0, 1, 2)
+                        grid.addWidget(QLabel('Modify order amount of article\n'+str(rpweb[0])+' '+rpweb[1]), 2, 0, 1, 2)
                         
-                        grid.addWidget(QLabel('Bestelaantal'), 3, 0, 1, 2, Qt.AlignCenter)
+                        grid.addWidget(QLabel('Order amount'), 3, 0, 1, 2, Qt.AlignCenter)
                         grid.addWidget(self.qspin, 3, 1)
                         
                         lblpic = QLabel()
@@ -1026,7 +1024,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                         lblpic.setPixmap(pixmap)
                         grid.addWidget(lblpic , 3, 0, 2, 1)
                         
-                        closeBtn = QPushButton('Sluiten')
+                        closeBtn = QPushButton('Close')
                         closeBtn.clicked.connect(self.close)
                        
                         grid.addWidget(closeBtn, 4, 0, 1, 1, Qt.AlignRight)
@@ -1034,7 +1032,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                         closeBtn.setFixedWidth(100) 
                         closeBtn.setStyleSheet("color: black;  background-color: gainsboro") 
                                                                                    
-                        aanpBtn = QPushButton('Aanpassen')
+                        aanpBtn = QPushButton('Modify')
                         aanpBtn.clicked.connect(lambda: writeVal(self.qspin.value(), rpweb, self))
                        
                         grid.addWidget(aanpBtn, 4, 1, 1, 1, Qt.AlignRight)
@@ -1071,7 +1069,7 @@ def betaalBasket(m_email, klmail, factbedrag):
         class Widget(QDialog):
             def __init__(self, parent=None):
                 super(Widget, self).__init__(parent)
-                self.setWindowTitle("Winkelwagen en betalen")
+                self.setWindowTitle("Shopping cart and payment")
                 self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                 self.setFont(QFont('Arial', 10))
                 grid = QGridLayout()
@@ -1083,7 +1081,7 @@ def betaalBasket(m_email, klmail, factbedrag):
                 lbl.setPixmap(pixmap)
                 grid.addWidget(lbl , 0, 0, 1, 2)
                 
-                lblinfo = QLabel('Afrekenen\n€ '+'{:12.2f}'.format(factbedrag))
+                lblinfo = QLabel('Payment\n€ '+'{:12.2f}'.format(factbedrag))
                 grid.addWidget(lblinfo, 0, 2, 1, 2, Qt.AlignCenter)
                 lblinfo.setStyleSheet("color: rgb(45, 83, 115); font: 18pt Comic Sans MS")
                 
@@ -1214,7 +1212,7 @@ def betaalBasket(m_email, klmail, factbedrag):
                 afterPayBtn.setIconSize(QSize(90, 60))
                 afterPayBtn.setStyleSheet("color: black;  background-color: gainsboro")
        
-                sluitenBtn = QPushButton('Sluiten')
+                sluitenBtn = QPushButton('Close')
                 sluitenBtn.clicked.connect(self.accept)
                 
                 grid.addWidget(sluitenBtn, 7, 4)
@@ -1232,9 +1230,10 @@ def betaalBasket(m_email, klmail, factbedrag):
                         VanLanschotBtn.isChecked() or AmericanExpressBtn.isChecked() or\
                         MasterCardBtn.isChecked() or VisaBtn.isChecked():
                     
-                        #indien produktie doorgeven bedrag en naam Pandora BV Vianen
-                        #en klant e-mail bij terugontvangst akoord onderstaand uitvoeren
-                        #anders melding om opnieuw betaling uit te voeren!
+                        #if production, pass on amount and name Pandora BV Vianen 
+                        #and customer e-mail upon receiving back agreement, run below  
+                        #else notification to make payment again!
+
                         rpsel = con.execute(selbest)
                         for row in rpsel:
                             verwerkArtikel(row[1], 0, m_email, row[3], self, klmail)
@@ -1255,7 +1254,7 @@ def artKeuze(m_email, retstat, klmail):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Opvragen / Bestellen Webartikelen")
+            self.setWindowTitle("Request / Order Webarticles")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -1265,12 +1264,12 @@ def artKeuze(m_email, retstat, klmail):
             k0Edit.setFixedWidth(240)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem(' Sorteersleutel voor zoeken')
-            k0Edit.addItem('1. Gesorteerd op artikelnr')
-            k0Edit.addItem('2. Gesorteerd op voorraad')
-            k0Edit.addItem('3. Gefilterd omschrijving')
-            k0Edit.addItem('4. Gefilterd artikelgroep.')
-            k0Edit.addItem('5. Gefilterd opslaglocatie.')
+            k0Edit.addItem(' Search sort key')
+            k0Edit.addItem('1. Sorted on article number')
+            k0Edit.addItem('2. Sorted on stock')
+            k0Edit.addItem('3. Filtered description')
+            k0Edit.addItem('4. Filtered article group.')
+            k0Edit.addItem('5. Filtered storage location.')
             k0Edit.activated[str].connect(self.k0Changed)
             
             self.Zoekterm = QLabel()
@@ -1293,7 +1292,7 @@ def artKeuze(m_email, retstat, klmail):
             grid.addWidget(logo , 1, 1, 1, 2, Qt.AlignRight)
                                   
             grid.addWidget(k0Edit, 2, 1)
-            lbl1 = QLabel('Zoekterm')  
+            lbl1 = QLabel('Search term')  
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 3, 0)
             grid.addWidget(zktermEdit, 3, 1)
@@ -1303,7 +1302,7 @@ def artKeuze(m_email, retstat, klmail):
             
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 6, 0, 1, 3)
         
-            applyBtn = QPushButton('Zoeken')
+            applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
       
             grid.addWidget(applyBtn, 5, 1, 1, 1, Qt.AlignRight)
@@ -1311,7 +1310,7 @@ def artKeuze(m_email, retstat, klmail):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            closeBtn = QPushButton('Sluiten')
+            closeBtn = QPushButton('Close')
             closeBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(closeBtn, 5, 1, 1, 1)
@@ -1356,7 +1355,7 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(50, 50, 1500, 900)
-            self.setWindowTitle('Materiaallijst')
+            self.setWindowTitle('Article list')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -1411,10 +1410,10 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
             pixmap = QPixmap(image)
             pixmap.scaled(256,256) 
             return(painter.drawPixmap(option.rect, pixmap))
-   
-    header = ['Artikelnr','Omschrijving', 'Thumb','ArtikelPrijs', 'Voorraad',\
-              'Eenheid','Minimum Voorraad','Bestelgrootte', 'Locatie',\
-              'Artikelgroep', 'Categorie', 'Afmeting']
+       
+    header = ['Article number','Description', 'Thumb','Article price', 'Stock',\
+              'Unit','Minimum Stock','Order size', 'Location',\
+              'Article group', 'Category', 'Size']
     
     metadata = MetaData()              
     artikelen = Table('artikelen', metadata,
@@ -1463,9 +1462,9 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
     def showSelart(idx):
         martnr = idx.data()
         if idx.column() == 0:
-            header = ['Artikelnr','Omschrijving','ArtikelPrijs', 'Voorraad',\
-              'Eenheid','Minimum Voorraad','Bestelgrootte', 'Locatie',\
-              'Artikelgroep', 'Categorie', 'Afmeting', 'Afbeelding']
+            header = ['Article number','Description','Article price', 'Stock',\
+              'Unit','Minimum Stock','Order size', 'Location',\
+              'Articlegroup', 'Category', 'Size', 'Image']
         
             metadata = MetaData()              
             artikelen = Table('artikelen', metadata,
@@ -1491,7 +1490,7 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
       
             sel = select([artikelen]).where(artikelen.c.artikelID == martnr)
             rpartikelen = con.execute(sel).first()
-     
+                
             selpar = select([params]).order_by(params.c.paramID)
             rppar = con.execute(selpar).fetchall()
             verkprijs = rpartikelen[2]*(1+rppar[3][1])*(1+rppar[0][1])
@@ -1503,7 +1502,7 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
                     grid = QGridLayout()
                     grid.setSpacing(20)
                                 
-                    self.setWindowTitle("Bestellingen Webartikelen")
+                    self.setWindowTitle("Orders Web articles")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                     
                     self.setFont(QFont('Arial', 10))   
@@ -1513,7 +1512,7 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
                     self.lbl.setPixmap(self.pixmap)
                     grid.addWidget(self.lbl , 0, 0)
                     
-                    grid.addWidget(QLabel('Bestellingen Webartikelen'),0, 1, 1, 2)
+                    grid.addWidget(QLabel('Orders Web articles'),0, 1, 1, 2)
             
                     self.logo = QLabel()
                     self.pixmap = QPixmap('./images/logos/logo.jpg')
@@ -1536,27 +1535,22 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
                             lbl21.setPixmap(pixmap)
                             grid.addWidget(lbl21 , index, 1, 3, 1)
                         else:
-                            if type(rpartikelen[index-1]) == str:
-                                q1Edit = QLineEdit(str(rpartikelen[index-1]))
-                                q1Edit.setFixedWidth(100)
-                            else:
-                                q1Edit = QLineEdit('{:12.2f}'.format(rpartikelen[index-1]))
-                                q1Edit.setFixedWidth(100)
-                                q1Edit.setAlignment(Qt.AlignRight)
-                                                   
+                            q1Edit = QLineEdit(str(rpartikelen[index-1]))
+                            q1Edit.setFixedWidth(100)
+                                                     
                         q1Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                         q1Edit.setDisabled(True)
                         grid.addWidget(self.lbl, index, 0)
                         if index != 12 and index != 13:
                             grid.addWidget(q1Edit, index, 1, 1, 2)
           
-                        index +=1
+                        index += 1
                     
                     self.Bestelaantal = QLabel(self)
                     if retstat == 0:
-                        self.Bestelaantal.setText('                     Bestelaantal ')
+                        self.Bestelaantal.setText('                     Order size ')
                     else:
-                        self.Bestelaantal.setText('                          Retouraantal')
+                        self.Bestelaantal.setText('                          Return\n                          Quantity')
                     self.best = QLineEdit(self)
                     self.best.setFixedWidth(50)
                     
@@ -1577,7 +1571,7 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
                     basket.setStyleSheet("color: black;  background-color: gainsboro")
                     basket.clicked.connect(lambda: showBasket(m_email, self, btnStatus, klmail, subtot,btwsub))
                                       
-                    fotoBtn = QPushButton('Foto groot')
+                    fotoBtn = QPushButton('Big Photo')
                     fotoBtn.clicked.connect(lambda: showFoto(rpartikelen[12]))
             
                     grid.addWidget(fotoBtn, index-3, 2, 1, 1, Qt.AlignTop)
@@ -1585,7 +1579,7 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
                     fotoBtn.setFixedWidth(100) 
                     fotoBtn.setStyleSheet("color: black;  background-color: gainsboro")
                         
-                    terugBtn = QPushButton('Sluiten')
+                    terugBtn = QPushButton('Close')
                     terugBtn.clicked.connect(self.accept)
             
                     grid.addWidget(terugBtn, index-2, 2)
@@ -1596,12 +1590,12 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
                     mhoev = self.best
                     if retstat == 1:
                         basket.setDisabled(True)
-                        bestelBtn = QPushButton('Retour')
-                        bestelBtn.clicked.connect(lambda: verwerkArtikel(martnr,retstat, m_email, mhoev, self, klmail))
+                        bestelBtn = QPushButton('Return')
+                        bestelBtn.clicked.connect(lambda: verwerkArtikel(str(martnr),retstat, m_email, mhoev, self, klmail))
                     else:
                         basket.setDisabled(False)
-                        bestelBtn = QPushButton('Bestellen')
-                        bestelBtn.clicked.connect(lambda: vulBasket(martnr, m_email, mhoev, verkprijs, self))
+                        bestelBtn = QPushButton('Ordering')
+                        bestelBtn.clicked.connect(lambda: vulBasket(str(martnr), m_email, mhoev, verkprijs, self))
                      
                     grid.addWidget(bestelBtn, index-1, 2)
                     bestelBtn.setFont(QFont("Arial",10))
