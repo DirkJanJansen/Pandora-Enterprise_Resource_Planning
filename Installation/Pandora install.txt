@@ -59,9 +59,8 @@ Edit shortcut Pandora to your own Path where you copied Pandora
 The admin user is: dj.jansen@casema.nl password: postgres45
 other users password: wieookweer
 See user lists Accounts -  Opvragen Accounts	
-The Menu's and other names in the programs are in Dutch sorry!
-On 2023-03-03 A English translation of all the frontends from program files are present in a seperate folder.
-To implement English version overwrite your existing program files!
+The Menu's and other names in the programs are in English!
+For Dutch version overwrite Pandora with Pandora Dutch.
 
 Before starting the program for the first time run script reset_odd_even.py to set the parameter for odd-even year for the right year
 in command prompt
