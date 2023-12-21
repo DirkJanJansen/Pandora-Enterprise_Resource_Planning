@@ -3,7 +3,7 @@ from math import sqrt
 import datetime
 from PyQt5.QtWidgets import QApplication
 from sqlalchemy import Table, Column, Integer, Float, String, MetaData, create_engine,\
-    insert, select, update, func, Boolean
+     insert, select, update, func, Boolean
 
 '''
 # set lock for up to 1 session per PC
@@ -35,7 +35,7 @@ artikelen = Table('artikelen', metadata,
 params = Table('params', metadata,
     Column('paramID', Integer, primary_key=True),
     Column('tarief', Float))
-magazijnvoorraad = Table('magazijnvoorraad', metadata,\
+magazijnvoorraad = Table('magazijnvoorraad', metadata,
     Column('jaarmaand', String, primary_key=True),
     Column('totaal', Float),
     Column('courant', Float),                     
@@ -87,7 +87,6 @@ elif mjaar%2 == 0 and int(rppar[1]) == 1:
         mjaar = int(str(datetime.datetime.now())[0:4])
         mbestgr = round(sqrt(2*row[4]*rppar2[1])/(row[1]*rppar1[1]),0)
         mjrverbr = row[5]
-        mjrverbr = 0
         if row[10] == 1 or row[10] == 5:
             minvrd = round(mjrverbr*1/17, 0) # < 3 weeks delivery time
         elif row[10] == 2 or row[10] == 6 or row[10] == 7 :
@@ -103,7 +102,7 @@ elif mjaar%2 == 0 and int(rppar[1]) == 1:
     
 mhjrmnd = str(datetime.date.today())[0:7]                                                  #(this year year-month) yyyy-mm
 mvjrmnd = int(str(int(str(datetime.date.today())[0:4])-1)+str(datetime.date.today())[5:7]) #(last year yearmonth) yyyymm
-mdbjrmnd = (con.execute(select([func.max(magazijnvoorraad.c.jaarmaand,\
+mdbjrmnd = (con.execute(select([func.max(magazijnvoorraad.c.jaarmaand,
                     type_=Integer)])).scalar())     #(last stored year-month) yyyy-mm
 if mhjrmnd != mdbjrmnd:
     insdb = insert(magazijnvoorraad).values(jaarmaand = mhjrmnd)
