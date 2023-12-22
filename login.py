@@ -4,7 +4,7 @@ from validZt import zt
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont, QPixmap, QIcon, QMovie, QColor
 from PyQt5.QtWidgets import (QDialog, QGridLayout, QMessageBox,\
-                             QLabel, QLineEdit, QPushButton, QComboBox, QFrame)
+                             QLabel, QLineEdit, QPushButton, QComboBox)
 from sqlalchemy import (Table, Column, Integer, String, MetaData,\
                     create_engine, select)
 
