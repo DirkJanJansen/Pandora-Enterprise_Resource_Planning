@@ -11,7 +11,7 @@
  Employees, Calculation, Accountancy (portal), Payroll administration,
  Management modules for inventory control and financial control with graphs are included.
  
- Program translated to English frontends see folder Pandora program translated to English 
+ Program translated to Dutch frontends see folder Pandora Dutch
 
  For documentation and database structure see Documentation directory.
  
