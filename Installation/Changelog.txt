@@ -470,4 +470,5 @@ From 2020-01-10 updates and changes are described on this page
 2023-12-09 Pandora default set in English frontends. Dutch version in folder Pandora Dutch
 2023-12-12 Last days added several screenshots
 2023-12-14 Added documentation reprint forms
+2023-12-23 Pandora.py by minvrd added else clause, for preventing minvrd is undefined, also added in Dutch version
 
