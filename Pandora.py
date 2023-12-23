@@ -70,6 +70,9 @@ if mjaar%2 == 1 and int(rppar[1]) == 0:
             minvrd = round(mjrverbr*8/17, 0) # < 26 weeks delivery time
         elif row[10] == 4 or row[10] == 9: 
             minvrd = round(mjrverbr*16/17,0) # < 52 weeks delivery time
+        else:
+            minvrd = row[6]
+
         updart = update(artikelen).where(artikelen.c.artikelID == row[0]).\
             values(jaarverbruik_2 = 0, art_min_voorraad = minvrd, art_bestelgrootte = mbestgr)
         con.execute(updart)
@@ -95,6 +98,8 @@ elif mjaar%2 == 0 and int(rppar[1]) == 1:
             minvrd = round(mjrverbr*8/17, 0) # < 26 weeks delivery time
         elif row[10] == 4 or row[10] == 9: 
             minvrd = round(mjrverbr*16/17,0) # < 52 weeks delivery time
+        else:
+            minvrd = row[6]
        
         updart = update(artikelen).where(artikelen.c.artikelID == row[0]).\
             values(jaarverbruik_1 = 0, art_min_voorraad = minvrd, art_bestelgrootte = mbestgr)
@@ -103,7 +108,7 @@ elif mjaar%2 == 0 and int(rppar[1]) == 1:
 mhjrmnd = str(datetime.date.today())[0:7]                                                  #(this year year-month) yyyy-mm
 mvjrmnd = int(str(int(str(datetime.date.today())[0:4])-1)+str(datetime.date.today())[5:7]) #(last year yearmonth) yyyymm
 mdbjrmnd = (con.execute(select([func.max(magazijnvoorraad.c.jaarmaand,
-                    type_=Integer)])).scalar())     #(last stored year-month) yyyy-mm
+                    type_=Integer)])).scalar())     # (last stored year-month) yyyy-mm
 if mhjrmnd != mdbjrmnd:
     insdb = insert(magazijnvoorraad).values(jaarmaand = mhjrmnd)
     con.execute(insdb)
