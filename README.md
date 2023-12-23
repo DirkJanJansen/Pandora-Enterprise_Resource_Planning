@@ -2,6 +2,8 @@
 
 ![Pandora Basket Screenshot](https://github.com/DirkJanJansen/Pandora/raw/master/Installation/Screenshots/Change-Basket.png "Pandora Basket Screenshot")
 
+![Bar Chart Costs External Works By Status Screenshot](https://github.com/DirkJanJansen/Pandora/raw/master/Installation/Screenshots/BarChartCostsExternalWorksByStatus.png "Bar Chart Costs External Works By Status Screenshot")
+
 # ERP Application in PyQt5 and PostgreSQL relational database system.
   
  Python3 powered.
