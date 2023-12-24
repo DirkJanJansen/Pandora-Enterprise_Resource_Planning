@@ -57,7 +57,7 @@ Printing own invoices.
 All further permissions must be made by a authorised person.
 The authorization menu is at Onderhoud - Bevoegdheden muteren
 Initial access: dj.jansen@casema.nl password: postgres45
-The permissions are granted at menu level (enabled-disabled)
+The permissions are granted at menu level and menu line level (enabled-disabled)
 Further permissions are granted with the items: special, ordering, new, change, query, print and reserve
 Special is for management tasks for instant wages, charts financial and sensitive information etc.
 All permissions are set with checkboxes.
