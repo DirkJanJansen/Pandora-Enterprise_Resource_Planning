@@ -61,6 +61,10 @@ The permissions are granted at menu level and menu line level (enabled-disabled)
 Further permissions are granted with the items: special, ordering, new, change, query, print and reserve
 Special is for management tasks for instant wages, charts financial and sensitive information etc.
 All permissions are set with checkboxes.
+For reprinting forms set permission on Reprinting forms on menulevel
+This way it is possible to reprint the forms for which on other menuline levels the authorization is set for print (p).
+If you want to set reprinting availeble for other departments, only set print permission on the concerning menulevel, but disable menupermission.
+This way it is possible to reprint the concerning forms, but deny producing new forms.
 
 How the program functions:
 
