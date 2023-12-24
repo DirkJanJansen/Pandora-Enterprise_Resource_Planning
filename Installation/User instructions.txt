@@ -30,20 +30,6 @@ zoekterm - search term (is validated)
 all records - no search term necessary leave it open
 filter - search term or part of term depends on topics  (is validated)
 
-Some translations:
-sluiten - close
-zoeken - search
-afsluiten - exit
-invoeren - enter new
-wijzig - modify
-opvragen - query
-informatie - information
-kiezen - choose
-uitloggen -logout
-verversen - refresh
-berekening gegevens - calculation data
-for further translations: Google is your friend
-
 BRIEF EXPLANATION PROGRAM
 
 The program start with testing if a new year has started.
