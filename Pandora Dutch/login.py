@@ -336,6 +336,34 @@ def inlog():
     hoofdMenu(m_email)
        
 def hoofdMenu(m_email):
+    # declare database table accounts for authorizations
+    metadata = MetaData()
+    accounts = Table('accounts', metadata,
+                     Column('accountID', Integer(), primary_key=True),
+                     Column('email', String, nullable=False),
+                     Column('p1', String),
+                     Column('p2', String),
+                     Column('p3', String),
+                     Column('p4', String),
+                     Column('p5', String),
+                     Column('p6', String),
+                     Column('p7', String),
+                     Column('p8', String),
+                     Column('p9', String),
+                     Column('p10', String),
+                     Column('p11', String),
+                     Column('p12', String),
+                     Column('p13', String),
+                     Column('p14', String),
+                     Column('p15', String),
+                     Column('p16', String))
+
+    engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
+    conn = engine.connect()
+    sel = select([accounts]).where(accounts.c.email == m_email)
+    rpaccount = conn.execute(sel).first()
+    mp = rpaccount[2:18]
+
     #structure Menu's
     class Widget(QDialog):
         def __init__(self, parent=None):
@@ -657,33 +685,6 @@ def hoofdMenu(m_email):
             k15Edit.activated[str].connect(self.k15Changed)
             
             #disable menu's if no permission is granted in table accounts
-            metadata = MetaData()
-            accounts = Table('accounts', metadata,
-                Column('accountID', Integer(), primary_key=True),
-                Column('email', String, nullable=False),
-                Column('p1', String),
-                Column('p2', String),
-                Column('p3', String),
-                Column('p4', String),
-                Column('p5', String),
-                Column('p6', String),
-                Column('p7', String),
-                Column('p8', String),
-                Column('p9', String),
-                Column('p10', String),
-                Column('p11', String),
-                Column('p12', String),
-                Column('p13', String),
-                Column('p14', String),
-                Column('p15', String),
-                Column('p16', String))
-
-            engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
-            conn = engine.connect()
-            sel = select([accounts]).where(accounts.c.email == m_email)
-            rpaccount = conn.execute(sel).first()
-            mp = rpaccount[2:18]
-
             # list of Mainmenu
             mplist=[k0Edit,k1Edit,k2Edit,k3Edit,k4Edit,k5Edit,k6Edit,k7Edit,\
                     k8Edit,k9Edit,k10Edit,k11Edit,k12Edit,k13Edit,k14Edit,k15Edit]
@@ -936,36 +937,9 @@ def hoofdMenu(m_email):
       
     window = Widget()
     data = window.getData()
-   
-    #grant/deny access to submenuitems if permission not granted in table accounts
-    
-    mk0, mk1, mk2, mk3, mk4, mk5, mk6, mk7, mk8, mk9, mk10, mk11, mk12, mk13, mk14, mk15 = (0,)*16
-    metadata = MetaData()
-    accounts = Table('accounts', metadata,
-        Column('accountID', Integer(), primary_key=True),
-        Column('email', String, nullable=False),
-        Column('p1', String),
-        Column('p2', String),
-        Column('p3', String),
-        Column('p4', String),
-        Column('p5', String),
-        Column('p6', String),
-        Column('p7', String),
-        Column('p8', String),
-        Column('p9', String),
-        Column('p10', String),
-        Column('p11', String),
-        Column('p12', String),
-        Column('p13', String),
-        Column('p14', String),
-        Column('p15', String),
-        Column('p16', String))
 
-    engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
-    conn = engine.connect()
-    sel = select([accounts]).where(accounts.c.email == m_email)
-    rpaccount = conn.execute(sel).first()
-    mp = rpaccount[2:18]
+    mk0, mk1, mk2, mk3, mk4, mk5, mk6, mk7, mk8, mk9, mk10, mk11, mk12, mk13, mk14, mk15 = (0,)*16
+
     dlist = []
     for item in data:
         if item.startswith(' '):
