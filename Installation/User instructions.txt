@@ -30,6 +30,8 @@ zoekterm - search term (is validated)
 all records - no search term necessary leave it open
 filter - search term or part of term depends on topics  (is validated)
 
+Translation is not necessary, for the default is English frontends
+
 BRIEF EXPLANATION PROGRAM
 
 The program start with testing if a new year has started.
