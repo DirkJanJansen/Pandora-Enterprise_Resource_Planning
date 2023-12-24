@@ -336,7 +336,35 @@ def inlog():
     hoofdMenu(m_email)
 
 def hoofdMenu(m_email):
-    #structure Menu's
+    # declare database table accounts for authorizations
+    metadata = MetaData()
+    accounts = Table('accounts', metadata,
+                     Column('accountID', Integer(), primary_key=True),
+                     Column('email', String, nullable=False),
+                     Column('p1', String),
+                     Column('p2', String),
+                     Column('p3', String),
+                     Column('p4', String),
+                     Column('p5', String),
+                     Column('p6', String),
+                     Column('p7', String),
+                     Column('p8', String),
+                     Column('p9', String),
+                     Column('p10', String),
+                     Column('p11', String),
+                     Column('p12', String),
+                     Column('p13', String),
+                     Column('p14', String),
+                     Column('p15', String),
+                     Column('p16', String))
+
+    engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
+    conn = engine.connect()
+    sel = select([accounts]).where(accounts.c.email == m_email)
+    rpaccount = conn.execute(sel).first()
+    mp = rpaccount[2:18]
+
+    # structure Menu's
     class Widget(QDialog):
         def __init__(self, parent=None, accperms=None):
             super(Widget, self).__init__(parent)
@@ -658,43 +686,16 @@ def hoofdMenu(m_email):
             k15Edit.activated[str].connect(self.k15Changed)
             
             #disable menu's if no permission is granted in table accounts
-            metadata = MetaData()
-            accounts = Table('accounts', metadata,
-                Column('accountID', Integer(), primary_key=True),
-                Column('email', String, nullable=False),
-                Column('p1', String),
-                Column('p2', String),
-                Column('p3', String),
-                Column('p4', String),
-                Column('p5', String),
-                Column('p6', String),
-                Column('p7', String),
-                Column('p8', String),
-                Column('p9', String),
-                Column('p10', String),
-                Column('p11', String),
-                Column('p12', String),
-                Column('p13', String),
-                Column('p14', String),
-                Column('p15', String),
-                Column('p16', String))
-
-            engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
-            conn = engine.connect()
-            sel = select([accounts]).where(accounts.c.email == m_email)
-            rpaccount = conn.execute(sel).first()
-            mp = rpaccount[2:18]
-
             # list of Mainmenu
             mplist=[k0Edit,k1Edit,k2Edit,k3Edit,k4Edit,k5Edit,k6Edit,k7Edit,\
                     k8Edit,k9Edit,k10Edit,k11Edit,k12Edit,k13Edit,k14Edit,k15Edit]
 
-            # list of pointers by mainmenu and menulines per groups pointers towards database tasble accountpermissions
+            # list of pointers by mainmenu and menulines per groups pointers towards database table accountpermissions
             lineperm = ([0, 4, 6, 2, 2, 5],[0, 3, 4, 6, 1],[0, 1, 4, 6, 6],[0, 3, 4, 3, 4, 6, 6],[0, 3, 4, 6, 1, 6],\
                         [0, 3, 4, 6, 4, 5, 1, 6, 3, 6],[0, 3, 4, 6, 3, 5, 3],[0, 3, 4, 6, 2, 6, 3, 3],\
                         [0, 3, 4, 6, 3, 6, 3, 6, 1],[0, 4, 4, 6, 3, 6, 3, 6, 1],[0, 6, 2, 1, 6, 3, 4, 1],\
                         [0, 6, 6, 2, 6, 2, 5, 6],[0, 2, 1, 1, 1],[0, 1, 6, 6, 6],[0, 1, 3, 3, 3, 4, 6, 4],[0])
-            #loop on mainmenu and permissions in table accounts
+            # loop on mainmenu and permissions in table accounts
             for menu in range(0,16):
                 menuperms = lineperm[menu]
                 perms = mp[menu]
@@ -924,7 +925,7 @@ def hoofdMenu(m_email):
         
         def returnk15(self):
             return self.Keuze15.text()
-       
+
         @staticmethod
         def getData(parent=None):
             dialog = Widget(parent)
@@ -938,42 +939,16 @@ def hoofdMenu(m_email):
       
     window = Widget()
     data = window.getData()
-   
-    #grant/deny access to submenuitems if permission not granted in table accounts
-    
-    mk0, mk1, mk2, mk3, mk4, mk5, mk6, mk7, mk8, mk9, mk10, mk11, mk12, mk13, mk14, mk15 = (0,)*16
-    metadata = MetaData()
-    accounts = Table('accounts', metadata,
-        Column('accountID', Integer(), primary_key=True),
-        Column('email', String, nullable=False),
-        Column('p1', String),
-        Column('p2', String),
-        Column('p3', String),
-        Column('p4', String),
-        Column('p5', String),
-        Column('p6', String),
-        Column('p7', String),
-        Column('p8', String),
-        Column('p9', String),
-        Column('p10', String),
-        Column('p11', String),
-        Column('p12', String),
-        Column('p13', String),
-        Column('p14', String),
-        Column('p15', String),
-        Column('p16', String))
 
-    engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
-    conn = engine.connect()
-    sel = select([accounts]).where(accounts.c.email == m_email)
-    rpaccount = conn.execute(sel).first()
-    mp = rpaccount[2:18]
+    mk0, mk1, mk2, mk3, mk4, mk5, mk6, mk7, mk8, mk9, mk10, mk11, mk12, mk13, mk14, mk15 = (0,)*16
+
     dlist = []
     for item in data:
         if item.startswith(' '):
             item = ''
         dlist += [item]
     del data
+
     if dlist[0]:
         mk0 = dlist[0][0]
     elif dlist[1]:
