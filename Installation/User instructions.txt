@@ -63,8 +63,8 @@ Special is for management tasks for instant wages, charts financial and sensitiv
 All permissions are set with checkboxes.
 For reprinting forms set permission on Reprinting forms on menulevel (Menu)
 This way it is possible to reprint the forms for which on other groups menuline levels authorization is set for print (P).
-If you want to set reprinting available for other departments, only set print permission on the concerning menulevel (P), 
-but disable menupermission on other grouplevel. (Menu)
+If you want to set reprinting available for other departments, only set print permission on the concerning group menulinelevel (P), 
+but disable menupermission on that grouplevel. (Menu)
 This way it is possible to reprint the concerning forms, but deny producing new forms.
 
 How the program functions:
