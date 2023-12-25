@@ -5,5 +5,5 @@ PyQt5
 PyQtChart
 psycopg2
 sqlalchemy<2.0
-pypiwin32 #(only windows)
+pypiwin32==223; sys_platform == \'win32\'
 postgreSQL
