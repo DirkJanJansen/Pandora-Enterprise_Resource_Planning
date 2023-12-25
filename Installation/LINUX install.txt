@@ -9,7 +9,7 @@ sudo pip3 install python-barcode
 sudo pip3 install pillow
 
 if you want a editor install PyCharm community:
-Install:
+Install in terminal (Crtl+Alt+t:)
 sudo snap install pycharm-community --classic
 
 sqlalchemy and psycopg2 is installed with postgreSQL-contrib see next lines
@@ -18,7 +18,8 @@ sqlalchemy and psycopg2 is installed with postgreSQL-contrib see next lines
 Rename Pandora-Enterprise_Resource_Planning to Pandora
 Installation Pandora as user postgres with password postgres45:
 Copy .pgpass in /home/postgres  
-in terminal chmod 600 .pgpass
+in terminal (Crtl+Alt+t):
+chmod 600 .pgpass
 for installation postgresql follow steps in:
 https://tecadmin.net/install-postgresql-server-on-ubuntu/
 sqlalchemy  version   1.4.46 or before
