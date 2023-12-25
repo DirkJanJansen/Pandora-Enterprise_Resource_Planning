@@ -7,28 +7,30 @@ sudo pip3 install pyqt5
 sudo pip3 install pyqtchart
 sudo pip3 install python-barcode
 sudo pip3 install pillow
+sudo pip3 install psycopg2
+sudo pip3 install sqlalchemy==1.4.0
 
 if you want a editor install PyCharm community:
 Install:
 sudo snap install pycharm-community --classic
-
-sqlalchemy and psycopg2 is installed with postgreSQL-contrib see next lines
 
 
 Rename Pandora-Enterprise_Resource_Planning to Pandora
 Installation Pandora as user postgres with password postgres45:
 Copy .pgpass in /home/postgres  
 in terminal chmod 600 .pgpass
-for installation postgresql follow steps in:
-https://tecadmin.net/install-postgresql-server-on-ubuntu/
-sqlalchemy  version   1.4.46 or before
+
+for installation postgresql in terminal (Ctrl+Alt+t):
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
+sudo apt-get -y install postgresql-16
+
 additional set password in psql with \password   (postgres45)
-Install pgadmin4 follow steps in:
-https://tecadmin.net/install-pgadmin4-on-ubuntu/
+
 install pgadmin with:
 sudo apt-get install pgadmin4 
-or install  with apache:
-sudo apt-get install pgadmin4-apache2
+
 With the latest update from the login script capslock notification is working now with Linux.
 I found a solution for printing listings with Linux see following lines.
 
@@ -59,7 +61,7 @@ Copy Pandora with folder structures in /home/postgres so you get /home/postgres/
 The fonts in Linux differ from Windows. (Install Arial, Comic Sans MS, Times, Sans Serif and Consolas)
 https://www.ostechnix.com/install-microsoft-windows-fonts-ubuntu-16-04/
 Or copy fonts from Windows/Fonts in dir .local/share/fonts
-in terminal(Ctrl+alt+t): sudo fc-cache -r -f
+in terminal sudo fc-cache -r -f
 install Ubuntu tweak tools and increase font  size for optimal views
    
 startup files in Linux:
