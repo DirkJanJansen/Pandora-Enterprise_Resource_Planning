@@ -66,6 +66,8 @@ This way it is possible to reprint the forms for which on other groups menuline 
 If you want to set reprinting available for other departments, only set print permission on the concerning group menulinelevel (P), 
 but disable menupermission on that grouplevel. (Menu)
 This way it is possible to reprint the concerning forms, but deny producing new forms.
+Exaple see: Authorisations.png
+Purchasing and Warehouse (reprint of purchasing and warehouse forms possible)
 
 How the program functions:
 
