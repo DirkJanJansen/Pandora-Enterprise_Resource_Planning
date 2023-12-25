@@ -1,6 +1,6 @@
 Installation software:
 
-Python 3 is already installed in Ubuntu 
+Python 3 is already installed in Ubuntu 19.04 and newer
 
 sudo apt install python3-pip
 sudo pip3 install pyqt5
@@ -8,10 +8,10 @@ sudo pip3 install pyqtchart
 sudo pip3 install python-barcode
 sudo pip3 install pillow
 
-if you want a editor install Visual code from Microsoft:
-follow instructions on:
-https://linuxhint.com/install-visual-studio-code-ubuntu22-04/
- 
+if you want a editor install PyCharm community:
+Install:
+sudo snap install pycharm-community --classic
+
 sqlalchemy and psycopg2 is installed with postgreSQL-contrib see next lines
 
 
@@ -21,11 +21,14 @@ Copy .pgpass in /home/postgres
 in terminal chmod 600 .pgpass
 for installation postgresql follow steps in:
 https://tecadmin.net/install-postgresql-server-on-ubuntu/
+sqlalchemy  version   1.4.46 or before
 additional set password in psql with \password   (postgres45)
 Install pgadmin4 follow steps in:
 https://tecadmin.net/install-pgadmin4-on-ubuntu/
 install pgadmin with:
-sudo apt-get install pgadmin4 (without apache)
+sudo apt-get install pgadmin4 
+or install  with apache:
+sudo apt-get install pgadmin4-apache2
 With the latest update from the login script capslock notification is working now with Linux.
 I found a solution for printing listings with Linux see following lines.
 
@@ -56,7 +59,7 @@ Copy Pandora with folder structures in /home/postgres so you get /home/postgres/
 The fonts in Linux differ from Windows. (Install Arial, Comic Sans MS, Times, Sans Serif and Consolas)
 https://www.ostechnix.com/install-microsoft-windows-fonts-ubuntu-16-04/
 Or copy fonts from Windows/Fonts in dir .local/share/fonts
-in terminal sudo fc-cache -r -f
+in terminal(Ctrl+alt+t): sudo fc-cache -r -f
 install Ubuntu tweak tools and increase font  size for optimal views
    
 startup files in Linux:
@@ -85,11 +88,12 @@ createdb bisystem
 restore database:
 pg_restore --dbname=bisystem  --verbose "/home/postgres/Pandora/data/bisystem.backup"
 
-To implement English version translated frontends, overwrite program files in folder Pandora with the contents of folder Pandora program translated to English
+To implement Dutch version translated frontends, overwrite program files in folder Pandora with the contents of folder Pandora Dutch. 
 
 Before starting the program for the first time run script reset_odd_even.py to set the parameter for odd-even year for the right year
 Ctrl+Alt+t (opens terminal)
 in terminal following commands:
 cd Pandora
 python3 reset_odd_even.py
+
 
