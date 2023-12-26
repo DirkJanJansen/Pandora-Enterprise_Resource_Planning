@@ -1,6 +1,6 @@
 All commands keyboard Ctrl+Alt+t to open terminal
 Installation software:
-Python 3 is already installed in Ubuntu 19.04 or newer
+Python 3 is already installed in Ubuntu 19.04 and newer
 
 sudo apt install python3-pip
 sudo pip3 install pyqt5
