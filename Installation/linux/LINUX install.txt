@@ -7,12 +7,12 @@ sudo pip3 install pyqt5
 sudo pip3 install pyqtchart
 sudo pip3 install python-barcode
 sudo pip3 install pillow
-or if you want spyder as ide
-(sudo apt install python3-pip
-sudo pip3 install pillow
-sudo pip3 install python-barcode
-sudo pip3 install spyder==3.3.6
-sudo pip3 install pyqtchart==5.12)
+sudo pip3 install psycopg2
+sudo pip3 install sqlalchemy==1.4.0
+
+if you want a editor install PyCharm community:
+Install:
+sudo snap install pycharm-community --classic
 
 Rename Pandora-Enterprise_Resource_Planning to Pandora
 Installation Pandora as user postgres with password postgres45:
@@ -21,10 +21,14 @@ in terminal chmod 600 .pgpass
 
 Install postgresql:
 in terminal
-sudo apt install -y postgresql-common
-sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
-sudo apt update
+sudo apt update -y
+sudo apt install gnupg2 wget vim -y
+sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
+sudo apt update -y
 sudo apt install postgresql-16
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
 
 Install pgadmin4:
 curl -fsS https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo gpg --dearmor -o /usr/share/keyrings/packages-pgadmin-org.gpg
