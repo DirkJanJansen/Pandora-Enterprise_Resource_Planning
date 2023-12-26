@@ -1,6 +1,6 @@
+All commands keyboard Ctrl+Alt+t to open terminal
 Installation software:
-
-Python 3 is already installed in Ubuntu 19.04 and 19.10
+Python 3 is already installed in Ubuntu 19.04 newer
 
 sudo apt install python3-pip
 sudo pip3 install pyqt5
@@ -14,19 +14,18 @@ sudo pip3 install python-barcode
 sudo pip3 install spyder==3.3.6
 sudo pip3 install pyqtchart==5.12)
 
-sqlalchemy and psycopg2 is installed with postgreSQL-contrib see next lines
-
-
 Rename Pandora-Enterprise_Resource_Planning to Pandora
 Installation Pandora as user postgres with password postgres45:
 Copy .pgpass in /home/postgres  
 in terminal chmod 600 .pgpass
-for all installations in terminal keyboard keys Ctrl+Alt+t
-for installation postgresql:
+
+Install postgresql:
+in terminal
 sudo apt install -y postgresql-common
 sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
 sudo apt update
 sudo apt install postgresql-16
+
 Install pgadmin4:
 curl -fsS https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo gpg --dearmor -o /usr/share/keyrings/packages-pgadmin-org.gpg
 sudo sh -c 'echo "deb [signed-by=/usr/share/keyrings/packages-pgadmin-org.gpg] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list && apt update'
@@ -71,15 +70,12 @@ startup files in Linux:
 Copy pandora.png from folder LINUX in folder /home/postgres/.icons
 Copy Pandora.desktop from folder LINUX in /home/postgres/.local/share/applications
 
+in terminal
 To compile all Pandora scripts in Python:
-Open Terminal Ctrl+Alt+t
-
 cd Pandora
 python3 -m compileall ./
 
 Database backup and restore from terminal
-
-commands in terminal Ctrl+Alt+t
 
 backup database:
 pg_dump -v --verbose -d bisystem -Fc -f  "/home/postgres/Pandora/data/bisystem.backup"
