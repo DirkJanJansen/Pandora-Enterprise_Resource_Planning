@@ -32,6 +32,12 @@ sudo systemctl enable postgresql
 psql
 set password in psql with \password (postgres45)
 
+if you want get rid of the annoying i386 error with sudo apt update
+change:
+sudo nano /etc/apt/sources.list.d/pgdg.list
+change "deb http://apt.postgresql.org/pub/repos/apt jammy-pgdg main" in:
+deb [arch=amd64] http://apt.postgresql.org/pub/repos/apt jammy-pgdg main
+and save with ctrl+o exit ctrl+x
 
 Install pgadmin4:
 curl -fsS https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo gpg --dearmor -o /usr/share/keyrings/packages-pgadmin-org.gpg
