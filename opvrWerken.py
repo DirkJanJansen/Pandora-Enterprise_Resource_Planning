@@ -706,7 +706,7 @@ def toonWerken(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Progress status'), 1, 6)
                     grid.addWidget(q3Edit, 1, 7)
                     
-                    grid.addWidget(QLabel('Status week'), 1, 7, 1, 1, Qt.AlignRight)
+                    grid.addWidget(QLabel('       Status week'), 1, 7, 1, 1, Qt.AlignRight)
                     grid.addWidget(q4Edit, 1, 8) 
                      
                     grid.addWidget(QLabel('Start week'), 2, 2)
