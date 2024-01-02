@@ -176,7 +176,7 @@ def toonAccounts(keuze, zoekterm, m_email):
          leveranciers.c.rechtsvorm]).where(and_(lev_accounts.c.accountID ==\
          accounts.c.accountID, leveranciers.c.leverancierID == lev_accounts.c.leverancierID))
     elif keuze == 6:
-        sel = select([accounts, werknemers]).where(werknemers.c.accountID ==\
+        sel = select([accounts, werknemers.c.werknemerID, werknemers.c.loonID]).where(werknemers.c.accountID ==\
             accounts.c.accountID)
     else:
         ongInvoer()
@@ -191,7 +191,7 @@ def toonAccounts(keuze, zoekterm, m_email):
     class MyWindow(QDialog):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
-            self.setGeometry(50, 50, 1500, 900)
+            self.setGeometry(50, 50, 1700, 900)
             self.setWindowTitle('Request account information')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
@@ -201,12 +201,8 @@ def toonAccounts(keuze, zoekterm, m_email):
             table_view.setModel(table_model)
             font = QFont("Arial", 10)
             table_view.setFont(font)
-            if keuze == 6:
-                table_view.setColumnHidden(13,True)
-                table_view.setColumnHidden(14,True)
             table_view.resizeColumnsToContents()
             table_view.setSelectionBehavior(QTableView.SelectRows)
-            table_view.clicked.connect(showAccount)
             layout = QVBoxLayout(self)
             layout.addWidget(table_view)
             self.setLayout(layout)
@@ -244,199 +240,13 @@ def toonAccounts(keuze, zoekterm, m_email):
         header1 = ['Supplier number', 'Company name', 'Legal form']
         header.extend(header1)
     elif keuze == 6:
-        header2 = ['Employee number','Account', 'Payscale']
+        header2 = ['Employee number', 'Payscale']
         header.extend(header2)
    
     data_list=[]
     for row in rpaccount:
         data_list += [(row)] 
-        
-    def showAccount(idx):
-        maccountnr = idx.data()
-        if idx.column() == 0:
-            engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
-            conn = engine.connect()
-            sel = select([accounts, werknemers]).where(accounts.c.accountID == maccountnr)
-            rpaccount = conn.execute(sel).first()
-      
-            maccountnr = rpaccount[0]
-            maanhef = rpaccount[1]
-            mvoornaam = rpaccount[2]
-            mtussenv = rpaccount[3]
-            machternaam = rpaccount[4]
-            mpostcode = rpaccount[5]
-            mhuisnr = rpaccount[6]
-            mhuisnr = int(mhuisnr)
-            mtoev = rpaccount[7]
-            m_email = rpaccount[8]
-            mtelnr = rpaccount[9]
-            mcount = rpaccount[10]
-            mcount = int(mcount)+1
-            mgebdat = rpaccount[11]
-            mhuisnr = int(mhuisnr)
-            mstrtplts = checkpostcode(mpostcode,mhuisnr)
-            mstraat = mstrtplts[0]
-            mplaats = mstrtplts[1]
-         
-            class Widget(QDialog):
-                def __init__(self, parent=None):
-                    super(Widget, self).__init__(parent)
-                    self.setWindowTitle("Requesting accountdata")
-                    self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
-                                          
-                    self.setFont(QFont('Arial', 10))
-                        
-                    self.Aanhef = QLabel()
-                    q2Edit = QLineEdit(maanhef)
-                    q2Edit.setFixedWidth(80)
-                    q2Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                    q2Edit.setDisabled(True)
-                    
-                    self.Voornaam = QLabel()
-                    q3Edit = QLineEdit(mvoornaam)
-                    q3Edit.setFixedWidth(200)
-                    q3Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                    q3Edit.setDisabled(True)
-                     
-                    self.Tussenvoegsel = QLabel()
-                    q4Edit = QLineEdit(mtussenv)
-                    q4Edit.setFixedWidth(80)
-                    q4Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                    q4Edit.setDisabled(True)
-    
-                    self.Achternaam = QLabel()
-                    q5Edit = QLineEdit(machternaam)
-                    q5Edit.setFixedWidth(400)
-                    q5Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                    q5Edit.setDisabled(True)
-               
-                    self.Straat = QLabel()
-                    q6Edit = QLineEdit(mstraat)
-                    q6Edit.setFixedWidth(500)
-                    q6Edit.setDisabled(True)
-                    q6Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                                                                   
-                    self.Huisnummer = QLabel()
-                    q7Edit = QLineEdit(str(mhuisnr))
-                    q7Edit.setAlignment(Qt.AlignRight)
-                    q7Edit.setFixedWidth(60)
-                    q7Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                    q7Edit.setDisabled(True)
-             
-                    self.Toevoeging = QLabel()
-                    q8Edit = QLineEdit(mtoev)
-                    q8Edit.setFixedWidth(80)
-                    q8Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                    q8Edit.setDisabled(True)
-                 
-                    self.Postcode = QLabel()
-                    q9Edit = QLineEdit(mpostcode)
-                    q9Edit.setFixedWidth(70)
-                    q9Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                    q9Edit.setDisabled(True)
-                     
-                    self.Woonplaats = QLabel()
-                    q10Edit = QLineEdit(mplaats)
-                    q10Edit.setFixedWidth(500)
-                    q10Edit.setDisabled(True)
-                    q10Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                                                               
-                    self.email = QLabel()
-                    q11Edit = QLineEdit(m_email)
-                    q11Edit.setFixedWidth(300)
-                    q11Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                    q11Edit.setDisabled(True)
-                     
-                    self.Telefoonnr = QLabel()
-                    q15Edit = QLineEdit(mtelnr)
-                    q15Edit.setFixedWidth(100)
-                    q15Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                    q15Edit.setDisabled(True)
-                    
-                    self.Accountnummer = QLabel()
-                    q16Edit = QLineEdit(str(maccountnr))
-                    q16Edit.setFixedWidth(100)
-                    q16Edit.setAlignment(Qt.AlignRight)
-                    q16Edit.setDisabled(True)
-                    q16Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                                                               
-                    self.Geboortedatum = QLabel()
-                    q17Edit = QLineEdit(mgebdat)
-                    q17Edit.setFixedWidth(100)
-                    q17Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                    q17Edit.setDisabled(True)
-               
-                    grid = QGridLayout()
-                    grid.setSpacing(20)
-                    
-                    lbl = QLabel()
-                    pixmap = QPixmap('./images/logos/verbinding.jpg')
-                    lbl.setPixmap(pixmap)
-                    grid.addWidget(lbl , 1, 0)
-                    
-                    logo = QLabel()
-                    pixmap = QPixmap('./images/logos/logo.jpg')
-                    logo.setPixmap(pixmap)
-                    grid.addWidget(logo , 1, 2, 1, 1, Qt.AlignRight)
-            
-                    self.setFont(QFont('Arial', 10))
-                    grid.addWidget(QLabel('Requesting personal data'), 1, 1)
-                                       
-                    grid.addWidget(QLabel('Prefix'), 2, 0)
-                    grid.addWidget(q2Edit, 2, 1)
-                    
-                    grid.addWidget(QLabel('First name'), 3, 0)
-                    grid.addWidget(q3Edit, 3, 1)  
-             
-                    grid.addWidget(QLabel('Infix'), 4, 0)
-                    grid.addWidget(q4Edit, 4 , 1) 
-                     
-                    grid.addWidget(QLabel('Surname'), 5, 0)
-                    grid.addWidget(q5Edit, 5, 1, 1, 2)
-                    
-                    grid.addWidget(QLabel('Date of birth'), 6, 0)
-                    grid.addWidget(q17Edit, 6, 1)
-                         
-                    grid.addWidget(QLabel('Street'), 7, 0)
-                    grid.addWidget(q6Edit, 7, 1, 1, 2) 
-               
-                    grid.addWidget(QLabel('House number'), 8, 0)
-                    grid.addWidget(q7Edit, 8, 1)
-                    
-                    grid.addWidget(QLabel('Suffix'), 8, 1, 1, 1, Qt.AlignRight)
-                    grid.addWidget(q8Edit, 8, 2)
-                     
-                    grid.addWidget(QLabel('Zipcode'), 9, 0)
-                    grid.addWidget(q9Edit, 9, 1)
-                    
-                    grid.addWidget(QLabel('Residence'), 10, 0)
-                    grid.addWidget(q10Edit, 10, 1, 1, 2)    
-             
-                    grid.addWidget(QLabel('e-mail'), 11, 0)
-                    grid.addWidget(q11Edit, 11, 1, 1 ,2)
-                       
-                    grid.addWidget(QLabel('Telephone number'), 12, 0)
-                    grid.addWidget(q15Edit, 12, 1) 
-                    
-                    grid.addWidget(QLabel('Account number'),13, 0)
-                    grid.addWidget(q16Edit, 13, 1, 1, 2) 
-                                                     
-                    grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 15, 0, 1, 3, Qt.AlignCenter)
-                                         
-                    self.setLayout(grid)
-                    self.setGeometry(500, 150, 350, 300)
-                                                         
-                    cancelBtn = QPushButton('Close')
-                    cancelBtn.clicked.connect(self.close)
-               
-                    grid.addWidget(cancelBtn, 14, 2, 1, 1, Qt.AlignRight)
-                    cancelBtn.setFont(QFont("Arial",10))
-                    cancelBtn.setFixedWidth(100)
-                    cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
-            
-            win = Widget()
-            win.exec_()
-    
+
     win = MyWindow(data_list, header)
     win.exec_()
     accKeuze(m_email)
