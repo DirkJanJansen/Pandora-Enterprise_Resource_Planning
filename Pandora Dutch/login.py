@@ -870,183 +870,146 @@ def hoofdMenu(m_email):
     window = Widget()
     dlist = window.getData()
 
-    mk0, mk1, mk2, mk3, mk4, mk5, mk6, mk7, mk8, mk9, mk10, mk11, mk12, mk13, mk14, mk15 = (0,)*16
-
-    if dlist[0]:
-        mk0 = dlist[0]
-    elif dlist[1]:
-        mk1 = dlist[1]
-    elif dlist[2]:
-        mk2 = dlist[2]
-    elif dlist[3]:
-        mk3 = dlist[3]
-    elif dlist[4]:
-        mk4 = dlist[4]
-    elif dlist[5]:
-        mk5 = dlist[5]
-    elif dlist[6]:
-        mk6 = dlist[6]
-    elif dlist[7]:
-        mk7 = dlist[7]
-    elif dlist[8]:
-        mk8 = dlist[8]
-    elif dlist[9]:
-        mk9 = dlist[9]
-    elif dlist[10]:
-        mk10 = dlist[10]
-    elif dlist[11]:
-        mk11 = dlist[11]
-    elif dlist[12]:
-        mk12 = dlist[12]
-    elif dlist[13]:
-        mk13 = dlist[13]
-    elif dlist[14]:
-        mk14 = dlist[14]
-    elif dlist[15]:
-        mk15 = dlist[15]
-    else:
-        hoofdMenu(m_email)
-
-    if mk0 == 1:
+    if dlist[0] == 1:
         import wijzAccount
         wijzAccount.updateAccount(m_email)
-    elif mk0 == 2:
+    elif dlist[0] == 2:
         import opvrAccounts
         opvrAccounts.accKeuze(m_email)
-    elif mk0 == 3:
+    elif dlist[0] == 3:
         klmail = ''
         import bestelOrder
         bestelOrder.artKeuze(m_email, 0, klmail)
-    elif mk0 == 4:
+    elif dlist[0] == 4:
         import opvrKlantenorders
         opvrKlantenorders.bestellingen(m_email)
-    elif mk0 == 5:
+    elif dlist[0] == 5:
         import printFacturen
         printFacturen.kiesOrder(m_email)
-    elif mk1 == 1:
+    elif dlist[1] == 1:
         import invoerLeverancier
         invoerLeverancier.bepaalLeverancier(m_email)
-    elif mk1 == 2:
+    elif dlist[1] == 2:
         import wijzLeverancier
         wijzLeverancier.zoekLeverancier(m_email)
-    elif mk1 == 3:
+    elif dlist[1] == 3:
         import opvrLeveranciers
         opvrLeveranciers.leveranciersKeuze(m_email)
-    elif mk1 == 4:
+    elif dlist[1] == 4:
         import opvrEigenleverancier
         opvrEigenleverancier.eigenLeverancier(m_email)
-    elif mk2 == 1:
+    elif dlist[2] == 1:
         import koppelAccount
         koppelAccount.zoekAccount(m_email, 0)
-    elif mk2 == 2:
+    elif dlist[2] == 2:
         import wijzWerknemer
         while True:
             wijzWerknemer.zoekWerknemer(m_email)
-    elif mk2 == 3:
+    elif dlist[2] == 3:
         import opvrWerknemers
         opvrWerknemers.accKeuze(m_email)
-    elif mk2 == 4:
+    elif dlist[2] == 4:
         import opvrWerknperiode
         opvrWerknperiode.zoekWerknemer(m_email)
-    elif mk3 == 1:
+    elif dlist[3] == 1:
         mlevnr = 3
         mregel = 1
         import invoerInkooporder
         invoerInkooporder.zoekLeverancier(m_email, mlevnr, mregel)
-    elif mk3 == 2:
+    elif dlist[3] == 2:
         import wijzInkooporder
         mregel = 0
         minkordernr = 4
         wijzInkooporder.zoekInkooporder(m_email, minkordernr, mregel)
-    elif mk3 == 3:
+    elif dlist[3] == 3:
         mlevnr = 3
         mwerknr = 8
         mregel = 1
         import invoerDienstenorder
         invoerDienstenorder.zoekLeverancier(m_email, mlevnr, mwerknr, mregel)
-    elif mk3 == 4:
+    elif dlist[3] == 4:
         import wijzDienstenorder
         mregel = 0
         minkordernr = 4
         wijzDienstenorder.zoekInkooporder(m_email, minkordernr, mregel)
-    elif mk3 == 5:
+    elif dlist[3] == 5:
         import opvrInkooporders
         opvrInkooporders.inkooporderKeuze(m_email)
-    elif mk3 == 6:
+    elif dlist[3] == 6:
         import opvrDienstenorders
         opvrDienstenorders.inkooporderKeuze(m_email)
-    elif mk3 == 7:
+    elif dlist[3] == 7:
         import opvrReserveringen
         opvrReserveringen.resKeuze(m_email)
-    elif mk4 == 1:
+    elif dlist[4] == 1:
         import invoerVerkoopbedrijf
         while True:
             invoerVerkoopbedrijf.invBedrijf(m_email)
-    elif mk4 == 2:
+    elif dlist[4] == 2:
         import wijzVerkoopbedrijf
         while True:
             wijzVerkoopbedrijf.zoekKoper(m_email)
-    elif mk4 == 3:
+    elif dlist[4] == 3:
         import opvrVerkoopbedrijven
         opvrVerkoopbedrijven.koperKeuze(m_email)
-    elif mk4 == 4:
+    elif dlist[4] == 4:
         import opvrEigenbedrijf
         opvrEigenbedrijf.eigenBedrijf(m_email)
-    elif mk4 == 5:
+    elif dlist[4] == 5:
         import opvrWebverkorders
         opvrWebverkorders.zoekWeborder(m_email, 2)
-    elif mk5 == 1:
+    elif dlist[5] == 1:
         import invoerArtikelen
         while True:
             invoerArtikelen.invArtikel(m_email)
-    elif mk5 == 2:
+    elif dlist[5] == 2:
         import wijzArtikel
         wijzArtikel.zoekArtikel(m_email)
-    elif mk5 == 3:
+    elif dlist[5] == 3:
         import opvrArtikelen
         opvrArtikelen.artKeuze(m_email)
-    elif mk5 == 4:
+    elif dlist[5] == 4:
         import magUitgifte
         magUitgifte.kiesSelektie(0, m_email)
-    elif mk5 == 5:
+    elif dlist[5] == 5:
         import magUitgifte
         magUitgifte.kiesSelektie(1, m_email)
-    elif mk5 == 6:
+    elif dlist[5] == 6:
         import dervingMutaties
         while True:
             dervingMutaties.dervingMut(m_email)
-    elif mk5 == 7:
+    elif dlist[5] == 7:
         import opvrWebverkorders
         while True:
             opvrWebverkorders.zoekWeborder(m_email, 0)
-    elif mk5 == 8:
+    elif dlist[5] == 8:
         import retourPortalWeb
         klmail = ''
         while True:
             retourPortalWeb.zoekEmailadres(m_email, klmail)
-    elif mk5 == 9:
+    elif dlist[5] == 9:
         if mp[5][1] == '1':
             mret = True
         else:
             mret = False
         import barcodeScan
         barcodeScan.barcodeScan(m_email, mret)
-    elif mk6 == 1:
+    elif dlist[6] == 1:
         import invoerInternorder
         invoerInternorder.invWerkorder(m_email)
-    elif mk6 == 2:
+    elif dlist[6] == 2:
         import wijzInternorder
         wijzInternorder.zoeken(m_email)
-    elif mk6 == 3:
+    elif dlist[6] == 3:
         import opvrInternorders
         opvrInternorders.zoeken(m_email)
-    elif mk6 == 4:
+    elif dlist[6] == 4:
         import artikelAfroep
         artikelAfroep.zoekWerk(m_email, 0)
-    elif mk6 == 5:
+    elif dlist[6] == 5:
         import magUitgifte
         magUitgifte.kiesSelektie(2, m_email)
-    elif mk6 == 6:
+    elif dlist[6] == 6:
         import urenImutaties
         maccountnr = '1'
         mwerknr = 7
@@ -1062,25 +1025,25 @@ def hoofdMenu(m_email):
                 maccountnr = '1'
                 mwerknr = '7'
                 mboekd = str(datetime.now())[0:10]
-    elif mk7 == 1:
+    elif dlist[7] == 1:
         import invoerWerken
         invoerWerken.invWerk(m_email)
-    elif mk7 == 2:
+    elif dlist[7] == 2:
         import wijzWerken
         wijzWerken.zoekWerk(m_email)
-    elif mk7 == 3:
+    elif dlist[7] == 3:
         import opvrWerken
         opvrWerken.werkenKeuze(m_email)
-    elif mk7 == 4:
+    elif dlist[7] == 4:
         import artikelAfroep
         artikelAfroep.zoekWerk(m_email, 1)
-    elif mk7 == 5:
+    elif dlist[7] == 5:
         import magUitgifte
         magUitgifte.kiesSelektie(3, m_email)
-    elif mk7 == 6:
+    elif dlist[7] == 6:
         import dienstenMutaties
         dienstenMutaties.mutatieKeuze(m_email)
-    elif mk7 == 7:
+    elif dlist[7] == 7:
         import urenMutaties
         maccountnr = '1'
         mwerknr = '8'
@@ -1099,238 +1062,238 @@ def hoofdMenu(m_email):
         import maakIcluster
         while True:
             maakIcluster.kiesCluster(m_email)
-    elif mk8 == 2:
+    elif dlist[8] == 2:
         import wijzIclusters
         while True:
             wijzIclusters.zoeken(m_email)
-    elif mk8 == 3:
+    elif dlist[8] == 3:
         import opvrIclusters
         opvrIclusters.zoeken(m_email)
-    elif mk8 == 4:
+    elif dlist[8] == 4:
         import invoerIcluster_artikelen
         while True:
             invoerIcluster_artikelen.zoeken(m_email)
-    elif mk8 == 5:
+    elif dlist[8] == 5:
         import opvrIcluster_artikelen
         opvrIcluster_artikelen.zoeken(m_email)
-    elif mk8 == 6:
+    elif dlist[8] == 6:
         import invoerIclustercalculatie
         invoerIclustercalculatie.zoeken(m_email)
-    elif mk8 == 7:
+    elif dlist[8] == 7:
         import opvrIclustercalculatie
         while True:
             opvrIclustercalculatie.zoekCalculatie(m_email)
-    elif mk8 == 8:
+    elif dlist[8] == 8:
         import koppelIbegroting
         while True:
             koppelIbegroting.zoekBegroting(m_email)
-    elif mk9 == 1:
+    elif dlist[9] == 1:
         import maakCluster
         while True:
             maakCluster.kiesCluster(m_email)
-    elif mk9 == 2:
+    elif dlist[9] == 2:
         import wijzClusters
         while True:
             wijzClusters.zoeken(m_email)
-    elif mk9 == 3:
+    elif dlist[9] == 3:
         import opvrClusters
         opvrClusters.zoeken(m_email)
-    elif mk9 == 4:
+    elif dlist[9] == 4:
         import invoerCluster_artikelen
         while True:
             invoerCluster_artikelen.zoeken(m_email)
-    elif mk9 == 5:
+    elif dlist[9] == 5:
         import opvrCluster_artikelen
         opvrCluster_artikelen.zoeken(m_email)
-    elif mk9 == 6:
+    elif dlist[9] == 6:
         import invoerClustercalculatie
         while True:
             invoerClustercalculatie.zoeken(m_email)
-    elif mk9 == 7:
+    elif dlist[9] == 7:
         import opvrClustercalculatie
         while True:
             opvrClustercalculatie.zoekCalculatie(m_email)
-    elif mk9 == 8:
+    elif dlist[9] == 8:
         import koppelBegroting
         while True:
             koppelBegroting.zoekBegroting(m_email)
-    elif mk10 == 1:
+    elif dlist[10] == 1:
         import opvrUrenmutaties
         opvrUrenmutaties.loonKeuze(m_email)
-    elif mk10 == 2:
+    elif dlist[10] == 2:
         import proefrun
         proefrun.maandPeriode(m_email)
-    elif mk10 == 3:
+    elif dlist[10] == 3:
         import uitbetalenLonen
         uitbetalenLonen.maandBetalingen(m_email)
-    elif mk10 == 4:
+    elif dlist[10] == 4:
         import opvrLoonbetalingen
         opvrLoonbetalingen.zoeken(m_email)
-    elif mk10 == 5:
+    elif dlist[10] == 5:
         import invoerLoontabel
         while True:
             invoerLoontabel.invoerSchaal(m_email)
-    elif mk10 == 6:
+    elif dlist[10] == 6:
         import wijzLoontabel
         wijzLoontabel.zoeken(m_email)
-    elif mk10 == 7:
+    elif dlist[10] == 7:
         import percentageLonen
         while True:
             percentageLonen.percLoonschaal(m_email)
-    elif mk11 == 1:
+    elif dlist[11] == 1:
         import opvrArtikelmutaties
         opvrArtikelmutaties.mutatieKeuze(m_email)
-    elif mk11 == 2:
+    elif dlist[11] == 2:
         import opvrDienstenmutaties
         opvrDienstenmutaties.mutatieKeuze(m_email)
-    elif mk11 == 3:
+    elif dlist[11] == 3:
         import afdrBetalen
         afdrBetalen.zoeken(m_email)
-    elif mk11 == 4:
+    elif dlist[11] == 4:
         import opvrWebverkorders
         opvrWebverkorders.zoekWeborder(m_email, 1)
-    elif mk11 == 5:
+    elif dlist[11] == 5:
         import webRetouren
         webRetouren.retKeuze(m_email)
-    elif mk11 == 6:
+    elif dlist[11] == 6:
         import printFacturatie
         printFacturatie.maakLijst(m_email)
-    elif mk11 == 7:
+    elif dlist[11] == 7:
         import opvrUrenmutaties
         opvrUrenmutaties.loonKeuze(m_email)
-    elif mk12 == 1:
+    elif dlist[12] == 1:
         import voorraadbeheersing
         voorraadbeheersing.vrdKeuze(m_email)
-    elif mk12 == 2:
+    elif dlist[12] == 2:
         import magvrdGrafiek
         magvrdGrafiek.toonGrafiek(m_email)
-    elif mk12 == 3:
+    elif dlist[12] == 3:
         import magvrdGrafiek
         magvrdGrafiek.magVoorraad(m_email)
-    elif mk12 == 4:
+    elif dlist[12] == 4:
         import opvrReserveringen
         opvrReserveringen.resKeuze(m_email)
-    elif mk13 == 1:
+    elif dlist[13] == 1:
         import rapportage
         rapportage.JN(m_email)
-    elif mk13 == 2:
+    elif dlist[13] == 2:
         import toonGrafieken
         toonGrafieken.zoekwk(m_email)
-    elif mk13 == 3:
+    elif dlist[13] == 3:
         import voortgangGrafiek
         while True:
             voortgangGrafiek.zoekwk(m_email)
-    elif mk13 == 4:
+    elif dlist[13] == 4:
         import toonResultaten
         toonResultaten.toonResult(m_email)
-    elif mk14 == 1:
+    elif dlist[14] == 1:
         import maakAuthorisatie
         while True:
             maakAuthorisatie.zoekAccount(m_email)
-    elif mk14 == 2:
+    elif dlist[14] == 2:
         import koppelAccount
         koppelAccount.zoekAccount(m_email, 2)
-    elif mk14 == 3:
+    elif dlist[14] == 3:
         import koppelAccount
         koppelAccount.zoekAccount(m_email, 1)
-    elif mk14 == 4:
+    elif dlist[14] == 4:
         import invoerParams
         while True:
             invoerParams.invParams(m_email)
-    elif mk14 == 5:
+    elif dlist[14] == 5:
         import wijzigParams
         wijzigParams.toonParams(m_email)
-    elif mk14 == 6:
+    elif dlist[14] == 6:
         import opvrParams
         opvrParams.toonParams(m_email)
-    elif mk14 == 7:
+    elif dlist[14] == 7:
         import wijzWerktarief
         wijzWerktarief.winKeuze(m_email)
-    elif mk15 == 1:
+    elif dlist[15] == 1:
         if sys.platform == 'win32':
             path = '.\\forms\\Intern_Clustercalculaties\\'
         else:
             path = './forms/Intern_Clustercalculaties/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == 2:
+    elif dlist[15] == 2:
         if sys.platform == 'win32':
             path = '.\\forms\\Extern_Clustercalculaties\\'
         else:
             path = './forms/Extern_Clustercalculaties/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == 3:
+    elif dlist[15] == 3:
         if sys.platform == 'win32':
             path = '.\\forms\\Intern_Orderbrieven\\'
         else:
             path = './forms/Intern_Orderbrieven/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == 4:
+    elif dlist[15] == 4:
         if sys.platform == 'win32':
             path = '.\\forms\\Raaplijsten\\'
         else:
             path = './forms/Raaplijsten/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == 5:
+    elif dlist[15] == 5:
         if sys.platform == 'win32':
             path = '.\\forms\\Raaplijsten\\'
         else:
             path = './forms/Raaplijsten/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == 6:
+    elif dlist[15] == 6:
         if sys.platform == 'win32':
             path = '.\\forms\\Raaplijsten\\'
         else:
             path = './forms/Raaplijsten/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == 7:
+    elif dlist[15] == 7:
         if sys.platform == 'win32':
             path = '.\\forms\\Weborders_Pakbonnen\\'
         else:
             path = './forms/Weborders_Pakbonnen/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == 8:
+    elif dlist[15] == 8:
         if sys.platform == 'win32':
             path = '.\\forms\\Uren\\'
         else:
             path = './forms/Uren/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == 9:
+    elif dlist[15] == 9:
         if sys.platform == 'win32':
             path = '.\\forms\\Lonen\\'
         else:
             path = './forms/Lonen/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == 10:
+    elif dlist[15] == 10:
         if sys.platform == 'win32':
             path = '.\\forms\\Facturen_Werken\\'
         else:
             path = './forms/Facturen_Werken/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == 11:
+    elif dlist[15] == 11:
         if sys.platform == 'win32':
             path = '.\\forms\\Weborders_Facturen\\'
         else:
             path = './forms/Weborders_Facturen/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == 12:
+    elif dlist[15] == 12:
         if sys.platform == 'win32':
             path = '.\\forms\\Extern_Clustercalculaties_Diensten\\'
         else:
             path = './forms/Extern_Clustercalculaties_Diensten/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == 13:
+    elif dlist[15] == 13:
         if sys.platform == 'win32':
             path = '.\\forms\\Barcodelijsten\\'
         else:
