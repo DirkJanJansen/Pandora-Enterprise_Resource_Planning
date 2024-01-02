@@ -474,5 +474,7 @@ From 2020-01-10 updates and changes are described on this page
 2023-12-24 login.py - Double declaration of database table accounts removed Table declaration reallocated for access in function hoofdMenu
 2023-12-25 updated procedure for installation postgreql, psycopg2 and sqlalchemy
 2023-12-26 updated LINUX install.txt for installation postgresql and pgadmin4 due to depreciated apt-key command
+2024-01-02 login.py QCombobox functions activated[str] connect replaced by QCombobox index connect methods, due to depreciation
+2024-01-02 opvrAccounts.py unnessary function showAccount removed.
 
 
