@@ -372,322 +372,291 @@ def hoofdMenu(m_email):
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setFont(QFont('Arial', 10))
             self.setStyleSheet("background-color: #D9E1DF")  
-            self.Keuze0 = QLabel()
-            k0Edit = QComboBox()
-            k0Edit.setFixedWidth(310)
-            k0Edit.setFont(QFont("Arial",10))
-            k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('Accounts')
-            k0Edit.setEditable(True)
-            k0Edit.lineEdit().setFont(QFont("Arial",10))
-            k0Edit.lineEdit().setReadOnly(True)
-            k0Edit.lineEdit().setAlignment(Qt.AlignCenter)
-            k0Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k0Edit.addItem('1. Wijzigen account') 
-            k0Edit.addItem('2. Opvragen accounts')
-            k0Edit.addItem('3. Bestellen webartikelen')
-            k0Edit.addItem('4. Opvragen besteloverzicht')
-            k0Edit.addItem('5. Printen orderfacturen')
-            k0Edit.activated[str].connect(self.k0Changed)
-             
-            self.Keuze1 = QLabel()
-            k1Edit = QComboBox()
-            k1Edit.setFixedWidth(310)
-            k1Edit.setFont(QFont("Arial",10))
-            k1Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k1Edit.addItem('Leveranciers')
-            k1Edit.setEditable(True)
-            k1Edit.lineEdit().setFont(QFont("Arial", 10))
-            k1Edit.lineEdit().setReadOnly(True)
-            k1Edit.lineEdit().setAlignment(Qt.AlignCenter)
-            k1Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k1Edit.addItem('1. Invoeren leveranciergegevens')
-            k1Edit.addItem('2. Wijzigen leveranciergegevens')
-            k1Edit.addItem('3. Opvragen leveranciergegevens')
-            k1Edit.addItem('4. Zelf gegevens opvragen.')
-            k1Edit.activated[str].connect(self.k1Changed)
-            
-            self.Keuze2 = QLabel()
-            k2Edit = QComboBox()
-            k2Edit.setFixedWidth(310)
-            k2Edit.setFont(QFont("Arial",10))
-            k2Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k2Edit.addItem('Werknemers')
-            k2Edit.setEditable(True)
-            k2Edit.lineEdit().setFont(QFont("Arial", 10))
-            k2Edit.lineEdit().setReadOnly(True)
-            k2Edit.lineEdit().setAlignment(Qt.AlignCenter)
-            k2Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k2Edit.addItem('1. Koppelen account-werknemer')
-            k2Edit.addItem('2. Wijzigen werknemergegevens')
-            k2Edit.addItem('3. Opvragen werknemersgegevens')
-            k2Edit.addItem('4. Opvragen werknemer-periode')
-            k2Edit.activated[str].connect(self.k2Changed)
-            
-            self.Keuze3 = QLabel()
-            k3Edit = QComboBox()
-            k3Edit.setFixedWidth(310)
-            k3Edit.setFont(QFont("Arial",10))
-            k3Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k3Edit.addItem('Inkoop')
-            k3Edit.setEditable(True)
-            k3Edit.lineEdit().setFont(QFont("Arial", 10))
-            k3Edit.lineEdit().setReadOnly(True)
-            k3Edit.lineEdit().setAlignment(Qt.AlignCenter)
-            k3Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k3Edit.addItem('1. Invoeren orders materialen')
-            k3Edit.addItem('2. Wijzigen orders materialen')
-            k3Edit.addItem('3. Invoeren orders diensten')
-            k3Edit.addItem('4. Wijzigen orders diensten')
-            k3Edit.addItem('5. Opvragen orders materialen')
-            k3Edit.addItem('6. Opvragen orders diensten')
-            k3Edit.activated[str].connect(self.k3Changed)
-            
-            self.Keuze4 = QLabel()
-            k4Edit = QComboBox()
-            k4Edit.setFixedWidth(310)
-            k4Edit.setFont(QFont("Arial",10))
-            k4Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k4Edit.addItem('Verkoop')
-            k4Edit.setEditable(True)
-            k4Edit.lineEdit().setFont(QFont("Arial",10))
-            k4Edit.lineEdit().setReadOnly(True)
-            k4Edit.lineEdit().setAlignment(Qt.AlignCenter)
-            k4Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k4Edit.addItem('1. Verkoop-bedrijf aanmaken')
-            k4Edit.addItem('2. Verkoop-bedrijf wijzigen')
-            k4Edit.addItem('3. Verkoop-bedrijven opvragen')
-            k4Edit.addItem('4. Zelf gegevens opvragen')
-            k4Edit.addItem('5. Webverkooporders opvragen')
-            k4Edit.activated[str].connect(self.k4Changed)
+           
+            self.k0Edit = QComboBox()
+            self.k0Edit.setFixedWidth(310)
+            self.k0Edit.setFont(QFont("Arial",10))
+            self.k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
+            self.k0Edit.addItem('Accounts')
+            self.k0Edit.setEditable(True)
+            self.k0Edit.lineEdit().setFont(QFont("Arial",10))
+            self.k0Edit.lineEdit().setReadOnly(True)
+            self.k0Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            self.k0Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+            self.k0Edit.addItem('1. Wijzigen account') 
+            self.k0Edit.addItem('2. Opvragen accounts')
+            self.k0Edit.addItem('3. Bestellen webartikelen')
+            self.k0Edit.addItem('4. Opvragen besteloverzicht')
+            self.k0Edit.addItem('5. Printen orderfacturen')
  
-            self.Keuze5 = QLabel()
-            k5Edit = QComboBox()
-            k5Edit.setFixedWidth(310)
-            k5Edit.setFont(QFont("Arial",10))
-            k5Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k5Edit.addItem('Magazijn')
-            k5Edit.setEditable(True)
-            k5Edit.lineEdit().setFont(QFont("Arial",10))
-            k5Edit.lineEdit().setReadOnly(True)
-            k5Edit.lineEdit().setAlignment(Qt.AlignCenter)
-            k5Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k5Edit.addItem('1. Invoeren artikelen')
-            k5Edit.addItem('2. Wijzigen artikelen')
-            k5Edit.addItem('3. Opvragen artikelen')
-            k5Edit.addItem('4. Uitgifte materialen (raaplijst)')
-            k5Edit.addItem('5. Printen raaplijsten')
-            k5Edit.addItem('6. Boeken verschillen/overbodig')
-            k5Edit.addItem('7. Uitgifte webartikelen /printen')
-            k5Edit.addItem('8. Web-artikelen retour boeken')
-            k5Edit.addItem('9. Balieverkoop - barcodescan')
-            k5Edit.activated[str].connect(self.k5Changed)
-              
-            self.Keuze6 = QLabel()
-            k6Edit = QComboBox()
-            k6Edit.setFixedWidth(310)
-            k6Edit.setFont(QFont("Arial",10))
-            k6Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k6Edit.addItem('Werken intern')
-            k6Edit.setEditable(True)
-            k6Edit.lineEdit().setFont(QFont("Arial", 10))
-            k6Edit.lineEdit().setReadOnly(True)
-            k6Edit.lineEdit().setAlignment(Qt.AlignCenter)
-            k6Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k6Edit.addItem('1. Invoer werkopdrachten')
-            k6Edit.addItem('2. Wijzig werkopdrachten')
-            k6Edit.addItem('3. Opvragen werkopdrachten/printen')
-            k6Edit.addItem('4. Afroepen materialen')
-            k6Edit.addItem('5. Printen raaplijsten')
-            k6Edit.addItem('6. Uurverbruik muteren')
-            k6Edit.activated[str].connect(self.k6Changed)
-            
-            self.Keuze7 = QLabel()
-            k7Edit = QComboBox()
-            k7Edit.setFixedWidth(310)
-            k7Edit.setFont(QFont("Arial",10))
-            k7Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k7Edit.addItem('Werken extern')
-            k7Edit.setEditable(True)
-            k7Edit.lineEdit().setFont(QFont("Arial", 10))
-            k7Edit.lineEdit().setReadOnly(True)
-            k7Edit.lineEdit().setAlignment(Qt.AlignCenter)
-            k7Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k7Edit.addItem('1. Invoeren werken')
-            k7Edit.addItem('2. Wijzigen werken')
-            k7Edit.addItem('3. Opvragen werken')
-            k7Edit.addItem('4. Afroepen materialen')
-            k7Edit.addItem('5. Printen raaplijsten')
-            k7Edit.addItem('6. Muteren kosten diensten')
-            k7Edit.addItem('7. Uurverbruik muteren')
-            k7Edit.activated[str].connect(self.k7Changed)
-            
-            self.Keuze8 = QLabel()
-            k8Edit = QComboBox()
-            k8Edit.setFixedWidth(310)
-            k8Edit.setFont(QFont("Arial",10))
-            k8Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k8Edit.addItem('Calculatie interne werken')
-            k8Edit.setEditable(True)
-            k8Edit.lineEdit().setFont(QFont("Arial", 10))
-            k8Edit.lineEdit().setReadOnly(True)
-            k8Edit.lineEdit().setAlignment(Qt.AlignCenter)
-            k8Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k8Edit.addItem('1. Nieuwe clusters aanmaken')
-            k8Edit.addItem('2. Clustergegevens invoeren')
-            k8Edit.addItem('3. Clustergegevens opvragen')
-            k8Edit.addItem('4. Invoeren artikelregels per cluster')
-            k8Edit.addItem('5. Opvragen artikelregels per cluster')
-            k8Edit.addItem('6. Calculatie maken/wijzigen')
-            k8Edit.addItem('7. Calculatie/Artikellijst printen')
-            k8Edit.addItem('8. Calculatie koppelen -> produktie')
-            k8Edit.activated[str].connect(self.k8Changed)
-        
-            self.Keuze9 = QLabel()
-            k9Edit = QComboBox()
-            k9Edit.setFixedWidth(310)
-            k9Edit.setFont(QFont("Arial",10))
-            k9Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k9Edit.addItem('Calculatie externe werken')
-            k9Edit.setEditable(True)
-            k9Edit.lineEdit().setFont(QFont("Arial",10))
-            k9Edit.lineEdit().setReadOnly(True)
-            k9Edit.lineEdit().setAlignment(Qt.AlignCenter)
-            k9Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k9Edit.addItem('1. Nieuwe clusters aanmaken')
-            k9Edit.addItem('2. Clustergegevens invoeren')
-            k9Edit.addItem('3. Clustergegevens opvragen')
-            k9Edit.addItem('4. Invoeren artikelregels per cluster')
-            k9Edit.addItem('5. Opvragen artikelregels per cluster')
-            k9Edit.addItem('6. Calculatie maken / wijzigen')
-            k9Edit.addItem('7. Calculatie/Artikellijst printen')
-            k9Edit.addItem('8. Calculatie koppelen -> produktie')
-            k9Edit.activated[str].connect(self.k9Changed)
+            self.k1Edit = QComboBox()
+            self.k1Edit.setFixedWidth(310)
+            self.k1Edit.setFont(QFont("Arial",10))
+            self.k1Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
+            self.k1Edit.addItem('Leveranciers')
+            self.k1Edit.setEditable(True)
+            self.k1Edit.lineEdit().setFont(QFont("Arial", 10))
+            self.k1Edit.lineEdit().setReadOnly(True)
+            self.k1Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            self.k1Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+            self.k1Edit.addItem('1. Invoeren leveranciergegevens')
+            self.k1Edit.addItem('2. Wijzigen leveranciergegevens')
+            self.k1Edit.addItem('3. Opvragen leveranciergegevens')
+            self.k1Edit.addItem('4. Zelf gegevens opvragen.')
+ 
+            self.k2Edit = QComboBox()
+            self.k2Edit.setFixedWidth(310)
+            self.k2Edit.setFont(QFont("Arial",10))
+            self.k2Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
+            self.k2Edit.addItem('Werknemers')
+            self.k2Edit.setEditable(True)
+            self.k2Edit.lineEdit().setFont(QFont("Arial", 10))
+            self.k2Edit.lineEdit().setReadOnly(True)
+            self.k2Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            self.k2Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+            self.k2Edit.addItem('1. Koppelen account-werknemer')
+            self.k2Edit.addItem('2. Wijzigen werknemergegevens')
+            self.k2Edit.addItem('3. Opvragen werknemersgegevens')
+            self.k2Edit.addItem('4. Opvragen werknemer-periode')
+ 
+            self.k3Edit = QComboBox()
+            self.k3Edit.setFixedWidth(310)
+            self.k3Edit.setFont(QFont("Arial",10))
+            self.k3Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
+            self.k3Edit.addItem('Inself.koop')
+            self.k3Edit.setEditable(True)
+            self.k3Edit.lineEdit().setFont(QFont("Arial", 10))
+            self.k3Edit.lineEdit().setReadOnly(True)
+            self.k3Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            self.k3Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+            self.k3Edit.addItem('1. Invoeren orders materialen')
+            self.k3Edit.addItem('2. Wijzigen orders materialen')
+            self.k3Edit.addItem('3. Invoeren orders diensten')
+            self.k3Edit.addItem('4. Wijzigen orders diensten')
+            self.k3Edit.addItem('5. Opvragen orders materialen')
+            self.k3Edit.addItem('6. Opvragen orders diensten')
   
-            self.Keuze10 = QLabel()
-            k10Edit = QComboBox()
-            k10Edit.setFixedWidth(310)
-            k10Edit.setFont(QFont("Arial",10))
-            k10Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k10Edit.addItem('Loonadministratie')
-            k10Edit.setEditable(True)
-            k10Edit.lineEdit().setFont(QFont("Arial", 10))
-            k10Edit.lineEdit().setReadOnly(True)
-            k10Edit.lineEdit().setAlignment(Qt.AlignCenter)
-            k10Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k10Edit.addItem('1. Uren mutaties opvragen')
-            k10Edit.addItem('2. Controle uren tbv maanlonen')
-            k10Edit.addItem('3. Maandelijkse loonbetalingen')
-            k10Edit.addItem('4. Opvragen loonbetalingen')
-            k10Edit.addItem('5. Invoeren Loonschalen')
-            k10Edit.addItem('6. Loonschalen wijzigen/opvragen')
-            k10Edit.addItem('7. Procentueel lonen verhogen')
-            k10Edit.activated[str].connect(self.k10Changed)
-            
-            self.Keuze11 = QLabel()
-            k11Edit = QComboBox()
-            k11Edit.setFixedWidth(310)
-            k11Edit.setFont(QFont("Arial",10))
-            k11Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k11Edit.addItem('Boekhouding')
-            k11Edit.setEditable(True)
-            k11Edit.lineEdit().setFont(QFont("Arial",10))
-            k11Edit.lineEdit().setReadOnly(True)
-            k11Edit.lineEdit().setAlignment(Qt.AlignCenter)
-            k11Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k11Edit.addItem('1. Artikel mutaties opvragen.')
-            k11Edit.addItem('2. Diensten mutaties opvragen')
-            k11Edit.addItem('3. Inzien en betalen afdrachten')
-            k11Edit.addItem('4. Weborders betaling/printen factuur')
-            k11Edit.addItem('5. Retouren betalingen boeken')
-            k11Edit.addItem('6. Printen lijst te factureren')
-            k11Edit.addItem('7. Uren mutaties opvragen')
-            k11Edit.activated[str].connect(self.k11Changed)
-            
-            self.Keuze12 = QLabel()
-            k12Edit = QComboBox()
-            k12Edit.setFixedWidth(310)
-            k12Edit.setFont(QFont("Arial",10))
-            k12Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k12Edit.addItem('Voorraadmanagement')
-            k12Edit.setEditable(True)
-            k12Edit.lineEdit().setFont(QFont("Arial",10))
-            k12Edit.lineEdit().setReadOnly(True)
-            k12Edit.lineEdit().setAlignment(Qt.AlignCenter)
-            k12Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k12Edit.addItem('1. Voorraadbeheersing/artikelen')
-            k12Edit.addItem('2. Grafiek voorraden/financiëel')
-            k12Edit.addItem('3. Overzicht voorraden financiëel')
-            k12Edit.addItem('4. Opvragen reserveringen')
-            k12Edit.activated[str].connect(self.k12Changed)
-            
-            self.Keuze13 = QLabel()
-            k13Edit = QComboBox()
-            k13Edit.setFixedWidth(310)
-            k13Edit.setFont(QFont("Arial",10))
-            k13Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k13Edit.addItem('Management informatie')
-            k13Edit.setEditable(True)
-            k13Edit.lineEdit().setFont(QFont("Arial",10))
-            k13Edit.lineEdit().setReadOnly(True)
-            k13Edit.lineEdit().setAlignment(Qt.AlignCenter)
-            k13Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k13Edit.addItem('1. Bereken financiën eens/week')
-            k13Edit.addItem('2. Printen grafieken financiën werken')
-            k13Edit.addItem('3. Printen grafieken voortgangstatus')
-            k13Edit.addItem('4. Opvragen resultaten werken')
-            k13Edit.activated[str].connect(self.k13Changed) 
-         
-            self.Keuze14 = QLabel()
-            k14Edit = QComboBox()
-            k14Edit.setFixedWidth(310)
-            k14Edit.setFont(QFont("Arial",10))
-            k14Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k14Edit.addItem('Onderhoud')
-            k14Edit.setEditable(True)
-            k14Edit.lineEdit().setFont(QFont("Arial", 10))
-            k14Edit.lineEdit().setReadOnly(True)
-            k14Edit.lineEdit().setAlignment(Qt.AlignCenter)
-            k14Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k14Edit.addItem('1. Bevoegdheden muteren')
-            k14Edit.addItem('2. Koppel account-leverancier')
-            k14Edit.addItem('3. Koppel account-verkoopbedrijf')
-            k14Edit.addItem('4. Invoeren parameters')
-            k14Edit.addItem('5. Wijzigen parameters')
-            k14Edit.addItem('6. Opvragen parameters')
-            k14Edit.addItem('7. Verkoop-werktarieven bijwerken')
-            k14Edit.activated[str].connect(self.k14Changed)
+            self.k4Edit = QComboBox()
+            self.k4Edit.setFixedWidth(310)
+            self.k4Edit.setFont(QFont("Arial",10))
+            self.k4Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
+            self.k4Edit.addItem('Verself.koop')
+            self.k4Edit.setEditable(True)
+            self.k4Edit.lineEdit().setFont(QFont("Arial",10))
+            self.k4Edit.lineEdit().setReadOnly(True)
+            self.k4Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            self.k4Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+            self.k4Edit.addItem('1. Verkoop-bedrijf aanmaken')
+            self.k4Edit.addItem('2. Verself.koop-bedrijf wijzigen')
+            self.k4Edit.addItem('3. Verself.koop-bedrijven opvragen')
+            self.k4Edit.addItem('4. Zelf gegevens opvragen')
+            self.k4Edit.addItem('5. Webverkooporders opvragen')
 
-            self.Keuze15 = QLabel()
-            k15Edit = QComboBox()
-            k15Edit.setFixedWidth(310)
-            k15Edit.setFont(QFont("Arial",10))
-            k15Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k15Edit.addItem('Herprinten van formulieren')
-            k15Edit.setEditable(True)
-            k15Edit.lineEdit().setFont(QFont("Arial", 10))
-            k15Edit.lineEdit().setReadOnly(True)
-            k15Edit.lineEdit().setAlignment(Qt.AlignCenter)
-            k15Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            k15Edit.addItem('1. Calculatie interne werken') 
-            k15Edit.addItem('2. Calculatie externe werken')  
-            k15Edit.addItem('3. Interne orderbrieven tbv inkoop')
-            k15Edit.addItem('4. Afroepen werken intern')
-            k15Edit.addItem('5. Afroepen werken extern')
-            k15Edit.addItem('6. Raaplijsten magazijn')
-            k15Edit.addItem('7. Web orders pakbon')
-            k15Edit.addItem('8. Controle uren tbv lonen')
-            k15Edit.addItem('9. Loonspecificaties personeel')
-            k15Edit.addItem('A. Factureren externe werken')
-            k15Edit.addItem('B. Web orders betalingen') 
-            k15Edit.addItem('C. Inkooporders diensten/materieel')  
-            k15Edit.addItem('D. Balieverkoop orderfacturen') 
-            k15Edit.activated[str].connect(self.k15Changed)
-            
+            self.k5Edit = QComboBox()
+            self.k5Edit.setFixedWidth(310)
+            self.k5Edit.setFont(QFont("Arial",10))
+            self.k5Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
+            self.k5Edit.addItem('Magazijn')
+            self.k5Edit.setEditable(True)
+            self.k5Edit.lineEdit().setFont(QFont("Arial",10))
+            self.k5Edit.lineEdit().setReadOnly(True)
+            self.k5Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            self.k5Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+            self.k5Edit.addItem('1. Invoeren artikelen')
+            self.k5Edit.addItem('2. Wijzigen artikelen')
+            self.k5Edit.addItem('3. Opvragen artikelen')
+            self.k5Edit.addItem('4. Uitgifte materialen (raaplijst)')
+            self.k5Edit.addItem('5. Printen raaplijsten')
+            self.k5Edit.addItem('6. Boeken verschillen/overbodig')
+            self.k5Edit.addItem('7. Uitgifte webartikelen /printen')
+            self.k5Edit.addItem('8. Web-artikelen retour boeken')
+            self.k5Edit.addItem('9. Balieverkoop - barcodescan')
+
+            self.k6Edit = QComboBox()
+            self.k6Edit.setFixedWidth(310)
+            self.k6Edit.setFont(QFont("Arial",10))
+            self.k6Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
+            self.k6Edit.addItem('Werken intern')
+            self.k6Edit.setEditable(True)
+            self.k6Edit.lineEdit().setFont(QFont("Arial", 10))
+            self.k6Edit.lineEdit().setReadOnly(True)
+            self.k6Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            self.k6Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+            self.k6Edit.addItem('1. Invoer werkopdrachten')
+            self.k6Edit.addItem('2. Wijzig werkopdrachten')
+            self.k6Edit.addItem('3. Opvragen werkopdrachten/printen')
+            self.k6Edit.addItem('4. Afroepen materialen')
+            self.k6Edit.addItem('5. Printen raaplijsten')
+            self.k6Edit.addItem('6. Uurverbruik muteren')
+ 
+            self.k7Edit = QComboBox()
+            self.k7Edit.setFixedWidth(310)
+            self.k7Edit.setFont(QFont("Arial",10))
+            self.k7Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
+            self.k7Edit.addItem('Werken extern')
+            self.k7Edit.setEditable(True)
+            self.k7Edit.lineEdit().setFont(QFont("Arial", 10))
+            self.k7Edit.lineEdit().setReadOnly(True)
+            self.k7Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            self.k7Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+            self.k7Edit.addItem('1. Invoeren werken')
+            self.k7Edit.addItem('2. Wijzigen werken')
+            self.k7Edit.addItem('3. Opvragen werken')
+            self.k7Edit.addItem('4. Afroepen materialen')
+            self.k7Edit.addItem('5. Printen raaplijsten')
+            self.k7Edit.addItem('6. Muteren kosten diensten')
+            self.k7Edit.addItem('7. Uurverbruik muteren')
+ 
+            self.k8Edit = QComboBox()
+            self.k8Edit.setFixedWidth(310)
+            self.k8Edit.setFont(QFont("Arial",10))
+            self.k8Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
+            self.k8Edit.addItem('Calculatie interne werken')
+            self.k8Edit.setEditable(True)
+            self.k8Edit.lineEdit().setFont(QFont("Arial", 10))
+            self.k8Edit.lineEdit().setReadOnly(True)
+            self.k8Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            self.k8Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+            self.k8Edit.addItem('1. Nieuwe clusters aanmaken')
+            self.k8Edit.addItem('2. Clustergegevens invoeren')
+            self.k8Edit.addItem('3. Clustergegevens opvragen')
+            self.k8Edit.addItem('4. Invoeren artikelregels per cluster')
+            self.k8Edit.addItem('5. Opvragen artikelregels per cluster')
+            self.k8Edit.addItem('6. Calculatie maken/wijzigen')
+            self.k8Edit.addItem('7. Calculatie/Artikellijst printen')
+            self.k8Edit.addItem('8. Calculatie koppelen -> produktie')
+ 
+            self.k9Edit = QComboBox()
+            self.k9Edit.setFixedWidth(310)
+            self.k9Edit.setFont(QFont("Arial",10))
+            self.k9Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
+            self.k9Edit.addItem('Calculatie externe werken')
+            self.k9Edit.setEditable(True)
+            self.k9Edit.lineEdit().setFont(QFont("Arial",10))
+            self.k9Edit.lineEdit().setReadOnly(True)
+            self.k9Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            self.k9Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+            self.k9Edit.addItem('1. Nieuwe clusters aanmaken')
+            self.k9Edit.addItem('2. Clustergegevens invoeren')
+            self.k9Edit.addItem('3. Clustergegevens opvragen')
+            self.k9Edit.addItem('4. Invoeren artikelregels per cluster')
+            self.k9Edit.addItem('5. Opvragen artikelregels per cluster')
+            self.k9Edit.addItem('6. Calculatie maken / wijzigen')
+            self.k9Edit.addItem('7. Calculatie/Artikellijst printen')
+            self.k9Edit.addItem('8. Calculatie koppelen -> produktie')
+ 
+            self.k10Edit = QComboBox()
+            self.k10Edit.setFixedWidth(310)
+            self.k10Edit.setFont(QFont("Arial",10))
+            self.k10Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
+            self.k10Edit.addItem('Loonadministratie')
+            self.k10Edit.setEditable(True)
+            self.k10Edit.lineEdit().setFont(QFont("Arial", 10))
+            self.k10Edit.lineEdit().setReadOnly(True)
+            self.k10Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            self.k10Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+            self.k10Edit.addItem('1. Uren mutaties opvragen')
+            self.k10Edit.addItem('2. Controle uren tbv maanlonen')
+            self.k10Edit.addItem('3. Maandelijkse loonbetalingen')
+            self.k10Edit.addItem('4. Opvragen loonbetalingen')
+            self.k10Edit.addItem('5. Invoeren Loonschalen')
+            self.k10Edit.addItem('6. Loonschalen wijzigen/opvragen')
+            self.k10Edit.addItem('7. Procentueel lonen verhogen')
+ 
+            self.k11Edit = QComboBox()
+            self.k11Edit.setFixedWidth(310)
+            self.k11Edit.setFont(QFont("Arial",10))
+            self.k11Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
+            self.k11Edit.addItem('Boekhouding')
+            self.k11Edit.setEditable(True)
+            self.k11Edit.lineEdit().setFont(QFont("Arial",10))
+            self.k11Edit.lineEdit().setReadOnly(True)
+            self.k11Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            self.k11Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+            self.k11Edit.addItem('1. Artikel mutaties opvragen.')
+            self.k11Edit.addItem('2. Diensten mutaties opvragen')
+            self.k11Edit.addItem('3. Inzien en betalen afdrachten')
+            self.k11Edit.addItem('4. Weborders betaling/printen factuur')
+            self.k11Edit.addItem('5. Retouren betalingen boeken')
+            self.k11Edit.addItem('6. Printen lijst te factureren')
+            self.k11Edit.addItem('7. Uren mutaties opvragen')
+
+            self.k12Edit = QComboBox()
+            self.k12Edit.setFixedWidth(310)
+            self.k12Edit.setFont(QFont("Arial",10))
+            self.k12Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
+            self.k12Edit.addItem('Voorraadmanagement')
+            self.k12Edit.setEditable(True)
+            self.k12Edit.lineEdit().setFont(QFont("Arial",10))
+            self.k12Edit.lineEdit().setReadOnly(True)
+            self.k12Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            self.k12Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+            self.k12Edit.addItem('1. Voorraadbeheersing/artikelen')
+            self.k12Edit.addItem('2. Grafiek voorraden/financiëel')
+            self.k12Edit.addItem('3. Overzicht voorraden financiëel')
+            self.k12Edit.addItem('4. Opvragen reserveringen')
+
+            self.k13Edit = QComboBox()
+            self.k13Edit.setFixedWidth(310)
+            self.k13Edit.setFont(QFont("Arial",10))
+            self.k13Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
+            self.k13Edit.addItem('Management informatie')
+            self.k13Edit.setEditable(True)
+            self.k13Edit.lineEdit().setFont(QFont("Arial",10))
+            self.k13Edit.lineEdit().setReadOnly(True)
+            self.k13Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            self.k13Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+            self.k13Edit.addItem('1. Bereken financiën eens/week')
+            self.k13Edit.addItem('2. Printen grafieken financiën werken')
+            self.k13Edit.addItem('3. Printen grafieken voortgangstatus')
+            self.k13Edit.addItem('4. Opvragen resultaten werken')
+  
+            self.k14Edit = QComboBox()
+            self.k14Edit.setFixedWidth(310)
+            self.k14Edit.setFont(QFont("Arial",10))
+            self.k14Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
+            self.k14Edit.addItem('Onderhoud')
+            self.k14Edit.setEditable(True)
+            self.k14Edit.lineEdit().setFont(QFont("Arial", 10))
+            self.k14Edit.lineEdit().setReadOnly(True)
+            self.k14Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            self.k14Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+            self.k14Edit.addItem('1. Bevoegdheden muteren')
+            self.k14Edit.addItem('2. Koppel account-leverancier')
+            self.k14Edit.addItem('3. Koppel account-verkoopbedrijf')
+            self.k14Edit.addItem('4. Invoeren parameters')
+            self.k14Edit.addItem('5. Wijzigen parameters')
+            self.k14Edit.addItem('6. Opvragen parameters')
+            self.k14Edit.addItem('7. Verkoop-werktarieven bijwerken')
+
+            self.k15Edit = QComboBox()
+            self.k15Edit.setFixedWidth(310)
+            self.k15Edit.setFont(QFont("Arial",10))
+            self.k15Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
+            self.k15Edit.addItem('Herprinten van formulieren')
+            self.k15Edit.setEditable(True)
+            self.k15Edit.lineEdit().setFont(QFont("Arial", 10))
+            self.k15Edit.lineEdit().setReadOnly(True)
+            self.k15Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            self.k15Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+            self.k15Edit.addItem('1. Calculatie interne werken')
+            self.k15Edit.addItem('2. Calculatie externe werken')
+            self.k15Edit.addItem('3. Interne orderbrieven tbv inkoop')
+            self.k15Edit.addItem('4. Afroepen werken intern')
+            self.k15Edit.addItem('5. Afroepen werken extern')
+            self.k15Edit.addItem('6. Raaplijsten magazijn')
+            self.k15Edit.addItem('7. Web orders pakbon')
+            self.k15Edit.addItem('8. Controle uren tbv lonen')
+            self.k15Edit.addItem('9. Loonspecificaties personeel')
+            self.k15Edit.addItem('10. Factureren externe werken')
+            self.k15Edit.addItem('11. Web orders betalingen')
+            self.k15Edit.addItem('12. Inkooporders diensten/materieel')
+            self.k15Edit.addItem('13. Balieverkoop orderfacturen')
+
             #disable menu's if no permission is granted in table accounts
             # list of Mainmenu
-            mplist=[k0Edit,k1Edit,k2Edit,k3Edit,k4Edit,k5Edit,k6Edit,k7Edit,\
-                    k8Edit,k9Edit,k10Edit,k11Edit,k12Edit,k13Edit,k14Edit,k15Edit]
+            mplist=[self.k0Edit,self.k1Edit,self.k2Edit,self.k3Edit,self.k4Edit,self.k5Edit,self.k6Edit,self.k7Edit,\
+                    self.k8Edit,self.k9Edit,self.k10Edit,self.k11Edit,self.k12Edit,self.k13Edit,self.k14Edit,self.k15Edit]
             # list of pointers by mainmenu and menulines per groups pointers towards database tasble accountpermissions
             lineperm = ([0, 4, 6, 2, 2, 5],[0, 3, 4, 6, 1],[0, 1, 4, 6, 6],[0, 3, 4, 3, 4, 6, 6],[0, 3, 4, 6, 1, 6],\
                         [0, 3, 4, 6, 4, 5, 1, 6, 3, 6],[0, 3, 4, 6, 3, 5, 3],[0, 3, 4, 6, 2, 6, 3, 3],\
@@ -768,29 +737,29 @@ def hoofdMenu(m_email):
             grid = QGridLayout()
             grid.setSpacing(20)
              
-            grid.addWidget(k0Edit, 2, 0)
-            grid.addWidget(k8Edit, 2, 1)
+            grid.addWidget(self.k0Edit, 2, 0)
+            grid.addWidget(self.k8Edit, 2, 1)
             
-            grid.addWidget(k1Edit, 3, 0)
-            grid.addWidget(k9Edit, 3, 1)
+            grid.addWidget(self.k1Edit, 3, 0)
+            grid.addWidget(self.k9Edit, 3, 1)
             
-            grid.addWidget(k2Edit, 4, 0)
-            grid.addWidget(k10Edit, 4, 1)
+            grid.addWidget(self.k2Edit, 4, 0)
+            grid.addWidget(self.k10Edit, 4, 1)
             
-            grid.addWidget(k3Edit, 5, 0)
-            grid.addWidget(k11Edit, 5, 1)
+            grid.addWidget(self.k3Edit, 5, 0)
+            grid.addWidget(self.k11Edit, 5, 1)
           
-            grid.addWidget(k4Edit, 6, 0)
-            grid.addWidget(k12Edit, 6, 1)
+            grid.addWidget(self.k4Edit, 6, 0)
+            grid.addWidget(self.k12Edit, 6, 1)
         
-            grid.addWidget(k5Edit, 7, 0)
-            grid.addWidget(k13Edit, 7, 1)
+            grid.addWidget(self.k5Edit, 7, 0)
+            grid.addWidget(self.k13Edit, 7, 1)
             
-            grid.addWidget(k6Edit, 8, 0)
-            grid.addWidget(k14Edit, 8, 1)
+            grid.addWidget(self.k6Edit, 8, 0)
+            grid.addWidget(self.k14Edit, 8, 1)
             
-            grid.addWidget(k7Edit, 9 ,0)
-            grid.addWidget(k15Edit, 9, 1)
+            grid.addWidget(self.k7Edit, 9 ,0)
+            grid.addWidget(self.k15Edit, 9, 1)
                             
             pandora = QLabel()
             pixmap = QPixmap('./images/logos/menu.png')
@@ -827,303 +796,265 @@ def hoofdMenu(m_email):
             cancelBtn.setFont(QFont("Arial",10))
             cancelBtn.setFixedWidth(130)
             cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
-                   
-        def k0Changed(self, text):
-            self.Keuze0.setText(text)
-    
-        def k1Changed(self, text):
-            self.Keuze1.setText(text)
-            
-        def k2Changed(self,text):
-            self.Keuze2.setText(text)
-            
-        def k3Changed(self,text):
-             self.Keuze3.setText(text)
-            
-        def k4Changed(self,text):
-             self.Keuze4.setText(text)
-            
-        def k5Changed(self,text):
-             self.Keuze5.setText(text)
-            
-        def k6Changed(self,text):
-            self.Keuze6.setText(text)
-            
-        def k7Changed(self,text):
-            self.Keuze7.setText(text)
-               
-        def k8Changed(self,text):
-            self.Keuze8.setText(text)
-            
-        def k9Changed(self,text):
-            self.Keuze9.setText(text)
-            
-        def k10Changed(self,text):
-            self.Keuze10.setText(text)
-            
-        def k11Changed(self,text):
-            self.Keuze11.setText(text)
-            
-        def k12Changed(self,text):
-            self.Keuze12.setText(text)
-            
-        def k13Changed(self,text):
-            self.Keuze13.setText(text)
-            
-        def k14Changed(self,text):
-            self.Keuze14.setText(text)
-            
-        def k15Changed(self,text):
-            self.Keuze15.setText(text)
-    
-        def returnk0(self):
-            return self.Keuze0.text()
-    
-        def returnk1(self):
-            return self.Keuze1.text()
-    
-        def returnk2(self):
-            return self.Keuze2.text()
-        
-        def returnk3(self):
-            return self.Keuze3.text()
-      
-        def returnk4(self):
-            return self.Keuze4.text()
-    
-        def returnk5(self):
-            return self.Keuze5.text()
-    
-        def returnk6(self):
-            return self.Keuze6.text()
-        
-        def returnk7(self):
-            return self.Keuze7.text()
-        
-        def returnk8(self):
-            return self.Keuze8.text()
-        
-        def returnk9(self):
-            return self.Keuze9.text()   
-        
-        def returnk10(self):
-            return self.Keuze10.text()
-        
-        def returnk11(self):
-            return self.Keuze11.text()
-        
-        def returnk12(self):
-            return self.Keuze12.text()
-        
-        def returnk13(self):
-            return self.Keuze13.text()
-        
-        def returnk14(self):
-            return self.Keuze14.text()
-        
-        def returnk15(self):
-            return self.Keuze15.text()
-       
+
+            def k0Changed():
+                self.k0Edit.setCurrentIndex(self.k0Edit.currentIndex())
+            self.k0Edit.currentIndexChanged.connect(k0Changed)
+
+            def k1Changed():
+                self.k1Edit.setCurrentIndex(self.k1Edit.currentIndex())
+            self.k1Edit.currentIndexChanged.connect(k1Changed)
+
+            def k2Changed():
+                self.k2Edit.setCurrentIndex(self.k2Edit.currentIndex())
+            self.k2Edit.currentIndexChanged.connect(k2Changed)
+
+            def k3Changed():
+                self.k3Edit.setCurrentIndex(self.k3Edit.currentIndex())
+            self.k3Edit.currentIndexChanged.connect(k3Changed)
+
+            def k4Changed():
+                self.k4Edit.setCurrentIndex(self.k4Edit.currentIndex())
+            self.k4Edit.currentIndexChanged.connect(k4Changed)
+
+            def k5Changed():
+                self.k5Edit.setCurrentIndex(self.k5Edit.currentIndex())
+            self.k5Edit.currentIndexChanged.connect(k5Changed)
+
+            def k6Changed():
+                self.k6Edit.setCurrentIndex(self.k6Edit.currentIndex())
+            self.k6Edit.currentIndexChanged.connect(k6Changed)
+
+            def k7Changed():
+                self.k7Edit.setCurrentIndex(self.k7Edit.currentIndex())
+            self.k7Edit.currentIndexChanged.connect(k7Changed)
+
+            def k8Changed():
+                self.k8Edit.setCurrentIndex(self.k8Edit.currentIndex())
+            self.k8Edit.currentIndexChanged.connect(k8Changed)
+
+            def k9Changed():
+                self.k9Edit.setCurrentIndex(self.k9Edit.currentIndex())
+            self.k9Edit.currentIndexChanged.connect(k9Changed)
+
+            def k10Changed():
+                self.k10Edit.setCurrentIndex(self.k10Edit.currentIndex())
+            self.k10Edit.currentIndexChanged.connect(k10Changed)
+
+            def k11Changed():
+                self.k11Edit.setCurrentIndex(self.k11Edit.currentIndex())
+            self.k11Edit.currentIndexChanged.connect(k11Changed)
+
+            def k12Changed():
+                self.k12Edit.setCurrentIndex(self.k12Edit.currentIndex())
+            self.k12Edit.currentIndexChanged.connect(k12Changed)
+
+            def k13Changed():
+                self.k13Edit.setCurrentIndex(self.k13Edit.currentIndex())
+            self.k13Edit.currentIndexChanged.connect(k13Changed)
+
+            def k14Changed():
+                self.k14Edit.setCurrentIndex(self.k14Edit.currentIndex())
+            self.k14Edit.currentIndexChanged.connect(k14Changed)
+
+            def k15Changed():
+                self.k15Edit.setCurrentIndex(self.k15Edit.currentIndex())
+            self.k15Edit.currentIndexChanged.connect(k15Changed)
+
         @staticmethod
         def getData(parent=None):
             dialog = Widget(parent)
             dialog.exec_()
-            return [dialog.returnk0(), dialog.returnk1(),dialog.returnk2(),\
-                dialog.returnk3(), dialog.returnk4(), dialog.returnk5(),\
-                dialog.returnk6(), dialog.returnk7(),  dialog.returnk8(),\
-                dialog.returnk9(), dialog.returnk10(), dialog.returnk11(),\
-                dialog.returnk12(), dialog.returnk13(), dialog.returnk14(),\
-                dialog.returnk15()]
-      
+            return [dialog.k0Edit.currentIndex(), dialog.k1Edit.currentIndex(), dialog.k2Edit.currentIndex(), \
+                    dialog.k3Edit.currentIndex(), dialog.k4Edit.currentIndex(), dialog.k5Edit.currentIndex(), \
+                    dialog.k6Edit.currentIndex(), dialog.k7Edit.currentIndex(), dialog.k8Edit.currentIndex(), \
+                    dialog.k9Edit.currentIndex(), dialog.k10Edit.currentIndex(), dialog.k11Edit.currentIndex(), \
+                    dialog.k12Edit.currentIndex(), dialog.k13Edit.currentIndex(), dialog.k14Edit.currentIndex(), \
+                    dialog.k15Edit.currentIndex()]
+
     window = Widget()
-    data = window.getData()
+    dlist = window.getData()
 
     mk0, mk1, mk2, mk3, mk4, mk5, mk6, mk7, mk8, mk9, mk10, mk11, mk12, mk13, mk14, mk15 = (0,)*16
 
-    dlist = []
-    for item in data:
-        if item.startswith(' '):
-            item = ''
-        dlist += [item]
-    del data
     if dlist[0]:
-        mk0 = dlist[0][0]
+        mk0 = dlist[0]
     elif dlist[1]:
-        mk1 = dlist[1][0]
+        mk1 = dlist[1]
     elif dlist[2]:
-        mk2 = dlist[2][0]
+        mk2 = dlist[2]
     elif dlist[3]:
-        mk3 = dlist[3][0]
+        mk3 = dlist[3]
     elif dlist[4]:
-        mk4 = dlist[4][0]
+        mk4 = dlist[4]
     elif dlist[5]:
-        mk5 = dlist[5][0]
+        mk5 = dlist[5]
     elif dlist[6]:
-        mk6 = dlist[6][0]
+        mk6 = dlist[6]
     elif dlist[7]:
-        mk7 = dlist[7][0]
+        mk7 = dlist[7]
     elif dlist[8]:
-        mk8 = dlist[8][0]
+        mk8 = dlist[8]
     elif dlist[9]:
-        mk9 = dlist[9][0]
+        mk9 = dlist[9]
     elif dlist[10]:
-        mk10 = dlist[10][0]
+        mk10 = dlist[10]
     elif dlist[11]:
-        mk11 = dlist[11][0]
+        mk11 = dlist[11]
     elif dlist[12]:
-        mk12 = dlist[12][0]
+        mk12 = dlist[12]
     elif dlist[13]:
-        mk13 = dlist[13][0]
+        mk13 = dlist[13]
     elif dlist[14]:
-        mk14 = dlist[14][0]
+        mk14 = dlist[14]
     elif dlist[15]:
-        mk15 = dlist[15][0] 
+        mk15 = dlist[15]
     else:
         hoofdMenu(m_email)
 
-    if mk0 == '1':
+    if mk0 == 1:
         import wijzAccount
         wijzAccount.updateAccount(m_email)
-    elif mk0 == '2':
+    elif mk0 == 2:
         import opvrAccounts
         opvrAccounts.accKeuze(m_email)
-    elif mk0 == '3':
+    elif mk0 == 3:
         klmail = ''
         import bestelOrder
         bestelOrder.artKeuze(m_email, 0, klmail)
-    elif mk0 == '4':
+    elif mk0 == 4:
         import opvrKlantenorders
         opvrKlantenorders.bestellingen(m_email)
-    elif mk0 == '5':
+    elif mk0 == 5:
         import printFacturen
         printFacturen.kiesOrder(m_email)
-    elif mk1 == '1':
+    elif mk1 == 1:
         import invoerLeverancier
         invoerLeverancier.bepaalLeverancier(m_email)
-    elif mk1 == '2':
+    elif mk1 == 2:
         import wijzLeverancier
         wijzLeverancier.zoekLeverancier(m_email)
-    elif mk1 == '3':
+    elif mk1 == 3:
         import opvrLeveranciers
         opvrLeveranciers.leveranciersKeuze(m_email)
-    elif mk1 == '4':
+    elif mk1 == 4:
         import opvrEigenleverancier
         opvrEigenleverancier.eigenLeverancier(m_email)
-    elif mk2 == '1':
+    elif mk2 == 1:
         import koppelAccount
         koppelAccount.zoekAccount(m_email, 0)
-    elif mk2 == '2':
+    elif mk2 == 2:
         import wijzWerknemer
         while True:
             wijzWerknemer.zoekWerknemer(m_email)
-    elif mk2 == '3':
+    elif mk2 == 3:
         import opvrWerknemers
         opvrWerknemers.accKeuze(m_email)
-    elif mk2 == '4':
+    elif mk2 == 4:
         import opvrWerknperiode
         opvrWerknperiode.zoekWerknemer(m_email)
-    elif mk3 == '1':
+    elif mk3 == 1:
         mlevnr = 3
         mregel = 1
         import invoerInkooporder
         invoerInkooporder.zoekLeverancier(m_email, mlevnr, mregel)
-    elif mk3 == '2':
+    elif mk3 == 2:
         import wijzInkooporder
         mregel = 0
         minkordernr = 4
         wijzInkooporder.zoekInkooporder(m_email, minkordernr, mregel)
-    elif mk3 == '3':
+    elif mk3 == 3:
         mlevnr = 3
         mwerknr = 8
         mregel = 1
         import invoerDienstenorder
         invoerDienstenorder.zoekLeverancier(m_email, mlevnr, mwerknr, mregel)
-    elif mk3 == '4':
+    elif mk3 == 4:
         import wijzDienstenorder
         mregel = 0
         minkordernr = 4
         wijzDienstenorder.zoekInkooporder(m_email, minkordernr, mregel)
-    elif mk3 == '5':
+    elif mk3 == 5:
         import opvrInkooporders
         opvrInkooporders.inkooporderKeuze(m_email)
-    elif mk3 == '6':
+    elif mk3 == 6:
         import opvrDienstenorders
         opvrDienstenorders.inkooporderKeuze(m_email)
-    elif mk3 == '7':
+    elif mk3 == 7:
         import opvrReserveringen
         opvrReserveringen.resKeuze(m_email)
-    elif mk4 == '1':
+    elif mk4 == 1:
         import invoerVerkoopbedrijf
         while True:
             invoerVerkoopbedrijf.invBedrijf(m_email)
-    elif mk4 == '2':
+    elif mk4 == 2:
         import wijzVerkoopbedrijf
         while True:
             wijzVerkoopbedrijf.zoekKoper(m_email)
-    elif mk4 == '3':
+    elif mk4 == 3:
         import opvrVerkoopbedrijven
         opvrVerkoopbedrijven.koperKeuze(m_email)
-    elif mk4 == '4':
+    elif mk4 == 4:
         import opvrEigenbedrijf
         opvrEigenbedrijf.eigenBedrijf(m_email)
-    elif mk4 == '5':
+    elif mk4 == 5:
         import opvrWebverkorders
         opvrWebverkorders.zoekWeborder(m_email, 2)
-    elif mk5 == '1':
+    elif mk5 == 1:
         import invoerArtikelen
         while True:
             invoerArtikelen.invArtikel(m_email)
-    elif mk5 == '2':
+    elif mk5 == 2:
         import wijzArtikel
         wijzArtikel.zoekArtikel(m_email)
-    elif mk5 == '3':
+    elif mk5 == 3:
         import opvrArtikelen
         opvrArtikelen.artKeuze(m_email)
-    elif mk5 == '4':
+    elif mk5 == 4:
         import magUitgifte
         magUitgifte.kiesSelektie(0, m_email)
-    elif mk5 == '5':
+    elif mk5 == 5:
         import magUitgifte
         magUitgifte.kiesSelektie(1, m_email)
-    elif mk5 == '6':
+    elif mk5 == 6:
         import dervingMutaties
         while True:
             dervingMutaties.dervingMut(m_email)
-    elif mk5 == '7':
+    elif mk5 == 7:
         import opvrWebverkorders
         while True:
             opvrWebverkorders.zoekWeborder(m_email, 0)
-    elif mk5 == '8':
+    elif mk5 == 8:
         import retourPortalWeb
         klmail = ''
         while True:
             retourPortalWeb.zoekEmailadres(m_email, klmail)
-    elif mk5 == '9':
+    elif mk5 == 9:
         if mp[5][1] == '1':
             mret = True
         else:
             mret = False
         import barcodeScan
         barcodeScan.barcodeScan(m_email, mret)
-    elif mk6 == '1':
+    elif mk6 == 1:
         import invoerInternorder
         invoerInternorder.invWerkorder(m_email)
-    elif mk6 == '2':
+    elif mk6 == 2:
         import wijzInternorder
         wijzInternorder.zoeken(m_email)
-    elif mk6 == '3':
+    elif mk6 == 3:
         import opvrInternorders
         opvrInternorders.zoeken(m_email)
-    elif mk6 == '4':
+    elif mk6 == 4:
         import artikelAfroep
         artikelAfroep.zoekWerk(m_email, 0)
-    elif mk6 == '5':
+    elif mk6 == 5:
         import magUitgifte
         magUitgifte.kiesSelektie(2, m_email)
-    elif mk6 == '6':
+    elif mk6 == 6:
         import urenImutaties
         maccountnr = '1'
-        mwerknr = '7'
+        mwerknr = 7
         mboekd = str(datetime.now())[0:10]
         while True:
             accwerk = urenImutaties.urenMut(maccountnr, mwerknr, mboekd, m_email)
@@ -1136,25 +1067,25 @@ def hoofdMenu(m_email):
                 maccountnr = '1'
                 mwerknr = '7'
                 mboekd = str(datetime.now())[0:10]
-    elif mk7 == '1':
+    elif mk7 == 1:
         import invoerWerken
         invoerWerken.invWerk(m_email)
-    elif mk7 == '2':
+    elif mk7 == 2:
         import wijzWerken
         wijzWerken.zoekWerk(m_email)
-    elif mk7 == '3':
+    elif mk7 == 3:
         import opvrWerken
         opvrWerken.werkenKeuze(m_email)
-    elif mk7 == '4':
+    elif mk7 == 4:
         import artikelAfroep
         artikelAfroep.zoekWerk(m_email, 1)
-    elif mk7 == '5':
+    elif mk7 == 5:
         import magUitgifte
         magUitgifte.kiesSelektie(3, m_email)
-    elif mk7 == '6':
+    elif mk7 == 6:
         import dienstenMutaties
         dienstenMutaties.mutatieKeuze(m_email)
-    elif mk7 == '7':
+    elif mk7 == 7:
         import urenMutaties
         maccountnr = '1'
         mwerknr = '8'
@@ -1170,242 +1101,241 @@ def hoofdMenu(m_email):
                 maccountnr = '1'
                 mwerknr = '8'
                 mboekd = str(datetime.now())[0:10]
-    elif mk8 == '1':
         import maakIcluster
         while True:
             maakIcluster.kiesCluster(m_email)
-    elif mk8 == '2':
+    elif mk8 == 2:
         import wijzIclusters
         while True:
             wijzIclusters.zoeken(m_email)
-    elif mk8 == '3':
+    elif mk8 == 3:
         import opvrIclusters
         opvrIclusters.zoeken(m_email)
-    elif mk8 == '4':
+    elif mk8 == 4:
         import invoerIcluster_artikelen
         while True:
             invoerIcluster_artikelen.zoeken(m_email)
-    elif mk8 == '5':
+    elif mk8 == 5:
         import opvrIcluster_artikelen
         opvrIcluster_artikelen.zoeken(m_email)
-    elif mk8 == '6':
+    elif mk8 == 6:
         import invoerIclustercalculatie
         invoerIclustercalculatie.zoeken(m_email)
-    elif mk8 == '7':
+    elif mk8 == 7:
         import opvrIclustercalculatie
         while True:
             opvrIclustercalculatie.zoekCalculatie(m_email)
-    elif mk8 == '8':
+    elif mk8 == 8:
         import koppelIbegroting
         while True:
             koppelIbegroting.zoekBegroting(m_email)
-    elif mk9 == '1':
+    elif mk9 == 1:
         import maakCluster
         while True:
             maakCluster.kiesCluster(m_email)
-    elif mk9 == '2':
+    elif mk9 == 2:
         import wijzClusters
         while True:
             wijzClusters.zoeken(m_email)
-    elif mk9 == '3':
+    elif mk9 == 3:
         import opvrClusters
         opvrClusters.zoeken(m_email)
-    elif mk9 == '4':
+    elif mk9 == 4:
         import invoerCluster_artikelen
         while True:
             invoerCluster_artikelen.zoeken(m_email)
-    elif mk9 == '5':
+    elif mk9 == 5:
         import opvrCluster_artikelen
         opvrCluster_artikelen.zoeken(m_email)
-    elif mk9 == '6':
+    elif mk9 == 6:
         import invoerClustercalculatie
         while True:
             invoerClustercalculatie.zoeken(m_email)
-    elif mk9 == '7':
+    elif mk9 == 7:
         import opvrClustercalculatie
         while True:
             opvrClustercalculatie.zoekCalculatie(m_email)
-    elif mk9 == '8':
+    elif mk9 == 8:
         import koppelBegroting
         while True:
             koppelBegroting.zoekBegroting(m_email)
-    elif mk10 == '1':
+    elif mk10 == 1:
         import opvrUrenmutaties
         opvrUrenmutaties.loonKeuze(m_email)
-    elif mk10 == '2':
+    elif mk10 == 2:
         import proefrun
         proefrun.maandPeriode(m_email)
-    elif mk10 == '3':
+    elif mk10 == 3:
         import uitbetalenLonen
         uitbetalenLonen.maandBetalingen(m_email)
-    elif mk10 == '4':
+    elif mk10 == 4:
         import opvrLoonbetalingen
         opvrLoonbetalingen.zoeken(m_email)
-    elif mk10 == '5':
+    elif mk10 == 5:
         import invoerLoontabel
         while True:
             invoerLoontabel.invoerSchaal(m_email)
-    elif mk10 == '6':
+    elif mk10 == 6:
         import wijzLoontabel
         wijzLoontabel.zoeken(m_email)
-    elif mk10 == '7':
+    elif mk10 == 7:
         import percentageLonen
         while True:
             percentageLonen.percLoonschaal(m_email)
-    elif mk11 == '1':
+    elif mk11 == 1:
         import opvrArtikelmutaties
         opvrArtikelmutaties.mutatieKeuze(m_email)
-    elif mk11 == '2':
+    elif mk11 == 2:
         import opvrDienstenmutaties
         opvrDienstenmutaties.mutatieKeuze(m_email)
-    elif mk11 == '3':
+    elif mk11 == 3:
         import afdrBetalen
         afdrBetalen.zoeken(m_email)
-    elif mk11 == '4':
+    elif mk11 == 4:
         import opvrWebverkorders
         opvrWebverkorders.zoekWeborder(m_email, 1)
-    elif mk11 == '5':
+    elif mk11 == 5:
         import webRetouren
         webRetouren.retKeuze(m_email)
-    elif mk11 == '6':
+    elif mk11 == 6:
         import printFacturatie
         printFacturatie.maakLijst(m_email)
-    elif mk11 == '7':
+    elif mk11 == 7:
         import opvrUrenmutaties
         opvrUrenmutaties.loonKeuze(m_email)
-    elif mk12 == '1':
+    elif mk12 == 1:
         import voorraadbeheersing
         voorraadbeheersing.vrdKeuze(m_email)
-    elif mk12 == '2':
+    elif mk12 == 2:
         import magvrdGrafiek
         magvrdGrafiek.toonGrafiek(m_email)
-    elif mk12 == '3':
+    elif mk12 == 3:
         import magvrdGrafiek
         magvrdGrafiek.magVoorraad(m_email)
-    elif mk12 == '4':
+    elif mk12 == 4:
         import opvrReserveringen
         opvrReserveringen.resKeuze(m_email)
-    elif mk13 == '1':
+    elif mk13 == 1:
         import rapportage
         rapportage.JN(m_email)
-    elif mk13 == '2':
+    elif mk13 == 2:
         import toonGrafieken
         toonGrafieken.zoekwk(m_email)
-    elif mk13 == '3':
+    elif mk13 == 3:
         import voortgangGrafiek
         while True:
             voortgangGrafiek.zoekwk(m_email)
-    elif mk13 == '4':
+    elif mk13 == 4:
         import toonResultaten
         toonResultaten.toonResult(m_email)
-    elif mk14 == '1':
+    elif mk14 == 1:
         import maakAuthorisatie
         while True:
             maakAuthorisatie.zoekAccount(m_email)
-    elif mk14 == '2':
+    elif mk14 == 2:
         import koppelAccount
         koppelAccount.zoekAccount(m_email, 2)
-    elif mk14 == '3':
+    elif mk14 == 3:
         import koppelAccount
         koppelAccount.zoekAccount(m_email, 1)
-    elif mk14 == '4':
+    elif mk14 == 4:
         import invoerParams
         while True:
             invoerParams.invParams(m_email)
-    elif mk14 == '5':
+    elif mk14 == 5:
         import wijzigParams
         wijzigParams.toonParams(m_email)
-    elif mk14 == '6':
+    elif mk14 == 6:
         import opvrParams
         opvrParams.toonParams(m_email)
-    elif mk14 == '7':
+    elif mk14 == 7:
         import wijzWerktarief
         wijzWerktarief.winKeuze(m_email)
-    elif mk15 == '1':
+    elif mk15 == 1:
         if sys.platform == 'win32':
             path = '.\\forms\\Intern_Clustercalculaties\\'
         else:
             path = './forms/Intern_Clustercalculaties/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == '2':
+    elif mk15 == 2:
         if sys.platform == 'win32':
             path = '.\\forms\\Extern_Clustercalculaties\\'
         else:
             path = './forms/Extern_Clustercalculaties/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == '3':
+    elif mk15 == 3:
         if sys.platform == 'win32':
             path = '.\\forms\\Intern_Orderbrieven\\'
         else:
             path = './forms/Intern_Orderbrieven/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == '4':
+    elif mk15 == 4:
         if sys.platform == 'win32':
             path = '.\\forms\\Raaplijsten\\'
         else:
             path = './forms/Raaplijsten/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == '5':
+    elif mk15 == 5:
         if sys.platform == 'win32':
             path = '.\\forms\\Raaplijsten\\'
         else:
             path = './forms/Raaplijsten/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == '6':
+    elif mk15 == 6:
         if sys.platform == 'win32':
             path = '.\\forms\\Raaplijsten\\'
         else:
             path = './forms/Raaplijsten/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == '7':
+    elif mk15 == 7:
         if sys.platform == 'win32':
             path = '.\\forms\\Weborders_Pakbonnen\\'
         else:
             path = './forms/Weborders_Pakbonnen/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == '8':
+    elif mk15 == 8:
         if sys.platform == 'win32':
             path = '.\\forms\\Uren\\'
         else:
             path = './forms/Uren/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == '9':
+    elif mk15 == 9:
         if sys.platform == 'win32':
             path = '.\\forms\\Lonen\\'
         else:
             path = './forms/Lonen/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == 'A':
+    elif mk15 == 10:
         if sys.platform == 'win32':
             path = '.\\forms\\Facturen_Werken\\'
         else:
             path = './forms/Facturen_Werken/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif mk15 == 'B':
+    elif mk15 == 11:
         if sys.platform == 'win32':
             path = '.\\forms\\Weborders_Facturen\\'
         else:
             path = './forms/Weborders_Facturen/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif (mk15 == 'C'):
+    elif mk15 == 12:
         if sys.platform == 'win32':
             path = '.\\forms\\Extern_Clustercalculaties_Diensten\\'
         else:
             path = './forms/Extern_Clustercalculaties_Diensten/'
         import filePicklist
         filePicklist.fileList(m_email, path)
-    elif (mk15 == 'D'):
+    elif mk15 == 13:
         if sys.platform == 'win32':
             path = '.\\forms\\Barcodelijsten\\'
         else:
