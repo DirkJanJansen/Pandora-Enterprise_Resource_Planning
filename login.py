@@ -16,7 +16,7 @@ def check_password(hashed_password, user_password):
 def goodbye():
     msg = QMessageBox()
     msg.setStyleSheet("font: 10pt Arial; color: black;  background-color: gainsboro")
-    msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
+    msg.setWindowIcon(QIcon('./image7s/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
     '''
     # release lock
@@ -778,10 +778,18 @@ def hoofdMenu(m_email):
             self.setLayout(grid)
             self.setGeometry(600, 100, 150, 150)
 
+            applyBtn = QPushButton('Choose')
+            applyBtn.clicked.connect(self.accept)
+
+            grid.addWidget(applyBtn, 13, 1, 1, 1, Qt.AlignRight)
+            applyBtn.setFont(QFont("Arial", 10))
+            applyBtn.setFixedWidth(130)
+            applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
+
             cancelBtn = QPushButton('Logout')
             cancelBtn.clicked.connect(lambda: closeIt(self))
     
-            grid.addWidget(cancelBtn, 13, 1, 1 , 1, Qt.AlignRight)
+            grid.addWidget(cancelBtn, 13, 1)
             cancelBtn.setFont(QFont("Arial",10))
             cancelBtn.setFixedWidth(130)
             cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
@@ -790,7 +798,7 @@ def hoofdMenu(m_email):
                 if sys.platform == 'win32':
                     keyboard.press_and_release('esc')  # Windows
                 else:
-                    subprocess.call(["xdotool", "key", "Escape"])  # Linux
+                    subprocess.call(['xdotool', 'key', 'Escape'])  # Linux
 
             def k0Changed():
                 self.k0Edit.setCurrentIndex(self.k0Edit.currentIndex())
