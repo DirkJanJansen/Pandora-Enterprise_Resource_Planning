@@ -778,106 +778,92 @@ def hoofdMenu(m_email):
             self.setLayout(grid)
             self.setGeometry(600, 100, 150, 150)
 
-            applyBtn = QPushButton('Choose')
-            applyBtn.clicked.connect(self.accept)
-
-            grid.addWidget(applyBtn, 13, 1, 1, 1, Qt.AlignRight)
-            applyBtn.setFont(QFont("Arial", 10))
-            applyBtn.setFixedWidth(130)
-            applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
-
             cancelBtn = QPushButton('Logout')
             cancelBtn.clicked.connect(lambda: closeIt(self))
     
-            grid.addWidget(cancelBtn, 13, 1)
+            grid.addWidget(cancelBtn, 13, 1, 1, 1, Qt.AlignRight)
             cancelBtn.setFont(QFont("Arial",10))
             cancelBtn.setFixedWidth(130)
             cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
 
-            def activate():
-                if sys.platform == 'win32':
-                    keyboard.press_and_release('esc')  # Windows
-                else:
-                    subprocess.call(['xdotool', 'key', 'Escape'])  # Linux
-
             def k0Changed():
                 self.k0Edit.setCurrentIndex(self.k0Edit.currentIndex())
-                activate()
+                self.accept()
             self.k0Edit.currentIndexChanged.connect(k0Changed)
 
             def k1Changed():
                 self.k1Edit.setCurrentIndex(self.k1Edit.currentIndex())
-                activate()
+                self.accept()
             self.k1Edit.currentIndexChanged.connect(k1Changed)
 
             def k2Changed():
                 self.k2Edit.setCurrentIndex(self.k2Edit.currentIndex())
-                activate()
+                self.accept()
             self.k2Edit.currentIndexChanged.connect(k2Changed)
 
             def k3Changed():
                 self.k3Edit.setCurrentIndex(self.k3Edit.currentIndex())
-                activate()
+                self.accept()
             self.k3Edit.currentIndexChanged.connect(k3Changed)
 
             def k4Changed():
                 self.k4Edit.setCurrentIndex(self.k4Edit.currentIndex())
-                activate()
+                self.accept()
             self.k4Edit.currentIndexChanged.connect(k4Changed)
 
             def k5Changed():
                 self.k5Edit.setCurrentIndex(self.k5Edit.currentIndex())
-                activate()
+                self.accept()
             self.k5Edit.currentIndexChanged.connect(k5Changed)
 
             def k6Changed():
                 self.k6Edit.setCurrentIndex(self.k6Edit.currentIndex())
-                activate()
+                self.accept()
             self.k6Edit.currentIndexChanged.connect(k6Changed)
 
             def k7Changed():
                 self.k7Edit.setCurrentIndex(self.k7Edit.currentIndex())
-                activate()
+                self.accept()
             self.k7Edit.currentIndexChanged.connect(k7Changed)
 
             def k8Changed():
                 self.k8Edit.setCurrentIndex(self.k8Edit.currentIndex())
-                activate()
+                self.accept()
             self.k8Edit.currentIndexChanged.connect(k8Changed)
 
             def k9Changed():
                 self.k9Edit.setCurrentIndex(self.k9Edit.currentIndex())
-                activate()
+                self.accept()
             self.k9Edit.currentIndexChanged.connect(k9Changed)
 
             def k10Changed():
                 self.k10Edit.setCurrentIndex(self.k10Edit.currentIndex())
-                activate()
+                self.accept()
             self.k10Edit.currentIndexChanged.connect(k10Changed)
 
             def k11Changed():
                 self.k11Edit.setCurrentIndex(self.k11Edit.currentIndex())
-                activate()
+                self.accept()
             self.k11Edit.currentIndexChanged.connect(k11Changed)
 
             def k12Changed():
                 self.k12Edit.setCurrentIndex(self.k12Edit.currentIndex())
-                activate()
+                self.accept()
             self.k12Edit.currentIndexChanged.connect(k12Changed)
 
             def k13Changed():
                 self.k13Edit.setCurrentIndex(self.k13Edit.currentIndex())
-                activate()
+                self.accept()
             self.k13Edit.currentIndexChanged.connect(k13Changed)
 
             def k14Changed():
                 self.k14Edit.setCurrentIndex(self.k14Edit.currentIndex())
-                activate()
+                self.accept()
             self.k14Edit.currentIndexChanged.connect(k14Changed)
 
             def k15Changed():
                 self.k15Edit.setCurrentIndex(self.k15Edit.currentIndex())
-                activate()
+                self.accept()
             self.k15Edit.currentIndexChanged.connect(k15Changed)
 
         @staticmethod
