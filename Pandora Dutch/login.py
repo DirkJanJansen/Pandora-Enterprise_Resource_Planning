@@ -776,10 +776,18 @@ def hoofdMenu(m_email):
             self.setLayout(grid)
             self.setGeometry(600, 100, 150, 150)
 
+            applyBtn = QPushButton('Kiezen')
+            applyBtn.clicked.connect(self.accept)
+
+            grid.addWidget(applyBtn, 13, 1, 1, 1, Qt.AlignRight)
+            applyBtn.setFont(QFont("Arial", 10))
+            applyBtn.setFixedWidth(130)
+            applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
+
             cancelBtn = QPushButton('Uitloggen')
             cancelBtn.clicked.connect(lambda: closeIt(self))
 
-            grid.addWidget(cancelBtn, 13, 1, 1, 1, Qt.AlignRight)
+            grid.addWidget(cancelBtn, 13, 1)
             cancelBtn.setFont(QFont("Arial", 10))
             cancelBtn.setFixedWidth(130)
             cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
