@@ -389,7 +389,6 @@ def hoofdMenu(m_email):
             self.k0Edit.addItem('4. Requesting order overview')
             self.k0Edit.addItem('5. Printing order invoices')
 
-            self.Keuze1 = QLabel()
             self.k1Edit = QComboBox()
             self.k1Edit.setFixedWidth(310)
             self.k1Edit.setFont(QFont("Arial",10))
