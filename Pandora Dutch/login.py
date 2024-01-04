@@ -283,7 +283,6 @@ def inlog():
             capslkOn()
             inlog()
     else:
-        import subprocess
         if (subprocess.getoutput("xset q | grep LED")[65]) == '1':
             capslkOn()
             inlog()
