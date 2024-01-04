@@ -283,7 +283,7 @@ def inlog():
             capslkOn()
             inlog()
     else:
-        if (subprocess.getoutput("xset q | grep LED")[65]) == '1':
+        if (subprocess.getoutput("xset q | grep LED")[65]) == '3':
             capslkOn()
             inlog()
     metadata = MetaData()
