@@ -1,4 +1,4 @@
-﻿import os, sys, keyboard, subprocess
+﻿import os, sys, subprocess
 from datetime import datetime
 from validZt import zt
 from PyQt5.QtCore import Qt
