@@ -283,7 +283,7 @@ def inlog():
             capslkOn()
             inlog()
     else:
-        if int(subprocess.getoutput("xset -q | grep LED")[65])%2 == 1:
+        if int(subprocess.getoutput("xset q | grep LED")[65])%2 == 1:
             capslkOn()
             inlog()
     metadata = MetaData()
@@ -638,6 +638,7 @@ def hoofdMenu(m_email):
             self.k15Edit.lineEdit().setReadOnly(True)
             self.k15Edit.lineEdit().setAlignment(Qt.AlignCenter)
             self.k15Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+	    self.k15Edit.setMaxVisibleItems(14)
             self.k15Edit.addItem('1. Calculation internal works')
             self.k15Edit.addItem('2. Calculation external works')  
             self.k15Edit.addItem('3. Internal orders purchase')
