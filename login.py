@@ -365,7 +365,7 @@ def hoofdMenu(m_email):
 
     # structure Menu's
     class Widget(QDialog):
-        def __init__(self, parent=None, accperms=None):
+        def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
             self.setWindowTitle("Pandora Business Information System")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
