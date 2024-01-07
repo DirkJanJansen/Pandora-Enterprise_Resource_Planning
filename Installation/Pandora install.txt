@@ -15,7 +15,7 @@ For adjustments or  additions see "Changelog.txt".
 Install python3
 pip install pyqt5
 pip install pyqtchart (same version as pyqt5)
-pip install sqlalchemy (version sqlalchemy  version   1.4.46 or before)
+pip install sqlalchemy==1.4.0
 pip install psycopg2 
 pip install pypiwin32
 pip install pillow
