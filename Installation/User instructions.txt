@@ -26,7 +26,7 @@ The group numbers are:
 7 Internal worknumber
 8 External worknumber
 QCombobox:
-zoekterm - search term (is validated)
+search term (is validated)
 all records - no search term necessary leave it open
 filter - search term or part of term depends on topics  (is validated)
 
@@ -55,7 +55,7 @@ Request own orders.
 Printing own invoices.
 
 All further permissions must be made by a authorised person.
-The authorization menu is at Onderhoud - Bevoegdheden muteren
+The authorization menu is at Maintenance - Mutate authorisations
 Initial access: dj.jansen@casema.nl password: postgres45
 The permissions are granted at menu level and menu line level (enabled-disabled)
 Further permissions are granted with the items: special, ordering, new, change, query, print and reserve
@@ -77,11 +77,11 @@ Then for this linked account permissions are set on menu level and on menu line 
 This permissions grants the person to execute certain subprograms. (Roles by workdepartment)
 Menu levels are disabled if not accessible
 
-Gegevens opvragen - All data
-Zelf gegevens opvragen - Own data
+Query data - All data
+Query own data - Own data
 Some programs expects certain steps before a checkbox or button is enabled. 
-For instance bestellen webartikelen - paybutton is accesable when calculation is done and terms accepted.
-Werken intern and werken extern - Checkboxes are accessible when the state of the work allows it.
+For instance Ordering web articles - paybutton is accesable when calculation is done and terms accepted.
+Works internal and Works external - Checkboxes are accessible when the state of the work allows it.
 State of the works A t/m H. work starts at A. 
 When costs are made state becomes B. 
 When costs reach 33% state becomes C. 
@@ -101,7 +101,7 @@ Several clusters together concists  a calculation.
 If the calculation is approved by the client, the linking with a worknumber is established.
 From this calculation a material list and a working list is pulled out.
 
-Onderhoud - params.
+Maintenance - params.
 
 The table params is a table what holds variables for the program what should be changed
 yearly or monthly depends on the item.
