@@ -1067,6 +1067,7 @@ def hoofdMenu(m_email):
                 maccountnr = '1'
                 mwerknr = '8'
                 mboekd = str(datetime.now())[0:10]
+    elif dlist[8] == 1:
         import maakIcluster
         while True:
             maakIcluster.kiesCluster(m_email)
