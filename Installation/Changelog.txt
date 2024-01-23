@@ -482,5 +482,6 @@ From 2020-01-10 updates and changes are described on this page
 2024-01-04 login.py Capslock checking for Linux enabled
 2024-01-23 opvrClustercalculatie.py corrected column number printing clustercalculation
 2024-01-23 Services + Equipment Orderlist Printing columns outlined
+2024-01-24 Settings registry files for printing windows adjusted
 
 
