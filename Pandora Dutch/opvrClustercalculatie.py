@@ -678,7 +678,7 @@ def printDienstenlijst(mcalnr, mwerknr):
     ('Bestellijst intern voor Inkooporders bestellingen / reserveringen Diensten en Materiëel,\nWerknummer: '+str(mwerknr)+' '+'{:<24s}'.format(str(row[2]))+' Calculatie: '+str(row[3])+\
      '  Datum: '+str(datetime.datetime.now())[0:10]+'  Blad : '+str(mblad)+'\n'+
     '=====================================================================================================\n'+
-    'Cluster Clusteromschrijving   Aantal Eenheid Omschrijving-Dienst   Uren-Sub  Bedrag-Sub  Levertermijn\n'+
+    'Cluster Clusteromschrijving     Aantal Eenheid Omschrijving-Dienst   Uren-Sub  Bedrag-Sub Levertermijn\n'+
     '=====================================================================================================\n')
             if rgl == 0:                 
                 open(filename, 'w').write(kop)
@@ -700,9 +700,9 @@ def printDienstenlijst(mcalnr, mwerknr):
                 #print(row[k], dienst, '\n')
                   
             if row[k]:
-                open(filename,'a').write('{:<9s}'.format(row[4])+'{:<21.22s}'.format(row[1])+\
-                 '{:6.2f}'.format(row[5])+' {:6s}'.format(row[6])+'  {:<18s}'.format(dienst)+\
-                 '{:12.2f}'.format(uren)+'{:12.2f}'.format(bedrag)+' {:12s}'.format(' Overleg'+'\n'))
+                open(filename, 'a').write('{:<8s}'.format(row[4]) + '{:<22.21s}'.format(row[1]) + \
+                '{:>8.2f}'.format(row[5]) + ' {:>6s}'.format(row[6]) + '  {:<18s}'.format(dienst) + \
+                 '{:>12.2f}'.format(uren) + '{:>12.2f}'.format(bedrag) + ' {:>10s}'.format('Overleg' + '\n'))
                 if k < 27:
                     m_uren= m_uren+row[k]
                     mtotaal = mtotaal+row[k]*rppar[k+5][1]
@@ -710,8 +710,8 @@ def printDienstenlijst(mcalnr, mwerknr):
                     mtotaal = mtotaal+row[k]
         rgl += 1
     tail =(\
-    '-----------------------------------------------------------------------------------------------------\n'+
-    'Totalen                                                         '+'{:11.2f}'.format(m_uren)+'{:12.2f}'.format(mtotaal)+'\n'+
+     '-----------------------------------------------------------------------------------------------------\n'+
+    'Totalen                                                           '+'{:11.2f}'.format(m_uren)+'{:12.2f}'.format(mtotaal)+'\n'+
     '=====================================================================================================\n')    
     open(filename,'a').write(tail)
     if platform == 'win32':
