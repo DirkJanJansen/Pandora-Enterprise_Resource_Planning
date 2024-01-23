@@ -478,7 +478,8 @@ From 2020-01-10 updates and changes are described on this page
 2024-01-02 opvrAccounts.py unnessary function showAccount removed.
 2024-01-03 login.py with selecting menulines automatic activated added. So it is no more possible to add two or more choices at a time.
 2024-01-03 login.py added Choose button again for autoselect is not working with Linux in Windows it's working well. I will try to find a solution for Linux
-2024-01-3 login.py remove Choose Button, for autoselect is working now for Windows and Linux.
-2024-01-4 login.py Capslock checking for Linux enabled
+2024-01-03 login.py remove Choose Button, for autoselect is working now for Windows and Linux.
+2024-01-04 login.py Capslock checking for Linux enabled
+2024-01-23 opvrClustercalculatie.py corrected column number printing clustercalculation
 
 
