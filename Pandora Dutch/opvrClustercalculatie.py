@@ -501,7 +501,7 @@ def printCalculatie(mcalnr, mwerknr):
     
     selcal = select([calculaties]).where(calculaties.c.calculatie == mcalnr)
     rpcal = con.execute(selcal)
-    
+
     mblad = 1
     rgl = 0
     mmat = 0
@@ -516,34 +516,35 @@ def printCalculatie(mcalnr, mwerknr):
             else:
                 filename = './forms/Extern_Clustercalculaties/clustercalculatie-'+str(row[3])+'-'+str(row[2])+'.txt'
             kop=\
-    ('Werknummer: '+str(mwerknr)+' '+'{:<24s}'.format(str(row[13]))+'  Calculatie: '+str(row[3])+'  Datum: '+str(datetime.datetime.now())[0:10]+'  Blad : '+str(mblad)+'\n'+
+    ('Werknummer: '+str(mwerknr)+' '+'{:<24s}'.format(str(row[12]))+'  Calculatie: '+str(row[3])+'  Datum: '+str(datetime.datetime.now())[0:10]+'  Blad : '+str(mblad)+'\n'+
     '=====================================================================================================\n'+
     'Cluster  Cluster             Eenheid Aantal  Materialen      Lonen  Materieel     Diensten   Bedrag  \n'+
     '=====================================================================================================\n')
+            print(kop)
             if rgl == 0:
                 open(filename, 'w').write(kop)
             elif rgl%57 == 0:
                 open(filename, 'a').write(kop)
             mblad += 1
-            
-        open(filename,'a').write('{:<9s}'.format(row[1])+'{:<22.21s}'.format(row[4])+'{:<6s}'.format(row[6])+'{:5.2f}'.format(row[5])+'  '+'{:11.2f}'.format(row[8])+'{:11.2f}'.format(row[9])+'{:11.2f}'.format(row[11])+'{:11.2f}'.format(row[12])+'{:12.2f}'.format(row[7])+'\n')
+        open(filename,'a').write('{:<9s}'.format(row[1])+'{:<22.21s}'.format(row[4])+'{:<6s}'.format(row[6])+'{:5.2f}'.format(row[5])+'  '+'{:11.2f}'.format(row[8])+'{:11.2f}'.format(row[9])+'{:11.2f}'.format(row[11])+'{:11.2f}'.format(row[10])+'{:12.2f}'.format(row[7])+'\n')
         mmat = mmat+row[8]
         mlon = mlon+row[9]
         mmater = mmater+row[11]
-        minh = minh+row[12]
+        minh = minh+row[10]
         mtotaal = mtotaal+row[7]
         rgl += 1
     tail =(\
     '-------------------------------------------------------------------------------------------------------\n'+
     'Totalen                                     '+'{:11.2f}'.format(mmat)+'{:11.2f}'.format(mlon)+'{:11.2f}'.format(mmater)+'{:11.2f}'.format(minh)+'{:12.2f}'.format(mtotaal)+'\n'
-    '=======================================================================================================\n')    
+    '=======================================================================================================\n')
+    print(tail)
     open(filename,'a').write(tail)
     if platform == 'win32':
         os.startfile(filename, "print")
     else:
         os.system("lpr "+filename)
     printing()
-                     
+
 def printArtikellijst(mcalnr, mwerknr):
     from sys import platform
     metadata = MetaData()
@@ -699,9 +700,9 @@ def printDienstenlijst(mcalnr, mwerknr):
                 #print(row[k], dienst, '\n')
                   
             if row[k]:
-                open(filename,'a').write('{:<9s}'.format(row[4])+'{:<21s}'.format(row[1])+\
+                open(filename,'a').write('{:<9s}'.format(row[4])+'{:<21.22s}'.format(row[1])+\
                  '{:6.2f}'.format(row[5])+' {:6s}'.format(row[6])+'  {:<18s}'.format(dienst)+\
-                 '{:12.2f}'.format(uren)+'{:12.2f}'.format(bedrag)+' {:12s}'.format(' In overleg '+'\n'))
+                 '{:12.2f}'.format(uren)+'{:12.2f}'.format(bedrag)+' {:12s}'.format(' Overleg'+'\n'))
                 if k < 27:
                     m_uren= m_uren+row[k]
                     mtotaal = mtotaal+row[k]*rppar[k+5][1]
@@ -715,7 +716,6 @@ def printDienstenlijst(mcalnr, mwerknr):
     open(filename,'a').write(tail)
     if platform == 'win32':
         os.startfile(filename, "print")
-        pass
     else:
         os.system("lpr "+filename)
     printing()
