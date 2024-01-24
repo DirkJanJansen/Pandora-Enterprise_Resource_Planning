@@ -1,0 +1,26 @@
+Order list internal for purchase orders / reservations Services and Equipment,
+Work number: 800000079 Eemshaven Groningen      Calculation: 3  Date: 2024-01-24  Page : 1
+=====================================================================================================
+Cluster Cluster description      Number   Unit  Description-Service  hours-sub  Amount-Sub  Delivery  
+=====================================================================================================
+AA00001 spoorbaan recht op h       5.00  1080m  Hiring                 9826.80   307971.91     Agree
+AA00001 spoorbaan recht op h       5.00  1080m  Mainliner              5138.00  1101278.92     Agree
+AA00001 spoorbaan recht op h       5.00  1080m  Wagon                  1378.00    22792.12     Agree
+AA00001 spoorbaan recht op h       5.00  1080m  Locomotive             4418.00   394704.12     Agree
+AA00002 Lijmlas set NRG 54 E      16.00   stel  Atlas crane             268.80    14068.99     Agree
+AA00002 Lijmlas set NRG 54 E      16.00   stel  Mainliner               537.60   115229.18     Agree
+AA00002 Lijmlas set NRG 54 E      16.00   stel  Wagon                   256.00     4234.24     Agree
+EA00401 Wissel 1:12                2.00     st  Hiring                  375.20    11758.77     Agree
+EA00401 Wissel 1:12                2.00     st  Crane big                72.96     8212.38     Agree
+EA00401 Wissel 1:12                2.00     st  Mainliner               103.20    22119.89     Agree
+EA00401 Wissel 1:12                2.00     st  Wagon                    38.40      635.14     Agree
+GA00610 AY sein                    2.00         Hiring                  132.80     4161.95     Agree
+GA00610 AY sein                    2.00         Atlas crane              56.00     2931.04     Agree
+GA00610 AY sein                    2.00         Stormobiel               74.72     5131.02     Agree
+GB00611 MF sein                    1.00         Hiring                   19.60      614.26     Agree
+GB00611 MF sein                    1.00         Atlas crane               9.60      502.46     Agree
+JA00801 HS kast 3000 110V 75       1.00  stuks  Hiring                  117.36     3678.06     Agree
+JA00801 HS kast 3000 110V 75       1.00  stuks  Atlas crane              11.68      611.33     Agree
+-----------------------------------------------------------------------------------------------------
+Totals                                                                22834.72  2372812.44
+=====================================================================================================
