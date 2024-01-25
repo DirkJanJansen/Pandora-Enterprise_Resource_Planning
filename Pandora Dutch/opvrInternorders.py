@@ -123,7 +123,7 @@ def printWerkbrief(mwerkorder, rpord, header):
                 mgemaakt = rpord[k+1]
                 msubtot=mstuk*mhoev+mstel
                 mbewerking = header[k][1:].title()
-                open(filename1,'a').write('{:>5s}'.format(str(rgl))+' '+'{:<23s}'\
+                open(filename1,'a').write('{:>5s}'.format(str(rgl))+' '+'{:<23.23s}'\
                   .format(mbewerking)+'{:>8.2f}'.format(mhoev)+'  '+'{:>8.2f}'.format(mstel)+\
                    '  '+'{:>8.2f}'.format(mstuk)+'    '+'{:>8.2f}'.format(msubtot)+'{:>15.2f}'\
                    .format(mgemaakt)+'\n')
