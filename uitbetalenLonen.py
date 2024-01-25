@@ -159,10 +159,10 @@ def maandBetalingen(m_email):
             'Addressee              '+str(datetime.datetime.now())[0:10]+'             '+str(row[2])+'     '+str(row[3])+'    Employer       '+str(row[1])+'\n'+
             '=============================================================================================\n'+
             '                                                                 Pandora Connect B.V.,       \n'+
-            '     '+'{:<30.30s}'(row[4]+' '+ row[5]+' '+row[6]+',')+'                              '+'Lange Dreef 7,\n'+
+            '     '+'{:<30.30s}'.format(row[4]+' '+ row[5]+' '+row[6]+',')+'                              '+'Lange Dreef 7,\n'+
             '     '+'{:<30.30s}'.format(row[7]+' '+ str(row[8])+' '+row[9]+',')+'                              '+'4131 NJ Vianen.\n'+
             '     '+'{:<30.30s}'.format(row[10]+' '+ row[11]+'.')+'                              '+'Telephone: 0347377304\n'+
-            '                                                                 e-mail: dj.jansen@casema.nl  \n'+                                                                   
+            '                                                                 e-mail: dj.jansen@casema.nl  \n'+
             '=============================================================================================\n'+
             'Payments  /Deductions /Days/Hours/Amounts             taxable for                            \n'+
             'Description                    this period       table        special tax table              \n'+
