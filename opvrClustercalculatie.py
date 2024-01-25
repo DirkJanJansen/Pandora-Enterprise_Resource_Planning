@@ -516,7 +516,7 @@ def printCalculatie(mcalnr, mwerknr):
             else:
                 filename = './forms/Extern_Clustercalculaties/clustercalculation_'+str(row[3])+'-'+str(row[2])+'.txt'
             kop=\
-    ('Work number: '+str(mwerknr)+' '+'{:<24s}'.format(str(row[12]))+'  Calculation: '+str(row[3])+'  Date: '+str(datetime.datetime.now())[0:10]+'  Page : '+str(mblad)+'\n'+
+    ('Work number: '+str(mwerknr)+' '+'{:<24.24s}'.format(str(row[12]))+'  Calculation: '+str(row[3])+'  Date: '+str(datetime.datetime.now())[0:10]+'  Page : '+str(mblad)+'\n'+
     '=====================================================================================================\n'+
     'Cluster  Clustername           Unit Number    Materials      Wages  Equipment   Services      Amount \n'+
     '=====================================================================================================\n')
@@ -674,7 +674,7 @@ def printDienstenlijst(mcalnr, mwerknr):
             else:
                 filename = './forms/Extern_Clustercalculaties_Diensten/clustercalculation_'+str(row[2]).replace(' ', '_')+'.txt'
             kop=\
-    ('Order list internal for purchase orders / reservations Services and Equipment,\nWork number: '+str(mwerknr)+' '+'{:<24s}'.format(str(row[2]))+' Calculation: '+str(row[3])+\
+    ('Order list internal for purchase orders / reservations Services and Equipment,\nWork number: '+str(mwerknr)+' '+'{:<24.24s}'.format(str(row[2]))+' Calculation: '+str(row[3])+\
      '  Date: '+str(datetime.datetime.now())[0:10]+'  Page : '+str(mblad)+'\n'+
     '=====================================================================================================\n'+
     'Cluster Cluster description      Number   Unit  Description-Service  hours-sub  Amount-Sub  Delivery  \n'+

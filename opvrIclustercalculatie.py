@@ -556,7 +556,7 @@ def printCalculatie(mcalnr, mwerknr):
             else:
                 filename = './forms/Intern_Clustercalculaties/clustercalculation_'+str(row[3])+'-'+str(mwerknr)+'.txt'
             kop=\
-    ('Work order: '+ str(mwerknr)+' '+'{:<24s}'.format(str(row[10]))+'  Calculation: '+str(row[3])+'  Date: '+str(datetime.datetime.now())[0:10]+'  Page : '+str(mblad)+'\n'+
+    ('Work order: '+ str(mwerknr)+' '+'{:<24.24s}'.format(str(row[10]))+'  Calculation: '+str(row[3])+'  Date: '+str(datetime.datetime.now())[0:10]+'  Page : '+str(mblad)+'\n'+
     '================================================================================================\n'+
     'Cluster  Description        Unit    Number  Materials        Wages                       Amount\n'+
     '================================================================================================\n')
