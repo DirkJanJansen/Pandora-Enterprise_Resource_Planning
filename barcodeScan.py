@@ -171,7 +171,7 @@ def printBon(self):
             mprijs = row[6]
             msubtotaal = row[7]
             msubtotbtw = row[8]
-            open(fbarc,'a').write(str(martnr) +'  '+'{:<40.39s}'.format(momschr)+' '+'{:>6d}'\
+            open(fbarc,'a').write(str(martnr) +'  '+'{:<40.40s}'.format(momschr)+' '+'{:>6d}'\
                      .format(int(maantal))+'{:>12.2f}'.format(float(mprijs))+'{:>12.2f}'\
                      .format(float(msubtotaal))+'{:>12.2f}'\
                      .format(float(msubtotbtw))+'\n')
@@ -392,7 +392,7 @@ def set_barcodenr(self):
                 .values(art_voorraad = artikelen.c.art_voorraad - float(maantal))
             con.execute(updart)
             
-            self.mlist.append('{:\u2000<10d}'.format(martnr)+'{:\u2000<40.39s}'.format(momschr)+'\n'+'{:\u2000>6d}'\
+            self.mlist.append('{:\u2000<10d}'.format(martnr)+'{:\u2000<40.40s}'.format(momschr)+'\n'+'{:\u2000>6d}'\
              .format(int(maantal))+'{:\u2000>12.2f}'.format(mprijs)+'{:\u2000>12.2f}'\
              .format(float(mprijs)*float(maantal))+'{:\u2000>12.2f}'\
              .format(float(mprijs)*float(maantal)*mbtw))
