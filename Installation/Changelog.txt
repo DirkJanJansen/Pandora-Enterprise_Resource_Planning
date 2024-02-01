@@ -484,4 +484,4 @@ From 2020-01-10 updates and changes are described on this page
 2024-01-23 Services + Equipment Orderlist Printing columns outlined
 2024-01-24 Settings registry files for printing windows adjusted
 2024-01-25 Alignment approved printlists barcodeScan.py, opvrClustercalculatie.py, opvrIclustercalculatie.py, opvrInternorders.py and uitbetalenLonen.py
-
+2024-02-01 Documentation Accounts_and_access_control changed for enabled disabled menu line items
