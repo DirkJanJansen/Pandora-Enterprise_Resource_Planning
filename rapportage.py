@@ -18,7 +18,7 @@ def JN(m_email):
     msgBox.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msgBox.setWindowTitle("Calculate Data from external Works")
     msgBox.setIcon(QMessageBox.Information)
-    msgBox.setText("Do you want to calculate this week's financials?");
+    msgBox.setText("Do you want to calculate this week's financials?")
     msgBox.setStandardButtons(QMessageBox.Yes)
     msgBox.addButton(QMessageBox.No)
     msgBox.setDefaultButton(QMessageBox.Yes)
