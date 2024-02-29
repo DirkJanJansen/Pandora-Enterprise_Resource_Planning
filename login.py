@@ -638,7 +638,7 @@ def hoofdMenu(m_email):
             self.k15Edit.lineEdit().setReadOnly(True)
             self.k15Edit.lineEdit().setAlignment(Qt.AlignCenter)
             self.k15Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-	    self.k15Edit.setMaxVisibleItems(14)
+            self.k15Edit.setMaxVisibleItems(14)
             self.k15Edit.addItem('1. Calculation internal works')
             self.k15Edit.addItem('2. Calculation external works')  
             self.k15Edit.addItem('3. Internal orders purchase')
@@ -1025,7 +1025,7 @@ def hoofdMenu(m_email):
         mboekd = str(datetime.now())[0:10]
         while True:
             accwerk = urenImutaties.urenMut(maccountnr, mwerknr, mboekd, m_email)
-	        # for convenience start with last used work , employee and mboekd 
+            # for convenience start with last used work , employee and mboekd
             try:
                 maccountnr = accwerk[0]
                 mwerknr = accwerk[1]
