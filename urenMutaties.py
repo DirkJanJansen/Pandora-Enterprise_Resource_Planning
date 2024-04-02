@@ -337,7 +337,7 @@ def urenBoeking(self, m_email):
         rpsel = con.execute(sel).first()
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[6]))
         self.urentotEdit.setText('{:<12.2f}'.format(rpsel[7]))
-        lblptext = 'Totals: Realised / Budgeted Hours Assembly'
+        lblptext = 'Totals: Realised / Budgeted\nHours Assembly'
         lbltext = 'Mutate hours (work - wages) not cumulative'
         self.lblprof.setText(lblptext)
         self.lblt.setStyleSheet("color: black")
@@ -354,7 +354,7 @@ def urenBoeking(self, m_email):
           rpsel = con.execute(sel).first()
           self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[8]))
           self.urentotEdit.setText('{:<12.2f}'.format(rpsel[9]))
-          lblptext = 'Totals: Realised / Budgeted Hours return welding'
+          lblptext = 'Totals: Realised / Budgeted\nHours return welding'
           lbltext = 'Mutate hours (work - wages) not cumulative'
           self.lblprof.setText(lblptext)
           self.lblt.setStyleSheet("color: black")
