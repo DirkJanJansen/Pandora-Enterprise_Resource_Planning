@@ -490,3 +490,5 @@ From 2020-01-10 updates and changes are described on this page
 2024-03-12 Explain login.py.pdf added explanation permissions
 2024-04-02 layout return welding improved
 2024-04-02 Added Screenshot mutate working hours
+2024-04-09 Delete redundant screenshot
+2024-04-09 Added Screenshot ordering articles minimum stock driven
