@@ -658,11 +658,11 @@ def hoofdMenu(m_email):
             mplist=[self.k0Edit,self.k1Edit,self.k2Edit,self.k3Edit,self.k4Edit,self.k5Edit,self.k6Edit,self.k7Edit,\
                     self.k8Edit,self.k9Edit,self.k10Edit,self.k11Edit,self.k12Edit,self.k13Edit,self.k14Edit,self.k15Edit]
 
-            # list of pointers by mainmenu and menulines per groups pointers towards database table accountpermissions
+            # list of pointers by mainmenu and menulines per group, pointers towards database table accountpermissions
             lineperm = ([0, 4, 6, 2, 2, 5],[0, 3, 4, 6, 1],[0, 1, 4, 6, 6],[0, 3, 4, 3, 4, 6, 6],[0, 3, 4, 6, 1, 6],\
-                        [0, 3, 4, 6, 4, 5, 1, 6, 3, 6],[0, 3, 4, 6, 3, 5, 3],[0, 3, 4, 6, 2, 6, 3, 3],\
-                        [0, 3, 4, 6, 3, 6, 3, 6, 1],[0, 4, 4, 6, 3, 6, 3, 6, 1],[0, 6, 2, 1, 6, 3, 4, 1],\
-                        [0, 6, 6, 2, 6, 2, 5, 6],[0, 2, 1, 1, 1],[0, 1, 6, 6, 6],[0, 1, 3, 3, 3, 4, 6, 4],[0])
+            [0, 3, 4, 6, 4, 5, 1, 6, 3, 6],[0, 3, 4, 6, 3, 5, 3],[0, 3, 4, 6, 2, 6, 3, 3],\
+            [0, 3, 4, 6, 3, 6, 3, 6, 1],[0, 4, 4, 6, 3, 6, 3, 6, 1],[0, 6, 2, 1, 6, 3, 4, 1],\
+            [0, 6, 6, 2, 6, 2, 5, 6],[0, 2, 1, 1, 1],[0, 1, 6, 6, 6],[0, 1, 3, 3, 3, 4, 6, 4],[0])
             # loop on mainmenu and permissions in table accounts
             for menu in range(0,16):
                 menuperms = lineperm[menu]

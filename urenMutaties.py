@@ -12,9 +12,7 @@ def _11check(mcontr):
     fullnumber = number                       
     for i in range(8):
         total += int(fullnumber[i])*(9-i)
-        checkdigit = total % 11
-    if checkdigit == 10:
-        checkdigit = 0
+        checkdigit = total %11 %10
     if checkdigit == int(fullnumber[8]):
         return True
     else:
@@ -254,7 +252,7 @@ def urenBoeking(self, m_email):
         self.lblt.setText('No hours entered!')
         self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
         return(maccountnr, mwerknr, mboekd, m_email)
-            
+
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
     try:
@@ -400,7 +398,7 @@ def urenBoeking(self, m_email):
                +mmeerw100+mmeerw125+mmeerw150+mmeerw200,\
                werk_reis_uren = werken.c.werk_reis_uren+mreis,\
                 meerminderwerk = werken.c.meerminderwerk + meerk)
-          con.xecute(stmt)
+          con.execute(stmt)
           sel = select([werken]).where(werken.c.werknummerID == mwerknr)
           rpsel = con.execute(sel).first()
           self.urenbegrEdit.setText('{:<12.2f}'.format(rpsel[14]))
@@ -474,7 +472,7 @@ def urenBoeking(self, m_email):
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         elif msoort == 6 and wrkgr < 37:
-            lbltext = mboekuren+' Extra Leave Hours enterd'
+            lbltext = mboekuren+' Extra Leave Hours entered'
             lblptext = '\n'
             self.lblt.setStyleSheet("color: navy")
             self.lblt.setText(lbltext)
@@ -498,7 +496,7 @@ def urenBoeking(self, m_email):
             self.lblt.setText(lbltext)
             self.lblprof.setText(lblptext)
         elif msoort == 10 and wrkgr < 37:
-            lbltext = mboekuren+' Hours allowed absence enterd'
+            lbltext = mboekuren+' Hours allowed absence entered'
             lblptext = '\n'
             self.lblt.setStyleSheet("color: navy")
             self.lblt.setText(lbltext)
@@ -515,7 +513,7 @@ def urenBoeking(self, m_email):
             self.lblt.setText('Person not in this labor pool')
             self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
             return(maccountnr, mwerknr, mboekd, m_email) 
-        
+
     self.urenEdit.setText('0')
     self.k0Edit.setCurrentIndex(0)
     return(maccountnr, mwerknr, mboekd, m_email) 
@@ -679,7 +677,7 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
             lbl4.setFont(QFont("Arial", 10))
             grid.addWidget(lbl4, 10, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.urenEdit, 10, 2, 1, 1, Qt.AlignRight)
-                                       
+
             lbl5 = QLabel('Book date')
             lbl5.setFont(QFont("Arial", 10))
             grid.addWidget(lbl5, 11, 1, 1, 1, Qt.AlignRight)
