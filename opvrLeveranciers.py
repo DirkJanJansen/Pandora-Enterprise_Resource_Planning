@@ -42,7 +42,7 @@ def leveranciersKeuze(m_email):
             self.Keuze4 = QLabel()
             k4Edit = QComboBox()
             k4Edit.setFixedWidth(230)
-            k4Edit.setFont(QFont("Times", 10))
+            k4Edit.setFont(QFont("Arial", 10))
             k4Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             k4Edit.addItem(' Search sort key')
             k4Edit.addItem('1. All Supplers.')
