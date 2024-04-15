@@ -37,7 +37,7 @@ def leveranciersKeuze(m_email):
             self.setWindowTitle("Suppliers Overview.")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
-            self.setFont(QFont('Times', 10))
+            self.setFont(QFont('Arial', 10))
     
             self.Keuze4 = QLabel()
             k4Edit = QComboBox()
@@ -45,15 +45,15 @@ def leveranciersKeuze(m_email):
             k4Edit.setFont(QFont("Arial", 10))
             k4Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             k4Edit.addItem(' Search sort key')
-            k4Edit.addItem('1. All Supplers.')
+            k4Edit.addItem('1. All Suppliers.')
             k4Edit.addItem('2. Company name.')
-            k4Edit.addItem('3. Supplernumber.')
+            k4Edit.addItem('3. Suppliernumber.')
             k4Edit.activated[str].connect(self.k4Changed)
             
             self.Zoekterm = QLabel()
             zktermEdit = QLineEdit()
             zktermEdit.setFixedWidth(220)
-            zktermEdit.setFont(QFont("Times", 10))
+            zktermEdit.setFont(QFont("Arial", 10))
             zktermEdit.textChanged.connect(self.zktermChanged)
      
             grid = QGridLayout()
