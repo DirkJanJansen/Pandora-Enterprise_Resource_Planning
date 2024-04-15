@@ -6,9 +6,7 @@ def _11check(zoekterm):
     fullnumber = number                       
     for i in range(8):
         total += int(fullnumber[i])*(9-i)
-        checkdigit = total % 11
-    if checkdigit == 10:
-        checkdigit = 0
+        checkdigit = total %11 %10
     if checkdigit == int(fullnumber[8]):
         return True
     else:
