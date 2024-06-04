@@ -466,7 +466,7 @@ def barcodeScan(m_email, mret):
             grid.addWidget(koplbl, 1, 0, 1, 3, Qt.AlignCenter)
             
             mkop = QTextEdit()
-            mkoptext = 'Aticlenr  Description \nNumber       Price   Subtotal          VAT'
+            mkoptext = 'Articlenr Description  \nNumber       Price    Subtotal         VAT'
             mkop.setText(mkoptext)
             mkop.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
             mkop.setReadOnly(True)
