@@ -494,3 +494,6 @@ From 2020-01-10 updates and changes are described on this page
 2024-04-09 Added Screenshot ordering articles minimum stock driven
 2024-04-14 opvragenLeveranciers font changed from Times to Arial
 2024-06-04 barcodeScan.py layout text approved and screenshot changed
+2024-07-10 Encryption method improved. Update database with python script "modify_accounts-passwords.py" to change password keys.
+           Requirement.txt added "argon2-cffi", install with "pip install argon2-cffi" or with Linux "sudo pip3 install argon2-cffi"
+           Changed Pandora install.txt and LINUX install.txt
