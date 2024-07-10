@@ -9,6 +9,7 @@ sudo pip3 install python-barcode
 sudo pip3 install pillow
 sudo pip3 install psycopg2
 sudo pip3 install sqlalchemy==1.4.0
+sudo pip3 install argon2-cffi
 
 if you want a editor install PyCharm community:
 Install:
