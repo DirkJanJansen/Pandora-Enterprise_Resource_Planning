@@ -1,5 +1,18 @@
+import sys
 from sqlalchemy import (Table, Column, Integer, String, MetaData,
                         create_engine, select, update)
+
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QMessageBox, QApplication
+
+def modify_passwords(message):
+    msg = QMessageBox()
+    msg.setStyleSheet("font: 10pt Arial; color: black;  background-color: gainsboro")
+    msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
+    msg.setIcon(QMessageBox.Information)
+    msg.setText(message)
+    msg.setWindowTitle('Update Table accounts->password')
+    msg.exec_()
 
 metadata = MetaData()
 accounts = Table('accounts', metadata,
@@ -29,12 +42,23 @@ plist = \
  '$argon2id$v=19$m=65536,t=3,p=4$dBnPtHkSHx1751ejAARoyA$u4Q7SkXtHZEcqw/fkyXoXKaMZV1wT0ilWiHIByPzGXs']
 
 x = 0
-for records in rpaccount:
-    passwd = plist[x]
-    upd = update(accounts).where(accounts.c.accountID==records[0]).values(password=passwd)
-    conn.execute(upd)
-    print(records[0],plist[x])
-    x += 1
+try:
+    for records in rpaccount:
+        passwd = plist[x]
+        upd = update(accounts).where(accounts.c.accountID==records[0]).values(password=passwd)
+        conn.execute(upd)
+        print(records[0],plist[x])
+        x += 1
+    message = "Encryption passwords database successful"
+except Exception:
+    message = "Encryption passwords failed!"
+
+app = QApplication(sys.argv)
+app.setStyle("Windows")
+sys.exit(modify_passwords(message))
+app.exec_()
+
+
 
 
 
