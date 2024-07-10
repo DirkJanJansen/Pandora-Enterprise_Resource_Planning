@@ -1,5 +1,6 @@
 ﻿import os, sys, subprocess
 from datetime import datetime
+from argon2 import PasswordHasher
 from validZt import zt
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont, QPixmap, QIcon, QMovie, QColor
@@ -8,10 +9,13 @@ from PyQt5.QtWidgets import (QDialog, QGridLayout, QMessageBox,\
 from sqlalchemy import (Table, Column, Integer, String, MetaData,\
                     create_engine, select)
 
-def check_password(hashed_password, user_password):
-    import hashlib
-    (password, salt) = hashed_password.split(':')
-    return (password == hashlib.sha256(salt.encode() + user_password.encode()).hexdigest())
+def password_check(hashed_password, password):
+    ph = PasswordHasher()
+    try:
+        if ph.verify(hashed_password, password) and (len(password) > 7):  # True
+           return(True)
+    except Exception:
+        return(False)
 
 def goodbye():
     msg = QMessageBox()
@@ -27,7 +31,7 @@ def goodbye():
     msg.setWindowTitle('LOGON')
     msg.exec_()
     sys.exit()
-     
+
 def info():
     class Widget(QDialog):
         def __init__(self, parent=None):
@@ -61,21 +65,21 @@ def info():
          
         The system is designed in Python 3 with PyQt5 as the graphical interface.
         As relational database system is applied PostgreSQL with interface SQLAlchemy Core.
-        The login is realized with encrypted SHA256 control with authorized
+        The login is realized with encrypted SHA256 control with authorised
         and account-adjustable permissions. This at menu level and on other operations
         e.g. ordering, requesting, entering, changing, printing, etc. The permissions can be assigned
-        by authorized persons. The creation of a account can be done by any person.
+        by authorised persons. The creation of a account can be done by any person.
         By default, the account is created with the permissions to query and change own account,
         placing web orders, requesting and printing order data.
-        All other authorizations must be carried out by an authorized person.
+        All other authorisations must be carried out by an authorised person.
         Linking of the account is possible to employee, supplier, or buyer. 
-        The other authorizations can then be granted for each department or work discipline.
-        For this privileges, see the info for maintenance menu authorizations.
+        The other authorisations can then be granted for each department or work discipline.
+        For this privileges, see the info for maintenance menu authorisations.
         The following submenus can be accessed from the main menu:
         Accounts, Suppliers, Employees, Purchasing, Sales, Warehouse, Working Internally, Working Externally,\t
         Calculation Internal, External Calculation, Wages Administration, Accounting, Stock Management,
         Management Information, Maintenance, Reprinting forms. 
-        Authorizing these submenus and operations can be assigned with
+        Authorising these submenus and operations can be assigned with
         the maintenance menu, mutate permissions.                                 
   
      ''')
@@ -329,13 +333,13 @@ def inlog():
         wrongPassword()
         inlog()
 
-    if not check_password(mpassword,mwachtw):
+    if not password_check(mpassword,mwachtw):
         wrongPassword()
         inlog()
     hoofdMenu(m_email)
 
 def hoofdMenu(m_email):
-    # declare database table accounts for authorizations
+    # declare database table accounts for authorisations
     metadata = MetaData()
     accounts = Table('accounts', metadata,
                      Column('accountID', Integer(), primary_key=True),
@@ -658,11 +662,11 @@ def hoofdMenu(m_email):
             mplist=[self.k0Edit,self.k1Edit,self.k2Edit,self.k3Edit,self.k4Edit,self.k5Edit,self.k6Edit,self.k7Edit,\
                     self.k8Edit,self.k9Edit,self.k10Edit,self.k11Edit,self.k12Edit,self.k13Edit,self.k14Edit,self.k15Edit]
 
-            # list of pointers by mainmenu and menulines per group, pointers towards database table accountpermissions
+            # list of pointers by mainmenu and menulines per groups pointers towards database table accountpermissions
             lineperm = ([0, 4, 6, 2, 2, 5],[0, 3, 4, 6, 1],[0, 1, 4, 6, 6],[0, 3, 4, 3, 4, 6, 6],[0, 3, 4, 6, 1, 6],\
-            [0, 3, 4, 6, 4, 5, 1, 6, 3, 6],[0, 3, 4, 6, 3, 5, 3],[0, 3, 4, 6, 2, 6, 3, 3],\
-            [0, 3, 4, 6, 3, 6, 3, 6, 1],[0, 4, 4, 6, 3, 6, 3, 6, 1],[0, 6, 2, 1, 6, 3, 4, 1],\
-            [0, 6, 6, 2, 6, 2, 5, 6],[0, 2, 1, 1, 1],[0, 1, 6, 6, 6],[0, 1, 3, 3, 3, 4, 6, 4],[0])
+                        [0, 3, 4, 6, 4, 5, 1, 6, 3, 6],[0, 3, 4, 6, 3, 5, 3],[0, 3, 4, 6, 2, 6, 3, 3],\
+                        [0, 3, 4, 6, 3, 6, 3, 6, 1],[0, 4, 4, 6, 3, 6, 3, 6, 1],[0, 6, 2, 1, 6, 3, 4, 1],\
+                        [0, 6, 6, 2, 6, 2, 5, 6],[0, 2, 1, 1, 1],[0, 1, 6, 6, 6],[0, 1, 3, 3, 3, 4, 6, 4],[0])
             # loop on mainmenu and permissions in table accounts
             for menu in range(0,16):
                 menuperms = lineperm[menu]
@@ -1025,7 +1029,7 @@ def hoofdMenu(m_email):
         mboekd = str(datetime.now())[0:10]
         while True:
             accwerk = urenImutaties.urenMut(maccountnr, mwerknr, mboekd, m_email)
-            # for convenience start with last used work , employee and mboekd
+	        # for convenience start with last used work , employee and mboekd 
             try:
                 maccountnr = accwerk[0]
                 mwerknr = accwerk[1]

@@ -15,14 +15,7 @@ def foutPostcode():
     msg.setText('Zipcode incorrectly inserted!')
     msg.setWindowTitle('Zipcode')
     msg.exec_()
-    
-def hash_password(password):
-    import uuid
-    import hashlib  
-    # uuid is used to generate a random number
-    salt = uuid.uuid4().hex
-    return hashlib.sha256(salt.encode() + password.encode()).hexdigest() + ':' + salt
-   
+
 def geenGegevens():
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
@@ -78,9 +71,7 @@ def maak11proef(basisnr):
    total = 0                       
    for i in range(int(8)):
        total += int(basisnr[i])*(int(9)-i)
-   checkdigit = total % 11
-   if checkdigit == 10:
-            checkdigit = 0
+   checkdigit = total % 11 % 10
    basisuitnr = basisnr+str(checkdigit)
    return basisuitnr
 
