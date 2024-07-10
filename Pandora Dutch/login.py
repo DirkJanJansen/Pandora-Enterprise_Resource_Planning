@@ -1,5 +1,6 @@
 ﻿import os, sys, subprocess
 from datetime import datetime
+from argon2 import PasswordHasher
 from validZt import zt
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont, QPixmap, QIcon, QMovie, QColor
@@ -8,10 +9,13 @@ from PyQt5.QtWidgets import (QDialog, QGridLayout, QMessageBox,\
 from sqlalchemy import (Table, Column, Integer, String, MetaData,\
                     create_engine, select)
 
-def check_password(hashed_password, user_password):
-    import hashlib
-    (password, salt) = hashed_password.split(':')
-    return (password == hashlib.sha256(salt.encode() + user_password.encode()).hexdigest())
+def password_check(hashed_password, password):
+    ph = PasswordHasher()
+    try:
+        if ph.verify(hashed_password, password) and (len(password) > 7):  # True
+           return(True)
+    except Exception:
+        return(False)
 
 def totZiens():
     msg = QMessageBox()
@@ -329,7 +333,7 @@ def inlog():
         foutWachtw()
         inlog()
 
-    if not check_password(mpassword,mwachtw):
+    if not password_check(mpassword, mwachtw):
         foutWachtw()
         inlog()
     hoofdMenu(m_email)
@@ -633,12 +637,12 @@ def hoofdMenu(m_email):
             self.k15Edit.setFont(QFont("Arial",10))
             self.k15Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             self.k15Edit.addItem('Herprinten van formulieren')
+            self.k15Edit.setMaxVisibleItems(14)
             self.k15Edit.setEditable(True)
             self.k15Edit.lineEdit().setFont(QFont("Arial", 10))
             self.k15Edit.lineEdit().setReadOnly(True)
             self.k15Edit.lineEdit().setAlignment(Qt.AlignCenter)
             self.k15Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            self.k15Edit.setMaxVisibleItems(14)
             self.k15Edit.addItem('1. Calculatie interne werken')
             self.k15Edit.addItem('2. Calculatie externe werken')
             self.k15Edit.addItem('3. Interne orderbrieven tbv inkoop')

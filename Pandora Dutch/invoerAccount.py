@@ -1,5 +1,6 @@
 import login
 import datetime, re
+from argon2 import PasswordHasher
 from PyQt5.QtWidgets import QLabel, QLineEdit, QGridLayout, QPushButton,\
      QDialog, QComboBox, QMessageBox
 from PyQt5.QtGui import QRegExpValidator, QFont, QPixmap, QIcon
@@ -82,10 +83,12 @@ def info():
     window = Widget()
     window.exec_()
 
-def passwcontrol(password, passwcontrol):
-    if  (password == passwcontrol) and (len(password) > 7):
-        return(True)
-    else:
+def password_check(password):
+    ph = PasswordHasher()
+    try:
+        if ph.verify(ph.hash(password), password):  # True
+            return(True)
+    except Exception:
         return(False)
  
 def valid(item, valnr):
@@ -120,12 +123,9 @@ def windowSluit(self):
     self.close()
     login.inlog()
      
-def hash_password(password):
-    import uuid
-    import hashlib  
-    # uuid is used to generate a random number
-    salt = uuid.uuid4().hex
-    return hashlib.sha256(salt.encode() + password.encode()).hexdigest() + ':' + salt
+def password_hash(password):
+    ph = PasswordHasher()
+    return(ph.hash(password))  # store hashpass in bisystem table  accounts,  field password
    
 def geenGegevens():
     msg = QMessageBox()
@@ -169,9 +169,7 @@ def maak11proef(basisnr):
    total = 0                       
    for i in range(int(8)):
        total += int(basisnr[i])*(int(9)-i)
-   checkdigit = total % 11
-   if checkdigit == 10:
-            checkdigit = 0
+   checkdigit = total % 11 %10
    basisuitnr = basisnr+str(checkdigit)
    return basisuitnr
 
@@ -508,7 +506,7 @@ def nieuwAccount(self):
     data = window.getData()
     
     if data[1] and data[3] and valid(data[4], 1) and valid(data[5],2)\
-         and valid(data[7],3) and data[12] and passwcontrol(data[8], data[9]) and valid(data[10],6):
+         and valid(data[7],3) and data[12] and password_check(data[8]) and valid(data[10],6):
         if data[0]:
             maanhef = data[0]
         else:
@@ -524,9 +522,8 @@ def nieuwAccount(self):
         if mtoev:
             mtoev = '-'+mtoev
         m_email = (data[7])
-        mpassword = hash_password(data[8])
+        mpassword = password_hash(data[8])
         mtelnr = (data[10])
-        maccountnr = (data[11])
         if data[12]:
             mgebdatum = data[12]
         import postcode

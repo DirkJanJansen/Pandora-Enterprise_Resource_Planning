@@ -1,5 +1,6 @@
 from login import hoofdMenu
 from validZt import zt
+from argon2 import PasswordHasher
 from postcode import checkpostcode
 from PyQt5.QtWidgets import QLabel, QLineEdit, QGridLayout, QPushButton,\
      QDialog, QMessageBox, QComboBox
@@ -7,16 +8,16 @@ from PyQt5.QtGui import QRegExpValidator, QFont, QPixmap, QIcon
 from PyQt5.QtCore import Qt, QRegExp
 
 def hash_password(password):
-    import uuid
-    import hashlib  
-    # uuid is used to generate a random number
-    salt = uuid.uuid4().hex
-    return hashlib.sha256(salt.encode() + password.encode()).hexdigest() + ':' + salt
+    ph = PasswordHasher()
+    return(ph.hash(password))
 
 def check_password(hashed_password, user_password):
-    import hashlib
-    password, salt = hashed_password.split(':')
-    return password == hashlib.sha256(salt.encode() + user_password.encode()).hexdigest()
+    ph = PasswordHasher()
+    try:
+        if ph.verify(hashed_password, user_password) and (len(user_password) > 7):  # True
+            return(True)
+    except Exception:
+        return(False)
     
 def geenGegevens():
     msg = QMessageBox()
