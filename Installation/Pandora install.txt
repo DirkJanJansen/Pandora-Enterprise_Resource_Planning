@@ -20,6 +20,7 @@ pip install psycopg2
 pip install pypiwin32
 pip install pillow
 pip install python-barcode
+pip install argon2-cffi
 
 If you want a editor:
 install pycharm community
