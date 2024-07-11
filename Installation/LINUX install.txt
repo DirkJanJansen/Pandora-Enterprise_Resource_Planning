@@ -105,7 +105,7 @@ pg_restore --dbname=bisystem  --verbose "/home/postgres/Pandora/data/bisystem.ba
 
 Before starting the program for the first time run script reset_odd_even.py to set the parameter for odd-even year for the right year
 and modify_accounts-passwords.py for changing the new encryption passwords in database bisystem
-in terminal ctrl+alt
+in terminal ctrl+alt+t
 in folder Pandora
 python3 reset_odd_even.py
 python3 modify_accounts-passwords.py 
