@@ -21,7 +21,7 @@ Copy .pgpass in /home/postgres
 in terminal chmod 600 .pgpass
 
 Install postgresql:
-in terminal
+in terminal crtl+alt+t
 sudo apt update -y
 sudo apt install gnupg2 wget vim -y
 sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
@@ -105,7 +105,7 @@ pg_restore --dbname=bisystem  --verbose "/home/postgres/Pandora/data/bisystem.ba
 
 Before starting the program for the first time run script reset_odd_even.py to set the parameter for odd-even year for the right year
 and modify_accounts-passwords.py for changing the new encryption passwords in database bisystem
-in command prompt
+in terminal ctrl+alt
 in folder Pandora
 python3 reset_odd_even.py
 python3 modify_accounts-passwords.py 
