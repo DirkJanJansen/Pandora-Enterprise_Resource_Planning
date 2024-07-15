@@ -163,6 +163,15 @@ def accountBestaat():
     msg.setWindowTitle('Account')
     msg.exec_()
 
+def noMatch():
+    msg = QMessageBox()
+    msg.setStyleSheet("color: black;  background-color: gainsboro")
+    msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
+    msg.setIcon(QMessageBox.Critical)
+    msg.setText('Password do not match!')
+    msg.setWindowTitle('Passwords')
+    msg.exec_()
+
 def maak11proef(basisnr):
    basisnr = str(basisnr)
    basisnr = str((int(basisnr[0:8]))+int(1))
@@ -504,7 +513,11 @@ def nieuwAccount(self):
                     
     window = Widget()
     data = window.getData()
-    
+
+    if data[8] != data[9]:
+        noMatch()
+        nieuwAccount(self)
+
     if data[1] and data[3] and valid(data[4], 1) and valid(data[5],2)\
          and valid(data[7],3) and data[12] and password_check(data[8]) and valid(data[10],6):
         if data[0]:
