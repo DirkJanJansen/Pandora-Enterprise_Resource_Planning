@@ -167,7 +167,7 @@ def dontMatch():
     msg = QMessageBox()
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Password not identuical\nand/or less then 8 signs!')
+    msg.setText('Passwords not identical\nand/or less then 8 positions!')
     msg.setWindowTitle('Password!')
     msg.exec_()
 
