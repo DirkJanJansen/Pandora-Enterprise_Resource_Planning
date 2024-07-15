@@ -497,3 +497,4 @@ From 2020-01-10 updates and changes are described on this page
 2024-07-10 Encryption method improved. Update database with python script "modify_accounts-passwords.py" to change password keys.
            Requirement.txt added "argon2-cffi", install with "pip install argon2-cffi" or with Linux "sudo pip3 install argon2-cffi"
            Changed Pandora install.txt and LINUX install.txt
+2024-07-15 invoerAccount.py password and password check added match control
