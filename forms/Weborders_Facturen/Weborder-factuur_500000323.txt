@@ -1,0 +1,41 @@
+
+
+
+
+
+
+
+FACTUUR
+
+Dhr. Dirk Jan  Jansen,
+Rijsenborch 61,
+4132HK VIANEN UT.
+
+
+
+
+Ordernummer: 500000323          Datum: 2019-06-09  Blad : 1
+==============================================================================================
+Artikelnr  Omschrijving                        Eenheid Aantal     Prijs   Subtotaal       BTW 
+==============================================================================================
+200000032  Router Asus RT-N66U                    stuk   1.00     82.11      82.11      14.25
+200000044  Router TP-Link Archer C7               stuk   1.00     71.64      71.64      12.43
+200000056  Printer Canon MG 3650                  stuk   1.00     82.44      82.44      14.31
+200000068  Tablet Ipad Pro 10" wit WIFI 128GB     stuk   1.00    633.73     633.73     109.99
+200000070  USB Memory Stick Toshiba 8GB           stuk   2.00      9.51      19.02       3.30
+200000081  Computervoeding Corsair CS550M         stuk   1.00     98.59      98.59      17.11
+200000093  Midi Tower Antec GX500                 stuk   1.00     66.65      66.65      11.57
+200000100  Cardreader Revoltec RZ060              stuk   1.00     20.62      20.62       3.58
+200000111  Moederbord MSI Z97 U3 Plus             stuk   1.00    158.05     158.05      27.43
+200000123  DDD3 Ram 2x 4GB Crucial PC3 12800      stuk   2.00    104.40     208.80      36.24
+200000135  Harddisk Seagate Barracuda 2TB STBD    stuk   1.00    126.18     126.18      21.90
+200000147  Video Kaart Sapphire Radeon R7 265     stuk   1.00    198.63     198.63      34.47
+200000159  Behuizing Midi Tower Corsair 450D      stuk   1.00    159.57     159.57      27.69
+200000160  Cooler Scythe Mugen 4                  stuk   1.00     55.16      55.16       9.57
+200000172  Crucial CT240M500SSD1                  stuk   1.00    139.25     139.25      24.17
+200000184  JetFlash 8GB USB Stick                 stuk   2.00     11.04      22.07       3.83
+200000196  SD Geheugenkaartje 2GB                 stuk   2.00      6.61      13.21       2.29
+200000202  M-Audio 2496 Delta AudioPhile Gelui    stuk   1.00    130.61     130.61      22.67
+----------------------------------------------------------------------------------------------
+Totaal factuurbedrag inclusief 21% BTW                                     2286.33 
+==============================================================================================

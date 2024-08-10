@@ -1,0 +1,35 @@
+
+
+
+Datum: 2020-02-24
+
+
+Interne orderbrief volgnummer: 4
+
+
+
+Bestelbrief voor magazijnartikel: 200001085
+
+Artikelomschrijving: Zeskantbout,CU5,M8x30,DIN933
+
+Artikelprijs inclusief opslagen:         0.31
+
+Artikelvoorraad :       274.00
+
+Artikel eenheid: stuk
+
+Artikel miminimum voorraad:          4.00
+
+Bestelsaldo:         0.00
+
+Bestelstatus: True
+
+Reserveringssaldo:       400.00
+
+Categorie: 5
+
+Minimale bestelgrootte reserveringgestuurd:       126.00
+
+Levertermijn :  3 weken
+
+

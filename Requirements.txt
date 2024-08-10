@@ -1,0 +1,10 @@
+Python3
+pillow
+python-barcode
+PyQt5
+PyQtChart
+psycopg2
+sqlalchemy==1.4.0
+pypiwin32==223; sys_platform == \'win32\'
+argon2-cffi
+postgreSQL

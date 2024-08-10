@@ -1,0 +1,9 @@
+Postcode  Datum: 2018-07-26  Blad :  1
+=============================================================================================
+Artikelnr  Omschrijving                       Afroep Geleverd Leverdatum Werkorder  Locatie  
+=============================================================================================
+200028418  Opsluitplaat,K-Wfp 14 Links(set)       1.00  0.00  2018-05-03 800000067  k6g4      
+200028418  Opsluitplaat,K-Wfp 14 Links(set)       1.00  0.00  2018-05-03 800000067  k6g4      
+200010890  Kabel,YMvK,2x16mm²                     2.00  0.00  2018-05-09 800000067  k6g4      
+200014547  Laddersteun,verbr.,compl.ond.,841mm    1.00  0.00  2018-05-12 800000067  k6g4      
+200000743  Zeskantbout,RVS A4,M6x20,DIN933      100.00  5.00  2018-06-08 700000008  k6g4      

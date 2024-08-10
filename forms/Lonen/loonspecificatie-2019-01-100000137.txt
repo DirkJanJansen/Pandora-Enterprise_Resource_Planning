@@ -1,0 +1,71 @@
+                             Loonspecificatie Januari 2019           
+                                                                                             
+                       verwerkingsdatum       accountnr werknemer               jaar periode 
+Geadresseerde          2019-02-25             100000137     6    werkgever      2019-01
+=============================================================================================
+                                                                 Pandora Connect B.V.,       
+     Zacharias  Zagen 1,                                         Lange Dreef 7,
+     Rijsenborch 61 ,                                            4131 NJ Vianen.
+     4132HK VIANEN UT.                                           Telefoon: 0347377304
+                                                                 e-mail: dj.jansen@casema.nl  
+=============================================================================================
+Betalingen/Inhoudingen/dagen/uren/bedragen          belastbaar voor                          
+Omschrijving                   deze periode      tabel   tab.bijz.bel                        
+---------------------------------------------------------------------------------------------
+Bruto loon                         2675.16     2675.16    
+125% overwerk                         0.00                       0.00
+150% overwerk                         0.00                       0.00
+200% overwerk                         0.00                       0.00
+Reisuren                              0.00                       0.00
+Reisvergoeding                        0.00                                
+Overige vergoedingen                  0.00                                
+Periodieke vergoedingen               0.00                                
+                                                                                             
+                   Betalingen      2675.16     2675.16           0.00
+=============================================================================================
+Pensioenpremie SPF  onbelast        109.70                                
+Loonheffing minus kortingen         543.41      543.41    
+Belasting Bijzonder Tarief            0.00                       0.00
+                  Inhoudingen       653.11                
+------------------------------------------------------------------                           
+Bijtelling Auto                       0.00                                
+                 Bijtellingen                     0.00                    
+------------------------------------------------------------------                           
+Netto Loon                         2022.05                                
+Betaling op bankrekening                                                                     
+=============================================================================================
+Weekdagen deze maand x 8 uur        176.00                                
+Gewerkte uren deze maand              0.00                                
+Geboekte uren deze maand              0.00  
+Overuren 125% deze maand              0.00                                
+Overuren 150% deze maand              0.00                                
+Overuren 200% deze maand              0.00                                
+Uren verlof deze maand                0.00                                
+Uren extra verlof                     0.00                                
+Uren feestdag                         0.00                                
+Uren bezoek dokter                    0.00                                
+Uren ziekte                           0.00                                
+Uren geoorl. verzuim                  0.00                                
+=============================================================================================
+Saldo werkuren cumulatief         -1240.00                                
+=============================================================================================
+Bedragen                                                                                     
+Heffingsloon                       2675.16                                
+Loonheffing                         543.41                                
+Algemene Heffingskorting            148.70                                
+Arbeidskorting                      270.75                                
+=============================================================================================
+Overige gegevens                                                                             
+Werkgeversdeel pensioenpremie       219.40                                
+Werkgeverspremie WIA,IVA,WGA        195.60                                
+Reservering AWF                      82.34                                
+Werkgeverspremie ZVW                228.24                                
+Res.vakantietoeslag cumulatief     1284.08                                
+Loonschaal                           54.00                                
+Loontrede                             4.00                                
+Percentage bijzonder tarief          45.53                                
+Geboortedatum                   1978-10-12                                  
+Datum in diensttreding          2018-04-30                                  
+Verloftegoed in  uren               200.00                                
+Uurloon                              15.43                                
+Reisuurloon                          11.67                                

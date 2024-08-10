@@ -1,0 +1,38 @@
+Werknummer:   800000067  Calculatie: 2   Datum: 2020-02-26  Blad :  1
+=============================================================================================
+Artikelnr  Omschrijving                        Eenheid       Prijs      Aantal               
+=============================================================================================
+200008304  Kabelschoen v Cu soepel,16mm²/M6     stuk        115.45       36.00
+200010256  Kabel,YMz1Kmbzh,2x16mm²              meter         4.40       60.00
+200010748  Kabel,onbewapend,Y(E)MvK,(4+10)x1,5  meter         4.91       60.00
+200010827  Kabel,YMvK,16mm²                     meter         3.53       60.00
+200010890  Kabel,YMvK,2x16mm²                   meter         9.12       30.00
+200011169  Kabel,VGYMvKas,4x16mm²               meter         0.79       30.00
+200011340  Kabel VEMEK 4x2x1,5mm²               meter         6.04       30.00
+200014365  Fundering,v dwergsein,beton,75mm     stuk       1969.98        3.00
+200014377  Fundering,beton                      stuk       3034.86        3.00
+200014390  Fundering,v brede ladder,beton       stuk       2448.11        3.00
+200014407  Fundering,v dwergsein,MF,gietijzer   stuk       2101.30        3.00
+200014456  Bord,lichtsein,zw/gl,300x194mm       stuk       7358.66        3.00
+200014468  Ladder,v seinpaal,5720mm             stuk       3522.02        3.00
+200014547  Laddersteun,verbr.,compl.ond.,841mm  stuk       4906.52        3.00
+200014687  Beschermrooster,MF                   stuk       7287.07        3.00
+200014833  Lamphuis,MF,LED,rechts,rd/gn/gl      stuk       7844.75        3.00
+200016301  Sein-3-aspect,LED in AY-behuizing    stuk       3853.34        3.00
+200018360  Railspoel,hoog model,150mm²          stuk       4352.10        6.00
+200018371  Deksel,compl.,v railspoel            stuk        475.70        6.00
+200018383  Bev.,v deksel railspoel,RVS          stuk        166.65        6.00
+200018486  Frame,v enk./dubb. railspoel, kunst  stuk        178.96        3.00
+200018656  Kabelset,aansl.,CC,v railspoel,150m  stuk        160.39        6.00
+200019132  Railaansluitpot,620mm                stuk        154.89        6.00
+200022921  Doorslagveiligheid,CLS 2 RBY         stuk         77.14        6.00
+200027270  Laspatroon,Cadweld 32F80,14x9x6cm    doos       1100.78        6.00
+200027281  Laspatroon,Cadweld 45F80             doos       1272.79       72.00
+200028418  Opsluitplaat,K-Wfp 14 Links(set)     set          45.66      120.00
+200028420  Opsluitplaat,K-Wfp 14 Rechts(set)    set          51.33      120.00
+200028900  Dwarsligger,NS90,60E1                stuk         77.29       60.00
+200030450  Bevestigingsset,SKL KM (SKL 19)      set           4.19      240.00
+200030644  Compensatielas 54E1,L,2x6.000mm      stuk         54.88       21.00
+200030656  Compensatielas 54E1,R,2x6.000mm      stuk         41.99        9.00
+200034169  Veerklem,SKL KM (SKL 19) KTL-behand  stuk          9.17      240.00
+200036415  Steenslag,22/40                      ton         425.87     3000.00

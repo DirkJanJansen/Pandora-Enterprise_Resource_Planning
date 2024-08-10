@@ -1,0 +1,40 @@
+Barcode module in python
+
+
+The database has been extended with a new table balieverkoop (countersales).
+This table is used for barcode scanning see following lines and barcodeScan.py
+This module scans and displays the data from database, prints the orderform and books the financial data and stock data
+in the tables artikelen (updates stock), afdrachten (payments) and artikelmutaties (stock transactions).
+
+real time scanning in windows 10:
+I used a laser scanner for testing see documentation in folder Tools/Barcodescanner
+The windows device for this scanner is SHANG CHEN HID SC-32, it's a USB Handheld scanner (approx € 50,--)
+It's automatically installed by Windows 10 and is working well.
+ 
+The solution for enabling the barcodereader for Ubuntu:
+Copy file .usbkbd.sh from folder installation in folder /home/postgres ($HOME)
+chmod 755 .usbkbd.sh
+If the password for Ubuntu changed from postgres45 change it too in .usbkbd.sh
+Thats all. The script is called with starting Pandora.py.
+
+I developed a PyQt5 module for real time scanning:
+The module scans barcodes from a printing barcodes.png
+Print this out on high resolution in grayscale.
+The scanned products are queried automatically with the database bisystem
+A filelist for printing is added with artikelID descriptions amounts prices subtotals and VAT
+barcodeScan.py started from submenu Magazijn line 9
+2020-03-21:
+The module barcodeScan.py is rewritten due to performance issues. The database is extended with a 
+table balieverkoop for barcodescanning, so the data is moved from disk to database bisystem. 
+The performance issues are solved!
+With the latest update it's possible to book return goods for authorised personel.
+ The button is only accessible if a person with special rights (S) on Magazijn Menu (5[1]) logs in.
+ 
+ With the module invoerArtikelen.py (insert new products) a barcodenumber is generated based on the artikelID 
+ in the table artikelen.
+ Also a barcodeimage is saved in folder ./forms/Barcodelabels for printing.
+
+Documentation for scanning and reading barcodes see:
+http://python-barcode.rtfd.io/
+https://www.pyimagesearch.com/2018/05/21/an-opencv-barcode-and-qr-code-scanner-with-zbar/
+https://techtutorialsx.com/2020/01/01/python-pyzbar-detecting-and-decoding-barcode/

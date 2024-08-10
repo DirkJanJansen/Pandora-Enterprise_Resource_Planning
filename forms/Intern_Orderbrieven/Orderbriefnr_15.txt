@@ -1,0 +1,35 @@
+
+
+
+Datum: 2019-10-23
+
+
+Interne orderbrief volgnummer: 15
+
+
+
+Bestelbrief voor magazijnartikel: 200000287
+
+Artikelomschrijving: Haakse fitting 3/4 met bev. messing warmperswerk
+
+Artikelprijs inclusief opslagen: 6.67
+
+Artikelvoorraad : 5.0
+
+Artikel eenheid: stuk
+
+Artikel miminimum voorraad:  77.0
+
+Bestelsaldo: 0.0
+
+Bestelstatus: True
+
+Reserveringssaldo: 0.0
+
+Categorie: 2
+
+Bestelgrootte voorraadgestuurd: 184.0
+
+Levertermijn :  8 weken
+
+

@@ -1,0 +1,20 @@
+Werknummer:   0  Calculatie: 4   Datum: 2018-07-11  Blad :  1
+=============================================================================================
+Artikelnr  Omschrijving                        Eenheid       Prijs      Aantal               
+=============================================================================================
+200007312  Kabelverdeelrek,8-velden             stuk         16.54        8.00
+200007373  Nummerstrook,62/74                   stuk         14.41      904.00
+200007397  Krimpmof,overgang,NS0,41/12          stuk         12.95        4.00
+200007439  Krimpmof,XAGA500-100/25-400          stuk         14.52        6.00
+200007476  Laskoker,koper,1mm²,DIN47656         100          13.32      410.00
+200010396  Kabel,S-Y(E)Mz1Kmbzh,(34+7x4)x0,8mm  meter         7.50     2000.00
+200028418  Opsluitplaat,K-Wfp 14 Links(set)     set          45.66     7200.00
+200028420  Opsluitplaat,K-Wfp 14 Rechts(set)    set          51.33     7200.00
+200028765  Dwarsligger,v comp.las,46E3/54E1     stuk         90.02        6.00
+200028900  Dwarsligger,NS90,60E1                stuk         77.29     3600.00
+200030450  Bevestigingsset,SKL KM (SKL 19)      set           4.19    14400.00
+200030644  Compensatielas 54E1,L,2x6.000mm      stuk         54.88        6.00
+200030656  Compensatielas 54E1,R,2x6.000mm      stuk         41.99        6.00
+200034169  Veerklem,SKL KM (SKL 19) KTL-behand  stuk          9.17    14400.00
+200035708  Spoorstaaf 54E5 R370LHT,360.000mm ?  stuk        986.94       12.00
+200036415  Steenslag,22/40                      ton         425.87     2000.00

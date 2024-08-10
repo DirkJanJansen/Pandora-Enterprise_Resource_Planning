@@ -1,0 +1,18 @@
+EAN 13 Barcode
+
+87 10400 31114 0
+
+87 = Country (Netherlands)
+10400 = Company number  (Countrynumber and Company number together is called extension number)
+31114 = product number
+0 = check number
+
+checksum:
+CS = C(1) + C(3) + C(5) + C(7) + C(9) + C(11) + ((C(2) + C(4) + C(6) + C(8) + C(10) + C(12)) * 3)
+check number:
+C(13) = (10 - (CS Mod 10)) Mod 10
+
+If you commmercial use the barcodes, you have to register the company
+in the Netherlands is this GS1 Nederland.
+
+

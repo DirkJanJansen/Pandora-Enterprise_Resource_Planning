@@ -1,0 +1,35 @@
+
+
+
+Datum: 2019-11-22
+
+
+Interne orderbrief volgnummer: 2
+
+
+
+Bestelbrief voor magazijnartikel: 200000100
+
+Artikelomschrijving: Cardreader Revoltec RZ060
+
+Artikelprijs inclusief opslagen: 14.2
+
+Artikelvoorraad : 5.0
+
+Artikel eenheid: stuk
+
+Artikel miminimum voorraad:  8.0
+
+Bestelsaldo: 0.0
+
+Bestelstatus: True
+
+Reserveringssaldo: 1.0
+
+Categorie: 2
+
+Bestelgrootte voorraadgestuurd: 60.0
+
+Levertermijn :  8 weken
+
+

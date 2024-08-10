@@ -1,0 +1,10 @@
+tools1.py
+
+# before executing this script set param 99 in table param to 1 in 2020 to 0  in 2021.
+# this script forces to recalculate minimum stock and order sizes from all products
+# This should normally happen after starting a new year
+# and distribute the groups of categories from reservation in a better way.
+# start the script once after setting the param 99 to 1
+# after this start the program Pandora.py to recalculate
+
+#if you want to switch off certain parts delete the according # before and after the code section

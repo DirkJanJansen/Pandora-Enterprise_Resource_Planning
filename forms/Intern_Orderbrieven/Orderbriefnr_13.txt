@@ -1,0 +1,35 @@
+
+
+
+Datum: 2019-10-23
+
+
+Interne orderbrief volgnummer: 13
+
+
+
+Bestelbrief voor magazijnartikel: 200000342
+
+Artikelomschrijving: Schroevendraaier heft kunststof spuitgietwerk
+
+Artikelprijs inclusief opslagen: 5.43
+
+Artikelvoorraad : 7.0
+
+Artikel eenheid: stuk
+
+Artikel miminimum voorraad:  62.0
+
+Bestelsaldo: 0.0
+
+Bestelstatus: True
+
+Reserveringssaldo: 0.0
+
+Categorie: 2
+
+Bestelgrootte voorraadgestuurd: 166.0
+
+Levertermijn :  8 weken
+
+

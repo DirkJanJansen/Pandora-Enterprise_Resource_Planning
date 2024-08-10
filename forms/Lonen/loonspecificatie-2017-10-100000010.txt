@@ -1,0 +1,58 @@
+                             Loonspecificatie Oktober 2017           
+                                                                                             
+                       verwerkingsdatum       accountnr werknemer               jaar periode 
+Geadresseerde          2019-07-26             100000010     1    werkgever      2017-10
+=============================================================================================
+                                                                 Pandora Connect B.V.,       
+     Dirk Jan  Jansen,                                           Lange Dreef 7,
+     Rijsenborch 61 ,                                            4131 NJ Vianen.
+     4132HK VIANEN UT.                                           Telefoon: 0347377304
+                                                                 e-mail: dj.jansen@casema.nl  
+=============================================================================================
+Betalingen/Inhoudingen/dagen/uren/bedragen          belastbaar voor                          
+Omschrijving                   deze periode      tabel   tab.bijz.bel                        
+---------------------------------------------------------------------------------------------
+Bruto loon                         3081.69     3081.69    
+125% overwerk                       224.47                     224.47
+150% overwerk                         0.00                       0.00
+200% overwerk                         0.00                       0.00
+Reisuren                              0.00                       0.00
+Reisvergoeding                       66.45                                
+Overige vergoedingen                  0.00                                
+Periodieke vergoedingen               0.00                                
+                                                                                             
+                   Betalingen      3372.62     3081.69         224.47
+=============================================================================================
+Pensioenpremie SPF  onbelast        136.80                                
+Loonheffing minus kortingen        1054.01     1054.01    
+Belasting Bijzonder Tarief          110.28                     110.28
+                  Inhoudingen      1301.10                
+------------------------------------------------------------------                           
+Bijtelling Auto                     403.33                                
+                 Bijtellingen                   403.33                    
+------------------------------------------------------------------                           
+Netto Loon                         2071.52                                
+Betaling op bankrekening                     Overige gegevens                                
+=============================================================================================
+Weekdagen deze maand x 8 uur        184.00   Werkgeversdeel pensioenpremie       273.61
+Gewerkte uren deze maand             56.35   Werkgeverspremie WIA,IVA,WGA        225.32
+Geboekte uren deze maand            116.09   Reservering AWF                      94.85
+Overuren 125% deze maand             10.10   Werkgeverspremie ZVW                262.93
+Overuren 150% deze maand              0.00   Res.vakantietoeslag cumulatief     1479.21
+Overuren 200% deze maand              0.00   Loonschaal                           19.00
+Uren verlof deze maand               16.00   Loontrede                             5.00
+Uren extra verlof                     0.00   Percentage bijzonder tarief          49.13
+Uren feestdag                        10.34   Geboortedatum                   1945-04-17
+Uren bezoek dokter                    0.00   Datum in diensttreding          1976-05-01
+Uren ziekte                           8.00   Verloftegoed in  uren               184.00
+Uren geoorl. verzuim                 25.40   Uurloon                              17.78
+==========================================   Reisuurloon                           9.03
+Saldo werkuren cumulatief          -939.91                                
+=============================================================================================
+Bedragen                                                                                     
+Heffingsloon                       3081.69                                
+Loonheffing                        1054.01                                
+Algemene Heffingskorting            113.36                                
+Arbeidskorting                      289.79                                
+=============================================================================================
+=============================================================================================

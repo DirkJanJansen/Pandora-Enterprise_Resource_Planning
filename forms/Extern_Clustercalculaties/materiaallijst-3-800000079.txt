@@ -1,0 +1,79 @@
+Werknummer:   800000079  Calculatie: 3   Datum: 2019-05-09  Blad :  1
+=============================================================================================
+Artikelnr  Omschrijving                        Eenheid       Prijs      Aantal               
+=============================================================================================
+200008304  Kabelschoen v Cu soepel,16mm²/M6     stuk        115.44      192.00
+200010256  Kabel,YMz1Kmbzh,2x16mm²              meter         4.40      320.00
+200010748  Kabel,onbewapend,Y(E)MvK,(4+10)x1,5  meter         4.91      320.00
+200010815  Kabel,YMvK,50mm²                     meter         4.24      192.00
+200010827  Kabel,YMvK,16mm²                     meter         3.53      320.00
+200010890  Kabel,YMvK,2x16mm²                   meter         9.12      160.00
+200011169  Kabel,VGYMvKas,4x16mm²               meter         0.79      352.00
+200011340  Kabel VEMEK 4x2x1,5mm²               meter         6.04      160.00
+200014365  Fundering,v dwergsein,beton,75mm     stuk       1969.98       16.00
+200014377  Fundering,beton                      stuk       3034.86       16.00
+200014390  Fundering,v brede ladder,beton       stuk       2448.11       16.00
+200014407  Fundering,v dwergsein,MF,gietijzer   stuk       2101.30       16.00
+200014456  Bord,lichtsein,zw/gl,300x194mm       stuk       7358.66       32.00
+200014468  Ladder,v seinpaal,5720mm             stuk       3522.02       16.00
+200014547  Laddersteun,verbr.,compl.ond.,841mm  stuk       4906.52       16.00
+200014687  Beschermrooster,MF                   stuk       7287.07       16.00
+200014833  Lamphuis,MF,LED,rechts,rd/gn/gl      stuk       7844.75       16.00
+200016301  Sein-3-aspect,LED in AY-behuizing    stuk       3853.34       16.00
+200016362  Trekstang,nr.2411,542mm              stuk       1384.77       32.00
+200016532  Controlestang,nr.4420,144mm          stuk       1369.34       16.00
+200016556  Controlestang,nr.4470,1725mm         stuk       1606.55       16.00
+200016635  Trekstang,nr.6823,2128mm             stuk        933.62       32.00
+200017184  Wisselsteller,NSE2,L,120VDC          stuk      62686.19       16.00
+200017342  Kast,wisselkruk,m voetstuk           stuk        262.74       16.00
+200017482  Kabel EMC,v wisselsteller,12x2,5mm²  stuk        347.57       32.00
+200017755  Bord,wisselnummer                    stuk        400.52       64.00
+200017767  Paal,v wisselnummerbord              stuk        472.13       48.00
+200017779  Beugel,v wisselbord                  stuk        303.21       64.00
+200017780  Beugel,v wisselbord a dwl            stuk        385.61       48.00
+200018360  Railspoel,hoog model,150mm²          stuk       4352.10       48.00
+200018371  Deksel,compl.,v railspoel            stuk        475.69       48.00
+200018383  Bev.,v deksel railspoel,RVS          stuk        166.65       48.00
+200018486  Frame,v enk./dubb. railspoel, kunst  stuk        178.96       32.00
+200018644  Kabelset,aansl.,AA,v railspoel,150m  stuk        159.78       16.00
+200018656  Kabelset,aansl.,CC,v railspoel,150m  stuk        160.39       32.00
+200019120  Railaansluitpot,320mm                stuk        161.90       16.00
+200019132  Railaansluitpot,620mm                stuk        154.89       32.00
+200019934  Warmtewisselaar,5900mm,Heatpoint     stuk       1122.52       32.00
+200020808  Klemmenkast,testaarde                stuk         16.14      256.00
+200021357  Trafo,v kast,110V 48VA               stuk        717.74       16.00
+200021813  Fundering,v relaiskast,enk.,beton    stuk        236.03       16.00
+200021825  Afdekplaat,blind,v relaiskast 44/45  stuk         29.00       16.00
+200021965  Kabeldoorvoerstrip,40x114mm,blind    stuk       1399.91       64.00
+200021977  Kabeldoorvoerstrip,40x114mm,2xPG21   stuk        431.35       16.00
+200021989  Kabeldoorvoerstrip,50x114mm,2xPG29   stuk        927.54       48.00
+200021990  Kabeldoorvoerstrip,1xPG36+2xPG13,5   stuk        263.64       32.00
+200022015  Kast,19A                             stuk       1579.21       16.00
+200022027  Deksel,v kast 19A                    stuk        215.40       16.00
+200022039  Binnenkast,19A,hout                  stuk        353.88       16.00
+200022120  Trafo,in kast,2KVA,3kV/110V,laag     stuk        684.08       16.00
+200022921  Doorslagveiligheid,CLS 2 RBY         stuk         77.14       32.00
+200022945  Doorslagveiligheid,CLS 1 RCY         stuk         95.23       16.00
+200027270  Laspatroon,Cadweld 32F80,14x9x6cm    doos       1100.78       32.00
+200027281  Laspatroon,Cadweld 45F80             doos       1272.79      576.00
+200029010  Betondwarsligger,m rugplaat 54E1     stuk        266.73      320.00
+200029459  Rughellingplaat 54E1,gegoten,23,1mm  stuk          2.54    57600.00
+200029708  Rugplaat 54E1,vlak,gegoten           stuk         79.32      640.00
+Werknummer:   800000079  Calculatie: 3   Datum: 2019-05-09  Blad :  2
+=============================================================================================
+Artikelnr  Omschrijving                        Eenheid       Prijs      Aantal               
+=============================================================================================
+200030644  Compensatielas 54E1,L,2x6.000mm      stuk         54.88      176.00
+200030656  Compensatielas 54E1,R,2x6.000mm      stuk         41.99      112.00
+200031764  Dwarsligger,rgpt,260x25x15cm,54E1    stuk        171.32    28800.00
+200031806  Dwarsligger,rghlpt,kpn,250x25x21cm,  stuk        209.09      320.00
+200032409  Lijmlas,ES,NRG,54E5 MHH,8.600mm      stuk        954.20       32.00
+200034169  Veerklem,SKL KM (SKL 19) KTL-behand  stuk          9.17   116480.00
+200034224  Kraagbout,vlak onder kop,23x190mm    stuk          4.64   232960.00
+200034303  Kruisstuk 54E1 1:9,mnsn              stuk       2199.56       16.00
+200035708  Spoorstaaf 54E5 R370LHT,360.000mm ?  stuk        986.94       96.00
+200036415  Steenslag,22/40                      ton         425.87    16000.00
+200036440  Steenslag,31,5/50                    ton         748.68       64.00
+200036956  Tongbeweging,halve 54E1 1:12Ll       stuk       1438.50       16.00
+200037018  Tongbeweging,halve 54E1 1:12Rl       stuk       1091.53       16.00
+200037444  Strijkregel,recht,6.000mm            stuk       1247.52       16.00

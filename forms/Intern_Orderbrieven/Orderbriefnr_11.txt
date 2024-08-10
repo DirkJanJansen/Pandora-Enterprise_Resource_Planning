@@ -1,0 +1,35 @@
+
+
+
+Datum: 2019-10-23
+
+
+Interne orderbrief volgnummer: 11
+
+
+
+Bestelbrief voor magazijnartikel: 200000263
+
+Artikelomschrijving: Kruisfitting 3/4" messing warmperswerk
+
+Artikelprijs inclusief opslagen: 13.45
+
+Artikelvoorraad : 2.0
+
+Artikel eenheid: stuk
+
+Artikel miminimum voorraad:  39.0
+
+Bestelsaldo: 0.0
+
+Bestelstatus: True
+
+Reserveringssaldo: 0.0
+
+Categorie: 2
+
+Bestelgrootte voorraadgestuurd: 131.0
+
+Levertermijn :  8 weken
+
+

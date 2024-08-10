@@ -1,0 +1,35 @@
+
+
+
+Datum: 2019-10-23
+
+
+Interne orderbrief volgnummer: 16
+
+
+
+Bestelbrief voor magazijnartikel: 200000354
+
+Artikelomschrijving: Doorvoer huis kunststof spuitgietwerk
+
+Artikelprijs inclusief opslagen: 8.34
+
+Artikelvoorraad : 5.0
+
+Artikel eenheid: stuk
+
+Artikel miminimum voorraad:  73.0
+
+Bestelsaldo: 0.0
+
+Bestelstatus: True
+
+Reserveringssaldo: 0.0
+
+Categorie: 2
+
+Bestelgrootte voorraadgestuurd: 179.0
+
+Levertermijn :  8 weken
+
+

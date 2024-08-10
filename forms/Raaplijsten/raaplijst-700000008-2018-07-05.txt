@@ -1,0 +1,6 @@
+Werkorders  Datum: 2018-07-05  Blad :  1
+Afleveradres Rijsenborch 61 ,4132HK VIANEN UT
+=============================================================================================
+Artikelnr  Omschrijving                       Afroep Geleverd Leverdatum Werkorder  Locatie  
+=============================================================================================
+200000743  Zeskantbout,RVS A4,M6x20,DIN933      100.00  5.00  2018-06-08 700000008  k6g4      
