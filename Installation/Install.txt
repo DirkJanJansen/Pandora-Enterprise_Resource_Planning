@@ -1,0 +1,69 @@
+Installation on Windows:
+
+Install python3 for Windows
+download from https://www.python.org/downloads/
+if installed open a command prompt cmd and execute next lines
+
+pip install pyqt5
+pip install pyqtchart (same version for pyqt5)
+pip install sqlalchemy==1.4.0
+pip install psycopg2 
+pip install pypiwin32
+pip install pillow
+pip install python-barcode
+pip install argon2-cffi
+
+If you want a editor:
+install pycharm community
+download from https://www.jetbrains.com/pycharm/download/?section=windows
+
+setting in Windows:
+
+For printing listings change this settings in notepad:
+Pagesettings: Left 0 Right 0 Top 14 Bottom 40
+Font: Consolas 10
+Or change registry with Notepad_HKCU.reg and Notepad_HKLM.reg
+Follow these settings exactly for printlists with more pages
+
+copy to c:\users\<username>\appdata\roaming\postgresql\pgpass.conf
+<username> = your own user folder in C:\users\
+appdata is hidden soo you will type it yourself or make hidden folders temperarely visible
+programdata is also hidden see next lines
+
+Environment in Windows advanced system settingsenvironment variables
+PGDATABASE bisystem
+PGPORT 5432
+PGUSER postgres
+
+Install Database:
+download postgresql from
+Install postgresql in folder C:\programdata\postgres with password: postgres45 localhost port:5432 user: postgres
+set password in pgadmin4: postgres45
+Start psql in command prompt and set password with \password  (postgres45)
+
+copy the files from folder data in c:\programdata\postgres\backup\
+Import data with pgrestore-custom.bat or for empty database pgrestore-custom-empty.bat
+ (change pathnames to your own pathname, if you changed path PostgreSQL)
+The database bisystem is imported in postgresql.
+pgdrop-bisystem.bat is included for deleting the database bisystem (change pathnames to your own pathnames)
+pgdump-custom.bat is included for backup database (change pathnames to your own pathnames)
+If you change install folders, the pathnames in pgrestore-custom.bat, pgrestore-custom-empty.bat
+and pgdump-custom.bat must be changed.
+
+Rename Pandora-Enterprise_Resource_Planning to Pandora
+Copy  Pandora to C:\ProgramData keep the folder structure as it is.
+The admin user is: dj.jansen@casema.nl password: postgres45
+other users password: wieookweer
+For the empty database it is admin inlog admin@admin.nl or 100000010 password postgres45
+See user lists Accounts -  Opvragen Accounts	
+The Menu's and other names in the programs are in English!
+For Dutch version overwrite Pandora with Pandora Dutch.
+
+Before starting the program for the first time run script reset_odd_even.py to set the parameter for odd-even year
+ for the right year.
+in command prompt
+in folder Pandora
+python reset_odd_even.py
+
+Dirk Jansen
+dj.jansen@casema.nl
