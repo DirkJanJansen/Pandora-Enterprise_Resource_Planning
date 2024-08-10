@@ -21,7 +21,7 @@
  
  Link to documentation: https://github.com/DirkJanJansen/Pandora/tree/master/documentation
  
- Link to installation: https://github.com/DirkJanJansen/Pandora/blob/master/Installation/install.txt
+ Link to installation: https://github.com/DirkJanJansen/Pandora/blob/master/Installation/Install.txt
  
  Link to Linux installation: https://github.com/DirkJanJansen/Pandora/blob/master/Installation/linux/LINUX_install.txt
  
