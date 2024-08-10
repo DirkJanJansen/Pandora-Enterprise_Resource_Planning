@@ -56,10 +56,12 @@ Printing own invoices.
 
 All further permissions must be made by a authorised person.
 The authorization menu is at Maintenance - Mutate authorisations
-Initial access: dj.jansen@casema.nl password: postgres45
+Initial access: dj.jansen@casema.nl or accountnumber 1000000010 password: postgres45
+or for the empty database admin@admin.aa or accountnumber 100000010 password: postgres45
 The permissions are granted at menu level and menu line level (enabled-disabled)
-Further permissions are granted with the items: special, ordering, new, change, query, print and reserve
+Further permissions are granted with the items: special, ordering, new, change, query, print and confidential
 Special is for management tasks for instant wages, charts financial and sensitive information etc.
+Confidential for params and preferrable all payroll tasks.
 All permissions are set with checkboxes.
 For reprinting forms set permission on Reprinting forms on menulevel (Menu)
 This way it is possible to reprint the forms for which on other groups menuline levels authorization is set for print (P).
@@ -101,32 +103,6 @@ Several clusters together concists  a calculation.
 If the calculation is approved by the client, the linking with a worknumber is established.
 From this calculation a material list and a working list is pulled out.
 
-Maintenance - params.
-
-The table params is a table what holds variables for the program what should be changed
-yearly or monthly depends on the item.
-
-Items
-1-2 VAT dutch tax on products factor change if necessary 
-3-5 Profit hight middle low factor change if necessary
-6 Warehouse surcharge change if necessary
-7 Work surcharge on particles change if nessecary
-8-31 Hourly rate for calculation external works change yearly
-     tarieffactor is overhead from lonen-loonID towards tarief for works
-32-43 tax payment on wages employees change yearly
-45 Pension fund on wages employee change yearly
-46-56 Tax on special rewards on wages employees for instance vacation wages change yearly
-58-69 Payment periodes for wages employees change if period is payed toward next year
-      for instance 2018-05 becomes 2019-05 and so on, tarief fill in hours from werkdagen.png
-70-72 Dutch taxes on wages for employer change yearly
-73-96 Hourly rate for calculation internal works change yearly
-      tarieffactor is overhead from lonen-loonID towards tarief for works
-97 Budgeted Sales change yearly
-98 Budgeted profits change yearly
-99 Annual usual stock even odd year is set by the system.
-100 Ordernumber is set by the system
-101 Ordercosts change yearly costs of making a purchase order
-102 Shipping costs for client orders
 
 If you want to view charts use jrwk 201852 (year-week)
 For payment period wages use period 2017-10 to view items

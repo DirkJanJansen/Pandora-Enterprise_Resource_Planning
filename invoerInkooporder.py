@@ -232,12 +232,9 @@ def bepaalInkoopOrdernr(mregel):
             type_=Integer)])).scalar())
         if mregel == 1:
             morderinkoopnr=int(maak11proef(morderinkoopnr))
-        conn.close
     except:
         if mregel == 1:
             morderinkoopnr = 400000003
-        conn.close
-        
     return(morderinkoopnr)
    
 def Inkooporder(m_email, rplev, mregel):

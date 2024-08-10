@@ -41,16 +41,16 @@ def printBrief(rpartikel, bestelhoeveelheid, bestelBtn):
     from sys import platform
     vandaag = str(datetime.date.today())[0:10]
     metadata =  MetaData()
-    params = Table('params', metadata,
-        Column('paramID', Integer, primary_key=True),
-        Column('tarief', Float))
+    params_system = Table('params_system', metadata,
+        Column('systemID', Integer, primary_key=True),
+        Column('system_value', Float))
          
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    selpar = select([params]).where(params.c.paramID == 100)
+    selpar = select([params_system]).where(params_system.c.systemID == 1)
     rppar = con.execute(selpar).first()
     bestnr = int(rppar[1])
-    updpar = update(params).where(params.c.paramID == 100).values(tarief = int(bestnr+1))
+    updpar = update(params_system).where(params_system.c.systemID == 1).values(system_value = int(bestnr+1))
     con.execute(updpar)
     if rpartikel[9] == 1:
         besteltekst = 'Order size stock controlled: '+'{:12.2f}'.format(bestelhoeveelheid)+'\n\n'

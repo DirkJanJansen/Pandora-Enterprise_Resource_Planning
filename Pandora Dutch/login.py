@@ -4,10 +4,8 @@ from argon2 import PasswordHasher
 from validZt import zt
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont, QPixmap, QIcon, QMovie, QColor
-from PyQt5.QtWidgets import (QDialog, QGridLayout, QMessageBox,\
-                             QLabel, QLineEdit, QPushButton, QComboBox)
-from sqlalchemy import (Table, Column, Integer, String, MetaData,\
-                    create_engine, select)
+from PyQt5.QtWidgets import (QDialog, QGridLayout, QMessageBox, QLabel, QLineEdit, QPushButton, QComboBox)
+from sqlalchemy import (Table, Column, Integer, String, MetaData, create_engine, select)
 
 def password_check(hashed_password, password):
     ph = PasswordHasher()
@@ -509,7 +507,8 @@ def hoofdMenu(m_email):
             self.k7Edit.addItem('5. Printen raaplijsten')
             self.k7Edit.addItem('6. Muteren kosten diensten')
             self.k7Edit.addItem('7. Uurverbruik muteren')
- 
+            self.k7Edit.addItem('8. Parameters Diensten')
+
             self.k8Edit = QComboBox()
             self.k8Edit.setFixedWidth(310)
             self.k8Edit.setFont(QFont("Arial",10))
@@ -528,7 +527,8 @@ def hoofdMenu(m_email):
             self.k8Edit.addItem('6. Calculatie maken/wijzigen')
             self.k8Edit.addItem('7. Calculatie/Artikellijst printen')
             self.k8Edit.addItem('8. Calculatie koppelen -> produktie')
- 
+            self.k8Edit.addItem('9. Wijzigen Cluster Menus Interne werken')
+
             self.k9Edit = QComboBox()
             self.k9Edit.setFixedWidth(310)
             self.k9Edit.setFont(QFont("Arial",10))
@@ -547,7 +547,8 @@ def hoofdMenu(m_email):
             self.k9Edit.addItem('6. Calculatie maken / wijzigen')
             self.k9Edit.addItem('7. Calculatie/Artikellijst printen')
             self.k9Edit.addItem('8. Calculatie koppelen -> produktie')
- 
+            self.k9Edit.addItem('9. Wijzigen Cluster Menus Externe werken')
+
             self.k10Edit = QComboBox()
             self.k10Edit.setFixedWidth(310)
             self.k10Edit.setFont(QFont("Arial",10))
@@ -565,7 +566,10 @@ def hoofdMenu(m_email):
             self.k10Edit.addItem('5. Invoeren Loonschalen')
             self.k10Edit.addItem('6. Loonschalen wijzigen/opvragen')
             self.k10Edit.addItem('7. Procentueel lonen verhogen')
- 
+            self.k10Edit.addItem('  8. Parameters werkuren')
+            self.k10Edit.addItem('  9. Parameters Inhoudingen')
+            self.k10Edit.addItem('10. Parameters Perioden Lonen')
+
             self.k11Edit = QComboBox()
             self.k11Edit.setFixedWidth(310)
             self.k11Edit.setFont(QFont("Arial",10))
@@ -583,6 +587,7 @@ def hoofdMenu(m_email):
             self.k11Edit.addItem('5. Retouren betalingen boeken')
             self.k11Edit.addItem('6. Printen lijst te factureren')
             self.k11Edit.addItem('7. Uren mutaties opvragen')
+            self.k11Edit.addItem('8. Parameters Financiëel')
 
             self.k12Edit = QComboBox()
             self.k12Edit.setFixedWidth(310)
@@ -613,6 +618,7 @@ def hoofdMenu(m_email):
             self.k13Edit.addItem('2. Printen grafieken financiën werken')
             self.k13Edit.addItem('3. Printen grafieken voortgangstatus')
             self.k13Edit.addItem('4. Opvragen resultaten werken')
+            self.k13Edit.addItem('5. Parameters Grafieken')
   
             self.k14Edit = QComboBox()
             self.k14Edit.setFixedWidth(310)
@@ -662,10 +668,10 @@ def hoofdMenu(m_email):
             mplist=[self.k0Edit,self.k1Edit,self.k2Edit,self.k3Edit,self.k4Edit,self.k5Edit,self.k6Edit,self.k7Edit,\
                     self.k8Edit,self.k9Edit,self.k10Edit,self.k11Edit,self.k12Edit,self.k13Edit,self.k14Edit,self.k15Edit]
             # list of pointers by mainmenu and menulines per groups pointers towards database tasble accountpermissions
-            lineperm = ([0, 4, 6, 2, 2, 5],[0, 3, 4, 6, 1],[0, 1, 4, 6, 6],[0, 3, 4, 3, 4, 6, 6],[0, 3, 4, 6, 1, 6],\
-                        [0, 3, 4, 6, 4, 5, 1, 6, 3, 6],[0, 3, 4, 6, 3, 5, 3],[0, 3, 4, 6, 2, 6, 3, 3],\
-                        [0, 3, 4, 6, 3, 6, 3, 6, 1],[0, 4, 4, 6, 3, 6, 3, 6, 1],[0, 6, 2, 1, 6, 3, 4, 1],\
-                        [0, 6, 6, 2, 6, 2, 5, 6],[0, 2, 1, 1, 1],[0, 1, 6, 6, 6],[0, 1, 3, 3, 3, 4, 6, 4],[0])
+            lineperm = ([0, 4, 6, 2, 2, 5], [0, 3, 4, 6, 1], [0, 1, 4, 6, 6], [0, 3, 4, 3, 4, 6, 6], [0, 3, 4, 6, 1, 6], \
+                        [0, 3, 4, 6, 4, 5, 1, 6, 3, 6], [0, 3, 4, 6, 3, 5, 3], [0, 3, 4, 6, 2, 6, 3, 3, 7], \
+                        [0, 3, 4, 6, 3, 6, 3, 6, 1, 7], [0, 4, 4, 6, 3, 6, 3, 6, 1, 7], [0, 6, 2, 1, 6, 3, 4, 1, 7, 7, 7], \
+                        [0, 6, 6, 2, 6, 2, 5, 6, 7], [0, 2, 1, 1, 1], [0, 1, 6, 6, 6, 7], [0, 7, 3, 3, 7, 4], [0])
             #loop on mainmenu and permissions in table accounts
             for menu in range(0,16):
                 menuperms = lineperm[menu]
@@ -1071,6 +1077,9 @@ def hoofdMenu(m_email):
                 maccountnr = '1'
                 mwerknr = '8'
                 mboekd = str(datetime.now())[0:10]
+    elif dlist[7] == 8:
+        import params_services
+        params_services.chooseSubMenu(m_email, int(mp[7][6]), int(mp[7][4]), int(mp[7][3]))
     elif dlist[8] == 1:
         import maakIcluster
         while True:
@@ -1100,6 +1109,10 @@ def hoofdMenu(m_email):
         import koppelIbegroting
         while True:
             koppelIbegroting.zoekBegroting(m_email)
+    elif dlist[8] == 9:
+        sector = 'internal'
+        import modifyStruct
+        modifyStruct.menuStructure(sector, m_email) #internal works
     elif dlist[9] == 1:
         import maakCluster
         while True:
@@ -1130,6 +1143,10 @@ def hoofdMenu(m_email):
         import koppelBegroting
         while True:
             koppelBegroting.zoekBegroting(m_email)
+    elif dlist[9] == 9:
+        sector = 'external'
+        import modifyStruct
+        modifyStruct.menuStructure(sector, m_email) # external
     elif dlist[10] == 1:
         import opvrUrenmutaties
         opvrUrenmutaties.loonKeuze(m_email)
@@ -1153,6 +1170,15 @@ def hoofdMenu(m_email):
         import percentageLonen
         while True:
             percentageLonen.percLoonschaal(m_email)
+    elif dlist[10] == 8:
+        import params_hours
+        params_hours.chooseSubMenu(m_email, int(mp[10][6]), int(mp[10][4]), int(mp[10][3]))
+    elif dlist[10] == 9:
+        import params_wages
+        params_wages.chooseSubMenu(m_email, int(mp[10][6]), int(mp[10][4]), int(mp[10][3]))
+    elif dlist[10] == 10:
+        import params_periods
+        params_periods.chooseSubMenu(m_email, int(mp[10][6]), int(mp[10][4]), int(mp[10][3]))
     elif dlist[11] == 1:
         import opvrArtikelmutaties
         opvrArtikelmutaties.mutatieKeuze(m_email)
@@ -1174,6 +1200,9 @@ def hoofdMenu(m_email):
     elif dlist[11] == 7:
         import opvrUrenmutaties
         opvrUrenmutaties.loonKeuze(m_email)
+    elif dlist[11] == 8:
+        import params_finance
+        params_finance.chooseSubMenu(m_email, int(mp[11][6]), int(mp[11][4]), int(mp[11][3]))
     elif dlist[12] == 1:
         import voorraadbeheersing
         voorraadbeheersing.vrdKeuze(m_email)
@@ -1199,6 +1228,9 @@ def hoofdMenu(m_email):
     elif dlist[13] == 4:
         import toonResultaten
         toonResultaten.toonResult(m_email)
+    elif dlist[13] == 5:
+        import params_graphs
+        params_graphs.chooseSubMenu(m_email, int(mp[13][6]), int(mp[13][3]), int(mp[13][2]))
     elif dlist[14] == 1:
         import maakAuthorisatie
         while True:

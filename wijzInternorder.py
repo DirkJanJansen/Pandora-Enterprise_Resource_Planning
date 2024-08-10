@@ -181,6 +181,7 @@ def toonOrders(keuze, zoekterm, m_email):
             table_view.resizeColumnsToContents()
             table_view.setSelectionBehavior(QTableView.SelectRows)
             table_view.clicked.connect(wijzigOrder)
+            #table_view.clicked.connect(selectRow)
             grid.addWidget(table_view, 0, 0, 1, 16)
             
             lbl = QLabel()
@@ -667,15 +668,12 @@ def toonOrders(keuze, zoekterm, m_email):
                 mutnr += 1
             except:
                 mutnr = 1
-            params = Table('params', metadata,
-                Column('paramID', Integer, primary_key=True),
-                Column('tarief', Float),
-                Column('item', String),
-                Column('lock', Boolean),
-                Column('ondergrens', Float),
-                Column('bovengrens', Float))
-            
-            selpar = select([params]).order_by(params.c.paramID)
+            params_finance = Table('params_finance', metadata,
+                Column('financeID', Integer, primary_key=True),
+                Column('factor', Float),
+                Column('item', String))
+
+            selpar = select([params_finance]).order_by(params_finance.c.financeID)
             rppar = con.execute(selpar).fetchall()
             selart = select([artikelen]).where(rpord[16]==artikelen.c.artikelID)
             rpart = con.execute(selart).first()

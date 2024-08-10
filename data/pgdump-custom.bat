@@ -11,7 +11,7 @@ echo Press any key to backup database bisystem.
 pause > nul
 echo.
 
-"C:\programdata\postgres\bin\pg_dump.exe" -U postgres -v --verbose -d  bisystem -Fc -f  "C:\programdata\postgres\backup\bisystem.backup"
+"C:\programdata\postgres\bin\pg_dump.exe" -U postgres -v --verbose -d  bisystem -Fc -f  "D:\Programming\Pandora\data\bisystem.backup"
 echo.
 echo.
 echo Backup of the database bisystem is saved.

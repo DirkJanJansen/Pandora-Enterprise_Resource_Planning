@@ -143,7 +143,7 @@ def zt(zoekterm, valnr):
             return(False)
     elif valnr == 18:
         #voortgangstatus werken
-        ab = re.compile("^([ABCDEFGHJabcdefghj])+$")
+        ab = re.compile("^([ABCDEFGHabcdefgh])+$")
         if ab.match(zoekterm):
             return(True)
         else:

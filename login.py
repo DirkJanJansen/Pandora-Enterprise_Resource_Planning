@@ -1,13 +1,11 @@
-﻿import os, sys, subprocess
+﻿import  sys, subprocess
 from datetime import datetime
 from argon2 import PasswordHasher
 from validZt import zt
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont, QPixmap, QIcon, QMovie, QColor
-from PyQt5.QtWidgets import (QDialog, QGridLayout, QMessageBox,\
-                             QLabel, QLineEdit, QPushButton, QComboBox)
-from sqlalchemy import (Table, Column, Integer, String, MetaData,\
-                    create_engine, select)
+from PyQt5.QtWidgets import (QDialog, QGridLayout, QMessageBox, QLabel, QLineEdit, QPushButton, QComboBox)
+from sqlalchemy import (Table, Column, Integer, String, MetaData, create_engine, select)
 
 def password_check(hashed_password, password):
     ph = PasswordHasher()
@@ -22,11 +20,6 @@ def goodbye():
     msg.setStyleSheet("font: 10pt Arial; color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./image7s/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Information)
-    '''
-    # release lock
-    home = os.path.expanduser("~")
-    os.remove(str(home)+'/.pandora_lock')
-    '''
     msg.setText('Goodbye!       ')
     msg.setWindowTitle('LOGON')
     msg.exec_()
@@ -174,6 +167,7 @@ def inlog():
 
             self.setFont(QFont('Arial', 10))
             self.setStyleSheet("background-color: #D9E1DF")
+
             grid = QGridLayout()
             grid.setSpacing(20)
 
@@ -389,7 +383,7 @@ def hoofdMenu(m_email):
             self.k0Edit.addItem('1. Modify account')
             self.k0Edit.addItem('2. Requesting accounts')
             self.k0Edit.addItem('3. Ordering web articles')
-            self.k0Edit.addItem('4. Requesting order overview')
+            self.k0Edit.addItem('4. Requesting own order overview')
             self.k0Edit.addItem('5. Printing order invoices')
 
             self.k1Edit = QComboBox()
@@ -509,12 +503,14 @@ def hoofdMenu(m_email):
             self.k7Edit.addItem('5. Printing picklists')
             self.k7Edit.addItem('6. Mutate cost services')
             self.k7Edit.addItem('7. Mutate hourly consumption')
+            self.k7Edit.addItem('8. Parameters Services')
 
             self.k8Edit = QComboBox()
             self.k8Edit.setFixedWidth(310)
             self.k8Edit.setFont(QFont("Arial",10))
             self.k8Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             self.k8Edit.addItem('Calculation works internally')
+            self.k8Edit.setMaxVisibleItems(11)
             self.k8Edit.setEditable(True)
             self.k8Edit.lineEdit().setFont(QFont("Arial",10))
             self.k8Edit.lineEdit().setReadOnly(True)
@@ -524,16 +520,18 @@ def hoofdMenu(m_email):
             self.k8Edit.addItem('2. Insert cluster data')
             self.k8Edit.addItem('3. Request cluster data')
             self.k8Edit.addItem('4. Insert article lines per cluster')
-            self.k8Edit.addItem('5. Request article lines per cluster') 
+            self.k8Edit.addItem('5. Request article lines per cluster')
             self.k8Edit.addItem('6. Create/change calculation')
             self.k8Edit.addItem('7. Calculation/Article list/printing')
             self.k8Edit.addItem('8. Calculation connect -> production')
+            self.k8Edit.addItem('9. Modify Cluster Menus Internal works')
 
             self.k9Edit = QComboBox()
             self.k9Edit.setFixedWidth(310)
             self.k9Edit.setFont(QFont("Arial",10))
             self.k9Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             self.k9Edit.addItem('Calculation works externally')
+            self.k9Edit.setMaxVisibleItems(11)
             self.k9Edit.setEditable(True)
             self.k9Edit.lineEdit().setFont(QFont("Arial",10))
             self.k9Edit.lineEdit().setReadOnly(True)
@@ -547,6 +545,7 @@ def hoofdMenu(m_email):
             self.k9Edit.addItem('6. Create/change calculation')
             self.k9Edit.addItem('7. Calculation/Article list/printing')
             self.k9Edit.addItem('8. Calculation connect -> production')
+            self.k9Edit.addItem('9. Modify Cluster Menus External works')
 
             self.k10Edit = QComboBox()
             self.k10Edit.setFixedWidth(310)
@@ -557,14 +556,18 @@ def hoofdMenu(m_email):
             self.k10Edit.lineEdit().setFont(QFont("Arial",10))
             self.k10Edit.lineEdit().setReadOnly(True)
             self.k10Edit.lineEdit().setAlignment(Qt.AlignCenter)
+            self.k10Edit.setMaxVisibleItems(11)
             self.k10Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            self.k10Edit.addItem('1. Request mutation of hours')
-            self.k10Edit.addItem('2. Control hours for monthly wages')
-            self.k10Edit.addItem('3. Payment of monthly wages')
-            self.k10Edit.addItem('4. Request wages payments')
-            self.k10Edit.addItem('5. Insert wages scales')
-            self.k10Edit.addItem('6. Modify wages scales/requesting')
-            self.k10Edit.addItem('7. Increase wages with percentage')
+            self.k10Edit.addItem('  1. Request mutation of hours')
+            self.k10Edit.addItem('  2. Control hours for monthly wages')
+            self.k10Edit.addItem('  3. Payment of monthly wages')
+            self.k10Edit.addItem('  4. Request wages payments')
+            self.k10Edit.addItem('  5. Insert wages scales')
+            self.k10Edit.addItem('  6. Modify wages scales/requesting')
+            self.k10Edit.addItem('  7. Increase wages with percentage')
+            self.k10Edit.addItem('  8. Parameters Hours')
+            self.k10Edit.addItem('  9. Parameters Wages')
+            self.k10Edit.addItem('10. Parameters Periods-Wages')
 
             self.k11Edit = QComboBox()
             self.k11Edit.setFixedWidth(310)
@@ -583,6 +586,7 @@ def hoofdMenu(m_email):
             self.k11Edit.addItem('5. Book return payments')
             self.k11Edit.addItem('6. Print list to invoice external works')
             self.k11Edit.addItem('7. Request mutations of hours')
+            self.k11Edit.addItem('8. Parameters Finance')
 
             self.k12Edit = QComboBox()
             self.k12Edit.setFixedWidth(310)
@@ -613,6 +617,7 @@ def hoofdMenu(m_email):
             self.k13Edit.addItem('2. Print finance graphs external works')
             self.k13Edit.addItem('3. Print graphs by progress status')
             self.k13Edit.addItem('4. Request results works')
+            self.k13Edit.addItem('5. Parameters Graphs')
 
             self.k14Edit = QComboBox()
             self.k14Edit.setFixedWidth(310)
@@ -624,13 +629,12 @@ def hoofdMenu(m_email):
             self.k14Edit.lineEdit().setReadOnly(True)
             self.k14Edit.lineEdit().setAlignment(Qt.AlignCenter)
             self.k14Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
+            self.k14Edit.setMaxVisibleItems(12)
             self.k14Edit.addItem('1. Mutate authorisations')
             self.k14Edit.addItem('2. Connect account - supplier')
             self.k14Edit.addItem('3. Connect account - sales company')
-            self.k14Edit.addItem('4. Insert parameters')
-            self.k14Edit.addItem('5. Modify parameters')
-            self.k14Edit.addItem('6. Request parameters')
-            self.k14Edit.addItem('7. Sales work rates updating')
+            self.k14Edit.addItem('4. Parameters System')
+            self.k14Edit.addItem('5. Sales work rates updating to wages')
 
             self.k15Edit = QComboBox()
             self.k15Edit.setFixedWidth(310)
@@ -643,15 +647,15 @@ def hoofdMenu(m_email):
             self.k15Edit.lineEdit().setAlignment(Qt.AlignCenter)
             self.k15Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
             self.k15Edit.setMaxVisibleItems(14)
-            self.k15Edit.addItem('1. Calculation internal works')
-            self.k15Edit.addItem('2. Calculation external works')  
-            self.k15Edit.addItem('3. Internal orders purchase')
-            self.k15Edit.addItem('4. Calling internal works')
-            self.k15Edit.addItem('5. Calling external works')
-            self.k15Edit.addItem('6. Picklists warehouse')
-            self.k15Edit.addItem('7. Web orders packing slip')
-            self.k15Edit.addItem('8. Control hours for paying wages')
-            self.k15Edit.addItem('9. Wages specification employees')
+            self.k15Edit.addItem(' 1. Calculation internal works')
+            self.k15Edit.addItem(' 2. Calculation external works')
+            self.k15Edit.addItem(' 3. Internal orders purchase')
+            self.k15Edit.addItem(' 4. Calling internal works')
+            self.k15Edit.addItem(' 5. Calling external works')
+            self.k15Edit.addItem(' 6. Picklists warehouse')
+            self.k15Edit.addItem(' 7. Web orders packing slip')
+            self.k15Edit.addItem(' 8. Control hours for paying wages')
+            self.k15Edit.addItem(' 9. Wages specification employees')
             self.k15Edit.addItem('10. Invoices external works')
             self.k15Edit.addItem('11. Web orders payments')
             self.k15Edit.addItem('12. Purchase orders services/material')
@@ -664,9 +668,9 @@ def hoofdMenu(m_email):
 
             # list of pointers by mainmenu and menulines per groups pointers towards database table accountpermissions
             lineperm = ([0, 4, 6, 2, 2, 5],[0, 3, 4, 6, 1],[0, 1, 4, 6, 6],[0, 3, 4, 3, 4, 6, 6],[0, 3, 4, 6, 1, 6],\
-                        [0, 3, 4, 6, 4, 5, 1, 6, 3, 6],[0, 3, 4, 6, 3, 5, 3],[0, 3, 4, 6, 2, 6, 3, 3],\
-                        [0, 3, 4, 6, 3, 6, 3, 6, 1],[0, 4, 4, 6, 3, 6, 3, 6, 1],[0, 6, 2, 1, 6, 3, 4, 1],\
-                        [0, 6, 6, 2, 6, 2, 5, 6],[0, 2, 1, 1, 1],[0, 1, 6, 6, 6],[0, 1, 3, 3, 3, 4, 6, 4],[0])
+                        [0, 3, 4, 6, 4, 5, 1, 6, 3, 6],[0, 3, 4, 6, 3, 5, 3],[0, 3, 4, 6, 2, 6, 3, 3, 7],\
+                        [0, 3, 4, 6, 3, 6, 3, 6, 1, 7],[0, 4, 4, 6, 3, 6, 3, 6, 1, 7],[0, 6, 2, 1, 6, 3, 4, 1, 7, 7, 7],\
+                        [0, 6, 6, 2, 6, 2, 5, 6, 7],[0, 2, 1, 1, 1],[0, 1, 6, 6, 6, 7],[0, 7, 3, 3, 7, 4],[0])
             # loop on mainmenu and permissions in table accounts
             for menu in range(0,16):
                 menuperms = lineperm[menu]
@@ -1029,7 +1033,7 @@ def hoofdMenu(m_email):
         mboekd = str(datetime.now())[0:10]
         while True:
             accwerk = urenImutaties.urenMut(maccountnr, mwerknr, mboekd, m_email)
-	        # for convenience start with last used work , employee and mboekd 
+	        # for convenience start with last used work , employee and mboekd
             try:
                 maccountnr = accwerk[0]
                 mwerknr = accwerk[1]
@@ -1072,6 +1076,9 @@ def hoofdMenu(m_email):
                 maccountnr = '1'
                 mwerknr = '8'
                 mboekd = str(datetime.now())[0:10]
+    elif dlist[7] == 8:
+        import params_services
+        params_services.chooseSubMenu(m_email, int(mp[7][6]), int(mp[7][4]), int(mp[7][3]))
     elif dlist[8] == 1:
         import maakIcluster
         while True:
@@ -1101,6 +1108,10 @@ def hoofdMenu(m_email):
         import koppelIbegroting
         while True:
             koppelIbegroting.zoekBegroting(m_email)
+    elif dlist[8] == 9:
+        sector = 'internal'
+        import modifyStruct
+        modifyStruct.menuStructure(sector, m_email) #internal works
     elif dlist[9] == 1:
         import maakCluster
         while True:
@@ -1131,6 +1142,10 @@ def hoofdMenu(m_email):
         import koppelBegroting
         while True:
             koppelBegroting.zoekBegroting(m_email)
+    elif dlist[9] == 9:
+        sector = 'external'
+        import modifyStruct
+        modifyStruct.menuStructure(sector, m_email) # external
     elif dlist[10] == 1:
         import opvrUrenmutaties
         opvrUrenmutaties.loonKeuze(m_email)
@@ -1154,6 +1169,15 @@ def hoofdMenu(m_email):
         import percentageLonen
         while True:
             percentageLonen.percLoonschaal(m_email)
+    elif dlist[10] == 8:
+        import params_hours
+        params_hours.chooseSubMenu(m_email, int(mp[10][6]), int(mp[10][4]), int(mp[10][3]))
+    elif dlist[10] == 9:
+        import params_wages
+        params_wages.chooseSubMenu(m_email, int(mp[10][6]), int(mp[10][4]), int(mp[10][3]))
+    elif dlist[10] == 10:
+        import params_periods
+        params_periods.chooseSubMenu(m_email, int(mp[10][6]), int(mp[10][4]), int(mp[10][3]))
     elif dlist[11] == 1:
         import opvrArtikelmutaties
         opvrArtikelmutaties.mutatieKeuze(m_email)
@@ -1175,6 +1199,9 @@ def hoofdMenu(m_email):
     elif dlist[11] == 7:
         import opvrUrenmutaties
         opvrUrenmutaties.loonKeuze(m_email)
+    elif dlist[11] == 8:
+        import params_finance
+        params_finance.chooseSubMenu(m_email, int(mp[11][6]), int(mp[11][4]), int(mp[11][3]))
     elif dlist[12] == 1:
         import voorraadbeheersing
         voorraadbeheersing.vrdKeuze(m_email)
@@ -1200,6 +1227,9 @@ def hoofdMenu(m_email):
     elif dlist[13] == 4:
         import toonResultaten
         toonResultaten.toonResult(m_email)
+    elif dlist[13] == 5:
+        import params_graphs
+        params_graphs.chooseSubMenu(m_email, int(mp[13][6]),int(mp[13][3]), int(mp[13][2]))
     elif dlist[14] == 1:
         import maakAuthorisatie
         while True:
@@ -1211,16 +1241,9 @@ def hoofdMenu(m_email):
         import koppelAccount
         koppelAccount.zoekAccount(m_email, 1)
     elif dlist[14] == 4:
-        import invoerParams
-        while True:
-            invoerParams.invParams(m_email)
+        import params_system
+        params_system.chooseSubMenu(m_email, int(mp[14][6]), int(mp[14][4]), int(mp[14][3]))
     elif dlist[14] == 5:
-        import wijzigParams
-        wijzigParams.toonParams(m_email) 
-    elif dlist[14] == 6:
-        import opvrParams
-        opvrParams.toonParams(m_email)
-    elif dlist[14] == 7:
         import wijzWerktarief
         wijzWerktarief.winKeuze(m_email)
     elif dlist[15] == 1:

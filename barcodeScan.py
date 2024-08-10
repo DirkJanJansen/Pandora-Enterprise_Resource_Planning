@@ -118,7 +118,7 @@ def printBon(self):
     msgBox.setWindowTitle("Print order form")
     msgBox.setIcon(QMessageBox.Information)
     msgBox.setFont(QFont("Arial", 10))
-    msgBox.setText("Do you want to print the order form?");
+    msgBox.setText("Do you want to print the order form?")
     msgBox.setStandardButtons(QMessageBox.Yes)
     msgBox.addButton(QMessageBox.No)
     msgBox.setStyleSheet("color: black;  background-color: gainsboro")
@@ -135,13 +135,13 @@ def printBon(self):
             Column('prijs', Float),
             Column('subtotaal', Float),
             Column('subbtw', Float))
-        params = Table('params', metadata,
-            Column('paramID', Integer(), primary_key=True),
-            Column('tarief', Float),
+        params_system = Table('params_system', metadata,
+            Column('systemID', Integer(), primary_key=True),
+            Column('system_value', Integer),
             Column('lock', Boolean))
         engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
         con = engine.connect()
-        selpar = select([params]).where(params.c.paramID == 103)
+        selpar = select([params_system]).where(params_system.c.systemID == 2)
         rppar = con.execute(selpar).first()
         mbonnr = int(rppar[1])
         delbal = delete(balieverkoop).where(and_(balieverkoop.c.aantal == 0,\
@@ -217,13 +217,13 @@ def nextClient(self):
         Column('baliebonID', Integer),
         Column('tot_mag_prijs', Float),
         Column('btw_hoog', Float))
-    params = Table('params', metadata,
-        Column('paramID', Integer(), primary_key=True),
-        Column('tarief', Float),
+    params_system = Table('params_system', metadata,
+        Column('systemID', Integer(), primary_key=True),
+        Column('system_value', Integer),
         Column('lock', Boolean))
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    selpar = select([params]).where(params.c.paramID == 103)
+    selpar = select([params_system]).where(params_system.c.systemID == 2)
     rppar = con.execute(selpar).first()
     mbonnr = rppar[1]
     delbal = delete(balieverkoop).where(and_(balieverkoop.c.aantal == 0,\
@@ -276,7 +276,7 @@ def nextClient(self):
         self.nextBtn.setDisabled(True)
         self.nextBtn.setStyleSheet("color: grey; background-color: gainsboro")
         mbonnr += 1
-        updpar = update(params).where(params.c.paramID == 103).values(tarief = mbonnr, lock = False)
+        updpar = update(params_system).where(params_system.c.systemID == 2).values(system_value = mbonnr, lock = False)
         con.execute(updpar)
         self.mtotaal = 0.00
         self.mtotbtw = 0.00
@@ -285,7 +285,7 @@ def nextClient(self):
         self.qtailtext = 'Total incl.  VAT  '+'{:\u2000>12.2f}'.format(self.mtotaal)+'{:\u2000>12.2f}'.format(self.mtotbtw)+' VAT'
         self.qtailEdit.setText(self.qtailtext)
     else:
-        updpar = update(params).where(params.c.paramID == 103).values(lock = False)
+        updpar = update(params_system).where(params_system.c.systemID == 2).values(lock = False)
         con.execute(updpar)
         geenGegevens()
         self.closeBtn.setEnabled(True)
@@ -341,21 +341,24 @@ def set_barcodenr(self):
             Column('prijs', Float),
             Column('subtotaal', Float),
             Column('subbtw', Float))
-        params = Table('params', metadata,
-            Column('paramID', Integer(), primary_key=True),
-            Column('tarief', Float),
+        params_system = Table('params_system', metadata,
+            Column('systemID', Integer(), primary_key=True),
+            Column('system)_value', Integer),
             Column('lock', Boolean))
+        params_finance = Table('params_finance', metadata,
+            Column('financeID', Integer(), primary_key=True),
+            Column('factor', Float))
         engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
         con = engine.connect()
-        selpar = select([params]).where(params.c.paramID == 103)
+        selpar = select([params_system]).where(params_system.c.systemID == 2)
         rppar = con.execute(selpar).first()
-        selpar1 = select([params]).where(params.c.paramID == 1)
+        selpar1 = select([params_finance]).where(params_finance.c.financeID == 1)
         rppar1 = con.execute(selpar1).first()
         mbtw = rppar1[1]
         mbonnr = rppar[1]
         mklant = rppar[2]
         if mklant == False:
-            updpar = update(params).where(params.c.paramID == 103).values(lock = True)
+            updpar = update(params_system).where(params_system.c.systemID == 2).values(lock = True)
             con.execute(updpar)
         selart = select([artikelen]).where(artikelen.c.barcode == barcodenr)
         selbal = select([balieverkoop]).where(and_(balieverkoop.c.barcode == barcodenr,\

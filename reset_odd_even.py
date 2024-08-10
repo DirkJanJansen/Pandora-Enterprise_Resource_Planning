@@ -15,18 +15,18 @@ def odd_even(message):
 
 try:
     metadata = MetaData()
-    params = Table('params', metadata,
-           Column('paramID', Integer(), primary_key=True),
+    params_system = Table('params_system', metadata,
+           Column('systemID', Integer(), primary_key=True),
            Column('item', String),
-           Column('tarief', Float))
+           Column('system_value', Float))
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
     mjaar = int(str(datetime.date.today())[0:4])
-    updeven = update(params).where(params.c.paramID == 99).values(tarief = int(mjaar%2))
+    updeven = update(params_system).where(params_system.c.systemID == 3).values(system_value = int(mjaar%2))
     con.execute(updeven)
     message = "Reset parameter successful!"
-except:
-    message = "Reset parameter failed"
+except Exception as e:
+    message = "Reset parameter failed!\n"+str(e)
 app = QApplication(sys.argv)
 app.setStyle("Windows")
 sys.exit(odd_even(message))

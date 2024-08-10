@@ -85,7 +85,7 @@ def info():
         Authorisaties:
             
         S = Speciaal  B = Bestellen  I = Invoeren   W = Wijzigen 
-        P = Printen    O = Opvragen  R = Gereserveerd
+        P = Printen    O = Opvragen  V = Vertrouwelijk
         ''')
                 
             grid.addWidget(lblinfo, 1, 0, 1, 4, Qt.AlignCenter)
@@ -277,7 +277,7 @@ def geefAuth(rpacc, m_email):
             grid.addWidget(QLabel('W'), 2, 6)
             grid.addWidget(QLabel('P'), 2, 7)
             grid.addWidget(QLabel('O'), 2, 8)
-            grid.addWidget(QLabel('R'), 2, 9)
+            grid.addWidget(QLabel('V'), 2, 9)
             
             grid.addWidget(QLabel('Menu'), 2, 11, 1, 2, Qt.AlignRight)  
             grid.addWidget(QLabel('S'), 2, 13)
@@ -286,7 +286,7 @@ def geefAuth(rpacc, m_email):
             grid.addWidget(QLabel('W'), 2, 16)
             grid.addWidget(QLabel('P'), 2, 17)
             grid.addWidget(QLabel('O'), 2, 18)
-            grid.addWidget(QLabel('R'), 2, 19)
+            grid.addWidget(QLabel('V'), 2, 19)
             
             lbl0 = QLabel('Accounts')
             lbl0.setFixedWidth(115) 

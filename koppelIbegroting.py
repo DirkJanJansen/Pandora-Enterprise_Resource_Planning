@@ -432,14 +432,14 @@ def koppelCalc(mcalnr, mwerknr, mwerkomschr, m_email):
                 artikelen.c.artikelID, materiaallijsten.c.icalculatie == mcalnr))\
                 .values(reserveringsaldo = artikelen.c.reserveringsaldo + materiaallijsten.c.hoeveelheid)
            con.execute(updart)
-        params = Table('params', metadata,
-            Column('paramID', Integer, primary_key=True),
-            Column('tarief', Float),
-            Column('item', String))
+        params_finance = Table('params_finance', metadata,
+            Column('financeID', Integer, primary_key=True),
+            Column('factor', Float),
+            Column('amount', String))
     
         engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
         con = engine.connect()
-        selpar = select([params]).order_by(params.c.paramID)
+        selpar = select([params_finance]).order_by(params_finance.c.financeID)
         rppar = con.execute(selpar).fetchall()
         updprijs = update(artikelen).where(orders_intern.c.artikelID ==\
             artikelen.c.artikelID).values(artikelprijs = (orders_intern.c.begroot_totaal/\

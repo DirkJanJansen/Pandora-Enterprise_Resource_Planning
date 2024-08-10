@@ -816,15 +816,12 @@ def inkoopRegels(m_email, rp1, rp2, rp3, mstraat, mplaats, mregel):
              where(artikelen.c.artikelID == martikelnr)
             rpsel = con.execute(sel).first()
             martprijs = rpsel[1]
-            params = Table('params', metadata,
-                Column('paramID', Integer, primary_key=True),
-                Column('tarief', Float),
-                Column('item', String),
-                Column('lock', Boolean),
-                Column('ondergrens', Float),
-                Column('bovengrens', Float))
-            
-            selpar = select([params]).order_by(params.c.paramID)
+            params_finance = Table('params_finance', metadata,
+                Column('financeID', Integer, primary_key=True),
+                Column('factor', Float),
+                Column('item', String))
+
+            selpar = select([params_finance]).order_by(params_finance.c.financeID)
             rppar = con.execute(selpar).fetchall()
             try: 
                 mutnr=(conn.execute(select([func.max(artikelmutaties.c.mutatieID,\

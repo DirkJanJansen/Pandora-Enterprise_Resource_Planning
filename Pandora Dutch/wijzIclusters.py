@@ -1802,15 +1802,15 @@ def toonIclusters(keuze, m_email) :
             else:
                 mf55 = rpsel[56]
                 
-            metadata = MetaData()       
-            params = Table('params', metadata,
-                Column('paramID', Integer, primary_key=True),
-                Column('tarief', Float),
-                Column('item', String))
-            
+            metadata = MetaData()
+            params_hours = Table('params_hours', metadata,
+                                 Column('rateID', Integer, primary_key=True),
+                                 Column('hourly_tariff', Float),
+                                 Column('item', String))
+
             engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
             con = engine.connect()
-            selpar = select([params]).order_by(params.c.paramID)
+            selpar = select([params_hours]).order_by(params_hours.c.paramID)
             rppar = con.execute(selpar).fetchall()
                                                                  
             upd = update(iclusters).where(iclusters.c.iclusterID == clusternr).values(\
@@ -1828,30 +1828,30 @@ def toonIclusters(keuze, m_email) :
                 montage=mf55)
             con.execute(upd)
             upd1 = update(iclusters).where(iclusters.c.iclusterID == clusternr).values(\
-                lonen=iclusters.c.zagen*rppar[72][1]+iclusters.c.szagen*rppar[72][1]/50\
-                +iclusters.c.schaven*rppar[73][1]+iclusters.c.sschaven*rppar[73][1]/50\
-                +iclusters.c.steken*rppar[74][1]+iclusters.c.ssteken*rppar[74][1]/50\
-                +iclusters.c.boren*rppar[75][1]+iclusters.c.sboren*rppar[75][1]/50\
-                +iclusters.c.frezen*rppar[76][1]+iclusters.c.sfrezen*rppar[76][1]/50\
-                +iclusters.c.draaien_klein*rppar[77][1]+iclusters.c.sdraaien_klein*rppar[77][1]/50\
-                +iclusters.c.draaien_groot*rppar[78][1]+iclusters.c.sdraaien_groot*rppar[78][1]/50\
-                +iclusters.c.tappen*rppar[79][1]+iclusters.c.stappen*rppar[79][1]/50\
-                +iclusters.c.nube_draaien*rppar[80][1]+iclusters.c.snube_draaien*rppar[80][1]/50\
-                +iclusters.c.nube_bewerken*rppar[81][1]+iclusters.c.snube_bewerken*rppar[81][1]/50\
-                +iclusters.c.knippen*rppar[82][1]+iclusters.c.sknippen*rppar[82][1]/50\
-                +iclusters.c.kanten*rppar[83][1]+iclusters.c.skanten*rppar[83][1]/50\
-                +iclusters.c.stansen*rppar[84][1]+iclusters.c.sstansen*rppar[84][1]/50\
-                +iclusters.c.lassen_co2*rppar[85][1]+iclusters.c.slassen_co2*rppar[85][1]/50\
-                +iclusters.c.lassen_hand*rppar[86][1]+iclusters.c.slassen_hand*rppar[86][1]/50\
-                +iclusters.c.verpakken*rppar[87][1]+iclusters.c.sverpakken*rppar[86][1]/50\
-                +iclusters.c.verzinken*rppar[88][1]+iclusters.c.sverzinken*rppar[88][1]/50\
-                +iclusters.c.moffelen*rppar[89][1]+iclusters.c.smoffelen*rppar[89][1]/50\
-                +iclusters.c.schilderen*rppar[90][1]+iclusters.c.sschilderen*rppar[90][1]/50\
-                +iclusters.c.spuiten*rppar[91][1]+iclusters.c.spuiten*rppar[91][1]/50\
-                +iclusters.c.ponsen*rppar[92][1]+iclusters.c.sponsen*rppar[92][1]/50\
-                +iclusters.c.persen*rppar[93][1]+iclusters.c.spersen*rppar[93][1]/50\
-                +iclusters.c.gritstralen*rppar[94][1]+iclusters.c.sgritstralen*rppar[94][1]/50\
-                +iclusters.c.montage*rppar[95][1]+iclusters.c.smontage*rppar[95][1]/50)
+                lonen=iclusters.c.zagen*rppar[11][1]+iclusters.c.szagen*rppar[11][1]/50\
+                +iclusters.c.schaven*rppar[12][1]+iclusters.c.sschaven*rppar[12][1]/50\
+                +iclusters.c.steken*rppar[13][1]+iclusters.c.ssteken*rppar[13][1]/50\
+                +iclusters.c.boren*rppar[14][1]+iclusters.c.sboren*rppar[14][1]/50\
+                +iclusters.c.frezen*rppar[15][1]+iclusters.c.sfrezen*rppar[15][1]/50\
+                +iclusters.c.draaien_klein*rppar[16][1]+iclusters.c.sdraaien_klein*rppar[16][1]/50\
+                +iclusters.c.draaien_groot*rppar[17][1]+iclusters.c.sdraaien_groot*rppar[17][1]/50\
+                +iclusters.c.tappen*rppar[18][1]+iclusters.c.stappen*rppar[18][1]/50\
+                +iclusters.c.nube_draaien*rppar[19][1]+iclusters.c.snube_draaien*rppar[19][1]/50\
+                +iclusters.c.nube_bewerken*rppar[20][1]+iclusters.c.snube_bewerken*rppar[20][1]/50\
+                +iclusters.c.knippen*rppar[21][1]+iclusters.c.sknippen*rppar[21][1]/50\
+                +iclusters.c.kanten*rppar[22][1]+iclusters.c.skanten*rppar[22][1]/50\
+                +iclusters.c.stansen*rppar[23][1]+iclusters.c.sstansen*rppar[23][1]/50\
+                +iclusters.c.lassen_co2*rppar[24][1]+iclusters.c.slassen_co2*rppar[24][1]/50\
+                +iclusters.c.lassen_hand*rppar[25][1]+iclusters.c.slassen_hand*rppar[25][1]/50\
+                +iclusters.c.verpakken*rppar[26][1]+iclusters.c.sverpakken*rppar[26][1]/50\
+                +iclusters.c.verzinken*rppar[27][1]+iclusters.c.sverzinken*rppar[27][1]/50\
+                +iclusters.c.moffelen*rppar[28][1]+iclusters.c.smoffelen*rppar[28][1]/50\
+                +iclusters.c.schilderen*rppar[29][1]+iclusters.c.sschilderen*rppar[29][1]/50\
+                +iclusters.c.spuiten*rppar[30][1]+iclusters.c.spuiten*rppar[30][1]/50\
+                +iclusters.c.ponsen*rppar[31][1]+iclusters.c.sponsen*rppar[31][1]/50\
+                +iclusters.c.persen*rppar[32][1]+iclusters.c.spersen*rppar[32][1]/50\
+                +iclusters.c.gritstralen*rppar[33][1]+iclusters.c.sgritstralen*rppar[33][1]/50\
+                +iclusters.c.montage*rppar[34][1]+iclusters.c.smontage*rppar[34][1]/50)
             con.execute(upd1)
             upd3 = update(iclusters).where(iclusters.c.iclusterID == clusternr).values(\
                          prijs = mf3+mf5+iclusters.c.lonen+iclusters.c.materieel+iclusters.c.inhuur)

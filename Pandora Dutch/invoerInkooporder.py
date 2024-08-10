@@ -236,8 +236,6 @@ def bepaalInkoopOrdernr(mregel):
     except:
         if mregel == 1:
             morderinkoopnr = 400000003
-        conn.close
-        
     return(morderinkoopnr)
    
 def Inkooporder(m_email, rplev, mregel):
@@ -463,7 +461,6 @@ def inkoopRegels(m_email, rplev, mregel):
         ins = insert(orders_inkoop).values(orderinkoopID = minkordnr, leverancierID =\
                     mlevnr, besteldatum = mbestdatum)
         conn.execute(ins)
-        conn.close
     elif mregel == 0:
         mregel = 1
     if data[0]: 

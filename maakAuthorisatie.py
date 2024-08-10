@@ -36,6 +36,8 @@ def info():
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
+            self.setWindowFlags(self.windowFlags() | Qt.WindowSystemMenuHint |
+                                Qt.WindowMinMaxButtonsHint)
             self.setWindowTitle("Information authorisation")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
@@ -81,7 +83,7 @@ def info():
         Authorisations:
             
         S = Special   O = Ordering   I = Insert     M = Modify   
-        P = Printing   Q = Query       R = Reserved    
+        P = Printing   Q = Query       C = Confidential    
         ''')
                 
             grid.addWidget(lblinfo, 1, 0, 1, 4, Qt.AlignCenter)
@@ -108,6 +110,9 @@ def zoekAccount(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
+            self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
+            self.setWindowFlags(self.windowFlags() | Qt.WindowSystemMenuHint |
+                                Qt.WindowMinMaxButtonsHint)
             self.setWindowTitle("Authorisation program.")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
@@ -230,6 +235,9 @@ def geefAuth(rpacc, m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
+            self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
+            self.setWindowFlags(self.windowFlags() | Qt.WindowSystemMenuHint |
+                                Qt.WindowMinMaxButtonsHint)
             self.setWindowTitle("Customise authorisations")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                                   
@@ -273,7 +281,7 @@ def geefAuth(rpacc, m_email):
             grid.addWidget(QLabel('M'), 2, 6)
             grid.addWidget(QLabel('P'), 2, 7)
             grid.addWidget(QLabel('Q'), 2, 8)
-            grid.addWidget(QLabel('R'), 2, 9)
+            grid.addWidget(QLabel('C'), 2, 9)
             
             grid.addWidget(QLabel('Menu'), 2, 11, 1, 2, Qt.AlignRight)  
             grid.addWidget(QLabel('S'), 2, 13)
@@ -282,7 +290,7 @@ def geefAuth(rpacc, m_email):
             grid.addWidget(QLabel('M'), 2, 16)
             grid.addWidget(QLabel('P'), 2, 17)
             grid.addWidget(QLabel('Q'), 2, 18)
-            grid.addWidget(QLabel('R'), 2, 19)
+            grid.addWidget(QLabel('C'), 2, 19)
             
             lbl0 = QLabel('Accounts')
             lbl0.setFixedWidth(115) 

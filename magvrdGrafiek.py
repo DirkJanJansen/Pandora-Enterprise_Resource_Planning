@@ -103,6 +103,8 @@ def toonGrafiek(m_email):
             printer = QPrinter(QPrinter.HighResolution)
             printer.setOrientation(QPrinter.Landscape) 
             dialog = QPrintDialog(printer, self)
+            dialog.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
+                                                  Qt.WindowMinMaxButtonsHint)
             if dialog.exec_() == QPrintDialog.Accepted:
                 self.handle_paint_request(printer)
     
@@ -111,8 +113,6 @@ def toonGrafiek(m_email):
             dialog.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                                                   Qt.WindowMinMaxButtonsHint)
             dialog.setWindowIcon(QIcon('./images/logos/logo.jpg'))
-            dialog.setWindowFlags(dialog.windowFlags()| Qt.WindowSystemMenuHint |
-                                                    Qt.WindowMinMaxButtonsHint)
             dialog.resize(1200,800)
             #dialog.setMinimumSize(1200, 800)
             dialog.paintRequested.connect(self.handle_paint_request)

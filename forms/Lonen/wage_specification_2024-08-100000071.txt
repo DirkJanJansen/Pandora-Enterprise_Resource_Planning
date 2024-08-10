@@ -1,0 +1,58 @@
+                           Wage specification August 2024           
+                                                                                             
+                       proccessing date       accountnr employee                year period  
+Addressee              2024-08-09             100000071     4    Employer       2024-08
+=============================================================================================
+                                                                 Pandora Connect B.V.,       
+     Gerrit van der  Meer,                                       Lange Dreef 7,
+     Tulpstraat 17 ,                                             4131 NJ Vianen.
+     4001EA TIEL.                                                Telephone: 0347377304
+                                                                 e-mail: dj.jansen@casema.nl  
+=============================================================================================
+Payments  /Deductions /Days/Hours/Amounts             taxable for                            
+Description                    this period       table        special tax table              
+---------------------------------------------------------------------------------------------
+Gross wages                        1488.97     1488.97    
+125% overtime                         0.00                       0.00
+150% overtime                         0.00                       0.00
+200% overtime                         0.00                       0.00
+Travel hours                          0.00                       0.00
+Travel allowance                     14.23                                
+Other fees                            0.00                                
+Periodic fees                         0.00                                
+                                                                                             
+                   Payements       1503.20     1488.97           0.00
+=============================================================================================
+Pensioncontrib.SPF not taxed         30.62                                
+Payroll tax minus deductions        146.80      146.80    
+Special tax rate                      0.00                       0.00
+                  Deductions        177.42                
+------------------------------------------------------------------                           
+Addition company car                  0.00                                
+                 Additions                        0.00                    
+------------------------------------------------------------------                           
+Nett Wages                         1325.78                                
+Payment to bank account                      Other information                               
+=============================================================================================
+Weekday this month x 8 hours        176.00   Employer pensioncontributiom         61.25
+Worked hours this month               0.00   Employer share WIA,IVA,WGA          108.87
+Booked hours this month               0.00   Reservation AWF                      45.83
+Overtime 125% this month              0.00   Employer share ZVW                  127.04
+Overtime 150% this month              0.00   Res.holiday allowance cum.          833.82
+Overtime 200% this month              0.00   Pay scale                             9.00
+Hours leave this month                0.00   Wage step                             1.00
+Hours extra leave this month          0.00   Percentage special rate               8.49
+Hours holiday                         0.00   Date of birth                   1949-10-12
+Hours doctor visit                    0.00   Date of employment              2017-11-14
+Hours illnes                          0.00   Leave credit in hours               200.00
+Hours permitted leave                 0.00   Hourly wage                           8.59
+==========================================   Travel hourly wage                    6.67
+Working hours cumulation          -4064.00                                
+=============================================================================================
+Amounts                                                                                      
+Levy wages                         1488.97                                
+Payroll tax                         146.80                                
+General levy shortfall              188.75                                
+Labour tax credit                   215.94                                
+=============================================================================================
+=============================================================================================

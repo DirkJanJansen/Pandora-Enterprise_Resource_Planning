@@ -497,4 +497,7 @@ From 2020-01-10 updates and changes are described on this page
 2024-07-10 Encryption method improved. Update database with python script "modify_accounts-passwords.py" to change password keys.
            Requirement.txt added "argon2-cffi", install with "pip install argon2-cffi" or with Linux "sudo pip3 install argon2-cffi"
            Changed Pandora install.txt and LINUX install.txt
-2024-07-15 invoerAccount.py password and password check added match control
+2024-08-10 Major upgrade all params are splitted in 7 new param tables and the menu structure of clusters is realised in the database
+           so it is possible to change the structure of the creation  menu for the clusters.
+           Also a added a empty database with only functional data, so it's possible to insert your own data.
+           The documentation is also  adapted to the new changes.

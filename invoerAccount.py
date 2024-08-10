@@ -536,7 +536,7 @@ def nieuwAccount(self):
             mpassword = password_hash(data[8])
         else:
             dontMatch()
-            nieuwAccount(self) 
+            nieuwAccount(self)
         mtelnr = (data[10])
         if data[12]:
             mgebdatum = data[12]

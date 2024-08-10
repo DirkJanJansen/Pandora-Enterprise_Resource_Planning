@@ -1,14 +1,21 @@
 def maandBetalingen(m_email):
     from login import hoofdMenu
-    import os, datetime 
-    from PyQt5.QtWidgets import QLabel, QLineEdit, QGridLayout, QPushButton,\
+    import os, datetime
+    from PyQt5.QtWidgets import QLabel, QLineEdit, QGridLayout, QPushButton, \
         QDialog, QMessageBox, QWidget, QTableView, QVBoxLayout
     from PyQt5.QtGui import QRegExpValidator, QFont, QPixmap, QIcon
     from PyQt5.QtCore import Qt, QRegExp, QAbstractTableModel
-    from sqlalchemy import (Table, Column, Integer, String, Float, Boolean,\
-                            ForeignKey,  MetaData, create_engine)
+    from sqlalchemy import (Table, Column, Integer, String, Float, Boolean, \
+                            ForeignKey, MetaData, create_engine)
     from sqlalchemy.sql import select, insert, update, and_, func
-    
+
+    metadata = MetaData()
+    params_periods = Table('params_periods', metadata,
+                           Column('periodID', Integer, primary_key=True),
+                           Column('working_hours_per_period', Integer),
+                           Column('working_period', String),
+                           Column('lock_processed', Boolean))
+
     def info():
         class Widget(QDialog):
             def __init__(self):
@@ -321,12 +328,6 @@ def maandBetalingen(m_email):
         window.exec_()
         
     def maandPeriode():
-        metadata = MetaData()
-        params = Table('params', metadata,
-            Column('paramID', Integer, primary_key=True),
-            Column('tarief', Float),
-            Column('item', String),
-            Column('lock', Boolean))
         engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
         con = engine.connect()
         class Widget(QDialog):
@@ -342,7 +343,7 @@ def maandBetalingen(m_email):
                 betEdit.setFixedWidth(100)
                 betEdit.setFont(QFont("Arial",10))
                 betEdit.textChanged.connect(self.betChanged)
-                reg_ex = QRegExp('^[2]{1}[01]{1}[0-9]{2}[-][0-1]{1}[0-9]{1}$')
+                reg_ex = QRegExp("^([12][0-9]{3})([-]{1})(0[1-9]|1[0-2])--|$")
                 input_validator = QRegExpValidator(reg_ex, betEdit)
                 betEdit.setValidator(input_validator)
                                 
@@ -407,7 +408,7 @@ def maandBetalingen(m_email):
         data = window.getData()
         if data[0] and len(data[0])==7:
               mjrmnd = data[0]
-              selpar2 = select([params]).where(params.c.item == mjrmnd)
+              selpar2 = select([params_periods]).where(params_periods.c.working_period == mjrmnd)
               rppar2 = con.execute(selpar2).first()
               if not rppar2:
                   ongPeriode()
@@ -416,9 +417,8 @@ def maandBetalingen(m_email):
                   recordLock()
                   return(mjrmnd, 0)
               else:
-                  updpar2 = update(params).where(params.c.item == mjrmnd).values(lock=True)
+                  updpar2 = update(params_periods).where(params_periods.c.working_period == mjrmnd).values(lock_processed=True)
                   con.execute(updpar2)
-                  con.close
               return(mjrmnd, 1)
         else:
              ongPeriode()
@@ -477,18 +477,17 @@ def maandBetalingen(m_email):
     selwerknmr = select([werknemers, accounts]).where(werknemers.c.accountID ==\
                      accounts.c.accountID).order_by(werknemers.c.accountID)
     rpwerknmr = conn.execute(selwerknmr)
-    
-    params = Table('params', metadata,
-        Column('paramID', Integer, primary_key=True),
-        Column('tarief', Float),
-        Column('item', String),
-        Column('lock', Boolean),
-        Column('ondergrens', Float),
-        Column('bovengrens', Float))
-        
+
+    params_wages = Table('params_wages', metadata,
+                         Column('deductionID', Integer, primary_key=True),
+                         Column('factor_charging', Float),
+                         Column('amount_charging', Integer),
+                         Column('lower_limit', Integer),
+                         Column('upper_limit', Integer))
+
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    selpar = select([params]).order_by(params.c.paramID)
+    selpar = select([params_wages]).order_by(params_wages.c.deductionID)
     rppar = con.execute(selpar).fetchall()
     
     import postcode
@@ -518,102 +517,102 @@ def maandBetalingen(m_email):
         mwerknsaldo = row[16]
         #mloonh = (uurloon*40*13)/3 #tabelloon.loonheffing
         if row[2] < 37 or (row[2] > 52 and row[2] < 125):
-            mbruto = rplon[1]*520/3*(1+mtrede)
-            #muurl = rplon[1]*(1+mtrede)
+            mbruto = rplon[1] * 520 / 3 * (1 + mtrede)
+            # muurl = rplon[1]*(1+mtrede)
         else:
-            mbruto =  rplon[2]*(1+mtrede)
-            #muurl = mbruto*3/520
-        mauto = row[12]   
-        #pensioenpremie
-        mjaarink = mbruto*12.96
+            mbruto = rplon[2] * (1 + mtrede)
+            # muurl = mbruto*3/520
+        mauto = row[12]
+        # pensioenpremie
+        mjaarink = mbruto * 12.96
         mpensink = mjaarink
-        if mpensink >  rppar[44][5]:
-            mpensprjr = (rppar[44][5]-rppar[44][4])*rppar[44][1]
+        if mpensink > rppar[12][4]:
+            mpensprjr = (rppar[12][4] - rppar[12][3]) * rppar[12][1]
         else:
-            mpensprjr = (mpensink-rppar[44][4])*rppar[44][1]
-        mpenspr = (mpensprjr)/12.96/3
-        mpensprwg = mpenspr*2
-        mvakpenspr =  mpenspr*0.96
-        mvakpensprwg = mvakpenspr*2
-        mresvaktslag = mbruto*0.08
-        mbelink = mjaarink-mpensprjr+(mauto*12)
-        # loonheffing 
-        if mbelink > 0 and mbelink <= rppar[31][5]:
-             lh1 = mbelink*rppar[31][1]
-             lh = lh1
-             if lh<0:
-                 lh=0
-        elif mbelink > rppar[32][4]  and mbelink <= rppar[32][5]:
-             lh1 = rppar[31][5]*rppar[31][1]
-             lh2 = (mbelink-rppar[31][5])*rppar[32][1]
-             lh = lh1+lh2
-        elif mbelink > rppar[32][5] and mbelink <= rppar[34][4]:
-            lh1 = rppar[31][5]*rppar[31][1]
-            lh2 = (mbelink-rppar[32][4])*rppar[32][1]
-            lh3 = (mbelink-rppar[33][4])*rppar[33][1]
-            lh = lh1+lh2+lh3
-        elif mbelink >= rppar[33][4]:
-            lh1 = rppar[31][5]*rppar[31][1]
-            lh2 = (mbelink-rppar[31][5])*rppar[32][1]
-            lh3 = (mbelink-rppar[32][4])*rppar[33][1]
-            lh4 = (mbelink - rppar[34][4])*rppar[34][1]
-            lh = lh1+lh2+lh3+lh4
-        lh = lh/12
-        #alg heffingkorting bepalen
-        if mbelink <= rppar[36][4]:
-            hk = rppar[35][1]
+            mpensprjr = (mpensink - rppar[12][3]) * rppar[12][1]
+        mpenspr = (mpensprjr) / 12.96 / 3
+        mpensprwg = mpenspr * 2
+        mvakpenspr = mpenspr * 0.96
+        mvakpensprwg = mvakpenspr * 2
+        mresvaktslag = mbruto * 0.08
+        mbelink = mjaarink - mpensprjr + (mauto * 12)
+        # loonheffing
+        if mbelink > 0 and mbelink <= rppar[0][4]:
+            lh1 = mbelink * rppar[0][1]
+            lh = lh1
+            if lh < 0:
+                lh = 0
+        elif mbelink > rppar[1][3] and mbelink <= rppar[1][4]:
+            lh1 = rppar[0][4] * rppar[0][1]
+            lh2 = (mbelink - rppar[0][4]) * rppar[1][1]
+            lh = lh1 + lh2
+        elif mbelink > rppar[1][4] and mbelink <= rppar[3][3]:
+            lh1 = rppar[0][4] * rppar[0][1]
+            lh2 = (mbelink - rppar[1][3]) * rppar[1][1]
+            lh3 = (mbelink - rppar[2][3]) * rppar[2][1]
+            lh = lh1 + lh2 + lh3
+        elif mbelink >= rppar[2][3]:
+            lh1 = rppar[0][4] * rppar[0][1]
+            lh2 = (mbelink - rppar[0][4]) * rppar[1][1]
+            lh3 = (mbelink - rppar[1][3]) * rppar[2][1]
+            lh4 = (mbelink - rppar[3][3]) * rppar[3][1]
+            lh = lh1 + lh2 + lh3 + lh4
+        lh = lh / 12
+        # alg heffingkorting bepalen
+        if mbelink <= rppar[5][3]:
+            hk = rppar[4][2]
             if hk < 0:
                 hk = 0
-        elif mbelink > rppar[35][5] and mbelink <= rppar[37][4]:
-            hk = rppar[35][1] - (mbelink-rppar[35][5])*rppar[36][1]
-        elif mbelink >= rppar[36][5]:
-            hk =  0
-        hk = hk/12
-        #arbeidskorting bepalen
-        if mbelink <= rppar[39][4]:
-            ak = mbelink*rppar[38][1]
-        elif mbelink > rppar[38][5] and mbelink <= rppar[40][4]:
-            ak1 = rppar[38][5]*rppar[38][1]
-            ak2 = (mbelink-rppar[38][5])*rppar[39][1]
-            ak = ak1+ak2
-        elif mbelink > rppar[39][5] and mbelink <= rppar[41][4]:
-            ak = rppar[40][1]
-        elif mbelink > rppar[40][5] and mbelink <= rppar[42][4]:
-            ak1 = rppar[40][1]
-            ak2 = (mbelink-rppar[40][5])*rppar[41][1]
+        elif mbelink > rppar[4][4] and mbelink <= rppar[6][3]:
+            hk = rppar[4][2] - (mbelink - rppar[4][4]) * rppar[5][1]
+        elif mbelink >= rppar[5][4]:
+            hk = 0
+        hk = hk / 12
+        # arbeidskorting bepalen
+        if mbelink <= rppar[8][3]:
+            ak = mbelink * rppar[7][1]
+        elif mbelink > rppar[7][4] and mbelink <= rppar[9][3]:
+            ak1 = rppar[7][4] * rppar[7][1]
+            ak2 = (mbelink - rppar[7][4]) * rppar[8][1]
             ak = ak1 + ak2
-        elif mbelink >= rppar[41][5]:
+        elif mbelink > rppar[8][4] and mbelink <= rppar[10][3]:
+            ak = rppar[9][2]
+        elif mbelink > rppar[9][4] and mbelink <= rppar[11][3]:
+            ak1 = rppar[9][2]
+            ak2 = (mbelink - rppar[9][4]) * rppar[10][3]
+            ak = ak1 + ak2
+        elif mbelink >= rppar[10][4]:
             ak = 0
         if ak > 0:
-            ak = ak/12
-        mwerkg_WAO_IVA_WGA = rppar[69][1]*mjaarink/12 
-        mwerkg_AWF = rppar[70][1]*mjaarink/12 
-        mwerkg_ZVW = rppar[71][1]*mjaarink/12 
-        mloonh = lh -hk -ak
+            ak = ak / 12
+        mwerkg_WAO_IVA_WGA = rppar[24][1] * mjaarink / 12
+        mwerkg_AWF = rppar[25][1] * mjaarink / 12
+        mwerkg_ZVW = rppar[26][1] * mjaarink / 12
+        mloonh = lh - hk - ak
         # Bijzonder tarief bepalen
-        if mbelink > 0 and mbelink <= 6512:
-            mbyz = 0.3655
-        elif mbelink > 6512 and mbelink <= 10226:
-            mbyz = 0.3479
-        elif mbelink > 10226 and mbelink <=18937:
-            mbyz = 0.0849
-        elif mbelink > 18937 and mbelink <= 20143:
-            mbyz = 0.3655
-        elif mbelink > 20143 and mbelink <= 22029:
-            mbyz = 0.4553
-        elif mbelink > 22029 and  mbelink <= 33113:
-            mbyz = 0.4553
-        elif mbelink > 33113 and mbelink <= 33995:
-            mbyz = 0.4913
-        elif mbelink > 33995 and mbelink <= 34405:
-            mbyz = 0.4913
-        elif mbelink > 34405 and mbelink <= 68508:
-            mbyz = 0.4913
-        elif mbelink > 68508 and mbelink <= 133232:
-            mbyz = 0.5555
-        elif mbelink > 133232:
-            mbyz = 0.5195
-      
+        if mbelink > rppar[13][3] and mbelink <= rppar[13][4]:
+            mbyz = rppar[13][1]
+        elif mbelink > rppar[14][3] and mbelink <= rppar[14][4]:
+            mbyz = rppar[14][1]
+        elif mbelink > rppar[15][3] and mbelink <= rppar[15][4]:
+            mbyz = rppar[15][1]
+        elif mbelink > rppar[16][3] and mbelink <= rppar[16][4]:
+            mbyz = rppar[16][1]
+        elif mbelink > rppar[17][3] and mbelink <= rppar[17][4]:
+            mbyz = rppar[17][1]
+        elif mbelink > rppar[18][3] and mbelink <= rppar[18][4]:
+            mbyz = rppar[18][1]
+        elif mbelink > rppar[19][3] and mbelink <= rppar[19][4]:
+            mbyz = rppar[19][1]
+        elif mbelink > rppar[20][3] and mbelink <= rppar[20][4]:
+            mbyz = rppar[20][1]
+        elif mbelink > rppar[21][3] and mbelink <= rppar[21][4]:
+            mbyz = rppar[21][1]
+        elif mbelink > rppar[22][3] and mbelink <= rppar[22][3]:
+            mbyz = rppar[22][1]
+        elif mbelink > rppar[23][3]:
+            mbyz = rppar[23][1]
+
         mbyztar = mbyz*100
         selwrkwnrln = select([wrkwnrln]).where(and_(row[0]==wrkwnrln.c.werknemerID,\
                wrkwnrln.c.boekdatum.like(mjrmnd+'%'))).\
@@ -679,8 +678,7 @@ def maandBetalingen(m_email):
         #bedrgeoorlverz = geoorlverz*muurloon
         #bedrziek = ziek*muurloon
         #bedrdokter=dokter*muurloon
-        con.close
-        
+
         metadata = MetaData()   
         loonbetalingen = Table('loonbetalingen', metadata,
             Column('betalingID', Integer(), primary_key=True),
@@ -737,8 +735,8 @@ def maandBetalingen(m_email):
             Column('saldo_uren_geboekt'),
             Column('maandwerkuren', Float),
             Column('uren_geboekt', Float))
-              
-        selpar2 = select([params]).where(params.c.item == mjrmnd)
+
+        selpar2 = select([params_periods]).where(params_periods.c.working_period == mjrmnd)
         rppar2 = con.execute(selpar2).first()
         
         if lck == 1:
@@ -761,8 +759,6 @@ def maandBetalingen(m_email):
             selvak = select([werknemers]).where(werknemers.c.werknemerID == mwerknmr)
             rpvak = con.execute(selvak).first()
             mresvaktslg = rpvak[7]
-            con.close
-                    
             mboekd = str(datetime.datetime.now())[0:10]
             try:
                 mbetalingnr =(conn.execute(select([func.max(loonbetalingen.c.betalingID,\
@@ -799,8 +795,7 @@ def maandBetalingen(m_email):
                            geoorlverz, maandwerkuren = rppar2[1], uren_geboekt =\
                            uren100+verlof+extraverl+feestdag+dokter+ziek+geoorlverz)
             con.execute(insloon)
-            con.close
-            
+
             metadata = MetaData()   
             afdrachten = Table('afdrachten', metadata,
                 Column('afdrachtID', Integer(), primary_key=True),
@@ -880,10 +875,10 @@ def maandBetalingen(m_email):
                 mvakpenspr = mpenspr*0.96
                 mvakpensprwg = mvakpenspr*2
                 mbyzvak = (mvaktslg-mvakpenspr)*mbyz
-                mvakwerkg_WAO_IVA_WGA = mvaktslg*rppar[69][1]
-                mvakwerkg_AWF = mvaktslg*rppar[70][1]
-                mvakwerkg_ZVW = mvaktslg*rppar[71][1]
-         
+                mvakwerkg_WAO_IVA_WGA = mvaktslg * rppar[24][1]
+                mvakwerkg_AWF = mvaktslg * rppar[25][1]
+                mvakwerkg_ZVW = mvaktslg * rppar[26][1]
+
                 mbetalingnr += 1
                 insvak = insert(loonbetalingen).values(betalingID = mbetalingnr,\
                     periode = mper, brutoloon = mvaktslg,\

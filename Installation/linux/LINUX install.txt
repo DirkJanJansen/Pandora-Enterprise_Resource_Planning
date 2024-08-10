@@ -16,8 +16,9 @@ Install:
 sudo snap install pycharm-community --classic
 
 Rename Pandora-Enterprise_Resource_Planning to Pandora
+and copy the folder Pandora in your home folder and keep the folder structure as it is.
 Installation Pandora as user postgres with password postgres45:
-Copy .pgpass in /home/postgres  
+Copy .pgpass in your home folder  
 in terminal chmod 600 .pgpass
 
 Install postgresql:
@@ -31,7 +32,8 @@ sudo apt install postgresql
 sudo systemctl start postgresql
 sudo systemctl enable postgresql
 psql
-set password in psql with \password (postgres45)
+set password in psql with \password 
+password = postgres45
 
 if you want get rid of the annoying i386 error with sudo apt update
 change:
@@ -45,9 +47,6 @@ curl -fsS https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo gpg --d
 sudo sh -c 'echo "deb [signed-by=/usr/share/keyrings/packages-pgadmin-org.gpg] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list && apt update'
 sudo apt install pgadmin4
 
-With the latest update from the login script capslock notification is working now with Linux.
-I found a solution for printing listings with Linux see following lines.
-
 Retrieve printer_name on Linux terminal:
 lpstat -p -d 
 set default printer with:
@@ -57,13 +56,9 @@ lpoptions -o page-left=18 -o page-right=0 -o page-top=25 -o page-bottom=80 -o cp
 Follow these settings exactly for printlists with more pages
 
 Barcode enabling in linux:
-
-The solution for enabling the barcodereader is changed for it's not working anymore for Ubuntu 20.04
-I changed as following.
 Copy file .usbkbd.sh from folder installation in folder /home/postgres ($HOME)
 chmod 755 .usbkbd.sh
 If the password for Ubuntu changed from postgres45 change it too in .usbkbd.sh
-Thats all. The script is called with starting Pandora.py and the barcodescanner works again.
 
 Barcode to enable error sounds:
 sudo apt install sox
@@ -72,13 +67,13 @@ Installing and creating database:
 createdb bisystem
 pg_restore --dbname=bisystem  --verbose "/home/postgres/Pandora/data/bisystem.backup"
 
-Copy Pandora with folder structures in /home/postgres so you get /home/postgres/Pandora
 
-The fonts in Linux differ from Windows. (Install Arial, Comic Sans MS, Times, Sans Serif and Consolas)
-https://www.ostechnix.com/install-microsoft-windows-fonts-ubuntu-16-04/
-Or copy fonts from Windows/Fonts in dir .local/share/fonts
-in terminal sudo fc-cache -r -f
-install Ubuntu tweak tools and increase font  size with 20% for optimal views 
+The fonts in Linux differ from Windows. 
+Install Microsoft fonts with:
+sudo apt install ttf-mscorefonts-installer
+after install:
+sudo fc-cache -r -f
+install Ubuntu tweak tools and increase font  size with 20% for optimal views
    
 startup files in Linux:
 Copy pandora.png from folder LINUX in folder /home/postgres/.icons
@@ -93,20 +88,23 @@ Database backup and restore from terminal
 
 backup database:
 pg_dump -v --verbose -d bisystem -Fc -f  "/home/postgres/Pandora/data/bisystem.backup"
+for empty database:
+pg_dump -v --verbose -d bisystem -Fc -f  "/home/postgres/Pandora/data/bisystem.empty.backup"
 
 delete database:
 dropdb bisystem
 
-create empty database:
+create database:
 createdb bisystem
 
 restore database:
 pg_restore --dbname=bisystem  --verbose "/home/postgres/Pandora/data/bisystem.backup"
+restore empty database only functional data:
+pg_restore --dbname=bisystem  --verbose "/home/postgres/Pandora/data/bisystem.empty.backup"
 
-Before starting the program for the first time run script reset_odd_even.py to set the parameter for odd-even year for the right year
-and modify_accounts-passwords.py for changing the new encryption passwords in database bisystem
+
+Before starting the program for the first time run script reset_odd_even.py to set the parameter
+ for odd-even year for the right year
 in command prompt
 in folder Pandora
 python reset_odd_even.py
-modify_accounts-passwords.py 
-

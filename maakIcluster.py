@@ -3,13 +3,13 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont, QPixmap, QIcon
 from PyQt5.QtWidgets import QDialog, QLabel,\
          QGridLayout, QPushButton, QMessageBox, QComboBox
-from sqlalchemy import (Table, Column, String, MetaData, create_engine, insert, select)
+from sqlalchemy import (Table, Column, String, Integer, MetaData, create_engine, insert, select)
 
 def windowSluit(self, m_email):
     self.close()
     hoofdMenu(m_email)
     
-def insGelukt(mclusternr, momschr):
+def insGelukt(mclusternr, momschr, m_email):
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
@@ -17,17 +17,17 @@ def insGelukt(mclusternr, momschr):
     msg.setText('Cluster number: '+mclusternr+'\n"'+momschr+'" is created')
     msg.setFont(QFont("Arial",10))
     msg.setWindowTitle('Create clusters')
-    msg.exec_() 
-    
-def insMislukt():
+    msg.exec_()
+
+def insMislukt(mclusternr, momschr, m_email):
     msg = QMessageBox()
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Cluster number creation failed!')
+    msg.setText('Creation of cluster '+mclusternr+'\n"'+momschr+'" has failed!\nCluster number already exist!')
     msg.setFont(QFont("Arial",10))
     msg.setWindowTitle('Create clusters')
-    msg.exec_() 
+    msg.exec_()
 
 def ongKeuze():
     msg = QMessageBox()
@@ -37,7 +37,34 @@ def ongKeuze():
     msg.setText('Invalid choice')
     msg.setFont(QFont("Arial",10))
     msg.setWindowTitle('Insert clusters')
-    msg.exec_() 
+    msg.exec_()
+
+metadata = MetaData()
+cluster_structure_internal = Table('cluster_structure_internal', metadata,
+    Column('structID', Integer() , primary_key =True),
+    Column('overall_heading', String),
+    Column('heading_level1', String),
+    Column('line_level0', String),
+    Column('line1', String),
+    Column('line2', String),
+    Column('line3', String),
+    Column('line4', String),
+    Column('line5', String),
+    Column('line6', String),
+    Column('line7', String),
+    Column('line8', String),
+    Column('line9', String),
+    Column('line10', String),
+    Column('line11', String),
+    Column('line12', String),
+    Column('line13', String),
+    Column('line14', String),
+    Column('line15', String))
+
+engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
+con = engine.connect()
+sel = select([cluster_structure_internal]).order_by(cluster_structure_internal.c.line_level0)
+rpa = con.execute(sel).fetchall()
 
 def kiesCluster(m_email):
     class Widget(QDialog):
@@ -53,15 +80,15 @@ def kiesCluster(m_email):
             k0Edit.setFixedWidth(320)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('          Cluster Groups Sort Key')
-            k0Edit.addItem('LA-LK. Machined parts')
-            k0Edit.addItem('MA-MK. Nuts and bolts')
-            k0Edit.addItem('NA-NK. Casting machining')
-            k0Edit.addItem('OA-OK. Welding composite')
-            k0Edit.addItem('PA-PK. Sheet metal assembled')
-            k0Edit.addItem('RA-RK. Plastic parts')
-            k0Edit.addItem('SA-SK. Prefab mounting parts')
-            k0Edit.addItem('TA-TK. Composite Parts')
+            k0Edit.addItem(rpa[0][1])
+            k0Edit.addItem(rpa[0][3])
+            k0Edit.addItem(rpa[1][3])
+            k0Edit.addItem(rpa[2][3])
+            k0Edit.addItem(rpa[3][3])
+            k0Edit.addItem(rpa[4][3])
+            k0Edit.addItem(rpa[5][3])
+            k0Edit.addItem(rpa[6][3])
+            k0Edit.addItem(rpa[7][3])
             k0Edit.activated[str].connect(self.k0Changed)
  
             grid = QGridLayout()
@@ -153,18 +180,18 @@ def kiesSubClusterL(keuze, m_email):
             k0Edit.setFixedWidth(340)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('      Subgroup Machined Parts')
-            k0Edit.addItem('LA. Turning non ferrous')
-            k0Edit.addItem('LB. Milling non ferrous')
-            k0Edit.addItem('LC. Turning ferrous')
-            k0Edit.addItem('LD. Milling ferrous')
-            k0Edit.addItem('LE. CNC turning ferrous')
-            k0Edit.addItem('LF. CNC turning non ferrous')
-            k0Edit.addItem('LG. CNC milling ferrous')
-            k0Edit.addItem('LH. CNC milling ferrous')
-            k0Edit.addItem('LI. Subgroup of processed parts I')
-            k0Edit.addItem('LJ. Subgroup of processed parts J')
-            k0Edit.addItem('LK. Subgroup of processed parts K')
+            k0Edit.addItem(rpa[0][2])
+            k0Edit.addItem(rpa[0][4])
+            k0Edit.addItem(rpa[0][5])
+            k0Edit.addItem(rpa[0][6])
+            k0Edit.addItem(rpa[0][7])
+            k0Edit.addItem(rpa[0][8])
+            k0Edit.addItem(rpa[0][9])
+            k0Edit.addItem(rpa[0][10])
+            k0Edit.addItem(rpa[0][11])
+            k0Edit.addItem(rpa[0][12])
+            k0Edit.addItem(rpa[0][13])
+            k0Edit.addItem(rpa[0][14])
             
             k0Edit.activated[str].connect(self.k0Changed)
  
@@ -229,7 +256,7 @@ def kiesSubClusterL(keuze, m_email):
         keuze1 = data[0][1]
         momschr = data[0][4:]
     keuze = keuze+keuze1
-    maakCluster(keuze, momschr) 
+    maakCluster(keuze, momschr, m_email)
     
 def kiesSubClusterM(keuze, m_email):
     class Widget(QDialog):
@@ -245,18 +272,18 @@ def kiesSubClusterM(keuze, m_email):
             k0Edit.setFixedWidth(340)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('             Subgroup fasteners')
-            k0Edit.addItem('MA. Subgroup fasteners A')
-            k0Edit.addItem('MB. Subgroup fasteners B')
-            k0Edit.addItem('MC. Subgroup fasteners C')
-            k0Edit.addItem('MD. Subgroup fasteners D')
-            k0Edit.addItem('ME. Subgroup fasteners E')
-            k0Edit.addItem('MF. Subgroup fasteners F')
-            k0Edit.addItem('MG. Subgroup fasteners G')
-            k0Edit.addItem('MH. Subgroup fasteners H')
-            k0Edit.addItem('MI. Subgroup fasteners I')
-            k0Edit.addItem('MJ. Subgroup fasteners J')
-            k0Edit.addItem('MK. Subgroup fasteners K')
+            k0Edit.addItem(rpa[1][2])
+            k0Edit.addItem(rpa[1][4])
+            k0Edit.addItem(rpa[1][5])
+            k0Edit.addItem(rpa[1][6])
+            k0Edit.addItem(rpa[1][7])
+            k0Edit.addItem(rpa[1][8])
+            k0Edit.addItem(rpa[1][9])
+            k0Edit.addItem(rpa[1][10])
+            k0Edit.addItem(rpa[1][11])
+            k0Edit.addItem(rpa[1][12])
+            k0Edit.addItem(rpa[1][13])
+            k0Edit.addItem(rpa[1][14])
             k0Edit.activated[str].connect(self.k0Changed)
  
             grid = QGridLayout()
@@ -320,7 +347,7 @@ def kiesSubClusterM(keuze, m_email):
         keuze1 = data[0][1]
         momschr = data[0][4:]
     keuze = keuze+keuze1
-    maakCluster(keuze, momschr) 
+    maakCluster(keuze, momschr, m_email)
 
 def kiesSubClusterN(keuze, m_email):
     class Widget(QDialog):
@@ -336,18 +363,18 @@ def kiesSubClusterN(keuze, m_email):
             k0Edit.setFixedWidth(340)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('        Subgroup Casting Machining')
-            k0Edit.addItem('NA. Subgroup Casting Machining A')
-            k0Edit.addItem('NB. Subgroup casting machining B')
-            k0Edit.addItem('NC. Subgroup casting machining C')
-            k0Edit.addItem('ND. Subgroup casting machining D')
-            k0Edit.addItem('NE. Subgroup casting machiningE')
-            k0Edit.addItem('NF. Subgroup casting machining F')
-            k0Edit.addItem('NG. Subgroup casting machining G')
-            k0Edit.addItem('NH. Subgroup casting machining H')
-            k0Edit.addItem('NI. Subgroup casting machining I')
-            k0Edit.addItem('NJ. Subgroup casting machining J')
-            k0Edit.addItem('NK. Subgroup casting machining K')
+            k0Edit.addItem(rpa[2][2])
+            k0Edit.addItem(rpa[2][4])
+            k0Edit.addItem(rpa[2][5])
+            k0Edit.addItem(rpa[2][6])
+            k0Edit.addItem(rpa[2][7])
+            k0Edit.addItem(rpa[2][8])
+            k0Edit.addItem(rpa[2][9])
+            k0Edit.addItem(rpa[2][10])
+            k0Edit.addItem(rpa[2][11])
+            k0Edit.addItem(rpa[2][12])
+            k0Edit.addItem(rpa[2][13])
+            k0Edit.addItem(rpa[2][14])
             k0Edit.activated[str].connect(self.k0Changed)
  
             grid = QGridLayout()
@@ -411,7 +438,7 @@ def kiesSubClusterN(keuze, m_email):
         keuze1 = data[0][1]
         momschr = data[0][4:]
     keuze = keuze+keuze1
-    maakCluster(keuze, momschr) 
+    maakCluster(keuze, momschr, m_email)
 
 def kiesSubClusterO(keuze, m_email):
     class Widget(QDialog):
@@ -427,18 +454,18 @@ def kiesSubClusterO(keuze, m_email):
             k0Edit.setFixedWidth(340)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('         Subgroup Welding Composite')
-            k0Edit.addItem('OA. Subgroup welding composite A')
-            k0Edit.addItem('OB. Subgroup welding composite B')
-            k0Edit.addItem('OC. Subgroup welding composite C')
-            k0Edit.addItem('OD. Subgroup welding composite D')
-            k0Edit.addItem('OE. Subgroup welding composite E')
-            k0Edit.addItem('OF. Subgroup welding composite F')
-            k0Edit.addItem('OG. Subgroup welding composite G')
-            k0Edit.addItem('OH. Subgroup welding composite H')
-            k0Edit.addItem('OI. Subgroup welding composite I')
-            k0Edit.addItem('OJ. Subgroup welding composite J')
-            k0Edit.addItem('OK. Subgroup welding composite K')
+            k0Edit.addItem(rpa[3][2])
+            k0Edit.addItem(rpa[3][4])
+            k0Edit.addItem(rpa[3][5])
+            k0Edit.addItem(rpa[3][6])
+            k0Edit.addItem(rpa[3][7])
+            k0Edit.addItem(rpa[3][8])
+            k0Edit.addItem(rpa[3][9])
+            k0Edit.addItem(rpa[3][10])
+            k0Edit.addItem(rpa[3][11])
+            k0Edit.addItem(rpa[3][12])
+            k0Edit.addItem(rpa[3][13])
+            k0Edit.addItem(rpa[3][14])
             k0Edit.activated[str].connect(self.k0Changed)
  
             grid = QGridLayout()
@@ -502,7 +529,7 @@ def kiesSubClusterO(keuze, m_email):
         keuze1 = data[0][1]
         momschr = data[0][4:]
     keuze = keuze+keuze1
-    maakCluster(keuze, momschr) 
+    maakCluster(keuze, momschr, m_email)
 
 def kiesSubClusterP(keuze, m_email):
     class Widget(QDialog):
@@ -518,18 +545,18 @@ def kiesSubClusterP(keuze, m_email):
             k0Edit.setFixedWidth(340)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('       Subgroup Sheet metal Composite')
-            k0Edit.addItem('PA. Subgroup sheet metal composite A')
-            k0Edit.addItem('PB. Subgroup sheet metal composite B')
-            k0Edit.addItem('PC. Subgroup sheet metal composite C')
-            k0Edit.addItem('PD. Subgroup sheet metal composite D')
-            k0Edit.addItem('PE. Subgroup sheet metal composite E')
-            k0Edit.addItem('PF. Subgroup sheet metal composite F')
-            k0Edit.addItem('PG. Subgroup sheet metal composite G')
-            k0Edit.addItem('PH. Subgroup sheet metal composite H')
-            k0Edit.addItem('PI. Subgroup sheet metal composite I')
-            k0Edit.addItem('PJ. Subgroup sheet metal composite J')
-            k0Edit.addItem('PK. Subgroup sheet metal composite K')
+            k0Edit.addItem(rpa[4][2])
+            k0Edit.addItem(rpa[4][4])
+            k0Edit.addItem(rpa[4][5])
+            k0Edit.addItem(rpa[4][6])
+            k0Edit.addItem(rpa[4][7])
+            k0Edit.addItem(rpa[4][8])
+            k0Edit.addItem(rpa[4][9])
+            k0Edit.addItem(rpa[4][10])
+            k0Edit.addItem(rpa[4][11])
+            k0Edit.addItem(rpa[4][12])
+            k0Edit.addItem(rpa[4][13])
+            k0Edit.addItem(rpa[4][14])
             k0Edit.activated[str].connect(self.k0Changed)
  
             grid = QGridLayout()
@@ -593,7 +620,7 @@ def kiesSubClusterP(keuze, m_email):
         keuze1 = data[0][1]
         momschr = data[0][4:]
     keuze = keuze+keuze1
-    maakCluster(keuze, momschr) 
+    maakCluster(keuze, momschr, m_email)
 
 def kiesSubClusterR(keuze, m_email):
     class Widget(QDialog):
@@ -609,18 +636,18 @@ def kiesSubClusterR(keuze, m_email):
             k0Edit.setFixedWidth(340)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('           Subgroup Plastic Parts')
-            k0Edit.addItem('RA. Subgroup plastic Parts A')
-            k0Edit.addItem('RB. Subgroup plastic parts B')
-            k0Edit.addItem('RC. Subgroup plastic parts C')
-            k0Edit.addItem('RD. Subgroup plastic parts D')
-            k0Edit.addItem('RE. Subgroup plastic parts E')
-            k0Edit.addItem('RF. Subgroup plastic parts F')
-            k0Edit.addItem('RG. Subgroup plastic parts G')
-            k0Edit.addItem('RH. Subgroup plastic parts H')
-            k0Edit.addItem('RI. Subgroup plastic parts I')
-            k0Edit.addItem('RJ. Subgroup plastic parts J')
-            k0Edit.addItem('RK. Subgroup plastic parts K')
+            k0Edit.addItem(rpa[5][2])
+            k0Edit.addItem(rpa[5][4])
+            k0Edit.addItem(rpa[5][5])
+            k0Edit.addItem(rpa[5][6])
+            k0Edit.addItem(rpa[5][7])
+            k0Edit.addItem(rpa[5][8])
+            k0Edit.addItem(rpa[5][9])
+            k0Edit.addItem(rpa[5][10])
+            k0Edit.addItem(rpa[5][11])
+            k0Edit.addItem(rpa[5][12])
+            k0Edit.addItem(rpa[5][13])
+            k0Edit.addItem(rpa[5][14])
             k0Edit.activated[str].connect(self.k0Changed)
  
             grid = QGridLayout()
@@ -684,7 +711,7 @@ def kiesSubClusterR(keuze, m_email):
         keuze1 = data[0][1]
         momschr = data[0][4:]
     keuze = keuze+keuze1
-    maakCluster(keuze, momschr) 
+    maakCluster(keuze, momschr, m_email)
 
 def kiesSubClusterS(keuze, m_email):
     class Widget(QDialog):
@@ -700,18 +727,18 @@ def kiesSubClusterS(keuze, m_email):
             k0Edit.setFixedWidth(340)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('      Subgroup Composite Parts')
-            k0Edit.addItem('SA. Subgroup composite parts A')
-            k0Edit.addItem('SB. Subgroup composite parts B')
-            k0Edit.addItem('SC. Subgroup composite parts C')
-            k0Edit.addItem('SD. Subgroup composite parts D')
-            k0Edit.addItem('SE. Subgroup composite parts E')
-            k0Edit.addItem('SF. Subgroup composite parts F')
-            k0Edit.addItem('SG. Subgroup composite parts G')
-            k0Edit.addItem('SH. Subgroup composite parts H')
-            k0Edit.addItem('SI. Subgroup composite parts I')
-            k0Edit.addItem('SJ. Subgroup composite parts J')
-            k0Edit.addItem('SK. Subgroup composite parts K')
+            k0Edit.addItem(rpa[6][2])
+            k0Edit.addItem(rpa[6][4])
+            k0Edit.addItem(rpa[6][5])
+            k0Edit.addItem(rpa[6][6])
+            k0Edit.addItem(rpa[6][7])
+            k0Edit.addItem(rpa[6][8])
+            k0Edit.addItem(rpa[6][9])
+            k0Edit.addItem(rpa[6][10])
+            k0Edit.addItem(rpa[6][11])
+            k0Edit.addItem(rpa[6][12])
+            k0Edit.addItem(rpa[6][13])
+            k0Edit.addItem(rpa[6][14])
             k0Edit.activated[str].connect(self.k0Changed)
  
             grid = QGridLayout()
@@ -775,7 +802,7 @@ def kiesSubClusterS(keuze, m_email):
         keuze1 = data[0][1]
         momschr = data[0][4:]
     keuze = keuze+keuze1
-    maakCluster(keuze, momschr) 
+    maakCluster(keuze, momschr, m_email)
 
 def kiesSubClusterT(keuze, m_email):
     class Widget(QDialog):
@@ -791,18 +818,18 @@ def kiesSubClusterT(keuze, m_email):
             k0Edit.setFixedWidth(340)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('           Subgroup Prefab Mounting Parts')
-            k0Edit.addItem('TA. Subgroup prefab mounting parts A')
-            k0Edit.addItem('TB. Subgroup prefab mounting parts B')
-            k0Edit.addItem('TC. Subgroup prefab mounting parts C')
-            k0Edit.addItem('TD. Subgroup prefab mounting parts D')
-            k0Edit.addItem('TE. Subgroup prefab mounting parts E')
-            k0Edit.addItem('TF. Subgroup prefab mounting parts F')
-            k0Edit.addItem('TG. Subgroup prefab mounting parts G')
-            k0Edit.addItem('TH. Subgroup prefab mounting parts H')
-            k0Edit.addItem('TI. Subgroup prefab mounting parts I')
-            k0Edit.addItem('TJ. Subgroup prefab mounting parts J')
-            k0Edit.addItem('TK. Subgroup prefab mounting parts K')
+            k0Edit.addItem(rpa[7][2])
+            k0Edit.addItem(rpa[7][4])
+            k0Edit.addItem(rpa[7][5])
+            k0Edit.addItem(rpa[7][6])
+            k0Edit.addItem(rpa[7][7])
+            k0Edit.addItem(rpa[7][8])
+            k0Edit.addItem(rpa[7][9])
+            k0Edit.addItem(rpa[7][10])
+            k0Edit.addItem(rpa[7][11])
+            k0Edit.addItem(rpa[7][12])
+            k0Edit.addItem(rpa[7][13])
+            k0Edit.addItem(rpa[7][14])
             k0Edit.activated[str].connect(self.k0Changed)
  
             grid = QGridLayout()
@@ -866,9 +893,9 @@ def kiesSubClusterT(keuze, m_email):
         keuze1 = data[0][1]
         momschr = data[0][4:]
     keuze = keuze+keuze1
-    maakCluster(keuze, momschr) 
+    maakCluster(keuze, momschr, m_email)
 
-def maakCluster(keuze, momschr):
+def maakCluster(keuze, momschr, m_email):
     metadata = MetaData()
     iclusters = Table('iclusters', metadata,
         Column('iclusterID', String, primary_key=True),
@@ -876,17 +903,19 @@ def maakCluster(keuze, momschr):
  
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    
-    selcllast = select([iclusters]).where(iclusters.c.iclusterID.like(keuze+'%')).order_by(iclusters.c.iclusterID.desc())
-    rpcllast = con.execute(selcllast).first()
-    if rpcllast:
+
+    try:
+        selcllast = select([iclusters]).where(iclusters.c.iclusterID.like(keuze+'%')).order_by(iclusters.c.iclusterID.desc())
+        rpcllast = con.execute(selcllast).first()
         mclusternr = keuze+('00000'+str(int(rpcllast[0][2:7])+1))[-5:]
-    else:
+    except Exception:
         mclusternr = keuze+'00001'
   
-    inscl = insert(iclusters).values(iclusterID = mclusternr, omschrijving = momschr)
-    if mclusternr:       
+    try:
+        inscl = insert(iclusters).values(iclusterID=mclusternr, omschrijving=momschr)
         con.execute(inscl)
-        insGelukt(mclusternr, momschr)
-    else:
-        insMislukt()
+        insGelukt(mclusternr, momschr, m_email)
+        kiesCluster(m_email)
+    except Exception:
+        insMislukt(mclusternr, momschr, m_email)
+        kiesCluster(m_email)

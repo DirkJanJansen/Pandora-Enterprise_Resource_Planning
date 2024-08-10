@@ -183,18 +183,21 @@ def printGrafiek(keuze, jrwk, m_email):
                 Column('wdiensten', Float),
                 Column('bruto_winst', Float),
                 Column('boekweek', String))
-            params = Table('params', metadata,
-                Column('paramID', Integer(), primary_key=True),
-                Column('tarief', String))
+            params_graphs = Table('params_graphs', metadata,
+                Column('parID', Integer(), primary_key=True),
+                Column('item', String),
+                Column('y_scale', Integer),
+                Column('prognosis', Integer),
+                Column('color_1', String),
+                Column('color_2', String))
+
             engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
             con = engine.connect()
-            
-            selpar1 = select([params]).where(params.c.paramID == 97)
-            rppar1 = con.execute(selpar1).first()
-            bo_incr = rppar1[1]/52  #begrote omzet per week
-            selpar2 = select([params]).where(params.c.paramID == 98)
-            rppar2 = con.execute(selpar2).first()
-            bw_incr = rppar2[1]/52  #begrote winst per week
+
+            selpar = select([params_graphs]).order_by(params_graphs.c.parID)
+            rppar = con.execute(selpar).fetchall()
+            bo_incr = rppar[9][3] / 52  # Begrote omzet per week
+            bw_incr = rppar[7][3] / 52  # Begrote winst per week
                                           
             jaar = jrwk[0:4]
             engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
@@ -208,63 +211,63 @@ def printGrafiek(keuze, jrwk, m_email):
                 t1 = 'Kosten totaal begroot'
                 t2 = 'Kosten totaal werkelijk'
                 t3 = 'Kosten totaal '
-                c1 = Qt.red
-                c2 = Qt.blue
-                ysch =  160000000
+                c1 = rppar[0][4]
+                c2 = rppar[0][5]
+                ysch = rppar[0][2]  # 160000000
             elif keuze == '2':
                 s1 = 8
                 s2 = 9
                 t1 = 'Lonen begroot'
                 t2 = 'Lonen werkelijk'
                 t3 = 'Lonen '
-                c1 = Qt.green
-                c2 = Qt.darkBlue
-                ysch =  100000000
+                c1 = rppar[1][4]
+                c2 = rppar[1][5]
+                ysch = rppar[1][2]  # 100000000
             elif keuze == '3':
                 s1 = 10
                 s2 = 11
                 t1 = 'Materialen begroot'
                 t2 = 'Materialen werkelijk'
                 t3 = 'Materialen'
-                c1 = Qt.cyan
-                c2 = Qt.magenta
-                ysch =  60000000       
+                c1 = rppar[2][4]
+                c2 = rppar[2][5]
+                ysch = rppar[2][2]  # 60000000
             elif keuze == '4':
                 s1 = 12
                 s2 = 13
                 t1 = 'Materiëel begroot'
                 t2 = 'Materiëel werkelijk'
                 t3 = 'Materiëel '
-                c1 = Qt.darkYellow
-                c2 = Qt.darkGreen
-                ysch =  20000000
+                c1 = rppar[3][4]
+                c2 = rppar[3][5]
+                ysch = rppar[3][2]  # 20000000
             elif keuze == '5':
                 s1 = 16
                 s2 = 17
                 t1 = 'Inhuur begroot'
                 t2 = 'Inhuur werkelijk'
                 t3 = 'Inhuur '
-                c1 = Qt.darkBlue
-                c2 = Qt.darkRed
-                ysch =  30000000
+                c1 = rppar[4][4]
+                c2 = rppar[4][5]
+                ysch = rppar[4][2]  # 30000000
             elif keuze == '6':
                 s1 = 18
                 s2 = 19
                 t1 = 'Diensten begroot'
                 t2 = 'Diensten werkelijk'
                 t3 = 'Diensten '
-                c1 = Qt.red
-                c2 = Qt.blue
-                ysch =  30000000    
+                c1 = rppar[5][4]
+                c2 = rppar[5][5]
+                ysch = rppar[5][2]  # 30000000
             elif keuze == '7':
                 s1 = 14
                 s2 = 15
                 t1 = 'Projektkosten begroot'
                 t2 = 'Projektkosten werkelijk'
                 t3 = 'Projektkosten '
-                c1 = Qt.darkYellow
-                c2 = Qt.darkCyan
-                ysch =  10000000    
+                c1 = rppar[6][4]
+                c2 = rppar[6][5]
+                ysch = rppar[6][2]  # 10000000
             elif keuze == '8':
                 y3 = [0,]
                 y3val = 0
@@ -281,18 +284,18 @@ def printGrafiek(keuze, jrwk, m_email):
                 t1 = 'Bruto winst prognose'
                 t2 = 'Bruto winst actueel'
                 t3 = 'Bruto winst - prognose / aktueel '
-                c1 = Qt.darkCyan
-                c2 = Qt.darkMagenta
-                ysch =  20000000
+                c1 = rppar[7][4]
+                c2 = rppar[7][5]
+                ysch = rppar[7][2]  # 20000000
             elif keuze == '9':
                 s1 = 6
                 s2 = 4
                 t1 = 'Onderhandenwerk'
                 t2 = 'Betaald bedrag'
                 t3 = 'Onderhandenwerk - Betaald bedrag '
-                c1 = Qt.yellow
-                c2 = Qt.green
-                ysch =  160000000
+                c1 = rppar[8][4]
+                c2 = rppar[8][5]
+                ysch = rppar[8][2]  # 160000000
             elif keuze == 'A':
                 y4 = [0,]
                 y4val = 0
@@ -309,18 +312,18 @@ def printGrafiek(keuze, jrwk, m_email):
                 t1 = 'Omzet prognose'
                 t2 = 'Omzet aktueel'
                 t3 = 'Omzet '
-                c1 = Qt.red
-                c2 = Qt.blue
-                ysch =  160000000
+                c1 = rppar[9][4]
+                c2 = rppar[9][5]
+                ysch = rppar[9][2]  # 160000000
             elif keuze == 'B':
                 s1 = 20
                 s2 = 5
                 t1 = 'Bruto winst werkelijk'
                 t2 = 'Meerminderwerk'
                 t3 = 'Bruto winst werkelijk / Meerminderwerk '
-                c1 = Qt.darkRed
-                c2 = Qt.darkBlue
-                ysch =  30000000
+                c1 = rppar[10][4]
+                c2 = rppar[10][5]
+                ysch = rppar[10][2]  # 30000000
       
             x = [0,]
             y1 = [0,]

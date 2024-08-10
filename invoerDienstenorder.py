@@ -517,15 +517,15 @@ def inkoopRegels(m_email, rplev, mregel):
         Column('stormobiel', Float),
         Column('robeltrein', Float),
         Column('verwerkt', Integer))
-    params = Table('params', metadata,
-        Column('paramID', Integer, primary_key=True),
-        Column('tarief', Float),
+    params_services = Table('params_services', metadata,
+        Column('servicesID', Integer, primary_key=True),
+        Column('hourly_tariff', Float),
         Column('item', String))
                      
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     conn = engine.connect()
     
-    selpar = select([params]).where(and_(params.c.paramID >19, params.c.paramID < 32)).order_by(params.c.paramID)
+    selpar = select([params_services]).order_by(params_services.c.servicesID)
     rppar = conn.execute(selpar).fetchall()
    
     selcal = select([calculaties]).where(calculaties.c.koppelnummer == mwerknr)
@@ -896,9 +896,12 @@ def inkoopRegels(m_email, rplev, mregel):
                 mrobel += row[22]
                 flag = 1
         if flag:
-            mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
+            try:
+                mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
                 type_=Integer).label('mdienstnr')])).scalar())
-            mdienstnr += 1
+                mdienstnr += 1
+            except:
+                mdienstnr = 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
                  werkomschr = soort+' '+str(round(mrobel,2))+' hours', omschrijving = momschr,\

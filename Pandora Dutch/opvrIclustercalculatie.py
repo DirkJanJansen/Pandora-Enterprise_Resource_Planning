@@ -218,16 +218,23 @@ def opbouwRp(mcalnr, mwerkomschr, mverw, mwerknr, m_email):
     artikelen = Table('artikelen', metadata,
         Column('artikelID', Integer(), primary_key=True),
         Column('artikelprijs', Float))
-   
-    params = Table('params', metadata,
-        Column('paramID', Integer, primary_key=True),
-        Column('tarief', Float),
-        Column('item', String))
-    
+
+    params_finance = Table('params_finance', metadata,
+         Column('financeID', Integer, primary_key=True),
+         Column('factor', Float),
+         Column('item', String))
+
+    params_hours = Table('params_hours', metadata,
+         Column('rateID', Integer, primary_key=True),
+         Column('hourly_tariff', Float),
+         Column('item', String))
+
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    selpar = select([params]).order_by(params.c.paramID)
+    selpar = select([params_finance]).order_by(params_finance.c.financeID)
     rppar = con.execute(selpar).fetchall()
+    selpar1 = select([params_hours]).order_by(params_hours.c.rateID)
+    rppar1 = con.execute(selpar1).fetchall()
     
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
@@ -441,55 +448,55 @@ def opbouwRp(mcalnr, mwerkomschr, mverw, mwerknr, m_email):
            sgritstralen = icalculaties.c.sgritstralen+iclusters.c.sgritstralen,\
            montage = (icalculaties.c.montage+iclusters.c.montage)*icalculaties.c.hoeveelheid,\
            smontage = icalculaties.c.smontage+iclusters.c.smontage,\
-           lonen = (icalculaties.c.zagen+iclusters.c.zagen)*rppar[72][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.szagen+iclusters.c.szagen)*rppar[72][1]+\
-           (icalculaties.c.schaven+iclusters.c.schaven)*rppar[73][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.sschaven+iclusters.c.sschaven)*rppar[73][1]+\
-           (icalculaties.c.steken+iclusters.c.steken)*rppar[74][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.ssteken+iclusters.c.ssteken)*rppar[74][1]+\
-           (icalculaties.c.boren+iclusters.c.boren)*rppar[75][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.sboren+iclusters.c.sboren)*rppar[75][1]+\
-           (icalculaties.c.frezen+iclusters.c.frezen)*rppar[76][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.sfrezen+iclusters.c.sfrezen)*rppar[76][1]+\
-           (icalculaties.c.draaien_klein+iclusters.c.draaien_klein)*rppar[77][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.sdraaien_klein+iclusters.c.sdraaien_klein)*rppar[77][1]+\
-           (icalculaties.c.draaien_groot+iclusters.c.draaien_groot)*rppar[78][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.sdraaien_groot+iclusters.c.sdraaien_groot)*rppar[78][1]+\
-           (icalculaties.c.tappen+iclusters.c.tappen)*rppar[79][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.stappen+iclusters.c.stappen)*rppar[79][1]+\
-           (icalculaties.c.nube_draaien+iclusters.c.nube_draaien)*rppar[80][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.snube_draaien+iclusters.c.snube_draaien)*rppar[80][1]+\
-           (icalculaties.c.nube_bewerken+iclusters.c.nube_bewerken)*rppar[81][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.snube_bewerken+iclusters.c.snube_bewerken)*rppar[81][1]+\
-           (icalculaties.c.knippen+iclusters.c.knippen)*rppar[82][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.sknippen+iclusters.c.sknippen)*rppar[82][1]+\
-           (icalculaties.c.kanten+iclusters.c.kanten)*rppar[83][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.skanten+iclusters.c.skanten)*rppar[83][1]+\
-           (icalculaties.c.stansen+iclusters.c.stansen)*rppar[84][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.sstansen+iclusters.c.sstansen)*rppar[84][1]+\
-           (icalculaties.c.lassen_co2+iclusters.c.lassen_co2)*rppar[85][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.slassen_co2+iclusters.c.slassen_co2)*rppar[85][1]+\
-           (icalculaties.c.lassen_hand+iclusters.c.lassen_hand)*rppar[86][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.slassen_hand+iclusters.c.slassen_hand)*rppar[86][1]+\
-           (icalculaties.c.verpakken+iclusters.c.verpakken)*rppar[87][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.sverpakken+iclusters.c.sverpakken)*rppar[87][1]+\
-           (icalculaties.c.verzinken+iclusters.c.verzinken)*rppar[88][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.sverzinken+iclusters.c.sverzinken)*rppar[88][1]+\
-           (icalculaties.c.moffelen+iclusters.c.moffelen)*rppar[89][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.smoffelen+iclusters.c.smoffelen)*rppar[89][1]+\
-           (icalculaties.c.schilderen+iclusters.c.schilderen)*rppar[90][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.sschilderen+iclusters.c.sschilderen)*rppar[90][1]+\
-           (icalculaties.c.spuiten+iclusters.c.spuiten)*rppar[91][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.sspuiten+iclusters.c.sspuiten)*rppar[91][1]+\
-           (icalculaties.c.ponsen+iclusters.c.ponsen)*rppar[92][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.sponsen+iclusters.c.sponsen)*rppar[92][1]+\
-           (icalculaties.c.persen+iclusters.c.persen)*rppar[93][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.spersen+iclusters.c.spersen)*rppar[93][1]+\
-           (icalculaties.c.gritstralen+iclusters.c.gritstralen)*rppar[94][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.sgritstralen+iclusters.c.sgritstralen)*rppar[94][1]+\
-           (icalculaties.c.montage+iclusters.c.montage)*rppar[95][1]*icalculaties.c.hoeveelheid+\
-           (icalculaties.c.smontage+iclusters.c.smontage)*rppar[95][1])
-            
+           lonen = (icalculaties.c.zagen+iclusters.c.zagen)*rppar1[11][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.szagen+iclusters.c.szagen)*rppar1[11][1]+\
+           (icalculaties.c.schaven+iclusters.c.schaven)*rppar1[12][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.sschaven+iclusters.c.sschaven)*rppar1[12][1]+\
+           (icalculaties.c.steken+iclusters.c.steken)*rppar1[13][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.ssteken+iclusters.c.ssteken)*rppar1[13][1]+\
+           (icalculaties.c.boren+iclusters.c.boren)*rppar1[14][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.sboren+iclusters.c.sboren)*rppar1[14][1]+\
+           (icalculaties.c.frezen+iclusters.c.frezen)*rppar1[15][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.sfrezen+iclusters.c.sfrezen)*rppar1[15][1]+\
+           (icalculaties.c.draaien_klein+iclusters.c.draaien_klein)*rppar1[16][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.sdraaien_klein+iclusters.c.sdraaien_klein)*rppar1[16][1]+\
+           (icalculaties.c.draaien_groot+iclusters.c.draaien_groot)*rppar1[17][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.sdraaien_groot+iclusters.c.sdraaien_groot)*rppar1[17][1]+\
+           (icalculaties.c.tappen+iclusters.c.tappen)*rppar1[18][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.stappen+iclusters.c.stappen)*rppar1[18][1]+\
+           (icalculaties.c.nube_draaien+iclusters.c.nube_draaien)*rppar1[19][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.snube_draaien+iclusters.c.snube_draaien)*rppar1[19][1]+\
+           (icalculaties.c.nube_bewerken+iclusters.c.nube_bewerken)*rppar1[20][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.snube_bewerken+iclusters.c.snube_bewerken)*rppar1[20][1]+\
+           (icalculaties.c.knippen+iclusters.c.knippen)*rppar1[21][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.sknippen+iclusters.c.sknippen)*rppar1[21][1]+\
+           (icalculaties.c.kanten+iclusters.c.kanten)*rppar1[22][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.skanten+iclusters.c.skanten)*rppar1[22][1]+\
+           (icalculaties.c.stansen+iclusters.c.stansen)*rppar1[23][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.sstansen+iclusters.c.sstansen)*rppar1[23][1]+\
+           (icalculaties.c.lassen_co2+iclusters.c.lassen_co2)*rppar1[24][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.slassen_co2+iclusters.c.slassen_co2)*rppar1[24][1]+\
+           (icalculaties.c.lassen_hand+iclusters.c.lassen_hand)*rppar1[25][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.slassen_hand+iclusters.c.slassen_hand)*rppar1[25][1]+\
+           (icalculaties.c.verpakken+iclusters.c.verpakken)*rppar1[26][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.sverpakken+iclusters.c.sverpakken)*rppar1[26][1]+\
+           (icalculaties.c.verzinken+iclusters.c.verzinken)*rppar1[27][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.sverzinken+iclusters.c.sverzinken)*rppar1[27][1]+\
+           (icalculaties.c.moffelen+iclusters.c.moffelen)*rppar1[28][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.smoffelen+iclusters.c.smoffelen)*rppar1[28][1]+\
+           (icalculaties.c.schilderen+iclusters.c.schilderen)*rppar1[29][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.sschilderen+iclusters.c.sschilderen)*rppar1[29][1]+\
+           (icalculaties.c.spuiten+iclusters.c.spuiten)*rppar1[30][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.sspuiten+iclusters.c.sspuiten)*rppar1[30][1]+\
+           (icalculaties.c.ponsen+iclusters.c.ponsen)*rppar1[31][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.sponsen+iclusters.c.sponsen)*rppar1[31][1]+\
+           (icalculaties.c.persen+iclusters.c.persen)*rppar1[32][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.spersen+iclusters.c.spersen)*rppar1[32][1]+\
+           (icalculaties.c.gritstralen+iclusters.c.gritstralen)*rppar1[33][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.sgritstralen+iclusters.c.sgritstralen)*rppar1[33][1]+\
+           (icalculaties.c.montage+iclusters.c.montage)*rppar1[34][1]*icalculaties.c.hoeveelheid+\
+           (icalculaties.c.smontage+iclusters.c.smontage)*rppar1[34][1])
+
         con.execute(updcalc)
         for row in rpclart:
             selart = select([materiaallijsten.c.artikelID, materiaallijsten.c.icalculatie]).where(and_(materiaallijsten.\

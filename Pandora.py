@@ -1,19 +1,10 @@
+
 import os, sys
 from math import sqrt
 import datetime
 from PyQt5.QtWidgets import QApplication
 from sqlalchemy import Table, Column, Integer, Float, String, MetaData, create_engine,\
      insert, select, update, func, Boolean
-
-'''
-# set lock for up to 1 session per PC
-
-home = os.path.expanduser("~")
-if os.path.isfile(str(home)+'/.pandora_lock'):
-    sys.exit()
-else:
-    open(str(home)+'/.pandora_lock', 'w')
-'''
 
 # following rules for annual consumption of items even/odd year per year
 # and calculate warehouse inventory value for charts per month
@@ -32,9 +23,13 @@ artikelen = Table('artikelen', metadata,
     Column('reserveringsaldo', Float),
     Column('categorie', Integer),
     Column('art_bestelgrootte', Float))
-params = Table('params', metadata,
-    Column('paramID', Integer, primary_key=True),
-    Column('tarief', Float))
+params_system = Table('params_system', metadata,
+    Column('systemID', Integer(), primary_key=True),
+    Column('system_value', Integer))
+params_finance = Table('params_finance', metadata,
+    Column('financeID', Integer(), primary_key=True),
+    Column('factor', Float),
+    Column('amount', Float))
 magazijnvoorraad = Table('magazijnvoorraad', metadata,
     Column('jaarmaand', String, primary_key=True),
     Column('totaal', Float),
@@ -45,22 +40,23 @@ engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
 con = engine.connect()
 
 mjaar = int(str(datetime.date.today())[0:4])
-selpar = select([params]).where(params.c.paramID == 99)
+selpar = select([params_system]).where(params_system.c.systemID == 3)
 rppar = con.execute(selpar).first()
 
 if mjaar%2 == 1 and int(rppar[1]) == 0:
-    updpar = update(params).where(params.c.paramID == 99).values(tarief = 1)
+    updpar = update(params_system).where(params_system.c.systemID == 3).values(system_value = 1)
     con.execute(updpar)
-    selpar2 = select([params]).where(params.c.paramID == 101)
+
+    selpar1 = select([params_finance]).where(params_finance.c.financeID == 6)
+    rppar1 = con.execute(selpar1).first()
+    selpar2 = select([params_finance]).where(params_finance.c.financeID == 8)
     rppar2 = con.execute(selpar2).first()
     selart = select([artikelen]).order_by(artikelen.c.artikelID)
     rpartikel = con.execute(selart)
-    selpar1 = select([params]).where(params.c.paramID == 6)
-    rppar1 = con.execute(selpar1).first()
-            
+
     for row in rpartikel:
         mjaar = int(str(datetime.datetime.now())[0:4])
-        mbestgr = round(sqrt(2*row[5]*rppar2[1])/(row[1]*rppar[1]),0)
+        mbestgr = round(sqrt(2*row[5]*rppar2[2])/(row[1]*rppar1[1]),0)
         mjrverbr = row[4]
         if row[10] == 1 or row[10] == 5:
             minvrd = round(mjrverbr*1/17, 0) # < 3 weeks delivery time
@@ -77,18 +73,18 @@ if mjaar%2 == 1 and int(rppar[1]) == 0:
             values(jaarverbruik_2 = 0, art_min_voorraad = minvrd, art_bestelgrootte = mbestgr)
         con.execute(updart)
 elif mjaar%2 == 0 and int(rppar[1]) == 1:
-    updpar = update(params).where(params.c.paramID == 99).values(tarief = 0)
+    updpar = update(params_system).where(params_system.c.systemID == 3).values(system_value = 0)
     con.execute(updpar)
-    selpar2 = select([params]).where(params.c.paramID == 101)
+    selpar1 = select([params_finance]).where(params_finance.c.financeID == 6)
+    rppar1 = con.execute(selpar1).first()
+    selpar2 = select([params_finance]).where(params_finance.c.financeID == 8)
     rppar2 = con.execute(selpar2).first()
     selart = select([artikelen]).order_by(artikelen.c.artikelID)
     rpartikel = con.execute(selart)
-    selpar1 = select([params]).where(params.c.paramID == 6)
-    rppar1 = con.execute(selpar1).first()
 
     for row in rpartikel:
         mjaar = int(str(datetime.datetime.now())[0:4])
-        mbestgr = round(sqrt(2*row[4]*rppar2[1])/(row[1]*rppar1[1]),0)
+        mbestgr = round(sqrt(2*row[4]*rppar2[2])/(row[1]*rppar1[1]),0)
         mjrverbr = row[5]
         if row[10] == 1 or row[10] == 5:
             minvrd = round(mjrverbr*1/17, 0) # < 3 weeks delivery time
@@ -100,11 +96,11 @@ elif mjaar%2 == 0 and int(rppar[1]) == 1:
             minvrd = round(mjrverbr*16/17,0) # < 52 weeks delivery time
         else:
             minvrd = row[6]
-       
+
         updart = update(artikelen).where(artikelen.c.artikelID == row[0]).\
             values(jaarverbruik_1 = 0, art_min_voorraad = minvrd, art_bestelgrootte = mbestgr)
         con.execute(updart)
-    
+
 mhjrmnd = str(datetime.date.today())[0:7]                                                  #(this year year-month) yyyy-mm
 mvjrmnd = int(str(int(str(datetime.date.today())[0:4])-1)+str(datetime.date.today())[5:7]) #(last year yearmonth) yyyymm
 mdbjrmnd = (con.execute(select([func.max(magazijnvoorraad.c.jaarmaand,

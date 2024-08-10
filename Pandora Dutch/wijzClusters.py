@@ -1227,15 +1227,15 @@ def toonClusters(keuze, m_email):
                 mf30 = rpsel[37]
                    
             metadata = MetaData()
-            params = Table('params', metadata,
-                Column('paramID', Integer, primary_key=True),
-                Column('tarief', Float),
-                Column('item', String))
-            
+            params_services = Table('params_services', metadata,
+                                    Column('servicesID', Integer, primary_key=True),
+                                    Column('hourly_tariff', Float),
+                                    Column('item', String))
+
             engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
             con = engine.connect()
-            selpar = select([params]).order_by(params.c.paramID)
-            rppar = con.execute(selpar).fetchall()
+            selpar1 = select([params_services]).order_by(params_services.c.servicesID)
+            rppar1 = con.execute(selpar1).fetchall()
                                                                  
             upd1 = update(clusters).where(clusters.c.clusterID == clusternr).values(
                 omschrijving=ms0, eenheid=mf1, uren_constr = mf2,\
@@ -1247,19 +1247,19 @@ def toonClusters(keuze, m_email):
                 leiding=mf24, huisvesting=mf25, kabelwerk=mf26,grondverzet=mf27,\
                 betonwerk=mf28,vervoer=mf29, overig=mf30)
             con.execute(upd1)
-            upd2 = update(clusters).where(clusters.c.clusterID == clusternr).values(\
-                lonen=clusters.c.uren_constr*rppar[8][1]+clusters.c.uren_mont*rppar[9][1]\
-                 +clusters.c.uren_retourlas*rppar[10][1]+clusters.c.uren_bfi*rppar[11][1]\
-                 +clusters.c.uren_voeding*rppar[12][1]+clusters.c.uren_bvl*rppar[13][1]\
-                 +clusters.c.uren_spoorleg*rppar[14][1]+clusters.c.uren_spoorlas*rppar[15][1]\
-                 +clusters.c.uren_telecom*rppar[18][1],\
-                materieel=clusters.c.sleuvengraver*rppar[19][1]+clusters.c.persapparaat\
-                 *rppar[20][1]+clusters.c.atlaskraan*rppar[21][1]+clusters.c.kraan_groot\
-                 *rppar[22][1]+clusters.c.mainliner*rppar[23][1]+clusters.c.hormachine\
-                 *rppar[24][1]+clusters.c.wagon*rppar[25][1]+clusters.c.locomotor\
-                 *rppar[26][1]+clusters.c.locomotief*rppar[27][1]+clusters.c.montagewagen\
-                 *rppar[28][1]+clusters.c.stormobiel*rppar[29][1]+clusters.c.robeltrein\
-                 *rppar[30][1], inhuur=clusters.c.uren_inhuur*rppar[16][1])
+            upd2 = update(clusters).where(clusters.c.clusterID == clusternr).values( \
+                lonen=clusters.c.uren_constr * rppar[1][1] + clusters.c.uren_mont * rppar[2][1] \
+                      + clusters.c.uren_retourlas * rppar[8][1] + clusters.c.uren_bfi * rppar[3][1] \
+                      + clusters.c.uren_voeding * rppar[4][1] + clusters.c.uren_bvl * rppar[5][1] \
+                      + clusters.c.uren_spoorleg * rppar[6][1] + clusters.c.uren_spoorlas * rppar[7][1] \
+                      + clusters.c.uren_telecom * rppar[10][1], \
+                materieel=clusters.c.sleuvengraver * rppar1[0][1] + clusters.c.persapparaat \
+                          * rppar1[1][1] + clusters.c.atlaskraan * rppar1[2][1] + clusters.c.kraan_groot \
+                          * rppar1[3][1] + clusters.c.mainliner * rppar1[4][1] + clusters.c.hormachine \
+                          * rppar1[5][1] + clusters.c.wagon * rppar1[6][1] + clusters.c.locomotor \
+                          * rppar1[7][1] + clusters.c.locomotief * rppar1[8][1] + clusters.c.montagewagen \
+                          * rppar1[9][1] + clusters.c.stormobiel * rppar1[10][1] + clusters.c.robeltrein \
+                          * rppar1[11][1], inhuur=clusters.c.uren_inhuur * rppar[0][1])
             con.execute(upd2)
             upd3 = update(clusters).where(clusters.c.clusterID == clusternr).values(\
                     diensten = clusters.c.inhuur+clusters.c.leiding+clusters.c.huisvesting+\

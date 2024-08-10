@@ -6,6 +6,14 @@ from PyQt5.QtWidgets import QWidget, QDialog, QTableView, QVBoxLayout
 from sqlalchemy import (Table, Column, Integer, String, MetaData, ForeignKey,\
                         create_engine, and_ , select)
 
+def noRecord():
+    msg = QMessageBox()
+    msg.setStyleSheet("color: black;  background-color: gainsboro")
+    msg.setIcon(QMessageBox.Warning)
+    msg.setText('No record present, first insert record(s)!')
+    msg.setWindowTitle('Insert parameters')
+    msg.exec_()
+
 def eigenLeverancier(m_email):
     metadata = MetaData()
     accounts = Table('accounts', metadata,
@@ -28,11 +36,9 @@ def eigenLeverancier(m_email):
      
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    sel = select([leveranciers]).where(and_(leveranciers.c.leverancierID ==\
-          lev_accounts.c.leverancierID, lev_accounts.c.accountID ==\
-          accounts.c.accountID , accounts.c.email == m_email))
+    sel = select([leveranciers]).where(and_(leveranciers.c.leverancierID == lev_accounts.c.leverancierID,\
+                    lev_accounts.c.accountID == accounts.c.accountID, accounts.c.email == m_email))
     rplev = con.execute(sel)
-    
     class MyWindow(QDialog):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
@@ -61,7 +67,11 @@ def eigenLeverancier(m_email):
         def rowCount(self, parent):
             return len(self.mylist)
         def columnCount(self, parent):
-            return len(self.mylist[0])
+            try:
+                return len(self.mylist[0])
+            except:
+                noRecord()
+                hoofdMenu(m_email)
         def data(self, index, role):
             veld = self.mylist[index.row()][index.column()]
             if not index.isValid():

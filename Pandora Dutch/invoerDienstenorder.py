@@ -223,7 +223,6 @@ def bepaalInkoopOrdernr(mregel):
                                    .label('morderinkoopnr')])).scalar())
     if mregel == 1:
        morderinkoopnr=int(maak11proef(morderinkoopnr))
-    conn.close
     return(morderinkoopnr)
    
 def Inkooporder(m_email, rplev, mregel):
@@ -517,15 +516,15 @@ def inkoopRegels(m_email, rplev, mregel):
         Column('stormobiel', Float),
         Column('robeltrein', Float),
         Column('verwerkt', Integer))
-    params = Table('params', metadata,
-        Column('paramID', Integer, primary_key=True),
-        Column('tarief', Float),
-        Column('item', String))
-                     
+    params_services = Table('params_services', metadata,
+                            Column('servicesID', Integer, primary_key=True),
+                            Column('hourly_tariff', Float),
+                            Column('item', String))
+
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     conn = engine.connect()
-    
-    selpar = select([params]).where(and_(params.c.paramID >19, params.c.paramID < 32)).order_by(params.c.paramID)
+
+    selpar = select([params_services]).order_by(params_services.c.servicesID)
     rppar = conn.execute(selpar).fetchall()
    
     selcal = select([calculaties]).where(calculaties.c.koppelnummer == mwerknr)
@@ -549,8 +548,7 @@ def inkoopRegels(m_email, rplev, mregel):
         ins = insert(orders_inkoop).values(orderinkoopID = minkordnr, leverancierID =\
                     mlevnr, besteldatum = mbestdatum, status = 1)
         conn.execute(ins)
-        conn.close
-        
+
     flag = 0    
     if soort[0] == '1' and not rpdienst:
         minh_uren = 0
@@ -561,9 +559,12 @@ def inkoopRegels(m_email, rplev, mregel):
                 minhuur += row[2]
                 flag = 1
         if flag:
-            mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
+            try:
+                mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
                 type_=Integer).label('mdienstnr')])).scalar())
-            mdienstnr += 1
+                mdienstnr += 1
+            except:
+                mdienstnr = 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
                  werkomschr = soort+' '+str(round(minh_uren,2))+' uren', omschrijving = momschr,\

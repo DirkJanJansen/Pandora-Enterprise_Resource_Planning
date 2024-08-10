@@ -10,7 +10,7 @@ from PyQt5.QtCore import Qt, QRegExp
 def hash_password(password):
     ph = PasswordHasher()
     return(ph.hash(password))
-     
+
 def check_password(hashed_password, user_password):
     ph = PasswordHasher()
     try:

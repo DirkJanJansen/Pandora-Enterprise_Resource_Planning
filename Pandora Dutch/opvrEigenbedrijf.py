@@ -5,8 +5,41 @@ from PyQt5.QtCore import Qt, QAbstractTableModel
 from PyQt5.QtGui import QFont, QPixmap, QIcon
 from sqlalchemy import (Table, Column, Integer, String, MetaData, create_engine, ForeignKey)
 from sqlalchemy.sql import select, and_
-   
+
+def noRecord():
+    msg = QMessageBox()
+    msg.setStyleSheet("color: black;  background-color: gainsboro")
+    msg.setIcon(QMessageBox.Warning)
+    msg.setText('Geen records, breng deze eerst in!')
+    msg.setWindowTitle('Inbrengen records')
+    msg.exec_()
+
 def eigenBedrijf(m_email):
+    metadata = MetaData()
+    kopers = Table('kopers', metadata,
+       Column('koperID', Integer(), primary_key=True),
+       Column('bedrijfsnaam', String),
+       Column('rechtsvorm', String),
+       Column('afdeling', String),
+       Column('btwnummer', String),
+       Column('kvknummer', String),
+       Column('telnr', String),
+       Column('huisnummer', String),
+       Column('toevoeging', String),
+       Column('postcode', String))
+    koper_accounts = Table('koper_accounts', metadata,
+       Column('koperaccID', Integer, primary_key=True),
+       Column('accountID', Integer, ForeignKey('accounts.accountID')),
+       Column('koperID', Integer, ForeignKey('kopers.koperID')))
+    accounts = Table('accounts', metadata,
+       Column('accountID', Integer, primary_key=True),
+       Column('email', String))
+
+    engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
+    conn = engine.connect()
+    selkop = select([kopers, koper_accounts, accounts]).where(and_(kopers.c.koperID == koper_accounts.c.koperID,\
+                         koper_accounts.c.accountID == accounts.c.accountID, accounts.c.email == m_email))
+    rpkop = conn.execute(selkop)
     class MyWindow(QDialog):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
@@ -35,7 +68,11 @@ def eigenBedrijf(m_email):
         def rowCount(self, parent):
             return len(self.mylist)
         def columnCount(self, parent):
-            return len(self.mylist[0])
+            try:
+                return len(self.mylist[0])
+            except:
+                noRecord()
+                hoofdMenu(m_email)
         def data(self, index, role):
             veld = self.mylist[index.row()][index.column()]
             if not index.isValid():
@@ -56,34 +93,7 @@ def eigenBedrijf(m_email):
     header = ['VerkoopbedrijfID','Bedrijfsnaam', 'Rechtsvorm','Afdeling', 'BTWNummer', 'KVKNummer',\
               'Telefoonnummer','Straat', 'Huisnummer', 'Toevoeging', 'Postcode', 'Woonplaats']  
       
-    metadata = MetaData() 
-    kopers = Table('kopers', metadata,
-        Column('koperID', Integer(), primary_key=True),
-        Column('bedrijfsnaam', String),
-        Column('rechtsvorm', String),
-        Column('afdeling', String),  
-        Column('btwnummer', String),
-        Column('kvknummer', String),
-        Column('telnr', String),
-        Column('huisnummer', String),
-        Column('toevoeging', String),
-        Column('postcode', String))
-    koper_accounts = Table('koper_accounts', metadata,
-        Column('koperaccID' , Integer, primary_key=True),
-        Column('accountID', Integer, ForeignKey('accounts.accountID')),
-        Column('koperID', Integer, ForeignKey('kopers.koperID')))
-    accounts = Table('accounts', metadata,
-        Column('accountID', Integer, primary_key=True),
-        Column('email', String))
-              
-    engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
-    conn = engine.connect()
-    selkop = select([kopers, koper_accounts, accounts]).where(and_(kopers.c.koperID ==\
-        koper_accounts.c.koperID, koper_accounts.c.accountID == accounts.c.accountID,\
-        accounts.c.email == m_email))
-    
-    rpkop = conn.execute(selkop)
-     
+
     import postcode
     
     data_list=[]

@@ -189,12 +189,13 @@ def refresh(m_email, self, btnStatus, e1, e2, e3, e4, e5, e6, klmail):
         Column('voornaam', String),
         Column('tussenvoegsel', String),
         Column('achternaam', String))
-    params = Table('params', metadata,
-        Column('paramID', Integer, primary_key=True),
-        Column('tarief', Float))
+    params_finance = Table('params_finance', metadata,
+        Column('financeID', Integer, primary_key=True),
+        Column('factor', Float),
+        Column('amount', Float))
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    btwsel = select([params]).where(params.c.paramID == 1)
+    btwsel = select([params_finance]).where(params_finance.c.financeID == 1)
     rpbtw = con.execute(btwsel).first()
     btwperc = rpbtw[1]
     selweb = select([webbestellingen]).where(webbestellingen.c.email == m_email).order_by(webbestellingen.c.artikelID)
@@ -366,13 +367,10 @@ def verwerkArtikel(martnr,retstat, m_email, mhoev, self, klmail):
         Column('verkoopprijs', Float),
         Column('regel', Integer),
         Column('retour', Float))
-    params = Table('params', metadata,
-        Column('paramID', Integer, primary_key=True),
-        Column('tarief', Float),
-        Column('item', String),
-        Column('lock', Boolean),
-        Column('ondergrens', Float),
-        Column('bovengrens', Float))
+    params_finance = Table('params_finance', metadata,
+        Column('financeID', Integer, primary_key=True),
+        Column('factor', Float),
+        Column('amount', Float))
     afdrachten = Table('afdrachten', metadata,
         Column('afdrachtID', Integer(), primary_key=True),
         Column('soort', String),
@@ -398,9 +396,9 @@ def verwerkArtikel(martnr,retstat, m_email, mhoev, self, klmail):
                                        
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    selpar = select([params]).order_by(params.c.paramID)
+    selpar = select([params_finance]).order_by(params_finance.c.financeID)
     rppar = con.execute(selpar).fetchall()
-                                
+
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
     transaction = con.begin()
@@ -691,9 +689,10 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
          Column('postcode', String),
          Column('huisnummer', String),
          Column('toevoeging', String))
-    params = Table('params', metadata,
-        Column('paramID', Integer, primary_key=True),
-        Column('tarief', Float))
+    params_finance = Table('params_finance', metadata,
+        Column('financeID', Integer, primary_key=True),
+        Column('factor', Float),
+        Column('amount', Float))
      
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
@@ -703,7 +702,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
     selw = select([webbestellingen, accounts]).where(and_(webbestellingen.c.email == m_email,\
                  webbestellingen.c.email == accounts.c.email))
     rpw = con.execute(selw).first()
-    postsel = select([params]).where(params.c.paramID == 102)
+    postsel = select([params_finance]).where(params_finance.c.financeID == 9)
     rppost = con.execute(postsel).first()
     if rps:
         rpsel = con.execute(selbest)
@@ -911,7 +910,7 @@ def showBasket(m_email, self, btnStatus, klmail, subtot, btwsub):
                 grid.addWidget(QLabel(mstrtpls[0]), 3, 0)
                 grid.addWidget(QLabel(mstrtpls[1]), 3, 4)
                 
-                postnl = rppost[1]
+                postnl = rppost[2]
                 factbedrag = subtot+postnl
                               
                 grid.addWidget(QLabel('Sum subtotals:  '), 5, 0)
@@ -1481,9 +1480,10 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
                 Column('afmeting', String),
                 Column('thumb_artikel', String),
                 Column('foto_artikel', String))
-            params = Table('params', metadata,
-                Column('paramID', Integer, primary_key=True),
-                Column('tarief', Float))
+            params_finance = Table('params_finance', metadata,
+                Column('financeID', Integer, primary_key=True),
+                Column('factor', Float),
+                Column('amount', Float))
              
             engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
             con = engine.connect()
@@ -1491,7 +1491,7 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
             sel = select([artikelen]).where(artikelen.c.artikelID == martnr)
             rpartikelen = con.execute(sel).first()
                 
-            selpar = select([params]).order_by(params.c.paramID)
+            selpar = select([params_finance]).order_by(params_finance.c.financeID)
             rppar = con.execute(selpar).fetchall()
             verkprijs = rpartikelen[2]*(1+rppar[3][1])*(1+rppar[0][1])
                                  
