@@ -23,6 +23,6 @@
  
  Link to installation: https://github.com/DirkJanJansen/Pandora/blob/master/Installation/install.txt
  
- Link to Linux installation: https://github.com/DirkJanJansen/Pandora/blob/master/Installation/linux/LINUX install.txt
+ Link to Linux installation: https://github.com/DirkJanJansen/Pandora/blob/master/Installation/linux/LINUX_install.txt
  
  For instructions, installation and several screenshots see Installation directory.
