@@ -41,7 +41,6 @@ Install postgresql in folder C:\programdata\postgres with password: postgres45 l
 set password in pgadmin4: postgres45
 Start psql in command prompt and set password with \password  (postgres45)
 
-copy the files from folder data in c:\programdata\postgres\backup\
 Import data with pgrestore-custom.bat or for empty database pgrestore-custom-empty.bat
  (change pathnames to your own pathname, if you changed path PostgreSQL)
 The database bisystem is imported in postgresql.
