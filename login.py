@@ -58,10 +58,10 @@ def info():
          
         The system is designed in Python 3 with PyQt5 as the graphical interface.
         As relational database system is applied PostgreSQL with interface SQLAlchemy Core.
-        The login is realized with encrypted SHA256 control with authorised
-        and account-adjustable permissions. This at menu level and on other operations
-        e.g. ordering, requesting, entering, changing, printing, etc. The permissions can be assigned
-        by authorised persons. The creation of a account can be done by any person.
+        The login is realized with encrypted argon2 control with authorised and account-adjustable
+        permissions. This at menu level and on other operations e.g. ordering, requesting, entering,
+         changing, printing, etc. The permissions can be assigned by authorised persons.
+        The creation of a account can be done by any person.
         By default, the account is created with the permissions to query and change own account,
         placing web orders, requesting and printing order data.
         All other authorisations must be carried out by an authorised person.
