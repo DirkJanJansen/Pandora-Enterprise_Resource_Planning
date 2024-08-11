@@ -21,7 +21,7 @@ echo.
 
 "C:\programdata\postgres\bin\createdb.exe"  -h localhost -p 5432 -U postgres -w bisystem
 
-"C:\programdata\postgres\bin\pg_restore.exe" --dbname=bisystem  --verbose C:\programdata\Pandora\data\bisystem.empty.backup
+"C:\programdata\postgres\bin\pg_restore.exe" --dbname=bisystem  --verbose C:\ProgramData\Pandora\data\bisystem.empty.backup
 
 echo.
 echo Database bisystem is restored
