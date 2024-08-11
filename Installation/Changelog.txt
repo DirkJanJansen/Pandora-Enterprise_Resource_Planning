@@ -499,5 +499,7 @@ From 2020-01-10 updates and changes are described on this page
            Changed Pandora install.txt and LINUX install.txt
 2024-08-10 Major upgrade all params are splitted in 7 new param tables and the menu structure of clusters is realised in the database
            so it is possible to change the structure of the creation  menu for the clusters.
-           Also a added a empty database with only functional data, so it's possible to insert your own data.
+           For current users, the database is changed, so it's necessary to install the latest one. See Install.txt or for LINUX 
+           LINUX_install.xt
+           Also added a empty database with only functional data, so it's possible to insert your own data.
            The documentation is also  adapted to the new changes.
