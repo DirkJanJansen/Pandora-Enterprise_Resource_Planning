@@ -1,5 +1,8 @@
 Installation on Windows:
 
+If you installed the old version, don't forget to replace the database
+with the changed bisystem.backup
+
 Install python3 for Windows
 download from https://www.python.org/downloads/
 if installed open a command prompt cmd and execute next lines
