@@ -2,8 +2,8 @@
 from datetime import datetime
 from argon2 import PasswordHasher
 from validZt import zt
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QFont, QPixmap, QIcon, QMovie, QColor
+from PyQt5.QtCore import Qt, QRegExp
+from PyQt5.QtGui import QFont, QPixmap, QIcon, QMovie, QColor, QRegExpValidator
 from PyQt5.QtWidgets import (QDialog, QGridLayout, QMessageBox, QLabel, QLineEdit, QPushButton, QComboBox)
 from sqlalchemy import (Table, Column, Integer, String, MetaData, create_engine, select)
 
@@ -60,7 +60,7 @@ def info():
         As relational database system is applied PostgreSQL with interface SQLAlchemy Core.
         The login is realized with encrypted argon2 control with authorised and account-adjustable
         permissions. This at menu level and on other operations e.g. ordering, requesting, entering,
-         changing, printing, etc. The permissions can be assigned by authorised persons.
+        changing, printing, etc. The permissions can be assigned by authorised persons.
         The creation of a account can be done by any person.
         By default, the account is created with the permissions to query and change own account,
         placing web orders, requesting and printing order data.
@@ -176,6 +176,9 @@ def inlog():
             emailEdit.setStyleSheet("background: #F8F7EE")
             emailEdit.setFixedWidth(200)
             emailEdit.setFont(QFont("Arial",10))
+            reg_ex = QRegExp("^([1]{1}[0-9]{8})|([A-Z02-9a-z._-]{1,}@(\\w+)(\\.(\\w+))(\\.(\\w+))?(\\.(\\w+))?)$")
+            input_validator = QRegExpValidator(reg_ex, emailEdit)
+            emailEdit.setValidator(input_validator)
             emailEdit.textChanged.connect(self.emailChanged)
 
             self.Wachtwoord = QLabel()
