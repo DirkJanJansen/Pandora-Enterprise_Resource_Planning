@@ -107,7 +107,7 @@ def valid(item, valnr):
             return(False)
     elif valnr == 3:
         #e-mail
-        ab = re.compile("^([A-Za-z._-]{1,}@(\\w+)(\\.(\\w+))(\\.(\\w+))?(\\.(\\w+))?)$")
+        ab = re.compile("^([A-Za-z02-9._-]{1,}@(\\w+)(\\.(\\w+))(\\.(\\w+))?(\\.(\\w+))?)$")
         if ab.match(item):
             return(True)
         else:
@@ -288,7 +288,7 @@ def nieuwAccount(self):
             q9Edit.setFixedWidth(300)
             q9Edit.setFont(QFont("Arial",10))
             q9Edit.textChanged.connect(self.q9Changed)
-            reg_ex = QRegExp("^([A-Za-z._-]{1,}@(\\w+)(\\.(\\w+))(\\.(\\w+))?(\\.(\\w+))?)$")
+            reg_ex = QRegExp("^([A-Za-z02-9._-]{1,}@(\\w+)(\\.(\\w+))(\\.(\\w+))?(\\.(\\w+))?)$")
             input_validator = QRegExpValidator(reg_ex, q9Edit)
             q9Edit.setValidator(input_validator)
        
