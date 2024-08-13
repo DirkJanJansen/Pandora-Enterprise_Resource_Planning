@@ -180,7 +180,7 @@ def inlog():
             emailEdit.setStyleSheet("background: #F8F7EE")
             emailEdit.setFixedWidth(200)
             emailEdit.setFont(QFont("Arial",10))
-            reg_ex = QRegExp("^([1]{1}[0-9]{8})|([A-Za-z._-]{1,}@(\\w+)(\\.(\\w+))(\\.(\\w+))?(\\.(\\w+))?)$")
+            reg_ex = QRegExp("^([1]{1}[0-9]{8})|([A-Za-z02-9._-]{1,}@(\\w+)(\\.(\\w+))(\\.(\\w+))?(\\.(\\w+))?)$")
             input_validator = QRegExpValidator(reg_ex, emailEdit)
             emailEdit.setValidator(input_validator)
             emailEdit.textChanged.connect(self.emailChanged)
