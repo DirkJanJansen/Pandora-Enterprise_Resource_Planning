@@ -249,7 +249,7 @@ def updateAccount(m_email):
             q11Edit.setFixedWidth(300)
             q11Edit.setFont(QFont("Arial",10))
             q11Edit.textChanged.connect(self.q11Changed)
-            reg_ex = QRegExp("^([A-Za-z02-9._-]{1,}@(\\w+)(\\.(\\w+))(\\.(\\w+))?(\\.(\\w+))?)$")
+            reg_ex = QRegExp("^([A-Za-z0-9._-]{1,}@(\\w+)(\\.(\\w+))(\\.(\\w+))?(\\.(\\w+))?)$")
             input_validator = QRegExpValidator(reg_ex, q11Edit)
             q11Edit.setValidator(input_validator)
             
