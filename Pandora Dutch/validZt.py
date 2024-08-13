@@ -103,7 +103,7 @@ def zt(zoekterm, valnr):
             return(False)
     elif valnr == 12:
         #e-mail
-        ab = re.compile("[^@]+@[^@]+\.[^@]+$")
+        ab = re.compile("^([A-Za-z._-]{1,}@(\\w+)(\\.(\\w+))(\\.(\\w+))?(\\.(\\w+))?)$")
         if ab.match(zoekterm):
             return(True)
         else:
