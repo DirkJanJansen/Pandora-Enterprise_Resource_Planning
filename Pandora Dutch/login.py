@@ -2,8 +2,8 @@
 from datetime import datetime
 from argon2 import PasswordHasher
 from validZt import zt
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QFont, QPixmap, QIcon, QMovie, QColor
+from PyQt5.QtCore import Qt, QRegExp
+from PyQt5.QtGui import QFont, QPixmap, QIcon, QMovie, QColor, QRegExpValidator
 from PyQt5.QtWidgets import (QDialog, QGridLayout, QMessageBox, QLabel, QLineEdit, QPushButton, QComboBox)
 from sqlalchemy import (Table, Column, Integer, String, MetaData, create_engine, select)
 
@@ -180,6 +180,9 @@ def inlog():
             emailEdit.setStyleSheet("background: #F8F7EE")
             emailEdit.setFixedWidth(200)
             emailEdit.setFont(QFont("Arial",10))
+            reg_ex = QRegExp("^([1]{1}[0-9]{8})|([A-Za-z._-]{1,}@(\\w+)(\\.(\\w+))(\\.(\\w+))?(\\.(\\w+))?)$")
+            input_validator = QRegExpValidator(reg_ex, emailEdit)
+            emailEdit.setValidator(input_validator)
             emailEdit.textChanged.connect(self.emailChanged)
 
             self.Wachtwoord = QLabel()
