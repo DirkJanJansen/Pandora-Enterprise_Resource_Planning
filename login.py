@@ -171,15 +171,25 @@ def inlog():
             grid = QGridLayout()
             grid.setSpacing(20)
 
-            self.email = QLabel()
+            self.Email = QLabel()
             emailEdit = QLineEdit()
             emailEdit.setStyleSheet("background: #F8F7EE")
             emailEdit.setFixedWidth(200)
             emailEdit.setFont(QFont("Arial",10))
-            reg_ex = QRegExp("^([1]{1}[0-9]{8})|([A-Za-z02-9._-]{1,}@(\\w+)(\\.(\\w+))(\\.(\\w+))?(\\.(\\w+))?)$")
+            reg_ex = QRegExp("([A-Za-z0-9._-]{1,}@(\\w+)(\\.(\\w+))(\\.(\\w+))?(\\.(\\w+))?)$")
             input_validator = QRegExpValidator(reg_ex, emailEdit)
             emailEdit.setValidator(input_validator)
             emailEdit.textChanged.connect(self.emailChanged)
+
+            self.Account = QLabel()
+            accountEdit = QLineEdit()
+            accountEdit.setStyleSheet("background: #F8F7EE")
+            accountEdit.setFixedWidth(200)
+            accountEdit.setFont(QFont("Arial",10))
+            reg_ex = QRegExp("^([1]{1}[0-9]{8})$")
+            input_validator = QRegExpValidator(reg_ex, accountEdit)
+            accountEdit.setValidator(input_validator)
+            accountEdit.textChanged.connect(self.accountChanged)
 
             self.Wachtwoord = QLabel()
             wachtwEdit = QLineEdit()
@@ -209,11 +219,15 @@ def inlog():
             movie.start()
             grid.addWidget(pandora, 1 ,0, 1, 3, Qt.AlignCenter)
 
-            grid.addWidget(QLabel('emailaddress or\nAccountnumber'), 3, 1)
+            grid.addWidget(QLabel('Logon with your Emailaddress or with your Accountnumber'), 2 , 0, 1, 3, Qt.AlignCenter)
+            grid.addWidget(QLabel('Emailaddress'), 3, 1)
             grid.addWidget(emailEdit, 3, 2)
 
-            grid.addWidget(QLabel('Password'), 4, 1)
-            grid.addWidget(wachtwEdit, 4, 2)
+            grid.addWidget(QLabel('Accountnumber'), 4, 1)
+            grid.addWidget(accountEdit, 4, 2)
+
+            grid.addWidget(QLabel('Password'), 5, 1)
+            grid.addWidget(wachtwEdit, 5, 2)
 
             self.setLayout(grid)
             self.setGeometry(600, 250, 150, 150)
@@ -221,7 +235,7 @@ def inlog():
             applyBtn = QPushButton('Logon')
             applyBtn.clicked.connect(self.accept)
 
-            grid.addWidget(applyBtn, 5, 1, 1 , 2, Qt.AlignRight)
+            grid.addWidget(applyBtn, 6, 1, 1 , 2, Qt.AlignRight)
             applyBtn.setFont(QFont("Arial",10))
             applyBtn.setFixedWidth(90)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
@@ -229,7 +243,7 @@ def inlog():
             cancelBtn = QPushButton('Shutdown')
             cancelBtn.clicked.connect(lambda: goodbye())
 
-            grid.addWidget(cancelBtn,  5, 2)
+            grid.addWidget(cancelBtn,  6, 2)
             cancelBtn.setFont(QFont("Arial",10))
             cancelBtn.setFixedWidth(90)
             cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
@@ -237,7 +251,7 @@ def inlog():
             nwBtn = QPushButton('New Account')
             nwBtn.clicked.connect(lambda: createAccount(self))
 
-            grid.addWidget(nwBtn,  5, 0, 1, 2, Qt.AlignRight)
+            grid.addWidget(nwBtn,  6, 0, 1, 2, Qt.AlignRight)
             nwBtn.setFont(QFont("Arial",10))
             nwBtn.setFixedWidth(140)
             nwBtn.setStyleSheet("color: black;  background-color: gainsboro")
@@ -245,21 +259,27 @@ def inlog():
             infoBtn = QPushButton('Information')
             infoBtn.clicked.connect(lambda: info())
 
-            grid.addWidget(infoBtn,  5, 0, 1, 2)
+            grid.addWidget(infoBtn,  6, 0, 1, 2)
             infoBtn.setFont(QFont("Arial",10))
             infoBtn.setFixedWidth(120)
             infoBtn.setStyleSheet("color: black;  background-color: gainsboro")
 
-            grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 6, 0, 1, 3, Qt.AlignCenter)
+            grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 7, 0, 1, 3, Qt.AlignCenter)
 
         def emailChanged(self, text):
-            self.email.setText(text)
+            self.Email.setText(text)
+
+        def accountChanged(self, text):
+            self.Account.setText(text)
 
         def wachtwChanged(self, text):
             self.Wachtwoord.setText(text)
 
-        def returnemail(self):
-            return self.email.text()
+        def returnEmail(self):
+            return self.Email.text()
+
+        def returnAccount(self):
+            return self.Account.text()
 
         def returnWachtwoord(self):
             return self.Wachtwoord.text()
@@ -268,7 +288,7 @@ def inlog():
         def getData(parent=None):
             dialog = Widget(parent)
             dialog.exec_()
-            return [dialog.returnemail(), dialog.returnWachtwoord()]
+            return [dialog.returnEmail(), dialog.returnAccount(),  dialog.returnWachtwoord()]
 
     window = Widget()
     data = window.getData()
@@ -308,9 +328,9 @@ def inlog():
         else:
             wrongemailAddress()
             inlog()
-    elif data[0] and zt(data[0],1):
-        mklantnr = data[0]
-        sel = select([accounts]).where(accounts.c.accountID == mklantnr)
+    elif data[1]:
+        maccountnr = data[1]
+        sel = select([accounts]).where(accounts.c.accountID == maccountnr)
         rpaccount = conn.execute(sel).first()
         if rpaccount:
             maccountnr = rpaccount[0]
@@ -324,8 +344,8 @@ def inlog():
         wrongLogon()
         inlog()
 
-    if data[1]:
-        mwachtw = data[1]
+    if data[2]:
+        mwachtw = data[2]
     else:
         wrongPassword()
         inlog()
