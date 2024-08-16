@@ -30,7 +30,7 @@ def zipcode():
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args, )
             self.setGeometry(50, 50, 1500, 900)
-            self.setWindowTitle('Request own sales company')
+            self.setWindowTitle('Request all Dutch zip codes')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags() | Qt.WindowSystemMenuHint |
                                 Qt.WindowMinMaxButtonsHint)
