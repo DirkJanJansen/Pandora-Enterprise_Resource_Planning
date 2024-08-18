@@ -64,6 +64,7 @@ Barcode enabling in linux:
 Copy file .usbkbd.sh from folder installation in folder /home/postgres ($HOME)
 chmod 755 .usbkbd.sh
 If the password for Ubuntu changed from postgres45 change it too in .usbkbd.sh
+This file and .pgpass is not visible for LINUX, so to copy it you will have to make it visible with crt+h
 
 Barcode to enable error sounds:
 sudo apt install sox
