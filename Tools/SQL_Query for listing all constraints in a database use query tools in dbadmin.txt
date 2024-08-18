@@ -12,5 +12,5 @@ from pg_constraint pgc
                        and nsp.nspname = ccu.constraint_schema
 order by pgc.conname;
 
-# in pgadmin in tree go to bisystem and context menu (right mouse button on bisystem) choose query tools # and copy and paste sql script in query window aand choose execute script button.
+# in pgadmin in tree go to bisystem and context menu (right mouse button on bisystem) choose query tools # and copy and paste sql script in query window and choose execute script button. (F5)
 
