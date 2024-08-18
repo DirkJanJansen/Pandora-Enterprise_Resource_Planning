@@ -1,0 +1,16 @@
+select pgc.conname as constraint_name,
+       ccu.table_schema as table_schema,
+       ccu.table_name,
+       ccu.column_name,
+       contype,
+        pg_get_constraintdef(pgc.oid)
+from pg_constraint pgc
+         join pg_namespace nsp on nsp.oid = pgc.connamespace
+         join pg_class  cls on pgc.conrelid = cls.oid
+         left join information_schema.constraint_column_usage ccu
+                   on pgc.conname = ccu.constraint_name
+                       and nsp.nspname = ccu.constraint_schema
+order by pgc.conname;
+
+# in pgadmin in tree go to bisystem and context menu (right mouse button on bisystem) choose query tools # and copy and paste sql script in query window aand choose execute script button.
+
