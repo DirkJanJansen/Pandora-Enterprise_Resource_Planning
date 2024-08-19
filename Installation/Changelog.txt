@@ -505,3 +505,4 @@ From 2020-01-10 updates and changes are described on this page
            The documentation is also  adapted to the new changes.
 2024-08-16 For your convenience added a program in folder tools for displaying The Dutch zipcode table. You can use one of this records to add zipcodes in the program. 
            Take the zipcode and a housenumber between lower and upper number to use. The table is very big 9 (ca +300000 records) so it takes a few second to load.
+2024-08-19 changed some screenshots and little adjustments made to LINUX-install.txt
