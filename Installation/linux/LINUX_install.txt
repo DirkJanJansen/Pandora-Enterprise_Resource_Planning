@@ -25,6 +25,7 @@ and copy the folder Pandora in your home folder and keep the folder structure as
 Installation Pandora as user postgres with password postgres45:
 Copy .pgpass in your home folder  
 in terminal chmod 600 .pgpass
+This file and .usbkbd.sh is not visible for LINUX, so to copy it you will have to make it visible with crt+h
 
 Install postgresql:
 in terminal
