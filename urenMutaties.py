@@ -572,7 +572,7 @@ def urenMut(maccountnr, mwerknr, mboekd, m_email):
             self.urenEdit.setFixedWidth(150)
             self.urenEdit.setFont(QFont("Arial",10))
             self.urenEdit.setStyleSheet('color: black; background-color: #F8F7EE')
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, self.urenEdit)
             self.urenEdit.setValidator(input_validator)
             

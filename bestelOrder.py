@@ -1554,7 +1554,7 @@ def toonArtikellijst(m_email, retstat, keuze, zoekterm, klmail):
                     self.best = QLineEdit(self)
                     self.best.setFixedWidth(50)
                     
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, self.best)
                     self.best.setValidator(input_validator)
                     

@@ -87,7 +87,7 @@ def invWerk(m_email):
             q2Edit.setFixedWidth(150)
             q2Edit.setFont(QFont("Arial",10))
             q2Edit.textChanged.connect(self.q2Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q2Edit)
             q2Edit.setValidator(input_validator)
              
@@ -96,7 +96,7 @@ def invWerk(m_email):
             q3Edit.setFixedWidth(150)
             q3Edit.setFont(QFont("Arial",10))
             q3Edit.textChanged.connect(self.q3Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q3Edit)
             q3Edit.setValidator(input_validator)
             
@@ -105,7 +105,7 @@ def invWerk(m_email):
             q4Edit.setFixedWidth(150)
             q4Edit.setFont(QFont("Arial",10))
             q4Edit.textChanged.connect(self.q4Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q4Edit)
             q4Edit.setValidator(input_validator)
             
@@ -114,7 +114,7 @@ def invWerk(m_email):
             q5Edit.setFixedWidth(150)
             q5Edit.setFont(QFont("Arial",10))
             q5Edit.textChanged.connect(self.q5Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q5Edit)
             q5Edit.setValidator(input_validator)
             
@@ -123,7 +123,7 @@ def invWerk(m_email):
             q6Edit.setFixedWidth(150)
             q6Edit.setFont(QFont("Arial",10))
             q6Edit.textChanged.connect(self.q6Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q6Edit)
             q6Edit.setValidator(input_validator)
             
@@ -132,7 +132,7 @@ def invWerk(m_email):
             q7Edit.setFixedWidth(150)
             q7Edit.setFont(QFont("Arial",10))
             q7Edit.textChanged.connect(self.q7Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q7Edit)
             q7Edit.setValidator(input_validator)
             
@@ -141,7 +141,7 @@ def invWerk(m_email):
             q8Edit.setFixedWidth(150)
             q8Edit.setFont(QFont("Arial",10))
             q8Edit.textChanged.connect(self.q8Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q8Edit)
             q8Edit.setValidator(input_validator)
             
@@ -150,7 +150,7 @@ def invWerk(m_email):
             q9Edit.setFixedWidth(150)
             q9Edit.setFont(QFont("Arial",10))
             q9Edit.textChanged.connect(self.q9Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q9Edit)
             q9Edit.setValidator(input_validator)
             
@@ -159,7 +159,7 @@ def invWerk(m_email):
             q10Edit.setFixedWidth(150)
             q10Edit.setFont(QFont("Arial",10))
             q10Edit.textChanged.connect(self.q10Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q10Edit)
             q10Edit.setValidator(input_validator)
             
@@ -168,7 +168,7 @@ def invWerk(m_email):
             q11Edit.setFixedWidth(150)
             q11Edit.setFont(QFont("Arial",10))
             q11Edit.textChanged.connect(self.q11Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q11Edit)
             q11Edit.setValidator(input_validator)
             
@@ -177,7 +177,7 @@ def invWerk(m_email):
             q12Edit.setFixedWidth(150)
             q12Edit.setFont(QFont("Arial",10))
             q12Edit.textChanged.connect(self.q12Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q12Edit)
             q12Edit.setValidator(input_validator) 
                  
@@ -187,7 +187,7 @@ def invWerk(m_email):
             q13Edit.setFont(QFont("Arial",10))
             q13Edit.textChanged.connect(self.q13Changed)
             q13Edit.setDisabled(True)
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q13Edit)
             q13Edit.setValidator(input_validator)
             
@@ -197,7 +197,7 @@ def invWerk(m_email):
             q14Edit.setFont(QFont("Arial",10))
             q14Edit.setDisabled(True)
             q14Edit.textChanged.connect(self.q14Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q14Edit)
             q14Edit.setValidator(input_validator)
                
@@ -207,7 +207,7 @@ def invWerk(m_email):
             q15Edit.setFont(QFont("Arial",10))
             q15Edit.setDisabled(True)
             q15Edit.textChanged.connect(self.q15Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q15Edit)
             q15Edit.setValidator(input_validator)
             
@@ -217,7 +217,7 @@ def invWerk(m_email):
             q16Edit.setFont(QFont("Arial",10))
             q16Edit.setDisabled(True)
             q16Edit.textChanged.connect(self.q16Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q16Edit)
             q16Edit.setValidator(input_validator)
             
@@ -227,7 +227,7 @@ def invWerk(m_email):
             q17Edit.setFont(QFont("Arial",10))
             q17Edit.setDisabled(True)
             q17Edit.textChanged.connect(self.q17Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q17Edit)
             q17Edit.setValidator(input_validator)
                
@@ -237,7 +237,7 @@ def invWerk(m_email):
             q18Edit.setDisabled(True)
             q18Edit.setFont(QFont("Arial",10))
             q18Edit.textChanged.connect(self.q17Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q18Edit)
             q18Edit.setValidator(input_validator)
                     
@@ -247,7 +247,7 @@ def invWerk(m_email):
             q19Edit.setFont(QFont("Arial",10))
             q19Edit.setDisabled(True)
             q19Edit.textChanged.connect(self.q19Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q19Edit)
             q19Edit.setValidator(input_validator)
             
@@ -257,7 +257,7 @@ def invWerk(m_email):
             q20Edit.setFont(QFont("Arial",10))
             q20Edit.setDisabled(True)
             q20Edit.textChanged.connect(self.q20Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q20Edit)
             q20Edit.setValidator(input_validator)
             
@@ -266,7 +266,7 @@ def invWerk(m_email):
             q21Edit.setFixedWidth(150)
             q21Edit.setFont(QFont("Arial",10))
             q21Edit.textChanged.connect(self.q21Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q21Edit)
             q21Edit.setValidator(input_validator)
             
@@ -276,7 +276,7 @@ def invWerk(m_email):
             q22Edit.setFont(QFont("Arial",10))
             q22Edit.setDisabled(True)
             q22Edit.textChanged.connect(self.q22Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q22Edit)
             q22Edit.setValidator(input_validator)
             

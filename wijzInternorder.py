@@ -512,7 +512,7 @@ def toonOrders(keuze, zoekterm, m_email):
                     q6Edit.setFont(QFont("Arial",10))
                     q6Edit.setAlignment(Qt.AlignRight)
                     q6Edit.textChanged.connect(self.q6Changed)
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q6Edit)
                     q6Edit.setValidator(input_validator)
                                     
@@ -522,7 +522,7 @@ def toonOrders(keuze, zoekterm, m_email):
                     q7Edit.setFont(QFont("Arial",10))
                     q7Edit.setAlignment(Qt.AlignRight)
                     q7Edit.textChanged.connect(self.q7Changed)
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q7Edit)
                     q7Edit.setValidator(input_validator)
                     

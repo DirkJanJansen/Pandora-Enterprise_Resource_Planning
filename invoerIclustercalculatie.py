@@ -499,7 +499,7 @@ def toonIclusters(m_email, keuze, mcalnr):
                     self.Hoeveelheid.setText('Amount ')
                     self.hoev = QLineEdit(self)
                     self.hoev.setFixedWidth(100)
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, self.hoev)
                     self.hoev.setValidator(input_validator)
                     

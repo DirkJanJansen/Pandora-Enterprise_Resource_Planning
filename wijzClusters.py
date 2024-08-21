@@ -377,7 +377,7 @@ def toonClusters(keuze, m_email):
                     q9Edit.setFont(QFont("Arial",10))
                     q9Edit.setAlignment(Qt.AlignRight)
                     q9Edit.textChanged.connect(self.q9Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q9Edit)
                     q9Edit.setValidator(input_validator)
                     
@@ -387,7 +387,7 @@ def toonClusters(keuze, m_email):
                     q10Edit.setAlignment(Qt.AlignRight)
                     q10Edit.setFont(QFont("Arial",10))
                     q10Edit.textChanged.connect(self.q10Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q10Edit)
                     q10Edit.setValidator(input_validator)
                     
@@ -397,7 +397,7 @@ def toonClusters(keuze, m_email):
                     q11Edit.setAlignment(Qt.AlignRight)
                     q11Edit.setFont(QFont("Arial",10))
                     q11Edit.textChanged.connect(self.q11Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q11Edit)
                     q11Edit.setValidator(input_validator)
                     
@@ -407,7 +407,7 @@ def toonClusters(keuze, m_email):
                     q12Edit.setAlignment(Qt.AlignRight)
                     q12Edit.setFont(QFont("Arial",10))
                     q12Edit.textChanged.connect(self.q12Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q12Edit)
                     q12Edit.setValidator(input_validator)
                     
@@ -417,7 +417,7 @@ def toonClusters(keuze, m_email):
                     q29Edit.setAlignment(Qt.AlignRight)
                     q29Edit.setFont(QFont("Arial",10))
                     q29Edit.textChanged.connect(self.q29Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q29Edit)
                     q29Edit.setValidator(input_validator)      
                          
@@ -427,7 +427,7 @@ def toonClusters(keuze, m_email):
                     q13Edit.setAlignment(Qt.AlignRight)
                     q13Edit.setFont(QFont("Arial",10))
                     q13Edit.textChanged.connect(self.q13Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q13Edit)
                     q13Edit.setValidator(input_validator)
                     
@@ -437,7 +437,7 @@ def toonClusters(keuze, m_email):
                     q14Edit.setFont(QFont("Arial",10))
                     q14Edit.setAlignment(Qt.AlignRight)
                     q14Edit.textChanged.connect(self.q14Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q14Edit)
                     q14Edit.setValidator(input_validator)
                        
@@ -447,7 +447,7 @@ def toonClusters(keuze, m_email):
                     q15Edit.setAlignment(Qt.AlignRight)
                     q15Edit.setFont(QFont("Arial",10))
                     q15Edit.textChanged.connect(self.q15Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q15Edit)
                     q15Edit.setValidator(input_validator)
                     
@@ -457,7 +457,7 @@ def toonClusters(keuze, m_email):
                     q16Edit.setAlignment(Qt.AlignRight)
                     q16Edit.setFont(QFont("Arial",10))
                     q16Edit.textChanged.connect(self.q16Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q16Edit)
                     q16Edit.setValidator(input_validator)
                     
@@ -467,7 +467,7 @@ def toonClusters(keuze, m_email):
                     q17Edit.setAlignment(Qt.AlignRight)
                     q17Edit.setFont(QFont("Arial",10))
                     q17Edit.textChanged.connect(self.q17Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q17Edit)
                     q17Edit.setValidator(input_validator)
                        
@@ -477,7 +477,7 @@ def toonClusters(keuze, m_email):
                     q18Edit.setAlignment(Qt.AlignRight)
                     q18Edit.setFont(QFont("Arial",10))
                     q18Edit.textChanged.connect(self.q18Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q18Edit)
                     q18Edit.setValidator(input_validator)
                             
@@ -487,7 +487,7 @@ def toonClusters(keuze, m_email):
                     q19Edit.setAlignment(Qt.AlignRight)
                     q19Edit.setFont(QFont("Arial",10))
                     q19Edit.textChanged.connect(self.q19Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q19Edit)
                     q19Edit.setValidator(input_validator)
                     
@@ -497,7 +497,7 @@ def toonClusters(keuze, m_email):
                     q20Edit.setFont(QFont("Arial",10))
                     q20Edit.setAlignment(Qt.AlignRight)
                     q20Edit.textChanged.connect(self.q20Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q20Edit)
                     q20Edit.setValidator(input_validator)
                     
@@ -507,7 +507,7 @@ def toonClusters(keuze, m_email):
                     q21Edit.setFont(QFont("Arial",10))
                     q21Edit.setAlignment(Qt.AlignRight)
                     q21Edit.textChanged.connect(self.q21Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q21Edit)
                     q21Edit.setValidator(input_validator)
                     
@@ -517,7 +517,7 @@ def toonClusters(keuze, m_email):
                     q22Edit.setFont(QFont("Arial",10))
                     q22Edit.setAlignment(Qt.AlignRight)
                     q22Edit.textChanged.connect(self.q22Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q22Edit)
                     q22Edit.setValidator(input_validator)
                     
@@ -527,7 +527,7 @@ def toonClusters(keuze, m_email):
                     q23Edit.setAlignment(Qt.AlignRight)
                     q23Edit.setFont(QFont("Arial",10))
                     q23Edit.textChanged.connect(self.q23Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q23Edit)
                     q23Edit.setValidator(input_validator)
                     
@@ -537,7 +537,7 @@ def toonClusters(keuze, m_email):
                     q24Edit.setFixedWidth(150)
                     q24Edit.setFont(QFont("Arial",10))
                     q24Edit.textChanged.connect(self.q24Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q24Edit)
                     q24Edit.setValidator(input_validator)
                     
@@ -547,7 +547,7 @@ def toonClusters(keuze, m_email):
                     q25Edit.setAlignment(Qt.AlignRight)
                     q25Edit.setFont(QFont("Arial",10))
                     q25Edit.textChanged.connect(self.q25Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q25Edit)
                     q25Edit.setValidator(input_validator)
         
@@ -557,7 +557,7 @@ def toonClusters(keuze, m_email):
                     q26Edit.setAlignment(Qt.AlignRight)
                     q26Edit.setFont(QFont("Arial",10))
                     q26Edit.textChanged.connect(self.q26Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q26Edit)
                     q26Edit.setValidator(input_validator)
                     
@@ -567,7 +567,7 @@ def toonClusters(keuze, m_email):
                     q27Edit.setAlignment(Qt.AlignRight)
                     q27Edit.setFont(QFont("Arial",10))
                     q27Edit.textChanged.connect(self.q27Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q27Edit)
                     q27Edit.setValidator(input_validator)
                     
@@ -577,7 +577,7 @@ def toonClusters(keuze, m_email):
                     q28Edit.setAlignment(Qt.AlignRight)
                     q28Edit.setFont(QFont("Arial",10))
                     q28Edit.textChanged.connect(self.q28Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q28Edit)
                     q28Edit.setValidator(input_validator)
                     
@@ -587,7 +587,7 @@ def toonClusters(keuze, m_email):
                     q30Edit.setFont(QFont("Arial",10))
                     q30Edit.setAlignment(Qt.AlignRight)
                     q30Edit.textChanged.connect(self.q30Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q30Edit)
                     q30Edit.setValidator(input_validator)
                     
@@ -597,7 +597,7 @@ def toonClusters(keuze, m_email):
                     q31Edit.setFont(QFont("Arial",10))
                     q31Edit.setAlignment(Qt.AlignRight)
                     q31Edit.textChanged.connect(self.q31Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q31Edit)
                     q31Edit.setValidator(input_validator)
                     
@@ -607,7 +607,7 @@ def toonClusters(keuze, m_email):
                     q32Edit.setFont(QFont("Arial",10))
                     q32Edit.setAlignment(Qt.AlignRight)
                     q32Edit.textChanged.connect(self.q32Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q32Edit)
                     q32Edit.setValidator(input_validator)
                                     
@@ -617,7 +617,7 @@ def toonClusters(keuze, m_email):
                     q33Edit.setFont(QFont("Arial",10))
                     q33Edit.setAlignment(Qt.AlignRight)
                     q33Edit.textChanged.connect(self.q33Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q33Edit)
                     q33Edit.setValidator(input_validator)
                     
@@ -627,7 +627,7 @@ def toonClusters(keuze, m_email):
                     q34Edit.setFont(QFont("Arial",10))
                     q34Edit.setAlignment(Qt.AlignRight)
                     q34Edit.textChanged.connect(self.q34Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q34Edit)
                     q34Edit.setValidator(input_validator)
                     
@@ -637,7 +637,7 @@ def toonClusters(keuze, m_email):
                     q35Edit.setFont(QFont("Arial",10))
                     q35Edit.setAlignment(Qt.AlignRight)
                     q35Edit.textChanged.connect(self.q35Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q35Edit)
                     q35Edit.setValidator(input_validator)
                     
@@ -647,7 +647,7 @@ def toonClusters(keuze, m_email):
                     q36Edit.setFont(QFont("Arial",10))
                     q36Edit.setAlignment(Qt.AlignRight)
                     q36Edit.textChanged.connect(self.q36Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q36Edit)
                     q36Edit.setValidator(input_validator)
                     
@@ -657,7 +657,7 @@ def toonClusters(keuze, m_email):
                     q37Edit.setFont(QFont("Arial",10))
                     q37Edit.setAlignment(Qt.AlignRight)
                     q37Edit.textChanged.connect(self.q37Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q37Edit)
                     q37Edit.setValidator(input_validator)
                     

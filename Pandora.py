@@ -1,4 +1,3 @@
-
 import os, sys
 from math import sqrt
 import datetime

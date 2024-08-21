@@ -202,7 +202,7 @@ def wijzArt(m_email, martikelnr):
             q3Edit.setFont(QFont("Arial",10))
             q3Edit.setAlignment(Qt.AlignRight)
             q3Edit.textChanged.connect(self.q3Changed)
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q3Edit)
             q3Edit.setValidator(input_validator)
                            
@@ -213,7 +213,7 @@ def wijzArt(m_email, martikelnr):
             q4Edit.setDisabled(True)
             q4Edit.setAlignment(Qt.AlignRight)
             q4Edit.textChanged.connect(self.q4Changed)
-            reg_ex = QRegExp("[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q4Edit)
             q4Edit.setValidator(input_validator)
             
@@ -239,7 +239,7 @@ def wijzArt(m_email, martikelnr):
             q6Edit.setFont(QFont("Arial",10))
             q6Edit.setAlignment(Qt.AlignRight)
             q6Edit.textChanged.connect(self.q6Changed)
-            reg_ex = QRegExp("^[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q6Edit)
             q6Edit.setValidator(input_validator)
           
@@ -249,7 +249,7 @@ def wijzArt(m_email, martikelnr):
             q7Edit.setFont(QFont("Arial",10))
             q7Edit.setAlignment(Qt.AlignRight)
             q7Edit.textChanged.connect(self.q7Changed)
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q7Edit)
             q7Edit.setValidator(input_validator)
                          

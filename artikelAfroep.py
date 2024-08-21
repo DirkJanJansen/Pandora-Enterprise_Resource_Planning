@@ -685,7 +685,7 @@ def artikelAfroep(koppelnr, m_email):
                     hoevEdit.setFixedWidth(80)
                     hoevEdit.setFont(QFont("Arial",10))
                     hoevEdit.textChanged.connect(self.hoevChanged) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, hoevEdit)
                     hoevEdit.setValidator(input_validator)
                     

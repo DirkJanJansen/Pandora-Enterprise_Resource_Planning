@@ -290,7 +290,7 @@ def inkoopRegels(m_email, rplev, mregel):
             hoevEdit.setFixedWidth(130)
             hoevEdit.setFont(QFont("Arial",10))
             hoevEdit.textChanged.connect(self.hoevChanged) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, hoevEdit)
             hoevEdit.setValidator(input_validator)
             
@@ -299,7 +299,7 @@ def inkoopRegels(m_email, rplev, mregel):
             prijsEdit.setFixedWidth(130)
             prijsEdit.setFont(QFont("Arial",10))
             prijsEdit.textChanged.connect(self.prijsChanged) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, prijsEdit)
             prijsEdit.setValidator(input_validator)    
         

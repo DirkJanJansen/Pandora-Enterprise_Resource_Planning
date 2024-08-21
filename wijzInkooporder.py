@@ -405,7 +405,7 @@ def inkoopRegels(m_email, rp1, rp2, rp3, mstraat, mplaats, mregel):
                 q3Edit.setFont(QFont("Arial",10))
                 q3Edit.setAlignment(Qt.AlignRight)
                 q3Edit.textChanged.connect(self.q3Changed) 
-                reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                rreg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                 input_validator = QRegExpValidator(reg_ex, q3Edit)
                 q3Edit.setValidator(input_validator)
                 
@@ -415,7 +415,7 @@ def inkoopRegels(m_email, rp1, rp2, rp3, mstraat, mplaats, mregel):
                 q4Edit.setFont(QFont("Arial",10))
                 q4Edit.setAlignment(Qt.AlignRight)
                 q4Edit.textChanged.connect(self.q4Changed) 
-                reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                rreg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                 input_validator = QRegExpValidator(reg_ex, q4Edit)
                 q4Edit.setValidator(input_validator)    
             
@@ -479,7 +479,7 @@ def inkoopRegels(m_email, rp1, rp2, rp3, mstraat, mplaats, mregel):
                 q9Edit.setFont(QFont("Arial",10))
                 q9Edit.setAlignment(Qt.AlignRight)
                 q9Edit.textChanged.connect(self.q9Changed) 
-                reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                rreg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                 input_validator = QRegExpValidator(reg_ex, q9Edit)
                 q9Edit.setValidator(input_validator) 
                 
@@ -501,7 +501,7 @@ def inkoopRegels(m_email, rp1, rp2, rp3, mstraat, mplaats, mregel):
                 q11Edit.setFont(QFont("Arial",10))
                 q11Edit.setAlignment(Qt.AlignRight)
                 q11Edit.textChanged.connect(self.q11Changed) 
-                reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                rreg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                 input_validator = QRegExpValidator(reg_ex, q11Edit)
                 q11Edit.setValidator(input_validator) 
                 
@@ -511,7 +511,7 @@ def inkoopRegels(m_email, rp1, rp2, rp3, mstraat, mplaats, mregel):
                 q12Edit.setFont(QFont("Arial",10))
                 q12Edit.setAlignment(Qt.AlignRight)
                 q12Edit.textChanged.connect(self.q12Changed) 
-                reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                rreg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                 input_validator = QRegExpValidator(reg_ex, q12Edit)
                 q12Edit.setValidator(input_validator) 
                    

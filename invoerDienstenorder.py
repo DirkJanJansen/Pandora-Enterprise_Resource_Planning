@@ -223,7 +223,6 @@ def bepaalInkoopOrdernr(mregel):
                                    .label('morderinkoopnr')])).scalar())
     if mregel == 1:
        morderinkoopnr=int(maak11proef(morderinkoopnr))
-    conn.close
     return(morderinkoopnr)
    
 def Inkooporder(m_email, rplev, mregel):
@@ -308,7 +307,7 @@ def inkoopRegels(m_email, rplev, mregel):
             q1Edit.setFont(QFont("Arial",10))
             q1Edit.textChanged.connect(self.q1Changed) 
             q1Edit.setDisabled(True)
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q1Edit)
             q1Edit.setValidator(input_validator)
              
@@ -549,8 +548,7 @@ def inkoopRegels(m_email, rplev, mregel):
         ins = insert(orders_inkoop).values(orderinkoopID = minkordnr, leverancierID =\
                     mlevnr, besteldatum = mbestdatum, status = 1)
         conn.execute(ins)
-        conn.close
-        
+
     flag = 0    
     if soort[0] == '1' and not rpdienst:
         minh_uren = 0
@@ -914,5 +912,4 @@ def inkoopRegels(m_email, rplev, mregel):
         invoerBestaat()
     if flag == 0 and not rpdienst:
         geenRegels()
-    conn.close
     inkoopRegels(m_email, rplev, mregel)

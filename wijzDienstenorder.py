@@ -438,7 +438,7 @@ def dienstenRegels(m_email, rp1,rp2, rp3, mstraat, mplaats, mregel):
                 q5Edit.setFont(QFont("Arial",10))
                 q5Edit.setAlignment(Qt.AlignRight)
                 q5Edit.textChanged.connect(self.q5Changed) 
-                reg_ex = QRegExp(("^[-+]?[0-9]*\.?[0-9]+$"))
+                reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                 input_validator = QRegExpValidator(reg_ex, q5Edit)
                 q5Edit.setValidator(input_validator)  
     
