@@ -456,7 +456,7 @@ def toonMutaties(keuze,zoekterm, m_email):
                     q2Edit.setFixedWidth(150)
                     q2Edit.setFont(QFont("Arial",10))
                     q2Edit.textChanged.connect(self.q2Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q2Edit)
                     q2Edit.setValidator(input_validator)      
             

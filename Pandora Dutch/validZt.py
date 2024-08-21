@@ -117,7 +117,7 @@ def zt(zoekterm, valnr):
             return(False)
     elif valnr == 14:
         #alle bedragen of getallen float
-        ab = re.compile("^[-+]?[0-9]*\.?[0-9]+$")
+        ab = re.compile("^[-+]?[0-9]*\\.?[0-9]+$")
         if ab.match(zoekterm):
             return(True)
         else:

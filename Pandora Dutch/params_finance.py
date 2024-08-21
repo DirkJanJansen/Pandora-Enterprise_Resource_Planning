@@ -302,7 +302,7 @@ def showParams(m_email, auth_1, auth_2, auth_3, data):
                     q2Edit.setCursorPosition(0)
                     q2Edit.setFont(QFont("Arial", 10))
                     q2Edit.textChanged.connect(self.q2Changed)
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q2Edit)
                     q2Edit.setValidator(input_validator)
 
@@ -312,7 +312,7 @@ def showParams(m_email, auth_1, auth_2, auth_3, data):
                     q4Edit.setCursorPosition(0)
                     q4Edit.setFont(QFont("Arial", 10))
                     q4Edit.textChanged.connect(self.q4Changed)
-                    reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
                     input_validator = QRegExpValidator(reg_ex, q4Edit)
                     q4Edit.setValidator(input_validator)
 
@@ -512,7 +512,7 @@ def insertParams(m_email, auth_1, auth_2, auth_3, data):
             q2Edit.setCursorPosition(0)
             q2Edit.setFont(QFont("Arial", 10))
             q2Edit.textChanged.connect(self.q2Changed)
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q2Edit)
             q2Edit.setValidator(input_validator)
 
@@ -522,7 +522,7 @@ def insertParams(m_email, auth_1, auth_2, auth_3, data):
             q4Edit.setCursorPosition(0)
             q4Edit.setFont(QFont("Arial", 10))
             q4Edit.textChanged.connect(self.q4Changed)
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q4Edit)
             q4Edit.setValidator(input_validator)
 

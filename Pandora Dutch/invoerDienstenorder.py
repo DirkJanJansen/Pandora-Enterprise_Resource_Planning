@@ -307,7 +307,7 @@ def inkoopRegels(m_email, rplev, mregel):
             q1Edit.setFont(QFont("Arial",10))
             q1Edit.textChanged.connect(self.q1Changed) 
             q1Edit.setDisabled(True)
-            reg_ex = QRegExp("^[-+]?[0-9]*\.?[0-9]+$")
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q1Edit)
             q1Edit.setValidator(input_validator)
              
