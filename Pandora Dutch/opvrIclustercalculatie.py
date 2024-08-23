@@ -389,8 +389,7 @@ def opbouwRp(mcalnr, mwerkomschr, mverw, mwerknr, m_email):
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
     
-    selcalc = select([icalculaties, iclusters]).where(and_(icalculaties.c\
-       .icalculatie == int(mcalnr), icalculaties.c.iclusterID == iclusters.c.iclusterID))
+    selcalc = select([icalculaties]).where(icalculaties.c.icalculatie == int(mcalnr))
     rpcalc = con.execute(selcalc)
     selclart = select([icluster_artikelen,artikelen]).where(and_(icluster_artikelen.c.\
       artikelID == artikelen.c.artikelID, icalculaties.c.iclusterID ==\
@@ -622,9 +621,9 @@ def printArtikellijst(mcalnr, mwerknr):
     for row in rpmat:
         if rgl == 0 or rgl%55 == 0:
             if platform == 'win32':
-                filename =  filename = '.\\forms\\Intern_Clustercalculaties\\materiaallijst-'+str(rpkop[0])+'-'+str(mwerknr)+'.txt'
+               filename = '.\\forms\\Intern_Clustercalculaties\\materiaallijst-'+str(rpkop[0])+'-'+str(mwerknr)+'.txt'
             else:
-                filename =  filename = './forms/Intern_Clustercalculaties/materiaallijst-'+str(rpkop[0])+'-'+str(mwerknr)+'.txt'
+               filename = './forms/Intern_Clustercalculaties/materiaallijst-'+str(rpkop[0])+'-'+str(mwerknr)+'.txt'
             kop=\
     ('Werkorder:   '+ str(mwerknr)+'  Calculatie: '+str(rpkop[0])+'   Datum: '+str(datetime.datetime.now())[0:10]+'  Blad :  '+str(mblad)+'\n'+
     '=============================================================================================\n'+
@@ -981,99 +980,101 @@ def toonArtikellijst(mcalnr, mwerknr):
                'Calculatie','Werknummer','Orderinkoopnummer', 'Artikelnr',\
                'ArtikelPrijs','Hoeveelheid','Afroep','Resterend','Subtotaal',\
                'Reserveringdatum','Levering eind','Levering begin', 'Categorie']
-            
+
             class MainWindow(QDialog):
                 def __init__(self):
                     QDialog.__init__(self)
-                    
+
                     grid = QGridLayout()
                     grid.setSpacing(20)
-                    
+
                     self.setWindowTitle("Opvragen Artikelen Clustercalculatie")
-                    self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
-                    
-                    self.setFont(QFont('Arial', 10))   
-                                                      
+                    self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
+
+                    self.setFont(QFont('Arial', 10))
+
                     self.lbl = QLabel()
                     self.pixmap = QPixmap('./images/logos/verbinding.jpg')
                     self.lbl.setPixmap(self.pixmap)
-                    grid.addWidget(self.lbl , 0, 0)
-                    
-                    grid.addWidget(QLabel('Opvragen Artikelen Calculatie'),0, 1, 1, 2)
-            
+                    grid.addWidget(self.lbl, 0, 0)
+
+                    grid.addWidget(QLabel('Opvragen Artikelen Calculatie'), 0, 1, 1, 2)
+
                     self.logo = QLabel()
                     self.pixmap = QPixmap('./images/logos/logo.jpg')
                     self.logo.setPixmap(self.pixmap)
-                    grid.addWidget(self.logo , 0, 3, 1, 1, Qt.AlignRight)                
+                    grid.addWidget(self.logo, 0, 3, 1, 1, Qt.AlignRight)
                     index = 1
                     for item in header:
-                        self.lbl = QLabel(header[index-1])
+                        self.lbl = QLabel(header[index - 1])
                         self.Gegevens = QLabel()
                         if index == 1:
-                            if type(rpmat[index-1]) == float:
-                                q1Edit = QLineEdit('{:12.2f}'.format(rpmat[index-1]))
+                            if type(rpmat[index - 1]) == float:
+                                q1Edit = QLineEdit('{:12.2f}'.format(rpmat[index - 1]))
                                 q1Edit.setAlignment(Qt.AlignRight)
-                            elif type(rpmat[index-1]) == int:
-                                q1Edit = QLineEdit(str(rpmat[index-1])) 
+                            elif type(rpmat[index - 1]) == int:
+                                q1Edit = QLineEdit(str(rpmat[index - 1]))
                                 q1Edit.setAlignment(Qt.AlignRight)
                             else:
-                                q1Edit = QLineEdit(str(rpmat[index-1]))
-                                q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                                q1Edit.setFixedWidth(100)
-                                q1Edit.setDisabled(True)
-                                grid.addWidget(self.lbl, 1, 0)
-                                grid.addWidget(q1Edit, index, 1, 1, 2)
+                                q1Edit = QLineEdit(str(rpmat[index - 1]))
+                            q1Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                            q1Edit.setFixedWidth(100)
+                            q1Edit.setDisabled(True)
+                            grid.addWidget(self.lbl, 1, 0)
+                            grid.addWidget(q1Edit, index, 1, 1, 2)
                         elif index == 2:
-                            q1Edit = QLineEdit(str(rpmat[index-1]))
+                            q1Edit = QLineEdit(str(rpmat[index - 1]))
                             q1Edit.setFixedWidth(400)
                             q1Edit.setDisabled(True)
-                            q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                            q1Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                             grid.addWidget(self.lbl, 2, 0)
                             grid.addWidget(q1Edit, index, 1, 1, 3)
-                        elif index%2 == 0:
-                            if type(rpmat[index-1]) == float:
-                                q1Edit = QLineEdit('{:12.2f}'.format(rpmat[index-1]))
+                        elif index % 2 == 0:
+                            if type(rpmat[index - 1]) == float:
+                                q1Edit = QLineEdit('{:12.2f}'.format(rpmat[index - 1]))
                                 q1Edit.setAlignment(Qt.AlignRight)
-                            elif type(rpmat[index-1]) == int:
-                                q1Edit = QLineEdit(str(rpmat[index-1]))
+                            elif type(rpmat[index - 1]) == int:
+                                q1Edit = QLineEdit(str(rpmat[index - 1]))
                                 q1Edit.setAlignment(Qt.AlignRight)
                             else:
-                                q1Edit = QLineEdit(str(rpmat[index-1]))
-                                q1Edit.setFixedWidth(100)
-                                q1Edit.setDisabled(True)
-                                q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                                grid.addWidget(self.lbl, index, 0)
-                                grid.addWidget(q1Edit, index, 1)
+                                q1Edit = QLineEdit(str(rpmat[index - 1]))
+                            q1Edit.setFixedWidth(100)
+                            q1Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                            q1Edit.setDisabled(True)
+                            grid.addWidget(self.lbl, index, 0)
+                            grid.addWidget(q1Edit, index, 1)
                         else:
-                            if type(rpmat[index-1]) == float:
-                                q1Edit = QLineEdit('{:12.2f}'.format(rpmat[index-1]))
+                            if type(rpmat[index - 1]) == float:
+                                q1Edit = QLineEdit('{:12.2f}'.format(rpmat[index - 1]))
                                 q1Edit.setAlignment(Qt.AlignRight)
-                            elif type(rpmat[index-1]) == int:
-                                q1Edit = QLineEdit(str(rpmat[index-1]))
+                            elif type(rpmat[index - 1]) == int:
+                                q1Edit = QLineEdit(str(rpmat[index - 1]))
                                 q1Edit.setAlignment(Qt.AlignRight)
                             else:
-                                q1Edit = QLineEdit(str(rpmat[index-1]))
-                                q1Edit.setFixedWidth(100)
-                                q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                                q1Edit.setDisabled(True)
-                                grid.addWidget(self.lbl, index+1, 2)
-                                grid.addWidget(q1Edit, index+1, 3)
+                                q1Edit = QLineEdit(str(rpmat[index - 1]))
+                            q1Edit.setFixedWidth(100)
+                            q1Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                            q1Edit.setDisabled(True)
+                            grid.addWidget(self.lbl, index + 1, 2)
+                            grid.addWidget(q1Edit, index + 1, 3)
                         index += 1
-                        
+
                     terugBtn = QPushButton('Sluiten')
                     terugBtn.clicked.connect(self.accept)
-            
-                    grid.addWidget(terugBtn, index+1, 3, 1, 1, Qt.AlignRight)
-                    terugBtn.setFont(QFont("Arial",10))
-                    terugBtn.setFixedWidth(100)  
-                    
-                    grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), index+2, 0, 1, 4, Qt.AlignCenter)                           
-                    
+
+                    grid.addWidget(terugBtn, index + 1, 3, 1, 1, Qt.AlignRight)
+                    terugBtn.setFont(QFont("Arial", 10))
+                    terugBtn.setFixedWidth(100)
+                    terugBtn.setStyleSheet("color: black;  background-color: gainsboro")
+
+                    grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), index + 2, 0, 1, 4,
+                                   Qt.AlignCenter)
+
                     self.setLayout(grid)
                     self.setGeometry(400, 200, 150, 150)
-                            
+
             mainWin = MainWindow()
             mainWin.exec_()
-      
+
     win = MyWindow(data_list, header)
     win.exec_()   
