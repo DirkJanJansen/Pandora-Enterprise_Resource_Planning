@@ -1039,11 +1039,11 @@ def toonArtikellijst(mcalnr, mwerknr):
                                 q1Edit.setAlignment(Qt.AlignRight)
                             else:
                                 q1Edit = QLineEdit(str(rpmat[index-1]))
-                            q1Edit.setFixedWidth(100)
-                            q1Edit.setDisabled(True)
-                            q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                            grid.addWidget(self.lbl, index, 0)
-                            grid.addWidget(q1Edit, index, 1)
+                                q1Edit.setFixedWidth(100)
+                                q1Edit.setDisabled(True)
+                                q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                                grid.addWidget(self.lbl, index, 0)
+                                grid.addWidget(q1Edit, index, 1)
                         else:
                             if type(rpmat[index-1]) == float:
                                 q1Edit = QLineEdit('{:12.2f}'.format(rpmat[index-1]))
@@ -1053,11 +1053,11 @@ def toonArtikellijst(mcalnr, mwerknr):
                                 q1Edit.setAlignment(Qt.AlignRight)
                             else:
                                 q1Edit = QLineEdit(str(rpmat[index-1]))
-                            q1Edit.setFixedWidth(100)
-                            q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                            q1Edit.setDisabled(True)
-                            grid.addWidget(self.lbl, index+1, 2)
-                            grid.addWidget(q1Edit, index+1, 3)
+                                q1Edit.setFixedWidth(100)
+                                q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                                q1Edit.setDisabled(True)
+                                grid.addWidget(self.lbl, index+1, 2)
+                                grid.addWidget(q1Edit, index+1, 3)
                         index += 1
                         
                     terugBtn = QPushButton('Sluiten')
