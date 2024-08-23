@@ -65,6 +65,15 @@ def gegevensOk():
     msg.setText('Transfer is gelukt!')
     msg.setWindowTitle('Koppel begroting')
     msg.exec_()
+
+def noLinking():
+    msg = QMessageBox()
+    msg.setStyleSheet("color: black;  background-color: gainsboro")
+    msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
+    msg.setIcon(QMessageBox.Critical)
+    msg.setText('Geen koppeling mogelijk, verwerf eerst de opdracht!')
+    msg.setWindowTitle('Koppel calculatie')
+    msg.exec_()
    
 def zoekBegroting(m_email):
     class Widget(QDialog):
@@ -185,6 +194,11 @@ def zoekBegroting(m_email):
     mcalnr = rpcl[0]
     mwerkomschr = rpcl[1]
     mverw = rpcl[2]
+    if rpwerk[1]:
+        mverw = 1
+    else:
+        noLinking()
+        zoekBegroting(m_email)
     verder = False
     if rpcl and mverw == 1:
         verder = True
@@ -333,15 +347,10 @@ def koppelCalc(mcalnr, mwerknr, mwerkomschr, m_email):
               
         engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
         con = engine.connect()
-        selcal = select([icalculaties,orders_intern]).where(and_(icalculaties.c.icalculatie == mcalnr,\
-                       icalculaties.c.verwerkt == 1, orders_intern.c.werkorderID == mwerknr))
+        selcal = select([icalculaties]).where(icalculaties.c.icalculatie == mcalnr)
         rpcal = con.execute(selcal)
         
         for regel in rpcal:
-            updcal = update(icalculaties).where(icalculaties.c.icalculatie == mcalnr)\
-             .values(koppelnummer = mwerknr, werkomschrijving = mwerkomschr, verwerkt = 2)
-            con.execute(updcal)
-            
             updwerk = update(orders_intern).where(orders_intern.c.werkorderID == mwerknr)\
               .values(begroot_totaal = orders_intern.c.begroot_totaal+regel[9],\
               begr_materialen = orders_intern.c.begr_materialen+regel[10],\
@@ -395,7 +404,11 @@ def koppelCalc(mcalnr, mwerknr, mwerkomschr, m_email):
               smontage=orders_intern.c.smontage+regel[58],
               bmontage=orders_intern.c.bmontage+regel[59],\
               icalculatienummer = mcalnr, hoeveelheid = regel[7])
-        con.execute(updwerk)
+            con.execute(updwerk)
+
+        updcal = update(icalculaties).where(icalculaties.c.icalculatie == mcalnr) \
+            .values(koppelnummer=mwerknr, werkomschrijving=mwerkomschr, verwerkt=2)
+        con.execute(updcal)
     
         materiaallijsten = Table('materiaallijsten', metadata,
             Column('matlijstID', Integer, primary_key=True),
@@ -442,9 +455,8 @@ def koppelCalc(mcalnr, mwerknr, mwerkomschr, m_email):
         selpar = select([params_finance]).order_by(params_finance.c.financeID)
         rppar = con.execute(selpar).fetchall()
         updprijs = update(artikelen).where(orders_intern.c.artikelID == \
-                                           artikelen.c.artikelID).values(artikelprijs=(orders_intern.c.begroot_totaal / \
-                                                                                       orders_intern.c.hoeveelheid) * (
-                                                                                                  1 + rppar[5][1]))
+                   artikelen.c.artikelID).values(artikelprijs=(orders_intern.c.begroot_totaal/\
+                   orders_intern.c.hoeveelheid) * (1 + rppar[5][1]))
         con.execute(updprijs)
         gegevensOk()
         zoekBegroting(m_email)    
