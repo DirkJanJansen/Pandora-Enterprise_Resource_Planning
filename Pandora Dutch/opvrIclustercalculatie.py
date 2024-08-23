@@ -20,6 +20,15 @@ def calcBestaatniet():
     msg.setText('Calculatie is niet aanwezig!')
     msg.setWindowTitle('INVOEREN')
     msg.exec_()
+
+def noRecord(message):
+    msg = QMessageBox()
+    msg.setStyleSheet("color: black;  background-color: gainsboro")
+    msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
+    msg.setIcon(QMessageBox.Warning)
+    msg.setText(message)
+    msg.setWindowTitle('Geen Record')
+    msg.exec_()
     
 def printing():
     msg = QMessageBox()
