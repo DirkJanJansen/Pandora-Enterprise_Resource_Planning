@@ -17,8 +17,8 @@ def calcBestaatniet():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Calculation is not present!')
-    msg.setWindowTitle('Entry')
+    msg.setText('Calculatie is niet aanwezig!')
+    msg.setWindowTitle('INVOEREN')
     msg.exec_()
     
 def printing():
@@ -26,15 +26,15 @@ def printing():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Just a moment printing is started!')
-    msg.setWindowTitle('Printing')
+    msg.setText('Ogenblik afdrukken wordt gestart!')
+    msg.setWindowTitle('AFDRUKKEN')
     msg.exec_()
      
 def zoekCalculatie(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Calculate / Request / Printing")
+            self.setWindowTitle("Calculeren / Opvragen / Printen")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -56,7 +56,7 @@ def zoekCalculatie(m_email):
             lbl.setPixmap(pixmap)
             grid.addWidget(lbl , 0, 0, 1, 2)
             
-            lbl1 = QLabel('Calculation number\nor work order.')
+            lbl1 = QLabel('Calculatienummer\nof werkorder.')  
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 1, 0)
             grid.addWidget(zkcalcEdit, 1, 1)
@@ -71,7 +71,7 @@ def zoekCalculatie(m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 1, 1, 1, Qt.AlignRight)
    
-            applyBtn = QPushButton('Search')
+            applyBtn = QPushButton('Zoeken')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 3, 1)
@@ -79,7 +79,7 @@ def zoekCalculatie(m_email):
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            cancelBtn = QPushButton('Close')
+            cancelBtn = QPushButton('Sluiten')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
             grid.addWidget(cancelBtn, 3, 0, 1, 1,Qt.AlignRight)
@@ -112,7 +112,7 @@ def zoekCalculatie(m_email):
     con = engine.connect()
 
     if not data[0]:
-       return(0)
+       return
     elif data[0][0]=='7'and len(data[0]) == 9:
         mcalnr = data[0]
         selcl = select([icalculaties]).where(icalculaties.c.koppelnummer == int(mcalnr))
@@ -151,43 +151,43 @@ def opvragenCalc(mcalnr, mwerkomschr,mverw, mwerknr, m_email):
             grid.addWidget(self.logo , 0, 2, 1, 1, Qt.AlignRight)
               
             self.setFont(QFont('Arial', 10))
-            grid.addWidget(QLabel('Calculation: '+str(mcalnr)+'\nWork number: '+str(mwerknr)), 1, 1, 1, 3)
+            grid.addWidget(QLabel('Calculatie: '+str(mcalnr)+'\nWerknummer: '+str(mwerknr)), 1, 1, 1, 3)
             grid.addWidget(QLabel(mwerkomschr[0:35]), 2 , 1, 1, 3)
                                    
-            self.setWindowTitle("Request calculation / printing")
+            self.setWindowTitle("Calculatie opvragen / printen") 
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                                                       
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved\n   dj.jansen@casema.nl'), 6, 0, 2, 3, Qt.AlignCenter)
                              
-            self.printBtn = QPushButton('Calculation\nPrinting')
+            self.printBtn = QPushButton('Calculatie\nPrinten')
             self.printBtn.clicked.connect(lambda: printCalculatie(mcalnr, mwerknr))
             grid.addWidget(self.printBtn, 4, 2)
             self.printBtn.setFont(QFont("Arial",10))
             self.printBtn.setFixedWidth(100)
             self.printBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            self.artprintBtn = QPushButton('Article list\nPrinting')
+            self.artprintBtn = QPushButton('Artikellijst\nPrinten')
             self.artprintBtn.clicked.connect(lambda: printArtikellijst(mcalnr, mwerknr))
             grid.addWidget(self.artprintBtn, 4, 1, 1, 1, Qt.AlignRight)
             self.artprintBtn.setFont(QFont("Arial",10))
             self.artprintBtn.setFixedWidth(100)
             self.artprintBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            self.toonBtn = QPushButton('Calculation\nRequesting')
+            self.toonBtn = QPushButton('Calculatie\nOpvragen')
             self.toonBtn.clicked.connect(lambda: toonCalculatie(mcalnr, mwerknr))
             grid.addWidget(self.toonBtn, 5, 2)
             self.toonBtn.setFont(QFont("Arial",10))
             self.toonBtn.setFixedWidth(100)
             self.toonBtn.setStyleSheet("color: black;  background-color: gainsboro")
               
-            self.artlijstBtn = QPushButton('Article list\nRequesting')
+            self.artlijstBtn = QPushButton('Artikellijst\nOpvragen')
             self.artlijstBtn.clicked.connect(lambda: toonArtikellijst(mcalnr, mwerknr))
             grid.addWidget(self.artlijstBtn,5, 1, 1, 1, Qt.AlignRight)
             self.artlijstBtn.setFont(QFont("Arial",10))
             self.artlijstBtn.setFixedWidth(100)
             self.artlijstBtn.setStyleSheet("color: black;  background-color: gainsboro")
            
-            self.terugBtn = QPushButton('B\na\nc\nk')
+            self.terugBtn = QPushButton('T\ne\nr\nu\ng')
             self.terugBtn.clicked.connect(self.close)
             grid.addWidget(self.terugBtn, 4, 1, 5, 1, Qt.AlignTop)
             self.terugBtn.setFont(QFont("Arial", 10))
@@ -218,16 +218,16 @@ def opbouwRp(mcalnr, mwerkomschr, mverw, mwerknr, m_email):
     artikelen = Table('artikelen', metadata,
         Column('artikelID', Integer(), primary_key=True),
         Column('artikelprijs', Float))
-   
+
     params_finance = Table('params_finance', metadata,
-        Column('financeID', Integer, primary_key=True),
-        Column('factor', Float),
-        Column('item', String))
+         Column('financeID', Integer, primary_key=True),
+         Column('factor', Float),
+         Column('item', String))
 
     params_hours = Table('params_hours', metadata,
-       Column('rateID', Integer, primary_key=True),
-       Column('hourly_tariff', Float),
-       Column('item', String))
+         Column('rateID', Integer, primary_key=True),
+         Column('hourly_tariff', Float),
+         Column('item', String))
 
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
@@ -496,7 +496,6 @@ def opbouwRp(mcalnr, mwerkomschr, mverw, mwerknr, m_email):
            (icalculaties.c.sgritstralen+iclusters.c.sgritstralen)*rppar1[33][1]+\
            (icalculaties.c.montage+iclusters.c.montage)*rppar1[34][1]*icalculaties.c.hoeveelheid+\
            (icalculaties.c.smontage+iclusters.c.smontage)*rppar1[34][1])
-
         con.execute(updcalc)
         for row in rpclart:
             selart = select([materiaallijsten.c.artikelID, materiaallijsten.c.icalculatie]).where(and_(materiaallijsten.\
@@ -559,13 +558,13 @@ def printCalculatie(mcalnr, mwerknr):
     for row in rpcal:
         if rgl == 0 or rgl%55 == 0:
             if platform == 'win32':
-                filename = '.\\forms\\Intern_Clustercalculaties\\clustercalculation_'+str(row[3])+'-'+str(mwerknr)+'.txt'
+                filename = '.\\forms\\Intern_Clustercalculaties\\clustercalculatie-'+str(row[3])+'-'+str(mwerknr)+'.txt'
             else:
-                filename = './forms/Intern_Clustercalculaties/clustercalculation_'+str(row[3])+'-'+str(mwerknr)+'.txt'
+                filename = './forms/Intern_Clustercalculaties/clustercalculatie-'+str(row[3])+'-'+str(mwerknr)+'.txt' 
             kop=\
-    ('Work order: '+ str(mwerknr)+' '+'{:<24.24s}'.format(str(row[10]))+'  Calculation: '+str(row[3])+'  Date: '+str(datetime.datetime.now())[0:10]+'  Page : '+str(mblad)+'\n'+
+    ('Werkorder: '+ str(mwerknr)+' '+'{:<24.24s}'.format(str(row[10]))+'  Calculatie: '+str(row[3])+'  Datum: '+str(datetime.datetime.now())[0:10]+'  Blad : '+str(mblad)+'\n'+
     '================================================================================================\n'+
-    'Cluster  Description        Unit    Number  Materials        Wages                       Amount\n'+
+    'Cluster  Omschrijving       Eenheid Aantal  Materialen       Lonen                       Bedrag\n'+
     '================================================================================================\n')
             if rgl == 0:
                 open(filename, 'w').write(kop)
@@ -580,7 +579,7 @@ def printCalculatie(mcalnr, mwerknr):
         rgl += 1
     tail =(\
     '-------------------------------------------------------------------------------------------------\n'+
-    'Totals                                    '+'{:12.2f}'.format(mmat)+'{:12.2f}'.format(mlon)+'                 '+'{:12.2f}'.format(mtotaal)+'\n'
+    'Totalen                                   '+'{:12.2f}'.format(mmat)+'{:12.2f}'.format(mlon)+'                 '+'{:12.2f}'.format(mtotaal)+'\n'
     '=================================================================================================\n')    
     open(filename,'a').write(tail)
     if platform == 'win32':
@@ -623,13 +622,13 @@ def printArtikellijst(mcalnr, mwerknr):
     for row in rpmat:
         if rgl == 0 or rgl%55 == 0:
             if platform == 'win32':
-                filename =  filename = '.\\forms\\Intern_Clustercalculaties\\materials_list_'+str(rpkop[0])+'-'+str(mwerknr)+'.txt'
+                filename =  filename = '.\\forms\\Intern_Clustercalculaties\\materiaallijst-'+str(rpkop[0])+'-'+str(mwerknr)+'.txt'
             else:
-                filename =  filename = './forms/Intern_Clustercalculaties/materials_list_'+str(rpkop[0])+'-'+str(mwerknr)+'.txt'
+                filename =  filename = './forms/Intern_Clustercalculaties/materiaallijst-'+str(rpkop[0])+'-'+str(mwerknr)+'.txt'
             kop=\
-    ('Work order   '+ str(mwerknr)+'  Calculation:'+str(rpkop[0])+'   Date : '+str(datetime.datetime.now())[0:10]+'  Page :  '+str(mblad)+'\n'+
+    ('Werkorder:   '+ str(mwerknr)+'  Calculatie: '+str(rpkop[0])+'   Datum: '+str(datetime.datetime.now())[0:10]+'  Blad :  '+str(mblad)+'\n'+
     '=============================================================================================\n'+
-    'Articlenr  Description                         Unit          Price      Number               \n'+
+    'Artikelnr  Omschrijving                        Eenheid       Prijs      Aantal               \n'+
     '=============================================================================================\n')
             if rgl == 0:
                 open(filename, 'w').write(kop)
@@ -650,7 +649,7 @@ def toonCalculatie(mcalnr, mwerknr):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(50, 50, 1800, 900)
-            self.setWindowTitle('Cluster calculation')
+            self.setWindowTitle('Clustercalculatie')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -693,17 +692,17 @@ def toonCalculatie(mcalnr, mwerknr):
                 return self.header[col]
             return None
              
-    header = ['ID','Calculation','Cluster number', 'Description','Work description','Processed',
-      'Amount','Unit','Link number','Total price','Materials', 'Wages',\
-      'Equipment','Services','Hiring','Set costs\nsawing','Sawing','Set costs\nplaning','Planing',\
-      'Set costs\nstabbing','Stabbing','Set costs\ndrilling','Drilling','Set costs\nmilling','Milling','Set costs\nturning small',\
-      'Turning small','Set costs\nturning big','Turning big','Set costs\nthreading','Threading',\
-      'Set costs\nCNC turning','CNC turning','Set costs\nCNC milling','CNC milling',\
-      'Set costs\ncutting','Cutting','Set costs\nfolding','Folding','Set costs\ndie-cutting','Die-cutting',\
-      'Set costs\nwelding co2','Welding co2','Set costs\nwelding hand','Welding hand','Set costs\npacking',\
-      'Packing','Set costs\ngalvanise','Galvanise','Set costs\nmuffling','Muffling','Set costs\npainting',\
-      'Painting','Set costs\nspraying','Spraying','Set costs\nstamping','Stamping','Set costs\npressing',\
-      'Pressing','Set costs\ngrit blasting','Grit blasting','Set costs\nmounting','Mounting']
+    header = ['ID','Calculatie','Clusternr', 'Omschrijving','Werkomschrijving','Verwerkt',
+      'Hoeveelheid','Eenheid','Koppelnummer','Totaalprijs','Materialen', 'Lonen',\
+      'Materieel','Diensten','Inhuur','St.zagen','Zagen','St.schaven','Schaven',\
+      'St.steken','Steken','St.boren','Boren','St.frezen','Frezen','St.draaien klein',\
+      'Draaien klein','St.draaien_groot','Draaien groot','St.tappen','Tappen',\
+      'St.nube draaien','Nube draaien','St.nube bewerken','Nube bewerken',\
+      'St.knippen','Knippen','St.kanten','Kanten','St.stansen','Stansen',\
+      'St.lassen co2','Lassen co2','St.lassen hand','Lassen hand','St.verpakken',\
+      'Verpakken','St.verzinken','Verzinken','St.moffelen','Moffelen','St.schilderen',\
+      'Schilderen','St.spuiten','Spuiten','St.ponsen','Ponsen','St.persen',\
+      'Persen','St.gritstralen','Gritstralen','St.montage','Montage']
 
     metadata = MetaData()               
     icalculaties = Table('icalculaties', metadata,
@@ -790,19 +789,19 @@ def toonCalculatie(mcalnr, mwerknr):
             con = engine.connect()
             selcal = select([icalculaties]).where(icalculaties.c.icalcID == mcalnr)
             rpcal = con.execute(selcal).first()
-
-            header = ['ID', 'Calculation', 'Cluster number', 'Description', 'Work description', 'Processed','Amount', 'Unit',\
-                      'Link number', 'Total price', 'Materials', 'Wages', \
-                      'Equipment', 'Services', 'Hiring', 'Set costs\nsawing', 'Sawing', 'Set costs\nplaning', 'Planing', \
-                      'Set costs\nstabbing', 'Stabbing', 'Set costs\ndrilling', 'Drilling', 'Set costs\nmilling','Milling', 'Set costs\nturning small', \
-                      'Turning small', 'Set costs\nturning big', 'Turning big', 'Set costs\nthreading', 'Threading', \
-                      'Set costs\nCNC turning', 'CNC turning', 'Set costs\nCNC milling', 'CNC milling', \
-                      'Set costs\ncutting', 'Cutting', 'Set costs\nfolding', 'Folding', 'Set costs\ndie-cutting','Die-cutting', \
-                      'Set costs\nwelding co2', 'Welding co2', 'Set costs\nwelding hand', 'Welding hand','Set costs\npacking', \
-                      'Packing', 'Set costs\ngalvanise', 'Galvanise', 'Set costs\nmuffling', 'Muffling','Set costs\npainting', \
-                      'Painting', 'Set costs\nspraying', 'Spraying', 'Set costs\nstamping', 'Stamping','Set costs\npressing', \
-                      'Pressing', 'Set costs\ngrit blasting', 'Grit blasting', 'Set costs\nmounting', 'Mounting']
-
+            
+            header = ['ID','Calculatie','Clusternr', 'Omschrijving','Werkomschrijving',\
+              'Verwerkt','Hoeveelheid','Eenheid', 'Koppelnr', 'Totaalprijs','Materialen',\
+              'Lonen','Materieel', 'Diensten', 'Inhuur','St.zagen','Zagen','St.schaven',\
+              'Schaven','St.steken','Steken','St.boren','Boren','St.frezen','Frezen',\
+              'St.draaien klein','Draaien klein','St.draaien_groot','Draaien groot',\
+              'St.tappen','Tappen','St.nube draaien','Nube draaien','St.nube bewerken',\
+              'Nube bewerken','St.knippen','Knippen','St.kanten','Kanten','St.stansen',\
+              'Stansen','St.lassen co2','Lassen co2','St.lassen hand','Lassen hand',\
+              'St.verpakken','Verpakken','St.verzinken','Verzinken','St.moffelen',\
+              'Moffelen','St.schilderen','Schilderen','St.spuiten','Spuiten','St.ponsen',\
+              'Ponsen','St.persen','Persen','St.gritstralen','Gritstralen','St.montage','Montage']
+                              
             class MainWindow(QDialog):
                 def __init__(self):
                     QDialog.__init__(self)
@@ -810,7 +809,7 @@ def toonCalculatie(mcalnr, mwerknr):
                     grid = QGridLayout()
                     grid.setSpacing(20)
                     
-                    self.setWindowTitle("Requesting cluster calculation")
+                    self.setWindowTitle("Opvragen Clustercalculatie")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                     
                     self.setFont(QFont('Arial', 10))   
@@ -820,7 +819,7 @@ def toonCalculatie(mcalnr, mwerknr):
                     self.lbl.setPixmap(self.pixmap)
                     grid.addWidget(self.lbl , 0, 0)
                     
-                    grid.addWidget(QLabel('Requesting cluster calculation'),0, 0, 1, 9, Qt.AlignCenter)
+                    grid.addWidget(QLabel('Opvragen Clustercalculatie'),0, 0, 1, 9, Qt.AlignCenter)
             
                     self.logo = QLabel()
                     self.pixmap = QPixmap('./images/logos/logo.jpg')
@@ -858,7 +857,7 @@ def toonCalculatie(mcalnr, mwerknr):
     
                         index +=1
                         
-                    terugBtn = QPushButton('Close')
+                    terugBtn = QPushButton('Sluiten')
                     terugBtn.clicked.connect(self.accept)
             
                     grid.addWidget(terugBtn, verpos+3, 9, 1 , 1, Qt.AlignRight)
@@ -882,7 +881,7 @@ def toonArtikellijst(mcalnr, mwerknr):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(100, 50, 1700, 900)
-            self.setWindowTitle('Material list')
+            self.setWindowTitle('Materiaallijst')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                                                     Qt.WindowMinMaxButtonsHint)
@@ -926,10 +925,10 @@ def toonArtikellijst(mcalnr, mwerknr):
                 return self.header[col]
             return None
              
-    header = ['Article number','Description','Reservation balance','ListID','Calculation',\
-              'Work number','Order purchase number', 'Article number','Article price',\
-              'Amount','Call-off','Remaining','Subtotal','Reservation date',\
-              'Delivery end','Delivery begin','Category']
+    header = ['Artikelnr','Omschrijving','Reserveringsaldo','LijstID','Calculatie',\
+              'Werknummer','Orderinkoopnummer', 'Artikelnr','ArtikelPrijs',\
+              'Hoeveelheid','Afroep','Resterend','Subtotaal','Reserveringdatum',\
+              'Levering eind','Levering begin','Categorie']
                    
     metadata = MetaData()
     materiaallijsten = Table('materiaallijsten', metadata,
@@ -977,11 +976,11 @@ def toonArtikellijst(mcalnr, mwerknr):
                  materiaallijsten.c.icalculatie == mcalnr))\
                  .order_by(materiaallijsten.c.artikelID)
             rpmat = con.execute(selmat).first()
-
-            header = ['Article number', 'Description', 'Reservation balance', 'ListID', 'Calculation', \
-                      'Work number', 'Order purchase number', 'Article number', 'Article price', \
-                      'Amount', 'Call-off', 'Remaining', 'Subtotal', 'Reservation date', \
-                      'Delivery end', 'Delivery begin', 'Category']
+             
+            header = ['Artikelnr','Omschrijving','Reserveringsaldo','LijstID',\
+               'Calculatie','Werknummer','Orderinkoopnummer', 'Artikelnr',\
+               'ArtikelPrijs','Hoeveelheid','Afroep','Resterend','Subtotaal',\
+               'Reserveringdatum','Levering eind','Levering begin', 'Categorie']
             
             class MainWindow(QDialog):
                 def __init__(self):
@@ -990,7 +989,7 @@ def toonArtikellijst(mcalnr, mwerknr):
                     grid = QGridLayout()
                     grid.setSpacing(20)
                     
-                    self.setWindowTitle("Request Articles Cluster calculation")
+                    self.setWindowTitle("Opvragen Artikelen Clustercalculatie")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                     
                     self.setFont(QFont('Arial', 10))   
@@ -1000,7 +999,7 @@ def toonArtikellijst(mcalnr, mwerknr):
                     self.lbl.setPixmap(self.pixmap)
                     grid.addWidget(self.lbl , 0, 0)
                     
-                    grid.addWidget(QLabel('Request articles calculation'),0, 1, 1, 2)
+                    grid.addWidget(QLabel('Opvragen Artikelen Calculatie'),0, 1, 1, 2)
             
                     self.logo = QLabel()
                     self.pixmap = QPixmap('./images/logos/logo.jpg')
@@ -1040,11 +1039,11 @@ def toonArtikellijst(mcalnr, mwerknr):
                                 q1Edit.setAlignment(Qt.AlignRight)
                             else:
                                 q1Edit = QLineEdit(str(rpmat[index-1]))
-                            q1Edit.setFixedWidth(100)
-                            q1Edit.setDisabled(True)
-                            q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                            grid.addWidget(self.lbl, index, 0)
-                            grid.addWidget(q1Edit, index, 1)
+                                q1Edit.setFixedWidth(100)
+                                q1Edit.setDisabled(True)
+                                q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                                grid.addWidget(self.lbl, index, 0)
+                                grid.addWidget(q1Edit, index, 1)
                         else:
                             if type(rpmat[index-1]) == float:
                                 q1Edit = QLineEdit('{:12.2f}'.format(rpmat[index-1]))
@@ -1054,14 +1053,14 @@ def toonArtikellijst(mcalnr, mwerknr):
                                 q1Edit.setAlignment(Qt.AlignRight)
                             else:
                                 q1Edit = QLineEdit(str(rpmat[index-1]))
-                            q1Edit.setFixedWidth(100)
-                            q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                            q1Edit.setDisabled(True)
-                            grid.addWidget(self.lbl, index+1, 2)
-                            grid.addWidget(q1Edit, index+1, 3)
+                                q1Edit.setFixedWidth(100)
+                                q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                                q1Edit.setDisabled(True)
+                                grid.addWidget(self.lbl, index+1, 2)
+                                grid.addWidget(q1Edit, index+1, 3)
                         index += 1
                         
-                    terugBtn = QPushButton('Close')
+                    terugBtn = QPushButton('Sluiten')
                     terugBtn.clicked.connect(self.accept)
             
                     grid.addWidget(terugBtn, index+1, 3, 1, 1, Qt.AlignRight)
