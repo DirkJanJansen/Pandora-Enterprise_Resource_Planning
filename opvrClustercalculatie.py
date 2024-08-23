@@ -114,7 +114,7 @@ def zoekCalculatie(m_email):
 
     window = Widget()
     data = window.getData()
-    
+
     metadata = MetaData()
     calculaties = Table('calculaties', metadata,
         Column('calculatie', Integer),
@@ -124,7 +124,7 @@ def zoekCalculatie(m_email):
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
     if not data[0]:
-       return(0)
+       return
     elif data[0][0] == '8' and len(data[0]) == 9:
         mcalnr = data[0]
         selcl = select([calculaties]).where(calculaties.c.koppelnummer == int(mcalnr))
@@ -140,12 +140,12 @@ def zoekCalculatie(m_email):
         calcBestaatniet()
         zoekCalculatie(m_email)
     elif rpcl and (not rpcl[2]):
-        opbouwRp(rpcl[0], rpcl[1], rpcl[2], rpcl[3], m_email)
+        opbouwRp(mcalnr, rpcl[1], rpcl[2], rpcl[3], m_email)
     elif rpcl and rpcl[2]:
         opvragenCalc(rpcl[0], rpcl[1], rpcl[2], rpcl[3], m_email)
     
 def opvragenCalc(mcalnr, mwerkomschr,mverw, mwerknr, m_email):
-    class MainWindow(QDialog):
+   class MainWindow(QDialog):
         def __init__(self):
             QDialog.__init__(self)
             
@@ -224,9 +224,9 @@ def opvragenCalc(mcalnr, mwerkomschr,mverw, mwerknr, m_email):
             self.setLayout(grid)
             self.setGeometry(600, 300, 150, 150)
      
-    mainWin = MainWindow()
-    mainWin.exec_()
-    zoekCalculatie(m_email)
+   mainWin = MainWindow()
+   mainWin.exec_()
+   zoekCalculatie(m_email)
     
 def opbouwRp(mcalnr, mwerkomschr, mverw, mwerknr, m_email):
     metadata = MetaData()
@@ -245,17 +245,32 @@ def opbouwRp(mcalnr, mwerkomschr, mverw, mwerknr, m_email):
         Column('artikelID', Integer(), primary_key=True),
         Column('artikelprijs', Float))
     
-    params = Table('params', metadata,
-        Column('paramID', Integer, primary_key=True),
-        Column('tarief', Float),
-        Column('item', String),
-        Column('tarieffactor', Float))
-    
+    params_finance = Table('params_finance', metadata,
+        Column('financeID', Integer, primary_key=True),
+        Column('factor', Float),
+        Column('amount', Float))
+    params_hours = Table('params_hours', metadata,
+        Column('rateID', Integer, primary_key=True),
+        Column('hourly_tariff', Float),
+        Column('overhead_factor', Float),
+        Column('wageID', None, ForeignKey('lonen.loonID')),
+        Column('travel_time', Float))
+    params_services = Table('params_services', metadata,
+        Column('servicesID', Integer, primary_key=True),
+        Column('hourly_tariff', Float),
+        Column('overhead_factor', Float))
+
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    selpar = select([params]).order_by(params.c.paramID)
+    selpar = select([params_finance]).order_by(params_finance.c.financeID)
     rppar = con.execute(selpar).fetchall()
-    
+
+    selpar1 = select([params_hours]).order_by(params_hours.c.rateID)
+    rppar1 = con.execute(selpar1).fetchall()
+
+    selpar2 = select([params_services]).order_by(params_services.c.servicesID)
+    rppar2 = con.execute(selpar2).fetchall()
+
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
     selmat=select([calculaties, cluster_artikelen, artikelen]).where(and_(\
@@ -412,37 +427,37 @@ def opbouwRp(mcalnr, mwerkomschr, mverw, mwerknr, m_email):
            stormobiel = calculaties.c.stormobiel+clusters.c.stormobiel*calculaties.c.hoeveelheid,\
            robeltrein = calculaties.c.robeltrein+clusters.c.robeltrein*calculaties.c.hoeveelheid)
         con.execute(updcalc)
-        updcal1 = update(calculaties).where(and_(calculaties.c.calculatie == record[3],\
-           calculaties.c.clusterID == clusters.c.clusterID)).values(\
-        lonen = calculaties.c.uren_constr+clusters.c.uren_constr*rppar[8][1]*calculaties.c.hoeveelheid+\
-           calculaties.c.uren_mont+clusters.c.uren_mont*rppar[9][1]+\
-           calculaties.c.uren_retourlas+clusters.c.uren_retourlas*rppar[15][1]+\
-           calculaties.c.uren_telecom+clusters.c.uren_telecom*rppar[18][1]+\
-           calculaties.c.uren_bfi+clusters.c.uren_bfi*rppar[10][1]+\
-           calculaties.c.uren_voeding+clusters.c.uren_voeding*rppar[11][1]+\
-           calculaties.c.uren_bvl+clusters.c.uren_bvl*rppar[12][1]+\
-           calculaties.c.uren_spoorleg+clusters.c.uren_spoorleg*rppar[13][1]+\
-           calculaties.c.uren_spoorlas+clusters.c.uren_spoorlas*rppar[14][1],
-       inhuur = calculaties.c.uren_inhuur+clusters.c.uren_inhuur*rppar[7][1]*rppar[7][3],
-       materieel = calculaties.c.sleuvengraver+clusters.c.sleuvengraver*rppar[19][1]*rppar[19][3]+\
-           calculaties.c.persapparaat+clusters.c.persapparaat*rppar[20][1]*rppar[20][3]+\
-           calculaties.c.atlaskraan+clusters.c.atlaskraan*rppar[21][1]*rppar[21][3]+\
-           calculaties.c.kraan_groot+clusters.c.kraan_groot*rppar[22][1]*rppar[22][3]+\
-           calculaties.c.mainliner+clusters.c.mainliner*rppar[23][1]*rppar[23][3]+\
-           calculaties.c.hormachine+clusters.c.hormachine*rppar[24][1]*rppar[24][3]+
-           calculaties.c.wagon+clusters.c.wagon*rppar[25][1]*rppar[25][3]+\
-           calculaties.c.locomotor+clusters.c.locomotor*rppar[26][1]*rppar[26][3]+\
-           calculaties.c.locomotief+clusters.c.locomotief*rppar[27][1]*rppar[27][3]+\
-           calculaties.c.montagewagen+clusters.c.montagewagen*rppar[28][1]*rppar[28][3]+\
-           calculaties.c.stormobiel+clusters.c.stormobiel*rppar[29][1]*rppar[29][3]+\
-           calculaties.c.robeltrein+clusters.c.robeltrein*rppar[30][1]*rppar[30][3],\
-           diensten = calculaties.c.leiding+clusters.c.leiding+\
-           calculaties.c.huisvesting+clusters.c.huisvesting+\
-           calculaties.c.kabelwerk+clusters.c.kabelwerk+\
-           calculaties.c.grondverzet+clusters.c.grondverzet+\
-           calculaties.c.betonwerk+clusters.c.betonwerk+\
-           calculaties.c.vervoer+clusters.c.vervoer+\
-           calculaties.c.overig+clusters.c.overig)
+        updcal1 = update(calculaties).where(and_(calculaties.c.calculatie == record[3], \
+                                                 calculaties.c.clusterID == clusters.c.clusterID)).values( \
+        lonen=calculaties.c.uren_constr + clusters.c.uren_constr * rppar1[1][1] * calculaties.c.hoeveelheid + \
+            calculaties.c.uren_mont + clusters.c.uren_mont * rppar1[2][1] + \
+            calculaties.c.uren_retourlas + clusters.c.uren_retourlas * rppar1[8][1] + \
+            calculaties.c.uren_telecom + clusters.c.uren_telecom * rppar1[10][1] + \
+            calculaties.c.uren_bfi + clusters.c.uren_bfi * rppar1[3][1] + \
+            calculaties.c.uren_voeding + clusters.c.uren_voeding * rppar1[4][1] + \
+            calculaties.c.uren_bvl + clusters.c.uren_bvl * rppar1[5][1] + \
+            calculaties.c.uren_spoorleg + clusters.c.uren_spoorleg * rppar1[6][1] + \
+            calculaties.c.uren_spoorlas + clusters.c.uren_spoorlas * rppar1[7][1],
+        inhuur=calculaties.c.uren_inhuur + clusters.c.uren_inhuur * rppar1[0][1] * rppar[0][2],
+        materieel=calculaties.c.sleuvengraver + clusters.c.sleuvengraver * rppar2[0][1] * rppar2[0][2] + \
+              calculaties.c.persapparaat + clusters.c.persapparaat * rppar2[1][1] * rppar2[1][2] + \
+              calculaties.c.atlaskraan + clusters.c.atlaskraan * rppar2[2][1] * rppar2[2][2] + \
+              calculaties.c.kraan_groot + clusters.c.kraan_groot * rppar2[3][1] * rppar2[3][2] + \
+              calculaties.c.mainliner + clusters.c.mainliner * rppar2[4][1] * rppar2[4][1] + \
+              calculaties.c.hormachine + clusters.c.hormachine * rppar2[5][1] * rppar2[5][2] +
+              calculaties.c.wagon + clusters.c.wagon * rppar2[6][1] * rppar2[6][2] + \
+              calculaties.c.locomotor + clusters.c.locomotor * rppar2[7][1] * rppar2[7][2] + \
+              calculaties.c.locomotief + clusters.c.locomotief * rppar2[8][1] * rppar2[8][2] + \
+              calculaties.c.montagewagen + clusters.c.montagewagen * rppar2[9][1] * rppar2[9][2] + \
+              calculaties.c.stormobiel + clusters.c.stormobiel * rppar2[10][1] * rppar2[10][2] + \
+              calculaties.c.robeltrein + clusters.c.robeltrein * rppar2[11][1] * rppar2[11][2], \
+        diensten=calculaties.c.leiding + clusters.c.leiding + \
+              calculaties.c.huisvesting + clusters.c.huisvesting + \
+              calculaties.c.kabelwerk + clusters.c.kabelwerk + \
+              calculaties.c.grondverzet + clusters.c.grondverzet + \
+              calculaties.c.betonwerk + clusters.c.betonwerk + \
+              calculaties.c.vervoer + clusters.c.vervoer + \
+              calculaties.c.overig + clusters.c.overig)
         con.execute(updcal1)
         for row in rpclart:
             selart = select([materiaallijsten.c.artikelID, materiaallijsten.c.calculatie]).where(and_(materiaallijsten.\
@@ -510,7 +525,7 @@ def printCalculatie(mcalnr, mwerknr):
     minh = 0
     mtotaal = 0
     for row in rpcal:
-        if rgl == 0 or rgl%57 == 0:
+        if rgl == 0 or rgl%55 == 0:
             if platform == 'win32':
                 filename = '.\\forms\\Extern_Clustercalculaties\\clustercalculation_'+str(row[3])+'-'+str(row[2])+'.txt'
             else:
@@ -522,7 +537,7 @@ def printCalculatie(mcalnr, mwerknr):
     '=====================================================================================================\n')
             if rgl == 0:
                 open(filename, 'w').write(kop)
-            elif rgl%57 == 0:
+            elif rgl%55 == 0:
                 open(filename, 'a').write(kop)
             mblad += 1
             
@@ -576,7 +591,7 @@ def printArtikellijst(mcalnr, mwerknr):
     mblad = 1
     rgl = 0
     for row in rpmat:
-        if rgl == 0 or rgl%57 == 0:
+        if rgl == 0 or rgl%55 == 0:
             if platform == 'win32':
                 filename =  filename = '.\\forms\\Extern_Clustercalculaties\\material_list_'+str(rpkop[0])+'-'+str(rpkop[1])+'.txt'
             else:
@@ -588,7 +603,7 @@ def printArtikellijst(mcalnr, mwerknr):
     '=============================================================================================\n')
             if rgl == 0:
                 open(filename, 'w').write(kop)
-            elif rgl%57 == 0:
+            elif rgl%55 == 0:
                 open(filename, 'a').write(kop)
             mblad += 1
             
@@ -602,7 +617,8 @@ def printArtikellijst(mcalnr, mwerknr):
     
 def printDienstenlijst(mcalnr, mwerknr):
     if mwerknr == 0:
-        return(foutWerknr())
+        foutWerknr()
+        return
     from sys import platform
     metadata = MetaData()               
     calculaties = Table('calculaties', metadata,
@@ -640,17 +656,30 @@ def printDienstenlijst(mcalnr, mwerknr):
         Column('betonwerk', Float),
         Column('vervoer', Float),
         Column('overig', Float))
-    params = Table('params', metadata,
-        Column('paramID', Integer, primary_key=True),
-        Column('tarief', Float),
-        Column('item', String))
-                                           
+    params_finance = Table('params_finance', metadata,
+        Column('financeID', Integer, primary_key=True),
+        Column('factor', Float),
+        Column('amount', Float))
+    params_hours = Table('params_hours', metadata,
+        Column('rateID', Integer, primary_key=True),
+        Column('hourly_tariff', Float),
+        Column('overhead_factor', Float),
+        Column('wageID', None, ForeignKey('lonen.loonID')),
+        Column('travel_time', Float))
+    params_services = Table('params_services', metadata,
+        Column('servicesID', Integer, primary_key=True),
+        Column('hourly_tariff', Float),
+        Column('overhead_factor', Float))
+
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    
-    selpar = select([params]).order_by(params.c.paramID)
-    rppar = con.execute(selpar).fetchall()  
-        
+    selpar = select([params_finance]).order_by(params_finance.c.financeID)
+    rppar = con.execute(selpar).fetchall()
+    selpar1 = select([params_hours]).order_by(params_hours.c.rateID)
+    rppar1 = con.execute(selpar1).fetchall()
+    selpar2 = select([params_services]).order_by(params_services.c.servicesID)
+    rppar2 = con.execute(selpar2).fetchall()
+
     selcal = select([calculaties]).where(calculaties.c.koppelnummer == mwerknr).\
      order_by(calculaties.c.clusterID)
     rpcal = con.execute(selcal)
@@ -666,9 +695,10 @@ def printDienstenlijst(mcalnr, mwerknr):
           'Earth moving','Concrete work','Transport','Remaining']
     
     for row in rpcal:
-        if row[8] == 0:
-            return(foutWerknr())
-        if rgl == 0 or rgl%57 == 0:
+        if row[7] == 0:
+            foutWerknr()
+            return
+        if rgl == 0 or rgl%55 == 0:
             if platform == 'win32':
                 filename = '.\\forms\\Extern_Clustercalculaties_Diensten\\clustercalculation_'+str(row[2]).replace(' ', '_')+'.txt'
             else:
@@ -681,30 +711,27 @@ def printDienstenlijst(mcalnr, mwerknr):
     '=====================================================================================================\n')
             if rgl == 0:                 
                 open(filename, 'w').write(kop)
-            elif rgl%57 == 0:
+            elif rgl%55 == 0:
                 open(filename, 'a').write(kop)
             mblad += 1
         for k in range(14, 34):
             dienst = header[k-14]
             if k == 14:
                 uren = row[k]
-                bedrag = row[k]*rppar[7][1]
-                #print(row[k],rppar[7][1], rppar[7][2], dienst, '\n')
+                bedrag = row[k]*rppar1[0][1]*rppar1[0][2]
             elif k < 27:
                 uren = row[k]
-                bedrag = row[k]*rppar[k+4][1]
-                #print(row[k], rppar[k+4][1],rppar[k+4][2], dienst, '\n')
+                bedrag = row[k]*rppar2[k-15][1]*rppar2[k-15][2]
             else:
                 bedrag = row[k]
-                #print(row[k], dienst, '\n')
-                  
+
             if row[k]:
                 open(filename,'a').write('{:<8s}'.format(row[4])+'{:<23.20s}'.format(row[1])+\
                  '{:>8.2f}'.format(row[5])+' {:>6s}'.format(row[6])+'  {:<18s}'.format(dienst)+\
                  '{:>12.2f}'.format(uren)+'{:>12.2f}'.format(bedrag)+' {:>10s}'.format('Agree'+'\n'))
                 if k < 27:
                     m_uren= m_uren+row[k]
-                    mtotaal = mtotaal+row[k]*rppar[k+5][1]
+                    mtotaal = mtotaal+row[k]*rppar2[k-15][1]
                 else:
                     mtotaal = mtotaal+row[k]
         rgl += 1
@@ -1014,20 +1041,32 @@ def toonDienstenlijst(mcalnr, mwerknr):
         Column('montagewagen', Float),
         Column('stormobiel', Float),
         Column('robeltrein', Float))
-    params = Table('params', metadata,
-        Column('paramID', Integer, primary_key=True),
-        Column('tarief', Float),
-        Column('item', String))
-    
+    params_finance = Table('params_finance', metadata,
+        Column('financeID', Integer, primary_key=True),
+        Column('factor', Float),
+        Column('amount', Float))
+    params_hours = Table('params_hours', metadata,
+        Column('rateID', Integer, primary_key=True),
+        Column('hourly_tariff', Float),
+        Column('overhead_factor', Float),
+        Column('wageID', None, ForeignKey('lonen.loonID')),
+        Column('travel_time', Float))
+    params_services = Table('params_services', metadata,
+        Column('servicesID', Integer, primary_key=True),
+        Column('hourly_tariff', Float),
+        Column('overhead_factor', Float))
+
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
-    selparams = select([params]).where(and_(params.c.paramID < 32,\
-                     params.c.paramID > 19)).order_by(params.c.paramID)
-    rpparams = con.execute(selparams).fetchall()
-                                           
-    engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
-    con = engine.connect()
-    
+    selpar = select([params_finance]).order_by(params_finance.c.financeID)
+    rppar = con.execute(selpar).fetchall()
+
+    selpar1 = select([params_hours]).order_by(params_hours.c.rateID)
+    rppar1 = con.execute(selpar1).fetchall()
+
+    selpar2 = select([params_services]).order_by(params_services.c.servicesID)
+    rppar2 = con.execute(selpar2).fetchall()
+
     selcal = select([calculaties]).where(calculaties.c.calculatie == mcalnr).\
      order_by(calculaties.c.clusterID)
     rpcal = con.execute(selcal)
@@ -1177,73 +1216,73 @@ def toonDienstenlijst(mcalnr, mwerknr):
                     q27Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q27Edit.setDisabled(True)
                     
-                    q28Edit = QLineEdit('{:12.2f}'.format(rpcalc[23]*rpparams[0][1]))
+                    q28Edit = QLineEdit('{:12.2f}'.format(rpcalc[23]*rppar[0][1]))
                     q28Edit.setFixedWidth(100)
                     q28Edit.setAlignment(Qt.AlignRight)
                     q28Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q28Edit.setDisabled(True)
                     
-                    q29Edit = QLineEdit('{:12.2f}'.format(rpcalc[24]*rpparams[1][1]))
+                    q29Edit = QLineEdit('{:12.2f}'.format(rpcalc[24]*rppar2[1][1]))
                     q29Edit.setFixedWidth(100)
                     q29Edit.setAlignment(Qt.AlignRight)
                     q29Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q29Edit.setDisabled(True)
                     
-                    q30Edit = QLineEdit('{:12.2f}'.format(rpcalc[25]*rpparams[2][1]))
+                    q30Edit = QLineEdit('{:12.2f}'.format(rpcalc[25]*rppar2[2][1]))
                     q30Edit.setFixedWidth(100)
                     q30Edit.setAlignment(Qt.AlignRight)
                     q30Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q30Edit.setDisabled(True)
                     
-                    q31Edit = QLineEdit('{:12.2f}'.format(rpcalc[26]*rpparams[3][1]))
+                    q31Edit = QLineEdit('{:12.2f}'.format(rpcalc[26]*rppar2[3][1]))
                     q31Edit.setFixedWidth(100)
                     q31Edit.setAlignment(Qt.AlignRight)
                     q31Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q31Edit.setDisabled(True)
                     
-                    q32Edit = QLineEdit('{:12.2f}'.format(rpcalc[27]*rpparams[4][1]))
+                    q32Edit = QLineEdit('{:12.2f}'.format(rpcalc[27]*rppar2[4][1]))
                     q32Edit.setFixedWidth(100)
                     q32Edit.setAlignment(Qt.AlignRight)
                     q32Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q32Edit.setDisabled(True)
                     
-                    q33Edit = QLineEdit('{:12.2f}'.format(rpcalc[28]*rpparams[5][1]))
+                    q33Edit = QLineEdit('{:12.2f}'.format(rpcalc[28]*rppar2[5][1]))
                     q33Edit.setFixedWidth(100)
                     q33Edit.setAlignment(Qt.AlignRight)
                     q33Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q33Edit.setDisabled(True)
                     
-                    q34Edit = QLineEdit('{:12.2f}'.format(rpcalc[29]*rpparams[6][1]))
+                    q34Edit = QLineEdit('{:12.2f}'.format(rpcalc[29]*rppar2[6][1]))
                     q34Edit.setFixedWidth(100)
                     q34Edit.setAlignment(Qt.AlignRight)
                     q34Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q34Edit.setDisabled(True)
                     
-                    q35Edit = QLineEdit('{:12.2f}'.format(rpcalc[30]*rpparams[7][1]))
+                    q35Edit = QLineEdit('{:12.2f}'.format(rpcalc[30]*rppar2[7][1]))
                     q35Edit.setFixedWidth(100)
                     q35Edit.setAlignment(Qt.AlignRight)
                     q35Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q35Edit.setDisabled(True)
                     
-                    q36Edit = QLineEdit('{:12.2f}'.format(rpcalc[31]*rpparams[8][1]))
+                    q36Edit = QLineEdit('{:12.2f}'.format(rpcalc[31]*rppar2[8][1]))
                     q36Edit.setFixedWidth(100)
                     q36Edit.setAlignment(Qt.AlignRight)
                     q36Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q36Edit.setDisabled(True)
                     
-                    q37Edit = QLineEdit('{:12.2f}'.format(rpcalc[32]*rpparams[9][1]))
+                    q37Edit = QLineEdit('{:12.2f}'.format(rpcalc[32]*rppar2[9][1]))
                     q37Edit.setFixedWidth(100)
                     q37Edit.setAlignment(Qt.AlignRight)
                     q37Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q37Edit.setDisabled(True)
                     
-                    q38Edit = QLineEdit('{:12.2f}'.format(rpcalc[33]*rpparams[10][1]))
+                    q38Edit = QLineEdit('{:12.2f}'.format(rpcalc[33]*rppar2[10][1]))
                     q38Edit.setFixedWidth(100)
                     q38Edit.setAlignment(Qt.AlignRight)
                     q38Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     q38Edit.setDisabled(True)
                   
-                    q39Edit = QLineEdit('{:12.2f}'.format(rpcalc[34]*rpparams[10][1]))
+                    q39Edit = QLineEdit('{:12.2f}'.format(rpcalc[34]*rppar2[11][1]))
                     q39Edit.setFixedWidth(100)
                     q39Edit.setAlignment(Qt.AlignRight)
                     q39Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")

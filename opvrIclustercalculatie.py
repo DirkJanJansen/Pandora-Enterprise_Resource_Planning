@@ -496,7 +496,7 @@ def opbouwRp(mcalnr, mwerkomschr, mverw, mwerknr, m_email):
            (icalculaties.c.sgritstralen+iclusters.c.sgritstralen)*rppar1[33][1]+\
            (icalculaties.c.montage+iclusters.c.montage)*rppar1[34][1]*icalculaties.c.hoeveelheid+\
            (icalculaties.c.smontage+iclusters.c.smontage)*rppar1[34][1])
-            
+
         con.execute(updcalc)
         for row in rpclart:
             selart = select([materiaallijsten.c.artikelID, materiaallijsten.c.icalculatie]).where(and_(materiaallijsten.\
@@ -557,7 +557,7 @@ def printCalculatie(mcalnr, mwerknr):
     mlon = 0
     mtotaal = 0
     for row in rpcal:
-        if rgl == 0 or rgl%57 == 0:
+        if rgl == 0 or rgl%55 == 0:
             if platform == 'win32':
                 filename = '.\\forms\\Intern_Clustercalculaties\\clustercalculation_'+str(row[3])+'-'+str(mwerknr)+'.txt'
             else:
@@ -569,7 +569,7 @@ def printCalculatie(mcalnr, mwerknr):
     '================================================================================================\n')
             if rgl == 0:
                 open(filename, 'w').write(kop)
-            elif rgl%57 == 0:
+            elif rgl%55 == 0:
                 open(filename, 'a').write(kop)
             mblad += 1
             
@@ -621,7 +621,7 @@ def printArtikellijst(mcalnr, mwerknr):
     mblad = 1
     rgl = 0
     for row in rpmat:
-        if rgl == 0 or rgl%57 == 0:
+        if rgl == 0 or rgl%55 == 0:
             if platform == 'win32':
                 filename =  filename = '.\\forms\\Intern_Clustercalculaties\\materials_list_'+str(rpkop[0])+'-'+str(mwerknr)+'.txt'
             else:
@@ -633,7 +633,7 @@ def printArtikellijst(mcalnr, mwerknr):
     '=============================================================================================\n')
             if rgl == 0:
                 open(filename, 'w').write(kop)
-            elif rgl%57 == 0:
+            elif rgl%55 == 0:
                 open(filename, 'a').write(kop)
             mblad += 1
             

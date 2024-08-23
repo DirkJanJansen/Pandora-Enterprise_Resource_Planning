@@ -29,6 +29,15 @@ def gekoppeld():
     msg.setText('Work number is already linked!')
     msg.setWindowTitle('Link budget')
     msg.exec_()
+
+def noLinking():
+    msg = QMessageBox()
+    msg.setStyleSheet("color: black;  background-color: gainsboro")
+    msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
+    msg.setIcon(QMessageBox.Critical)
+    msg.setText('No linking possible, first retrieve order!')
+    msg.setWindowTitle('Link calculation')
+    msg.exec_()
     
 def verwFout(mwerknr):
     msg = QMessageBox()
@@ -91,8 +100,14 @@ def zoekBegroting(m_email):
             zkwerknrEdit.textChanged.connect(self.zkwerknrChanged)
             reg_ex = QRegExp('^[8]{1}[0-9]{8}$')
             input_validator = QRegExpValidator(reg_ex, zkwerknrEdit)
-            zkwerknrEdit.setValidator(input_validator)  
-           
+            zkwerknrEdit.setValidator(input_validator)
+
+            self.Omschr = QLabel()
+            werkomschrEdit = QLineEdit()
+            werkomschrEdit.setFixedWidth(300)
+            werkomschrEdit.setFont(QFont("Arial", 10))
+            werkomschrEdit.textChanged.connect(self.omschrChanged)
+
             grid = QGridLayout()
             grid.setSpacing(20)
                           
@@ -106,15 +121,20 @@ def zoekBegroting(m_email):
             grid.addWidget(lbl1, 3, 0)
             grid.addWidget(zkcalcEdit, 3, 1)
             
-            lbl2 = QLabel('Work umber')
+            lbl2 = QLabel('Work number')
             lbl2.setAlignment(Qt.AlignRight)
             grid.addWidget(lbl2, 4, 0)
             grid.addWidget(zkwerknrEdit, 4, 1)
+
+            lbl3 = QLabel('Work description')
+            lbl3.setAlignment(Qt.AlignRight)
+            grid.addWidget(lbl3, 5, 0)
+            grid.addWidget(werkomschrEdit, 5, 1)
             
             self.setLayout(grid)
             self.setGeometry(500, 300, 150, 150)
             
-            grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 7, 0, 1, 2, Qt.AlignRight)
+            grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 7, 0, 1, 2, Qt.AlignCenter)
              
             logo = QLabel()
             pixmap = QPixmap('./images/logos/logo.jpg')
@@ -124,7 +144,7 @@ def zoekBegroting(m_email):
             applyBtn = QPushButton('Search')
             applyBtn.clicked.connect(self.accept)
     
-            grid.addWidget(applyBtn, 6, 1)
+            grid.addWidget(applyBtn, 6, 0, 1, 2, Qt.AlignRight)
             applyBtn.setFont(QFont("Arial",10))
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
@@ -132,7 +152,7 @@ def zoekBegroting(m_email):
             cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
-            grid.addWidget(cancelBtn, 6, 0, 1, 1,Qt.AlignRight)
+            grid.addWidget(cancelBtn, 6, 0, 1, 2,Qt.AlignCenter)
             cancelBtn.setFont(QFont("Arial",10))
             cancelBtn.setFixedWidth(100)
             cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
@@ -142,18 +162,24 @@ def zoekBegroting(m_email):
             
         def zkwerknrChanged(self, text):
             self.Werknummer.setText(text)
+
+        def omschrChanged(self, text):
+            self.Omschr.setText(text)
              
         def returnCalculatie(self):
             return self.Calculatie.text()
         
         def returnWerknummer(self):
             return self.Werknummer.text()
-        
+
+        def returnOmschr(self):
+            return self.Omschr.text()
+
         @staticmethod
         def getData(parent=None):
             dialog = Widget(parent)
             dialog.exec_()
-            return [dialog.returnCalculatie(), dialog.returnWerknummer()]       
+            return [dialog.returnCalculatie(), dialog.returnWerknummer(), dialog.returnOmschr()]
 
     window = Widget()
     data = window.getData()
@@ -161,15 +187,19 @@ def zoekBegroting(m_email):
         zoekBegroting(m_email)
     mcalnr = int(data[0])
     mwerknr = int(data[1])
+    mwerkomschr = data[2]
+
     metadata = MetaData()
     calculaties = Table('calculaties', metadata,
         Column('calculatie', Integer),
         Column('werkomschrijving', String),
-        Column('verwerkt', Integer))
+        Column('verwerkt', Integer),
+        Column('koppelnummer', Integer))
     werken = Table('werken', metadata,
         Column('werknummerID', Integer, primary_key=True),
         Column('opdracht_datum', String),
-        Column('calculatienummer', String))
+        Column('calculatienummer', String),
+        Column('werkomschrijving', String))
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
     selcl = select([calculaties]).where(calculaties.c.calculatie == mcalnr)
@@ -183,8 +213,13 @@ def zoekBegroting(m_email):
         foutWerknr()
         zoekBegroting(m_email)
     mcalnr = rpcl[0]
-    mwerkomschr = rpcl[1]
-    mverw = rpcl[2]
+    mwerknr = data[1]
+    mwerkomschr = data[2]
+    if rpwerk[1]:
+        mverw = 1
+    else:
+        noLinking()
+        zoekBegroting(m_email)
     verder = False
     if rpcl and mverw == 1:
         verder = True
@@ -199,13 +234,13 @@ def zoekBegroting(m_email):
         zoekBegroting(m_email)
     elif rpwerk and rpwerk[1] and verder:
         koppelCalc(mcalnr, mwerknr,mwerkomschr, m_email)
-   
+
 def koppelCalc(mcalnr, mwerknr, mwerkomschr, m_email):
     msgBox=QMessageBox()
     msgBox.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
     msgBox.setWindowTitle("Link budget")
     msgBox.setIcon(QMessageBox.Warning)
-    msgBox.setText('Description: '+mwerkomschr+'\nThis calculation only linking\nthen all data is definitive\nProceed?')
+    msgBox.setText('Description: '+str(mwerkomschr)+'\nThis calculation only linking\nthen all data is definitive\nProceed?')
     msgBox.setStandardButtons(QMessageBox.Yes)
     msgBox.addButton(QMessageBox.No)
     msgBox.setDefaultButton(QMessageBox.Yes)
@@ -283,39 +318,39 @@ def koppelCalc(mcalnr, mwerknr, mwerkomschr, m_email):
             Column('begr_overig', Float))
         engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
         con = engine.connect()
-        selcal = select([calculaties,werken]).where(and_(calculaties.c.calculatie == mcalnr,\
-                       werken.c.werknummerID == mwerknr))
+        selcal = select([calculaties]).where(calculaties.c.calculatie == mcalnr)
         rpcal = con.execute(selcal)
+
         for regel in rpcal:
-            updcal = update(calculaties).where(calculaties.c.calculatie == mcalnr)\
-             .values(koppelnummer = regel[37], werkomschrijving = regel[52], verwerkt = 2)
-            con.execute(updcal)
-            
-            updwerk = update(werken).where(werken.c.werknummerID == mwerknr)\
-              .values(aanneemsom = werken.c.aanneemsom+regel[7],\
-              begr_materialen = werken.c.begr_materialen+regel[8],\
-              begr_materieel = werken.c.begr_materieel+regel[11],\
-              begr_lonen = werken.c.begr_lonen+regel[9],\
-              begr_inhuur = werken.c.begr_inhuur+regel[12],\
-              begr_constr_uren = werken.c.begr_constr_uren+regel[13],\
-              begr_mont_uren = werken.c.begr_mont_uren+regel[14],\
-              begr_retourlas_uren = werken.c.begr_retourlas_uren+regel[15],\
-              begr_telecom_uren = werken.c.begr_telecom_uren + regel[16],\
-              begr_bfi_uren = werken.c.begr_bfi_uren + regel[17],\
-              begr_voeding_uren = werken.c.begr_voeding_uren + regel[18],\
-              begr_bvl_uren = werken.c.begr_bvl_uren + regel[19] ,\
-              begr_spoorleg_uren = werken.c.begr_spoorleg_uren + regel[20],\
-              begr_spoorlas_uren = werken.c.begr_spoorlas_uren + regel[21],\
-              begr_leiding = werken.c.begr_leiding + regel[37],\
-              begr_huisv = werken.c.begr_huisv + regel[38],\
-              begr_kabelwerk = werken.c.begr_kabelwerk + regel[39],\
-              begr_grondverzet = werken.c.begr_grondverzet + regel[40],\
-              begr_beton_bvl = werken.c.begr_beton_bvl + regel[41],\
-              begr_vervoer = werken.c.begr_vervoer + regel[42],\
-              begr_overig = werken.c.begr_overig + regel[43],\
-              calculatienummer = mcalnr)
+            updwerk = update(werken).where(calculaties.c.koppelnummer == werken.c.werknummerID)\
+               .values(aanneemsom = werken.c.aanneemsom+regel[7],\
+               begr_materialen = werken.c.begr_materialen+regel[8],\
+               begr_materieel = werken.c.begr_materieel+regel[11],\
+               begr_lonen = werken.c.begr_lonen+regel[9],\
+               begr_inhuur = werken.c.begr_inhuur+regel[12],\
+               begr_constr_uren = werken.c.begr_constr_uren+regel[13],\
+               begr_mont_uren = werken.c.begr_mont_uren+regel[14],\
+               begr_retourlas_uren = werken.c.begr_retourlas_uren+regel[15],\
+               begr_telecom_uren = werken.c.begr_telecom_uren + regel[16],\
+               begr_bfi_uren = werken.c.begr_bfi_uren + regel[17],\
+               begr_voeding_uren = werken.c.begr_voeding_uren + regel[18],\
+               begr_bvl_uren = werken.c.begr_bvl_uren + regel[19] ,\
+               begr_spoorleg_uren = werken.c.begr_spoorleg_uren + regel[20],\
+               begr_spoorlas_uren = werken.c.begr_spoorlas_uren + regel[21],\
+               begr_leiding = werken.c.begr_leiding + regel[37],\
+               begr_huisv = werken.c.begr_huisv + regel[38],\
+               begr_kabelwerk = werken.c.begr_kabelwerk + regel[39],\
+               begr_grondverzet = werken.c.begr_grondverzet + regel[40],\
+               begr_beton_bvl = werken.c.begr_beton_bvl + regel[41],\
+               begr_vervoer = werken.c.begr_vervoer + regel[42],\
+               begr_overig = werken.c.begr_overig + regel[43],\
+               calculatienummer = mcalnr)
             con.execute(updwerk)
-            
+
+        updcal = update(calculaties).where(calculaties.c.calculatie == mcalnr) \
+            .values(koppelnummer=mwerknr, werkomschrijving=mwerkomschr, verwerkt=2)
+        con.execute(updcal)
+
         materiaallijsten = Table('materiaallijsten', metadata,
             Column('matlijstID', Integer, primary_key=True),
             Column('calculatie', Integer),
