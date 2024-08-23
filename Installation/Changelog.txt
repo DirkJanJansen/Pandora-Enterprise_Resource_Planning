@@ -506,4 +506,6 @@ From 2020-01-10 updates and changes are described on this page
 2024-08-16 For your convenience added a program in folder tools for displaying The Dutch zipcode table. You can use one of this records to add zipcodes in the program. 
            Take the zipcode and a housenumber between lower and upper number to use. The table is very big 9 (ca +300000 records) so it takes a few second to load.
 2024-08-19 changed some screenshots and little adjustments made to LINUX-install.txt
-2024-08-21 Several modules changed due to depreceation in python 3.12.5 changed \. in \\. (Pandora and Pnadora Dutch)
+2024-08-21 Several modules changed due to depreceation in python 3.12.5 changed \. in \\. (Pandora and Pandora Dutch)
+2024-08-23 Repaired due to params changes, skipped  these modules accidental, sorry for the inconvenience. 
+           opvrIclustercalculatie.py, koppelIbegroting.py, opvrClustercalculatie.py and koppelBegroting.py (both Pandora and Pandora Dutch)
