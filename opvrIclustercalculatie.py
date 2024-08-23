@@ -112,7 +112,7 @@ def zoekCalculatie(m_email):
     con = engine.connect()
 
     if not data[0]:
-       return(0)
+       return
     elif data[0][0]=='7'and len(data[0]) == 9:
         mcalnr = data[0]
         selcl = select([icalculaties]).where(icalculaties.c.koppelnummer == int(mcalnr))
@@ -389,8 +389,7 @@ def opbouwRp(mcalnr, mwerkomschr, mverw, mwerknr, m_email):
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
     
-    selcalc = select([icalculaties, iclusters]).where(and_(icalculaties.c\
-       .icalculatie == int(mcalnr), icalculaties.c.iclusterID == iclusters.c.iclusterID))
+    selcalc = select([icalculaties]).where(icalculaties.c.icalculatie == int(mcalnr))
     rpcalc = con.execute(selcalc)
     selclart = select([icluster_artikelen,artikelen]).where(and_(icluster_artikelen.c.\
       artikelID == artikelen.c.artikelID, icalculaties.c.iclusterID ==\
@@ -496,7 +495,7 @@ def opbouwRp(mcalnr, mwerkomschr, mverw, mwerknr, m_email):
            (icalculaties.c.sgritstralen+iclusters.c.sgritstralen)*rppar1[33][1]+\
            (icalculaties.c.montage+iclusters.c.montage)*rppar1[34][1]*icalculaties.c.hoeveelheid+\
            (icalculaties.c.smontage+iclusters.c.smontage)*rppar1[34][1])
-
+            
         con.execute(updcalc)
         for row in rpclart:
             selart = select([materiaallijsten.c.artikelID, materiaallijsten.c.icalculatie]).where(and_(materiaallijsten.\
@@ -557,7 +556,7 @@ def printCalculatie(mcalnr, mwerknr):
     mlon = 0
     mtotaal = 0
     for row in rpcal:
-        if rgl == 0 or rgl%55 == 0:
+        if rgl == 0 or rgl%57 == 0:
             if platform == 'win32':
                 filename = '.\\forms\\Intern_Clustercalculaties\\clustercalculation_'+str(row[3])+'-'+str(mwerknr)+'.txt'
             else:
@@ -569,7 +568,7 @@ def printCalculatie(mcalnr, mwerknr):
     '================================================================================================\n')
             if rgl == 0:
                 open(filename, 'w').write(kop)
-            elif rgl%55 == 0:
+            elif rgl%57 == 0:
                 open(filename, 'a').write(kop)
             mblad += 1
             
@@ -621,7 +620,7 @@ def printArtikellijst(mcalnr, mwerknr):
     mblad = 1
     rgl = 0
     for row in rpmat:
-        if rgl == 0 or rgl%55 == 0:
+        if rgl == 0 or rgl%57 == 0:
             if platform == 'win32':
                 filename =  filename = '.\\forms\\Intern_Clustercalculaties\\materials_list_'+str(rpkop[0])+'-'+str(mwerknr)+'.txt'
             else:
@@ -633,7 +632,7 @@ def printArtikellijst(mcalnr, mwerknr):
     '=============================================================================================\n')
             if rgl == 0:
                 open(filename, 'w').write(kop)
-            elif rgl%55 == 0:
+            elif rgl%57 == 0:
                 open(filename, 'a').write(kop)
             mblad += 1
             
@@ -1019,11 +1018,11 @@ def toonArtikellijst(mcalnr, mwerknr):
                                 q1Edit.setAlignment(Qt.AlignRight)
                             else:
                                 q1Edit = QLineEdit(str(rpmat[index-1]))
-                                q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                                q1Edit.setFixedWidth(100)
-                                q1Edit.setDisabled(True)
-                                grid.addWidget(self.lbl, 1, 0)
-                                grid.addWidget(q1Edit, index, 1, 1, 2)
+                            q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                            q1Edit.setFixedWidth(100)
+                            q1Edit.setDisabled(True)
+                            grid.addWidget(self.lbl, 1, 0)
+                            grid.addWidget(q1Edit, index, 1, 1, 2)
                         elif index == 2:
                             q1Edit = QLineEdit(str(rpmat[index-1]))
                             q1Edit.setFixedWidth(400)
@@ -1040,11 +1039,11 @@ def toonArtikellijst(mcalnr, mwerknr):
                                 q1Edit.setAlignment(Qt.AlignRight)
                             else:
                                 q1Edit = QLineEdit(str(rpmat[index-1]))
-                                q1Edit.setFixedWidth(100)
-                                q1Edit.setDisabled(True)
-                                q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                                grid.addWidget(self.lbl, index, 0)
-                                grid.addWidget(q1Edit, index, 1)
+                            q1Edit.setFixedWidth(100)
+                            q1Edit.setDisabled(True)
+                            q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                            grid.addWidget(self.lbl, index, 0)
+                            grid.addWidget(q1Edit, index, 1)
                         else:
                             if type(rpmat[index-1]) == float:
                                 q1Edit = QLineEdit('{:12.2f}'.format(rpmat[index-1]))
@@ -1054,11 +1053,11 @@ def toonArtikellijst(mcalnr, mwerknr):
                                 q1Edit.setAlignment(Qt.AlignRight)
                             else:
                                 q1Edit = QLineEdit(str(rpmat[index-1]))
-                                q1Edit.setFixedWidth(100)
-                                q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                                q1Edit.setDisabled(True)
-                                grid.addWidget(self.lbl, index+1, 2)
-                                grid.addWidget(q1Edit, index+1, 3)
+                            q1Edit.setFixedWidth(100)
+                            q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                            q1Edit.setDisabled(True)
+                            grid.addWidget(self.lbl, index+1, 2)
+                            grid.addWidget(q1Edit, index+1, 3)
                         index += 1
                         
                     terugBtn = QPushButton('Close')
