@@ -1018,11 +1018,11 @@ def toonArtikellijst(mcalnr, mwerknr):
                                 q1Edit.setAlignment(Qt.AlignRight)
                             else:
                                 q1Edit = QLineEdit(str(rpmat[index-1]))
-                            q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                            q1Edit.setFixedWidth(100)
-                            q1Edit.setDisabled(True)
-                            grid.addWidget(self.lbl, 1, 0)
-                            grid.addWidget(q1Edit, index, 1, 1, 2)
+                                q1Edit .setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                                q1Edit.setFixedWidth(100)
+                                q1Edit.setDisabled(True)
+                                grid.addWidget(self.lbl, 1, 0)
+                                grid.addWidget(q1Edit, index, 1, 1, 2)
                         elif index == 2:
                             q1Edit = QLineEdit(str(rpmat[index-1]))
                             q1Edit.setFixedWidth(400)
