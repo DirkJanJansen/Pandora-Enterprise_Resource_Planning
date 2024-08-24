@@ -59,6 +59,9 @@ def info():
            artikelgegevens en werktarieven worden overgezet naar het werknummer.
            
         7. Print hierna de calculatie en de artikellijst uit voor produktie.
+            Printen van de order lijst voor inkoop van "Diensten en Materiëel" 
+            is alleen mogelijk als de order voor het werknummer is verkregen. 
+            Hiervoor dient de box "order' van het werknummer te worden geactiveerd.
            
      ''')
             grid.addWidget(infolbl, 1, 0)
@@ -232,6 +235,12 @@ def zoeken(m_email):
             input_validator = QRegExpValidator(reg_ex, kEdit)
             kEdit.setValidator(input_validator)
             kEdit.textChanged.connect(self.kChanged)
+
+            self.Werkomschrijving = QLabel()
+            k1Edit = QLineEdit()
+            k1Edit.setFixedWidth(300)
+            k1Edit.setFont(QFont("Arial", 10))
+            k1Edit.textChanged.connect(self.k1Changed)
                    
             self.Keuze = QLabel()
             k0Edit = QComboBox()
@@ -258,14 +267,17 @@ def zoeken(m_email):
             pixmap = QPixmap('./images/logos/verbinding.jpg')
             lbl.setPixmap(pixmap)
             grid.addWidget(lbl , 0, 0, 1, 2)
-            
-            grid.addWidget(k0Edit, 2, 0, 1, 2, Qt.AlignRight)
-            
-            lbl2 = QLabel('Calculatie')  
+
+            lbl2 = QLabel('Calculatie')
             lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
+            lbl3 = QLabel('Werkomschr.')
             grid.addWidget(lbl2, 1, 0)
-            grid.addWidget(kEdit, 1, 1,)
-            
+            grid.addWidget(kEdit, 1, 1, )
+            grid.addWidget(lbl3, 2, 0)
+            grid.addWidget(k1Edit, 2, 1)
+
+            grid.addWidget(k0Edit, 3, 0, 1, 2, Qt.AlignRight)
+
             self.setLayout(grid)
             self.setGeometry(500, 300, 150, 150)
             
@@ -279,7 +291,7 @@ def zoeken(m_email):
             applyBtn = QPushButton('Zoeken')
             applyBtn.clicked.connect(self.accept)
    
-            grid.addWidget(applyBtn, 3, 1, 1, 1, Qt.AlignRight)
+            grid.addWidget(applyBtn, 4, 1, 1, 1, Qt.AlignRight)
             applyBtn.setFont(QFont("Arial",10))
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
@@ -287,7 +299,7 @@ def zoeken(m_email):
             cancelBtn = QPushButton('Sluiten')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email))
     
-            grid.addWidget(cancelBtn, 3, 0, 1, 2,Qt.AlignCenter)
+            grid.addWidget(cancelBtn, 4, 0, 1, 2,Qt.AlignCenter)
             cancelBtn.setFont(QFont("Arial",10))
             cancelBtn.setFixedWidth(100)
             cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
@@ -295,52 +307,61 @@ def zoeken(m_email):
             infoBtn = QPushButton('Informatie')
             infoBtn.clicked.connect(lambda: info())
     
-            grid.addWidget(infoBtn, 3, 0)
+            grid.addWidget(infoBtn, 4, 0)
             infoBtn.setFont(QFont("Arial",10))
             infoBtn.setFixedWidth(100)
             infoBtn.setStyleSheet("color: black;  background-color: gainsboro")
-         
+
         def kChanged(self, text):
-            self.Calculatie.setText(text)   
-            
+            self.Calculatie.setText(text)
+
         def k0Changed(self, text):
             self.Keuze.setText(text)
-                  
+
+        def k1Changed(self, text):
+            self.Werkomschrijving.setText(text)
+
         def returnk(self):
             return self.Calculatie.text()
-        
+
         def returnk0(self):
             return self.Keuze.text()
-  
+
+        def returnk1(self):
+            return self.Werkomschrijving.text()
+
         @staticmethod
         def getData(parent=None):
             dialog = Widget(parent)
             dialog.exec_()
-            return [dialog.returnk0(), dialog.returnk()]       
+            return [dialog.returnk0(), dialog.returnk(), dialog.returnk1()]
 
     window = Widget()
     data = window.getData()
     keuze = ''
     if not data[0] or data[0][0] == ' ':
-       ongInvoer()
-       zoeken(m_email)
+        ongInvoer()
+        zoeken(m_email)
     elif data[0]:
         keuze = data[0][0]
     if data[1] == '' or int(data[1]) > mcalnr:
-       mcalnr += 1
-       gerCalnr(mcalnr)
+        mcalnr += 1
+        gerCalnr(mcalnr)
     elif data[1]:
-         mcalnr = int(data[1])
+        mcalnr = int(data[1])
+    if data[2]:
+        mwerkomschr = data[2]
     scontr = select([calculaties]).where(calculaties.c.calculatie == mcalnr)
     rpcontr = con.execute(scontr).first()
+
     if rpcontr and rpcontr[2] == 2:
         calcGekoppeld()
         zoeken(m_email)
     elif rpcontr and rpcontr[2] == 1:
-       schoonCalculatie(mcalnr, m_email)
-    toonClusters(m_email, keuze , mcalnr)
+        schoonCalculatie(mcalnr, m_email)
+    toonClusters(m_email, keuze, mcalnr, mwerkomschr)
     
-def toonClusters(m_email, keuze, mcalnr):
+def toonClusters(m_email, keuze, mcalnr, mwerkomschr):
     class MyWindow(QDialog):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
@@ -509,7 +530,8 @@ def toonClusters(m_email, keuze, mcalnr):
                                         Column('eenheid', String),
                                         Column('prijs', Float),
                                         Column('calculatie', Integer),
-                                        Column('calculatiedatum', String))
+                                        Column('calculatiedatum', String),
+                                        Column('werkomschrijving', String))
 
                     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
                     con = engine.connect()
@@ -533,7 +555,7 @@ def toonClusters(m_email, keuze, mcalnr):
                             .where(and_(calculaties.c.clusterID == clusternr, \
                                         calculaties.c.calculatie == mcalnr)).values \
                             (hoeveelheid=calculaties.c.hoeveelheid + mhoev, \
-                             calculatiedatum=mcaldat)
+                             calculatiedatum=mcaldat, werkomschrijving=mwerkomschr)
                         con.execute(upd)
                     else:
                         mcalnrnr = (con.execute(select([func.max(calculaties.c.calcID, \
@@ -542,7 +564,8 @@ def toonClusters(m_email, keuze, mcalnr):
                         ins = insert(calculaties).values(calcID=mcalnrnr, \
                                                          clusterID=clusternr, hoeveelheid=mhoev, \
                                                          omschrijving=momschr, eenheid=meenh, prijs=mprijs, \
-                                                         calculatie=mcalnr, calculatiedatum=mcaldat)
+                                                         calculatie=mcalnr, calculatiedatum=mcaldat,
+                                                         werkomschrijving=mwerkomschr)
                         con.execute(ins)
                         invoerOK()
                     self.accept()

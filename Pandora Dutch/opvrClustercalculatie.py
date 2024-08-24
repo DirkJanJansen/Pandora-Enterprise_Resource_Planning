@@ -1,4 +1,4 @@
-from login import hoofdMenu
+from login import hoofdMenu #dutch
 import os, datetime
 from PyQt5.QtCore import Qt, QAbstractTableModel, QRegExp
 from PyQt5.QtGui import QFont, QPixmap, QIcon, QRegExpValidator
@@ -533,7 +533,6 @@ def printCalculatie(mcalnr, mwerknr):
     '=====================================================================================================\n'+
     'Cluster  Cluster             Eenheid Aantal  Materialen      Lonen  Materieel     Diensten   Bedrag  \n'+
     '=====================================================================================================\n')
-            print(kop)
             if rgl == 0:
                 open(filename, 'w').write(kop)
             elif rgl%55 == 0:
@@ -550,7 +549,6 @@ def printCalculatie(mcalnr, mwerknr):
     '-------------------------------------------------------------------------------------------------------\n'+
     'Totalen                                     '+'{:11.2f}'.format(mmat)+'{:11.2f}'.format(mlon)+'{:11.2f}'.format(mmater)+'{:11.2f}'.format(minh)+'{:12.2f}'.format(mtotaal)+'\n'
     '=======================================================================================================\n')
-    print(tail)
     open(filename,'a').write(tail)
     if platform == 'win32':
         os.startfile(filename, "print")
