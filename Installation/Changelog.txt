@@ -509,3 +509,4 @@ From 2020-01-10 updates and changes are described on this page
 2024-08-21 Several modules changed due to depreceation in python 3.12.5 changed \. in \\. (Pandora and Pandora Dutch)
 2024-08-23 Repaired due to params changes, skipped  these modules accidental, sorry for the inconvenience. 
            opvrIclustercalculatie.py, koppelIbegroting.py, opvrClustercalculatie.py and koppelBegroting.py (both Pandora and Pandora Dutch)
+2024-08-24 Improved method of input work Description
