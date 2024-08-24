@@ -597,7 +597,7 @@ def wijzWerk(mwerknr, m_email):
             grid.addWidget(lbl24, 12, 2)
             grid.addWidget(q22Edit, 12, 3)
             
-            lbl25 = QLabel('Start work')
+            lbl25 = QLabel('Startweek work')
             lbl25.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl25, 13, 2)
             grid.addWidget(q23Edit, 13, 3)

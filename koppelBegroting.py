@@ -102,12 +102,6 @@ def zoekBegroting(m_email):
             input_validator = QRegExpValidator(reg_ex, zkwerknrEdit)
             zkwerknrEdit.setValidator(input_validator)
 
-            self.Omschr = QLabel()
-            werkomschrEdit = QLineEdit()
-            werkomschrEdit.setFixedWidth(300)
-            werkomschrEdit.setFont(QFont("Arial", 10))
-            werkomschrEdit.textChanged.connect(self.omschrChanged)
-
             grid = QGridLayout()
             grid.setSpacing(20)
                           
@@ -126,11 +120,6 @@ def zoekBegroting(m_email):
             grid.addWidget(lbl2, 4, 0)
             grid.addWidget(zkwerknrEdit, 4, 1)
 
-            lbl3 = QLabel('Work description')
-            lbl3.setAlignment(Qt.AlignRight)
-            grid.addWidget(lbl3, 5, 0)
-            grid.addWidget(werkomschrEdit, 5, 1)
-            
             self.setLayout(grid)
             self.setGeometry(500, 300, 150, 150)
             
@@ -163,23 +152,17 @@ def zoekBegroting(m_email):
         def zkwerknrChanged(self, text):
             self.Werknummer.setText(text)
 
-        def omschrChanged(self, text):
-            self.Omschr.setText(text)
-             
         def returnCalculatie(self):
             return self.Calculatie.text()
         
         def returnWerknummer(self):
             return self.Werknummer.text()
 
-        def returnOmschr(self):
-            return self.Omschr.text()
-
         @staticmethod
         def getData(parent=None):
             dialog = Widget(parent)
             dialog.exec_()
-            return [dialog.returnCalculatie(), dialog.returnWerknummer(), dialog.returnOmschr()]
+            return [dialog.returnCalculatie(), dialog.returnWerknummer()]
 
     window = Widget()
     data = window.getData()
@@ -187,7 +170,6 @@ def zoekBegroting(m_email):
         zoekBegroting(m_email)
     mcalnr = int(data[0])
     mwerknr = int(data[1])
-    mwerkomschr = data[2]
 
     metadata = MetaData()
     calculaties = Table('calculaties', metadata,
@@ -214,7 +196,7 @@ def zoekBegroting(m_email):
         zoekBegroting(m_email)
     mcalnr = rpcl[0]
     mwerknr = data[1]
-    mwerkomschr = data[2]
+    mwerkomschr = rpcl[1]
     if rpwerk[1]:
         mverw = 1
     else:
