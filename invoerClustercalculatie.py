@@ -242,6 +242,9 @@ def zoeken(m_email):
             k1Edit = QLineEdit()
             k1Edit.setFixedWidth(300)
             k1Edit.setFont(QFont("Arial", 10))
+            reg_ex = QRegExp('^.{45}$')
+            input_validator = QRegExpValidator(reg_ex, k1Edit)
+            k1Edit.setValidator(input_validator)
             k1Edit.textChanged.connect(self.k1Changed)
                    
             self.Keuze = QLabel()
