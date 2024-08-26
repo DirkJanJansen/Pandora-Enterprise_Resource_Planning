@@ -275,7 +275,8 @@ def zoeken(m_email):
 
             lbl2 = QLabel('Calculation')
             lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            lbl3 = QLabel('Workdescr.')
+            lbl3 = QLabel('Description')
+            lbl3.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl2, 1, 0)
             grid.addWidget(kEdit, 1, 1,)
             grid.addWidget(lbl3, 2, 0)

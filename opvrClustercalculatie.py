@@ -280,8 +280,7 @@ def opbouwRp(mcalnr, mwerkomschr, mverw, mwerknr, m_email):
     rpmat = con.execute(selmat)
     for rij in rpmat:
         updcalmat = update(calculaties).where(and_(calculaties.c.calculatie ==\
-           mcalnr, calculaties.c.clusterID == rij[1],\
-           cluster_artikelen.c.artikelID == rij[9])).values(\
+           mcalnr, calculaties.c.clusterID == rij[1], cluster_artikelen.c.artikelID == rij[9])).values(\
            materialen = calculaties.c.materialen+rij[2]*rij[8]*rij[10]*(1+rppar[6][1]))
         con.execute(updcalmat)
    
@@ -404,54 +403,54 @@ def opbouwRp(mcalnr, mwerkomschr, mverw, mwerknr, m_email):
     for record in rpcalc:
         updcalc = update(calculaties).where(and_(calculaties.c.calculatie == record[3],\
            calculaties.c.clusterID == clusters.c.clusterID)).values(verwerkt = 1, \
-           uren_constr = calculaties.c.uren_constr+clusters.c.uren_constr*calculaties.c.hoeveelheid,\
-           uren_mont = calculaties.c.uren_mont+clusters.c.uren_mont*calculaties.c.hoeveelheid,\
-           uren_retourlas = calculaties.c.uren_retourlas+clusters.c.uren_retourlas*calculaties.c.hoeveelheid,\
-           uren_telecom = calculaties.c.uren_telecom+clusters.c.uren_telecom*calculaties.c.hoeveelheid,\
-           uren_bfi = calculaties.c.uren_bfi+clusters.c.uren_bfi*calculaties.c.hoeveelheid,\
-           uren_voeding = calculaties.c.uren_voeding+clusters.c.uren_voeding*calculaties.c.hoeveelheid,\
-           uren_bvl = calculaties.c.uren_bvl+clusters.c.uren_bvl*calculaties.c.hoeveelheid,\
-           uren_spoorleg = calculaties.c.uren_spoorleg+clusters.c.uren_spoorleg*calculaties.c.hoeveelheid,\
-           uren_spoorlas = calculaties.c.uren_spoorlas+clusters.c.uren_spoorlas*calculaties.c.hoeveelheid,\
-           uren_inhuur = calculaties.c.uren_inhuur+clusters.c.uren_inhuur*calculaties.c.hoeveelheid,\
-           sleuvengraver = calculaties.c.sleuvengraver+clusters.c.sleuvengraver*calculaties.c.hoeveelheid,\
-           persapparaat = calculaties.c.persapparaat+clusters.c.persapparaat*calculaties.c.hoeveelheid,\
-           atlaskraan = calculaties.c.atlaskraan+clusters.c.atlaskraan*calculaties.c.hoeveelheid,\
-           kraan_groot = calculaties.c.kraan_groot+clusters.c.kraan_groot*calculaties.c.hoeveelheid,\
-           mainliner = calculaties.c.mainliner+clusters.c.mainliner*calculaties.c.hoeveelheid,\
-           hormachine = calculaties.c.hormachine+clusters.c.hormachine*calculaties.c.hoeveelheid,\
-           wagon = calculaties.c.wagon+clusters.c.wagon*calculaties.c.hoeveelheid,\
-           locomotor = calculaties.c.locomotor+clusters.c.locomotor*calculaties.c.hoeveelheid,\
-           locomotief = calculaties.c.locomotief+clusters.c.locomotief*calculaties.c.hoeveelheid,\
-           montagewagen = calculaties.c.montagewagen+clusters.c.montagewagen*calculaties.c.hoeveelheid,\
-           stormobiel = calculaties.c.stormobiel+clusters.c.stormobiel*calculaties.c.hoeveelheid,\
-           robeltrein = calculaties.c.robeltrein+clusters.c.robeltrein*calculaties.c.hoeveelheid)
+           uren_constr = calculaties.c.uren_constr+(clusters.c.uren_constr*calculaties.c.hoeveelheid),\
+           uren_mont = calculaties.c.uren_mont+(clusters.c.uren_mont*calculaties.c.hoeveelheid),\
+           uren_retourlas = calculaties.c.uren_retourlas+(clusters.c.uren_retourlas*calculaties.c.hoeveelheid),\
+           uren_telecom = calculaties.c.uren_telecom+(clusters.c.uren_telecom*calculaties.c.hoeveelheid),\
+           uren_bfi = calculaties.c.uren_bfi+(clusters.c.uren_bfi*calculaties.c.hoeveelheid),\
+           uren_voeding = calculaties.c.uren_voeding+(clusters.c.uren_voeding*calculaties.c.hoeveelheid),\
+           uren_bvl = calculaties.c.uren_bvl+(clusters.c.uren_bvl*calculaties.c.hoeveelheid),\
+           uren_spoorleg = calculaties.c.uren_spoorleg+(clusters.c.uren_spoorleg*calculaties.c.hoeveelheid),\
+           uren_spoorlas = calculaties.c.uren_spoorlas+(clusters.c.uren_spoorlas*calculaties.c.hoeveelheid),\
+           uren_inhuur = calculaties.c.uren_inhuur+(clusters.c.uren_inhuur*calculaties.c.hoeveelheid),\
+           sleuvengraver = calculaties.c.sleuvengraver+(clusters.c.sleuvengraver*calculaties.c.hoeveelheid),\
+           persapparaat = calculaties.c.persapparaat+(clusters.c.persapparaat*calculaties.c.hoeveelheid),\
+           atlaskraan = calculaties.c.atlaskraan+(clusters.c.atlaskraan*calculaties.c.hoeveelheid),\
+           kraan_groot = calculaties.c.kraan_groot+(clusters.c.kraan_groot*calculaties.c.hoeveelheid),\
+           mainliner = calculaties.c.mainliner+(clusters.c.mainliner*calculaties.c.hoeveelheid),\
+           hormachine = calculaties.c.hormachine+(clusters.c.hormachine*calculaties.c.hoeveelheid),\
+           wagon = calculaties.c.wagon+(clusters.c.wagon*calculaties.c.hoeveelheid),\
+           locomotor = calculaties.c.locomotor+(clusters.c.locomotor*calculaties.c.hoeveelheid),\
+           locomotief = calculaties.c.locomotief+(clusters.c.locomotief*calculaties.c.hoeveelheid),\
+           montagewagen = calculaties.c.montagewagen+(clusters.c.montagewagen*calculaties.c.hoeveelheid),\
+           stormobiel = calculaties.c.stormobiel+(clusters.c.stormobiel*calculaties.c.hoeveelheid),\
+           robeltrein = calculaties.c.robeltrein+(clusters.c.robeltrein*calculaties.c.hoeveelheid))
         con.execute(updcalc)
         updcal1 = update(calculaties).where(and_(calculaties.c.calculatie == record[3], \
                                                  calculaties.c.clusterID == clusters.c.clusterID)).values( \
-        lonen=calculaties.c.uren_constr + clusters.c.uren_constr * rppar1[1][1] * calculaties.c.hoeveelheid + \
-            calculaties.c.uren_mont + clusters.c.uren_mont * rppar1[2][1] + \
-            calculaties.c.uren_retourlas + clusters.c.uren_retourlas * rppar1[8][1] + \
-            calculaties.c.uren_telecom + clusters.c.uren_telecom * rppar1[10][1] + \
-            calculaties.c.uren_bfi + clusters.c.uren_bfi * rppar1[3][1] + \
-            calculaties.c.uren_voeding + clusters.c.uren_voeding * rppar1[4][1] + \
-            calculaties.c.uren_bvl + clusters.c.uren_bvl * rppar1[5][1] + \
-            calculaties.c.uren_spoorleg + clusters.c.uren_spoorleg * rppar1[6][1] + \
-            calculaties.c.uren_spoorlas + clusters.c.uren_spoorlas * rppar1[7][1],
-        inhuur=calculaties.c.uren_inhuur + clusters.c.uren_inhuur * rppar1[0][1] * rppar[0][2],
-        materieel=calculaties.c.sleuvengraver + clusters.c.sleuvengraver * rppar2[0][1] * rppar2[0][2] + \
-              calculaties.c.persapparaat + clusters.c.persapparaat * rppar2[1][1] * rppar2[1][2] + \
-              calculaties.c.atlaskraan + clusters.c.atlaskraan * rppar2[2][1] * rppar2[2][2] + \
-              calculaties.c.kraan_groot + clusters.c.kraan_groot * rppar2[3][1] * rppar2[3][2] + \
-              calculaties.c.mainliner + clusters.c.mainliner * rppar2[4][1] * rppar2[4][1] + \
-              calculaties.c.hormachine + clusters.c.hormachine * rppar2[5][1] * rppar2[5][2] +
-              calculaties.c.wagon + clusters.c.wagon * rppar2[6][1] * rppar2[6][2] + \
-              calculaties.c.locomotor + clusters.c.locomotor * rppar2[7][1] * rppar2[7][2] + \
-              calculaties.c.locomotief + clusters.c.locomotief * rppar2[8][1] * rppar2[8][2] + \
-              calculaties.c.montagewagen + clusters.c.montagewagen * rppar2[9][1] * rppar2[9][2] + \
-              calculaties.c.stormobiel + clusters.c.stormobiel * rppar2[10][1] * rppar2[10][2] + \
-              calculaties.c.robeltrein + clusters.c.robeltrein * rppar2[11][1] * rppar2[11][2], \
-        diensten=calculaties.c.leiding + clusters.c.leiding + \
+          lonen=calculaties.c.uren_constr*rppar1[1][1] * rppar1[1][2] + \
+            calculaties.c.uren_mont * rppar1[2][1] * rppar1[2][2]+ \
+            calculaties.c.uren_retourlas * rppar1[8][1] * rppar1[8][2] + \
+            calculaties.c.uren_telecom * rppar1[10][1] * rppar1[10][2] + \
+            calculaties.c.uren_bfi * rppar1[3][1] * rppar1[3][2] + \
+            calculaties.c.uren_voeding * rppar1[4][1] * rppar1[4][2] + \
+            calculaties.c.uren_bvl * rppar1[5][1] * rppar1[5][2] + \
+            calculaties.c.uren_spoorleg * rppar1[6][1]  * rppar1[6][2]+ \
+            calculaties.c.uren_spoorlas * rppar1[7][1] * rppar1[7][2],\
+         inhuur=calculaties.c.uren_inhuur * rppar1[0][1] * rppar[0][2],
+         materieel=calculaties.c.sleuvengraver * rppar2[0][1] * rppar2[0][2] + \
+              calculaties.c.persapparaat * rppar2[1][1] * rppar2[1][2] + \
+              calculaties.c.atlaskraan * rppar2[2][1] * rppar2[2][2] + \
+              calculaties.c.kraan_groot * rppar2[3][1] * rppar2[3][2] + \
+              calculaties.c.mainliner  * rppar2[4][1] * rppar2[4][1] + \
+              calculaties.c.hormachine * rppar2[5][1] * rppar2[5][2] +
+              calculaties.c.wagon * rppar2[6][1] * rppar2[6][2] + \
+              calculaties.c.locomotor * rppar2[7][1] * rppar2[7][2] + \
+              calculaties.c.locomotief * rppar2[8][1] * rppar2[8][2] + \
+              calculaties.c.montagewagen * rppar2[9][1] * rppar2[9][2] + \
+              calculaties.c.stormobiel * rppar2[10][1] * rppar2[10][2] + \
+              calculaties.c.robeltrein * rppar2[11][1] * rppar2[11][2], \
+         diensten=calculaties.c.leiding + clusters.c.leiding + \
               calculaties.c.huisvesting + clusters.c.huisvesting + \
               calculaties.c.kabelwerk + clusters.c.kabelwerk + \
               calculaties.c.grondverzet + clusters.c.grondverzet + \
@@ -466,9 +465,9 @@ def opbouwRp(mcalnr, mwerkomschr, mverw, mwerknr, m_email):
             if rpart:
                 updmatlijst = update(materiaallijsten).where(and_(materiaallijsten.c.\
                   artikelID == row[1], materiaallijsten.c.calculatie == record[3]))\
-                 .values(hoeveelheid = materiaallijsten.c.hoeveelheid+(record[5]*row[3]),\
+                 .values(hoeveelheid = materiaallijsten.c.hoeveelheid+(record[6]*row[3]),\
                 artikelprijs = row[6]*(1+rppar[6][1]), subtotaal = materiaallijsten.\
-                c.subtotaal+record[5]*row[3]*row[6]*(1+rppar[6][1]))
+                c.subtotaal+record[6]*row[3]*row[6]*(1+rppar[6][1]))
                 con.execute(updmatlijst)
             elif not rpart:
                 try:
@@ -479,9 +478,9 @@ def opbouwRp(mcalnr, mwerkomschr, mverw, mwerknr, m_email):
                     mmatlijstnr = 1
                 insmatlijst = insert(materiaallijsten).values(matlijstID = mmatlijstnr,\
                     calculatie = record[3], artikelID = row[1],\
-                    hoeveelheid = record[5]*row[3], resterend = record[5]*row[3],\
+                    hoeveelheid = record[6]*row[3], resterend = record[6]*row[3],\
                     artikelprijs = row[6]*(1+rppar[6][1]),\
-                    subtotaal = record[5]*row[3]*row[6]*(1+rppar[6][1]))
+                    subtotaal = record[6]*row[3]*row[6]*(1+rppar[6][1]))
                 con.execute(insmatlijst)
         selber = select([calculaties.c.calcID, calculaties.c.calculatie])\
                            .where(calculaties.c.calculatie == mcalnr)
