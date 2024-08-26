@@ -273,7 +273,8 @@ def zoeken(m_email):
 
             lbl2 = QLabel('Calculatie')
             lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            lbl3 = QLabel('Werkomschr.')
+            lbl3 = QLabel('Omschrijving')
+            lbl3.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl2, 1, 0)
             grid.addWidget(kEdit, 1, 1, )
             grid.addWidget(lbl3, 2, 0)
@@ -521,20 +522,20 @@ def toonClusters(m_email, keuze, mcalnr, mwerkomschr):
 
                     metadata = MetaData()
                     clusters = Table('clusters', metadata,
-                                     Column('clusterID', Integer(), primary_key=True),
-                                     Column('omschrijving', String),
-                                     Column('eenheid', String),
-                                     Column('prijs', Float))
+                         Column('clusterID', Integer(), primary_key=True),
+                         Column('omschrijving', String),
+                         Column('eenheid', String),
+                         Column('prijs', Float))
                     calculaties = Table('calculaties', metadata,
-                                        Column('calcID', Integer(), primary_key=True),
-                                        Column('clusterID', None, ForeignKey('clusters.clusterID')),
-                                        Column('omschrijving', String),
-                                        Column('hoeveelheid', Float),
-                                        Column('eenheid', String),
-                                        Column('prijs', Float),
-                                        Column('calculatie', Integer),
-                                        Column('calculatiedatum', String),
-                                        Column('werkomschrijving', String))
+                         Column('calcID', Integer(), primary_key=True),
+                         Column('clusterID', None, ForeignKey('clusters.clusterID')),
+                         Column('omschrijving', String),
+                         Column('hoeveelheid', Float),
+                         Column('eenheid', String),
+                         Column('prijs', Float),
+                         Column('calculatie', Integer),
+                         Column('calculatiedatum', String),
+                         Column('werkomschrijving', String))
 
                     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
                     con = engine.connect()
@@ -548,27 +549,22 @@ def toonClusters(m_email, keuze, mcalnr, mwerkomschr):
 
                     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
                     con = engine.connect()
-                    selcalc = select([calculaties.c.clusterID, calculaties. \
-                                     c.calculatie]).where(and_(calculaties.c.clusterID == clusternr, \
-                                                               calculaties.c.calculatie == mcalnr))
+                    selcalc = select([calculaties.c.clusterID, calculaties.c.calculatie])\
+                        .where(and_(calculaties.c.clusterID == clusternr, calculaties.c.calculatie == mcalnr))
                     rpcalc = con.execute(selcalc).first()
                     if rpcalc:
                         calcBestaat()
                         upd = update(calculaties) \
-                            .where(and_(calculaties.c.clusterID == clusternr, \
-                                        calculaties.c.calculatie == mcalnr)).values \
-                            (hoeveelheid=calculaties.c.hoeveelheid + mhoev, \
-                             calculatiedatum=mcaldat, werkomschrijving=mwerkomschr)
+                            .where(and_(calculaties.c.clusterID == clusternr, calculaties.c.calculatie == mcalnr)).values\
+                            (hoeveelheid=calculaties.c.hoeveelheid + mhoev,calculatiedatum=mcaldat, werkomschrijving=mwerkomschr)
                         con.execute(upd)
                     else:
                         mcalnrnr = (con.execute(select([func.max(calculaties.c.calcID, \
-                                                                 type_=Integer).label('mcalnrnr')])).scalar())
+                                 type_=Integer).label('mcalnrnr')])).scalar())
                         mcalnrnr += 1
                         ins = insert(calculaties).values(calcID=mcalnrnr, \
-                                                         clusterID=clusternr, hoeveelheid=mhoev, \
-                                                         omschrijving=momschr, eenheid=meenh, prijs=mprijs, \
-                                                         calculatie=mcalnr, calculatiedatum=mcaldat,
-                                                         werkomschrijving=mwerkomschr)
+                             clusterID=clusternr, hoeveelheid=mhoev, omschrijving=momschr, eenheid=meenh, prijs=mprijs, \
+                                 calculatie=mcalnr, calculatiedatum=mcaldat, werkomschrijving=mwerkomschr)
                         con.execute(ins)
                         invoerOK()
                     self.accept()
