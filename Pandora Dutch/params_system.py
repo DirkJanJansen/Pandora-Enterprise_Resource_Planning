@@ -263,7 +263,7 @@ def showParams(m_email, auth_1, auth_2, auth_3, data):
 
     data_list = []
     for row in rp:
-        data_list += [row]
+        data_list += [(row)]
 
     def showSelection(idx):
         systemnr = idx.data()
