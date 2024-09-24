@@ -185,7 +185,7 @@ def opvragenCalc(mcalnr, mwerkomschr,mverw, mwerknr, m_email):
             self.artlijstBtn.setFixedWidth(110)
             self.artlijstBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            self.dienstenBtn = QPushButton('Diensten + Materiëel\nBestellijst Opvragen')
+            self.dienstenBtn = QPushButton('Materiëel\nBestellijst Opvragen')
             self.dienstenBtn.clicked.connect(lambda: toonDienstenlijst(mcalnr, mwerknr))
             grid.addWidget(self.dienstenBtn, 5, 2)
             self.dienstenBtn.setFont(QFont("Arial",10))
@@ -206,7 +206,7 @@ def opvragenCalc(mcalnr, mwerkomschr,mverw, mwerknr, m_email):
             self.artprintBtn.setFixedWidth(110)
             self.artprintBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            self.dienstenprintBtn = QPushButton('Diensten + Materiëel\nBestellijst Printen')
+            self.dienstenprintBtn = QPushButton('Materiëel\nBestellijst Printen')
             self.dienstenprintBtn.clicked.connect(lambda: printDienstenlijst(mcalnr, mwerknr))
             grid.addWidget(self.dienstenprintBtn, 4, 2)
             self.dienstenprintBtn.setFont(QFont("Arial",10))
@@ -964,6 +964,14 @@ def toonDienstenlijst(mcalnr, mwerknr):
             font = QFont("Arial", 10)
             table_view.setFont(font)
             table_view.hideColumn(1)
+            table_view.hideColumn(12)
+            table_view.hideColumn(15)
+            table_view.hideColumn(16)
+            table_view.hideColumn(17)
+            table_view.hideColumn(18)
+            table_view.hideColumn(19)
+            table_view.hideColumn(20)
+            table_view.hideColumn(21)
             table_view.resizeColumnsToContents()
             table_view.setSelectionBehavior(QTableView.SelectRows)
             #table_view.clicked.connect(selectRow)
@@ -1000,8 +1008,8 @@ def toonDienstenlijst(mcalnr, mwerknr):
         
     header = ['ID','Cluster','Werkomschrijving','Calculatie','Clusternr',\
       'Verwerkt','Hoeveelheid','Eenheid', 'Koppelnr', 'Totaalprijs','Materialen',\
-      'Lonen','Diensten','Materieel', 'Inhuur','Leiding', 'Huisvesting','Kabelwerk',\
-      'Grondverzet','Betonwerk', 'Vervoer', 'Overig', 'Inhuur','Persapparaat',\
+      'Lonen','','Materieel', 'Inhuur','', '','',\
+      '','', 'r', '', 'Inhuur uren','Persapparaat',\
       'Sleuvengraver', 'Atlaskraan', 'Kraan Groot', 'Mainliner', 'Hormachine',\
       'Wagon', 'Locomotor', 'Locomotief', 'Montagewagen', 'Stormobiel', 'Robeltrein']
 
@@ -1165,7 +1173,7 @@ def toonDienstenlijst(mcalnr, mwerknr):
                     q15Edit.setAlignment(Qt.AlignRight)
                     q15Edit.setFixedWidth(100)
                     q15Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
-                   
+
                     q16Edit = QLineEdit('{:12.2f}'.format(rpcalc[13]))
                     q16Edit.setFixedWidth(100)
                     q16Edit.setAlignment(Qt.AlignRight)
@@ -1344,34 +1352,10 @@ def toonDienstenlijst(mcalnr, mwerknr):
                                 
                     grid.addWidget(QLabel('Lonen'), 8, 0)
                     grid.addWidget(q14Edit, 8, 1) 
-                        
-                    grid.addWidget(QLabel('Diensten\nTotaal'), 8, 2)
-                    grid.addWidget(q15Edit, 8, 3)
-                                                     
+
                     grid.addWidget(QLabel('Materieel'), 9, 0)
                     grid.addWidget(q16Edit, 9, 1)                           
-                                                 
-                    grid.addWidget(QLabel('Leiding'), 11, 0)
-                    grid.addWidget(q17Edit, 11, 1) 
-                                               
-                    grid.addWidget(QLabel('Huisvesting'), 11, 2)
-                    grid.addWidget(q20Edit, 11, 3)
-                   
-                    grid.addWidget(QLabel('Kabelwerk'), 12, 0)
-                    grid.addWidget(q21Edit, 12, 1)
-                                        
-                    grid.addWidget(QLabel('Grondverzet'), 12, 2)
-                    grid.addWidget(q22Edit, 12, 3)
-                     
-                    grid.addWidget(QLabel('Betonwerk'), 13, 0)
-                    grid.addWidget(q23Edit, 13, 1)
-                                        
-                    grid.addWidget(QLabel('Vervoer'), 13, 2)
-                    grid.addWidget(q24Edit, 13, 3)
-                                        
-                    grid.addWidget(QLabel('Overig'), 14, 0)
-                    grid.addWidget(q26Edit, 14, 1)
-                    
+
                     lblsoort = QLabel('Materieelsoort')
                     lbluren = QLabel('Uren')
                     lblbedrag = QLabel('Bedrag')

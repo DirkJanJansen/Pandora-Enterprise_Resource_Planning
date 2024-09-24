@@ -77,6 +77,9 @@ def info():
         De submenu's zijn toegankelijk te maken door de checkboxen
         naast de hoofdmenuitems te activeren.
         
+        Bij L - authoriseren van submenu level.
+        Bijvoorbeeld W + L  kent "Wijzig" permissie toe aan submenu.
+        
         De authorisaties zijn  van links naar rechts en vervolgens
         van boven naar beneden weergegeven.
         
@@ -85,7 +88,7 @@ def info():
         Authorisaties:
             
         S = Speciaal  B = Bestellen  I = Invoeren   W = Wijzigen 
-        P = Printen    O = Opvragen  V = Vertrouwelijk
+        P = Printen    O = Opvragen  L = Level
         ''')
                 
             grid.addWidget(lblinfo, 1, 0, 1, 4, Qt.AlignCenter)

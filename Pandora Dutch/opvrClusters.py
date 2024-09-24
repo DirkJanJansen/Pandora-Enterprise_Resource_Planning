@@ -130,6 +130,13 @@ def toonClusters(keuze, m_email):
             table_view.setModel(table_model)
             font = QFont("Arial", 10)
             table_view.setFont(font)
+            table_view.hideColumn(31)
+            table_view.hideColumn(32)
+            table_view.hideColumn(33)
+            table_view.hideColumn(34)
+            table_view.hideColumn(35)
+            table_view.hideColumn(36)
+            table_view.hideColumn(37)
             table_view.resizeColumnsToContents()
             table_view.setSelectionBehavior(QTableView.SelectRows)
             table_view.clicked.connect(showSelection)
@@ -169,7 +176,7 @@ def toonClusters(keuze, m_email):
               'uren_inhuur', 'Sleuvengraver', 'Persapparaat', 'Atlaskraan',\
               'Kraan_groot', 'Mainliner', 'Hormachine', 'Wagon', 'Locomotor',\
               'Locomotief', 'Montagewagen', 'Stormobiel', 'uren_telecom', 'Robeltrein',\
-              'Leiding','Huisvesting','Kabelwerk','Grondverzet','Betonwerk','Vervoer','Overig']
+              '','','','','','','']
         
     metadata = MetaData()
     clusters = Table('clusters', metadata,
@@ -630,41 +637,6 @@ def toonClusters(keuze, m_email):
                     grid.addWidget(lbl31, 7, 2)
                     grid.addWidget(q30Edit, 7, 3)
                     
-                    lbl32 = QLabel('Leiding')  
-                    lbl32.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl32, 17, 0)
-                    grid.addWidget(q31Edit, 17, 1)
-                    
-                    lbl33 = QLabel('Huisvesting')  
-                    lbl33.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl33, 18, 0)
-                    grid.addWidget(q32Edit, 18, 1)
-                    
-                    lbl34 = QLabel('Kabelwerk')  
-                    lbl34.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl34, 18, 2)
-                    grid.addWidget(q33Edit, 18, 3)
-                    
-                    lbl35 = QLabel('Grondverzet')  
-                    lbl35.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl35, 19, 0)
-                    grid.addWidget(q34Edit, 19, 1)
-                    
-                    lbl36 = QLabel('Betonwerk')  
-                    lbl36.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl36, 19, 2)
-                    grid.addWidget(q35Edit, 19, 3)
-                
-                    lbl37 = QLabel('Vervoer')  
-                    lbl37.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl37, 20, 0)
-                    grid.addWidget(q36Edit, 20, 1)
-                
-                    lbl38 = QLabel('Overig')  
-                    lbl38.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl38, 20, 2)
-                    grid.addWidget(q37Edit, 20, 3)
-
                     lbl = QLabel()
                     pixmap = QPixmap('./images/logos/verbinding.jpg')
                     lbl.setPixmap(pixmap)

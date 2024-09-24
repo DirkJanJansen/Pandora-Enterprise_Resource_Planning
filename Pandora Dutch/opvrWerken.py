@@ -1,7 +1,7 @@
 ﻿from login import hoofdMenu
 import datetime
-from PyQt5.QtCore import Qt, QAbstractTableModel
-from PyQt5.QtGui import QIcon, QFont, QPixmap
+from PyQt5.QtCore import Qt, QAbstractTableModel, QSize
+from PyQt5.QtGui import QIcon, QFont, QPixmap, QMovie
 from PyQt5.QtWidgets import QLabel, QPushButton, QWidget, QGridLayout, QTableView,\
           QComboBox, QDialog, QLineEdit, QMessageBox, QVBoxLayout
 from sqlalchemy import (Table, Column, Integer, String, MetaData,\
@@ -17,8 +17,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Externe werken opvragen')               
+    msg.setText('Opnieuw juiste gegevens invoeren\nzoek term!')
+    msg.setWindowTitle('Opvragen externe werken')
     msg.exec_() 
 
 def geenRecord():
@@ -26,8 +26,8 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Externe werken opvragen')               
+    msg.setText('Geen record gevonden\nmaak een andere selektie!')
+    msg.setWindowTitle('Opvragen externe werken')
     msg.exec_() 
 
 def jaarweek():
@@ -41,7 +41,7 @@ def werkenKeuze(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Financieël Overzicht Werken")
+            self.setWindowTitle("Financieel overzicht werken")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Times', 10))
@@ -51,14 +51,14 @@ def werkenKeuze(m_email):
             k4Edit.setFixedWidth(330)
             k4Edit.setFont(QFont("Times", 10))
             k4Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k4Edit.addItem('              Sorteersleutel voor zoeken')
+            k4Edit.addItem('                     Search sort key')
             k4Edit.addItem('1. Alle werken')
             k4Edit.addItem('2. Werknummer')
-            k4Edit.addItem('3. Werkomschrijving')
-            k4Edit.addItem('4. Voortgangstatus.')
+            k4Edit.addItem('3. Werk omschrijving')
+            k4Edit.addItem('4. Voortgang status')
             k4Edit.addItem('5. Aanneemsom >')
             k4Edit.addItem('6. Aanneemsom <')
-            k4Edit.addItem('7. Afgerekend in % >')
+            k4Edit.addItem('7. Betaald in % >')
             k4Edit.activated[str].connect(self.k4Changed)
             
             self.Zoekterm = QLabel()
@@ -69,14 +69,16 @@ def werkenKeuze(m_email):
      
             grid = QGridLayout()
             grid.setSpacing(20)
-                          
-            lbl = QLabel()
-            pixmap = QPixmap('./images/logos/verbinding.jpg')
-            lbl.setPixmap(pixmap)
-            grid.addWidget(lbl , 0, 0, 1, 2)
-                                  
+
+            pyqt = QLabel()
+            movie = QMovie('./images/logos/pyqt.gif')
+            pyqt.setMovie(movie)
+            movie.setScaledSize(QSize(240, 80))
+            movie.start()
+            grid.addWidget(pyqt, 0, 0, 1, 2)
+
             grid.addWidget(k4Edit, 1, 0, 1, 2, Qt.AlignRight)
-            lbl1 = QLabel('Zoekterm')  
+            lbl1 = QLabel('Zoek term')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 2, 0)
             grid.addWidget(zktermEdit, 2, 1)
@@ -193,7 +195,31 @@ def toonWerken(keuze,zoekterm, m_email):
         Column('begr_spoorlas_uren', Float),
         Column('werk_spoorlas_uren', Float),
         Column('begr_reis_uren', Float),
-        Column('werk_reis_uren', Float))
+        Column('werk_reis_uren', Float),
+        Column('begr_sleuvengraver_uren', Float),
+        Column('werk_sleuvengraver_uren', Float),
+        Column('begr_persapparaat_uren', Float),
+        Column('werk_persapparaat_uren', Float),
+        Column('begr_atlaskraan_uren', Float),
+        Column('werk_atlaskraan_uren', Float),
+        Column('begr_kraan_groot_uren', Float),
+        Column('werk_kraan_groot_uren', Float),
+        Column('begr_mainliner_uren', Float),
+        Column('werk_mainliner_uren', Float),
+        Column('begr_hormachine_uren', Float),
+        Column('werk_hormachine_uren', Float),
+        Column('begr_wagon_uren', Float),
+        Column('werk_wagon_uren', Float),
+        Column('begr_locomotor_uren', Float),
+        Column('werk_locomotor_uren', Float),
+        Column('begr_locomotief_uren', Float),
+        Column('werk_locomotief_uren', Float),
+        Column('begr_montagewagen_uren', Float),
+        Column('werk_montagewagen_uren', Float),
+        Column('begr_stormobiel_uren', Float),
+        Column('werk_stormobiel_uren', Float),
+        Column('begr_robeltrein_uren', Float),
+        Column('werk_robeltrein_uren', Float))
 
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     con = engine.connect()
@@ -226,7 +252,7 @@ def toonWerken(keuze,zoekterm, m_email):
         def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(50, 50, 1800, 900)
-            self.setWindowTitle('Werken extern opvragen')
+            self.setWindowTitle('Opvragen externe werken')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -235,6 +261,12 @@ def toonWerken(keuze,zoekterm, m_email):
             table_view.setModel(table_model)
             font = QFont("Arial", 10)
             table_view.setFont(font)
+            table_view.hideColumn(24)
+            table_view.hideColumn(25)
+            table_view.hideColumn(26)
+            table_view.hideColumn(27)
+            for i in range (51, 75):
+                table_view.hideColumn(i)
             table_view.resizeColumnsToContents()
             table_view.setSelectionBehavior(QTableView.SelectRows)
             table_view.clicked.connect(showWerk)
@@ -268,19 +300,20 @@ def toonWerken(keuze,zoekterm, m_email):
                 return self.header[col]
             return None
   
-    header = ['Werknummer','Werkomschrijving', 'Voortgangstatus','Statusweek',\
-              'Startweek','Opdrachtdatum','Aanneemsom','Betaald bedrag','Begr.Materialen',\
-              'Werk.Materialen', 'Begr.Lonen', 'Werk.Lonen', 'Begr.Materieel',\
-              'Werk.materieel','Begr.leiding', 'Werk.leiding','Begr.huisvesting',\
-              'Werk.huisvesting', 'Begr.inhuur','Werk.inhuur','Begr.Overig',\
-              'Werk.Overig', 'Begr.Vervoer', 'Werk.Vervoer', 'Begr.betonwerk',\
-              'Werk.betonwerk','Begr.kabelwerk', 'Werk.kabelwerk','Begr.grondverzet',\
-              'Werk,grondverzet', 'Meerminderwerk','Begr.constr.uren','Werk.constr.uren',\
-              'Begr.mont.uren', 'Werk.mont.uren', 'Begr.retourl.uren', 'Werk.retourl.uren',\
-              'Begr.telecomuren','Werk.telecomuren', 'Begr.bfi-uren','Werk.bfi-uren',\
-              'Begr.bvl-uren', 'Werk.bvl-uren','Begr.voedings-uren','Werk.voedings-uren',\
-              'Begr.spoorleg-uren','Werk.spoorleg-uren', 'Begr.spoorlas-uren',\
-              'Werk.spoorlas-uren', 'Begr.reis-uren', 'Werk.reis-uren']
+    header = ['Werknummer','Werkomschrijving', 'Voortgang status','Status week',\
+              'Start week','Order datum','Aanneemsom','Bedrag betaald','Begrote materialen',\
+              'Werkelijke materialen', 'Begrote lonen', 'Werkelijke lonen', 'Begroot materieel',\
+              'Werkelijk materieel','Begroot leiding', 'Werkelijk leiding','Begroot huisvesting',\
+              'Werkelijk huisvesting', 'Begrote inhuur','Werkelijk inhuur','Begroot overig',\
+              'Werkelijk overig', 'Begroot transport', 'Werkelijk transport', '',\
+              '','', '','Begroot\ngrondverzet',\
+              'Werkelijk\ngrondverzet', 'Meer/minder werk','Begrote\nconstructie uren','Werkelijke\nconstructie uren',\
+              'Begrote\nmontage uren', 'Werkelijke\nmontage uren', 'Begrote retour\nlas uren', 'Werkelijke retour\nlas uren',\
+              'Begrote\ntelecom uren','Werkelijke\ntelecom uren', 'Begrote\nbfi uren','Werkelijke\nbfi uren',\
+              'Begrote\nbovenleiding uren', 'Werkelijke\nbovenleiding uren','Begrote\nvoeding uren','Werkelijke\nvoeding uren',\
+              'Begrote spoor\nleg uren','Werkelijke spoor\nleg uren', 'Begrote spoor\nlas uren',\
+              'Werkelijke spoor\nlas uren', 'Begrote\nreisuren', 'Werkelijke\nreisuren','','','','','','','','',\
+               '','','','','','','','','','','','','','','','']
    
     data_list=[]
     for row in rpwerken:
@@ -345,7 +378,7 @@ def toonWerken(keuze,zoekterm, m_email):
             class Widget(QDialog):
                  def __init__(self, parent=None):
                     super(Widget, self).__init__(parent)
-                    self.setWindowTitle("Werken extern gegevens opvragen")
+                    self.setWindowTitle("Opvragen externe werkengegevens")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                                           
                     self.setFont(QFont('Arial', 10))
@@ -681,19 +714,165 @@ def toonWerken(keuze,zoekterm, m_email):
                     d14Edit.setAlignment(Qt.AlignRight)
                     d14Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                     d14Edit.setDisabled(True)
-                                                  
+
+                    m1Edit = QLineEdit('{:12.2f}'.format(rpwerk[51]))
+                    m1Edit.setFixedWidth(100)
+                    m1Edit.setAlignment(Qt.AlignRight)
+                    m1Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m1Edit.setDisabled(True)
+
+                    m2Edit = QLineEdit('{:12.2f}'.format(rpwerk[52]))
+                    m2Edit.setFixedWidth(100)
+                    m2Edit.setAlignment(Qt.AlignRight)
+                    m2Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m2Edit.setDisabled(True)
+
+                    m3Edit = QLineEdit('{:12.2f}'.format(rpwerk[53]))
+                    m3Edit.setFixedWidth(100)
+                    m3Edit.setAlignment(Qt.AlignRight)
+                    m3Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m3Edit.setDisabled(True)
+
+                    m4Edit = QLineEdit('{:12.2f}'.format(rpwerk[54]))
+                    m4Edit.setFixedWidth(100)
+                    m4Edit.setAlignment(Qt.AlignRight)
+                    m4Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m4Edit.setDisabled(True)
+
+                    m5Edit = QLineEdit('{:12.2f}'.format(rpwerk[55]))
+                    m5Edit.setFixedWidth(100)
+                    m5Edit.setAlignment(Qt.AlignRight)
+                    m5Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m5Edit.setDisabled(True)
+
+                    m6Edit = QLineEdit('{:12.2f}'.format(rpwerk[56]))
+                    m6Edit.setFixedWidth(100)
+                    m6Edit.setAlignment(Qt.AlignRight)
+                    m6Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m6Edit.setDisabled(True)
+
+                    m7Edit = QLineEdit('{:12.2f}'.format(rpwerk[57]))
+                    m7Edit.setFixedWidth(100)
+                    m7Edit.setAlignment(Qt.AlignRight)
+                    m7Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m7Edit.setDisabled(True)
+
+                    m8Edit = QLineEdit('{:12.2f}'.format(rpwerk[58]))
+                    m8Edit.setFixedWidth(100)
+                    m8Edit.setAlignment(Qt.AlignRight)
+                    m8Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m8Edit.setDisabled(True)
+
+                    m9Edit = QLineEdit('{:12.2f}'.format(rpwerk[59]))
+                    m9Edit.setFixedWidth(100)
+                    m9Edit.setAlignment(Qt.AlignRight)
+                    m9Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m9Edit.setDisabled(True)
+
+                    m10Edit = QLineEdit('{:12.2f}'.format(rpwerk[60]))
+                    m10Edit.setFixedWidth(100)
+                    m10Edit.setAlignment(Qt.AlignRight)
+                    m10Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m10Edit.setDisabled(True)
+
+                    m11Edit = QLineEdit('{:12.2f}'.format(rpwerk[61]))
+                    m11Edit.setFixedWidth(100)
+                    m11Edit.setAlignment(Qt.AlignRight)
+                    m11Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m11Edit.setDisabled(True)
+
+                    m12Edit = QLineEdit('{:12.2f}'.format(rpwerk[62]))
+                    m12Edit.setFixedWidth(100)
+                    m12Edit.setAlignment(Qt.AlignRight)
+                    m12Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m12Edit.setDisabled(True)
+
+                    m13Edit = QLineEdit('{:12.2f}'.format(rpwerk[63]))
+                    m13Edit.setFixedWidth(100)
+                    m13Edit.setAlignment(Qt.AlignRight)
+                    m13Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m13Edit.setDisabled(True)
+
+                    m14Edit = QLineEdit('{:12.2f}'.format(rpwerk[64]))
+                    m14Edit.setFixedWidth(100)
+                    m14Edit.setAlignment(Qt.AlignRight)
+                    m14Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m14Edit.setDisabled(True)
+
+                    m15Edit = QLineEdit('{:12.2f}'.format(rpwerk[65]))
+                    m15Edit.setFixedWidth(100)
+                    m15Edit.setAlignment(Qt.AlignRight)
+                    m15Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m15Edit.setDisabled(True)
+
+                    m16Edit = QLineEdit('{:12.2f}'.format(rpwerk[66]))
+                    m16Edit.setFixedWidth(100)
+                    m16Edit.setAlignment(Qt.AlignRight)
+                    m16Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m16Edit.setDisabled(True)
+
+                    m17Edit = QLineEdit('{:12.2f}'.format(rpwerk[67]))
+                    m17Edit.setFixedWidth(100)
+                    m17Edit.setAlignment(Qt.AlignRight)
+                    m17Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m17Edit.setDisabled(True)
+
+                    m18Edit = QLineEdit('{:12.2f}'.format(rpwerk[68]))
+                    m18Edit.setFixedWidth(100)
+                    m18Edit.setAlignment(Qt.AlignRight)
+                    m18Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m18Edit.setDisabled(True)
+
+                    m19Edit = QLineEdit('{:12.2f}'.format(rpwerk[69]))
+                    m19Edit.setFixedWidth(100)
+                    m19Edit.setAlignment(Qt.AlignRight)
+                    m19Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m19Edit.setDisabled(True)
+
+                    m20Edit = QLineEdit('{:12.2f}'.format(rpwerk[70]))
+                    m20Edit.setFixedWidth(100)
+                    m20Edit.setAlignment(Qt.AlignRight)
+                    m20Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m20Edit.setDisabled(True)
+
+                    m21Edit = QLineEdit('{:12.2f}'.format(rpwerk[71]))
+                    m21Edit.setFixedWidth(100)
+                    m21Edit.setAlignment(Qt.AlignRight)
+                    m21Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m21Edit.setDisabled(True)
+
+                    m22Edit = QLineEdit('{:12.2f}'.format(rpwerk[72]))
+                    m22Edit.setFixedWidth(100)
+                    m22Edit.setAlignment(Qt.AlignRight)
+                    m22Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m22Edit.setDisabled(True)
+
+                    m23Edit = QLineEdit('{:12.2f}'.format(rpwerk[73]))
+                    m23Edit.setFixedWidth(100)
+                    m23Edit.setAlignment(Qt.AlignRight)
+                    m23Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m23Edit.setDisabled(True)
+
+                    m24Edit = QLineEdit('{:12.2f}'.format(rpwerk[74]))
+                    m24Edit.setFixedWidth(100)
+                    m24Edit.setAlignment(Qt.AlignRight)
+                    m24Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
+                    m24Edit.setDisabled(True)
+
                     grid = QGridLayout()
                     grid.setSpacing(20)
-                    
-                    lbl = QLabel()
-                    pixmap = QPixmap('./images/logos/verbinding.jpg')
-                    lbl.setPixmap(pixmap)
-                    grid.addWidget(lbl ,0 , 0)
-                    
+
+                    pyqt = QLabel()
+                    movie = QMovie('./images/logos/pyqt.gif')
+                    pyqt.setMovie(movie)
+                    movie.setScaledSize(QSize(160, 60))
+                    movie.start()
+                    grid.addWidget(pyqt, 0, 0, 1, 2)
+
                     logo = QLabel()
                     pixmap = QPixmap('./images/logos/logo.jpg')
                     logo.setPixmap(pixmap)
-                    grid.addWidget(logo , 0, 8, 1, 1, Qt.AlignRight)
+                    grid.addWidget(logo , 0, 11, 1, 1, Qt.AlignRight)
             
                     self.setFont(QFont('Arial', 10))
                     
@@ -703,36 +882,36 @@ def toonWerken(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Werkomschrijving'), 1, 2)
                     grid.addWidget(q2Edit, 1, 3, 1, 3) 
                                                         
-                    grid.addWidget(QLabel('Voortgangstatus'), 1, 6)
+                    grid.addWidget(QLabel('Voortgang status'), 1, 6)
                     grid.addWidget(q3Edit, 1, 7)
-
+                    
                     grid.addWidget(QLabel('       Status week'), 1, 7, 1, 1, Qt.AlignRight)
                     grid.addWidget(q4Edit, 1, 8) 
                      
-                    grid.addWidget(QLabel('Startweek'), 2, 2)
-                    grid.addWidget(q5Edit, 2, 3)
-                                                              
-                    grid.addWidget(QLabel('Aanneemsom'), 2, 4)
-                    grid.addWidget(q8Edit, 2, 5)
-                    
-                    grid.addWidget(QLabel('Meerminderwerk'), 2, 6)
-                    grid.addWidget(q9Edit, 2,7)
-                          
-                    lbl1 = QLabel('Financieële totaal bedragen')
+                    grid.addWidget(QLabel('Start week'), 1, 9)
+                    grid.addWidget(q5Edit, 1, 10)
+
+                    lbl1 = QLabel('Totaal financiele bedragen')
                     lbl1.setStyleSheet("font: 12pt Comic Sans MS")
                     grid.addWidget(lbl1, 3, 0, 1, 2)
+
+                    grid.addWidget(QLabel('Aanneemsom'), 4, 0)
+                    grid.addWidget(q8Edit, 4, 1)
+
+                    grid.addWidget(QLabel('Totaal inkomsten'), 4, 2)
+                    grid.addWidget(q21Edit, 4, 3)
                     
-                    grid.addWidget(QLabel('Totaal opbrengsten'), 4, 0)
-                    grid.addWidget(q21Edit, 4, 1)
+                    grid.addWidget(QLabel('Totaal kosten'), 4, 4)
+                    grid.addWidget(q22Edit, 4, 5)
+
+                    grid.addWidget(QLabel('Meer/minder werk'), 4, 6)
+                    grid.addWidget(q9Edit, 4, 7)
                     
-                    grid.addWidget(QLabel('Totaal kosten'), 4, 2)
-                    grid.addWidget(q22Edit, 4, 3)
+                    grid.addWidget(QLabel('Bedrag betaald'), 4, 8)
+                    grid.addWidget(q11Edit, 4, 9)
                     
-                    grid.addWidget(QLabel('Betaald bedrag'), 4, 4)
-                    grid.addWidget(q11Edit, 4, 5)
-                    
-                    grid.addWidget(QLabel('Te factureren'), 4,  6)
-                    grid.addWidget(q26Edit, 4, 7)
+                    grid.addWidget(QLabel('Te factureren'), 4, 10)
+                    grid.addWidget(q26Edit, 4, 11)
                     
                     grid.addWidget(QLabel('Begroot'), 5, 1)
                     grid.addWidget(QLabel('Werkelijk'), 5, 2)
@@ -740,7 +919,9 @@ def toonWerken(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Werkelijk'), 5, 5)
                     grid.addWidget(QLabel('Begroot'), 5, 7)
                     grid.addWidget(QLabel('Werkelijk'), 5, 8)
-           
+                    grid.addWidget(QLabel('Begroot'), 5, 10)
+                    grid.addWidget(QLabel('Werkelijk'), 5, 11)
+
                     grid.addWidget(QLabel('Materialen'), 6, 0)
                     grid.addWidget(q12Edit, 6, 1) 
                     grid.addWidget(q13Edit, 6, 2) 
@@ -753,26 +934,24 @@ def toonWerken(keuze,zoekterm, m_email):
                     grid.addWidget(q15Edit, 6, 7)                           
                     grid.addWidget(q16Edit, 6, 8)
                     
-                    grid.addWidget(QLabel('Derden'), 7, 0)
-                    grid.addWidget(q23Edit, 7, 1)
-                    grid.addWidget(q24Edit, 7, 2)
-                     
-                    grid.addWidget(QLabel('Leiding'), 7, 3)
-                    grid.addWidget(q18Edit, 7, 4) 
-                    grid.addWidget(q17Edit, 7,5) 
-                        
-                    lbl2 = QLabel('Werkuren verbruik')
+                    grid.addWidget(QLabel('Stelposten'), 6, 9)
+                    grid.addWidget(q23Edit, 6, 10)
+                    grid.addWidget(q24Edit, 6, 11)
+
+                    lbl2 = QLabel('Gewerkte uren verbruik')
                     lbl2.setStyleSheet("font: 12pt Comic Sans MS")
                     grid.addWidget(lbl2, 8, 0, 1, 2)
                     
                     grid.addWidget(QLabel('Begroot'), 9, 1)
                     grid.addWidget(QLabel('Werkelijk'), 9, 2)
                     grid.addWidget(QLabel('Begroot'), 9, 4)
-                    grid.addWidget(QLabel('Werkelijk'), 9, 5) 
+                    grid.addWidget(QLabel('Werkelijk'), 9, 5)
                     grid.addWidget(QLabel('Begroot'), 9, 7)
-                    grid.addWidget(QLabel('Werkelijk'), 9, 8)  
+                    grid.addWidget(QLabel('Werkelijk'), 9, 8)
+                    grid.addWidget(QLabel('Begroot'), 9, 10)
+                    grid.addWidget(QLabel('Werkelijk'), 9, 11)
                     
-                    grid.addWidget(QLabel('Construktie'), 10, 0)
+                    grid.addWidget(QLabel('Constructie'), 10, 0)
                     grid.addWidget(u1Edit, 10,1)
                     grid.addWidget(u2Edit, 10,2) 
 
@@ -780,85 +959,144 @@ def toonWerken(keuze,zoekterm, m_email):
                     grid.addWidget(u3Edit, 10,4)
                     grid.addWidget(u4Edit, 10,5) 
                     
-                    grid.addWidget(QLabel('Retourlas'), 10, 6)
+                    grid.addWidget(QLabel('Retourlassen'), 10, 6)
                     grid.addWidget(u5Edit, 10,7)
                     grid.addWidget(u6Edit, 10,8) 
                     
-                    grid.addWidget(QLabel('Telecom'), 11, 0)
-                    grid.addWidget(u7Edit, 11,1)
-                    grid.addWidget(u8Edit, 11,2) 
+                    grid.addWidget(QLabel('Telecom'), 10, 9)
+                    grid.addWidget(u7Edit, 10,10)
+                    grid.addWidget(u8Edit, 10,11)
                     
-                    grid.addWidget(QLabel('Bfi'), 11, 3)
-                    grid.addWidget(u9Edit, 11,4)
-                    grid.addWidget(u10Edit, 11,5)
+                    grid.addWidget(QLabel('BFI monteur'), 11, 0)
+                    grid.addWidget(u9Edit, 11,1)
+                    grid.addWidget(u10Edit, 11,2)
                     
-                    grid.addWidget(QLabel('Bovenleiding'), 11, 6)
-                    grid.addWidget(u11Edit, 11,7)
-                    grid.addWidget(u12Edit, 11,8)
+                    grid.addWidget(QLabel('Bovenleding'), 11, 3)
+                    grid.addWidget(u11Edit, 11,4)
+                    grid.addWidget(u12Edit, 11,5)
                     
-                    grid.addWidget(QLabel('Voeding'), 12, 0)
-                    grid.addWidget(u13Edit, 12,1)
-                    grid.addWidget(u14Edit, 12,2)
+                    grid.addWidget(QLabel('Voeding'), 11, 6)
+                    grid.addWidget(u13Edit, 11,7)
+                    grid.addWidget(u14Edit, 11,8)
                     
-                    grid.addWidget(QLabel('Spoorleg'), 12, 3)
-                    grid.addWidget(u15Edit, 12,4)
-                    grid.addWidget(u16Edit, 12,5)
+                    grid.addWidget(QLabel('Spoorleggen'), 11, 9)
+                    grid.addWidget(u15Edit, 11,10)
+                    grid.addWidget(u16Edit, 11,11)
                     
-                    grid.addWidget(QLabel('Spoorlas'), 12, 6)
-                    grid.addWidget(u17Edit, 12,7)
-                    grid.addWidget(u18Edit, 12,8)
+                    grid.addWidget(QLabel('Spoorlassen'), 12, 0)
+                    grid.addWidget(u17Edit, 12,1)
+                    grid.addWidget(u18Edit, 12,2)
                     
-                    grid.addWidget(QLabel('Reisuren'), 13, 0)
-                    grid.addWidget(u19Edit, 13,1)
-                    grid.addWidget(u20Edit, 13,2)
-                    
-                    lbl3 = QLabel('Diensten derden')
+                    grid.addWidget(QLabel('Reisuren'), 12, 3)
+                    grid.addWidget(u19Edit, 12,4)
+                    grid.addWidget(u20Edit, 12,5)
+
+                    lbl2m = QLabel('Materieel uren verbruik')
+                    lbl2m.setStyleSheet("font: 12pt Comic Sans MS")
+                    grid.addWidget(lbl2m, 13, 0, 1, 2)
+
+                    grid.addWidget(QLabel('Begroot'), 14, 1)
+                    grid.addWidget(QLabel('Werkelijk'), 14, 2)
+                    grid.addWidget(QLabel('Begroot'), 14, 4)
+                    grid.addWidget(QLabel('Werkelijk'), 14, 5)
+                    grid.addWidget(QLabel('Begroot'), 14, 7)
+                    grid.addWidget(QLabel('Werkelijk'), 14, 8)
+                    grid.addWidget(QLabel('Begroot'), 14, 10)
+                    grid.addWidget(QLabel('Werkelijk'), 14, 11)
+
+                    grid.addWidget(QLabel('Sleuvengraver'), 15, 0)
+                    grid.addWidget(m1Edit, 15, 1)
+                    grid.addWidget(m2Edit, 15, 2)
+
+                    grid.addWidget(QLabel('Persmachine'), 15, 3)
+                    grid.addWidget(m3Edit, 15, 4)
+                    grid.addWidget(m4Edit, 15, 5)
+
+                    grid.addWidget(QLabel('Atlaskraan'), 15, 6)
+                    grid.addWidget(m5Edit, 15, 7)
+                    grid.addWidget(m6Edit, 15, 8)
+
+                    grid.addWidget(QLabel('Kraan groot'), 15, 9)
+                    grid.addWidget(m7Edit, 15, 10)
+                    grid.addWidget(m8Edit, 15, 11)
+
+                    grid.addWidget(QLabel('Mainliner'), 16, 0)
+                    grid.addWidget(m9Edit, 16, 1)
+                    grid.addWidget(m10Edit, 16, 2)
+
+                    grid.addWidget(QLabel('Hormachine'), 16, 3)
+                    grid.addWidget(m11Edit, 16, 4)
+                    grid.addWidget(m12Edit, 16, 5)
+
+                    grid.addWidget(QLabel('Wagon'), 16, 6)
+                    grid.addWidget(m13Edit, 16, 7)
+                    grid.addWidget(m14Edit, 16, 8)
+
+                    grid.addWidget(QLabel('Locomotor'), 16, 9)
+                    grid.addWidget(m15Edit, 16, 10)
+                    grid.addWidget(m16Edit, 16, 11)
+
+                    grid.addWidget(QLabel('Locomotief'), 17, 0)
+                    grid.addWidget(m17Edit, 17, 1)
+                    grid.addWidget(m18Edit, 17, 2)
+
+                    grid.addWidget(QLabel('Montagewagen'), 17, 3)
+                    grid.addWidget(m19Edit, 17, 4)
+                    grid.addWidget(m20Edit, 17, 5)
+
+                    grid.addWidget(QLabel('Stormobiel'), 17, 6)
+                    grid.addWidget(m21Edit, 17, 7)
+                    grid.addWidget(m22Edit, 17, 8)
+
+                    grid.addWidget(QLabel('Robeltrein'), 17, 9)
+                    grid.addWidget(m23Edit, 17, 10)
+                    grid.addWidget(m24Edit, 17, 11)
+
+                    lbl3 = QLabel('Stelpost werk / Stelpost bedrag')
                     lbl3.setStyleSheet("font: 12pt Comic Sans MS")
-                    grid.addWidget(lbl3, 14, 0, 1, 2)
-                    
-                    grid.addWidget(QLabel('Begroot'), 15, 1)
-                    grid.addWidget(QLabel('Werkelijk'), 15, 2)
-                    grid.addWidget(QLabel('Begroot'), 15, 4)
-                    grid.addWidget(QLabel('Werkelijk'), 15, 5) 
-                    grid.addWidget(QLabel('Begroot'), 15, 7)
-                    grid.addWidget(QLabel('Werkelijk'), 15, 8)  
-                      
-                    grid.addWidget(QLabel('Huisvesting'), 16, 0)
-                    grid.addWidget(d1Edit, 16,1)
-                    grid.addWidget(d2Edit, 16,2)
-                    
-                    grid.addWidget(QLabel('Inhuur'), 16, 3)
-                    grid.addWidget(d3Edit, 16,4)
-                    grid.addWidget(d4Edit, 16,5)
-                    
-                    grid.addWidget(QLabel('Overig'), 16, 6)
-                    grid.addWidget(d5Edit, 16,7)
-                    grid.addWidget(d6Edit, 16,8)
-                    
-                    grid.addWidget(QLabel('Vervoer'), 17, 0)
-                    grid.addWidget(d7Edit, 17,1)
-                    grid.addWidget(d8Edit, 17,2)
-                    
-                    grid.addWidget(QLabel('Betonwerk'), 17, 3)
-                    grid.addWidget(d9Edit, 17,4)
-                    grid.addWidget(d10Edit, 17,5)
-                    
-                    grid.addWidget(QLabel('Kabelwerk'), 17, 6)
-                    grid.addWidget(d11Edit, 17,7)
-                    grid.addWidget(d12Edit, 17,8)
-                    
-                    grid.addWidget(QLabel('Grondverzet'), 18, 0)
-                    grid.addWidget(d13Edit, 18,1)
-                    grid.addWidget(d14Edit, 18,2)
-                     
-                    grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 20, 0, 1, 8, Qt.AlignCenter)
+                    grid.addWidget(lbl3, 18, 0, 1, 2)
+
+                    grid.addWidget(QLabel('Begroot'), 19, 1)
+                    grid.addWidget(QLabel('Werkelijk'), 19, 2)
+                    grid.addWidget(QLabel('Begroot'), 19, 4)
+                    grid.addWidget(QLabel('Werkelijk'), 19, 5)
+                    grid.addWidget(QLabel('Begroot'), 19, 7)
+                    grid.addWidget(QLabel('Werkelijk'), 19, 8)
+                    grid.addWidget(QLabel('Begroot'), 19, 10)
+                    grid.addWidget(QLabel('Werkelijk'), 19, 11)
+
+                    grid.addWidget(QLabel('Huisvesting'), 20, 0)
+                    grid.addWidget(d1Edit, 20, 1)
+                    grid.addWidget(d2Edit, 20, 2)
+
+                    grid.addWidget(QLabel('Leiding'), 20, 3)
+                    grid.addWidget(q18Edit, 20, 4)
+                    grid.addWidget(q17Edit, 20, 5)
+
+                    grid.addWidget(QLabel('Inhuur'), 20, 6)
+                    grid.addWidget(d3Edit, 20, 7)
+                    grid.addWidget(d4Edit, 20, 8)
+
+                    grid.addWidget(QLabel('Overig'), 20, 9)
+                    grid.addWidget(d5Edit, 20, 10)
+                    grid.addWidget(d6Edit, 20, 11)
+
+                    grid.addWidget(QLabel('Transport'), 21, 0)
+                    grid.addWidget(d7Edit, 21, 1)
+                    grid.addWidget(d8Edit, 21, 2)
+
+                    grid.addWidget(QLabel('Grondverzet'), 21, 3)
+                    grid.addWidget(d13Edit, 21, 4)
+                    grid.addWidget(d14Edit, 21, 5)
+
+                    grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 22, 0, 1, 11, Qt.AlignCenter)
                     self.setLayout(grid)
-                    self.setGeometry(400, 50, 350, 300)
+                    self.setGeometry(100, 30, 450, 300)
                                                                             
                     cancelBtn = QPushButton('Sluiten')
                     cancelBtn.clicked.connect(self.close)
                 
-                    grid.addWidget(cancelBtn, 19, 8, 1, 1, Qt.AlignRight)
+                    grid.addWidget(cancelBtn, 22, 11, 1, 1, Qt.AlignRight)
                     cancelBtn.setFont(QFont("Arial",10))
                     cancelBtn.setFixedWidth(100)
                     cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")

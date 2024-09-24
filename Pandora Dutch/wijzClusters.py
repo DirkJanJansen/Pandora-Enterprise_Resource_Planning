@@ -83,8 +83,7 @@ def zoeken(m_email):
             k0Edit.addItem('HA-HK. Bovenleiding + draagconstruktie')
             k0Edit.addItem('JA-JK. Voedingen + Onderstations')
             k0Edit.activated[str].connect(self.k0Changed)
-    
-      
+
             grid = QGridLayout()
             grid.setSpacing(20)
                           
@@ -163,6 +162,13 @@ def toonClusters(keuze, m_email):
             table_view.setModel(table_model)
             font = QFont("Arial", 10)
             table_view.setFont(font)
+            table_view.hideColumn(31)
+            table_view.hideColumn(32)
+            table_view.hideColumn(33)
+            table_view.hideColumn(34)
+            table_view.hideColumn(35)
+            table_view.hideColumn(36)
+            table_view.hideColumn(37)
             table_view.resizeColumnsToContents()
             table_view.setSelectionBehavior(QTableView.SelectRows)
             table_view.clicked.connect(showSelection)
@@ -234,7 +240,7 @@ def toonClusters(keuze, m_email):
               'uren_inhuur', 'Sleuvengraver', 'Persapparaat', 'Atlaskraan',\
               'Kraan_groot', 'Mainliner', 'Hormachine', 'Wagon', 'Locomotor',\
               'Locomotief', 'Montagewagen', 'Stormobiel', 'uren_telecom', 'Robeltrein',\
-              'Leiding', 'Huisvesting', 'Kabelwerk', 'Grondverzet', 'Betonwerk', 'Vervoer', 'Overig']
+              '', '', '', '', '', '', '']
     
     metadata = MetaData()
     clusters = Table('clusters', metadata,
@@ -821,42 +827,7 @@ def toonClusters(keuze, m_email):
                     lbl18.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl18, 17, 2)
                     grid.addWidget(q16Edit, 17, 3)
-                    
-                    lbl32 = QLabel('Leiding')  
-                    lbl32.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl32, 17, 0)
-                    grid.addWidget(q31Edit, 17, 1)
-                    
-                    lbl33 = QLabel('Huisvesting')  
-                    lbl33.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl33, 18, 0)
-                    grid.addWidget(q32Edit, 18, 1)
-                    
-                    lbl34 = QLabel('Kabelwerk')  
-                    lbl34.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl34, 18, 2)
-                    grid.addWidget(q33Edit, 18, 3)
-                    
-                    lbl35 = QLabel('Grondverzet')  
-                    lbl35.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl35, 19, 0)
-                    grid.addWidget(q34Edit, 19, 1)
-                    
-                    lbl36 = QLabel('Betonwerk')  
-                    lbl36.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl36, 19, 2)
-                    grid.addWidget(q35Edit, 19, 3)
-                
-                    lbl37 = QLabel('Vervoer')  
-                    lbl37.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl37, 20, 0)
-                    grid.addWidget(q36Edit, 20, 1)
-                    
-                    lbl38 = QLabel('Overig')  
-                    lbl38.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl38, 20, 2)
-                    grid.addWidget(q37Edit, 20, 3)
-          
+
                     lbl = QLabel()
                     pixmap = QPixmap('./images/logos/verbinding.jpg')
                     lbl.setPixmap(pixmap)
@@ -961,28 +932,7 @@ def toonClusters(keuze, m_email):
                     
                 def q30Changed(self,text):
                     self.Robeltrein.setText(text)
-               
-                def q31Changed(self,text):
-                    self.Leiding.setText(text)
-                    
-                def q32Changed(self,text):
-                    self.Huisvesting.setText(text)
-                    
-                def q33Changed(self,text):
-                    self.Kabelwerk.setText(text)
-                    
-                def q34Changed(self,text):
-                    self.Grondverzet.setText(text)
-                    
-                def q35Changed(self,text):
-                    self.Betonwerk.setText(text)
-                    
-                def q36Changed(self,text):
-                    self.Vervoer.setText(text)
-                    
-                def q37Changed(self,text):
-                    self.Overig.setText(text)
-                             
+
                 def returnq1(self):
                     return self.Omschrijving.text()
                                 
@@ -1054,28 +1004,7 @@ def toonClusters(keuze, m_email):
         
                 def returnq30(self):
                     return self.Robeltrein.text()
-                
-                def returnq31(self):
-                    return self.Leiding.text()
-                
-                def returnq32(self):
-                    return self.Huisvesting.text()
-                
-                def returnq33(self):
-                    return self.Kabelwerk.text()
-                
-                def returnq34(self):
-                    return self.Grondverzet.text()
-                
-                def returnq35(self):
-                    return self.Betonwerk.text()
-                
-                def returnq36(self):
-                    return self.Vervoer.text()
-                
-                def returnq37(self):
-                    return self.Overig.text()
-                                       
+
                 @staticmethod
                 def getData(parent=None):
                     dialog = MainWindow()
@@ -1087,16 +1016,13 @@ def toonClusters(keuze, m_email):
                             dialog.returnq19(), dialog.returnq20(), dialog.returnq21(),\
                             dialog.returnq22(), dialog.returnq23(), dialog.returnq24(),\
                             dialog.returnq25(), dialog.returnq26(), dialog.returnq27(),\
-                            dialog.returnq28(), dialog.returnq29(), dialog.returnq30(),\
-                            dialog.returnq31(), dialog.returnq32(), dialog.returnq33(),\
-                            dialog.returnq34(), dialog.returnq35(), dialog.returnq36(),\
-                            dialog.returnq37()]  
-                                       
+                            dialog.returnq28(), dialog.returnq29(), dialog.returnq30()]
+
             mainWin = MainWindow()
             data = mainWin.getData()
      
             chflag = 0
-            for k in range(0,31):
+            for k in range(0,24):
                 if data[k]:
                     chflag = 1
             if chflag == 0:
@@ -1197,35 +1123,7 @@ def toonClusters(keuze, m_email):
                 mf23 = float(data[23])
             else:
                 mf23= rpsel[30]
-            if data[24]:
-                mf24 = float(data[24])
-            else:
-                mf24 = rpsel[31]
-            if data[25]:
-                mf25 = float(data[25])
-            else:
-                mf25 = rpsel[32]
-            if data[26]:
-                mf26 = float(data[26])
-            else:
-                mf26 = rpsel[33]
-            if data[27]:
-                mf27 = float(data[27])
-            else:
-                mf27 = rpsel[34]
-            if data[28]:
-                mf28 = float(data[28])
-            else:
-                mf28 = rpsel[35]
-            if data[29]:
-                mf29 = float(data[29])
-            else:
-                mf29 = rpsel[36]
-            if data[30]:
-                mf30 = float(data[30])
-            else:
-                mf30 = rpsel[37]
-                   
+
             metadata = MetaData()
             params_services = Table('params_services', metadata,
                                     Column('servicesID', Integer, primary_key=True),
@@ -1243,9 +1141,7 @@ def toonClusters(keuze, m_email):
                 uren_bvl=mf7, uren_spoorleg=mf8, uren_spoorlas=mf9, uren_inhuur=mf10,\
                 sleuvengraver=mf11, persapparaat=mf12, atlaskraan=mf13, kraan_groot=mf14,\
                 mainliner=mf15, hormachine=mf16, wagon=mf17,locomotor=mf18,locomotief=mf19,\
-                montagewagen=mf20, stormobiel=mf21, uren_telecom=mf22, robeltrein=mf23,
-                leiding=mf24, huisvesting=mf25, kabelwerk=mf26,grondverzet=mf27,\
-                betonwerk=mf28,vervoer=mf29, overig=mf30)
+                montagewagen=mf20, stormobiel=mf21, uren_telecom=mf22, robeltrein=mf23)
             con.execute(upd1)
             upd2 = update(clusters).where(clusters.c.clusterID == clusternr).values( \
                 lonen=clusters.c.uren_constr * rppar[1][1] + clusters.c.uren_mont * rppar[2][1] \

@@ -16,8 +16,8 @@ def ongInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer\nzoekterm opnieuw invoeren s.v.p.!')
-    msg.setWindowTitle('Dienstenorderrs opvragen')               
+    msg.setText('Onjuiste invoer voer zoekterm\nopnieuw in!')
+    msg.setWindowTitle('Opvragen stelposten')
     msg.exec_() 
 
 def geenRecord():
@@ -25,31 +25,31 @@ def geenRecord():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen record gevonden\nmaak een andere selektie s.v.p.!')
-    msg.setWindowTitle('Dienstenorders opvragen')               
+    msg.setText('Geen record gevonden\nmaak een andere selektie!')
+    msg.setWindowTitle('Opvragen stelposten')
     msg.exec_() 
 
 def inkooporderKeuze(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Opvragen Inkooporder Diensten")
+            self.setWindowTitle("Request Purchase Order Provisional Work")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
     
             self.Keuze = QLabel()
             k0Edit = QComboBox()
-            k0Edit.setFixedWidth(330)
+            k0Edit.setFixedWidth(350)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('                Sorteersleutel voor zoeken')
-            k0Edit.addItem('1. Alle dienstenorders op werknr gesorteerd')
-            k0Edit.addItem('2. Filter op bedrijfsnaam')
-            k0Edit.addItem('3. Filter op naam extern werk')
-            k0Edit.addItem('4. Filter op extern werknummer')
-            k0Edit.addItem('5. Filter op inkoopordernummer.')
-            k0Edit.addItem('6. Levertijd yyyy(-mm(-dd))')
+            k0Edit.addItem('                      Search sort key')
+            k0Edit.addItem('1. Alle stelposten gesorteerd op werknummer')
+            k0Edit.addItem('2. Gefilterd op bedrijfsnaam')
+            k0Edit.addItem('3. Gefilterd op naam werk')
+            k0Edit.addItem('4. Gefilterd op extern werknummer')
+            k0Edit.addItem('5. Gefilterd op inkoop order nummer.')
+            k0Edit.addItem('6. Leverdatum date jjjj(-mm(-dd))')
             k0Edit.activated[str].connect(self.k0Changed)
                             
             self.Zoekterm = QLabel()
@@ -67,7 +67,7 @@ def inkooporderKeuze(m_email):
             grid.addWidget(lbl , 0, 0, 1, 2)
                                   
             grid.addWidget(k0Edit, 1, 0, 1, 3, Qt.AlignRight)
-            lbl1 = QLabel('Zoekterm')  
+            lbl1 = QLabel('Zoekterm')
             lbl1.setAlignment(Qt.AlignRight)
             grid.addWidget(lbl1, 2, 0)
             grid.addWidget(zktermEdit, 2, 1, 1, 1, Qt.AlignRight)
@@ -227,7 +227,7 @@ def opvrDienstorders(keuze,zoekterm, m_email):
        def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(100, 50, 1600, 900)
-            self.setWindowTitle('Inkooporders diensten opvragen')
+            self.setWindowTitle('Opvragen order stelposten')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -238,6 +238,7 @@ def opvrDienstorders(keuze,zoekterm, m_email):
             table_view.setFont(font)
             table_view.resizeColumnsToContents()
             table_view.setColumnHidden(2,True)
+            table_view.setColumnHidden(12, True)
             table_view.setColumnHidden(14,True)
             table_view.setColumnHidden(15,True)
             table_view.setSelectionBehavior(QTableView.SelectRows)
@@ -272,10 +273,10 @@ def opvrDienstorders(keuze,zoekterm, m_email):
                 return self.header[col]
             return None
        
-    header = ['Orderinkoopdienstnr','Orderinkoopnr', 'Werknummer','Dienstsoort', 'Dienstomschrijving', 'Aanneemsom',\
-          'Planning start', 'Werkelijk start','Panning gereed', 'Werkelijk gereed', 'Acceptatie gereed', 'Acceptatie datum', 'Meerminderwerk',\
-          'Regelnr', 'Orderinkoopnr','Leverancier', 'Besteldatum', 'Goedgekeurd', 'Betaald',\
-          'Afgemeld','Leveranciernummer', 'Leveranciernaam' ,'Rechtsvorm','Werknummer','Werkomschrijving']    
+    header = ['Order inkoopID','Order inkoop nummer', 'Werknummer','Type van stelpost', 'Stelpost omschrijving', 'Aanneemsom',\
+          'Geplande start', 'Werkelijke start','Gepland gereed', 'Werkelijk gereed', 'Goedgekeurd', 'Datum goedgekeurd', '',\
+          'Regelnummer', 'Ordernummer inkoop','Leverancier', 'Order datum', 'Goedgekeurd', 'Betaald',\
+          'Afgesloten','Leveranciernummer', 'Leveranciernaam' ,'Rechtspositie','Werknummer','Werkomschrijving']
         
     data_list=[]
     for row in rpinkorders:
@@ -295,7 +296,7 @@ def opvrDienstorders(keuze,zoekterm, m_email):
             class Widget(QDialog):
                  def __init__(self, parent=None):
                     super(Widget, self).__init__(parent)
-                    self.setWindowTitle("Inkooporders diensten opvragen")
+                    self.setWindowTitle("Opvragen inkoop orders stelposten")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                                           
                     self.setFont(QFont('Arial', 10))
@@ -450,16 +451,16 @@ def opvrDienstorders(keuze,zoekterm, m_email):
             
                     self.setFont(QFont('Arial', 10))
                     
-                    lbl1 = QLabel('Ordergegevens')
+                    lbl1 = QLabel('Order data')
                     lbl1.setStyleSheet("font: 12pt Comic Sans MS")
                     grid.addWidget(lbl1, 1, 0)
-                    grid.addWidget(QLabel('Orderinkoopnummer'), 2, 0)
+                    grid.addWidget(QLabel('Ordernummer inkoop'), 2, 0)
                     grid.addWidget(q2Edit, 2, 1) 
                                                         
                     grid.addWidget(QLabel('Leveranciernummer'), 2, 2)
                     grid.addWidget(q4Edit, 2, 3)
                     
-                    grid.addWidget(QLabel('Besteldatum'), 2, 4)
+                    grid.addWidget(QLabel('Order datum'), 2, 4)
                     grid.addWidget(q5Edit, 2 , 5) 
                      
                     grid.addWidget(QLabel('Goedgekeurd'), 3, 0)
@@ -468,10 +469,10 @@ def opvrDienstorders(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Betaald'), 3, 2)
                     grid.addWidget(q18Edit, 3, 3)
                                               
-                    grid.addWidget(QLabel('Afgemeld'), 3, 4)
+                    grid.addWidget(QLabel('Afgesloten'), 3, 4)
                     grid.addWidget(q12Edit, 3, 5)
      
-                    lbl2 = QLabel('Orderregelgegevens'+' - regelnummer: '+str(rporddnst[13]))
+                    lbl2 = QLabel('Order regel data'+' - regelnummer: '+str(rporddnst[13]))
                     lbl2.setStyleSheet("font: 12pt Comic Sans MS")               
                     grid.addWidget(lbl2, 5, 0, 1, 4)
                     grid.addWidget(QLabel('Leveranciernummer'), 6, 0)
@@ -485,39 +486,36 @@ def opvrDienstorders(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Werknummer'), 8, 0)
                     grid.addWidget(q15Edit, 8, 1) 
                                                            
-                    grid.addWidget(QLabel('Werkomschrijving'), 9, 0)
+                    grid.addWidget(QLabel('Wwerkomschrijving'), 9, 0)
                     grid.addWidget(q16Edit, 9, 1, 1, 3)
                     
-                    grid.addWidget(QLabel('Dienstomschrijving'), 10, 0)
+                    grid.addWidget(QLabel('Stelpost\nomschrijving'), 10, 0)
                     grid.addWidget(q17Edit, 10, 1, 1, 3)
                     
-                    grid.addWidget(QLabel('Dienstsoort'), 11, 0)
+                    grid.addWidget(QLabel('Type\nstelpost'), 11, 0)
                     grid.addWidget(q11Edit, 11, 1, 1, 3)
                     
                     grid.addWidget(QLabel('Aanneemsom'), 12, 0)
                     grid.addWidget(q20Edit, 12, 1)
                                     
-                    grid.addWidget(QLabel('Planning Start'), 12, 2)
+                    grid.addWidget(QLabel('Geplande start'), 12, 2)
                     grid.addWidget(q21Edit, 12, 3)
                     
-                    grid.addWidget(QLabel('Werkelijk start'), 12, 4)
+                    grid.addWidget(QLabel('Werkelijke start'), 12, 4)
                     grid.addWidget(q22Edit, 12, 5)
                     
-                    grid.addWidget(QLabel('Planning gereed'), 13, 0)
+                    grid.addWidget(QLabel('Gepland gereed'), 13, 0)
                     grid.addWidget(q23Edit, 13, 1)
                     
                     grid.addWidget(QLabel('Werkelijk gereed'), 13, 2)
                     grid.addWidget(q24Edit, 13, 3)
                     
-                    grid.addWidget(QLabel('Acceptatie gereed'), 14,  0)
+                    grid.addWidget(QLabel('Goedgekeurd gereed'), 14,  0)
                     grid.addWidget(q25Edit, 14, 1)
                     
-                    grid.addWidget(QLabel('Acceptatie datum'), 14, 2)
+                    grid.addWidget(QLabel('Goedgekeurd datum'), 14, 2)
                     grid.addWidget(q26Edit, 14, 3)
-                   
-                    grid.addWidget(QLabel('Meerminderwerk\nStelposten'), 14, 4)
-                    grid.addWidget(q27Edit, 14, 5)
-                                                                            
+
                     grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 16, 0, 1, 6, Qt.AlignCenter)
                     self.setLayout(grid)
                     self.setGeometry(500, 200, 350, 300)

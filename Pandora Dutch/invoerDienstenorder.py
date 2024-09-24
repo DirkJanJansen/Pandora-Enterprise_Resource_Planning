@@ -14,8 +14,8 @@ def invoerGelukt():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))        
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Invoer dienstenorder gelukt!')
-    msg.setWindowTitle('Inkooporder diensten')
+    msg.setText('Imvoer stelpost order gelukt!')
+    msg.setWindowTitle('Inkoop order stelposten')
     msg.exec_()
     
 def foutInvoer():
@@ -24,8 +24,8 @@ def foutInvoer():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))        
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Foutieve invoer. Voer gegevens opnieuw in!')
-    msg.setWindowTitle('Inkooporder diensten')
+    msg.setText('Foutieve invoer. Voer opnieuw in!')
+    msg.setWindowTitle('Inkoop order stelposten')
     msg.exec_() 
     
 def invoerBestaat():
@@ -34,8 +34,8 @@ def invoerBestaat():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))        
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('De betreffende dienst is al verwerkt!')
-    msg.setWindowTitle('Inkooporder diensten')
+    msg.setText('Deze stelpost is al verwerkt!')
+    msg.setWindowTitle('Inkoop order stelposten')
     msg.exec_() 
 
 def geenRegels():
@@ -44,8 +44,8 @@ def geenRegels():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))        
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Geen calculatieregels van betreffende dienst aanwezig!')
-    msg.setWindowTitle('Inkooporder diensten')
+    msg.setText('Geen calculatie regels voor deze stelpost aanwezig!')
+    msg.setWindowTitle('Inkoop order stelposten')
     msg.exec_()     
     
 def sluitRegels(m_email, mlevnr, mwerknr, mregel, self):
@@ -59,7 +59,7 @@ def foutLeverancier():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))        
     msg.setIcon(QMessageBox.Warning)
     msg.setText('Leverancier/Werknummer\nniet gevonden!')
-    msg.setWindowTitle('Inkooporder diensten')
+    msg.setWindowTitle('Inkoop order stelposten')
     msg.exec_()
         
 def windowSluit(self, m_email):
@@ -72,9 +72,7 @@ def _11check(mlevnr):
     fullnumber = number                       
     for i in range(8):
         total += int(fullnumber[i])*(9-i)
-        checkdigit = total % 11
-    if checkdigit == 10:
-        checkdigit = 0
+        checkdigit = total % 11 % 10
     if checkdigit == int(fullnumber[8]):
         return True
     else:
@@ -86,9 +84,7 @@ def maak11proef(basisnr):
    total = 0                       
    for i in range(int(8)):
        total += int(basisnr[i])*(int(9)-i)
-   checkdigit = total % 11
-   if checkdigit == 10:
-            checkdigit = 0
+   checkdigit = total % 11 % 10
    basisuitnr = basisnr+str(checkdigit)
    return basisuitnr
 
@@ -110,7 +106,7 @@ def zoekLeverancier(m_email, mlevnr, mwerknr, mregel):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Inkooporders diensten invoeren.")
+            self.setWindowTitle("Invoer inkooporders stelposten")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -147,7 +143,7 @@ def zoekLeverancier(m_email, mlevnr, mwerknr, mregel):
             grid.addWidget(logo , 0, 2, 1, 1, Qt.AlignRight)
     
             self.setFont(QFont('Arial', 10))
-            grid.addWidget(QLabel('Leverancier\nWerknummer\n  Diensten'), 0, 1)
+            grid.addWidget(QLabel('Leverancier\nWerknummer\nStelposten'), 0, 1)
     
             grid.addWidget(QLabel('Leverancier'), 1, 0)
             grid.addWidget(levEdit, 1, 1)
@@ -252,7 +248,7 @@ def inkoopRegels(m_email, rplev, mregel):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Bestelregels inkooporder diensten inbrengen")
+            self.setWindowTitle("Invoer inkooporder stelposten werk")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -275,30 +271,16 @@ def inkoopRegels(m_email, rplev, mregel):
                             
             self.Diensten= QLabel()
             k0Edit = QComboBox()
-            k0Edit.setFixedWidth(250)
+            k0Edit.setFixedWidth(300)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('   Keuze Diensten / Materieel') 
+            k0Edit.addItem('          Provisional items work')
             k0Edit.addItem('1. Inhuur')
             k0Edit.addItem('2. Leiding')
             k0Edit.addItem('3. Huisvesting')
-            k0Edit.addItem('4. Kabelwerk')
             k0Edit.addItem('5. Grondverzet')
-            k0Edit.addItem('6. Betonwerk')
-            k0Edit.addItem('7. Vervoer')
+            k0Edit.addItem('7. Transport')
             k0Edit.addItem('8. Overig')
-            k0Edit.addItem('A. Sleuvengraver')
-            k0Edit.addItem('B. Persapparaat')
-            k0Edit.addItem('C. Atlaskraan')
-            k0Edit.addItem('D. Kraan groot')
-            k0Edit.addItem('E. Mainliner')
-            k0Edit.addItem('F. Hormachine')
-            k0Edit.addItem('G. Wagon')
-            k0Edit.addItem('H. Locomotor')
-            k0Edit.addItem('J. Locomotief')
-            k0Edit.addItem('K. Montagewagen')
-            k0Edit.addItem('L. Stormobiel') 
-            k0Edit.addItem('M. Robeltrein') 
             k0Edit.activated[str].connect(self.k0Changed)
             
             self.OrderregelPrijs = QLabel()
@@ -349,11 +331,11 @@ def inkoopRegels(m_email, rplev, mregel):
             grid.addWidget(lbl ,1, 0)
             
             self.setFont(QFont('Arial', 10))
-            grid.addWidget(QLabel('Bestelling voor\nLeverancier: '+str(minkgeg[1])\
+            grid.addWidget(QLabel('Order voor\nLeverancier: '+str(minkgeg[1])\
             +',\n'+minkgeg[2]+' '+minkgeg[3]+',\n'+minkgeg[4]+' '+str(minkgeg[5])\
             +minkgeg[6]+',\n'+minkgeg[7]+' '+minkgeg[8]+'.\nOrderregel '+str(mregel)), 1, 1, 1, 3)
                                              
-            lbl1 = QLabel('Ordernummer')  
+            lbl1 = QLabel('Ordernummer')
             lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl1, 5, 0)
             grid.addWidget(inkorderEdit, 5, 1)
@@ -361,7 +343,7 @@ def inkoopRegels(m_email, rplev, mregel):
             grid.addWidget(QLabel('Werknummer'), 6, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(werknEdit, 6, 1)  
  
-            lbl8 = QLabel('Soort Order  *')
+            lbl8 = QLabel('Type order     *')
             lbl8.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl8, 7, 0)
             grid.addWidget(k0Edit, 7, 1)
@@ -373,21 +355,21 @@ def inkoopRegels(m_email, rplev, mregel):
             grid.addWidget(q1Edit, 8, 1)
             '''
             
-            lbl5 = QLabel('Omschrijving  *')  
+            lbl5 = QLabel('Omschrijving *')
             lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl5, 9, 0)
             grid.addWidget(q2Edit, 9, 1, 1 , 3)
             
-            lbl6 = QLabel('Geplande Start jjjj-mm-dd  *')  
+            lbl6 = QLabel('Geplande start yyyy-mm-dd *')
             lbl6.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl6, 10, 0)
             grid.addWidget(q3Edit, 10, 1)
             
-            lbl7 = QLabel('Gepland Gereed jjjj-mm-dd  *')  
+            lbl7 = QLabel('Gepland gereed yyyy-mm-dd*')
             lbl7.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl7, 11, 0)
             grid.addWidget(q4Edit, 11, 1)
-            grid.addWidget(QLabel('* Verplichte Invoer'), 11, 2, 1, 2)
+            grid.addWidget(QLabel('* Verplichte invoer'), 11, 2, 1, 2)
                    
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved - dj.jansen@casema.nl'), 13, 0, 1, 4, Qt.AlignCenter)
          
@@ -399,7 +381,7 @@ def inkoopRegels(m_email, rplev, mregel):
             self.setLayout(grid)
             self.setGeometry(600, 150, 150, 150)
     
-            applyBtn = QPushButton('Invoeren')
+            applyBtn = QPushButton('Invoer')
             applyBtn.clicked.connect(self.accept)
     
             grid.addWidget(applyBtn, 12, 3, 1 , 1, Qt.AlignRight)
@@ -503,36 +485,16 @@ def inkoopRegels(m_email, rplev, mregel):
         Column('betonwerk', Float),
         Column('vervoer', Float),
         Column('overig', Float),
-        Column('sleuvengraver', Float),
-        Column('persapparaat', Float),
-        Column('atlaskraan', Float),
-        Column('kraan_groot', Float),
-        Column('mainliner', Float),
-        Column('hormachine', Float),
-        Column('wagon', Float),
-        Column('locomotor', Float),
-        Column('locomotief', Float),
-        Column('montagewagen', Float),
-        Column('stormobiel', Float),
-        Column('robeltrein', Float),
         Column('verwerkt', Integer))
-    params_services = Table('params_services', metadata,
-                            Column('servicesID', Integer, primary_key=True),
-                            Column('hourly_tariff', Float),
-                            Column('item', String))
-
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     conn = engine.connect()
 
-    selpar = select([params_services]).order_by(params_services.c.servicesID)
-    rppar = conn.execute(selpar).fetchall()
-   
     selcal = select([calculaties]).where(calculaties.c.koppelnummer == mwerknr)
     seldienst = select([orders_inkoop_diensten]).where(and_(orders_inkoop_diensten.c.werknummerID == mwerknr,\
       orders_inkoop_diensten.c.werkomschr.like(soort+'%')))
     rpdienst = conn.execute(seldienst).first()
     rpcal = conn.execute(selcal)
-                    
+
     if mregel == 1 and data[0] and not rpdienst:
         datum = str(datetime.datetime.now())
         mbestdatum = (datum[0:4]+'-'+datum[8:10]+'-'+datum[5:7])
@@ -559,17 +521,13 @@ def inkoopRegels(m_email, rplev, mregel):
                 minhuur += row[2]
                 flag = 1
         if flag:
-            try:
-                mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
+            mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
                 type_=Integer).label('mdienstnr')])).scalar())
-                mdienstnr += 1
-            except:
-                mdienstnr = 1
+            mdienstnr += 1
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
                  werkomschr = soort+' '+str(round(minh_uren,2))+' uren', omschrijving = momschr,\
-                 aanneemsom = minhuur,\
-                 plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
+                 aanneemsom = minhuur, plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
             mregel += 1
             invoerGelukt()
@@ -607,23 +565,6 @@ def inkoopRegels(m_email, rplev, mregel):
             conn.execute(insrgl)
             mregel += 1
             invoerGelukt()
-    elif soort[0] == '4' and not rpdienst:
-        mkabelwerk = 0
-        for row in rpcal:
-            if row[6]:
-                mkabelwerk += row[6]
-                flag = 1
-        if flag:
-            mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
-                type_=Integer).label('mdienstnr')])).scalar())
-            mdienstnr += 1
-            insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
-                 orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort , omschrijving = momschr, aanneemsom = mkabelwerk ,\
-                 plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
-            conn.execute(insrgl)
-            mregel += 1
-            invoerGelukt()
     elif soort[0] == '5' and not rpdienst:
         mgrondverzet = 0
         for row in rpcal:
@@ -637,23 +578,6 @@ def inkoopRegels(m_email, rplev, mregel):
             insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
                  orderinkoopID = minkordnr, werknummerID = mwerknr,\
                  werkomschr = soort , omschrijving = momschr, aanneemsom = mgrondverzet,\
-                 plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
-            conn.execute(insrgl)
-            mregel += 1
-            invoerGelukt()
-    elif soort[0] == '6' and not rpdienst:
-        mbetonwerk = 0
-        for row in rpcal:
-            if row[8]:
-                mbetonwerk += row[8]
-                flag = 1
-        if flag:
-            mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
-                type_=Integer).label('mdienstnr')])).scalar())
-            mdienstnr += 1
-            insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
-                 orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort, omschrijving = momschr, aanneemsom = mbetonwerk,\
                  plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
             conn.execute(insrgl)
             mregel += 1
@@ -692,225 +616,8 @@ def inkoopRegels(m_email, rplev, mregel):
             conn.execute(insrgl)
             mregel += 1
             invoerGelukt()
-    elif soort[0] == 'A' and not rpdienst:
-        msleuf = 0
-        for row in rpcal:
-            if row[11]:
-                msleuf += row[11]
-                flag = 1
-        if flag:
-            mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
-                type_=Integer).label('mdienstnr')])).scalar())
-            mdienstnr += 1
-            insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
-                 orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(msleuf,2))+' uren', omschrijving = momschr,\
-                 aanneemsom = msleuf*rppar[0][1],\
-                 plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
-            conn.execute(insrgl)
-            mregel += 1
-            invoerGelukt()
-    elif soort[0] == 'B' and not rpdienst:
-        mpers = 0 
-        for row in rpcal:
-            if row[12]:
-                mpers += row[12]
-                flag = 1
-        if flag:
-            mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
-                type_=Integer).label('mdienstnr')])).scalar())
-            mdienstnr += 1
-            insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
-                 orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mpers,2))+' uren', omschrijving = momschr,\
-                 aanneemsom = mpers*rppar[1][1],\
-                 plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
-            conn.execute(insrgl)
-            mregel += 1
-            invoerGelukt()
-    elif soort[0] == 'C' and not rpdienst:
-        matlas = 0 
-        for row in rpcal:
-            if row[13]:
-                matlas += row[13]
-                flag = 1
-        if flag:
-            mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
-                type_=Integer).label('mdienstnr')])).scalar())
-            mdienstnr += 1
-            insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
-                 orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(matlas,2))+' uren', omschrijving = momschr,\
-                 aanneemsom = matlas*rppar[2][1],\
-                 plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
-            conn.execute(insrgl)
-            mregel += 1
-            invoerGelukt()
-    elif soort[0] == 'D' and not rpdienst:
-        mkrgroot = 0
-        for row in rpcal:
-            if row[14]:
-                mkrgroot += row[14]
-                flag = 1
-        if flag:
-            mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
-                type_=Integer).label('mdienstnr')])).scalar())
-            mdienstnr += 1
-            insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
-                 orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mkrgroot,2))+' uren', omschrijving = momschr,\
-                 aanneemsom = mkrgroot*rppar[3][1],\
-                 plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
-            conn.execute(insrgl)
-            mregel += 1
-            invoerGelukt()
-    elif soort[0] == 'E' and not rpdienst:
-        mmainliner = 0
-        for row in rpcal:
-            if row[15]:
-                mmainliner += row[15]
-                flag = 1
-        if flag:
-            mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
-                type_=Integer).label('mdienstnr')])).scalar())
-            mdienstnr += 1
-            insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
-                 orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mmainliner,2))+' uren', omschrijving = momschr,\
-                 aanneemsom = mmainliner*rppar[4][1],\
-                 plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
-            conn.execute(insrgl)
-            mregel += 1
-            invoerGelukt()
-    elif soort[0] == 'F' and not rpdienst:
-        mhor = 0
-        for row in rpcal:
-            if row[16]:
-                mhor += row[16]
-                flag = 1 
-        if flag:
-            mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
-                type_=Integer).label('mdienstnr')])).scalar())
-            mdienstnr += 1
-            insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
-                 orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mhor,2))+' uren', omschrijving = momschr,\
-                 aanneemsom = mhor*rppar[5][1],\
-                 plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
-            conn.execute(insrgl)
-            mregel += 1
-            invoerGelukt()
-    elif soort[0] == 'G' and not rpdienst:
-        mwagon = 0
-        for row in rpcal:
-            if row[17]:
-                mwagon += row[17]
-                flag = 1 
-        if flag:
-            mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
-                type_=Integer).label('mdienstnr')])).scalar())
-            mdienstnr += 1
-            insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
-                 orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mwagon,2))+' uren', omschrijving = momschr,\
-                 aanneemsom = mwagon*rppar[6][1],\
-                 plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
-            conn.execute(insrgl)
-            mregel += 1
-            invoerGelukt()
-    elif soort[0] == 'H' and not rpdienst:
-        mlmotor = 0
-        for row in rpcal:
-            if row[18]:
-                mlmotor += row[18]
-                flag = 1 
-        if flag:
-            mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
-                type_=Integer).label('mdienstnr')])).scalar())
-            mdienstnr += 1
-            insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
-                 orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mlmotor,2))+' uren', omschrijving = momschr,\
-                 aanneemsom = mlmotor*rppar[7][1],\
-                 plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
-            conn.execute(insrgl)
-            mregel += 1
-            invoerGelukt()
-    elif soort[0] == 'J' and not rpdienst:
-        mlmotief = 0
-        for row in rpcal:
-            if row[19]:
-                mlmotief += row[19]
-                flag = 1 
-        if flag:
-            mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
-                type_=Integer).label('mdienstnr')])).scalar())
-            mdienstnr += 1
-            insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
-                 orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mlmotief,2))+' uren', omschrijving = momschr,\
-                 aanneemsom = mlmotief*rppar[8][1],\
-                 plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
-            conn.execute(insrgl)
-            mregel += 1
-            invoerGelukt()
-    elif soort[0] == 'K' and not rpdienst:
-        mmont = 0
-        for row in rpcal:
-            if row[20]:
-                mmont += row[20]
-                flag = 1 
-        if flag:
-            mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
-                type_=Integer).label('mdienstnr')])).scalar())
-            mdienstnr += 1
-            insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
-                 orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mmont,2))+' uren', omschrijving = momschr,\
-                 aanneemsom = mmont*rppar[9][1],\
-                 plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
-            conn.execute(insrgl)
-            mregel += 1
-            invoerGelukt()
-    elif soort[0] == 'L' and not rpdienst:
-        mstorm = 0
-        for row in rpcal:
-            if row[21]:
-                mstorm += row[21]
-                flag = 1
-        if flag:
-            mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
-                type_=Integer).label('mdienstnr')])).scalar())
-            mdienstnr += 1
-            insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
-                 orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mstorm,2))+' uren', omschrijving = momschr,\
-                 aanneemsom = mstorm*rppar[10][1],\
-                 plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
-            conn.execute(insrgl)
-            mregel += 1
-            invoerGelukt()
-    elif soort[0] == 'M' and not rpdienst:
-        mrobel = 0
-        for row in rpcal:
-            if row[22]:
-                mrobel += row[22]
-                flag = 1
-        if flag:
-            mdienstnr=(conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID,\
-                type_=Integer).label('mdienstnr')])).scalar())
-            mdienstnr += 1
-            insrgl = insert(orders_inkoop_diensten).values(orddienstlevID = mdienstnr,\
-                 orderinkoopID = minkordnr, werknummerID = mwerknr,\
-                 werkomschr = soort+' '+str(round(mrobel,2))+' uren', omschrijving = momschr,\
-                 aanneemsom = mrobel*rppar[11][1],\
-                 plan_start = geplstart, plan_gereed = geplgereed, regel = mregel)
-            conn.execute(insrgl)
-            mregel += 1
-            invoerGelukt()
     elif rpdienst:
         invoerBestaat()
     if flag == 0 and not rpdienst:
         geenRegels()
-    conn.close
     inkoopRegels(m_email, rplev, mregel)

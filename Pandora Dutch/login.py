@@ -180,7 +180,7 @@ def inlog():
             emailEdit.setStyleSheet("background: #F8F7EE")
             emailEdit.setFixedWidth(200)
             emailEdit.setFont(QFont("Arial",10))
-            reg_ex = QRegExp("^([1]{1}[0-9]{8})|([A-Za-z0-9._-]{1,}@(\\w+)(\\.(\\w+))(\\.(\\w+))?(\\.(\\w+))?)$")
+            reg_ex = QRegExp("([A-Za-z0-9._-]{1,}@(\\w+)(\\.(\\w+))(\\.(\\w+))?(\\.(\\w+))?)$")
             input_validator = QRegExpValidator(reg_ex, emailEdit)
             emailEdit.setValidator(input_validator)
             emailEdit.textChanged.connect(self.emailChanged)
@@ -451,10 +451,12 @@ def hoofdMenu(m_email):
             self.k3Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
             self.k3Edit.addItem('1. Invoeren orders materialen')
             self.k3Edit.addItem('2. Wijzigen orders materialen')
-            self.k3Edit.addItem('3. Invoeren orders diensten')
-            self.k3Edit.addItem('4. Wijzigen orders diensten')
-            self.k3Edit.addItem('5. Opvragen orders materialen')
-            self.k3Edit.addItem('6. Opvragen orders diensten')
+            self.k3Edit.addItem('3. Invoeren orders van stelposten')
+            self.k3Edit.addItem('4. Bestellen / opvragen materieel orders')
+            self.k3Edit.addItem('5. Wijzigen van orders stelposten')
+            self.k3Edit.addItem('6. Opvragen orders materialen')
+            self.k3Edit.addItem('7. Opvragen orders stelposten')
+            self.k3Edit.addItem('8. Opvragen reserveringen materialen')
   
             self.k4Edit = QComboBox()
             self.k4Edit.setFixedWidth(310)
@@ -526,7 +528,8 @@ def hoofdMenu(m_email):
             self.k7Edit.addItem('5. Printen raaplijsten')
             self.k7Edit.addItem('6. Muteren kosten diensten')
             self.k7Edit.addItem('7. Uurverbruik muteren')
-            self.k7Edit.addItem('8. Parameters Diensten')
+            self.k7Edit.addItem('8. Materieel uurverbruik muteren')
+            self.k7Edit.addItem('9. Parameters Diensten')
 
             self.k8Edit = QComboBox()
             self.k8Edit.setFixedWidth(310)
@@ -578,13 +581,13 @@ def hoofdMenu(m_email):
             self.k10Edit.lineEdit().setReadOnly(True)
             self.k10Edit.lineEdit().setAlignment(Qt.AlignCenter)
             self.k10Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            self.k10Edit.addItem('1. Uren mutaties opvragen')
-            self.k10Edit.addItem('2. Controle uren tbv maanlonen')
-            self.k10Edit.addItem('3. Maandelijkse loonbetalingen')
-            self.k10Edit.addItem('4. Opvragen loonbetalingen')
-            self.k10Edit.addItem('5. Invoeren Loonschalen')
-            self.k10Edit.addItem('6. Loonschalen wijzigen/opvragen')
-            self.k10Edit.addItem('7. Procentueel lonen verhogen')
+            self.k10Edit.addItem('  1. Uren mutaties opvragen')
+            self.k10Edit.addItem('  2. Controle uren tbv maanlonen')
+            self.k10Edit.addItem('  3. Maandelijkse loonbetalingen')
+            self.k10Edit.addItem('  4. Opvragen loonbetalingen')
+            self.k10Edit.addItem('  5. Invoeren Loonschalen')
+            self.k10Edit.addItem('  6. Loonschalen wijzigen/opvragen')
+            self.k10Edit.addItem('  7. Procentueel lonen verhogen')
             self.k10Edit.addItem('  8. Parameters werkuren')
             self.k10Edit.addItem('  9. Parameters Inhoudingen')
             self.k10Edit.addItem('10. Parameters Perioden Lonen')
@@ -652,10 +655,8 @@ def hoofdMenu(m_email):
             self.k14Edit.addItem('1. Bevoegdheden muteren')
             self.k14Edit.addItem('2. Koppel account-leverancier')
             self.k14Edit.addItem('3. Koppel account-verkoopbedrijf')
-            self.k14Edit.addItem('4. Invoeren parameters')
-            self.k14Edit.addItem('5. Wijzigen parameters')
-            self.k14Edit.addItem('6. Opvragen parameters')
-            self.k14Edit.addItem('7. Verkoop-werktarieven bijwerken')
+            self.k14Edit.addItem('4. Parameters systeem')
+            self.k14Edit.addItem('5. Verkoop-werktarieven bijwerken')
 
             self.k15Edit = QComboBox()
             self.k15Edit.setFixedWidth(310)
@@ -668,29 +669,32 @@ def hoofdMenu(m_email):
             self.k15Edit.lineEdit().setReadOnly(True)
             self.k15Edit.lineEdit().setAlignment(Qt.AlignCenter)
             self.k15Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            self.k15Edit.addItem('1. Calculatie interne werken')
-            self.k15Edit.addItem('2. Calculatie externe werken')
-            self.k15Edit.addItem('3. Interne orderbrieven tbv inkoop')
-            self.k15Edit.addItem('4. Afroepen werken intern')
-            self.k15Edit.addItem('5. Afroepen werken extern')
-            self.k15Edit.addItem('6. Raaplijsten magazijn')
-            self.k15Edit.addItem('7. Web orders pakbon')
-            self.k15Edit.addItem('8. Controle uren tbv lonen')
-            self.k15Edit.addItem('9. Loonspecificaties personeel')
+            self.k15Edit.addItem(' 1. Calculatie interne werken')
+            self.k15Edit.addItem(' 2. Calculatie externe werken')
+            self.k15Edit.addItem(' 3. Interne orderbrieven tbv inkoop')
+            self.k15Edit.addItem(' 4. Afroepen werken intern')
+            self.k15Edit.addItem(' 5. Afroepen werken extern')
+            self.k15Edit.addItem(' 6. Raaplijsten magazijn')
+            self.k15Edit.addItem(' 7. Web orders pakbon')
+            self.k15Edit.addItem(' 8. Controle uren tbv lonen')
+            self.k15Edit.addItem(' 9. Loonspecificaties personeel')
             self.k15Edit.addItem('10. Factureren externe werken')
             self.k15Edit.addItem('11. Web orders betalingen')
             self.k15Edit.addItem('12. Inkooporders diensten/materieel')
             self.k15Edit.addItem('13. Balieverkoop orderfacturen')
+            self.k15Edit.addItem('14. Materieel inkoop orders')
 
-            #disable menu's if no permission is granted in table accounts
+            # disable menu's if no permission is granted in table accounts
             # list of Mainmenu
-            mplist=[self.k0Edit,self.k1Edit,self.k2Edit,self.k3Edit,self.k4Edit,self.k5Edit,self.k6Edit,self.k7Edit,\
-                    self.k8Edit,self.k9Edit,self.k10Edit,self.k11Edit,self.k12Edit,self.k13Edit,self.k14Edit,self.k15Edit]
-            # list of pointers by mainmenu and menulines per groups pointers towards database tasble accountpermissions
-            lineperm = ([0, 4, 6, 2, 2, 5], [0, 3, 4, 6, 1], [0, 1, 4, 6, 6], [0, 3, 4, 3, 4, 6, 6], [0, 3, 4, 6, 1, 6], \
-                        [0, 3, 4, 6, 4, 5, 1, 6, 3, 6], [0, 3, 4, 6, 3, 5, 3], [0, 3, 4, 6, 2, 6, 3, 3, 7], \
-                        [0, 3, 4, 6, 3, 6, 3, 6, 1, 7], [0, 4, 4, 6, 3, 6, 3, 6, 1, 7], [0, 6, 2, 1, 6, 3, 4, 1, 7, 7, 7], \
-                        [0, 6, 6, 2, 6, 2, 5, 6, 7], [0, 2, 1, 1, 1], [0, 1, 6, 6, 6, 7], [0, 7, 3, 3, 7, 4], [0])
+            mplist = [self.k0Edit, self.k1Edit, self.k2Edit, self.k3Edit, self.k4Edit, self.k5Edit, self.k6Edit, self.k7Edit, \
+                      self.k8Edit, self.k9Edit, self.k10Edit, self.k11Edit, self.k12Edit, self.k13Edit, self.k14Edit, self.k15Edit]
+
+            # list of pointers by mainmenu and menulines per groups pointers towards database table accountpermissions
+            lineperm = (
+            [0, 4, 6, 2, 2, 5], [0, 3, 4, 6, 1], [0, 1, 4, 6, 6], [0, 3, 4, 3, 7, 6, 6, 6], [0, 3, 4, 6, 1, 6], \
+            [0, 3, 4, 6, 4, 5, 1, 6, 3, 6], [0, 3, 4, 6, 3, 5, 3], [0, 3, 4, 6, 2, 6, 3, 3, 3, 7], \
+            [0, 3, 4, 6, 3, 6, 3, 6, 1, 7], [0, 4, 4, 6, 3, 6, 3, 6, 1, 7], [0, 6, 2, 1, 6, 3, 4, 1, 7, 7, 7], \
+            [0, 6, 6, 2, 6, 2, 5, 6, 7], [0, 2, 1, 1, 1], [0, 1, 6, 6, 6, 7], [0, 7, 3, 3, 7, 4], [0])
             #loop on mainmenu and permissions in table accounts
             for menu in range(0,16):
                 menuperms = lineperm[menu]
@@ -743,6 +747,10 @@ def hoofdMenu(m_email):
                 mplist[15].model().item(13).setEnabled(False)
                 mplist[15].model().item(13).setForeground(QColor('darkgrey'))
                 mplist[15].model().item(13).setBackground(QColor('gainsboro'))
+            if mp[3][5] == '0' or mp[3][7] == '0':
+                mplist[15].model().item(14).setEnabled(False)
+                mplist[15].model().item(14).setForeground(QColor('darkgrey'))
+                mplist[15].model().item(14).setBackground(QColor('gainsboro'))
             if mp[10][5] == '0':
                 mplist[15].model().item(8).setEnabled(False)
                 mplist[15].model().item(8).setForeground(QColor('darkgrey'))
@@ -911,12 +919,12 @@ def hoofdMenu(m_email):
         import wijzAccount
         wijzAccount.updateAccount(m_email)
     elif dlist[0] == 2:
-        import opvrAccounts
-        opvrAccounts.accKeuze(m_email)
+         import opvrAccounts
+         opvrAccounts.accKeuze(m_email)
     elif dlist[0] == 3:
-        klmail = ''
-        import bestelOrder
-        bestelOrder.artKeuze(m_email, 0, klmail)
+         klmail = ''
+         import bestelOrder
+         bestelOrder.artKeuze(m_email, 0, klmail)
     elif dlist[0] == 4:
         import opvrKlantenorders
         opvrKlantenorders.bestellingen(m_email)
@@ -952,7 +960,7 @@ def hoofdMenu(m_email):
         mlevnr = 3
         mregel = 1
         import invoerInkooporder
-        invoerInkooporder.zoekLeverancier(m_email, mlevnr, mregel)
+        invoerInkooporder.zoekLeverancier(m_email, mlevnr,mregel)
     elif dlist[3] == 2:
         import wijzInkooporder
         mregel = 0
@@ -965,17 +973,20 @@ def hoofdMenu(m_email):
         import invoerDienstenorder
         invoerDienstenorder.zoekLeverancier(m_email, mlevnr, mwerknr, mregel)
     elif dlist[3] == 4:
+        import invoerEquipmentorder
+        invoerEquipmentorder.calKeuze(m_email, int(mp[3][3]), int(mp[3][4]), int(mp[3][6]))
+    elif dlist[3] == 5:
         import wijzDienstenorder
         mregel = 0
         minkordernr = 4
         wijzDienstenorder.zoekInkooporder(m_email, minkordernr, mregel)
-    elif dlist[3] == 5:
+    elif dlist[3] == 6:
         import opvrInkooporders
         opvrInkooporders.inkooporderKeuze(m_email)
-    elif dlist[3] == 6:
+    elif dlist[3] == 7:
         import opvrDienstenorders
         opvrDienstenorders.inkooporderKeuze(m_email)
-    elif dlist[3] == 7:
+    elif dlist[3] == 8:
         import opvrReserveringen
         opvrReserveringen.resKeuze(m_email)
     elif dlist[4] == 1:
@@ -1040,7 +1051,7 @@ def hoofdMenu(m_email):
     elif dlist[6] == 3:
         import opvrInternorders
         opvrInternorders.zoeken(m_email)
-    elif dlist[6] == 4:
+    elif dlist[6] == 4 :
         import artikelAfroep
         artikelAfroep.zoekWerk(m_email, 0)
     elif dlist[6] == 5:
@@ -1097,6 +1108,22 @@ def hoofdMenu(m_email):
                 mwerknr = '8'
                 mboekd = str(datetime.now())[0:10]
     elif dlist[7] == 8:
+        import materieel_urenMutaties
+        mservicenr = 1
+        mwerknr = '8'
+        mboekd = str(datetime.now())[0:10]
+        while True:
+            servicewerk = materieel_urenMutaties.urenMut(mservicenr, mwerknr, mboekd, m_email)
+            # for convenience start with last used equipment, work and bookdate
+            try:
+                mservicenr = servicewerk[0]
+                mwerknr = servicewerk[1]
+                mboekd = servicewerk[2]
+            except:
+                mservicenr = 1
+                mwerknr = '8'
+                mboekd = str(datetime.now())[0:10]
+    elif dlist[7] == 9:
         import params_services
         params_services.chooseSubMenu(m_email, int(mp[7][6]), int(mp[7][4]), int(mp[7][3]))
     elif dlist[8] == 1:
@@ -1234,7 +1261,7 @@ def hoofdMenu(m_email):
     elif dlist[12] == 4:
         import opvrReserveringen
         opvrReserveringen.resKeuze(m_email)
-    elif dlist[13] == 1:
+    elif dlist[13]== 1:
         import rapportage
         rapportage.JN(m_email)
     elif dlist[13] == 2:
@@ -1249,11 +1276,11 @@ def hoofdMenu(m_email):
         toonResultaten.toonResult(m_email)
     elif dlist[13] == 5:
         import params_graphs
-        params_graphs.chooseSubMenu(m_email, int(mp[13][6]), int(mp[13][3]), int(mp[13][2]))
+        params_graphs.chooseSubMenu(m_email, int(mp[13][6]),int(mp[13][3]), int(mp[13][2]))
     elif dlist[14] == 1:
         import maakAuthorisatie
         while True:
-            maakAuthorisatie.zoekAccount(m_email)
+             maakAuthorisatie.zoekAccount(m_email)
     elif dlist[14] == 2:
         import koppelAccount
         koppelAccount.zoekAccount(m_email, 2)
@@ -1261,16 +1288,9 @@ def hoofdMenu(m_email):
         import koppelAccount
         koppelAccount.zoekAccount(m_email, 1)
     elif dlist[14] == 4:
-        import invoerParams
-        while True:
-            invoerParams.invParams(m_email)
+        import params_system
+        params_system.chooseSubMenu(m_email, int(mp[14][6]), int(mp[14][4]), int(mp[14][3]))
     elif dlist[14] == 5:
-        import wijzigParams
-        wijzigParams.toonParams(m_email)
-    elif dlist[14] == 6:
-        import opvrParams
-        opvrParams.toonParams(m_email)
-    elif dlist[14] == 7:
         import wijzWerktarief
         wijzWerktarief.winKeuze(m_email)
     elif dlist[15] == 1:
@@ -1364,7 +1384,13 @@ def hoofdMenu(m_email):
             path = './forms/Barcodelijsten/'
         import filePicklist
         filePicklist.fileList(m_email, path)
+    elif dlist[15] == 14:
+        if sys.platform == 'win32':
+            path = '.\\forms\\Equipment_Orders\\'
+        else:
+            path = './forms/Equipment_Orders/'
+        import filePicklist
+        filePicklist.fileList(m_email, path)
     else:
         hoofdMenu(m_email)
-
 inlog()

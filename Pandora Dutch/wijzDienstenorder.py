@@ -2,11 +2,44 @@ from login import hoofdMenu
 import datetime
 from PyQt5.QtWidgets import QLabel, QLineEdit, QGridLayout, QPushButton,\
              QDialog, QMessageBox 
-from PyQt5.QtGui import QRegExpValidator, QFont, QPixmap, QIcon
-from PyQt5.QtCore import Qt, QRegExp
+from PyQt5.QtGui import QRegExpValidator, QFont, QPixmap, QIcon, QMovie
+from PyQt5.QtCore import Qt, QRegExp, QSize
 from sqlalchemy import (Table, Column, Integer, String, Float, ForeignKey, \
-                        MetaData, create_engine, and_)
-from sqlalchemy.sql import select, update
+                        MetaData, create_engine, and_, func)
+from sqlalchemy.sql import select, update, insert
+
+metadata = MetaData()
+orders_inkoop = Table('orders_inkoop', metadata,
+    Column('orderinkoopID', Integer(), primary_key=True),
+    Column('leverancierID', None, ForeignKey('leveranciers.leverancierID')),
+    Column('besteldatum', String),
+    Column('goedgekeurd', String),
+    Column('betaald', String),
+    Column('afgemeld', String))
+leveranciers = Table('leveranciers', metadata,
+    Column('leverancierID', Integer(), primary_key=True),
+    Column('bedrijfsnaam', String),
+    Column('rechtsvorm', String),
+    Column('postcode', String),
+    Column('huisnummer', String),
+    Column('toevoeging', String))
+orders_inkoop_diensten = Table('orders_inkoop_diensten', metadata,
+    Column('orddienstlevID', Integer(), primary_key=True),
+    Column('orderinkoopID', None, ForeignKey('orders_inkoop.orderinkoopID')),
+    Column('werknummerID', None, ForeignKey('werken.werknummerID')),
+    Column('werkomschr', String),
+    Column('omschrijving', String),
+    Column('aanneemsom', Float),
+    Column('plan_start', String),
+    Column('werk_start', String),
+    Column('plan_gereed', String),
+    Column('werk_gereed', String),
+    Column('acceptatie_gereed', Float),
+    Column('acceptatie_datum', String),
+    Column('meerminderwerk', Float),
+    Column('regel', Integer))
+werken = Table('werken', metadata,
+    Column('werknummerID', Integer, primary_key=True))
 
 def closeRegels(m_email, minkordernr, mregel, self):
     self.close()
@@ -20,13 +53,13 @@ def wijzSluit(m_email, minkordernr, mregel ,self):
     self.close()
     zoekInkooporder(m_email, minkordernr, mregel)
 
-def invoerOK():
+def invoerOK(message):
     msg = QMessageBox()
     msg.setFont(QFont("Arial", 10))
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Information)
-    msg.setText('Invoer gelukt!')
-    msg.setWindowTitle('Inkooporder diensten wijzigen')
+    msg.setText('Invoer gelukt!' + message)
+    msg.setWindowTitle('Wijzig orders stelposten')
     msg.exec_()
         
 def foutCombinatie():
@@ -34,8 +67,8 @@ def foutCombinatie():
     msg.setFont(QFont("Arial", 10))
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Dit is geen inkooporder voor diensten!')
-    msg.setWindowTitle('Inkooporder diensten wijzigen')
+    msg.setText('Dir is geen inkoop order voor stelposten!')
+    msg.setWindowTitle('Wijzig orders stelposten')
     msg.exec_()   
        
 def foutDienstorder():
@@ -44,15 +77,15 @@ def foutDienstorder():
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
-    msg.setText('Dienstenorder niet gevonden!')
-    msg.setWindowTitle('Inkooporder diensten wijzigen')
+    msg.setText('Order voor stelpost niet gevonden!')
+    msg.setWindowTitle('Wijzig orders stelposten')
     msg.exec_()
                 
 def zoekInkooporder(m_email, minkordernr, mregel):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Inkooporder diensten wijzigen.")
+            self.setWindowTitle('Wijzig order voor stelposten')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setFont(QFont('Arial', 10))
                             
@@ -80,7 +113,7 @@ def zoekInkooporder(m_email, minkordernr, mregel):
     
             self.setFont(QFont('Arial', 10))
    
-            grid.addWidget(QLabel('Inkoopordernummer diensten'), 1, 0, 1, 2)
+            grid.addWidget(QLabel('Inkoop order voor stelposten'), 1, 0, 1, 2)
             grid.addWidget(inkordEdit, 1, 1)
        
             cancelBtn = QPushButton('Sluiten')
@@ -120,11 +153,7 @@ def zoekInkooporder(m_email, minkordernr, mregel):
     data = window.getData()
     if data[0]:
         minkordernr = data[0]
-    metadata = MetaData()
-    orders_inkoop = Table('orders_inkoop', metadata,
-        Column('orderinkoopID', Integer(), primary_key=True),
-        Column('status', Integer))
-           
+
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     conn = engine.connect()
     s = select([orders_inkoop]).where(orders_inkoop.c.orderinkoopID == minkordernr)
@@ -137,54 +166,21 @@ def zoekInkooporder(m_email, minkordernr, mregel):
         zoekInkooporder(m_email, minkordernr, mregel)
 
 def dienstenOrder(m_email, minkordernr, mregel):
-    metadata = MetaData()
-    orders_inkoop = Table('orders_inkoop', metadata,
-        Column('orderinkoopID', Integer(), primary_key=True),
-        Column('leverancierID', None, ForeignKey('leveranciers.leverancierID')),
-        Column('besteldatum', String),
-        Column('goedgekeurd', String),
-        Column('betaald', String),
-        Column('afgemeld', String))
-    leveranciers = Table('leveranciers', metadata,
-        Column('leverancierID', Integer(), primary_key=True),
-        Column('bedrijfsnaam', String),
-        Column('rechtsvorm', String),
-        Column('postcode', String),
-        Column('huisnummer', String),
-        Column('toevoeging', String))
-    orders_inkoop_diensten = Table('orders_inkoop_diensten', metadata,
-        Column('orddienstlevID', Integer(), primary_key=True),
-        Column('orderinkoopID', None, ForeignKey('orders_inkoop.orderinkoopID')),
-        Column('werknummerID', None, ForeignKey('werken.werknummerID')),
-        Column('werkomschr', String),
-        Column('omschrijving', String),
-        Column('aanneemsom', Float),
-        Column('plan_start', String),
-        Column('werk_start', String),
-        Column('plan_gereed', String),
-        Column('werk_gereed', String),
-        Column('acceptatie_gereed', Float),
-        Column('acceptatie_datum', String),
-        Column('meerminderwerk', Float),
-        Column('regel', Integer))
-    werken = Table('werken', metadata,
-        Column('werknummerID', Integer, primary_key=True))    
-       
+
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     conn = engine.connect()  
     
     sel1 = select([orders_inkoop]).where(orders_inkoop.c.orderinkoopID == minkordernr)
-    sel2 = select([leveranciers]).where(and_(leveranciers.c.leverancierID \
-                   == orders_inkoop.c.leverancierID,
-                   orders_inkoop.c.orderinkoopID == minkordernr))
+    sel2 = select([leveranciers]).where(and_(leveranciers.c.leverancierID ==\
+        orders_inkoop.c.leverancierID, orders_inkoop.c.orderinkoopID == minkordernr))
     sel3 = select([orders_inkoop_diensten]).where(orders_inkoop_diensten.\
                 c.orderinkoopID == minkordernr).order_by(orders_inkoop_diensten.c.regel)
     sel4 = select([werken]).where(and_(werken.c.werknummerID==\
-                 orders_inkoop_diensten.c.werknummerID,\
-                 orders_inkoop_diensten.c.orderinkoopID == minkordernr))
+             orders_inkoop_diensten.c.werknummerID, orders_inkoop_diensten.c.orderinkoopID == minkordernr))
     rp1 = conn.execute(sel1).first()
     rp2 = conn.execute(sel2).first()
     rp3 = conn.execute(sel3)
+    rp3a = conn.execute(sel3).first()
     rp4 = conn.execute(sel4).first()
     mpostcode = rp2[3]
     mhuisnr = int(rp2[4])
@@ -202,11 +198,26 @@ def dienstenOrder(m_email, minkordernr, mregel):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Inkooporder diensten Wijzigen.")
+            self.setWindowTitle('Wijzig order voor stelposten')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
-                                            
+
+            self.Sum = QLabel()
+            provEdit = QLineEdit(str(rp3a[12]))
+            provEdit.setCursorPosition(0)
+            provEdit.setFixedWidth(110)
+            provEdit.setFont(QFont("Arial", 10))
+            provEdit.setDisabled(True)
+
+            # Type of provisional sum
+            typelist = ['inhuur', 'leiding', 'huisvesting', 'grondverzet','transport', 'overig']
+            typeEdit = QLineEdit(typelist[int(rp3a[3][0])-1])
+            typeEdit.setCursorPosition(0)
+            typeEdit.setFixedWidth(110)
+            typeEdit.setFont(QFont("Arial", 10))
+            typeEdit.setDisabled(True)
+
             self.Inkoopordernummer = QLabel()
             inkordEdit = QLineEdit(str(minkordernr))
             inkordEdit.setFixedWidth(110)
@@ -263,29 +274,32 @@ def dienstenOrder(m_email, minkordernr, mregel):
                                  
             grid = QGridLayout()
             grid.setSpacing(20)
-                           
-            lbl = QLabel()
-            pixmap = QPixmap('./images/logos/verbinding.jpg')
-            lbl.setPixmap(pixmap)
-            grid.addWidget(lbl , 1, 0)
+
+            pyqt = QLabel()
+            movie = QMovie('./images/logos/pyqt.gif')
+            pyqt.setMovie(movie)
+            movie.setScaledSize(QSize(180, 60))
+            movie.start()
+            grid.addWidget(pyqt, 1, 0, 1, 2)
                     
             self.setFont(QFont('Arial', 10))
-            grid.addWidget(QLabel('Bestelling voor\nLeverancier: '+str(rp2[0])+\
+            grid.addWidget(QLabel('Order voor\nLeverancier: '+str(rp2[0])+\
               ',\n'+rp2[1]+' '+rp2[2]+',\n'+mstraat+' '+str(rp2[4])+\
               rp2[5]+',\n'+rp2[3]+' '+mplaats+'.'), 1, 1, 1 , 2)
-            
-            logo = QLabel()
-            pixmap = QPixmap('./images/logos/logo.jpg')
-            logo.setPixmap(pixmap)
-            grid.addWidget(logo , 5, 2, 1, 1, Qt.AlignCenter)
-                      
-            grid.addWidget(QLabel('Inkoopordernummer'), 4, 0, 1, 1, Qt.AlignRight)
+
+            grid.addWidget(QLabel('Stelpost bedrag'), 3, 0, 1, 1, Qt.AlignRight)
+            grid.addWidget(provEdit, 3, 1)
+
+            grid.addWidget(QLabel('Stelpost\nType'), 3, 2)
+            grid.addWidget(typeEdit, 3, 2, 1, 2, Qt.AlignRight)
+
+            grid.addWidget(QLabel('Inkoop ordernummer'), 4, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(inkordEdit, 4, 1)
             
             grid.addWidget(QLabel('Werknummer'), 5, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(werknEdit, 5, 1)           
         
-            grid.addWidget(QLabel('Besteldatum'),6, 0, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Order datum'),6, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(q3Edit, 6, 1)  
                    
             grid.addWidget(QLabel('Goedgekeurd jjjj-mm-dd'), 7, 0, 1, 1, Qt.AlignRight)
@@ -294,30 +308,38 @@ def dienstenOrder(m_email, minkordernr, mregel):
             grid.addWidget(QLabel('Betaald jjjj-mm-dd'), 8, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(q5Edit, 8, 1)  
             
-            grid.addWidget(QLabel('Afgemeld jjjj-mm-dd'), 9, 0, 1, 1, Qt.AlignRight)
+            grid.addWidget(QLabel('Afgesloten jjjj-mm-dd'), 9, 0, 1, 1, Qt.AlignRight)
             grid.addWidget(q6Edit, 9, 1)  
           
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 10, 0, 1, 3, Qt.AlignCenter)
             
-            applyBtn = QPushButton('Bestelregels')
+            applyBtn = QPushButton('Orderregels')
             applyBtn.clicked.connect(self.accept)
                           
             cancelBtn = QPushButton('Sluiten')
             cancelBtn.clicked.connect(lambda: wijzSluit(m_email, minkordernr, 0 ,self))
                        
-            grid.addWidget(applyBtn, 9, 2, 1 , 1, Qt.AlignRight)
+            grid.addWidget(applyBtn, 9, 2, 1 , 2, Qt.AlignRight)
             applyBtn.setFont(QFont("Arial",10))
-            applyBtn.setFixedWidth(100)
+            applyBtn.setFixedWidth(200)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
+
+            insertBtn = QPushButton('Invoer nieuwe orderregel')
+            insertBtn.clicked.connect(lambda: insertRegels(m_email, minkordernr, self))
+
+            grid.addWidget(insertBtn, 8, 2, 1, 2, Qt.AlignRight)
+            insertBtn.setFont(QFont("Arial", 10))
+            insertBtn.setFixedWidth(200)
+            insertBtn.setStyleSheet("color: black;  background-color: gainsboro")
        
-            grid.addWidget(cancelBtn, 8, 2, 1 , 1, Qt.AlignRight)
+            grid.addWidget(cancelBtn, 7, 2, 1 , 2, Qt.AlignRight)
             cancelBtn.setFont(QFont("Arial",10))
-            cancelBtn.setFixedWidth(100)
+            cancelBtn.setFixedWidth(200)
             cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
             self.setLayout(grid)
             self.setGeometry(600, 300, 350, 300)
-                  
+
         def inkordChanged(self, text):
             self.Inkoopordernummer.setText(text)
             
@@ -383,7 +405,7 @@ def dienstenOrder(m_email, minkordernr, mregel):
         u = update(orders_inkoop).where(orders_inkoop.c.orderinkoopID == minkordernr).\
            values(goedgekeurd=mgoedgek, betaald = mbetaald, afgemeld = mafgemeld)  
         conn.execute(u)
-        invoerOK()
+        invoerOK('')
         conn.close()
     mregel = 0
     dienstenRegels(m_email, rp1,rp2, rp3, mstraat, mplaats, mregel)
@@ -397,7 +419,7 @@ def dienstenRegels(m_email, rp1,rp2, rp3, mstraat, mplaats, mregel):
                 super(Widget, self).__init__(parent)
         
                 self.setFont(QFont('Arial', 10))
-                self.setWindowTitle("Bestelregels inkooporder diensten wijzigen")
+                self.setWindowTitle('Wijzig stelposten orderregels')
                 self.setFont(QFont('Arial', 10))
                                                           
                 self.Inkoopordernummer = QLabel()
@@ -433,7 +455,7 @@ def dienstenRegels(m_email, rp1,rp2, rp3, mstraat, mplaats, mregel):
                 q4Edit.setValidator(input_validator)    
             
                 self.Aanneemsom = QLabel()
-                q5Edit = QLineEdit('{:12.2f}'.format(row[5]))
+                q5Edit = QLineEdit(str(round(row[5],2)))
                 q5Edit.setFixedWidth(130)
                 q5Edit.setFont(QFont("Arial",10))
                 q5Edit.setAlignment(Qt.AlignRight)
@@ -481,21 +503,20 @@ def dienstenRegels(m_email, rp1,rp2, rp3, mstraat, mplaats, mregel):
                 q9Edit.setValidator(input_validator) 
                 
                 self.BedragAcceptatie = QLabel()
-                q10Edit = QLineEdit('{:12.2f}'.format(row[10]))
+                q10Edit = QLineEdit(str(round(row[10],2)))
                 q10Edit.setFixedWidth(130)
                 q10Edit.setDisabled(True)
                 q10Edit.setAlignment(Qt.AlignRight)
                 q10Edit.setStyleSheet("QLineEdit { font-size: 10pt; font-family: Arial; color: black }")
                 q10Edit.textChanged.connect(self.q10Changed) 
                 
-                self.BedragMeerwerk = QLabel()
+                self.Sum = QLabel()
                 q12Edit = QLineEdit('{:12.2f}'.format(row[12]))
                 q12Edit.setFixedWidth(130)
                 q12Edit.setDisabled(True)
                 q12Edit.setAlignment(Qt.AlignRight)
                 q12Edit.setFont(QFont("Arial",10))
-                q12Edit.textChanged.connect(self.q12Changed) 
-                                                    
+
                 self.DatumAcceptatie = QLabel()
                 q11Edit = QLineEdit(str(row[11]))
                 q11Edit.setFixedWidth(130)
@@ -517,93 +538,90 @@ def dienstenRegels(m_email, rp1,rp2, rp3, mstraat, mplaats, mregel):
                 grid.addWidget(logo , 1, 2, 1, 1, Qt.AlignRight)
            
                 self.setFont(QFont('Arial', 10))
-                grid.addWidget(QLabel('Bestelling voor\nLeverancier: '+str(rp2[0])+\
+                grid.addWidget(QLabel('Order voor\nLeverancier: '+str(rp2[0])+\
                  ',\n'+rp2[1]+' '+rp2[2]+',\n'+mstraat+' '+str(rp2[4])+\
-                 rp2[5]+',\n'+rp2[3]+' '+mplaats+'.\nOrderregel '+str(mregel)), 1, 1, 1, 2)
+                 rp2[5]+',\n'+rp2[3]+' '+mplaats+'.\nOrder line '+str(mregel)), 1, 1, 1, 2)
                              
-                lbl1 = QLabel('Ordernummer')  
+                lbl1 = QLabel('Ordernummer')
                 lbl1.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl1, 5, 0)
                 grid.addWidget(q1Edit, 5, 1)
                                               
-                lbl2 = QLabel('Werknummer')  
+                lbl2 = QLabel('Werknummer')
                 lbl2.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl2, 6, 0)
                 grid.addWidget(q2Edit, 6, 1)
                 
-                lbl3 = QLabel('Werkomschrijving')  
+                lbl3 = QLabel('Werkomschrijving')
                 lbl3.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl3, 7, 0)
                 grid.addWidget(q3Edit,7, 1, 1, 2)
                            
-                lbl4 = QLabel('Omschrijving')  
+                lbl4 = QLabel('Omschrijving')
                 lbl4.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl4, 8, 0)
                 grid.addWidget(q4Edit, 8, 1, 1, 2)
                 
-                lbl5 = QLabel('Aanneemsom')  
+                lbl5 = QLabel('Aanneemsom')
                 lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl5, 9, 0)
                 grid.addWidget(q5Edit, 9, 1)
                                         
-                lbl6 = QLabel('Geplande Start')  
+                lbl6 = QLabel('Geplande start')
                 lbl6.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl6, 10, 0)  
                 grid.addWidget(q6Edit, 10, 1)
                 
-                lbl7 = QLabel('Werkelijke Start')  
+                lbl7 = QLabel('Werkelijke start')
                 lbl7.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl7, 11, 0)
                 grid.addWidget(q7Edit, 11, 1)
     
-                lbl8 = QLabel('Gepland Gereed')  
+                lbl8 = QLabel('Gepland gereed')
                 lbl8.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl8, 12, 0)
                 grid.addWidget(q8Edit, 12, 1)
                 
-                lbl9 = QLabel('Werkelijk Gereed')  
+                lbl9 = QLabel('Werkelijk gereed')
                 lbl9.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl9, 13, 0)
                 grid.addWidget(q9Edit, 13, 1)
                 
-                lbl10 = QLabel('Bedrag Acceptatie')  
+                lbl10 = QLabel('Hoeveelheid goegekeurd')
                 lbl10.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl10, 14, 0)
                 grid.addWidget(q10Edit, 14, 1)
                 
-                lbl11 = QLabel('Datum Acceptatie')  
+                lbl11 = QLabel('Datum goedgekeurd')
                 lbl11.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 grid.addWidget(lbl11, 15, 0)
                 grid.addWidget(q11Edit, 15, 1)
-                  
-                lbl12 = QLabel('Meerwerk\nStelpost')  
+
+                lbl12 = QLabel('Stelposten bedrag')
                 lbl12.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                grid.addWidget(lbl12, 9, 1)
-                grid.addWidget(q12Edit, 9, 2)
-                
-                lbl13 = QLabel('Wijzigingen t.o.v het\noorspronkelijke bedrag\nworden geboekt als\nmeerwerk/stelpost')
-                grid.addWidget(lbl13, 10, 2, 1 , 2)
-                                 
+                grid.addWidget(lbl12, 16, 0)
+                grid.addWidget(q12Edit, 16, 1)
+
                 self.setLayout(grid)
                 self.setGeometry(600, 150, 150, 150)
         
-                applyBtn = QPushButton('Wijzigen / of\nVolgende regel')
+                applyBtn = QPushButton('Wijzig of volgende regel')
                 applyBtn.clicked.connect(self.accept)
                 
-                grid.addWidget(applyBtn, 15, 2, 1 , 1, Qt.AlignRight)
+                grid.addWidget(applyBtn, 16, 2, 1 , 1, Qt.AlignRight)
                 applyBtn.setFont(QFont("Arial",10))
-                applyBtn.setFixedWidth(140)
+                applyBtn.setFixedWidth(200)
                 applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
-                
+
                 cancelBtn = QPushButton('Sluiten')
                 cancelBtn.clicked.connect(lambda: closeRegels(m_email, minkordernr, mregel, self))
                 
-                grid.addWidget(cancelBtn, 14, 2, 1, 1, Qt.AlignRight)
+                grid.addWidget(cancelBtn, 15, 2, 1, 1, Qt.AlignRight)
                 cancelBtn.setFont(QFont("Arial",10))
-                cancelBtn.setFixedWidth(140)
+                cancelBtn.setFixedWidth(200)
                 cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
                 
-                grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 16 , 0, 1, 3, Qt.AlignCenter)
+                grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 17 , 0, 1, 3, Qt.AlignCenter)
                                                                          
             def q1Changed(self, text):
                 self.Inkoopordernummer.setText(text)
@@ -637,10 +655,7 @@ def dienstenRegels(m_email, rp1,rp2, rp3, mstraat, mplaats, mregel):
                 
             def q11Changed(self,text):
                 self.DatumAcceptatie.setText(text)
-                   
-            def q12Changed(self,text):
-                self.BedragMeerwerk.setText(text)
-                
+
             def returnq1(self):
                 return self.Inkoopordernummer.text()
             
@@ -673,10 +688,7 @@ def dienstenRegels(m_email, rp1,rp2, rp3, mstraat, mplaats, mregel):
             
             def returnq11(self):
                 return self.DatumAcceptatie.text()
-            
-            def returnq12(self):
-                return self.BedragMeerwerk.text()
-            
+
             @staticmethod
             def getData(parent=None):
                 dialog = Widget(parent)
@@ -684,7 +696,7 @@ def dienstenRegels(m_email, rp1,rp2, rp3, mstraat, mplaats, mregel):
                 return [dialog.returnq1(), dialog.returnq2(), dialog.returnq3(),\
                         dialog.returnq4(), dialog.returnq5(), dialog.returnq6(),\
                         dialog.returnq7(), dialog.returnq8(), dialog.returnq9(),
-                        dialog.returnq10(), dialog.returnq11(), dialog.returnq12()]
+                        dialog.returnq10(), dialog.returnq11()]
          
         window = Widget()
         data = window.getData()
@@ -720,30 +732,12 @@ def dienstenRegels(m_email, rp1,rp2, rp3, mstraat, mplaats, mregel):
         else:
             mwerkgereed = row[9]
         macctbedr = float(row[10])
-        if data[11]:
+        if data[10]:
             maccptdat = data[10]
         else:
             maccptdat = row[11]
-                               
-        metadata = MetaData()    
-       
-        orders_inkoop_diensten = Table('orders_inkoop_diensten', metadata,
-            Column('orddienstlevID', Integer(), primary_key=True),
-            Column('orderinkoopID', None, ForeignKey('orders_inkoop.orderinkoopID')),
-            Column('werknummerID', None, ForeignKey('werken.werknummerID')),
-            Column('werkomschr', String),
-            Column('omschrijving', String),
-            Column('aanneemsom', Float),
-            Column('plan_start', String),
-            Column('werk_start', String),
-            Column('plan_gereed', String),
-            Column('werk_gereed', String),
-            Column('acceptatie_gereed', Float),
-            Column('acceptatie_datum', String),
-            Column('meerminderwerk', Float),
-            Column('regel', Integer),
-            Column('meerminderwerk', Float))
-          
+
+
         engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
         conn = engine.connect()
                       
@@ -751,33 +745,40 @@ def dienstenRegels(m_email, rp1,rp2, rp3, mstraat, mplaats, mregel):
            orddienstlevID == mID, orders_inkoop_diensten.c.orderinkoopID == mordnr,\
            orders_inkoop_diensten.c.werknummerID == mwerknr, \
            orders_inkoop_diensten.c.regel == mregel)).values(werkomschr =\
-           mwerkomschr, omschrijving = momschr, plan_start = mplstart,\
+           mwerkomschr, omschrijving = momschr, aanneemsom = maannsom, plan_start = mplstart,\
            plan_gereed = mplgereed, werk_start = mwerkstart, werk_gereed =  mwerkgereed,\
-           acceptatie_gereed =  macctbedr, acceptatie_datum = maccptdat,\
-           meerminderwerk = orders_inkoop_diensten.c.meerminderwerk+maannsom -row[5])
+           acceptatie_gereed =  macctbedr, acceptatie_datum = maccptdat)
         
         conn.execute(u)
    
-        metadata = MetaData()
-        werken = Table('werken', metadata,
-            Column('werknummerID', Integer(), primary_key=True),
-            Column('meerminderwerk', Float))
-
-        engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
-        conn = engine.connect()
- 
-        updwerk = update(werken).where(werken.c.werknummerID == mwerknr).\
-            values(meerminderwerk = werken.c.meerminderwerk+maannsom-row[5])
-        conn.execute(updwerk)
         y = 0
-        for x in range(2,12):
+        for x in range(2,11):
             if data[x]:
-                y =1
+                y = 1
         if y:
-            invoerOK()
+            invoerOK('')
           
     mregel = 0
     dienstenOrder(m_email, minkordernr, mregel)
-      
-                                                       
-   
+
+def insertRegels(m_email, minkordernr, self):
+    engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
+    conn = engine.connect()
+
+    sel = select([orders_inkoop_diensten]).where(orders_inkoop_diensten.\
+                c.orderinkoopID == minkordernr).order_by(orders_inkoop_diensten.c.regel.desc())
+    rpsel = conn.execute(sel).first()
+
+    try:
+        midnr = conn.execute(select([func.max(orders_inkoop_diensten.c.orddienstlevID, type_=Integer)])).scalar()
+        midnr += 1
+    except:
+        midnr = 1
+
+    mregel = rpsel[13]+1
+    ins = insert(orders_inkoop_diensten).values(orddienstlevID = midnr, regel = mregel, orderinkoopID = rpsel[1],\
+          werknummerID = rpsel[2], werkomschr = rpsel[3], meerminderwerk = rpsel[12])
+    conn.execute(ins)
+    message = '\nlinenumber: '+ str(mregel) + ' has been added'
+    invoerOK(message)
+    closeRegels(m_email, rpsel[1], mregel,self)

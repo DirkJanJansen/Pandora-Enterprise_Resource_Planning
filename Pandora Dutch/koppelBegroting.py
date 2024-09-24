@@ -295,7 +295,19 @@ def koppelCalc(mcalnr, mwerknr, mwerkomschr, m_email):
             Column('begr_grondverzet', Float),
             Column('begr_beton_bvl', Float),
             Column('begr_vervoer', Float),
-            Column('begr_overig', Float))
+            Column('begr_overig', Float),
+            Column('begr_sleuvengraver_uren', Float),
+            Column('begr_persapparaat_uren', Float),
+            Column('begr_atlaskraan_uren', Float),
+            Column('begr_kraan_groot_uren', Float),
+            Column('begr_mainliner_uren', Float),
+            Column('begr_hormachine_uren', Float),
+            Column('begr_wagon_uren', Float),
+            Column('begr_locomotor_uren', Float),
+            Column('begr_locomotief_uren', Float),
+            Column('begr_montagewagen_uren', Float),
+            Column('begr_stormobiel_uren', Float),
+            Column('begr_robeltrein_uren', Float))
         engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
         con = engine.connect()
         selcal = select([calculaties]).where(calculaties.c.calculatie == mcalnr)
@@ -324,11 +336,22 @@ def koppelCalc(mcalnr, mwerknr, mwerkomschr, m_email):
               begr_beton_bvl = werken.c.begr_beton_bvl + regel[41],\
               begr_vervoer = werken.c.begr_vervoer + regel[42],\
               begr_overig = werken.c.begr_overig + regel[43],\
-              calculatienummer = mcalnr)
+              calculatienummer = mcalnr, \
+              begr_sleuvengraver_uren=werken.c.begr_sleuvengraver_uren + regel[23], \
+              begr_persapparaat_uren=werken.c.begr_persapparaat_uren + regel[24], \
+              begr_atlaskraan_uren=werken.c.begr_atlaskraan_uren + regel[25], \
+              begr_kraan_groot_uren=werken.c.begr_kraan_groot_uren + regel[26], \
+              begr_mainliner_uren=werken.c.begr_mainliner_uren + regel[27], \
+              begr_hormachine_uren=werken.c.begr_hormachine_uren + regel[28], \
+              begr_locomotor_uren=werken.c.begr_locomotor_uren + regel[29], \
+              begr_locomotief_uren=werken.c.begr_locomotief_uren + regel[30], \
+              begr_montagewagen_uren=werken.c.begr_montagewagen_uren + regel[31], \
+              begr_stormobiel_uren=werken.c.begr_stormobiel_uren + regel[32], \
+              begr_robeltrein_uren=werken.c.begr_robeltrein_uren + regel[33])
             con.execute(updwerk)
 
         updcal = update(calculaties).where(calculaties.c.calculatie == mcalnr) \
-            .values(koppelnummer=mwerknr, werkomschrijving=mwerkomschr, verwerkt=2)
+            .values(koppelnummer=mwerknr, werkomschrijving=mwerkomschr, verwerkt=1)
         con.execute(updcal)
 
         materiaallijsten = Table('materiaallijsten', metadata,
