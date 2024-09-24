@@ -1,0 +1,16 @@
+Order list internal for purchase orders / reservations Services and Equipment,
+Work number: 800000067 Hanzelijn Lelystad Zwoll Calculation: 2  Date: 2024-08-21  Page : 1
+=====================================================================================================
+Cluster Cluster description      Number   Unit  Description-Service  hours-sub  Amount-Sub  Delivery  
+=====================================================================================================
+AB00012 Lijmlas UIC 54 Beton       2.00   stel  Hiring                  188.00     5891.92     Agree
+AB00012 Lijmlas UIC 54 Beton       2.00   stel  Atlas crane              53.60     2805.42     Agree
+AB00012 Lijmlas UIC 54 Beton       2.00   stel  Mainliner                98.40    21091.06     Agree
+AB00012 Lijmlas UIC 54 Beton       2.00   stel  Wagon                   178.40     2950.74     Agree
+GA00610 AY sein                    3.00         Hiring                   99.60     3121.46     Agree
+GA00610 AY sein                    3.00         Atlas crane              42.00     2198.28     Agree
+GB00611 MF sein                    1.00         Hiring                    9.80      307.13     Agree
+GB00611 MF sein                    1.00         Atlas crane               4.80      251.23     Agree
+-----------------------------------------------------------------------------------------------------
+Totals                                                                  674.60    56612.75
+=====================================================================================================

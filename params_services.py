@@ -393,7 +393,6 @@ def showParams(m_email, auth_1, auth_2, auth_3, data):
                 def returnq2(self):
                     return self.Overhead.text()
 
-
                 @staticmethod
                 def getData(parent=None):
                     dialog = paramWindow()

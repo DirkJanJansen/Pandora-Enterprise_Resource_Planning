@@ -2,7 +2,7 @@ Pandora user instructions.
 
 pandora starts with pandora.py 
 When Pandora starts a lockfile is locally set in the user directory,
-so only one session can be started per person /workstation. Disabled for now!
+so only one session can be started per person /workstation.
 Next login screen session is started
 From the login screen all modules can be initiated.
 For ending the program every module or subscreen must be stopped with the close button.

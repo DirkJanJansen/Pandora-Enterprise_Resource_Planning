@@ -11,9 +11,9 @@ def password_check(hashed_password, password):
     ph = PasswordHasher()
     try:
         if ph.verify(hashed_password, password) and (len(password) > 7):  # True
-           return(True)
+           return True
     except Exception:
-        return(False)
+        return False
 
 def goodbye():
     msg = QMessageBox()
@@ -225,7 +225,7 @@ def inlog():
 
             grid.addWidget(QLabel('Accountnumber'), 4, 1)
             grid.addWidget(accountEdit, 4, 2)
-
+           
             grid.addWidget(QLabel('Password'), 5, 1)
             grid.addWidget(wachtwEdit, 5, 2)
 
@@ -451,10 +451,12 @@ def hoofdMenu(m_email):
             self.k3Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
             self.k3Edit.addItem('1. Insert orders materials')
             self.k3Edit.addItem('2. Modify orders materials')
-            self.k3Edit.addItem('3. Insert orders services/equipment')
-            self.k3Edit.addItem('4. Modify orders services/equipment')
-            self.k3Edit.addItem('5. Request orders materials')
-            self.k3Edit.addItem('6. Request orders services/equipment')
+            self.k3Edit.addItem('3. Insert orders provisional work')
+            self.k3Edit.addItem('4. Ordering / view orders equipment')
+            self.k3Edit.addItem('5. Modify orders provisional work')
+            self.k3Edit.addItem('6. Request orders materials')
+            self.k3Edit.addItem('7. Request orders provisional work')
+            self.k3Edit.addItem('8. Request orders reservations materials')
 
             self.k4Edit = QComboBox()
             self.k4Edit.setFixedWidth(310)
@@ -526,7 +528,8 @@ def hoofdMenu(m_email):
             self.k7Edit.addItem('5. Printing picklists')
             self.k7Edit.addItem('6. Mutate cost services')
             self.k7Edit.addItem('7. Mutate hourly consumption')
-            self.k7Edit.addItem('8. Parameters Services')
+            self.k7Edit.addItem('8. Mutate equipment hours')
+            self.k7Edit.addItem('9. Parameters Services')
 
             self.k8Edit = QComboBox()
             self.k8Edit.setFixedWidth(310)
@@ -669,7 +672,7 @@ def hoofdMenu(m_email):
             self.k15Edit.lineEdit().setReadOnly(True)
             self.k15Edit.lineEdit().setAlignment(Qt.AlignCenter)
             self.k15Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
-            self.k15Edit.setMaxVisibleItems(14)
+            self.k15Edit.setMaxVisibleItems(15)
             self.k15Edit.addItem(' 1. Calculation internal works')
             self.k15Edit.addItem(' 2. Calculation external works')
             self.k15Edit.addItem(' 3. Internal orders purchase')
@@ -683,6 +686,7 @@ def hoofdMenu(m_email):
             self.k15Edit.addItem('11. Web orders payments')
             self.k15Edit.addItem('12. Purchase orders services/material')
             self.k15Edit.addItem('13. Counter sale order invoices')
+            self.k15Edit.addItem('14. Equipment purchase orders')
 
             #disable menu's if no permission is granted in table accounts
             # list of Mainmenu
@@ -690,8 +694,8 @@ def hoofdMenu(m_email):
                     self.k8Edit,self.k9Edit,self.k10Edit,self.k11Edit,self.k12Edit,self.k13Edit,self.k14Edit,self.k15Edit]
 
             # list of pointers by mainmenu and menulines per groups pointers towards database table accountpermissions
-            lineperm = ([0, 4, 6, 2, 2, 5],[0, 3, 4, 6, 1],[0, 1, 4, 6, 6],[0, 3, 4, 3, 4, 6, 6],[0, 3, 4, 6, 1, 6],\
-                        [0, 3, 4, 6, 4, 5, 1, 6, 3, 6],[0, 3, 4, 6, 3, 5, 3],[0, 3, 4, 6, 2, 6, 3, 3, 7],\
+            lineperm = ([0, 4, 6, 2, 2, 5],[0, 3, 4, 6, 1],[0, 1, 4, 6, 6],[0, 3, 4, 3, 7, 6, 6, 6 ],[0, 3, 4, 6, 1, 6],\
+                        [0, 3, 4, 6, 4, 5, 1, 6, 3, 6],[0, 3, 4, 6, 3, 5, 3],[0, 3, 4, 6, 2, 6, 3, 3, 3, 7],\
                         [0, 3, 4, 6, 3, 6, 3, 6, 1, 7],[0, 4, 4, 6, 3, 6, 3, 6, 1, 7],[0, 6, 2, 1, 6, 3, 4, 1, 7, 7, 7],\
                         [0, 6, 6, 2, 6, 2, 5, 6, 7],[0, 2, 1, 1, 1],[0, 1, 6, 6, 6, 7],[0, 7, 3, 3, 7, 4],[0])
             # loop on mainmenu and permissions in table accounts
@@ -702,6 +706,8 @@ def hoofdMenu(m_email):
                 if mp[menu][0] == '0':
                     mplist[menu].setDisabled(True)
                     mplist[menu].setStyleSheet("color: darkgrey; background-color: gainsboro")
+                else:
+                    mplist[menu].setEnabled(True)
                 # subloop on menulines per menu
                 # translate submenuline with linepointer from lineperm list, check if 0 in accounts table
                 # if so disable menuline from selecting
@@ -746,6 +752,10 @@ def hoofdMenu(m_email):
                 mplist[15].model().item(13).setEnabled(False)
                 mplist[15].model().item(13).setForeground(QColor('darkgrey'))
                 mplist[15].model().item(13).setBackground(QColor('gainsboro'))
+            if mp[3][5] == '0' or mp[3][7] == '0' :
+                mplist[15].model().item(14).setEnabled(False)
+                mplist[15].model().item(14).setForeground(QColor('darkgrey'))
+                mplist[15].model().item(14).setBackground(QColor('gainsboro'))
             if mp[10][5] == '0':
                 mplist[15].model().item(8).setEnabled(False)
                 mplist[15].model().item(8).setForeground(QColor('darkgrey'))
@@ -968,17 +978,20 @@ def hoofdMenu(m_email):
         import invoerDienstenorder
         invoerDienstenorder.zoekLeverancier(m_email, mlevnr, mwerknr, mregel)
     elif dlist[3] == 4:
+        import invoerEquipmentorder
+        invoerEquipmentorder.calKeuze(m_email, int(mp[3][3]), int(mp[3][4]), int(mp[3][6]))
+    elif dlist[3] == 5:
         import wijzDienstenorder
         mregel = 0
         minkordernr = 4
         wijzDienstenorder.zoekInkooporder(m_email, minkordernr, mregel)
-    elif dlist[3] == 5:
+    elif dlist[3] == 6:
         import opvrInkooporders
         opvrInkooporders.inkooporderKeuze(m_email)
-    elif dlist[3] == 6:
+    elif dlist[3] == 7:
         import opvrDienstenorders
         opvrDienstenorders.inkooporderKeuze(m_email)
-    elif dlist[3] == 7:
+    elif dlist[3] == 8:
         import opvrReserveringen
         opvrReserveringen.resKeuze(m_email) 
     elif dlist[4] == 1:
@@ -1056,7 +1069,7 @@ def hoofdMenu(m_email):
         mboekd = str(datetime.now())[0:10]
         while True:
             accwerk = urenImutaties.urenMut(maccountnr, mwerknr, mboekd, m_email)
-	        # for convenience start with last used work , employee and mboekd
+            # for convenience start with last used work , employee and mboekd
             try:
                 maccountnr = accwerk[0]
                 mwerknr = accwerk[1]
@@ -1100,6 +1113,22 @@ def hoofdMenu(m_email):
                 mwerknr = '8'
                 mboekd = str(datetime.now())[0:10]
     elif dlist[7] == 8:
+        import materieel_urenMutaties
+        mservicenr = 1
+        mwerknr = '8'
+        mboekd = str(datetime.now())[0:10]
+        while True:
+            servicewerk = materieel_urenMutaties.urenMut(mservicenr, mwerknr, mboekd, m_email)
+            # for convenience start with last used equipment, work and bookdate
+            try:
+                mservicenr = servicewerk[0]
+                mwerknr = servicewerk[1]
+                mboekd = servicewerk[2]
+            except:
+                mservicenr = 1
+                mwerknr = '8'
+                mboekd = str(datetime.now())[0:10]
+    elif dlist[7] == 9:
         import params_services
         params_services.chooseSubMenu(m_email, int(mp[7][6]), int(mp[7][4]), int(mp[7][3]))
     elif dlist[8] == 1:
@@ -1358,6 +1387,13 @@ def hoofdMenu(m_email):
             path = '.\\forms\\Barcodelijsten\\'
         else:
             path = './forms/Barcodelijsten/'
+        import filePicklist
+        filePicklist.fileList(m_email, path)
+    elif dlist[15] == 14:
+        if sys.platform == 'win32':
+            path = '.\\forms\\Equipment_Orders\\'
+        else:
+            path = './forms/Equipment_Orders/'
         import filePicklist
         filePicklist.fileList(m_email, path)
     else:

@@ -12,7 +12,7 @@ Artikelnr  Omschrijving                        Eenheid       Prijs      Aantal
 200014365  Fundering,v dwergsein,beton,75mm     stuk       1969.98        3.00
 200014377  Fundering,beton                      stuk       3034.86        3.00
 200014390  Fundering,v brede ladder,beton       stuk       2448.11        3.00
-200014407  Fundering,v dwergsein,MF,gietijzer   stuk       2101.30        3.00
+200014407  Fundering,v dwergsein,MF,gietijzer   stuk       2101.30        3.00 
 200014456  Bord,lichtsein,zw/gl,300x194mm       stuk       7358.66        3.00
 200014468  Ladder,v seinpaal,5720mm             stuk       3522.02        3.00
 200014547  Laddersteun,verbr.,compl.ond.,841mm  stuk       4906.52        3.00

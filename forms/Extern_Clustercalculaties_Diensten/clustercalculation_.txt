@@ -1,0 +1,30 @@
+Order list internal for purchase orders / reservations Services and Equipment,
+Work number: 800000080                          Calculation: 5  Date: 2024-08-24  Page : 1
+=====================================================================================================
+Cluster Cluster description      Number   Unit  Description-Service  hours-sub  Amount-Sub  Delivery  
+=====================================================================================================
+AA00001 Ommen Dalfsen dubbel      20.00  1080m  Hiring                49134.00  1847831.47     Agree
+AA00001 Ommen Dalfsen dubbel      20.00  1080m  Mainliner             25690.00  6607673.52     Agree
+AA00001 Ommen Dalfsen dubbel      20.00  1080m  Wagon                  6890.00   136752.72     Agree
+AA00001 Ommen Dalfsen dubbel      20.00  1080m  Locomotive            22090.00  2368224.72     Agree
+AA00002 Ommen Dalfsen dubbel      44.00   stel  Atlas crane             924.00    58034.59     Agree
+AA00002 Ommen Dalfsen dubbel      44.00   stel  Mainliner              1848.00   475320.38     Agree
+AA00002 Ommen Dalfsen dubbel      44.00   stel  Wagon                   880.00    17466.24     Agree
+EA00401 Ommen Dalfsen dubbel       6.00     st  Hiring                 1407.00    52914.46     Agree
+EA00401 Ommen Dalfsen dubbel       6.00     st  Crane big               273.60    36955.70     Agree
+EA00401 Ommen Dalfsen dubbel       6.00     st  Mainliner               387.00    99539.50     Agree
+EA00401 Ommen Dalfsen dubbel       6.00     st  Wagon                   144.00     2858.11     Agree
+FA00501 Telecom Kabel leggen       1.00     st  Hiring                  234.45     8817.20     Agree
+FA00501 Telecom Kabel leggen       1.00     st  Trench machine           51.23     2882.61     Agree
+FA00501 Ommen Dalfsen dubbel      22.00     st  Hiring                51579.00  1939783.03     Agree
+FA00501 Ommen Dalfsen dubbel      22.00     st  Trench machine        11270.60   634174.12     Agree
+GA00610 Ommen Dalfsen dubbel       8.00         Hiring                  664.00    24971.71     Agree
+GA00610 Ommen Dalfsen dubbel       8.00         Atlas crane             280.00    17586.24     Agree
+GB00611 Ommen Dalfsen dubbel       4.00         Hiring                   98.00     3685.58     Agree
+GB00611 Ommen Dalfsen dubbel       4.00         Atlas crane              48.00     3014.78     Agree
+JA00801 Ommen Dalfsen dubbel       3.00  stuks  Hiring                  440.10    16551.28     Agree
+JA00801 Ommen Dalfsen dubbel       3.00  stuks  Atlas crane              43.80     2750.99     Agree
+JA00801 Ommen Dalfsen dubbel       3.00  stuks  Crane big                60.00     8104.32     Agree
+-----------------------------------------------------------------------------------------------------
+Totals                                                               174436.78 28759130.05
+=====================================================================================================

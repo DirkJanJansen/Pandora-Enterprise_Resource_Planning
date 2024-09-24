@@ -258,6 +258,7 @@ def urenBoeking(self, m_email):
     try:
         mwrkwnruren=(con.execute(select([func.max(wrkwnrln.c.wrkwnrurenID,\
             type_=Integer)])).scalar())
+        mwrkwnruren += 1
     except:
         mwrkwnruren = 1
 
@@ -287,7 +288,7 @@ def urenBoeking(self, m_email):
              (mgverzuim*muurloon)+(moverzuim*muurloon)
      
     inswrkwnrln = wrkwnrln.insert().values(
-    wrkwnrurenID = mwrkwnruren+1,
+    wrkwnrurenID = mwrkwnruren,
     werknemerID = rpwnr[0],
     boekdatum = mboekd,
     aantaluren = muren+mu125+mu150+mu200+mreis+mmeerw100+mmeerw125+mmeerw150+\

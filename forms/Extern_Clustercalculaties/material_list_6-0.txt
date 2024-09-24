@@ -1,0 +1,12 @@
+Work number:   0  Calculation: 6   Date: 2024-08-26  Page :  1
+=============================================================================================
+Articlenr  Cluster                             Unit          Price      Number               
+=============================================================================================
+200029459  Rughellingplaat 54E1,gegoten,23,1mm  stuk          2.54     3600.00
+200030644  Compensatielas 54E1,L,2x6.000mm      stuk         54.88        3.00
+200030656  Compensatielas 54E1,R,2x6.000mm      stuk         41.99        3.00
+200031764  Dwarsligger,rgpt,260x25x15cm,54E1    stuk        171.33     1800.00
+200034169  Veerklem,SKL KM (SKL 19) KTL-behand  stuk          9.17     7200.00
+200034224  Kraagbout,vlak onder kop,23x190mm    stuk          4.64    14400.00
+200035708  Spoorstaaf 54E5 R370LHT,360.000mm ?  stuk        986.94        6.00
+200036415  Steenslag,22/40                      ton         425.87     1000.00

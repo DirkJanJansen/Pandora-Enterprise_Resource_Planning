@@ -1,8 +1,5 @@
 Installation on Windows:
 
-If you installed the old version, don't forget to replace the database
-with the changed bisystem.backup
-
 Install python3 for Windows
 download from https://www.python.org/downloads/
 if installed open a command prompt cmd and execute next lines
@@ -44,13 +41,14 @@ Install postgresql in folder C:\programdata\postgres with password: postgres45 l
 set password in pgadmin4: postgres45
 Start psql in command prompt and set password with \password  (postgres45)
 
-Import data with pgrestore-custom.bat or for empty database pgrestore-custom.empty.bat
+copy the files from folder data in c:\programdata\postgres\backup\
+Import data with pgrestore-custom.bat or for empty database pgrestore-custom-empty.bat
  (change pathnames to your own pathname, if you changed path PostgreSQL)
 The database bisystem is imported in postgresql.
 pgdrop-bisystem.bat is included for deleting the database bisystem (change pathnames to your own pathnames)
 pgdump-custom.bat is included for backup database (change pathnames to your own pathnames)
-If you change install folders, the pathnames in pgrestore-custom.bat, pgrestore-custom.empty.bat,
-pgdump-custom.bat and pgdump-cumtom.empty.bat must be changed.
+If you change install folders, the pathnames in pgrestore-custom.bat, pgrestore-custom-empty.bat
+and pgdump-custom.bat must be changed.
 
 Rename Pandora-Enterprise_Resource_Planning to Pandora
 Copy  Pandora to C:\ProgramData keep the folder structure as it is.

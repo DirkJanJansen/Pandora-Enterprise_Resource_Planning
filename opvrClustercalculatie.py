@@ -185,7 +185,7 @@ def opvragenCalc(mcalnr, mwerkomschr,mverw, mwerknr, m_email):
             self.artlijstBtn.setFixedWidth(110)
             self.artlijstBtn.setStyleSheet("color: black;  background-color: gainsboro")
             
-            self.dienstenBtn = QPushButton('Services + Equipment\nOrder list Requesting')
+            self.dienstenBtn = QPushButton('Equipment\nOrder list Requesting')
             self.dienstenBtn.clicked.connect(lambda: toonDienstenlijst(mcalnr, mwerknr))
             grid.addWidget(self.dienstenBtn, 5, 2)
             self.dienstenBtn.setFont(QFont("Arial",10))
@@ -205,8 +205,8 @@ def opvragenCalc(mcalnr, mwerkomschr,mverw, mwerknr, m_email):
             self.artprintBtn.setFont(QFont("Arial",10))
             self.artprintBtn.setFixedWidth(110)
             self.artprintBtn.setStyleSheet("color: black;  background-color: gainsboro")
-            
-            self.dienstenprintBtn = QPushButton('Service + Equipment\nOrder list Printing')
+
+            self.dienstenprintBtn = QPushButton('Equipment\nOrder list Printing')
             self.dienstenprintBtn.clicked.connect(lambda: printDienstenlijst(mcalnr, mwerknr))
             grid.addWidget(self.dienstenprintBtn, 4, 2)
             self.dienstenprintBtn.setFont(QFont("Arial",10))
@@ -402,7 +402,7 @@ def opbouwRp(mcalnr, mwerkomschr, mverw, mwerknr, m_email):
     rpclart = con.execute(selclart)
     for record in rpcalc:
         updcalc = update(calculaties).where(and_(calculaties.c.calculatie == record[3],\
-           calculaties.c.clusterID == clusters.c.clusterID)).values(verwerkt = 1, \
+           calculaties.c.clusterID == clusters.c.clusterID)).values(verwerkt = 0, \
            uren_constr = calculaties.c.uren_constr+(clusters.c.uren_constr*calculaties.c.hoeveelheid),\
            uren_mont = calculaties.c.uren_mont+(clusters.c.uren_mont*calculaties.c.hoeveelheid),\
            uren_retourlas = calculaties.c.uren_retourlas+(clusters.c.uren_retourlas*calculaties.c.hoeveelheid),\
@@ -449,14 +449,7 @@ def opbouwRp(mcalnr, mwerkomschr, mverw, mwerknr, m_email):
               calculaties.c.locomotief * rppar2[8][1] * rppar2[8][2] + \
               calculaties.c.montagewagen * rppar2[9][1] * rppar2[9][2] + \
               calculaties.c.stormobiel * rppar2[10][1] * rppar2[10][2] + \
-              calculaties.c.robeltrein * rppar2[11][1] * rppar2[11][2], \
-         diensten=calculaties.c.leiding + clusters.c.leiding + \
-              calculaties.c.huisvesting + clusters.c.huisvesting + \
-              calculaties.c.kabelwerk + clusters.c.kabelwerk + \
-              calculaties.c.grondverzet + clusters.c.grondverzet + \
-              calculaties.c.betonwerk + clusters.c.betonwerk + \
-              calculaties.c.vervoer + clusters.c.vervoer + \
-              calculaties.c.overig + clusters.c.overig)
+              calculaties.c.robeltrein * rppar2[11][1] * rppar2[11][2])
         con.execute(updcal1)
         for row in rpclart:
             selart = select([materiaallijsten.c.artikelID, materiaallijsten.c.calculatie]).where(and_(materiaallijsten.\
@@ -490,6 +483,7 @@ def opbouwRp(mcalnr, mwerkomschr, mverw, mwerknr, m_email):
              .values(prijs=calculaties.c.materialen+calculaties.c.materieel+\
               calculaties.c.lonen+calculaties.c.diensten, werkomschrijving = mwerkomschr)
             con.execute(updber)
+
     opvragenCalc(mcalnr, mwerkomschr, mverw, mwerknr, m_email)
                         
 def printCalculatie(mcalnr, mwerknr):
@@ -682,14 +676,14 @@ def printDienstenlijst(mcalnr, mwerknr):
     selcal = select([calculaties]).where(calculaties.c.koppelnummer == mwerknr).\
      order_by(calculaties.c.clusterID)
     rpcal = con.execute(selcal)
-    
-    mblad = 1
+
+    mblad = 0
     rgl = 0
     m_uren = 0
     mtotaal = 0
     
     header = ['Hiring','Trench machine','Pressing machine','Atlas crane','Crane big',\
-          'Mainliner','Ballast\nscrapper machine','Wagon','Locomotor','Locomotive','Assemble Trolley',\
+          'Mainliner','Ballast scraper','Wagon','Locomotor','Locomotive','Assemble Trolley',\
           'Stormobiel','Robel train','Direction','Housing','Cable work',\
           'Earth moving','Concrete work','Transport','Remaining']
     
@@ -697,23 +691,33 @@ def printDienstenlijst(mcalnr, mwerknr):
         if row[7] == 0:
             foutWerknr()
             return
-        if rgl == 0 or rgl%55 == 0:
+        if rgl == 0 or rgl%54 == 0:
             if platform == 'win32':
                 filename = '.\\forms\\Extern_Clustercalculaties_Diensten\\clustercalculation_'+str(row[2]).replace(' ', '_')+'.txt'
             else:
                 filename = './forms/Extern_Clustercalculaties_Diensten/clustercalculation_'+str(row[2]).replace(' ', '_')+'.txt'
-            kop=\
-    ('Order list internal for purchase orders / reservations Services and Equipment,\nWork number: '+str(mwerknr)+' '+'{:<24.24s}'.format(str(row[2]))+' Calculation: '+str(row[3])+\
-     '  Date: '+str(datetime.datetime.now())[0:10]+'  Page : '+str(mblad)+'\n'+
-    '=====================================================================================================\n'+
-    'Cluster Cluster description      Number   Unit  Description-Service  hours-sub  Amount-Sub  Delivery  \n'+
-    '=====================================================================================================\n')
-            if rgl == 0:                 
-                open(filename, 'w').write(kop)
-            elif rgl%55 == 0:
-                open(filename, 'a').write(kop)
-            mblad += 1
+
         for k in range(14, 34):
+            if rgl == 0:
+                mblad += 1
+                kop = \
+                    ('Order list internal for purchase orders / reservations Services and Equipment,\nWork number: ' + str(
+                     mwerknr) + ' ' + '{:<24.24s}'.format(str(row[2])) + ' Calculation: ' + str(row[3]) + \
+                    '  Date: ' + str(datetime.datetime.now())[0:10] + '  Page : ' + str(mblad) + '\n' +
+                    '=====================================================================================================\n' +
+                    'Cluster Cluster description      Number   Unit  Description-Service  hours-sub  Amount-Sub  Delivery  \n' +
+                    '=====================================================================================================\n')
+                open(filename, 'w').write(kop)
+            elif rgl%54 == 0:
+                mblad += 1
+                kop = \
+                    ('Order list internal for purchase orders / reservations Services and Equipment,\nWork number: ' + str(
+                    mwerknr) + ' ' + '{:<24.24s}'.format(str(row[2])) + ' Calculation: ' + str(row[3]) + \
+                        '  Date: ' + str(datetime.datetime.now())[0:10] + '  Page : ' + str(mblad) + '\n' +
+                        '=====================================================================================================\n' +
+                        'Cluster Cluster description      Number   Unit  Description-Service  hours-sub  Amount-Sub  Delivery  \n' +
+                        '=====================================================================================================\n')
+                open(filename, 'a').write(kop)
             dienst = header[k-14]
             if k == 14:
                 uren = row[k]
@@ -733,8 +737,8 @@ def printDienstenlijst(mcalnr, mwerknr):
                     mtotaal = mtotaal+row[k]*rppar2[k-15][1]
                 else:
                     mtotaal = mtotaal+row[k]
-        rgl += 1
-    tail =(\
+                rgl += 1
+        tail =(\
     '-----------------------------------------------------------------------------------------------------\n'+
     'Totals                                                             '+'{:11.2f}'.format(m_uren)+'{:12.2f}'.format(mtotaal)+'\n'+
     '=====================================================================================================\n')    
@@ -760,6 +764,14 @@ def toonCalculatie(mcalnr, mwerknr):
             font = QFont("Arial", 10)
             table_view.setFont(font)
             table_view.hideColumn(1)
+            table_view.hideColumn(12)
+            table_view.hideColumn(37)
+            table_view.hideColumn(38)
+            table_view.hideColumn(39)
+            table_view.hideColumn(40)
+            table_view.hideColumn(41)
+            table_view.hideColumn(42)
+            table_view.hideColumn(43)
             table_view.resizeColumnsToContents()
             table_view.setSelectionBehavior(QTableView.SelectRows)
             #table_view.clicked.connect(selectRow)
@@ -796,14 +808,13 @@ def toonCalculatie(mcalnr, mwerknr):
              
     header = ['ID','Cluster','Work description','Calculation','Cluster number',\
               'Processed','Amount','Unit', 'Link number', 'Total price','Materials',\
-              'Wages','Services','Equipment', 'Hiring','Hours\nConstruction','Hours\nMounting',\
+              'Wages','','Equipment', 'Hiring','Hours\nConstruction','Hours\nMounting',\
               'Hours\nReturn welding', 'Hours\nTelecom', 'Hours\nChief mechanic','Hours\nPower-supply',\
               'Hours\nOCL','Hours\nTrack laying','Hours\nTrack welding','Hours\nHiring',\
               'Hours\nTrench machine','Hours\nPressing machine', 'Hours\nAtlas crane',\
-              'Hours\nCrane big','Hours\nMainliner','Hours\nBallast scrape machine','Hours\nWagon',\
+              'Hours\nCrane big','Hours\nMainliner','Hours\nBallast scraper','Hours\nWagon',\
               'Hours\nLocomotor','Hours\nLocomotive','Hours\nAssemble trolley','Hours\nStormobiel',\
-              'Hours\nRobel train','Direction', 'Housing','Cable work', 'Earth moving',\
-              'Concrete work', 'Transport', 'Remaining']
+              'Hours\nRobel train','', '','', '','', '', '']
 
     metadata = MetaData()               
     calculaties = Table('calculaties', metadata,
@@ -962,6 +973,14 @@ def toonDienstenlijst(mcalnr, mwerknr):
             font = QFont("Arial", 10)
             table_view.setFont(font)
             table_view.hideColumn(1)
+            table_view.hideColumn(12)
+            table_view.hideColumn(15)
+            table_view.hideColumn(16)
+            table_view.hideColumn(17)
+            table_view.hideColumn(18)
+            table_view.hideColumn(19)
+            table_view.hideColumn(20)
+            table_view.hideColumn(21)
             table_view.resizeColumnsToContents()
             table_view.setSelectionBehavior(QTableView.SelectRows)
             #table_view.clicked.connect(selectRow)
@@ -998,9 +1017,8 @@ def toonDienstenlijst(mcalnr, mwerknr):
         
     header = ['ID','Cluster','Work description','Calculation','Cluster number',\
       'Processed','Amount','Unit', 'Link number', 'Total price','Materials',\
-      'Wages','Services','Equipment', 'Hiring','Direction', 'Housing','Cable work',\
-      'Earth moving','Concrete work', 'Transport', 'Remaining', 'Hiring','Pressing machine',\
-      'Trench machine', 'Atlas crane', 'Crane big', 'Mainliner', 'Ballast scrape machine',\
+      'Wages','','Equipment', 'Hiring','', '','','','', '', '', 'Hiring hours','Pressing machine',\
+      'Trench machine', 'Atlas crane', 'Crane big', 'Mainliner', 'Ballast scraper',\
       'Wagon', 'Locomotor', 'Locomotive', 'Assemble trolley', 'Stormobiel', 'Robel train']
 
     metadata = MetaData()               
@@ -1084,7 +1102,7 @@ def toonDienstenlijst(mcalnr, mwerknr):
             class Widget(QDialog):
                  def __init__(self, parent=None):
                     super(Widget, self).__init__(parent)
-                    self.setWindowTitle("Request works external calculation data services")
+                    self.setWindowTitle("Request works external calculation data equipment")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                                          
                     self.setFont(QFont('Arial', 10))
@@ -1295,7 +1313,7 @@ def toonDienstenlijst(mcalnr, mwerknr):
                     lbl.setPixmap(pixmap)
                     grid.addWidget(lbl ,0 , 0)
                     
-                    grid.addWidget(QLabel('Request calculation data from\nServices external works'), 0, 1, 1, 3)
+                    grid.addWidget(QLabel('Request calculation data from\nEquipment external works'), 0, 1, 1, 3)
                     
                     logo = QLabel()
                     pixmap = QPixmap('./images/logos/logo.jpg')
@@ -1339,34 +1357,10 @@ def toonDienstenlijst(mcalnr, mwerknr):
                                 
                     grid.addWidget(QLabel('Wages'), 8, 0)
                     grid.addWidget(q14Edit, 8, 1) 
-                        
-                    grid.addWidget(QLabel('Services\nTotal'), 8, 2)
-                    grid.addWidget(q15Edit, 8, 3)
-                                                     
+
                     grid.addWidget(QLabel('Equipment'), 9, 0)
                     grid.addWidget(q16Edit, 9, 1)                           
                                                  
-                    grid.addWidget(QLabel('Direction'), 11, 0)
-                    grid.addWidget(q17Edit, 11, 1) 
-                                               
-                    grid.addWidget(QLabel('Housing'), 11, 2)
-                    grid.addWidget(q20Edit, 11, 3)
-                   
-                    grid.addWidget(QLabel('Cable work'), 12, 0)
-                    grid.addWidget(q21Edit, 12, 1)
-                                        
-                    grid.addWidget(QLabel('Earth moving'), 12, 2)
-                    grid.addWidget(q22Edit, 12, 3)
-                     
-                    grid.addWidget(QLabel('Concrete work'), 13, 0)
-                    grid.addWidget(q23Edit, 13, 1)
-                                        
-                    grid.addWidget(QLabel('Transport'), 13, 2)
-                    grid.addWidget(q24Edit, 13, 3)
-                                        
-                    grid.addWidget(QLabel('Remaining'), 14, 0)
-                    grid.addWidget(q26Edit, 14, 1)
-                    
                     lblsoort = QLabel('Equipment type')
                     lbluren = QLabel('Hours')
                     lblbedrag = QLabel('Amount')
@@ -1399,7 +1393,7 @@ def toonDienstenlijst(mcalnr, mwerknr):
                     grid.addWidget(QLabel('{:12.2f}'.format(rpcalc[27])), 7, 5, 1, 1, Qt.AlignRight)
                     grid.addWidget(q32Edit, 7, 6)
                     
-                    grid.addWidget(QLabel('Ballast clearing machine'), 8, 4)
+                    grid.addWidget(QLabel('Ballast scraper machine'), 8, 4)
                     grid.addWidget(QLabel('{:12.2f}'.format(rpcalc[28])), 8, 5, 1, 1, Qt.AlignRight)
                     grid.addWidget(q33Edit, 8, 6)
                     
@@ -1476,7 +1470,10 @@ def toonArtikellijst(mcalnr, mwerknr):
         def rowCount(self, parent):
             return len(self.mylist)
         def columnCount(self, parent):
-            return len(self.mylist[0])
+            try:
+                return len(self.mylist[0])
+            except:
+                return 0
         def data(self, index, role):
             veld = self.mylist[index.row()][index.column()]
             if not index.isValid():

@@ -71,7 +71,7 @@ def zoeken(m_email):
             k0Edit.setFixedWidth(400)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('                 Cluster Groups Sort Key')
+            k0Edit.addItem('                    Cluster Groups Sort Key')
             k0Edit.addItem('0. All clusters')
             k0Edit.addItem('AA-AL. Rails + welding assets')
             k0Edit.addItem('BA-BK. Beams + mounting')
@@ -163,6 +163,13 @@ def toonClusters(keuze, m_email):
             font = QFont("Arial", 10)
             table_view.setFont(font)
             table_view.resizeColumnsToContents()
+            table_view.hideColumn(31)
+            table_view.hideColumn(32)
+            table_view.hideColumn(33)
+            table_view.hideColumn(34)
+            table_view.hideColumn(35)
+            table_view.hideColumn(36)
+            table_view.hideColumn(37)
             table_view.setSelectionBehavior(QTableView.SelectRows)
             table_view.clicked.connect(showSelection)
             grid.addWidget(table_view, 0, 0, 1, 16)
@@ -233,7 +240,7 @@ def toonClusters(keuze, m_email):
               'hours\nhiring', 'Trencher', 'Press machine', 'Atlas crane',\
               'Crane big', 'Mainliner', 'Ballast scrape\nmachine', 'Wagon', 'Locomotor',\
               'Locomotive', 'Assembly\ntrolley', 'Stormobiel', 'hours\ntelecom', 'Robel train',\
-              'Direction', 'Housing', 'Cable work', 'Earth moving', 'Concrete work', 'Transport', 'Remaining']
+              '', '', '', '', '', '', '']
     
     metadata = MetaData()
     clusters = Table('clusters', metadata,
@@ -306,7 +313,7 @@ def toonClusters(keuze, m_email):
                     
                     grid = QGridLayout()
                     grid.setSpacing(20)
-                    self.setWindowTitle("Wijzigen Cluster")
+                    self.setWindowTitle("Modify Cluster")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                     
                     self.setFont(QFont('Arial', 10))   
@@ -596,71 +603,43 @@ def toonClusters(keuze, m_email):
                     q31Edit.setFixedWidth(150)
                     q31Edit.setFont(QFont("Arial",10))
                     q31Edit.setAlignment(Qt.AlignRight)
-                    q31Edit.textChanged.connect(self.q31Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-                    input_validator = QRegExpValidator(reg_ex, q31Edit)
-                    q31Edit.setValidator(input_validator)
-                    
+
                     self.Huisvesting = QLabel()
                     q32Edit = QLineEdit(str(round(float(rpsel[32]),2)))
                     q32Edit.setFixedWidth(150)
                     q32Edit.setFont(QFont("Arial",10))
                     q32Edit.setAlignment(Qt.AlignRight)
-                    q32Edit.textChanged.connect(self.q32Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-                    input_validator = QRegExpValidator(reg_ex, q32Edit)
-                    q32Edit.setValidator(input_validator)
-                                    
+
                     self.Kabelwerk = QLabel()
                     q33Edit = QLineEdit(str(round(float(rpsel[33]),2)))
                     q33Edit.setFixedWidth(150)
                     q33Edit.setFont(QFont("Arial",10))
                     q33Edit.setAlignment(Qt.AlignRight)
-                    q33Edit.textChanged.connect(self.q33Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-                    input_validator = QRegExpValidator(reg_ex, q33Edit)
-                    q33Edit.setValidator(input_validator)
-                    
+
                     self.Grondverzet = QLabel()
                     q34Edit = QLineEdit(str(round(float(rpsel[34]),2)))
                     q34Edit.setFixedWidth(150)
                     q34Edit.setFont(QFont("Arial",10))
                     q34Edit.setAlignment(Qt.AlignRight)
-                    q34Edit.textChanged.connect(self.q34Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-                    input_validator = QRegExpValidator(reg_ex, q34Edit)
-                    q34Edit.setValidator(input_validator)
-                    
+
                     self.Betonwerk = QLabel()
                     q35Edit = QLineEdit(str(round(float(rpsel[35]),2)))
                     q35Edit.setFixedWidth(150)
                     q35Edit.setFont(QFont("Arial",10))
                     q35Edit.setAlignment(Qt.AlignRight)
-                    q35Edit.textChanged.connect(self.q35Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-                    input_validator = QRegExpValidator(reg_ex, q35Edit)
-                    q35Edit.setValidator(input_validator)
-                    
+
                     self.Vervoer = QLabel()
                     q36Edit = QLineEdit(str(round(float(rpsel[36]),2)))
                     q36Edit.setFixedWidth(150)
                     q36Edit.setFont(QFont("Arial",10))
                     q36Edit.setAlignment(Qt.AlignRight)
-                    q36Edit.textChanged.connect(self.q36Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-                    input_validator = QRegExpValidator(reg_ex, q36Edit)
-                    q36Edit.setValidator(input_validator)
-                    
+
                     self.Overig = QLabel()
                     q37Edit = QLineEdit(str(round(float(rpsel[37]),2)))
                     q37Edit.setFixedWidth(150)
                     q37Edit.setFont(QFont("Arial",10))
                     q37Edit.setAlignment(Qt.AlignRight)
-                    q37Edit.textChanged.connect(self.q37Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-                    input_validator = QRegExpValidator(reg_ex, q37Edit)
-                    q37Edit.setValidator(input_validator)
-                    
+
                     grid = QGridLayout()
                     grid.setSpacing(10)
                     
@@ -820,42 +799,7 @@ def toonClusters(keuze, m_email):
                     lbl18.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl18, 17, 2)
                     grid.addWidget(q16Edit, 17, 3)
-                    
-                    lbl32 = QLabel('Direction')
-                    lbl32.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl32, 17, 0)
-                    grid.addWidget(q31Edit, 17, 1)
-                    
-                    lbl33 = QLabel('Housing')
-                    lbl33.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl33, 18, 0)
-                    grid.addWidget(q32Edit, 18, 1)
-                    
-                    lbl34 = QLabel('Cable work')
-                    lbl34.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl34, 18, 2)
-                    grid.addWidget(q33Edit, 18, 3)
-                    
-                    lbl35 = QLabel('Earth moving')
-                    lbl35.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl35, 19, 0)
-                    grid.addWidget(q34Edit, 19, 1)
-                    
-                    lbl36 = QLabel('Concrete work')
-                    lbl36.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl36, 19, 2)
-                    grid.addWidget(q35Edit, 19, 3)
-                
-                    lbl37 = QLabel('Transport')
-                    lbl37.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl37, 20, 0)
-                    grid.addWidget(q36Edit, 20, 1)
-                    
-                    lbl38 = QLabel('Remaining')
-                    lbl38.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl38, 20, 2)
-                    grid.addWidget(q37Edit, 20, 3)
-          
+
                     lbl = QLabel()
                     pixmap = QPixmap('./images/logos/verbinding.jpg')
                     lbl.setPixmap(pixmap)
@@ -960,28 +904,7 @@ def toonClusters(keuze, m_email):
                     
                 def q30Changed(self,text):
                     self.Robeltrein.setText(text)
-               
-                def q31Changed(self,text):
-                    self.Leiding.setText(text)
-                    
-                def q32Changed(self,text):
-                    self.Huisvesting.setText(text)
-                    
-                def q33Changed(self,text):
-                    self.Kabelwerk.setText(text)
-                    
-                def q34Changed(self,text):
-                    self.Grondverzet.setText(text)
-                    
-                def q35Changed(self,text):
-                    self.Betonwerk.setText(text)
-                    
-                def q36Changed(self,text):
-                    self.Vervoer.setText(text)
-                    
-                def q37Changed(self,text):
-                    self.Overig.setText(text)
-                             
+
                 def returnq1(self):
                     return self.Omschrijving.text()
                                 
@@ -1053,28 +976,7 @@ def toonClusters(keuze, m_email):
         
                 def returnq30(self):
                     return self.Robeltrein.text()
-                
-                def returnq31(self):
-                    return self.Leiding.text()
-                
-                def returnq32(self):
-                    return self.Huisvesting.text()
-                
-                def returnq33(self):
-                    return self.Kabelwerk.text()
-                
-                def returnq34(self):
-                    return self.Grondverzet.text()
-                
-                def returnq35(self):
-                    return self.Betonwerk.text()
-                
-                def returnq36(self):
-                    return self.Vervoer.text()
-                
-                def returnq37(self):
-                    return self.Overig.text()
-                                       
+
                 @staticmethod
                 def getData(parent=None):
                     dialog = MainWindow()
@@ -1086,16 +988,13 @@ def toonClusters(keuze, m_email):
                             dialog.returnq19(), dialog.returnq20(), dialog.returnq21(),\
                             dialog.returnq22(), dialog.returnq23(), dialog.returnq24(),\
                             dialog.returnq25(), dialog.returnq26(), dialog.returnq27(),\
-                            dialog.returnq28(), dialog.returnq29(), dialog.returnq30(),\
-                            dialog.returnq31(), dialog.returnq32(), dialog.returnq33(),\
-                            dialog.returnq34(), dialog.returnq35(), dialog.returnq36(),\
-                            dialog.returnq37()]  
+                            dialog.returnq28(), dialog.returnq29(), dialog.returnq30()]
                                        
             mainWin = MainWindow()
             data = mainWin.getData()
      
             chflag = 0
-            for k in range(0,31):
+            for k in range(0,24):
                 if data[k]:
                     chflag = 1
             if chflag == 0:
@@ -1196,35 +1095,7 @@ def toonClusters(keuze, m_email):
                 mf23 = float(data[23])
             else:
                 mf23= rpsel[30]
-            if data[24]:
-                mf24 = float(data[24])
-            else:
-                mf24 = rpsel[31]
-            if data[25]:
-                mf25 = float(data[25])
-            else:
-                mf25 = rpsel[32]
-            if data[26]:
-                mf26 = float(data[26])
-            else:
-                mf26 = rpsel[33]
-            if data[27]:
-                mf27 = float(data[27])
-            else:
-                mf27 = rpsel[34]
-            if data[28]:
-                mf28 = float(data[28])
-            else:
-                mf28 = rpsel[35]
-            if data[29]:
-                mf29 = float(data[29])
-            else:
-                mf29 = rpsel[36]
-            if data[30]:
-                mf30 = float(data[30])
-            else:
-                mf30 = rpsel[37]
-                   
+
             metadata = MetaData()
             params_hours = Table('params_hours', metadata,
                 Column('rateID', Integer, primary_key=True),
@@ -1253,9 +1124,7 @@ def toonClusters(keuze, m_email):
                 uren_bvl=mf7, uren_spoorleg=mf8, uren_spoorlas=mf9, uren_inhuur=mf10,\
                 sleuvengraver=mf11, persapparaat=mf12, atlaskraan=mf13, kraan_groot=mf14,\
                 mainliner=mf15, hormachine=mf16, wagon=mf17,locomotor=mf18,locomotief=mf19,\
-                montagewagen=mf20, stormobiel=mf21, uren_telecom=mf22, robeltrein=mf23,
-                leiding=mf24, huisvesting=mf25, kabelwerk=mf26,grondverzet=mf27,\
-                betonwerk=mf28,vervoer=mf29, overig=mf30)
+                montagewagen=mf20, stormobiel=mf21, uren_telecom=mf22, robeltrein=mf23)
             con.execute(upd1)
             upd2 = update(clusters).where(clusters.c.clusterID == clusternr).values(\
                 lonen=clusters.c.uren_constr*rppar[1][1]+clusters.c.uren_mont*rppar[2][1]\
@@ -1271,14 +1140,8 @@ def toonClusters(keuze, m_email):
                  *rppar1[9][1]+clusters.c.stormobiel*rppar1[10][1]+clusters.c.robeltrein\
                  *rppar1[11][1], inhuur=clusters.c.uren_inhuur*rppar[0][1])
             con.execute(upd2)
-            upd3 = update(clusters).where(clusters.c.clusterID == clusternr).values(\
-                    diensten = clusters.c.inhuur+clusters.c.leiding+clusters.c.huisvesting+\
-                    clusters.c.kabelwerk+clusters.c.grondverzet+clusters.c.betonwerk+\
-                    clusters.c.vervoer+clusters.c.overig)
-            con.execute(upd3)
             upd4 = update(clusters).where(clusters.c.clusterID == clusternr).values(\
-                    prijs = clusters.c.lonen+clusters.c.materialen+clusters.c.diensten+\
-                    clusters.c.materieel)
+                    prijs = clusters.c.lonen+clusters.c.materialen+clusters.c.materieel)
             con.execute(upd4)
             invoerOK()
         

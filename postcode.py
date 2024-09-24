@@ -5,9 +5,9 @@ def checkpostcode(mpostcode,mhuisnr):
       postcodes = Table('postcodes', MetaData(),
              Column('van', Integer),
              Column('tem', Integer),
-             Column('postcode', String),
+             Column('postcode', String, primary_key=True),
              Column('straatID', None, ForeignKey('straat.straatID')),
-             Column('soort', Boolean))
+             Column('soort', Boolean, primary_key=True))
       plaats = Table('plaats', MetaData(),
              Column('plaatsID', Integer, primary_key=True),
              Column('c_plaats', String))

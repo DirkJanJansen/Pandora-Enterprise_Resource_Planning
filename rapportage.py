@@ -216,7 +216,7 @@ def bereken(m_email):
     for row in rpwerken:
         #mwerknr = row[0]
         #mwerkomschr = row[1]
-        mktotal=row[3]+row[4]+row[5]+row[6]+row[7]+row[8]+row[9]+row[17]+row[18]+row[19]+row[20]
+        mktotal=row[3]+row[4]+row[5]+row[6]+row[7]+row[8]+row[9]+row[17]+row[20]
         mmeerwerk = mmeerwerk+row[10]
         mkosttot = mkosttot+mktotal
         mbetaald = mbetaald+row[13]

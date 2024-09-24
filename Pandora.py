@@ -91,7 +91,7 @@ elif mjaar%2 == 0 and int(rppar[1]) == 1:
             minvrd = round(mjrverbr*4/17, 0) # < 12 weeks delivery time
         elif row[10] == 3 or row[10] == 8: 
             minvrd = round(mjrverbr*8/17, 0) # < 26 weeks delivery time
-        elif row[10] == 4 or row[10] == 9: 
+        elif row[10] == 4 or row[10] == 9:
             minvrd = round(mjrverbr*16/17,0) # < 52 weeks delivery time
         else:
             minvrd = row[6]

@@ -11,7 +11,7 @@ echo Press any key to backup empty database bisystem.
 pause > nul
 echo.
 
-"C:\programdata\postgres\bin\pg_dump.exe" -U postgres -v --verbose -d  bisystem -Fc -f  "C:\ProgramData\Pandora\data\bisystem.empty.backup"
+"C:\programdata\postgres\bin\pg_dump.exe" -U postgres -v --verbose -d  bisystem -Fc -f  "D:\Programming\Pandora\data\bisystem.empty.backup"
 echo.
 echo.
 echo Backup of the empty database bisystem is saved.

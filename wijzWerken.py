@@ -1,7 +1,7 @@
 ﻿from login import hoofdMenu
 import datetime
-from PyQt5.QtGui import QRegExpValidator, QFont, QPixmap, QIcon
-from PyQt5.QtCore import Qt, QRegExp
+from PyQt5.QtGui import QRegExpValidator, QFont, QPixmap, QIcon, QMovie
+from PyQt5.QtCore import Qt, QRegExp, QSize
 from PyQt5.QtWidgets import QLabel, QPushButton,QGridLayout,\
      QMessageBox, QDialog, QLineEdit, QCheckBox
 from sqlalchemy import (Table, Column, Integer, String, MetaData, create_engine, Float)
@@ -13,9 +13,7 @@ def _11check(mwerknr):
     fullnumber = number                       
     for i in range(8):
         total += int(fullnumber[i])*(9-i)
-        checkdigit = total % 11
-    if checkdigit == 10:
-        checkdigit = 0
+        checkdigit = total % 11 % 10
     if checkdigit == int(fullnumber[8]):
         return True
     else:
@@ -77,6 +75,8 @@ def zoekWerk(m_email):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
             self.setWindowTitle("Modify works.")
+            self.setWindowFlags(self.windowFlags() | Qt.WindowSystemMenuHint |
+                                Qt.WindowMinMaxButtonsHint)
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
@@ -92,11 +92,13 @@ def zoekWerk(m_email):
                             
             grid = QGridLayout()
             grid.setSpacing(20)
-    
-            lbl = QLabel()
-            pixmap = QPixmap('./images/logos/verbinding.jpg')
-            lbl.setPixmap(pixmap)
-            grid.addWidget(lbl , 0, 0, 1, 2)
+
+            pyqt = QLabel()
+            movie = QMovie('./images/logos/pyqt.gif')
+            pyqt.setMovie(movie)
+            movie.setScaledSize(QSize(240, 80))
+            movie.start()
+            grid.addWidget(pyqt, 0, 0, 1, 2)
             
             logo = QLabel()
             pixmap = QPixmap('./images/logos/logo.jpg')
@@ -127,7 +129,7 @@ def zoekWerk(m_email):
             grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 3, 0, 1 , 2, Qt.AlignCenter)
                         
             self.setLayout(grid)
-            self.setGeometry(300, 300, 150, 150)
+            self.setGeometry(600, 300, 150, 150)
     
         def werknChanged(self, text):
             self.Werknummer.setText(text)
@@ -219,7 +221,9 @@ def wijzWerk(mwerknr, m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Wijzig begroting werk")
+            self.setWindowTitle("Change budget work")
+            self.setWindowFlags(self.windowFlags() | Qt.WindowSystemMenuHint |
+                                Qt.WindowMinMaxButtonsHint)
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
                                   
             self.setFont(QFont('Arial', 10))
@@ -237,31 +241,29 @@ def wijzWerk(mwerknr, m_email):
             q2Edit.setFixedWidth(150)
             q2Edit.setAlignment(Qt.AlignRight)
             q2Edit.setFont(QFont("Arial",10))
-            q2Edit.textChanged.connect(self.q2Changed) 
+            q2Edit.setDisabled(True)
+            q2Edit.textChanged.connect(self.q2Changed)
             reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q2Edit)
             q2Edit.setValidator(input_validator)
-             
-            self.Materialen = QLabel()
-            q3Edit = QLineEdit(str(round(float(rpwerk[5]),2)))
+
+            # paid sum
+            q3Edit = QLineEdit(str(round(float(rpwerk[26]), 2)))
             q3Edit.setFixedWidth(150)
-            q3Edit.setFont(QFont("Arial",10))
             q3Edit.setAlignment(Qt.AlignRight)
-            q3Edit.textChanged.connect(self.q3Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-            input_validator = QRegExpValidator(reg_ex, q3Edit)
-            q3Edit.setValidator(input_validator)
-            
-            self.Materieel = QLabel()
-            q4Edit = QLineEdit(str(round(float(rpwerk[6]),2)))
+            q3Edit.setFont(QFont("Arial", 10))
+            q3Edit.setDisabled(True)
+
+            self.mutPaid = QLabel()
+            q4Edit = QLineEdit('0')
             q4Edit.setFixedWidth(150)
             q4Edit.setAlignment(Qt.AlignRight)
-            q4Edit.setFont(QFont("Arial",10))
-            q4Edit.textChanged.connect(self.q4Changed) 
+            q4Edit.setFont(QFont("Arial", 10))
+            q4Edit.textChanged.connect(self.q4Changed)
             reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q4Edit)
             q4Edit.setValidator(input_validator)
-            
+
             self.Huisvesting = QLabel()
             q5Edit = QLineEdit(str(round(float(rpwerk[7]),2)))
             q5Edit.setFixedWidth(150)
@@ -271,6 +273,23 @@ def wijzWerk(mwerknr, m_email):
             reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q5Edit)
             q5Edit.setValidator(input_validator)
+
+            # costs housing
+            q5aEdit = QLineEdit(str(round(float(rpwerk[32]), 2)))
+            q5aEdit.setFixedWidth(150)
+            q5aEdit.setAlignment(Qt.AlignRight)
+            q5aEdit.setFont(QFont("Arial", 10))
+            q5aEdit.setDisabled(True)
+
+            self.housing = QLabel() # mutate housing
+            q5bEdit = QLineEdit('0')
+            q5bEdit.setFixedWidth(150)
+            q5bEdit.setAlignment(Qt.AlignRight)
+            q5bEdit.setFont(QFont("Arial", 10))
+            q5bEdit.textChanged.connect(self.q5bChanged)
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
+            input_validator = QRegExpValidator(reg_ex, q5bEdit)
+            q5bEdit.setValidator(input_validator)
             
             self.Leiding = QLabel()
             q6Edit = QLineEdit(str(round(float(rpwerk[8]),2)))
@@ -281,7 +300,24 @@ def wijzWerk(mwerknr, m_email):
             reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q6Edit)
             q6Edit.setValidator(input_validator)
-            
+
+            # costs direction
+            q6aEdit = QLineEdit(str(round(float(rpwerk[31]), 2)))
+            q6aEdit.setFixedWidth(150)
+            q6aEdit.setAlignment(Qt.AlignRight)
+            q6aEdit.setFont(QFont("Arial", 10))
+            q6aEdit.setDisabled(True)
+
+            self.direction = QLabel() # mutate direction
+            q6bEdit = QLineEdit('0')
+            q6bEdit.setFixedWidth(150)
+            q6bEdit.setAlignment(Qt.AlignRight)
+            q6bEdit.setFont(QFont("Arial", 10))
+            q6bEdit.textChanged.connect(self.q6bChanged)
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
+            input_validator = QRegExpValidator(reg_ex, q6bEdit)
+            q6bEdit.setValidator(input_validator)
+
             self.Inhuur = QLabel()
             q7Edit = QLineEdit(str(round(float(rpwerk[9]),2)))
             q7Edit.setFixedWidth(150)
@@ -291,6 +327,23 @@ def wijzWerk(mwerknr, m_email):
             reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q7Edit)
             q7Edit.setValidator(input_validator)
+
+            # costs hiring
+            q7aEdit = QLineEdit(str(round(float(rpwerk[35]), 2)))
+            q7aEdit.setFixedWidth(150)
+            q7aEdit.setAlignment(Qt.AlignRight)
+            q7aEdit.setFont(QFont("Arial", 10))
+            q7aEdit.setDisabled(True)
+
+            self.hiring = QLabel()  # mutate hiring
+            q7bEdit = QLineEdit('0')
+            q7bEdit.setFixedWidth(150)
+            q7bEdit.setAlignment(Qt.AlignRight)
+            q7bEdit.setFont(QFont("Arial", 10))
+            q7bEdit.textChanged.connect(self.q7bChanged)
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
+            input_validator = QRegExpValidator(reg_ex, q7bEdit)
+            q7bEdit.setValidator(input_validator)
             
             self.Vervoer = QLabel()
             q8Edit = QLineEdit(str(round(float(rpwerk[10]),2)))
@@ -301,27 +354,24 @@ def wijzWerk(mwerknr, m_email):
             reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q8Edit)
             q8Edit.setValidator(input_validator)
-            
-            self.Betonwerk = QLabel()
-            q9Edit = QLineEdit(str(round(float(rpwerk[11]),2)))
-            q9Edit.setFixedWidth(150)
-            q9Edit.setAlignment(Qt.AlignRight)
-            q9Edit.setFont(QFont("Arial",10))
-            q9Edit.textChanged.connect(self.q9Changed) 
+
+            # costs transport
+            q8aEdit = QLineEdit(str(round(float(rpwerk[34]),2)))
+            q8aEdit.setFixedWidth(150)
+            q8aEdit.setAlignment(Qt.AlignRight)
+            q8aEdit.setFont(QFont("Arial", 10))
+            q8aEdit.setDisabled(True)
+
+            self.transport = QLabel()      # mutate transport
+            q8bEdit = QLineEdit('0')
+            q8bEdit.setFixedWidth(150)
+            q8bEdit.setAlignment(Qt.AlignRight)
+            q8bEdit.setFont(QFont("Arial", 10))
+            q8bEdit.textChanged.connect(self.q8bChanged)
             reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-            input_validator = QRegExpValidator(reg_ex, q9Edit)
-            q9Edit.setValidator(input_validator)
-            
-            self.Kabelwerk = QLabel()
-            q10Edit = QLineEdit(str(round(float(rpwerk[12]),2)))
-            q10Edit.setFixedWidth(150)
-            q10Edit.setAlignment(Qt.AlignRight)
-            q10Edit.setFont(QFont("Arial",10))
-            q10Edit.textChanged.connect(self.q10Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-            input_validator = QRegExpValidator(reg_ex, q10Edit)
-            q10Edit.setValidator(input_validator)
-            
+            input_validator = QRegExpValidator(reg_ex, q8bEdit)
+            q8bEdit.setValidator(input_validator)
+
             self.Grondverzet = QLabel()
             q11Edit = QLineEdit(str(round(float(rpwerk[13]),2)))
             q11Edit.setFixedWidth(150)
@@ -331,6 +381,23 @@ def wijzWerk(mwerknr, m_email):
             reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q11Edit)
             q11Edit.setValidator(input_validator)
+
+            # costs earthmoving
+            q11aEdit = QLineEdit(str(round(float(rpwerk[38]), 2)))
+            q11aEdit.setFixedWidth(150)
+            q11aEdit.setAlignment(Qt.AlignRight)
+            q11aEdit.setFont(QFont("Arial", 10))
+            q11aEdit.setDisabled(True)
+
+            self.earthmoving = QLabel()      # mutate earthmoving
+            q11bEdit = QLineEdit('0')
+            q11bEdit.setFixedWidth(150)
+            q11bEdit.setAlignment(Qt.AlignRight)
+            q11bEdit.setFont(QFont("Arial", 10))
+            q11bEdit.textChanged.connect(self.q8bChanged)
+            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
+            input_validator = QRegExpValidator(reg_ex, q11bEdit)
+            q11bEdit.setValidator(input_validator)
             
             self.Overig = QLabel()
             q12Edit = QLineEdit(str(round(float(rpwerk[14]),2)))
@@ -340,117 +407,25 @@ def wijzWerk(mwerknr, m_email):
             q12Edit.textChanged.connect(self.q12Changed) 
             reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
             input_validator = QRegExpValidator(reg_ex, q12Edit)
-            q12Edit.setValidator(input_validator) 
-                 
-            self.Uren_Construktie = QLabel()
-            q13Edit = QLineEdit(str(round(float(rpwerk[15]),2)))
-            q13Edit.setFixedWidth(150)
-            q13Edit.setAlignment(Qt.AlignRight)
-            q13Edit.setFont(QFont("Arial",10))
-            q13Edit.setDisabled(True)
-            q13Edit.textChanged.connect(self.q13Changed) 
+            q12Edit.setValidator(input_validator)
+
+            # costs remaining
+            q12aEdit = QLineEdit(str(round(float(rpwerk[33]),2)))
+            q12aEdit.setFixedWidth(150)
+            q12aEdit.setAlignment(Qt.AlignRight)
+            q12aEdit.setFont(QFont("Arial", 10))
+            q12aEdit.setDisabled(True)
+
+            self.remaining = QLabel()    # mutate remaining
+            q12bEdit = QLineEdit('0')
+            q12bEdit.setFixedWidth(150)
+            q12bEdit.setAlignment(Qt.AlignRight)
+            q12bEdit.setFont(QFont("Arial", 10))
+            q12bEdit.textChanged.connect(self.q12bChanged)
             reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-            input_validator = QRegExpValidator(reg_ex, q13Edit)
-            q13Edit.setValidator(input_validator)
-            
-            self.Uren_Montage = QLabel()
-            q14Edit = QLineEdit(str(round(float(rpwerk[16]),2)))
-            q14Edit.setFixedWidth(150)
-            q14Edit.setAlignment(Qt.AlignRight)
-            q14Edit.setFont(QFont("Arial",10))
-            q14Edit.setDisabled(True)
-            q14Edit.textChanged.connect(self.q14Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-            input_validator = QRegExpValidator(reg_ex, q14Edit)
-            q14Edit.setValidator(input_validator)
-               
-            self.Uren_Retourlas = QLabel()
-            q15Edit = QLineEdit(str(round(float(rpwerk[17]),2)))
-            q15Edit.setFixedWidth(150)
-            q15Edit.setAlignment(Qt.AlignRight)
-            q15Edit.setFont(QFont("Arial",10))
-            q15Edit.setDisabled(True)
-            q15Edit.textChanged.connect(self.q15Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-            input_validator = QRegExpValidator(reg_ex, q15Edit)
-            q15Edit.setValidator(input_validator)
-            
-            self.Uren_Telecom = QLabel()
-            q16Edit = QLineEdit(str(round(float(rpwerk[18]),2)))
-            q16Edit.setFixedWidth(150)
-            q16Edit.setAlignment(Qt.AlignRight)
-            q16Edit.setFont(QFont("Arial",10))
-            q16Edit.setDisabled(True)
-            q16Edit.textChanged.connect(self.q16Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-            input_validator = QRegExpValidator(reg_ex, q16Edit)
-            q16Edit.setValidator(input_validator)
-            
-            self.Uren_Bfi = QLabel()
-            q17Edit = QLineEdit(str(round(float(rpwerk[19]),2)))
-            q17Edit.setFixedWidth(150)
-            q17Edit.setAlignment(Qt.AlignRight)
-            q17Edit.setFont(QFont("Arial",10))
-            q17Edit.setDisabled(True)
-            q17Edit.textChanged.connect(self.q17Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-            input_validator = QRegExpValidator(reg_ex, q17Edit)
-            q17Edit.setValidator(input_validator)
-               
-            self.Uren_Bvl = QLabel()
-            q18Edit = QLineEdit(str(round(float(rpwerk[20]),2)))
-            q18Edit.setFixedWidth(150)
-            q18Edit.setFont(QFont("Arial",10))
-            q18Edit.setDisabled(True)
-            q18Edit.setAlignment(Qt.AlignRight)
-            q18Edit.textChanged.connect(self.q17Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-            input_validator = QRegExpValidator(reg_ex, q18Edit)
-            q18Edit.setValidator(input_validator)
-                    
-            self.Uren_Spoorleg = QLabel()
-            q19Edit = QLineEdit(str(round(float(rpwerk[21]),2)))
-            q19Edit.setFixedWidth(150)
-            q19Edit.setAlignment(Qt.AlignRight)
-            q19Edit.setFont(QFont("Arial",10))
-            q19Edit.setDisabled(True)
-            q19Edit.textChanged.connect(self.q19Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-            input_validator = QRegExpValidator(reg_ex, q19Edit)
-            q19Edit.setValidator(input_validator)
-            
-            self.Uren_Spoorlas = QLabel()
-            q20Edit = QLineEdit(str(round(float(rpwerk[22]),2)))
-            q20Edit.setFixedWidth(150)
-            q20Edit.setAlignment(Qt.AlignRight)
-            q20Edit.setFont(QFont("Arial",10))
-            q20Edit.setDisabled(True)
-            q20Edit.textChanged.connect(self.q20Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-            input_validator = QRegExpValidator(reg_ex, q20Edit)
-            q20Edit.setValidator(input_validator)
-            
-            self.Uren_Voeding = QLabel()
-            q21Edit = QLineEdit(str(round(float(rpwerk[23]),2)))
-            q21Edit.setFixedWidth(150)
-            q21Edit.setAlignment(Qt.AlignRight)
-            q21Edit.setFont(QFont("Arial",10))
-            q21Edit.setDisabled(True)
-            q21Edit.textChanged.connect(self.q21Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-            input_validator = QRegExpValidator(reg_ex, q21Edit)
-            q21Edit.setValidator(input_validator)
-            
-            self.Begroot_Lonen = QLabel()
-            q22Edit = QLineEdit(str(round(float(rpwerk[24]),2)))
-            q22Edit.setFixedWidth(150)
-            q22Edit.setAlignment(Qt.AlignRight)
-            q22Edit.setFont(QFont("Arial",10))
-            q22Edit.textChanged.connect(self.q22Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-            input_validator = QRegExpValidator(reg_ex, q22Edit)
-            q22Edit.setValidator(input_validator)
-            
+            input_validator = QRegExpValidator(reg_ex, q12bEdit)
+            q12bEdit.setValidator(input_validator)
+
             self.StartWerk = QLabel()
             q23Edit = QLineEdit(str(rpwerk[25]))
             q23Edit.setFixedWidth(80)
@@ -459,17 +434,7 @@ def wijzWerk(mwerknr, m_email):
             reg_ex = QRegExp("^[2]{1}[0]{1}[0-9]{2}[0-5]{1}[0-9]{1}$")
             input_validator = QRegExpValidator(reg_ex, q23Edit)
             q23Edit.setValidator(input_validator)
-            
-            self.Betaald = QLabel()
-            q24Edit = QLineEdit(str(round(float(rpwerk[26]),2)))
-            q24Edit.setFixedWidth(150)
-            q24Edit.setAlignment(Qt.AlignRight)
-            q24Edit.setFont(QFont("Arial",10))
-            q24Edit.textChanged.connect(self.q24Changed) 
-            reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-            input_validator = QRegExpValidator(reg_ex, q24Edit)
-            q24Edit.setValidator(input_validator)
-            
+
             grid = QGridLayout()
             grid.setSpacing(20)
             
@@ -489,166 +454,125 @@ def wijzWerk(mwerknr, m_email):
             lbl4.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lbl4, 3, 0)
             grid.addWidget(q2Edit, 3, 1)
-            
-            lbl5 = QLabel('Materials')
-            lbl5.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl5, 4, 0)
-            grid.addWidget(q3Edit, 4, 1)
-            
-            lbl6 = QLabel('Equipment')
-            lbl6.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl6, 5, 0)
-            grid.addWidget(q4Edit, 5, 1)
-            
+
+            lbl5 = QLabel('Paid sum')
+            grid.addWidget(lbl5, 6, 0)
+            grid.addWidget(q3Edit, 6, 1)
+
+            lbl6 = QLabel('Mutate paid sum')
+            grid.addWidget(lbl6, 6, 2)
+            grid.addWidget(q4Edit, 6, 3)
+
+            lbl7a = QLabel('Provisional work/ Provisional sum')
+            lbl7a.setStyleSheet("font: 12pt Comic Sans MS; color: #000000")
+            grid.addWidget(lbl7a, 8, 0, 1, 2, Qt.AlignCenter)
+
+            lbl7b = QLabel('Provisional costs')
+            lbl7b.setStyleSheet("font: 12pt Comic Sans MS; color: #000000")
+            grid.addWidget(lbl7b, 8, 2)
+
+            lbl7c = QLabel('Mutate costs')
+            lbl7c.setStyleSheet("font: 12pt Comic Sans MS; color: #000000")
+            grid.addWidget(lbl7c, 8, 3)
+
             lbl7 = QLabel('Housing')
             lbl7.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl7, 6, 0)
-            grid.addWidget(q5Edit, 6, 1)
-            
+            grid.addWidget(lbl7, 9, 0)
+            grid.addWidget(q5Edit, 9, 1)
+
+            grid.addWidget(q5aEdit, 9, 2)
+            grid.addWidget(q5bEdit, 9, 3)
+
             lbl8 = QLabel('Direction')
             lbl8.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl8, 7, 0)
-            grid.addWidget(q6Edit, 7, 1)
+            grid.addWidget(lbl8, 10, 0)
+            grid.addWidget(q6Edit, 10, 1)
+            grid.addWidget(q6aEdit, 10, 2)
+            grid.addWidget(q6bEdit, 10, 3)
             
             lbl9 = QLabel('Hiring')
             lbl9.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl9, 8, 0)
-            grid.addWidget(q7Edit, 8, 1)
+            grid.addWidget(lbl9, 11, 0)
+            grid.addWidget(q7Edit, 11, 1)
+            grid.addWidget(q7aEdit, 11, 2)
+            grid.addWidget(q7bEdit, 11, 3)
             
             lbl10 = QLabel('Transport')
             lbl10.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl10, 9, 0)
-            grid.addWidget(q8Edit, 9, 1)
-            
-            lbl11 = QLabel('Concrete work')
-            lbl11.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl11, 10, 0)
-            grid.addWidget(q9Edit, 10, 1)
-                
-            lbl12 = QLabel('Cable work')
-            lbl12.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl12, 11, 0)
-            grid.addWidget(q10Edit, 11, 1)
-            
+            grid.addWidget(lbl10, 12, 0)
+            grid.addWidget(q8Edit, 12, 1)
+            grid.addWidget(q8aEdit, 12, 2)
+            grid.addWidget(q8bEdit, 12, 3)
+
             lbl13 = QLabel('Earth-moving')
             lbl13.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl13, 12, 0)
-            grid.addWidget(q11Edit, 12, 1)
+            grid.addWidget(lbl13, 13, 0)
+            grid.addWidget(q11Edit, 13, 1)
+            grid.addWidget(q11aEdit, 13, 2)
+            grid.addWidget(q11bEdit, 13, 3)
             
             lbl14 = QLabel('Remaining')
             lbl14.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl14, 13, 0)
-            grid.addWidget(q12Edit, 13, 1)
+            grid.addWidget(lbl14, 14, 0)
+            grid.addWidget(q12Edit, 14, 1)
+            grid.addWidget(q12aEdit, 14, 2)
+            grid.addWidget(q12bEdit, 14, 3)
             
             lblwk = QLabel('Status-YearWeek')
             lblwk.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
             grid.addWidget(lblwk, 1,2)
-            
             lblst = QLabel(rpwerk[2]+'  '+rpwerk[3])
             grid.addWidget(lblst,1,3)
-               
-            lbl15 = QLabel('Hours construction')
-            lbl15.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl15, 3, 2)
-            grid.addWidget(q13Edit, 3, 3)
-         
-            lbl16 = QLabel('Hours mounting')
-            lbl16.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl16, 4, 2)
-            grid.addWidget(q14Edit, 4, 3)
-            
-            lbl17 = QLabel('Hours return welding')
-            lbl17.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl17, 5, 2)
-            grid.addWidget(q15Edit, 5, 3)
-            
-            lbl18 = QLabel('Hours telecom')
-            lbl18.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl18, 6, 2)
-            grid.addWidget(q16Edit, 6, 3)
-            
-            lbl19 = QLabel('Hours chief mechanic')
-            lbl19.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl19, 7, 2)
-            grid.addWidget(q17Edit, 7, 3)
-            
-            lbl20 = QLabel('Hours OCL')
-            lbl20.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl20, 8, 2)
-            grid.addWidget(q18Edit, 8, 3)
-              
-            lbl21 = QLabel('Hours track laying')
-            lbl21.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl21, 9, 2)
-            grid.addWidget(q19Edit, 9, 3)
-            
-            lbl22 = QLabel('Hours track welding')
-            lbl22.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl22, 10, 2)
-            grid.addWidget(q20Edit, 10, 3)
-            
-            lbl23 = QLabel('Hours power-supply')
-            lbl23.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl23, 11, 2)
-            grid.addWidget(q21Edit, 11, 3)
-            
-            lbl24 = QLabel('Budgeted wages')
-            lbl24.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl24, 12, 2)
-            grid.addWidget(q22Edit, 12, 3)
-            
+
             lbl25 = QLabel('Startweek work')
             lbl25.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl25, 13, 2)
-            grid.addWidget(q23Edit, 13, 3)
-  
-            lbl26 = QLabel('Cumulatively paid')
-            lbl26.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-            grid.addWidget(lbl26, 14, 0)
-            grid.addWidget(q24Edit, 14, 1)
-            
-            lbl27 = QLabel('Assignment date')
-            grid.addWidget(lbl27, 15, 0, 1, 1, Qt.AlignRight)
+            grid.addWidget(lbl25, 4, 2)
+            grid.addWidget(q23Edit, 4, 3)
+
+            lbl27 = QLabel('Order date')
+            grid.addWidget(lbl27, 4, 0, 1, 1, Qt.AlignRight)
             lbl28 =QLabel(rpwerk[39])
-            grid.addWidget(lbl28, 15, 1)
-            
-            cBox1 = QCheckBox('More/less work agreed')
-            cBox1.stateChanged.connect(self.cBox1Changed)
-            if rpwerk[2] != 'F':
-                cBox1.setDisabled(True)
-            grid.addWidget(cBox1, 14, 2)
-            
-            cBox = QCheckBox('Work unsubscribed')
-            cBox.stateChanged.connect(self.cBoxChanged)
-            if rpwerk[2] != 'G':
-                cBox.setDisabled(True)
-            grid.addWidget(cBox, 14, 3)
-           
+            grid.addWidget(lbl28, 4, 1)
+
             cBox2 = QCheckBox('Order')
             cBox2.stateChanged.connect(self.cBox2Changed)
             if rpwerk[39]:
                 cBox2.setDisabled(True)
-            grid.addWidget(cBox2, 15, 2) 
-                       
-            lbl = QLabel()
-            pixmap = QPixmap('./images/logos/verbinding.jpg')
-            lbl.setPixmap(pixmap)
-            grid.addWidget(lbl, 0, 0, 1, 2)
+            grid.addWidget(cBox2, 5, 1)
+            
+            cBox1 = QCheckBox('More/less\nwork agreed')
+            cBox1.stateChanged.connect(self.cBox1Changed)
+            if rpwerk[2] != 'F':
+                cBox1.setDisabled(True)
+            grid.addWidget(cBox1, 5, 2)
+            
+            cBox = QCheckBox('Work ready')
+            cBox.stateChanged.connect(self.cBoxChanged)
+            if rpwerk[2] != 'G':
+                cBox.setDisabled(True)
+            grid.addWidget(cBox, 5, 3)
+
+            pyqt = QLabel()
+            movie = QMovie('./images/logos/pyqt.gif')
+            pyqt.setMovie(movie)
+            movie.setScaledSize(QSize(240, 80))
+            movie.start()
+            grid.addWidget(pyqt, 0, 0, 1, 2)
             
             logo = QLabel()
             pixmap = QPixmap('./images/logos/logo.jpg')
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 3, 1, 1, Qt.AlignRight)
                                             
-            grid.addWidget(QLabel('       \u00A9 2017 all rights reserved dj.jansen@casema.nl'), 17, 0, 1, 3, Qt.AlignRight)
+            grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 19, 0, 1, 4, Qt.AlignCenter)
               
             self.setLayout(grid)
-            self.setGeometry(100, 100, 150, 150)
+            self.setGeometry(600, 100, 150, 150)
     
             applyBtn = QPushButton('Modify')
             applyBtn.clicked.connect(self.accept)
     
-            grid.addWidget(applyBtn, 16, 3, 1, 1, Qt.AlignRight)
+            grid.addWidget(applyBtn, 18, 3, 1, 1, Qt.AlignRight)
             applyBtn.setFont(QFont("Arial",10))
             applyBtn.setFixedWidth(100)
             applyBtn.setStyleSheet("color: black;  background-color: gainsboro")
@@ -656,7 +580,7 @@ def wijzWerk(mwerknr, m_email):
             cancelBtn = QPushButton('Close')
             cancelBtn.clicked.connect(lambda: winSluit(self, m_email))
     
-            grid.addWidget(cancelBtn, 16, 2, 1 , 1, Qt.AlignRight)
+            grid.addWidget(cancelBtn, 18, 2, 1 , 1, Qt.AlignRight)
             cancelBtn.setFont(QFont("Arial",10))
             cancelBtn.setFixedWidth(100)
             cancelBtn.setStyleSheet("color: black;  background-color: gainsboro")
@@ -666,74 +590,50 @@ def wijzWerk(mwerknr, m_email):
     
         def q2Changed(self,text):
             self.Aanneemsom.setText(text)
-    
-        def q3Changed(self,text):
-            self.Materialen.setText(text)
-     
-        def q4Changed(self,text):
-            self.Materieel.setText(text)
-            
+
+        def q4Changed(self, text):
+            self.mutPaid.setText(text)
+
         def q5Changed(self,text):
             self.Huisvesting.setText(text)
-            
+
+        def q5bChanged(self,text):
+            self.housing.setText(text)
+
         def q6Changed(self,text):
             self.Leiding.setText(text)
+
+        def q6bChanged(self,text):
+            self.direction.setText(text)
             
         def q7Changed(self,text):
             self.Inhuur.setText(text)
+
+        def q7bChanged(self,text):
+            self.hiring.setText(text)
             
         def q8Changed(self,text):
             self.Vervoer.setText(text)
+
+        def q8bChanged(self,text):
+            self.transport.setText(text)
         
-        def q9Changed(self,text):
-            self.Betonwerk.setText(text)
-            
-        def q10Changed(self,text):
-            self.Kabelwerk.setText(text)
-               
         def q11Changed(self,text):
             self.Grondverzet.setText(text)
+
+        def q11bChanged(self,text):
+            self.earthmoving.setText(text)
             
         def q12Changed(self,text):
             self.Overig.setText(text)
-            
-        def q13Changed(self,text):
-            self.Uren_Construktie.setText(text)
-            
-        def q14Changed(self,text):
-            self.Uren_Montage.setText(text)
-            
-        def q15Changed(self,text):
-            self.Uren_Retourlas.setText(text)
-            
-        def q16Changed(self,text):
-            self.Uren_Telecom.setText(text)
-            
-        def q17Changed(self,text):
-            self.Uren_Bfi.setText(text)
-            
-        def q18Changed(self,text):
-            self.Uren_Bvl.setText(text)
-            
-        def q19Changed(self,text):
-            self.Uren_Spoorleg.setText(text)
-            
-        def q20Changed(self,text):
-            self.Uren_Spoorlas.setText(text)
-            
-        def q21Changed(self,text):
-            self.Uren_Voeding.setText(text)
-            
-        def q22Changed(self,text):
-            self.Begroot_Lonen.setText(text)
-            
+
+        def q12bChanged(self,text):
+            self.remaining.setText(text)
+
         def q23Changed(self,text):
-            self.StartWerk.setText(text)
-                
-        def q24Changed(self,text):
-            self.Betaald.setText(text)
-            
-        state = False  
+            self.Startwerk.setText(text)
+
+        state = False
         def cBoxChanged(self, state):
             if state == Qt.Checked:
                 self.state = True
@@ -753,73 +653,49 @@ def wijzWerk(mwerknr, m_email):
         
         def returnq2(self):
             return self.Aanneemsom.text()
-        
-        def returnq3(self):
-            return self.Materialen.text()
-        
+
         def returnq4(self):
-            return self.Materieel.text()
-    
+            return  self.mutPaid.text()
+        
         def returnq5(self):
             return self.Huisvesting.text()
+
+        def returnq5b(self):
+            return self.housing.text()
     
         def returnq6(self):
             return self.Leiding.text()
+
+        def returnq6b(self):
+            return self.direction.text()
         
         def returnq7(self):
             return self.Inhuur.text()
+
+        def returnq7b(self):
+            return self.hiring.text()
               
         def returnq8(self):
             return self.Vervoer.text()
-        
-        def returnq9(self):
-            return self.Betonwerk.text()
-        
-        def returnq10(self):
-            return self.Kabelwerk.text()
-        
+
+        def returnq8b(self):
+            return self.transport.text()
+
         def returnq11(self):
             return self.Grondverzet.text()
+
+        def returnq11b(self):
+            return self.earthmoving.text()
         
         def returnq12(self):
             return self.Overig.text()
-        
-        def returnq13(self):
-            return self.Uren_Construktie.text()
-        
-        def returnq14(self):
-            return self.Uren_Montage.text()
-        
-        def returnq15(self):
-            return self.Uren_Retourlas.text()
-        
-        def returnq16(self):
-            return self.Uren_Telecom.text()
-        
-        def returnq17(self):
-            return self.Uren_Bfi.text()
-        
-        def returnq18(self):
-            return self.Uren_Bvl.text()
-        
-        def returnq19(self):
-            return self.Uren_Spoorleg.text()
-        
-        def returnq20(self):
-            return self.Uren_Spoorlas.text()
-        
-        def returnq21(self):
-            return self.Uren_Voeding.text()
-        
-        def returnq22(self):
-            return self.Begroot_Lonen.text()
+
+        def returnq12b(self):
+            return self.remaining.text()
         
         def returnq23(self):
             return self.StartWerk.text()
-      
-        def returnq24(self):
-            return self.Betaald.text()
-        
+
         def returncBox(self):
             return self.state
         
@@ -833,124 +709,87 @@ def wijzWerk(mwerknr, m_email):
         def getData(parent=None):
             dialog = Widget(parent)
             dialog.exec_()
-            return [dialog.returnq1(), dialog.returnq2(), dialog.returnq3(),\
-                    dialog.returnq4(), dialog.returnq5(), dialog.returnq6(),\
-                    dialog.returnq7(), dialog.returnq8(), dialog.returnq9(),\
-                    dialog.returnq10(), dialog.returnq11(), dialog.returnq12(),\
-                    dialog.returnq13(),dialog.returnq14(), dialog.returnq15(),\
-                    dialog.returnq16(), dialog.returnq17(), dialog.returnq18(),\
-                    dialog.returnq19(), dialog.returnq20(), dialog.returnq21(),\
-                    dialog.returnq22(), dialog.returnq23(), dialog.returnq24(),
-                    dialog.returncBox(), dialog.returncBox1(), dialog.returncBox2()]  
+            return [dialog.returnq1(), dialog.returnq2(),dialog.returnq4(),dialog.returnq5(), dialog.returnq5b(),\
+                    dialog.returnq6(), dialog.returnq6b(), dialog.returnq7(),dialog.returnq7b(), dialog.returnq8(),\
+                    dialog.returnq8b(), dialog.returnq11(), dialog.returnq11b(), dialog.returnq12(),dialog.returnq12b(),\
+                    dialog.returnq23(), dialog.returncBox(), dialog.returncBox1(), dialog.returncBox2()]
                        
     window = Widget()
     data = window.getData()
     if data[0]:
-        ms0 = str(data[0])
+        ms0 = str(data[0])  #werkomschrijving
     else:
         ms0 = rpwerk[1]
     if data[1]:
-        mf1 = float(data[1])
+        mf1 = float(data[1]) # aanneemsom
     else:
         mf1 = rpwerk[4]
     if data[2]:
-        mf2 = float(data[2])
+        mf2 = float(data[2])  # mut betaling
     else:
-        mf2 = rpwerk[5]  
+        mf2 = 0
     if data[3]:
-        mf3 = float(data[3])
+        mf3 = float(data[3])  #begr  huisv
     else:
-        mf3 = rpwerk[6]
+        mf3 = rpwerk[7]
     if data[4]:
-        mf4 = float(data[4])
+        mf4 = float(data[4])  #mut huisv
     else:
-        mf4 = rpwerk[7]
+        mf4 = 0
     if data[5]:
-        mf5 = float(data[5])
+        mf5 = float(data[5])  #begr leiding
     else:
         mf5 = rpwerk[8]
     if data[6]:
-        mf6 = float(data[6])
+        mf6 = float(data[6]) # mut leiding
     else:
-        mf6 = rpwerk[9]
+        mf6 = 0
     if data[7]:
-        mf7 = float(data[7])
+        mf7 = float(data[7]) # begr inhuur
     else:
-        mf7 = rpwerk[10]
+        mf7 = rpwerk[9]
     if data[8]:
-        mf8 = float(data[8])
+        mf8 = float(data[8]) #mut inhuur
     else:
-        mf8 = rpwerk[11]
+        mf8 = 0
     if data[9]:
-        mf9 = float(data[9])
+        mf9 = float(data[9]) #begr vervoer
     else:
-        mf9 = rpwerk[12]
+        mf9 = rpwerk[10]
     if data[10]:
-        mf10 = float(data[10])
+        mf10 = float(data[10])  # mut vervoer
     else:
-        mf10 = rpwerk[13]
+        mf10 = 0
     if data[11]:
-        mf11 = float(data[11])
+        mf11 = float(data[11]) #begr grondverzet
     else:
-        mf11 = rpwerk[14]
+        mf11 = rpwerk[13]
     if data[12]:
-        mf12 = float(data[12])
+        mf12 = float(data[12]) # mut grondverzet
     else:
-        mf12 = rpwerk[15]
+        mf12 = 0
     if data[13]:
-        mf13 = float(data[13])
+        mf13 = float(data[13]) # begr overig
     else:
-        mf13 = rpwerk[16]
+        mf13 = rpwerk[14]
     if data[14]:
-        mf14 = float(data[14])
+        mf14 = float(data[14]) # mut overig
     else:
-        mf14 = rpwerk[17]
+        mf14 = 0
     if data[15]:
-        mf15 = float(data[15])
+        mf15 = str(data[15])  # startweek
     else:
-        mf15 = rpwerk[18]
-    if data[16]:
-        mf16 = float(data[16])
-    else:
-        mf16 = rpwerk[19]
+        mf15 = rpwerk[25]
     if data[17]:
-        mf17 = float(data[17])
-    else:
-        mf17 = rpwerk[20]
-    if data[18]:
-        mf18 = float(data[18])
-    else:
-        mf18 = rpwerk[21]
-    if data[19]:
-        mf19 = float(data[19])
-    else:
-        mf19 = rpwerk[22]
-    if data[20]:
-        mf20 = float(data[20])
-    else:
-        mf20 = rpwerk[23]
-    if data[21]:
-        mf21 = float(data[21])
-    else:
-        mf21 = rpwerk[24]
-    if data[22]:
-        mf22 = data[22]
-    else:
-        mf22 = rpwerk[25]
-    if data[23]:
-        mf23 = float(data[23])
-    else:
-        mf23 = rpwerk[26]
-    if data[25]:
         mvgangst = 'G'
         mstatwk = jaarweek()
-    elif data[24]:
+    elif data[16]:
         mvgangst = 'H'
         mstatwk =  jaarweek()
     else:
         mvgangst = rpwerk[2]
         mstatwk = rpwerk[3]
-    if data[26]:
+    if data[18]:
         mopdrdatum = str(datetime.datetime.now())[0:10]
     else:
         mopdrdatum = rpwerk[39]
@@ -958,16 +797,12 @@ def wijzWerk(mwerknr, m_email):
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     conn = engine.connect()        
     uwrk = update(werken).where(werken.c.werknummerID == mwerknr).values(\
-        werkomschrijving = ms0, aanneemsom = mf1, begr_materialen = mf2,\
-        begr_materieel = mf3, begr_huisv = mf4, begr_leiding = mf5,\
-        begr_inhuur = mf6, begr_vervoer = mf7, begr_beton_bvl = mf8,\
-        begr_kabelwerk = mf9, begr_grondverzet = mf10, begr_overig = mf11,\
-        begr_constr_uren = mf12, begr_mont_uren = mf13, begr_retourlas_uren = mf14,\
-        begr_telecom_uren = mf15, begr_bfi_uren = mf16, begr_bvl_uren = mf17,\
-        begr_spoorleg_uren = mf18, begr_spoorlas_uren = mf19, begr_voeding_uren = mf20,\
-        begr_lonen = mf21, startweek = mf22, statusweek = mstatwk,\
-        voortgangstatus = mvgangst, betaald_bedrag = mf23, opdracht_datum =\
-        mopdrdatum)
+        werkomschrijving = ms0, aanneemsom = mf1, betaald_bedrag = werken.c.betaald_bedrag + mf2, begr_huisv = mf3,\
+        kosten_huisv = werken.c.kosten_huisv + mf4, begr_leiding = mf5, kosten_leiding = werken.c.kosten_leiding + mf6,\
+        begr_inhuur = mf7, kosten_inhuur = werken.c.kosten_inhuur + mf8 , begr_vervoer = mf9,\
+        kosten_vervoer = werken.c.kosten_vervoer + mf10, begr_grondverzet = mf11, grondverzet = werken.c.grondverzet + mf12,\
+        begr_overig = mf13, kosten_overig = werken.c.kosten_overig + mf14, startweek = mf15, statusweek = mstatwk,\
+        voortgangstatus = mvgangst, opdracht_datum = mopdrdatum)
     conn.execute(uwrk)
     conn.close()
     updateOK() 

@@ -1,0 +1,27 @@
+Order list internal for purchase orders / reservations Services and Equipment,
+Work number: 800000080 Ommen_Dalfsen spoorverdu Calculation: 5  Date: 2024-08-26  Page : 1
+=====================================================================================================
+Cluster Cluster description      Number   Unit  Description-Service  hours-sub  Amount-Sub  Delivery  
+=====================================================================================================
+AA00001 spoorbaan recht op h      23.00  1080m  Hiring                56504.10  2125006.19     Agree
+AA00001 spoorbaan recht op h      23.00  1080m  Mainliner             29543.50  7598824.55     Agree
+AA00001 spoorbaan recht op h      23.00  1080m  Wagon                  7923.50   157265.63     Agree
+AA00001 spoorbaan recht op h      23.00  1080m  Locomotive            25403.50  2723458.43     Agree
+AA00002 Lijmlas set NRG 54 E      84.00   stel  Atlas crane            1764.00   110793.31     Agree
+AA00002 Lijmlas set NRG 54 E      84.00   stel  Mainliner              3528.00   907429.82     Agree
+AA00002 Lijmlas set NRG 54 E      84.00   stel  Wagon                  1680.00    33344.64     Agree
+EA00401 Wissel 1:12                6.00     st  Hiring                 1407.00    52914.46     Agree
+EA00401 Wissel 1:12                6.00     st  Crane big               273.60    36955.70     Agree
+EA00401 Wissel 1:12                6.00     st  Mainliner               387.00    99539.50     Agree
+EA00401 Wissel 1:12                6.00     st  Wagon                   144.00     2858.11     Agree
+FA00501 Telecom Kabel leggen      26.00     st  Hiring                60957.00  2292470.86     Agree
+FA00501 Telecom Kabel leggen      26.00     st  Trench machine        13319.80   749478.51     Agree
+GA00610 AY sein                   12.00         Hiring                  996.00    37457.57     Agree
+GA00610 AY sein                   12.00         Atlas crane             420.00    26379.36     Agree
+GB00611 MF sein                    3.00         Hiring                   73.50     2764.19     Agree
+GB00611 MF sein                    3.00         Atlas crane              36.00     2261.09     Agree
+JA00801 HS kast 3000 110V 75       2.00  stuks  Hiring                  293.40    11034.19     Agree
+JA00801 HS kast 3000 110V 75       2.00  stuks  Atlas crane              29.20     1833.99     Agree
+-----------------------------------------------------------------------------------------------------
+Totals                                                               204683.10 33634039.15
+=====================================================================================================

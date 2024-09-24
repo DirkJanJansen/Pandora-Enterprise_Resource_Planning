@@ -1,0 +1,12 @@
+Order list internal for purchase orders / reservations Services and Equipment,
+Work number: 800000080 1 voorbeeld              Calculation: 6  Date: 2024-08-26  Page : 1
+=====================================================================================================
+Cluster Cluster description      Number   Unit  Description-Service  hours-sub  Amount-Sub  Delivery  
+=====================================================================================================
+AA00001 spoorbaan recht op h       1.00  1080m  Hiring                  245.67     9239.16     Agree
+AA00001 spoorbaan recht op h       1.00  1080m  Mainliner               128.45    33038.37     Agree
+AA00001 spoorbaan recht op h       1.00  1080m  Wagon                    34.45      683.76     Agree
+AA00001 spoorbaan recht op h       1.00  1080m  Locomotive              110.45    11841.12     Agree
+-----------------------------------------------------------------------------------------------------
+Totals                                                                  519.02    85494.24
+=====================================================================================================

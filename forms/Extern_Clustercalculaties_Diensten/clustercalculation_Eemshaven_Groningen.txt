@@ -1,26 +1,92 @@
 Order list internal for purchase orders / reservations Services and Equipment,
-Work number: 800000079 Eemshaven Groningen      Calculation: 3  Date: 2024-01-24  Page : 1
+Work number: 800000079 Eemshaven Groningen      Calculation: 3  Date: 2024-09-17  Page : 1
 =====================================================================================================
 Cluster Cluster description      Number   Unit  Description-Service  hours-sub  Amount-Sub  Delivery  
 =====================================================================================================
-AA00001 spoorbaan recht op h       5.00  1080m  Hiring                 9826.80   307971.91     Agree
-AA00001 spoorbaan recht op h       5.00  1080m  Mainliner              5138.00  1101278.92     Agree
-AA00001 spoorbaan recht op h       5.00  1080m  Wagon                  1378.00    22792.12     Agree
-AA00001 spoorbaan recht op h       5.00  1080m  Locomotive             4418.00   394704.12     Agree
-AA00002 Lijmlas set NRG 54 E      16.00   stel  Atlas crane             268.80    14068.99     Agree
-AA00002 Lijmlas set NRG 54 E      16.00   stel  Mainliner               537.60   115229.18     Agree
-AA00002 Lijmlas set NRG 54 E      16.00   stel  Wagon                   256.00     4234.24     Agree
-EA00401 Wissel 1:12                2.00     st  Hiring                  375.20    11758.77     Agree
-EA00401 Wissel 1:12                2.00     st  Crane big                72.96     8212.38     Agree
-EA00401 Wissel 1:12                2.00     st  Mainliner               103.20    22119.89     Agree
-EA00401 Wissel 1:12                2.00     st  Wagon                    38.40      635.14     Agree
-GA00610 AY sein                    2.00         Hiring                  132.80     4161.95     Agree
-GA00610 AY sein                    2.00         Atlas crane              56.00     2931.04     Agree
-GA00610 AY sein                    2.00         Stormobiel               74.72     5131.02     Agree
-GB00611 MF sein                    1.00         Hiring                   19.60      614.26     Agree
-GB00611 MF sein                    1.00         Atlas crane               9.60      502.46     Agree
-JA00801 HS kast 3000 110V 75       1.00  stuks  Hiring                  117.36     3678.06     Agree
-JA00801 HS kast 3000 110V 75       1.00  stuks  Atlas crane              11.68      611.33     Agree
+AA00001 spoorbaan recht op h       5.00  1080m  Hiring                 9826.80   369566.29     Agree
+AA00001 spoorbaan recht op h       5.00  1080m  Trench machine          312.00    17555.62     Agree
+AA00001 spoorbaan recht op h       5.00  1080m  Pressing machine        120.00     5234.40     Agree
+AA00001 spoorbaan recht op h       5.00  1080m  Atlas crane              24.00     1507.39     Agree
+AA00001 spoorbaan recht op h       5.00  1080m  Crane big                16.00     2161.15     Agree
+AA00001 spoorbaan recht op h       5.00  1080m  Mainliner               120.00    30864.96     Agree
+AA00001 spoorbaan recht op h       5.00  1080m  Ballast scraper          12.00     3348.58     Agree
+AA00001 spoorbaan recht op h       5.00  1080m  Wagon                  1378.00    27350.54     Agree
+AA00001 spoorbaan recht op h       5.00  1080m  Locomotive             4418.00   473644.94     Agree
+AA00001 spoorbaan recht op h       5.00  1080m  Assemble Trolley         18.00     1903.82     Agree
+AA00002 Lijmlas set NRG 54 E      16.00   stel  Trench machine          120.00     6752.16     Agree
+AA00002 Lijmlas set NRG 54 E      16.00   stel  Pressing machine         16.00      697.92     Agree
+AA00002 Lijmlas set NRG 54 E      16.00   stel  Atlas crane             268.80    16882.79     Agree
+AA00002 Lijmlas set NRG 54 E      16.00   stel  Crane big                32.00     4322.30     Agree
+AA00002 Lijmlas set NRG 54 E      16.00   stel  Mainliner                16.00     4115.33     Agree
+AA00002 Lijmlas set NRG 54 E      16.00   stel  Ballast scraper          16.00     4464.77     Agree
+AA00002 Lijmlas set NRG 54 E      16.00   stel  Wagon                   256.00     5081.09     Agree
+AA00002 Lijmlas set NRG 54 E      16.00   stel  Locomotive               56.00     6003.65     Agree
+AA00002 Lijmlas set NRG 54 E      16.00   stel  Robel train              18.00     4178.52     Agree
+EA00401 Wissel 1:12                2.00     st  Hiring                  375.20    14110.52     Agree
+EA00401 Wissel 1:12                2.00     st  Trench machine           80.00     4501.44     Agree
+EA00401 Wissel 1:12                2.00     st  Pressing machine         32.00     1395.84     Agree
+EA00401 Wissel 1:12                2.00     st  Atlas crane               8.00      502.46     Agree
+EA00401 Wissel 1:12                2.00     st  Crane big                72.96     9854.85     Agree
+EA00401 Wissel 1:12                2.00     st  Mainliner               104.00    26749.63     Agree
+EA00401 Wissel 1:12                2.00     st  Ballast scraper          14.00     3906.67     Agree
+EA00401 Wissel 1:12                2.00     st  Wagon                    38.40      762.16     Agree
+EA00401 Wissel 1:12                2.00     st  Locomotor                24.00     1369.73     Agree
+EA00401 Wissel 1:12                2.00     st  Assemble Trolley         16.00     1692.29     Agree
+EA00401 Wissel 1:12                2.00     st  Stormobiel               38.00     3131.35     Agree
+GA00601 Enkele Railspoel           4.00         Trench machine           40.00     2250.72     Agree
+GA00601 Enkele Railspoel           4.00         Pressing machine         48.00     2093.76     Agree
+GA00601 Enkele Railspoel           4.00         Atlas crane              16.00     1004.93     Agree
+GA00601 Enkele Railspoel           4.00         Crane big                24.00     3241.73     Agree
+GA00601 Enkele Railspoel           4.00         Mainliner                12.00     3086.50     Agree
+GA00601 Enkele Railspoel           4.00         Ballast scraper           8.00     2232.38     Agree
+GA00601 Enkele Railspoel           4.00         Wagon                     8.00      158.78     Agree
+GA00601 Enkele Railspoel           4.00         Locomotive               16.00     1715.33     Agree
+GA00601 Enkele Railspoel           4.00         Assemble Trolley         12.00     1269.22     Agree
+GA00601 Enkele Railspoel           4.00         Robel train              32.00     7428.48     Agree
+GA00602 Dubbele Railspoel          8.00         Trench machine           17.00      956.56     Agree
+GA00602 Dubbele Railspoel          8.00         Pressing machine         72.00     3140.64     Agree
+GA00602 Dubbele Railspoel          8.00         Atlas crane              14.00      879.31     Agree
+GA00602 Dubbele Railspoel          8.00         Crane big                12.00     1620.86     Agree
+GA00602 Dubbele Railspoel          8.00         Mainliner                 8.00     2057.66     Agree
+GA00602 Dubbele Railspoel          8.00         Ballast scraper           7.00     1953.34     Agree
+GA00602 Dubbele Railspoel          8.00         Wagon                    16.00      317.57     Agree
+GA00602 Dubbele Railspoel          8.00         Locomotive                8.00      857.66     Agree
+GA00610 AY sein                    2.00         Hiring                  132.80     4994.34     Agree
+GA00610 AY sein                    2.00         Trench machine           24.00     1350.43     Agree
+GA00610 AY sein                    2.00         Pressing machine         80.00     3489.60     Agree
+GA00610 AY sein                    2.00         Atlas crane              56.00     3517.25     Agree
+GA00610 AY sein                    2.00         Crane big                16.00     2161.15     Agree
+GA00610 AY sein                    2.00         Mainliner                14.00     3600.91     Agree
+Order list internal for purchase orders / reservations Services and Equipment,
+Work number: 800000079 Eemshaven Groningen      Calculation: 3  Date: 2024-09-17  Page : 2
+=====================================================================================================
+Cluster Cluster description      Number   Unit  Description-Service  hours-sub  Amount-Sub  Delivery  
+=====================================================================================================
+GA00610 AY sein                    2.00         Ballast scraper           4.00     1116.19     Agree
+GA00610 AY sein                    2.00         Wagon                    48.00      952.70     Agree
+GA00610 AY sein                    2.00         Locomotor                24.00     1369.73     Agree
+GA00610 AY sein                    2.00         Stormobiel               74.72     6157.23     Agree
+GA00610 AY sein                    2.00         Robel train              16.00     3714.24     Agree
+GB00611 MF sein                    1.00         Hiring                   19.60      737.12     Agree
+GB00611 MF sein                    1.00         Trench machine           36.00     2025.65     Agree
+GB00611 MF sein                    1.00         Pressing machine         16.00      697.92     Agree
+GB00611 MF sein                    1.00         Atlas crane               9.60      602.96     Agree
+GB00611 MF sein                    1.00         Crane big                 8.00     1080.58     Agree
+GB00611 MF sein                    1.00         Mainliner                26.00     6687.41     Agree
+GB00611 MF sein                    1.00         Ballast scraper           8.00     2232.38     Agree
+GB00611 MF sein                    1.00         Wagon                    64.00     1270.27     Agree
+GB00611 MF sein                    1.00         Assemble Trolley         24.00     2538.43     Agree
+JA00801 HS kast 3000 110V 75       1.00  stuks  Hiring                  117.36     4413.67     Agree
+JA00801 HS kast 3000 110V 75       1.00  stuks  Trench machine           12.00      675.22     Agree
+JA00801 HS kast 3000 110V 75       1.00  stuks  Pressing machine          8.00      348.96     Agree
+JA00801 HS kast 3000 110V 75       1.00  stuks  Atlas crane              11.68      733.60     Agree
+JA00801 HS kast 3000 110V 75       1.00  stuks  Crane big                16.00     2161.15     Agree
+JA00801 HS kast 3000 110V 75       1.00  stuks  Mainliner                12.00     3086.50     Agree
+JA00801 HS kast 3000 110V 75       1.00  stuks  Ballast scraper           5.00     1395.24     Agree
+JA00801 HS kast 3000 110V 75       1.00  stuks  Wagon                    12.00      238.18     Agree
+JA00801 HS kast 3000 110V 75       1.00  stuks  Locomotive               14.00     1500.91     Agree
+JA00801 HS kast 3000 110V 75       1.00  stuks  Stormobiel               18.00     1483.27     Agree
+JA00801 HS kast 3000 110V 75       1.00  stuks  Robel train              48.00    11142.72     Agree
 -----------------------------------------------------------------------------------------------------
-Totals                                                                22834.72  2372812.44
+Totals                                                                19190.92  2670372.45
 =====================================================================================================

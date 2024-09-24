@@ -43,7 +43,7 @@ def zoeken(m_email):
             k0Edit.setFixedWidth(400)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('                 Cluster groups sort key')
+            k0Edit.addItem('                       Cluster groups sort key')
             k0Edit.addItem('0. All clusters')
             k0Edit.addItem('AA-AL. Rails + welding assets')
             k0Edit.addItem('BA-BK. Beams + mounting')
@@ -130,6 +130,13 @@ def toonClusters(keuze, m_email):
             table_view.setModel(table_model)
             font = QFont("Arial", 10)
             table_view.setFont(font)
+            table_view.hideColumn(31)
+            table_view.hideColumn(32)
+            table_view.hideColumn(33)
+            table_view.hideColumn(34)
+            table_view.hideColumn(35)
+            table_view.hideColumn(36)
+            table_view.hideColumn(37)
             table_view.resizeColumnsToContents()
             table_view.setSelectionBehavior(QTableView.SelectRows)
             table_view.clicked.connect(showSelection)
@@ -169,7 +176,7 @@ def toonClusters(keuze, m_email):
               'hours\nhiring', 'Trench machine', 'Press machine', 'Atlas crane', \
               'Crane big', 'Mainliner', 'Ballast scrape\nmachine', 'Wagon', 'Locomotor', \
               'Locomotive', 'Assembly\ntrolley', 'Stormobiel', 'hours\ntelecom', 'Robel train', \
-              'Direction', 'Housing', 'Cable work', 'Earth moving', 'Concrete work', 'Transport', 'Remaining']
+              '', '', '', '', '', '', '']
         
     metadata = MetaData()
     clusters = Table('clusters', metadata,
@@ -628,41 +635,6 @@ def toonClusters(keuze, m_email):
                     lbl31.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
                     grid.addWidget(lbl31, 7, 2)
                     grid.addWidget(q30Edit, 7, 3)
-                    
-                    lbl32 = QLabel('Direction')
-                    lbl32.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl32, 17, 0)
-                    grid.addWidget(q31Edit, 17, 1)
-                    
-                    lbl33 = QLabel('Housing')
-                    lbl33.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl33, 18, 0)
-                    grid.addWidget(q32Edit, 18, 1)
-                    
-                    lbl34 = QLabel('Cable work')
-                    lbl34.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl34, 18, 2)
-                    grid.addWidget(q33Edit, 18, 3)
-                    
-                    lbl35 = QLabel('Earth moving')
-                    lbl35.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl35, 19, 0)
-                    grid.addWidget(q34Edit, 19, 1)
-                    
-                    lbl36 = QLabel('Concrete work')
-                    lbl36.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl36, 19, 2)
-                    grid.addWidget(q35Edit, 19, 3)
-                
-                    lbl37 = QLabel('Transport')
-                    lbl37.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl37, 20, 0)
-                    grid.addWidget(q36Edit, 20, 1)
-                
-                    lbl38 = QLabel('Remaining')
-                    lbl38.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                    grid.addWidget(lbl38, 20, 2)
-                    grid.addWidget(q37Edit, 20, 3)
 
                     lbl = QLabel()
                     pixmap = QPixmap('./images/logos/verbinding.jpg')

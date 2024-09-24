@@ -104,9 +104,7 @@ def _11check(mlevnr):
     fullnumber = number                       
     for i in range(8):
         total += int(fullnumber[i])*(9-i)
-        checkdigit = total % 11
-    if checkdigit == 10:
-        checkdigit = 0
+        checkdigit = total % 11 % 10
     if checkdigit == int(fullnumber[8]):
         return True
     else:
@@ -515,7 +513,7 @@ def inkoopRegels(m_email, rplev, mregel):
         Column('reserverings_datum', String),
         Column('levertijd_begin', String),
         Column('levertijd_end', String))
- 
+
     engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
     conn = engine.connect()
     try:

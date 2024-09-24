@@ -17,7 +17,7 @@ def ongInvoer():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
     msg.setText('Please re-enter incorrect input\nsearch term!')
-    msg.setWindowTitle('Request service orders')               
+    msg.setWindowTitle('Request orders provisional work')
     msg.exec_() 
 
 def geenRecord():
@@ -26,25 +26,25 @@ def geenRecord():
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Warning)
     msg.setText('No record found\ncreate another selection please!')
-    msg.setWindowTitle('Request service orders')               
+    msg.setWindowTitle('Request orders provisional work')
     msg.exec_() 
 
 def inkooporderKeuze(m_email):
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Request Purchase Order Services")
+            self.setWindowTitle("Request Purchase Order Provisional Work")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     
             self.setFont(QFont('Arial', 10))
     
             self.Keuze = QLabel()
             k0Edit = QComboBox()
-            k0Edit.setFixedWidth(330)
+            k0Edit.setFixedWidth(350)
             k0Edit.setFont(QFont("Arial",10))
             k0Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
-            k0Edit.addItem('                Search sort key')
-            k0Edit.addItem('1. All service orders sorted by work number')
+            k0Edit.addItem('                      Search sort key')
+            k0Edit.addItem('1. All provisional orders sorted by work number')
             k0Edit.addItem('2. Filtered by company name')
             k0Edit.addItem('3. Filtered by external work name')
             k0Edit.addItem('4. Filtered by external work number')
@@ -227,7 +227,7 @@ def opvrDienstorders(keuze,zoekterm, m_email):
        def __init__(self, data_list, header, *args):
             QWidget.__init__(self, *args,)
             self.setGeometry(100, 50, 1600, 900)
-            self.setWindowTitle('Request purchase orders services')
+            self.setWindowTitle('Request orders provisional work')
             self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                               Qt.WindowMinMaxButtonsHint)
@@ -238,6 +238,7 @@ def opvrDienstorders(keuze,zoekterm, m_email):
             table_view.setFont(font)
             table_view.resizeColumnsToContents()
             table_view.setColumnHidden(2,True)
+            table_view.setColumnHidden(12, True)
             table_view.setColumnHidden(14,True)
             table_view.setColumnHidden(15,True)
             table_view.setSelectionBehavior(QTableView.SelectRows)
@@ -272,9 +273,9 @@ def opvrDienstorders(keuze,zoekterm, m_email):
                 return self.header[col]
             return None
        
-    header = ['Order purchasing\nservice number','Order purchase number', 'Work number','Type of service', 'Serve description', 'Contract price',\
-          'Planned start', 'Real start','Planned ready', 'Real ready', 'Acceptance ready', 'Acceptance date', 'More-less work',\
-          'Line number', 'Order purchase number','Supplier', 'Order date', 'Approved', 'Payed',\
+    header = ['Order purchasingID','Order purchase number', 'Work number','Type of service', 'Serve description', 'Contract price',\
+          'Planned start', 'Real start','Planned ready', 'Real ready', 'Acceptance ready', 'Acceptance date', '',\
+          'Line number', 'Order purchase number','Supplier', 'Order date', 'Approved', 'Paid',\
           'Unsubscribed','Supplier number', 'Supplier name' ,'Legal status','Work number','Work description']
         
     data_list=[]
@@ -295,7 +296,7 @@ def opvrDienstorders(keuze,zoekterm, m_email):
             class Widget(QDialog):
                  def __init__(self, parent=None):
                     super(Widget, self).__init__(parent)
-                    self.setWindowTitle("Request purchase orders services")
+                    self.setWindowTitle("Request purchase orders provisional work")
                     self.setWindowIcon(QIcon('./images/logos/logo.jpg')) 
                                           
                     self.setFont(QFont('Arial', 10))
@@ -465,7 +466,7 @@ def opvrDienstorders(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Approved'), 3, 0)
                     grid.addWidget(q8Edit, 3, 1)
                                                               
-                    grid.addWidget(QLabel('Payed'), 3, 2)
+                    grid.addWidget(QLabel('Paid'), 3, 2)
                     grid.addWidget(q18Edit, 3, 3)
                                               
                     grid.addWidget(QLabel('Unsubscribed'), 3, 4)
@@ -488,10 +489,10 @@ def opvrDienstorders(keuze,zoekterm, m_email):
                     grid.addWidget(QLabel('Work description'), 9, 0)
                     grid.addWidget(q16Edit, 9, 1, 1, 3)
                     
-                    grid.addWidget(QLabel('Service description'), 10, 0)
+                    grid.addWidget(QLabel('Provisional\nwork description'), 10, 0)
                     grid.addWidget(q17Edit, 10, 1, 1, 3)
                     
-                    grid.addWidget(QLabel('Type of service'), 11, 0)
+                    grid.addWidget(QLabel('Type of \nprovisional work'), 11, 0)
                     grid.addWidget(q11Edit, 11, 1, 1, 3)
                     
                     grid.addWidget(QLabel('Contract price'), 12, 0)
@@ -514,10 +515,7 @@ def opvrDienstorders(keuze,zoekterm, m_email):
                     
                     grid.addWidget(QLabel('Acceptance date'), 14, 2)
                     grid.addWidget(q26Edit, 14, 3)
-                   
-                    grid.addWidget(QLabel('More-less work\nprovisional sum'), 14, 4)
-                    grid.addWidget(q27Edit, 14, 5)
-                                                                            
+
                     grid.addWidget(QLabel('\u00A9 2017 all rights reserved dj.jansen@casema.nl'), 16, 0, 1, 6, Qt.AlignCenter)
                     self.setLayout(grid)
                     self.setGeometry(500, 200, 350, 300)

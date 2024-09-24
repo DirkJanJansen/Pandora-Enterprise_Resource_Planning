@@ -1,11 +1,9 @@
 from collections import Counter
 from login import hoofdMenu
-from PyQt5.QtWidgets import QLabel, QGridLayout, QDialog, QLineEdit,\
-                        QMessageBox, QPushButton, QCheckBox
+from PyQt5.QtWidgets import QLabel, QGridLayout, QDialog, QLineEdit, QMessageBox, QPushButton, QCheckBox
 from PyQt5.QtGui import QFont, QPixmap, QRegExpValidator, QIcon, QMovie
 from PyQt5.QtCore import Qt, QRegExp, QSize
-from sqlalchemy import MetaData, Integer, Table, Column, String, create_engine,\
-                       select, update
+from sqlalchemy import MetaData, Integer, Table, Column, String, create_engine, select, update
            
 def foutAccountnr():
     msg = QMessageBox()
@@ -75,6 +73,9 @@ def info():
         The submenu's are accessible by checking the checkboxes   
         besides the main menu items.
         
+        By  L the level of authorisation is set in a submenu below main menu
+        For example M + L  give Modify permission on submenu level.
+        
         The authorisations are from left to right and subsequently
         from top to bottom displayed.
         
@@ -83,7 +84,7 @@ def info():
         Authorisations:
             
         S = Special   O = Ordering   I = Insert     M = Modify   
-        P = Printing   Q = Query       C = Confidential    
+        P = Printing   Q = Query       L = Level    
         ''')
                 
             grid.addWidget(lblinfo, 1, 0, 1, 4, Qt.AlignCenter)
@@ -281,7 +282,7 @@ def geefAuth(rpacc, m_email):
             grid.addWidget(QLabel('M'), 2, 6)
             grid.addWidget(QLabel('P'), 2, 7)
             grid.addWidget(QLabel('Q'), 2, 8)
-            grid.addWidget(QLabel('C'), 2, 9)
+            grid.addWidget(QLabel('L'), 2, 9)
             
             grid.addWidget(QLabel('Menu'), 2, 11, 1, 2, Qt.AlignRight)  
             grid.addWidget(QLabel('S'), 2, 13)
@@ -290,7 +291,7 @@ def geefAuth(rpacc, m_email):
             grid.addWidget(QLabel('M'), 2, 16)
             grid.addWidget(QLabel('P'), 2, 17)
             grid.addWidget(QLabel('Q'), 2, 18)
-            grid.addWidget(QLabel('C'), 2, 19)
+            grid.addWidget(QLabel('L'), 2, 19)
             
             lbl0 = QLabel('Accounts')
             lbl0.setFixedWidth(115) 
