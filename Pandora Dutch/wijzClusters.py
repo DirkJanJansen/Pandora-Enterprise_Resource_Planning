@@ -598,76 +598,6 @@ def toonClusters(keuze, m_email):
                     input_validator = QRegExpValidator(reg_ex, q30Edit)
                     q30Edit.setValidator(input_validator)
                     
-                    self.Leiding = QLabel()
-                    q31Edit = QLineEdit(str(round(float(rpsel[31]),2)))
-                    q31Edit.setFixedWidth(150)
-                    q31Edit.setFont(QFont("Arial",10))
-                    q31Edit.setAlignment(Qt.AlignRight)
-                    q31Edit.textChanged.connect(self.q31Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-                    input_validator = QRegExpValidator(reg_ex, q31Edit)
-                    q31Edit.setValidator(input_validator)
-                    
-                    self.Huisvesting = QLabel()
-                    q32Edit = QLineEdit(str(round(float(rpsel[32]),2)))
-                    q32Edit.setFixedWidth(150)
-                    q32Edit.setFont(QFont("Arial",10))
-                    q32Edit.setAlignment(Qt.AlignRight)
-                    q32Edit.textChanged.connect(self.q32Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-                    input_validator = QRegExpValidator(reg_ex, q32Edit)
-                    q32Edit.setValidator(input_validator)
-                                    
-                    self.Kabelwerk = QLabel()
-                    q33Edit = QLineEdit(str(round(float(rpsel[33]),2)))
-                    q33Edit.setFixedWidth(150)
-                    q33Edit.setFont(QFont("Arial",10))
-                    q33Edit.setAlignment(Qt.AlignRight)
-                    q33Edit.textChanged.connect(self.q33Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-                    input_validator = QRegExpValidator(reg_ex, q33Edit)
-                    q33Edit.setValidator(input_validator)
-                    
-                    self.Grondverzet = QLabel()
-                    q34Edit = QLineEdit(str(round(float(rpsel[34]),2)))
-                    q34Edit.setFixedWidth(150)
-                    q34Edit.setFont(QFont("Arial",10))
-                    q34Edit.setAlignment(Qt.AlignRight)
-                    q34Edit.textChanged.connect(self.q34Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-                    input_validator = QRegExpValidator(reg_ex, q34Edit)
-                    q34Edit.setValidator(input_validator)
-                    
-                    self.Betonwerk = QLabel()
-                    q35Edit = QLineEdit(str(round(float(rpsel[35]),2)))
-                    q35Edit.setFixedWidth(150)
-                    q35Edit.setFont(QFont("Arial",10))
-                    q35Edit.setAlignment(Qt.AlignRight)
-                    q35Edit.textChanged.connect(self.q35Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-                    input_validator = QRegExpValidator(reg_ex, q35Edit)
-                    q35Edit.setValidator(input_validator)
-                    
-                    self.Vervoer = QLabel()
-                    q36Edit = QLineEdit(str(round(float(rpsel[36]),2)))
-                    q36Edit.setFixedWidth(150)
-                    q36Edit.setFont(QFont("Arial",10))
-                    q36Edit.setAlignment(Qt.AlignRight)
-                    q36Edit.textChanged.connect(self.q36Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-                    input_validator = QRegExpValidator(reg_ex, q36Edit)
-                    q36Edit.setValidator(input_validator)
-                    
-                    self.Overig = QLabel()
-                    q37Edit = QLineEdit(str(round(float(rpsel[37]),2)))
-                    q37Edit.setFixedWidth(150)
-                    q37Edit.setFont(QFont("Arial",10))
-                    q37Edit.setAlignment(Qt.AlignRight)
-                    q37Edit.textChanged.connect(self.q37Changed) 
-                    reg_ex = QRegExp("^[-+]?[0-9]*\\.?[0-9]+$")
-                    input_validator = QRegExpValidator(reg_ex, q37Edit)
-                    q37Edit.setValidator(input_validator)
-                    
                     grid = QGridLayout()
                     grid.setSpacing(10)
                     
@@ -1123,6 +1053,17 @@ def toonClusters(keuze, m_email):
                 mf23 = float(data[23])
             else:
                 mf23= rpsel[30]
+
+            metadata = MetaData()
+            params_hours = Table('params_hours', metadata,
+                                 Column('rateID', Integer, primary_key=True),
+                                 Column('hourly_tariff', Float),
+                                 Column('item', String))
+
+            engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
+            con = engine.connect()
+            selpar = select([params_hours]).order_by(params_hours.c.rateID)
+            rppar = con.execute(selpar).fetchall()
 
             metadata = MetaData()
             params_services = Table('params_services', metadata,
