@@ -71,6 +71,7 @@ sudo apt install sox
 Installing and creating database:
 createdb bisystem
 pg_restore --dbname=bisystem  --verbose "/home/postgres/Pandora/data/bisystem.backup"
+Take attention: you will overwrite the original one without warning. Rename it first
 
 Copy Pandora with folder structures in /home/postgres so you get /home/postgres/Pandora
 
