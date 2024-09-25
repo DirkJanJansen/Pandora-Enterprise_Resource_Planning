@@ -94,6 +94,7 @@ Database backup and restore from terminal
 
 backup database:
 pg_dump -v --verbose -d bisystem -Fc -f  "/home/postgres/Pandora/data/bisystem.backup"
+Take attention: before backup rename original backup, for it will overwrite without warning!
 
 delete database:
 dropdb bisystem
