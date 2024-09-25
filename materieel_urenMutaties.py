@@ -157,7 +157,6 @@ def urenBoeking(self, m_email):
         Column('servicesID', None, ForeignKey('params_services.servicesID')),
         Column('werknummerID', None, ForeignKey('werken.werknummerID')),
         Column('order_inkoop_materieelID',None, ForeignKey('order_inkoop_materieel.order_inkoop_materieelID')),
-        Column('uren_opdracht', Float),
         Column('uren_geboekt', Float),
         Column('boekbedrag', Float),
         Column('boekdatum', String),
