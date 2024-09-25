@@ -50,7 +50,7 @@ def mutatieKeuze(m_email):
             k0Edit.addItem('4. Supplier number')
             k0Edit.addItem('5. Company name')
             k0Edit.addItem('6. By sales order')
-            k0Edit.addItem('7. Cost type (1-9)')
+            k0Edit.addItem('7. Cost type (1-8)')
             k0Edit.addItem('8. Booking date yyyy(-mm(-dd))')
             k0Edit.activated[str].connect(self.k0Changed)
                             
