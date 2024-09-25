@@ -469,8 +469,8 @@ def hoofdMenu(m_email):
             self.k4Edit.lineEdit().setAlignment(Qt.AlignCenter)
             self.k4Edit.setItemData(0, Qt.AlignCenter, Qt.TextAlignmentRole)
             self.k4Edit.addItem('1. Verkoop-bedrijf aanmaken')
-            self.k4Edit.addItem('2. Verself.koop-bedrijf wijzigen')
-            self.k4Edit.addItem('3. Verself.koop-bedrijven opvragen')
+            self.k4Edit.addItem('2. Verkoop-bedrijf wijzigen')
+            self.k4Edit.addItem('3. Verkoop-bedrijven opvragen')
             self.k4Edit.addItem('4. Zelf gegevens opvragen')
             self.k4Edit.addItem('5. Webverkooporders opvragen')
 
