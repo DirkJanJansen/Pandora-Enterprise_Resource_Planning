@@ -164,7 +164,8 @@ def urenBoeking(self, m_email):
         Column('boekbedrag', Float),
         Column('boekdatum', String),
         Column('meerwerkstatus', Boolean),
-        Column('leverancierID',None, ForeignKey('leveranciers.leverancierID')))
+        Column('leverancierID',None, ForeignKey('leveranciers.leverancierID')),
+        Column('orderinkoopID', None, ForeignKey('orders_inkoop.orderinkoopID')))
     orders_inkoop_materieel = Table('orders_inkoop_materieel', metadata,
         Column('order_inkoop_materieelID', Integer, primary_key=True),
         Column('werknummerID', None, ForeignKey('werken.werknummerID')),
@@ -220,7 +221,7 @@ def urenBoeking(self, m_email):
     try:
         insmut = insert(materieelmutaties).values(mutatieID=mutnr,servicesID=mservicenr,werknummerID=mwerknr,uren_geboekt=m_uren,\
             boekbedrag=m_uren*rpserv[1]*rpserv[2], meerwerkstatus = mstatus, leverancierID = mlevnr,order_inkoop_materieelID=mordnr,
-            inkooporderID = m_inkorder)
+            orderinkoopID = m_inkorder)
         con.execute(insmut)
     except:
         self.urenEdit.setText('0')
@@ -228,7 +229,7 @@ def urenBoeking(self, m_email):
         self.lblt.setText('Een fout trad op met muteren van gegevens!')
         self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
         return 1, mwerknr, mboekd, m_email
-
+       
     try:
         if rpwerk[2] == 'H':
             self.urenEdit.setText('0')
