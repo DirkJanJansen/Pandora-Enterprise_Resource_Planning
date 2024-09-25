@@ -663,7 +663,7 @@ def hoofdMenu(m_email):
             self.k15Edit.setFont(QFont("Arial",10))
             self.k15Edit.setStyleSheet("color: black;  background-color: #F8F7EE")
             self.k15Edit.addItem('Herprinten van formulieren')
-            self.k15Edit.setMaxVisibleItems(14)
+            self.k15Edit.setMaxVisibleItems(15)
             self.k15Edit.setEditable(True)
             self.k15Edit.lineEdit().setFont(QFont("Arial", 10))
             self.k15Edit.lineEdit().setReadOnly(True)
