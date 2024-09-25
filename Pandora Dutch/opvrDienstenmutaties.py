@@ -50,7 +50,7 @@ def mutatieKeuze(m_email):
             k0Edit.addItem('4. Leveranciernummer')
             k0Edit.addItem('5. Bedrijfsnaam')
             k0Edit.addItem('6. Op verkooporder')
-            k0Edit.addItem('7. Kostensoort (1-9)')
+            k0Edit.addItem('7. Kostensoort (1-8)')
             k0Edit.addItem('8. Boekdatum yyyy(-mm(-dd))')
             k0Edit.activated[str].connect(self.k0Changed)
                             
