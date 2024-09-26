@@ -24,8 +24,8 @@ def Alert(e):
     msg.setStyleSheet("color: black;  background-color: gainsboro")
     msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
     msg.setIcon(QMessageBox.Critical)
-    msg.setText('Error report '+str(e))
-    msg.setWindowTitle('Error report')
+    msg.setText('Fout melding '+str(e))
+    msg.setWindowTitle('Fout melding')
     msg.exec_()
 
 def windowSluit(self, m_email):
@@ -36,7 +36,7 @@ def info():
     class Widget(QDialog):
         def __init__(self, parent=None):
             super(Widget, self).__init__(parent)
-            self.setWindowTitle("Information ERP System Pandora")
+            self.setWindowTitle("Informatiie ERP Systeem Pandora")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setFont(QFont('Arial', 10))
             grid = QGridLayout()
@@ -59,27 +59,29 @@ def info():
             infolbl = QLabel(
       '''
         \t\t\t\t\t\t\t\t\t\t 
-                                        Information about equipment hours to mutate.  
-        The module starts with the following variable data: 
-        Service number: Pull down menu to choose the desired equipment number. 
-        Work number: empty field to be filled in with the work number, for which work is being done. 
-        Number of hours: Hours equipment used on the day of work.
-        The label for the actual total hours indicates the equipment name,
-        for which the equipment used hours are booked. 
-        Date of work: date of the current day in the format yyyy-mm-dd 
-        Button 'Mutate' Standard button with text 'Mutate' 
-        When modifying or choosing the 'Services number', or fill in the fields 'Work number' and 'Date of work',
-        the system will remember the last keyed data and the position of the pull down menu when the fields arise,
-        so that a quick entry is possible. 
-       
-        When entering the data, if entered correctly, the button Mutate' turn green.
-        In the event of an incorrect or unsuccessful entry, the button 'Mutate' turn red,
-        in this case a correction should be created, because the entry was not booked!
-        In the status field below the input fields, error messages are displayed.
-                 
-        In case an fatal error occurred (combined update and insert actions),
-        a rollback is established, so consistency of the database is assured.
+                                        Informatie over mutaties materieel uurverbruik.  
+         De module start met de volgende variabele gegevens: 
+        Materieel nummer: Menu om het gewenste materieel te kiezen. 
+        Werk nummer: legg veld om het werknummer in te vullen, waarvoor het werk wordt uitgevoerd. 
+        Aantal uren: Materieel uren die de dag van het werk zijn uitgevoerd.
+        Het label voor de gemaakte totaal uren verwijzen naar de materieel naam,
+        waarvoor de gemaakte materieeluren worden geboekt. 
+        Datum werkzaamheden:  datum van de huidige dag in het formaat jjjj-mm-dd
+        Button 'Muteren' Standaard button met tekst 'Muteren' 
+        Bij het aanpassen of invullen van de velden 'Service nummer', 'Werk nummer' en 'Uitvoeringsdatum',
+        zal het systeem bij opkomen van de velden de laatst ingetoetste gegevens onthouden, 
+        zodat een snelle invoer mogelijk is.
+         
+        Bij het intoetsen van de gegevens zal  bij een juiste invoer de knop
+        'Muteren' groen kleuren. Bij een foutieve of niet gelukte invoer zal de 
+        knop 'Muteren' rood kleuren, in dit geval dient een korrektie te worden 
+        gemaakt, omdat de invoer niet is geboekt!
+        In het statusveld onder de invulvelden, wordt de status en informatie
+        van de foutmeldingen getoond.
         
+        In het gevaL dat een fatale fout optreedt (gecombineerde wijzigingen en invoeg akties) ,
+        wordt een rollback uitgevoerd, zodat de consistentie van de database wordt gewaarborgd.           
+                
                                      
     ''')
             grid.addWidget(infolbl, 1, 0)
@@ -161,7 +163,7 @@ def urenBoeking(self, m_email):
         Column('boekbedrag', Float),
         Column('boekdatum', String),
         Column('meerwerkstatus', Boolean),
-        Column('leverancierID', None, ForeignKey('leveranciers.leverancierID')),
+        Column('leverancierID',None, ForeignKey('leveranciers.leverancierID')),
         Column('orderinkoopID', None, ForeignKey('orders_inkoop.orderinkoopID')))
     orders_inkoop_materieel = Table('orders_inkoop_materieel', metadata,
         Column('order_inkoop_materieelID', Integer, primary_key=True),
@@ -186,7 +188,7 @@ def urenBoeking(self, m_email):
     else:
         self.urenEdit.setText('0')
         self.lblt.setStyleSheet("font: bold ; color: red")
-        self.lblt.setText('This is not an existing worknumber!')
+        self.lblt.setText('Dit is geen bestaand werknummer!')
         self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
         return (mservicenr, '', mboekd, m_email)
 
@@ -201,12 +203,12 @@ def urenBoeking(self, m_email):
     except:
         self.urenEdit.setText('0')
         self.lblt.setStyleSheet("font: bold ; color: red")
-        self.lblt.setText('Order for this equipment is not found\nFirst order for this equipment!')
+        self.lblt.setText('Geen order voor dit materieel gevonden\nMaak eerst een bestelling!')
         self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
         return (1, mwerknr, mboekd, m_email)
 
-    mlist = ['Trench machine','Pressing machine','Atlas crane','Crane big','Mainliner','Ballast scraper',\
-             'Wagon','Loco motor','Locomotive','Assemble Trolley','Stormobile','Robel train']
+    mlist = ['Sleuvengraver','Persmachine','Atlaskraan','Kraan groot','Mainliner','Hormachine',\
+             'Wagon','Locomotor','Locomotief','Montagewagen','Stormobiel','Robeltrein']
 
     transaction = con.begin()
     try:
@@ -223,15 +225,15 @@ def urenBoeking(self, m_email):
     except:
         self.urenEdit.setText('0')
         self.lblt.setStyleSheet("font: bold ; color: red")
-        self.lblt.setText('An error has occured with insert mutations!')
+        self.lblt.setText('Een fout trad op met muteren van gegevens!')
         self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
         return 1, mwerknr, mboekd, m_email
-
+       
     try:
         if rpwerk[2] == 'H':
             self.urenEdit.setText('0')
             self.lblt.setStyleSheet("font: bold ; color: red")
-            self.lblt.setText('Work is ready and logged out!')
+            self.lblt.setText('Dit werk is gereed en afgesloten!')
             self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
             return mservicenr, mwerknr, mboekd, m_email
         if mstatus:
@@ -317,13 +319,13 @@ def urenBoeking(self, m_email):
         if int(rpwerk[rpserv[0] + 18]) == 0:
             self.urenEdit.setText('0')
             self.lblt.setStyleSheet("font: bold;color: red")
-            self.lblt.setText('No calculated hours for this equipment!')
+            self.lblt.setText('Geen begrote uren voor dit materieel!')
             self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
             return mservicenr, mwerknr, mboekd, m_email
         self.urenbegrEdit.setText('{:<12.2f}'.format(rpwerk[rpserv[0] + 18]))
         self.urenwerkEdit.setText('{:<12.2f}'.format(rpwerk[rpserv[0] + 6]))
-        lblptext = 'Totals: Realised / Budgeted\nHours '+mlist[mserviceidx]
-        lbltext = 'Mutate hours (work - wages) not cumulative'
+        lblptext = 'Totalen: Gerealiseerde / Begrote\nUren '+mlist[mserviceidx]
+        lbltext = 'Mutaties uren (Mutaie uren (werk - bedragen) niet cumulatief'
         self.lblprof.setText(lblptext)
         self.urenEdit.setText('0')
         self.lblt.setStyleSheet("color: black")
@@ -334,7 +336,7 @@ def urenBoeking(self, m_email):
         self.urenEdit.setText('0')
         self.lblt.setStyleSheet("font: bold;color: red")
         transaction.rollback()
-        self.lblt.setText('Due to an error, a rollback was performed\nthe transactions for this input are not processed!')
+        self.lblt.setText('Door een fout, is een rollback uitgevoerd\nde transaktie is niet uitgevoerd!')
         print(str(e))
         self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
         return mservicenr, mwerknr, mboekd, m_email
@@ -344,7 +346,7 @@ def urenMut(mservicenr, mwerknr, mboekd, m_email):
         def __init__(self):
             super(Widget,self).__init__()
             
-            self.setWindowTitle("Entering hours of external works - wages")
+            self.setWindowTitle("Inbreng uren voor externe werken - bedragen")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
             self.setWindowFlags(self.windowFlags()| Qt.WindowSystemMenuHint |
                                 Qt.WindowMinMaxButtonsHint)
@@ -366,20 +368,20 @@ def urenMut(mservicenr, mwerknr, mboekd, m_email):
             self.k0Edit.setStyleSheet('color: black; background-color: #F8F7EE')
             self.k0Edit.setMaxVisibleItems(12)
             self.k0Edit.setCurrentIndex(mservicenr)
-            self.k0Edit.addItem('Trench machine')
-            self.k0Edit.addItem('Pressing machine')
-            self.k0Edit.addItem('Atlas crane')
-            self.k0Edit.addItem('Crane big')
-            self.k0Edit.addItem('Main liner')
-            self.k0Edit.addItem('Ballast scraper')
+            self.k0Edit.addItem('Sleuvengraver')
+            self.k0Edit.addItem('Persmachine')
+            self.k0Edit.addItem('Atlaskraan')
+            self.k0Edit.addItem('Kraan groot')
+            self.k0Edit.addItem('Mainliner')
+            self.k0Edit.addItem('Hormachine')
             self.k0Edit.addItem('Wagon')
-            self.k0Edit.addItem('Loco motor')
-            self.k0Edit.addItem('Locomotive')
-            self.k0Edit.addItem('Assemble Trolley')
-            self.k0Edit.addItem('Stor mobile')
-            self.k0Edit.addItem('Robel train')
+            self.k0Edit.addItem('Locomotor')
+            self.k0Edit.addItem('Locomotief')
+            self.k0Edit.addItem('Montagewagen')
+            self.k0Edit.addItem('Stormobiel')
+            self.k0Edit.addItem('Robeltrein')
   
-            self.cBox = QCheckBox('More/less work')
+            self.cBox = QCheckBox('Meer/minder werk')
             self.cBox.setFont(QFont("Arial",10))
             self.cBox.setStyleSheet('color: black; background-color: #F8F7EE')
                                                                      
@@ -456,24 +458,24 @@ def urenMut(mservicenr, mwerknr, mboekd, m_email):
             logo.setPixmap(pixmap)
             grid.addWidget(logo , 0, 3, 1, 1, Qt.AlignRight)       
 
-            self.lblt = QLabel('Mutate hours (work - wages) not cumulative')
+            self.lblt = QLabel('Muteren uren (werk - bedragen) niet cumulatief')
             self.lblt.setStyleSheet("color: black")
             self.lblt.setFont(QFont("Arial", 10))
             grid.addWidget(self.lblt , 12, 0, 1, 4, Qt.AlignCenter)
 
-            lbl2 = QLabel('Work number')
+            lbl2 = QLabel('Werknummer')
             lbl2.setFont(QFont("Arial", 10))
             grid.addWidget(lbl2, 7, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.zkwerknEdit, 7, 2, 1, 1, Qt.AlignRight)
                 
-            lbl3 = QLabel('Type of hours')
+            lbl3 = QLabel('Type uren')
             lbl3.setFont(QFont("Arial", 10))
             grid.addWidget(lbl3, 8, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.k0Edit, 8, 2, 1, 1, Qt.AlignRight)
                         
             grid.addWidget(self.cBox, 8, 3)
             
-            self.lblprof = QLabel('Totals: Realised / Budgeted\nHours')
+            self.lblprof = QLabel('Totalen: Werkelijk / Begroot\nUren')
             self.lblprof.setFont(QFont("Arial", 10))
             self.lblprof.setFixedWidth(200)
             self.lblprof.setAlignment(Qt.AlignRight)
@@ -481,17 +483,17 @@ def urenMut(mservicenr, mwerknr, mboekd, m_email):
             grid.addWidget(self.urenwerkEdit, 9, 2, 1, 1, Qt.AlignRight)
             grid.addWidget(self.urenbegrEdit, 9, 3, 1, 1)
             
-            lbl4 = QLabel('Mutate hours')
+            lbl4 = QLabel('Muteren  uren')
             lbl4.setFont(QFont("Arial", 10))
             grid.addWidget(lbl4, 10, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.urenEdit, 10, 2, 1, 1, Qt.AlignRight)
 
-            lbl5 = QLabel('Book date')
+            lbl5 = QLabel('Boekdatum')
             lbl5.setFont(QFont("Arial", 10))
             grid.addWidget(lbl5, 11, 1, 1, 1, Qt.AlignRight)
             grid.addWidget(self.boekdatumEdit, 11, 2, 1, 1, Qt.AlignRight)
             
-            self.applyBtn = QPushButton('Mutate')
+            self.applyBtn = QPushButton('Mutatie')
             self.applyBtn.clicked.connect(lambda: urenBoeking(self, m_email))
                
             self.applyBtn.setFont(QFont("Arial",10))
@@ -500,7 +502,7 @@ def urenMut(mservicenr, mwerknr, mboekd, m_email):
                 
             grid.addWidget(self.applyBtn,13, 3 , 1 , 1, Qt.AlignRight)
                 
-            cancelBtn = QPushButton('Close')
+            cancelBtn = QPushButton('Sluit')
             cancelBtn.clicked.connect(lambda: windowSluit(self, m_email)) 
     
             grid.addWidget(cancelBtn, 13, 2, 1 , 1, Qt.AlignRight)
