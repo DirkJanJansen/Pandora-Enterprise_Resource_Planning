@@ -290,7 +290,7 @@ def toonMutaties(keuze, zoekterm, m_email):
                 return self.header[col]
             return None
 
-    eqlist = ['Sleuvengraver','Persmachine','Atlas kraan','Kraan groot','Mainliner','Hormachine',\
+    eqlist = ['','Sleuvengraver','Persmachine','Atlas kraan','Kraan groot','Mainliner','Hormachine',\
              'Wagon','Locomotor','Locomotief','Montagewagen','Stormobiel','Robeltrein']
 
     header = ['MutatieID', '', 'MaterieelID', 'Materieelnaam', 'InkooporderID', '','Geboekte uren',\
