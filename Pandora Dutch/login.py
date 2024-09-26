@@ -610,6 +610,7 @@ def hoofdMenu(m_email):
             self.k11Edit.addItem('6. Printen lijst te factureren')
             self.k11Edit.addItem('7. Uren mutaties opvragen')
             self.k11Edit.addItem('8. Parameters Financiëel')
+            self.k11Edit.addItem('9. Opvragen materieel uren mutaties')
 
             self.k12Edit = QComboBox()
             self.k12Edit.setFixedWidth(310)
@@ -694,7 +695,7 @@ def hoofdMenu(m_email):
             [0, 4, 6, 2, 2, 5], [0, 3, 4, 6, 1], [0, 1, 4, 6, 6], [0, 3, 4, 3, 7, 6, 6, 6], [0, 3, 4, 6, 1, 6], \
             [0, 3, 4, 6, 4, 5, 1, 6, 3, 6], [0, 3, 4, 6, 3, 5, 3], [0, 3, 4, 6, 2, 6, 3, 3, 3, 7], \
             [0, 3, 4, 6, 3, 6, 3, 6, 1, 7], [0, 4, 4, 6, 3, 6, 3, 6, 1, 7], [0, 6, 2, 1, 6, 3, 4, 1, 7, 7, 7], \
-            [0, 6, 6, 2, 6, 2, 5, 6, 7], [0, 2, 1, 1, 1], [0, 1, 6, 6, 6, 7], [0, 7, 3, 3, 7, 4], [0])
+            [0, 6, 6, 2, 6, 2, 5, 6, 7, 6], [0, 2, 1, 1, 1], [0, 1, 6, 6, 6, 7], [0, 7, 3, 3, 7, 4], [0])
             #loop on mainmenu and permissions in table accounts
             for menu in range(0,16):
                 menuperms = lineperm[menu]
@@ -1249,6 +1250,9 @@ def hoofdMenu(m_email):
     elif dlist[11] == 8:
         import params_finance
         params_finance.chooseSubMenu(m_email, int(mp[11][6]), int(mp[11][4]), int(mp[11][3]))
+    elif dlist[11] == 9:
+        import opvrMaterieelmutaties
+        opvrMaterieelmutaties.mutatieKeuze(m_email)
     elif dlist[12] == 1:
         import voorraadbeheersing
         voorraadbeheersing.vrdKeuze(m_email)
