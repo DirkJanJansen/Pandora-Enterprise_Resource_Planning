@@ -112,7 +112,7 @@ def urenBoeking(self, m_email):
     mstatus = self.cBox.checkState()
     if self.urenEdit.text() == '0':
         self.lblt.setStyleSheet("font: bold ; color: red")
-        self.lblt.setText('No hours entered!')
+        self.lblt.setText('Geen uren ingevoerd!')
         self.applyBtn.setStyleSheet("color: black; background-color: #FF3333")
         return (mservicenr, '', mboekd, m_email)
     if mstatus == 0:
