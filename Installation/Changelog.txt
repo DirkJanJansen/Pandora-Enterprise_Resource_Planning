@@ -503,8 +503,14 @@ From 2020-01-10 updates and changes are described on this page
            The documentation is also  adapted to the new changes.
 2024-09-24 Added Equipment modules for ordering and mutate Equipment hours. Changed accordingly several other modules to sync.
            Change database with new tables. Install new database bisystem!!!!
-2024-10-25 Solved error with table inkooporders forget to make field inkooporderID adjusted to materieel_urenMutaties.py
-2024-10-25 as result the database bisystem has been changed so don't forget to load the last one from this morning
-2022-10-26 added requesting module for mutations of equipment hours for accounting purposes opvrMaterieelmutaties.py ,
+2024-09-25 Solved error with table inkooporders forget to make field inkooporderID adjusted to materieel_urenMutaties.py
+2024-09-25 as result the database bisystem has been changed so don't forget to load the last one from this morning
+2024-09-26 added requesting module for mutations of equipment hours for accounting purposes opvrMaterieelmutaties.py ,
            as a consequence login.py changed
+2024-09-27 added equipment items and tables in documentation Works_and_financial_accountability.pdf and added new bisystem tables.pdf
+           with expanded database tables materieelmutaties and orders_inkoop_materieel for not validated foreignkeys
+           Update the database with the this uploaded backup.
+
+
+
 
