@@ -508,7 +508,8 @@ From 2020-01-10 updates and changes are described on this page
 2024-09-26 added requesting module for mutations of equipment hours for accounting purposes opvrMaterieelmutaties.py ,
            as a consequence login.py changed
 2024-09-27 added equipment items and tables in documentation Works_and_financial_accountability.pdf and added new bisystem tables.pdf
-           with expanded database tables materieelmutaties and orders_inkoop_materieel for not validated foreignkeys
+           with expanded database tables materieelmutaties and orders_inkoop_materieel for not validated foreignkeys updated the backups
+           from the database bisystem bisystem.backup and bisystem_empty.backup.
            Update the database with the this uploaded backup.
 
 
