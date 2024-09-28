@@ -12,7 +12,7 @@ def password_check(hashed_password, password):
     try:
         if ph.verify(hashed_password, password) and (len(password) > 7):  # True
            return True
-    except Exception:
+    except Exception as e:
         return False
 
 def goodbye():
@@ -735,7 +735,6 @@ def hoofdMenu(m_email):
                 mplist[15].model().item(12).setEnabled(False)
                 mplist[15].model().item(12).setForeground(QColor('darkgrey'))
                 mplist[15].model().item(12).setBackground(QColor('gainsboro'))
-            if mp[3][5] == '0' or mp[3][7] == '0':
                 mplist[15].model().item(14).setEnabled(False)
                 mplist[15].model().item(14).setForeground(QColor('darkgrey'))
                 mplist[15].model().item(14).setBackground(QColor('gainsboro'))
