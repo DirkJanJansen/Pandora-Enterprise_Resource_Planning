@@ -341,7 +341,7 @@ def inlog():
             foutKlantnummer()
             inlog()
     else:
-        foutInlog()()
+        foutInlog()
         inlog()
 
     if data[2]:
