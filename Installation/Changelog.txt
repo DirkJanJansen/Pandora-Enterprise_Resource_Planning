@@ -511,6 +511,8 @@ From 2020-01-10 updates and changes are described on this page
            with expanded database tables materieelmutaties and orders_inkoop_materieel for not validated foreignkeys updated the backups
            from the database bisystem, bisystem.backup and bisystem_empty.backup.
            Update the database with the this uploaded backup.
+2024-09-28 Changed some menu items for 2 steps verification for security reasons or level access on some submenu items.
+           For a detailed explanation read the changed documentation Accounts_and_access_control.pdf
 
 
 
