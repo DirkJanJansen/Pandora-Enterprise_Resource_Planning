@@ -697,7 +697,7 @@ def hoofdMenu(m_email):
             # list of pointers by mainmenu and menulines per groups pointers towards database table accountpermissions
             lineperm = ([0, 4, 6, 2, 2, 5],[0, 3, 4, 6, 1],[0, 1, 4, 6, 6],[0, 3, 4, 3, 7, 6, 6, 6 ],[0, 3, 4, 6, 1, 6],\
                         [0, 3, 4, 6, 4, 5, 1, 6, 3, 6],[0, 3, 4, 6, 3, 5, 3],[0, 3, 4, 6, 2, 6, 3, 3, 3, 1],\
-                        [0, 3, 4, 6, 3, 6, 3, 6, 1, 7],[0, 4, 4, 6, 3, 6, 3, 6, 1, 7],[0, 6, 2, 1, 6, 3, 4, 1, 1, 1, 1],\
+                        [0, 3, 4, 6, 3, 6, 3, 6, 1, 1],[0, 4, 4, 6, 3, 6, 3, 6, 1, 1],[0, 6, 2, 1, 6, 3, 4, 1, 1, 1, 1],\
                         [0, 6, 6, 2, 6, 2, 5, 6, 1, 6],[0, 2, 1, 1, 1],[0, 1, 6, 6, 6, 1],[0, 1, 3, 3, 1, 4],[0])
             # loop on mainmenu and permissions in table accounts
             for menu in range(0,16):
