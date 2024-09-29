@@ -513,7 +513,8 @@ From 2020-01-10 updates and changes are described on this page
            Update the database with the this uploaded backup.
 2024-09-28 Changed some menu items for 2 steps verification for security reasons or level access on some submenu items.
            For a detailed explanation read the changed documentation Accounts_and_access_control.pdf
-
-
+2024-09-29 login.py adjusted for menuitems '9. Modify Cluster Menus Internal works' and '9. Modify Cluster Menus External works'
+           Accounts_and_access_control.pdf Explanation of authorizations improved
+  
 
 
