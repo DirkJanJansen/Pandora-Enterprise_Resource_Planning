@@ -516,6 +516,7 @@ From 2020-01-10 updates and changes are described on this page
 2024-09-29 login.py adjusted for menuitems '9. Modify Cluster Menus Internal works' and '9. Modify Cluster Menus External works'
            Accounts_and_access_control.pdf Explanation of authorizations improved
 2024-09-29 From documentation translation errors correct insofar as these do not concern names of the database
+2024-09-30 login.py adjusted to access level for params,for detailed information see Documentation 'Accounts_and_access_control'.pdf
   
 
 
