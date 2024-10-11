@@ -53,8 +53,8 @@ and pgdump-custom.bat must be changed.
 Since some people are having problems due to changed paths, here is an alternative method for reinstalling a modified database using pgAdmin 4:
 Open pgadmin 4, open servers, open postgresql (16 or 17), open databases, select bisystem with your right mouse button and choose
 Delete (force), choose databases with your right mouse button and choose create database, type bisystem and create database,
-select database with your right mouse button and choose restore, browse to your path were bisystem.backup is located and restore.
-Wait untill thew proces is finished and your new database is installed. 
+select bisystem with your right mouse button and choose restore, browse to your path were bisystem.backup is located and restore.
+Wait untill the proces is finished and your new database is installed. 
 
 Rename Pandora-Enterprise_Resource_Planning to Pandora
 Copy  Pandora to C:\ProgramData keep the folder structure as it is.
