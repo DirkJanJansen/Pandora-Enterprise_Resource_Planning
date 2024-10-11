@@ -68,6 +68,12 @@ Installing and creating database:
 createdb bisystem
 pg_restore --dbname=bisystem  --verbose "/home/postgres/Pandora/data/bisystem.backup"
 
+Since some people are having problems due to changed paths, here is an alternative method for reinstalling a modified database using pgAdmin 4:
+Open pgadmin 4, open servers, open postgresql (16 or 17), open databases, select bisystem with your right mouse button and choose
+Delete (force), choose databases with your right mouse button and choose create database, type bisystem and create database,
+select database with your right mouse button and choose restore, browse to your path were bisystem.backup is located and restore.
+Wait untill thew proces is finished and your new database is installed. 
+
 Copy Pandora with folder structures in /home/postgres so you get /home/postgres/Pandora
 
 The fonts in Linux differ from Windows. (Install Arial, Comic Sans MS, Times, Sans Serif and Consolas)
