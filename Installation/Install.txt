@@ -36,7 +36,7 @@ PGPORT 5432
 PGUSER postgres
 
 Install Database:
-download postgresql from
+download postgresql from https://www.postgresql.org/download/windows/
 Install postgresql in folder C:\programdata\postgres with password: postgres45 localhost port:5432 user: postgres
 set password in pgadmin4: postgres45
 Start psql in command prompt and set password with \password  (postgres45)
