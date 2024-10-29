@@ -60,8 +60,7 @@ Initial access: dj.jansen@casema.nl or account number 1000000010 password: postg
 or for the empty database admin@admin.aa or account number 100000010 password: postgres45
 The permissions are granted at menu level and menu line level (enabled-disabled)
 Further permissions are granted with the items: special, ordering, new, change, query, print and confidential
-Special is for management tasks for instant wages, charts financial and sensitive information etc.
-Confidential for params and preferrable all payroll tasks.
+Special is for management tasks for instant wages, charts financial , sensitive information and preferrable all payroll tasks.
 All permissions are set with checkboxes.
 For reprinting forms set permission on Reprinting forms on menulevel (Menu)
 This way it is possible to reprint the forms for which on other groups menuline levels authorization is set for print (P).
