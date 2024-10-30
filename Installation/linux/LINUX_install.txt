@@ -72,7 +72,7 @@ Since some people are having problems due to changed paths, here is an alternati
 Open pgadmin 4, open servers, open postgresql (16 or 17), open databases, select bisystem with your right mouse button and choose
 Delete (force), choose databases with your right mouse button and choose create database, type bisystem and create database,
 select bisystem with your right mouse button and choose restore, browse to your path were bisystem.backup is located and restore.
-Wait untill the proces is finished and your new database is installed. 
+Wait until the proces is finished and your new database is installed. 
 
 
 Copy Pandora with folder structures in /home/postgres so you get /home/postgres/Pandora
