@@ -17,7 +17,7 @@ def _11check(mcontr):
         if checkdigit == int(fullnumber[8]):
             return True
     except:
-        return False
+          return False
 
 def Alert(e):
     msg = QMessageBox()
@@ -42,7 +42,7 @@ def info():
             grid = QGridLayout()
             grid.setSpacing(20)
             
-            lblinfo = QLabel('Boeking uren Materieel')
+            lblinfo = QLabel('Booking hours equipment')
             grid.addWidget(lblinfo, 0, 0, 1, 2, Qt.AlignCenter)
             lblinfo.setStyleSheet("color:rgba(45, 83, 115, 255); font: 25pt Comic Sans MS")
             
@@ -72,7 +72,7 @@ def info():
         the system will remember the last keyed data and the position of the pull down menu when the fields arise,
         so that a quick entry is possible. 
        
-        When entering the data, if entered correctly, the button Mutate' turn green.
+        When entering the data, if entered correctly, the button 'Mutate' turn green.
         In the event of an incorrect or unsuccessful entry, the button 'Mutate' turn red,
         in this case a correction should be created, because the entry was not booked!
         In the status field below the input fields, error messages are displayed.
@@ -428,7 +428,7 @@ def urenMut(mservicenr, mwerknr, mboekd, m_email):
             # catch changed text with:
             # text = self.k0Edit.currentText()
             # catch changed index with:
-            # index = (self.k0Edit.currentIndex()
+            # index = self.k0Edit.currentIndex()
             '''
 
             def cboxChanged():
