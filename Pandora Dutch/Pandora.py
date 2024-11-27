@@ -1,7 +1,8 @@
 import os, sys
 from math import sqrt
 import datetime
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication, QMessageBox
+from PyQt5.QtGui import QIcon
 from sqlalchemy import Table, Column, Integer, Float, String, MetaData, create_engine, \
     insert, select, update, func, Boolean
 
@@ -38,9 +39,23 @@ magazijnvoorraad = Table('magazijnvoorraad', metadata,
 engine = create_engine('postgresql+psycopg2://postgres@localhost/bisystem')
 con = engine.connect()
 
-mjaar = int(str(datetime.date.today())[0:4])
-selpar = select([params_system]).where(params_system.c.systemID == 3)
-rppar = con.execute(selpar).first()
+def wrongDatabase():
+    msg = QMessageBox()
+    msg.setStyleSheet("color: black;  background-color: gainsboro")
+    msg.setWindowIcon(QIcon('./images/logos/logo.jpg'))
+    msg.setIcon(QMessageBox.Critical)
+    msg.setText('Oude versie Database bisystem geinstalleerd!\nVerwijder de oude en Restore nieuwe versie\nfor instrukties zie Install.txt\nvoor Linux zie LINUX_install.txt')
+    msg.setWindowTitle('ENTRY')
+    msg.exec_()
+
+try:
+    mjaar = int(str(datetime.date.today())[0:4])
+    selpar = select([params_system]).where(params_system.c.systemID == 3)
+    rppar = con.execute(selpar).first()
+except:
+    app=QApplication(sys.argv)
+    sys.exit(wrongDatabase())
+    app.exec_()
 
 if mjaar % 2 == 1 and int(rppar[1]) == 0:
     updpar = update(params_system).where(params_system.c.systemID == 3).values(system_value=1)
