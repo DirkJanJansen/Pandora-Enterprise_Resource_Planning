@@ -517,6 +517,7 @@ From 2020-01-10 updates and changes are described on this page
            Accounts_and_access_control.pdf Explanation of authorizations improved
 2024-09-29 From documentation translation errors correct insofar as these do not concern names of the database
 2024-09-30 login.py adjusted to access level for params,for detailed information see Documentation 'Accounts_and_access_control'.pdf
+2024-11-27 With startup Pandora added check if correct database bisystem is installed. If not critical messagebox is shown to install correct version.
   
 
 
