@@ -2,7 +2,7 @@ import os, sys
 from math import sqrt
 import datetime
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QApplication, QMessageBox
+from PyQt5.QtWidgets import QApplication, QMessageBox
 from sqlalchemy import Table, Column, Integer, Float, String, MetaData, create_engine,\
      insert, select, update, func, Boolean
 
