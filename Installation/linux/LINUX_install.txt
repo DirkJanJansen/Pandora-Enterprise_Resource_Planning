@@ -1,15 +1,25 @@
 All commands keyboard Ctrl+Alt+t to open terminal
 Installation software:
+Installation with Virtual Python Environment to avoid conflicts:
+requirement for installing virtual environment:
+sudo apt install python3-venv
+and requirement installing psycopg2 :
+sudo apt install python3-dev
 Python 3 is already installed in Ubuntu 19.04 and newer
-
-sudo apt install python3-pip
-sudo pip3 install pyqt5
-sudo pip3 install pyqtchart
-sudo pip3 install python-barcode
-sudo pip3 install pillow
-sudo pip3 install psycopg2
-sudo pip3 install sqlalchemy==1.4.0
-sudo pip3 install argon2-cffi
+Create a virtual environment with:
+python3 -m venv $HOME/venv
+Activate Virtual environment with:
+source venv/bin/activate
+In terminal (venv)$:
+python -m pip install --upgrade pip
+pip install pyqt5
+pip install pyqtchart
+pip install pillow
+pip install python-barcode
+pip install psycopg2
+pip install sqlalchemy==1.4.0
+pip install argon2-cffi
+pip install keyboard
 
 if you want a editor install PyCharm community:
 Install:
@@ -85,6 +95,8 @@ install Ubuntu tweak tools and increase font  size with 20% for optimal views
 startup files in Linux:
 Copy pandora.png from folder LINUX in folder /home/postgres/.icons
 Copy Pandora.desktop from folder LINUX in /home/postgres/.local/share/applications
+The desktop file has changed for starting in python virtual environment
+A shell script was added in the Pandora folder for startup Pandora with the environment
 
 in terminal
 To compile all Pandora scripts in Python:
