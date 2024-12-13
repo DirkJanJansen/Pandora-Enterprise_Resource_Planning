@@ -1,7 +1,7 @@
 #!/bin/sh
 
 source $HOME/venv/bin/activate
-cd Pandora
-python3 Pandora.py
+cd $HOME/Pandora
+python3 $HOME/Pandora/Pandora.py
 source $HOME/venv/bin/deactivate
 
