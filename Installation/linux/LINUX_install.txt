@@ -24,6 +24,7 @@ pip install keyboard
 if you want a editor install PyCharm community:
 Install:
 sudo snap install pycharm-community --classic
+Point Pycharm to existing Virtual Environment (Interpreter Python settings)
 
 Rename Pandora-Enterprise_Resource_Planning to Pandora
 Installation Pandora as user postgres with password postgres45:
