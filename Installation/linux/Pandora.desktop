@@ -2,8 +2,8 @@
 Version=1.0
 Name=Pandora
 Comment=Pandora ERP System
-Path=$HOME/Pandora
-Exec=bash $HOME/pandora.sh
+Path=/home/postgres/Pandora
+Exec=bash pandora.sh
 Icon=pandora
 Terminal=false
 Type=Application
