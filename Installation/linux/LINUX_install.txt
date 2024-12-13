@@ -2,6 +2,7 @@ All commands keyboard Ctrl+Alt+t to open terminal
 Installation software:
 Installation with Virtual Python Environment to avoid conflicts:
 requirement for installing virtual environment:
+sudo apt install python3-pip
 sudo apt install python3-venv
 and requirement installing psycopg2 :
 sudo apt install python3-dev
