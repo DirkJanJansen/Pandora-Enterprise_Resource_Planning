@@ -43,6 +43,9 @@ sudo systemctl enable postgresql
 psql
 set password in psql with \password (postgres45)
 
+If you update your ubuntu version from 22.04 to 24.04 you have to uninstall and reinstall postgreSQL
+to avoid errors
+
 if you want get rid of the annoying i386 error with sudo apt update
 change:
 sudo nano /etc/apt/sources.list.d/pgdg.list
