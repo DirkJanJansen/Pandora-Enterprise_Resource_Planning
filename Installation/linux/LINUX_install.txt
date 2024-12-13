@@ -1,12 +1,13 @@
 All commands keyboard Ctrl+Alt+t to open terminal
 Installation software:
+Python 3 is already installed in Ubuntu 19.04 and newer
 Installation with Virtual Python Environment to avoid conflicts:
 requirement for installing virtual environment:
 sudo apt install python3-pip
 sudo apt install python3-venv
 and requirement installing psycopg2 :
 sudo apt install python3-dev
-Python 3 is already installed in Ubuntu 19.04 and newer
+
 Create a virtual environment with:
 python3 -m venv $HOME/venv
 Activate Virtual environment with:
