@@ -103,6 +103,7 @@ Copy pandora.png from folder LINUX in folder /home/postgres/.icons
 Copy Pandora.desktop from folder LINUX in /home/postgres/.local/share/applications
 The desktop file has changed for starting in python virtual environment
 A shell script was added in the Pandora folder for startup Pandora with the environment
+Login again, to activate.
 
 in terminal
 To compile all Pandora scripts in Python:
