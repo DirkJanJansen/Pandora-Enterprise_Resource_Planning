@@ -71,7 +71,7 @@ Follow these settings exactly for printlists with more pages
 
 Barcode enabling in linux:
 Copy file .usbkbd.sh from folder installation in folder /home/postgres ($HOME)
-chmod 600 .usbkbd.sh
+chmod 755 .usbkbd.sh
 If the password for Ubuntu changed from postgres45 change it too in .usbkbd.sh
 
 For enabling error sounds:
