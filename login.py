@@ -164,6 +164,9 @@ def inlog():
             super(Widget, self).__init__(parent)
             self.setWindowTitle("Pandora business information system logon screen")
             self.setWindowIcon(QIcon('./images/logos/logo.jpg'))
+            self.setWindowFlags(self.windowFlags() | Qt.WindowSystemMenuHint |
+                                Qt.WindowMinimizeButtonHint)  # Qt.WindowMinMaxButtonsHint
+            self.setWindowFlag(Qt.WindowCloseButtonHint, False)
 
             self.setFont(QFont('Arial', 10))
             self.setStyleSheet("background-color: #D9E1DF")
