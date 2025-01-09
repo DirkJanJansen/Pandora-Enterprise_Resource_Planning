@@ -520,5 +520,6 @@ From 2020-01-10 updates and changes are described on this page
 2024-11-27 With startup Pandora added check if correct database bisystem is installed. If not critical messagebox is shown to install correct version.
 2024-12-13 Added Virtual Environment for Ubuntu, for explanation and installation view LINUX_install.txt
 2024-12-26 In title bar close removed
+2025-01-09 Pandora.py if statement added, for if annual consumption is 0 , a divided by 0 error occurs.
 
 
