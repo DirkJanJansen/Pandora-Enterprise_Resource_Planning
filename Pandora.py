@@ -2,7 +2,7 @@ import os, sys
 from math import sqrt
 import datetime
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QMessageBox
+from PyQt5.QtWidgets import QApplication, QApplication, QMessageBox
 from sqlalchemy import Table, Column, Integer, Float, String, MetaData, create_engine,\
      insert, select, update, func, Boolean
 
@@ -69,23 +69,24 @@ if mjaar%2 == 1 and int(rppar[1]) == 0:
     rpartikel = con.execute(selart)
 
     for row in rpartikel:
-        mjaar = int(str(datetime.datetime.now())[0:4])
-        mbestgr = round(sqrt(2*row[5]*rppar2[2])/(row[1]*rppar1[1]),0)
-        mjrverbr = row[4]
-        if row[10] == 1 or row[10] == 5:
-            minvrd = round(mjrverbr*1/17, 0) # < 3 weeks delivery time
-        elif row[10] == 2 or row[10] == 6 or row[10] == 7 :
-            minvrd = round(mjrverbr*4/17, 0) # < 12 weeks delivery time
-        elif row[10] == 3 or row[10] == 8:
-            minvrd = round(mjrverbr*8/17, 0) # < 26 weeks delivery time
-        elif row[10] == 4 or row[10] == 9: 
-            minvrd = round(mjrverbr*16/17,0) # < 52 weeks delivery time
-        else:
-            minvrd = row[6]
+        if row[4] > 0:
+            mjaar = int(str(datetime.datetime.now())[0:4])
+            mbestgr = round(sqrt(2*row[5]*rppar2[2])/(row[1]*rppar1[1]),0)
+            mjrverbr = row[4]
+            if row[10] == 1 or row[10] == 5:
+                minvrd = round(mjrverbr*1/17, 0) # < 3 weeks delivery time
+            elif row[10] == 2 or row[10] == 6 or row[10] == 7:
+                minvrd = round(mjrverbr*4/17, 0) # < 12 weeks delivery time
+            elif row[10] == 3 or row[10] == 8:
+                minvrd = round(mjrverbr*8/17, 0) # < 26 weeks delivery time
+            elif row[10] == 4 or row[10] == 9:
+                minvrd = round(mjrverbr*16/17,0) # < 52 weeks delivery time
+            else:
+                minvrd = row[6]
 
-        updart = update(artikelen).where(artikelen.c.artikelID == row[0]).\
-            values(jaarverbruik_2 = 0, art_min_voorraad = minvrd, art_bestelgrootte = mbestgr)
-        con.execute(updart)
+            updart = update(artikelen).where(artikelen.c.artikelID == row[0]).\
+                values(jaarverbruik_2 = 0, art_min_voorraad = minvrd, art_bestelgrootte = mbestgr)
+            con.execute(updart)
 elif mjaar%2 == 0 and int(rppar[1]) == 1:
     updpar = update(params_system).where(params_system.c.systemID == 3).values(system_value = 0)
     con.execute(updpar)
@@ -97,23 +98,24 @@ elif mjaar%2 == 0 and int(rppar[1]) == 1:
     rpartikel = con.execute(selart)
 
     for row in rpartikel:
-        mjaar = int(str(datetime.datetime.now())[0:4])
-        mbestgr = round(sqrt(2*row[4]*rppar2[2])/(row[1]*rppar1[1]),0)
-        mjrverbr = row[5]
-        if row[10] == 1 or row[10] == 5:
-            minvrd = round(mjrverbr*1/17, 0) # < 3 weeks delivery time
-        elif row[10] == 2 or row[10] == 6 or row[10] == 7 :
-            minvrd = round(mjrverbr*4/17, 0) # < 12 weeks delivery time
-        elif row[10] == 3 or row[10] == 8: 
-            minvrd = round(mjrverbr*8/17, 0) # < 26 weeks delivery time
-        elif row[10] == 4 or row[10] == 9:
-            minvrd = round(mjrverbr*16/17,0) # < 52 weeks delivery time
-        else:
-            minvrd = row[6]
+        if row[5] > 0:
+            mjaar = int(str(datetime.datetime.now())[0:4])
+            mbestgr = round(sqrt(2*row[4]*rppar2[2])/(row[1]*rppar1[1]),0)
+            mjrverbr = row[5]
+            if row[10] == 1 or row[10] == 5:
+                minvrd = round(mjrverbr*1/17, 0) # < 3 weeks delivery time
+            elif row[10] == 2 or row[10] == 6 or row[10] == 7:
+                minvrd = round(mjrverbr*4/17, 0) # < 12 weeks delivery time
+            elif row[10] == 3 or row[10] == 8:
+                minvrd = round(mjrverbr*8/17, 0) # < 26 weeks delivery time
+            elif row[10] == 4 or row[10] == 9:
+                minvrd = round(mjrverbr*16/17,0) # < 52 weeks delivery time
+            else:
+                minvrd = row[6]
 
-        updart = update(artikelen).where(artikelen.c.artikelID == row[0]).\
-            values(jaarverbruik_1 = 0, art_min_voorraad = minvrd, art_bestelgrootte = mbestgr)
-        con.execute(updart)
+            updart = update(artikelen).where(artikelen.c.artikelID == row[0]).\
+                values(jaarverbruik_1 = 0, art_min_voorraad = minvrd, art_bestelgrootte = mbestgr)
+            con.execute(updart)
 
 mhjrmnd = str(datetime.date.today())[0:7]                                                  #(this year year-month) yyyy-mm
 mvjrmnd = int(str(int(str(datetime.date.today())[0:4])-1)+str(datetime.date.today())[5:7]) #(last year yearmonth) yyyymm
