@@ -6,7 +6,7 @@ requirement for installing virtual environment:
 sudo apt install python3-pip
 sudo apt install python3-venv
 and requirement installing psycopg2 :
-sudo apt install python3-dev
+sudo apt install python3-dev libpq-dev build-essential 
 
 Create a virtual environment with:
 python3 -m venv $HOME/venv
